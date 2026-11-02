@@ -2508,11 +2508,17 @@ Object.assign(FIG, {
     };
     return `<svg viewBox="0 0 720 300" role="img" aria-label="Sichere und unsichere Sitzposition beim Essen"><rect width="720" height="300" fill="#fff"/>
       <rect x="10" y="10" width="340" height="280" rx="16" fill="#f1f9f4"/><rect x="370" y="10" width="340" height="280" rx="16" fill="#fdf1ef"/>
-      ${person(110, true)}${person(480, false)}
+      ${person(110, true)}
+      <path d="M418 236V258M668 236V258" stroke="#c7d2de" stroke-width="7" stroke-linecap="round"/><rect x="410" y="214" width="268" height="20" rx="8" fill="#dfe6ee"/>
+      <path d="M520 214L430 162" stroke="#dfe6ee" stroke-width="20" stroke-linecap="round"/>
+      <path d="M526 196H656" stroke="#9db0c4" stroke-width="20" stroke-linecap="round"/><path d="M656 196l4-18" stroke="#9db0c4" stroke-width="10" stroke-linecap="round"/>
+      <path d="M520 194L452 156" stroke="#9db0c4" stroke-width="30" stroke-linecap="round"/><circle cx="430" cy="134" r="20" fill="#9db0c4"/>
+      <path d="M470 160l40 -6 34 -10" stroke="#9db0c4" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M540 130h110M640 130v84" stroke="#c7d2de" stroke-width="7" stroke-linecap="round"/><path d="M572 108h22l-3 22h-16z" fill="#9ec5ee" stroke="#1d3f66" stroke-width="2"/>
       <circle cx="40" cy="40" r="16" fill="${GR}"/><path d="M32 40l6 6 11-12" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>${T(64, 46, "Sicher", { a: "start", s: 15, w: 800, c: GR, f: FD })}
       <circle cx="400" cy="40" r="16" fill="${RD}"/><path d="M393 33l14 14M407 33l-14 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>${T(424, 46, "Gefährlich", { a: "start", s: 15, w: 800, c: RD, f: FD })}
       ${T(180, 262, "Aufrecht, etwa 90 Grad, Kopf leicht nach vorne", { s: 12.5 })}${T(180, 280, "Danach 30 Minuten aufrecht bleiben", { s: 12.5, c: "#5b6878" })}
-      ${T(540, 262, "Halb liegend, Kopf nach hinten", { s: 12.5 })}${T(540, 280, "Flüssigkeit gelangt leichter in die Luftröhre", { s: 12.5, c: "#5b6878" })}
+      ${T(540, 262, "Halb liegend im Bett, Kopf nach hinten", { s: 12.5 })}${T(540, 280, "Flüssigkeit gelangt leichter in die Luftröhre", { s: 12.5, c: "#5b6878" })}
     </svg>`;
   },
   pflegeprozess: () => {
@@ -2663,13 +2669,8 @@ const RL = (() => {
   };
   const inj = () => {
     const half = `M150 72L158 72C160 80 166 84 180 86C196 88 206 96 208 110C212 140 214 160 218 176C222 200 224 224 226 246C227 254 218 258 214 250C210 226 206 200 202 180C198 160 194 140 190 122C188 140 186 160 180 178C178 190 186 200 188 214C190 240 186 270 182 300C180 320 180 340 176 366C176 376 182 382 178 388L156 388C156 372 158 340 158 300C158 270 156 248 152 228L150 226Z`;
-    const body = `<g transform="translate(0 -10)"><path d="${half}" fill="url(#r-skin)"/><path d="${half}" fill="url(#r-skin)" transform="translate(300 0) scale(-1 1)"/>
-      <path d="M114 196H186C188 214 190 230 188 244H156L150 232L144 244H112C110 230 112 214 114 196Z" fill="url(#r-gown)"/>
-      <ellipse cx="150" cy="168" rx="34" ry="20" fill="url(#r-zone)"/><circle cx="150" cy="168" r="8" fill="#e2b394"/><circle cx="150" cy="168" r="2.5" fill="#a8705a"/>
-      <ellipse cx="174" cy="266" rx="12" ry="26" fill="url(#r-zone)"/><ellipse cx="126" cy="266" rx="12" ry="26" fill="url(#r-zone)"/>
-      <ellipse cx="209" cy="132" rx="8" ry="20" fill="url(#r-zone)"/><ellipse cx="91" cy="132" rx="8" ry="20" fill="url(#r-zone)"/>
-      <path d="M150 104c-14 0-22 6-24 14M150 104c14 0 22 6 24 14" fill="none" stroke="#c48f70" stroke-width="1.5" opacity=".6"/>
-      <rect x="140" y="60" width="20" height="18" fill="url(#r-skin)"/><ellipse cx="150" cy="44" rx="21" ry="26" fill="url(#r-skin)"/><path d="M129 44c-2-22 12-32 22-32s24 8 22 32c-4-12-12-18-22-18s-18 6-22 18z" fill="url(#r-hair)"/></g>`;
+    const body = `<circle cx="150" cy="44" r="22" fill="#c9d6e4"/><path d="M118 74h64l18 10 14 92-14 4-14-72v60l6 112h-30l-12-100-12 100h-30l6-112v-60l-14 72-14-4 14-92z" fill="#c9d6e4"/>
+      <ellipse cx="150" cy="148" rx="30" ry="22" fill="#f2b33d" opacity=".75"/><circle cx="150" cy="148" r="8" fill="#c9d6e4"/><circle cx="150" cy="148" r="2.5" fill="#5b6878"/><ellipse cx="126" cy="214" rx="11" ry="26" fill="#f2b33d" opacity=".75"/><ellipse cx="174" cy="214" rx="11" ry="26" fill="#f2b33d" opacity=".75"/><ellipse cx="108" cy="104" rx="7" ry="18" fill="#f2b33d" opacity=".75" transform="rotate(10 108 104)"/><ellipse cx="192" cy="104" rx="7" ry="18" fill="#f2b33d" opacity=".75" transform="rotate(-10 192 104)"/>`;
     const lab = (x1, y1, x2, y2, t, a) => `<path d="M${x1} ${y1}L${x2} ${y2}" stroke="#7a8796" stroke-width="1.2"/><text x="${x2 + (a === "end" ? -4 : 4)}" y="${y2 + 4}" text-anchor="${a || "start"}" font-size="12.5" font-weight="700" fill="#17283b" font-family="${F}">${t}</text>`;
     const skin = (x, ang, t) => {
       const W = 180, c = x + 90, rad = ang * Math.PI / 180, tipY = 150, len = 70, sx = c - len * Math.cos(rad), sy = tipY - len * Math.sin(rad);
@@ -2683,10 +2684,10 @@ const RL = (() => {
         <circle cx="${c}" cy="${tipY}" r="6" fill="#9ec5ee" opacity=".85"/>
         <text x="${c}" y="216" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="${D}">${t}</text>`;
     };
-    return `<svg viewBox="0 0 720 400" role="img" aria-label="Injektionsstellen und Einstichwinkel"><rect width="720" height="400" fill="#fff"/>${defs}
+    return `<svg viewBox="0 0 720 336" role="img" aria-label="Injektionsstellen und Einstichwinkel"><rect width="720" height="336" fill="#fff"/>${defs}
       ${body}
-      ${lab(198, 158, 236, 150, "Bauch")}${lab(186, 256, 236, 252, "Oberschenkel")}${lab(84, 120, 62, 100, "Oberarm", "end")}
-      <text x="150" y="392" text-anchor="middle" font-size="12.5" fill="#5b6878" font-family="${F}">Geeignete Stellen (gelb)</text>
+      ${lab(182, 148, 210, 148, "Bauch")}${lab(186, 214, 210, 214, "Oberschenkel")}${lab(100, 104, 76, 104, "Oberarm", "end")}
+      <text x="150" y="326" text-anchor="middle" font-size="12.5" fill="#5b6878" font-family="${F}">Geeignete Stellen (gelb)</text>
       ${skin(320, 90, "90° Standard")}${skin(520, 45, "45° bei dünner Person")}
       <text x="326" y="112" font-size="11" fill="#5b6878" font-family="${F}">Haut</text><text x="326" y="152" font-size="11" fill="#5b6878" font-family="${F}">Subkutis</text><text x="326" y="186" font-size="11" fill="#5b6878" font-family="${F}">Muskel</text>
       <text x="510" y="250" text-anchor="middle" font-size="13" fill="#5b6878" font-family="${F}">Ziel: das Unterhautfettgewebe, nicht den Muskel</text>
@@ -2694,7 +2695,7 @@ const RL = (() => {
   };
   return { essen, inj };
 })();
-Object.assign(FIG, { druckstellen: DK.druck, kategorien: DK.kat, injektionsstellen: RL.inj, essen: RL.essen });
+Object.assign(FIG, { kategorien: DK.kat, injektionsstellen: RL.inj });
 const GLYPH = {
   delir: '<path d="M14 3a7 7 0 1 0 7 9 5.5 5.5 0 0 1-7-9z"/><path d="M3 21l2-2 2 2 2-2"/>',
   demenz: '<path d="M9 3h3a2 2 0 1 1 4 0h3v5a2 2 0 1 1 0 4v5h-5a2 2 0 1 0-4 0H5v-5a2 2 0 1 0 0-4V3z"/>',
