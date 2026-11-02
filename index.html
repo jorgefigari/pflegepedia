@@ -152,6 +152,7 @@ section.block { padding: 44px 0 8px; }
 .result.good { background: var(--ok-bg); color: var(--ok); }
 .result.try { background: var(--soft); color: var(--ink); }
 .transfer { background: var(--brand-2); border-radius: 12px; padding: 16px 18px; margin: 0; }
+.ncontent > * { min-width: 0; }
 .aside { display: grid; gap: 20px; align-content: start; position: sticky; top: 86px; }
 .facts { display: grid; gap: 12px; margin: 0; }
 .facts div { display: flex; justify-content: space-between; gap: 10px; font-size: 15.5px; }
@@ -164,6 +165,33 @@ section.block { padding: 44px 0 8px; }
 .mini small { display: block; color: var(--muted); font-weight: 400; font-size: 13px; }
 .src { font-size: 14px; color: var(--muted); margin: 0; }
 
+.theory h3 { font-size: 18px; margin: 26px 0 8px; color: var(--tc); }
+.theory h3:first-child { margin-top: 0; }
+.theory p { margin: 0 0 10px; }
+.theory ul { margin: 6px 0 10px; padding-left: 22px; }
+.theory li { margin: 4px 0; }
+.theory li::marker { color: var(--tc); }
+.tbl { overflow-x: auto; margin: 10px 0 12px; border: 1px solid var(--line); border-radius: 12px; }
+.tbl table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.tbl th { background: var(--tc-bg); color: var(--ink); text-align: left; padding: 9px 12px; font-weight: 700; }
+.tbl td { padding: 9px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+.tbl td:first-child { font-weight: 700; }
+.tbl.score td { font-variant-numeric: tabular-nums; }
+.tbl.score th:nth-child(2), .tbl.score td:nth-child(2) { background: #eef8f1; }
+.tbl.score th:nth-child(5), .tbl.score td:nth-child(5) { background: #fdf0ee; }
+.tbl .nil { color: var(--line); }
+@media (max-width: 600px) {
+  .tbl { border: 0; overflow: visible; }
+  .tbl thead { display: none; }
+  .tbl tr { display: block; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .tbl td { display: grid; grid-template-columns: 42% 1fr; gap: 10px; border-top: 1px solid var(--line); background: none !important; }
+  .tbl td:first-child { display: block; border-top: 0; background: var(--tc-bg) !important; }
+  .tbl td:not(:first-child)::before { content: attr(data-label); color: var(--muted); font-size: 14px; }
+  .tbl td:has(.nil) { display: none; }
+}
+.facts-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.facts-list li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; }
+.facts-list li i { width: 30px; height: 30px; border-radius: 50%; background: var(--tc-bg); color: var(--tc); display: grid; place-items: center; font-style: normal; font-weight: 800; font-family: var(--display); }
 footer { background: var(--soft); border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
 footer .wrap { padding-top: 22px; padding-bottom: 32px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
@@ -198,171 +226,398 @@ footer .wrap { padding-top: 22px; padding-bottom: 32px; display: flex; justify-c
 <script>
 const NUGGETS = [
   {
-    id: "haendehygiene", topic: "Hygiene", levels: ["AGS","FaGe","HF"], min: 4,
+    id: "haendehygiene", topic: "Hygiene", levels: ["AGS","FaGe","HF"], min: 8,
     title: "Händehygiene: die 5 Momente",
-    teaser: "Wann desinfiziere ich die Hände? Fünf Situationen decken jeden Patientenkontakt ab.",
-    lead: "Die Hände sind der häufigste Übertragungsweg für Spitalinfektionen. Das WHO-Modell der 5 Momente zeigt, wann eine Händedesinfektion nötig ist.",
+    teaser: "Wann und wie desinfiziere ich die Hände richtig? Hautflora, Technik und die häufigsten Fehler.",
+    lead: "Die Hände sind der wichtigste Übertragungsweg für Spitalinfektionen. Richtig angewendet ist die Händedesinfektion die wirksamste einzelne Massnahme, um Patientinnen und Patienten zu schützen.",
+    theory: [
+      { h: "Warum Händehygiene so wichtig ist",
+        p: ["In der Schweiz erkranken gemäss Bundesamt für Gesundheit jedes Jahr rund 60'000 Patientinnen und Patienten an einer Infektion, die sie sich im Spital zugezogen haben. Ein grosser Teil dieser Infektionen wird über die Hände des Personals übertragen und wäre vermeidbar.",
+            "Bei jedem Kontakt mit einer Person oder ihrer Umgebung nehmen die Hände Keime auf. Ohne Desinfektion tragen wir diese Keime zur nächsten Person, auf Material oder in eine Wunde."] },
+      { h: "Residente und transiente Hautflora",
+        p: ["Auf unserer Haut leben zwei Gruppen von Mikroorganismen. Die Unterscheidung erklärt, warum die Desinfektion so gut wirkt."],
+        table: { head: ["", "Residente Flora", "Transiente Flora"], rows: [
+          ["Herkunft", "Lebt dauerhaft in den Hautschichten", "Durch Kontakt aufgenommen"],
+          ["Gefahr", "Meist harmlos, schützt die Haut", "Kann Krankheitserreger enthalten, z. B. MRSA"],
+          ["Entfernung", "Kaum vollständig möglich", "Durch Desinfektion sehr gut entfernbar"] ] } },
+      { h: "Die richtige Technik",
+        p: ["Desinfektionsmittel in die trockene Hohlhand geben, etwa 3 ml oder so viel, dass die Hände 30 Sekunden lang feucht bleiben. Dann alle Flächen einreiben, bis die Hände trocken sind."],
+        list: ["Handflächen und Handrücken", "Fingerzwischenräume", "Daumen, rundum", "Fingerkuppen und Nagelfalze", "Handgelenke"],
+        after: "Am häufigsten vergessen werden Daumen, Fingerkuppen und Handrücken. Genau dort bleiben dann Keime zurück." },
+      { h: "Desinfizieren oder waschen?",
+        p: ["Alkoholische Händedesinfektion wirkt schneller und besser als Waschen und schont die Haut mehr. Waschen ist nur nötig, wenn die Hände sichtbar verschmutzt sind, und nach Kontakt mit Clostridioides difficile oder anderen sporenbildenden Erregern: Alkohol tötet Sporen nicht ab, das Waschen entfernt sie mechanisch.",
+            "Häufiges Waschen trocknet die Haut aus. Rissige Haut ist schwerer zu desinfizieren. Darum gehört regelmässige Hautpflege zur Händehygiene."] },
+      { h: "Voraussetzungen",
+        list: ["Kurze, saubere Fingernägel ohne Nagellack, Gel oder künstliche Nägel", "Kein Schmuck an Händen und Unterarmen, auch keine Uhr und kein Ehering", "Ärmel bis zum Ellbogen frei", "Verletzungen an den Händen wasserfest abdecken"] }
+    ],
     points: [
-      "Vor dem Patientenkontakt",
-      "Vor einer aseptischen Tätigkeit (z. B. Verbandwechsel, Katheter)",
-      "Nach Kontakt mit potenziell infektiösem Material (Körperflüssigkeiten, Ausscheidungen)",
-      "Nach dem Patientenkontakt",
-      "Nach Kontakt mit der unmittelbaren Patientenumgebung (Bett, Nachttisch, Monitor)"
+      "Moment 1: vor dem Patientenkontakt",
+      "Moment 2: vor einer aseptischen Tätigkeit (z. B. Verbandwechsel, Katheter)",
+      "Moment 3: nach Kontakt mit potenziell infektiösem Material (Körperflüssigkeiten, Ausscheidungen)",
+      "Moment 4: nach dem Patientenkontakt",
+      "Moment 5: nach Kontakt mit der unmittelbaren Patientenumgebung (Bett, Nachttisch, Monitor)"
     ],
-    merke: "Desinfektionsmittel 30 Sekunden einreiben, bis die Hände trocken sind. Handschuhe ersetzen die Händedesinfektion nicht.",
-    levelNotes: { AGS: "Du übst die 5 Momente bei jeder Grundpflege.", FaGe: "Du erkennst aseptische Tätigkeiten selbständig und leitest AGS an.", HF: "Du beobachtest die Compliance im Team und sprichst Lücken an." },
+    merke: "30 Sekunden einreiben, bis die Hände trocken sind. Handschuhe ersetzen die Händedesinfektion nicht: Nach dem Ausziehen immer desinfizieren.",
+    facts: [
+      "Unter einem Ring ist die Keimzahl deutlich höher als auf der übrigen Haut. Deshalb gilt Schmuckverbot, auch für Eheringe.",
+      "Handschuhe haben oft winzige, unsichtbare Löcher. Beim Ausziehen werden die Hände zudem leicht kontaminiert.",
+      "Die 5 Momente wurden 2009 von der Weltgesundheitsorganisation (WHO) eingeführt und gelten weltweit als Standard."
+    ],
+    levelNotes: { AGS: "Du wendest die 5 Momente bei jeder Grundpflege an und achtest auf die Voraussetzungen wie Schmuck und Nägel.", FaGe: "Du erkennst aseptische Tätigkeiten selbständig und leitest AGS in der korrekten Technik an.", HF: "Du beobachtest die Händehygiene im Team, sprichst Lücken wertschätzend an und kennst die Massnahmen bei speziellen Erregern." },
     quiz: [
-      { q: "Du hast das Bett frisch bezogen, die Patientin war nicht im Zimmer. Ist eine Händedesinfektion nötig?", o: ["Nein, kein Patientenkontakt", "Ja, Moment 5: Kontakt mit der Patientenumgebung", "Nur wenn das Bett sichtbar verschmutzt war"], a: 1, e: "Die Patientenumgebung ist mit den Keimen der Patientin besiedelt. Moment 5 gilt auch ohne direkten Kontakt." },
-      { q: "Wie lange reibst du das Desinfektionsmittel ein?", o: ["10 Sekunden", "30 Sekunden", "2 Minuten"], a: 1, e: "30 Sekunden, bis die Hände trocken sind." }
+      { q: "Du hast das Bett frisch bezogen, die Patientin war nicht im Zimmer. Ist eine Händedesinfektion nötig?", o: ["Nein, es gab keinen Patientenkontakt", "Ja, Moment 5: Kontakt mit der Patientenumgebung", "Nur wenn das Bett sichtbar verschmutzt war"], a: 1, e: "Die Patientenumgebung ist mit den Keimen der Patientin besiedelt. Moment 5 gilt auch ohne direkten Kontakt." },
+      { q: "Wie lange reibst du das Desinfektionsmittel ein?", o: ["10 Sekunden", "30 Sekunden, bis die Hände trocken sind", "2 Minuten"], a: 1, e: "30 Sekunden. Erst wenn die Hände trocken sind, ist die Wirkung vollständig." },
+      { q: "Welche Aussage zu den Voraussetzungen stimmt?", o: ["Ein glatter Ehering ist erlaubt", "Kurze Gelnägel sind erlaubt", "Kurze Naturnägel, kein Schmuck an Händen und Unterarmen"], a: 2, e: "Ringe, Uhren, Nagellack und künstliche Nägel verhindern eine wirksame Desinfektion." },
+      { q: "Warum wäscht du bei Clostridioides difficile die Hände zusätzlich?", o: ["Weil Alkohol die Sporen nicht abtötet", "Weil Waschen hautschonender ist", "Weil Desinfektionsmittel dort verboten ist"], a: 0, e: "Sporen überleben den Alkohol. Durch Waschen werden sie mechanisch entfernt." },
+      { q: "Du ziehst nach dem Verbandwechsel die Handschuhe aus. Was folgt?", o: ["Nichts, die Hände waren ja geschützt", "Hände desinfizieren", "Neue Handschuhe anziehen"], a: 1, e: "Handschuhe können undicht sein, und beim Ausziehen werden die Hände leicht kontaminiert." }
     ],
-    transfer: "Beobachte bei deinem nächsten Frühdienst eine Pflegesituation: Wo genau lagen die 5 Momente? Wo wäre ein Spender hilfreich?",
-    src: "WHO: My 5 Moments for Hand Hygiene; Swissnoso Empfehlungen Händehygiene"
+    transfer: "Beobachte bei deinem nächsten Dienst eine Pflegesituation: Wo genau lagen die 5 Momente? Wurde jeder Moment eingehalten? Wo wäre ein zusätzlicher Spender hilfreich?",
+    src: "WHO: My 5 Moments for Hand Hygiene; Swissnoso Empfehlungen zur Händehygiene; BAG, Strategie NOSO"
   },
   {
-    id: "vitalzeichen", topic: "Beobachten", levels: ["AGS","FaGe"], min: 5,
+    id: "vitalzeichen", topic: "Beobachten", levels: ["AGS","FaGe"], min: 9,
     title: "Vitalzeichen: Normwerte beim Erwachsenen",
-    teaser: "Puls, Atmung, Blutdruck, Temperatur und Sauerstoffsättigung richtig einordnen.",
-    lead: "Vitalzeichen zeigen früh, wenn sich der Zustand verändert. Wichtig ist der Normbereich und der Vergleich mit den Vorwerten der Person.",
+    teaser: "Puls, Atmung, Blutdruck, Temperatur und Sauerstoffsättigung richtig messen und einordnen.",
+    lead: "Vitalzeichen zeigen früh, wenn sich der Zustand eines Menschen verändert. Entscheidend ist eine korrekte Messung, das Wissen um den Normbereich und der Vergleich mit den bisherigen Werten der Person.",
+    theory: [
+      { h: "Normwerte im Überblick",
+        table: { head: ["Vitalzeichen", "Normbereich Erwachsene", "Abweichung"], rows: [
+          ["Puls", "60 bis 100 pro Minute", "Über 100: Tachykardie, unter 60: Bradykardie"],
+          ["Atemfrequenz", "12 bis 20 pro Minute", "Über 20: Tachypnoe, unter 12: Bradypnoe"],
+          ["Blutdruck", "Unter 140/90 mmHg, optimal um 120/80", "Ab 140/90: Hypertonie, unter 100/60: Hypotonie"],
+          ["Temperatur", "36,0 bis 37,5 °C", "37,6 bis 38,0: subfebril, über 38,0: Fieber"],
+          ["Sauerstoffsättigung", "95 bis 100 %", "Bei chronischer Lungenerkrankung gelten ärztliche Zielwerte"] ] } },
+      { h: "Puls",
+        p: ["Gemessen wird meist an der Arteria radialis mit Zeige-, Mittel- und Ringfinger, nie mit dem Daumen, weil man sonst den eigenen Puls spürt. Beobachtet werden Frequenz, Rhythmus und Stärke.",
+            "Ist der Puls regelmässig, reichen 30 Sekunden mal zwei. Ist er unregelmässig, wird immer eine volle Minute gezählt."] },
+      { h: "Atmung",
+        p: ["Die Atemfrequenz wird am besten unbemerkt gezählt, zum Beispiel direkt nach der Pulsmessung, während die Finger noch am Handgelenk liegen. Wer weiss, dass seine Atmung beobachtet wird, atmet anders.",
+            "Neben der Frequenz zählen Tiefe, Rhythmus, Geräusche und Anstrengung: Setzt die Person die Atemhilfsmuskulatur ein? Kann sie in ganzen Sätzen sprechen?"] },
+      { h: "Blutdruck",
+        list: ["Vor der Messung mindestens 5 Minuten Ruhe, sitzend oder liegend", "Oberarm auf Herzhöhe, Manschette am nackten Arm", "Passende Manschettengrösse: Eine zu kleine Manschette ergibt falsch hohe Werte, eine zu grosse falsch tiefe", "Nicht am Arm mit Infusion, Shunt oder nach Lymphknotenentfernung messen"] },
+      { h: "Temperatur und Sauerstoffsättigung",
+        p: ["Die Temperatur hängt vom Messort ab. Rektal gemessen liegt sie etwa 0,5 °C höher als unter der Achsel. Darum den Messort immer dokumentieren und bei der gleichen Person beibehalten.",
+            "Die Pulsoxymetrie ist schnell, aber störanfällig: Kalte Finger, Nagellack, Bewegung oder schlechte Durchblutung führen zu falschen Werten. Prüfe, ob die Pulskurve sauber ist."] }
+    ],
     points: [
-      "Puls: 60 bis 100 Schläge pro Minute, regelmässig",
-      "Atemfrequenz: 12 bis 20 Atemzüge pro Minute",
-      "Blutdruck: unter 140/90 mmHg, optimal um 120/80 mmHg",
-      "Temperatur: 36,0 bis 37,5 °C (abhängig von Messort)",
-      "Sauerstoffsättigung: 95 bis 100 % (bei chronischer Lungenerkrankung ärztliche Zielwerte beachten)"
+      "Puls 60 bis 100, Atemfrequenz 12 bis 20 pro Minute",
+      "Blutdruck unter 140/90 mmHg, optimal um 120/80 mmHg",
+      "Temperatur 36,0 bis 37,5 °C, Messort dokumentieren",
+      "Sauerstoffsättigung 95 bis 100 %",
+      "Ein einzelner Wert sagt wenig: Vergleiche immer mit den Vorwerten"
     ],
     merke: "Die Atemfrequenz ist der empfindlichste Frühwarnwert und wird am häufigsten vergessen. Immer eine volle Minute zählen.",
-    levelNotes: { AGS: "Du misst korrekt und meldest Abweichungen sofort der Fachperson.", FaGe: "Du interpretierst Werte im Verlauf und leitest Massnahmen nach Verordnung ein." },
+    facts: [
+      "Der Schockindex ist Puls geteilt durch systolischen Blutdruck. Normal ist etwa 0,5. Ein Wert über 1 weist auf einen drohenden Schock hin.",
+      "Eine erhöhte Atemfrequenz zeigt sich oft Stunden vor einer schweren Verschlechterung, zum Beispiel bei einer Sepsis.",
+      "Bei einer Kohlenmonoxidvergiftung zeigt das Pulsoxymeter falsch normale Werte, obwohl die Person zu wenig Sauerstoff hat."
+    ],
+    levelNotes: { AGS: "Du misst korrekt, dokumentierst sauber und meldest Abweichungen sofort der zuständigen Fachperson.", FaGe: "Du interpretierst Werte im Verlauf, erkennst Zusammenhänge und leitest Massnahmen nach Verordnung ein." },
     quiz: [
-      { q: "Ein Patient hat eine Atemfrequenz von 26/min. Wie schätzt du das ein?", o: ["Normal", "Erhöht, sofort melden", "Zu tief"], a: 1, e: "Über 20/min ist erhöht. Eine Frequenz von 25 und mehr ist ein Warnzeichen." },
+      { q: "Ein Patient hat eine Atemfrequenz von 26 pro Minute. Wie schätzt du das ein?", o: ["Normal", "Erhöht, sofort melden", "Zu tief"], a: 1, e: "Über 20 pro Minute ist erhöht. Ab 25 ist es ein deutliches Warnzeichen." },
+      { q: "Der Puls ist unregelmässig. Wie lange zählst du?", o: ["15 Sekunden mal vier", "30 Sekunden mal zwei", "Eine volle Minute"], a: 2, e: "Bei unregelmässigem Puls ergibt nur eine volle Minute einen zuverlässigen Wert." },
+      { q: "Du verwendest bei einem kräftigen Oberarm eine zu kleine Manschette. Was passiert?", o: ["Der Wert ist falsch hoch", "Der Wert ist falsch tief", "Kein Einfluss"], a: 0, e: "Eine zu kleine Manschette braucht mehr Druck, um die Arterie zu verschliessen. Das ergibt falsch hohe Werte." },
+      { q: "Puls 120 pro Minute, Blutdruck 100/60 mmHg. Wie hoch ist der Schockindex?", o: ["0,8", "1,2", "2,0"], a: 1, e: "120 geteilt durch 100 ergibt 1,2. Über 1 weist auf einen drohenden Schock hin: sofort melden." },
       { q: "Was ist wichtiger als ein einzelner Messwert?", o: ["Die Uhrzeit der Messung", "Der Verlauf im Vergleich zu den Vorwerten", "Das Messgerät"], a: 1, e: "Ein Wert im Normbereich kann trotzdem eine deutliche Veränderung bedeuten." }
     ],
-    transfer: "Suche in der Dokumentation eines Patienten die Vitalzeichen der letzten drei Tage. Erkennst du einen Trend?",
-    src: "Lehrmittel Pflege (Thiemes Pflege); Schweizerische Herzstiftung, Blutdruckwerte"
+    transfer: "Suche in der Dokumentation einer Person deiner Bezugsgruppe die Vitalzeichen der letzten drei Tage. Erkennst du einen Trend? Berechne den Schockindex.",
+    src: "Thiemes Pflege; Schweizerische Herzstiftung, Blutdruckwerte; ESH Leitlinie Hypertonie"
   },
   {
-    id: "dekubitus", topic: "Prophylaxen", levels: ["FaGe","HF"], min: 6,
+    id: "dekubitus", topic: "Prophylaxen", levels: ["FaGe","HF"], min: 10,
     title: "Dekubitusprophylaxe und Braden-Skala",
-    teaser: "Risiko systematisch einschätzen und Druckstellen früh erkennen.",
-    lead: "In der Rehabilitation sind viele Patientinnen und Patienten wenig mobil. Ein Dekubitus verlängert den Aufenthalt und gefährdet das Rehaziel.",
-    points: [
-      "Die Braden-Skala erfasst sechs Bereiche: sensorisches Empfindungsvermögen, Feuchtigkeit, Aktivität, Mobilität, Ernährung, Reibung und Scherkräfte",
-      "Punktzahl 6 bis 23: je tiefer, desto höher das Risiko; ab 18 Punkten und weniger besteht ein Risiko",
-      "Fingertest: Rötung eindrücken. Bleibt sie rot, liegt ein Dekubitus Kategorie 1 vor",
-      "Massnahmen: Positionswechsel nach Plan, Mikrobewegungen, druckverteilende Matratze, Hautpflege, Ernährung"
+    teaser: "Wie ein Dekubitus entsteht, wie du das Risiko einschätzt und was wirklich schützt.",
+    lead: "In der Rehabilitation sind viele Patientinnen und Patienten wenig mobil, sitzen lange im Rollstuhl oder spüren Druck schlecht. Ein Dekubitus verursacht Schmerzen, verlängert den Aufenthalt und gefährdet das Rehaziel.",
+    theory: [
+      { h: "Was ist ein Dekubitus?",
+        p: ["Ein Dekubitus ist eine lokal begrenzte Schädigung der Haut und des darunterliegenden Gewebes, meist über einem Knochenvorsprung. Er entsteht durch Druck oder durch Druck in Kombination mit Scherkräften.",
+            "Wird Gewebe länger zusammengedrückt, werden die kleinen Blutgefässe verschlossen. Die Zellen bekommen keinen Sauerstoff mehr und sterben ab. Bei gefährdeten Menschen kann das bereits nach kurzer Zeit passieren. Scherkräfte entstehen, wenn die Haut an der Unterlage haftet, das Skelett aber verrutscht, etwa beim Hochrutschen im Bett."] },
+      { h: "Gefährdete Körperstellen",
+        table: { head: ["Position", "Besonders gefährdet"], rows: [
+          ["Rückenlage", "Kreuzbein (Sakrum), Fersen, Hinterkopf, Ellbogen"],
+          ["Seitenlage", "Grosser Rollhügel (Trochanter), Knöchel, Ohr, Schulter"],
+          ["Sitzen, z. B. im Rollstuhl", "Sitzbeinhöcker, Steissbein"] ] } },
+      { h: "Die Kategorien",
+        list: ["Kategorie 1: nicht wegdrückbare Rötung bei intakter Haut", "Kategorie 2: Teilverlust der Haut, z. B. Blase oder flache, offene Wunde", "Kategorie 3: Verlust aller Hautschichten, Fettgewebe sichtbar", "Kategorie 4: vollständiger Gewebeverlust, Knochen, Sehne oder Muskel liegen frei"],
+        after: "Dazu kommen der nicht kategorisierbare Dekubitus (Wundgrund bedeckt) und die vermutete tiefe Gewebeschädigung (violette, geschlossene Haut)." },
+      { h: "Die Braden-Skala",
+        p: ["Die Braden-Skala bewertet sechs Bereiche: sensorisches Empfindungsvermögen, Feuchtigkeit, Aktivität, Mobilität, Ernährung sowie Reibung und Scherkräfte. Es gibt 6 bis 23 Punkte. Je tiefer der Wert, desto höher das Risiko. Ab 18 Punkten und tiefer besteht ein Risiko."] },
+      { h: "Was wirklich schützt",
+        list: ["Bewegung fördern: Jede eigene Bewegung entlastet, auch kleine Mikrobewegungen", "Positionswechsel nach individuellem Plan, z. B. 30-Grad-Seitenlage", "Fersen frei lagern, das Kissen liegt unter der Wade", "Druckverteilende Matratzen und Sitzkissen gezielt einsetzen", "Im Rollstuhl regelmässig Gewicht verlagern, nach therapeutischer Vorgabe", "Haut trocken halten, pflegen und täglich kontrollieren", "Auf ausreichende Ernährung und Flüssigkeit achten"],
+        after: "Nicht empfohlen sind das Massieren geröteter Haut, Eis und Föhnen («Eisen und Föhnen») sowie Gummiringe. Sie schädigen das Gewebe zusätzlich." }
     ],
-    merke: "Die Skala ersetzt nicht den klinischen Blick. Die tägliche Hautinspektion an Sakrum, Fersen und Trochanter bleibt Pflicht.",
-    levelNotes: { FaGe: "Du führst die Einschätzung durch und setzt die geplanten Massnahmen um.", HF: "Du beurteilst das Risiko im Gesamtbild, planst Massnahmen und evaluierst ihre Wirkung." },
+    points: [
+      "Dekubitus entsteht durch Druck und Scherkräfte über Knochenvorsprüngen",
+      "Braden-Skala: 6 Bereiche, 6 bis 23 Punkte, ab 18 und tiefer besteht ein Risiko",
+      "Fingertest: Bleibt die Rötung beim Eindrücken bestehen, ist es Kategorie 1",
+      "Bewegung fördern, Positionswechsel, Fersen frei lagern, Haut täglich kontrollieren",
+      "Gerötete Haut nie massieren"
+    ],
+    merke: "Die Skala ersetzt nicht den klinischen Blick. Die tägliche Hautinspektion an Sakrum, Fersen, Trochanter und Sitzbeinhöckern bleibt Pflicht.",
+    facts: [
+      "Ein Dekubitus der Kategorie 4 kann Monate brauchen, bis er verheilt ist. Vorbeugen ist viel einfacher als behandeln.",
+      "Der Fingertest funktioniert auch mit einem durchsichtigen Spatel: Durch das Glas siehst du, ob die Rötung verschwindet.",
+      "Auch medizinische Geräte wie Sauerstoffbrillen, Katheter oder Schienen können einen Dekubitus verursachen."
+    ],
+    levelNotes: { FaGe: "Du führst die Einschätzung durch, setzt die geplanten Massnahmen um und dokumentierst Hautveränderungen genau.", HF: "Du beurteilst das Risiko im Gesamtbild, planst Massnahmen interprofessionell und evaluierst ihre Wirkung." },
     quiz: [
       { q: "Eine Patientin hat 14 Punkte auf der Braden-Skala. Was bedeutet das?", o: ["Kein Risiko", "Erhöhtes Dekubitusrisiko", "Die Skala wurde falsch ausgefüllt"], a: 1, e: "Werte von 18 und tiefer zeigen ein Risiko an. 14 liegt deutlich darunter." },
-      { q: "Die Rötung an der Ferse bleibt beim Fingertest bestehen. Welche Kategorie liegt vor?", o: ["Keine, das ist normal", "Kategorie 1", "Kategorie 3"], a: 1, e: "Eine nicht wegdrückbare Rötung bei intakter Haut entspricht Kategorie 1." }
+      { q: "Die Rötung an der Ferse bleibt beim Fingertest bestehen. Welche Kategorie liegt vor?", o: ["Keine, das ist normal", "Kategorie 1", "Kategorie 3"], a: 1, e: "Eine nicht wegdrückbare Rötung bei intakter Haut entspricht Kategorie 1." },
+      { q: "Am Sakrum findest du eine Blase. Welche Kategorie?", o: ["Kategorie 1", "Kategorie 2", "Kategorie 4"], a: 1, e: "Eine Blase bedeutet einen Teilverlust der Haut, also Kategorie 2." },
+      { q: "Welche Stelle ist bei Menschen im Rollstuhl besonders gefährdet?", o: ["Hinterkopf", "Sitzbeinhöcker", "Ohr"], a: 1, e: "Im Sitzen liegt das Gewicht auf den Sitzbeinhöckern und dem Steissbein." },
+      { q: "Eine Kollegin will eine gerötete Stelle massieren, «damit sie besser durchblutet wird». Was sagst du?", o: ["Gute Idee", "Nicht massieren, das schädigt das Gewebe zusätzlich", "Nur mit Lotion"], a: 1, e: "Massage auf geröteter Haut verstärkt den Schaden im bereits geschädigten Gewebe." }
     ],
-    transfer: "Führe bei einem Patienten deiner Bezugsgruppe die Braden-Einschätzung durch und vergleiche sie mit der letzten dokumentierten.",
-    src: "EPUAP/NPIAP Leitlinie Dekubitus; Expertenstandard Dekubitusprophylaxe (DNQP)"
+    transfer: "Führe bei einer Person deiner Bezugsgruppe die Braden-Einschätzung durch und vergleiche sie mit der letzten dokumentierten. Inspiziere dabei gezielt Sakrum und Fersen.",
+    src: "EPUAP, NPIAP, PPPIA: Prevention and Treatment of Pressure Ulcers, International Guideline; DNQP Expertenstandard Dekubitusprophylaxe"
   },
   {
-    id: "sturz", topic: "Prophylaxen", levels: ["AGS","FaGe","HF"], min: 4,
+    id: "sturz", topic: "Prophylaxen", levels: ["AGS","FaGe","HF"], min: 8,
     title: "Sturzprophylaxe in der Reha",
-    teaser: "Mehr Mobilität bedeutet mehr Sturzrisiko. So bleibt das Training sicher.",
-    lead: "In der Reha üben Menschen neue Bewegungen. Das Ziel ist Selbständigkeit, deshalb geht es nicht um weniger Bewegung, sondern um sichere Bewegung.",
+    teaser: "Mehr Mobilität bedeutet mehr Sturzrisiko. Risikofaktoren erkennen und Training sicher gestalten.",
+    lead: "In der Rehabilitation üben Menschen neue Bewegungen und werden wieder selbständig. Das Ziel ist deshalb nicht weniger Bewegung, sondern sichere Bewegung.",
+    theory: [
+      { h: "Was gilt als Sturz?",
+        p: ["Ein Sturz ist jedes Ereignis, bei dem eine Person unbeabsichtigt auf dem Boden oder einer tieferen Ebene zu liegen kommt. Auch ein «sanftes Hinunterrutschen» vom Stuhl zählt und wird dokumentiert.",
+            "Die Folgen gehen über Verletzungen wie Hüftfrakturen hinaus. Viele Menschen entwickeln nach einem Sturz Angst vor dem nächsten, bewegen sich weniger und verlieren dadurch Kraft. So steigt das Risiko weiter."] },
+      { h: "Risikofaktoren",
+        table: { head: ["In der Person", "In der Umgebung"], rows: [
+          ["Frühere Stürze", "Schlechte Beleuchtung, besonders nachts"],
+          ["Schwäche, Gang- und Gleichgewichtsstörungen", "Stolperfallen, nasse Böden, Kabel"],
+          ["Schwindel, Blutdruckabfall beim Aufstehen", "Ungeeignete Schuhe oder Socken"],
+          ["Seh- und Hörstörungen", "Bett zu hoch, Bremsen gelöst"],
+          ["Inkontinenz, Harndrang", "Hilfsmittel falsch eingestellt oder ausser Reichweite"],
+          ["Verwirrtheit, Demenz", "Klingel nicht erreichbar"] ] } },
+      { h: "Medikamente als Risiko",
+        p: ["Einige Medikamente erhöhen das Sturzrisiko deutlich: Schlaf- und Beruhigungsmittel (z. B. Benzodiazepine), Neuroleptika, Antidepressiva, Opioide, blutdrucksenkende Mittel und Diuretika. Besonders kritisch ist eine neue Verordnung oder eine Dosiserhöhung.",
+            "Wer Blutverdünner (Antikoagulanzien) einnimmt, hat bei einem Sturz ein höheres Risiko für Blutungen, zum Beispiel im Kopf."] },
+      { h: "Sicher aufstehen",
+        p: ["Beim Aufstehen sackt das Blut in die Beine, der Blutdruck kann kurz abfallen (orthostatische Hypotonie). Die Person zuerst an der Bettkante sitzen lassen, Füsse bewegen, nach Schwindel fragen. Erst dann aufstehen."] },
+      { h: "Nach einem Sturz",
+        list: ["Ruhe bewahren, die Person nicht sofort hochziehen", "Ansprechen, Bewusstsein, Schmerzen und Verletzungen prüfen", "Hilfe holen, Fachperson informieren", "Erst nach Beurteilung gemeinsam und sicher aufhelfen", "Bei Kopfanprall, besonders mit Antikoagulation: ärztliche Beurteilung und neurologische Überwachung", "Sturzprotokoll ausfüllen und Ursachen im Team besprechen"] }
+    ],
     points: [
-      "Risikofaktoren: frühere Stürze, Schwindel, Sehstörungen, Inkontinenz, Medikamente (z. B. Schlafmittel), kognitive Einschränkungen",
-      "Umgebung: Bremsen am Bett und Rollstuhl, Klingel in Reichweite, Licht in der Nacht, rutschfeste Schuhe",
-      "Hilfsmittel korrekt einstellen und ihren Gebrauch üben",
-      "Nach einem Sturz: Person nicht sofort hochziehen, zuerst Verletzungen prüfen, Fachperson holen, Sturzprotokoll"
+      "Risikofaktoren liegen in der Person, in der Umgebung und in Medikamenten",
+      "Bremsen, Klingel, Licht, rutschfeste Schuhe: die Umgebung bei jedem Verlassen prüfen",
+      "Vor dem Aufstehen an der Bettkante sitzen lassen",
+      "Nach einem Sturz zuerst beurteilen, dann aufhelfen",
+      "Jeden Sturz dokumentieren und Ursachen analysieren"
     ],
     merke: "Die meisten Stürze passieren beim Aufstehen und auf dem Weg zur Toilette, besonders nachts.",
-    levelNotes: { AGS: "Du sicherst die Umgebung bei jedem Verlassen des Zimmers.", FaGe: "Du erkennst Risikofaktoren und informierst das Team.", HF: "Du schätzt das Sturzrisiko ein und planst Massnahmen interprofessionell mit Physio und Ergo." },
-    quiz: [
-      { q: "Du findest einen Patienten am Boden. Was tust du zuerst?", o: ["Ihn schnell ins Bett heben", "Ansprechen, Verletzungen prüfen, Hilfe holen", "Das Sturzprotokoll ausfüllen"], a: 1, e: "Zuerst Bewusstsein und Verletzungen prüfen. Erst danach wird gemeinsam und sicher mobilisiert." }
+    facts: [
+      "Bettgitter verhindern Stürze nicht zuverlässig. Wer darüber klettert, fällt aus grösserer Höhe. Bettgitter gelten zudem als freiheitsbeschränkende Massnahme und müssen begründet und dokumentiert werden.",
+      "Der Timed Up and Go Test misst, wie lange eine Person braucht, um aufzustehen, drei Meter zu gehen, umzukehren und sich wieder zu setzen. Ein Wert über etwa 12 bis 14 Sekunden weist auf ein erhöhtes Sturzrisiko hin.",
+      "Regelmässiges Kraft- und Gleichgewichtstraining senkt das Sturzrisiko nachweislich."
     ],
-    transfer: "Gehe heute in ein Zimmer deiner Station und prüfe die Umgebung auf Stolperfallen. Was fällt dir auf?",
-    src: "Expertenstandard Sturzprophylaxe (DNQP); Stiftung Patientensicherheit Schweiz"
+    levelNotes: { AGS: "Du sicherst die Umgebung bei jedem Verlassen des Zimmers und begleitest beim Aufstehen.", FaGe: "Du erkennst Risikofaktoren, auch bei Medikamenten, und informierst das Team.", HF: "Du schätzt das Sturzrisiko ein und planst Massnahmen interprofessionell mit Physio- und Ergotherapie." },
+    quiz: [
+      { q: "Du findest einen Patienten am Boden. Was tust du zuerst?", o: ["Ihn schnell ins Bett heben", "Ansprechen, Verletzungen prüfen, Hilfe holen", "Das Sturzprotokoll ausfüllen"], a: 1, e: "Zuerst Bewusstsein und Verletzungen prüfen. Erst danach wird gemeinsam und sicher aufgeholfen." },
+      { q: "Wann passieren die meisten Stürze?", o: ["Beim Mittagessen", "Beim Aufstehen und auf dem Weg zur Toilette", "In der Therapie"], a: 1, e: "Besonders nachts, wenn Harndrang, Müdigkeit und Dunkelheit zusammenkommen." },
+      { q: "Eine Patientin wird beim Aufstehen schwindlig. Was hilft vorbeugend?", o: ["Schnell aufstehen, damit es vorbei ist", "Zuerst an der Bettkante sitzen, Füsse bewegen, dann aufstehen", "Nicht mehr aufstehen lassen"], a: 1, e: "So kann sich der Kreislauf anpassen. Bewegung ganz zu vermeiden schadet in der Reha." },
+      { q: "Ein Patient mit Blutverdünner ist gestürzt und hat sich den Kopf angeschlagen. Er sagt, es gehe ihm gut. Was ist richtig?", o: ["Weiter wie bisher", "Ärztliche Beurteilung und neurologische Überwachung", "Ein Kühlbeutel genügt"], a: 1, e: "Unter Antikoagulation können sich Hirnblutungen verzögert zeigen." },
+      { q: "Welche Aussage zu Bettgittern stimmt?", o: ["Sie verhindern Stürze zuverlässig", "Sie können die Verletzungsschwere erhöhen und sind eine freiheitsbeschränkende Massnahme", "Sie sind bei allen über 80 Pflicht"], a: 1, e: "Wer darüber klettert, fällt aus grösserer Höhe. Der Einsatz muss begründet und dokumentiert werden." }
+    ],
+    transfer: "Gehe heute in ein Zimmer deiner Station und prüfe die Umgebung auf Stolperfallen. Schau dir zudem die Medikamentenliste einer sturzgefährdeten Person an: Welche Medikamente erhöhen das Risiko?",
+    src: "DNQP Expertenstandard Sturzprophylaxe; Stiftung Patientensicherheit Schweiz; BFU, Sturzprävention"
   },
   {
-    id: "pflegeprozess", topic: "Pflegeprozess", levels: ["FaGe","HF"], min: 5,
+    id: "pflegeprozess", topic: "Pflegeprozess", levels: ["FaGe","HF"], min: 9,
     title: "Der Pflegeprozess in sechs Schritten",
-    teaser: "Vom Erfassen bis zur Evaluation: das Gerüst für jede Pflegeplanung.",
-    lead: "Der Pflegeprozess nach Fiechter und Meier strukturiert die Pflege als Regelkreis. Er wird nie einmal abgeschlossen, sondern läuft fortlaufend.",
+    teaser: "Vom Erfassen bis zur Evaluation: das Gerüst für jede Pflegeplanung, mit SMART-Zielen.",
+    lead: "Der Pflegeprozess ist eine systematische Arbeitsmethode. Er sorgt dafür, dass Pflege geplant, nachvollziehbar und überprüfbar ist, statt zufällig oder nach Gewohnheit.",
+    theory: [
+      { h: "Ein Regelkreis, kein Formular",
+        p: ["Das Modell von Verena Fiechter und Martha Meier beschreibt den Pflegeprozess in sechs Schritten. Es wird in der Schweiz seit Jahrzehnten in der Ausbildung verwendet. Der Prozess ist nie abgeschlossen: Nach der Evaluation beginnt er von vorn, weil sich der Zustand der Person verändert.",
+            "Der Pflegeprozess ist nicht nur ein Problemlöseprozess, sondern auch ein Beziehungsprozess. Die Person und ihre Angehörigen werden in jeden Schritt einbezogen."] },
+      { h: "Die sechs Schritte im Detail",
+        table: { head: ["Schritt", "Leitfrage", "Beispiel"], rows: [
+          ["1. Informationssammlung", "Was weiss ich über die Person?", "Eintrittsgespräch, Assessment, Beobachtung"],
+          ["2. Probleme und Ressourcen", "Wo braucht sie Unterstützung, was kann sie selbst?", "Kann nicht allein aufstehen, ist motiviert"],
+          ["3. Pflegeziele", "Was soll erreicht werden?", "Geht in 2 Wochen mit Rollator zur Toilette"],
+          ["4. Massnahmen planen", "Wer macht was, wann, wie oft?", "Täglich 3 Mal Gehtraining mit FaGe"],
+          ["5. Durchführung", "Pflege nach Plan", "Gehtraining und Dokumentation"],
+          ["6. Evaluation", "Wurde das Ziel erreicht?", "Ziel anpassen oder neue Probleme erfassen"] ] } },
+      { h: "Ressourcen nicht vergessen",
+        p: ["Ressourcen sind Fähigkeiten und Möglichkeiten, die die Person mitbringt. Innere Ressourcen sind zum Beispiel Motivation, Humor oder Kraft im gesunden Arm. Äussere Ressourcen sind etwa eine Tochter, die täglich zu Besuch kommt, oder ein passendes Hilfsmittel. Gute Pflege baut auf Ressourcen auf."] },
+      { h: "Ziele SMART formulieren",
+        list: ["Spezifisch: genau beschrieben, was erreicht werden soll", "Messbar: überprüfbar, z. B. Meter, Anzahl, Skala", "Akzeptiert: mit der Person vereinbart", "Realistisch: erreichbar mit den Ressourcen", "Terminiert: bis wann"],
+        after: "Man unterscheidet Nahziele (Tage) und Fernziele (Wochen, Austritt)." },
+      { h: "Pflegediagnosen (Pflege HF)",
+        p: ["Auf Stufe HF werden Probleme oft als Pflegediagnose formuliert, zum Beispiel nach NANDA International im PES-Format: Problem, Einflussfaktoren (Ätiologie) und Symptome. Beispiel: Beeinträchtigte körperliche Mobilität, beeinflusst durch Muskelschwäche nach Hüftoperation, angezeigt durch kurze Schritte und Unsicherheit beim Gehen."] }
+    ],
     points: [
-      "1. Informationssammlung (Pflegeanamnese, Assessment)",
-      "2. Erkennen von Problemen und Ressourcen",
-      "3. Festlegen der Pflegeziele",
-      "4. Planen der Pflegemassnahmen",
-      "5. Durchführen der Pflege",
-      "6. Beurteilen der Wirkung (Evaluation)"
+      "1. Informationssammlung",
+      "2. Probleme und Ressourcen erkennen",
+      "3. Pflegeziele festlegen",
+      "4. Massnahmen planen",
+      "5. Pflege durchführen",
+      "6. Wirkung beurteilen (Evaluation), dann beginnt der Kreis neu"
     ],
     merke: "Ein gutes Pflegeziel ist überprüfbar: Wer erreicht was, bis wann, in welchem Ausmass?",
-    levelNotes: { FaGe: "Du arbeitest im Pflegeprozess mit, sammelst Informationen und führst Massnahmen durch.", HF: "Du verantwortest den ganzen Prozess, stellst Pflegediagnosen und evaluierst." },
+    facts: [
+      "Der Pflegeprozess geht auf die 1950er und 1960er Jahre in den USA zurück und wurde später von der WHO in Europa verbreitet.",
+      "Ein Ziel wie «Mobilität fördern» ist eigentlich eine Massnahme, kein Ziel. Ziele beschreiben immer den Zustand der Person.",
+      "Eine gute Pflegeplanung macht Pflege auch für Kolleginnen und Kollegen im nächsten Dienst nachvollziehbar."
+    ],
+    levelNotes: { FaGe: "Du arbeitest im Pflegeprozess mit, sammelst Informationen, führst Massnahmen durch und beobachtest die Wirkung.", HF: "Du verantwortest den ganzen Prozess, formulierst Pflegediagnosen und Ziele und evaluierst systematisch." },
     quiz: [
       { q: "Welches Ziel ist überprüfbar formuliert?", o: ["Frau M. fühlt sich besser", "Frau M. geht bis Freitag mit Rollator 20 m bis zur Toilette", "Mobilität fördern"], a: 1, e: "Es nennt Person, Verhalten, Ausmass und Zeitpunkt." },
-      { q: "Was folgt auf die Evaluation?", o: ["Der Prozess ist beendet", "Neue Informationssammlung, der Kreis beginnt von vorn", "Austritt"], a: 1, e: "Der Pflegeprozess ist ein Regelkreis." }
+      { q: "Was folgt auf die Evaluation?", o: ["Der Prozess ist beendet", "Neue Informationssammlung, der Kreis beginnt von vorn", "Der Austritt"], a: 1, e: "Der Pflegeprozess ist ein Regelkreis." },
+      { q: "«Die Tochter besucht ihren Vater täglich und hilft beim Essen.» Was ist das?", o: ["Ein Problem", "Eine äussere Ressource", "Ein Pflegeziel"], a: 1, e: "Unterstützung durch das Umfeld ist eine äussere Ressource." },
+      { q: "Wofür steht das T in SMART?", o: ["Teamorientiert", "Terminiert", "Theoretisch"], a: 1, e: "Ein Ziel braucht einen Zeitpunkt, bis wann es erreicht sein soll." },
+      { q: "Beim Eintritt misst du Blutdruck und fragst nach Gewohnheiten. Welcher Schritt ist das?", o: ["Informationssammlung", "Durchführung", "Evaluation"], a: 0, e: "Alles, was du zu Beginn über die Person erfasst, gehört zur Informationssammlung." }
     ],
-    transfer: "Nimm ein Pflegeziel aus einer aktuellen Planung und prüfe: Ist es überprüfbar? Formuliere es wenn nötig neu.",
-    src: "Fiechter V., Meier M.: Pflegeplanung"
+    transfer: "Nimm ein Pflegeziel aus einer aktuellen Pflegeplanung und prüfe es mit SMART. Formuliere es wenn nötig neu und besprich es mit deiner Berufsbildnerin oder deinem Berufsbildner.",
+    src: "Fiechter V., Meier M.: Pflegeplanung; NANDA International: Pflegediagnosen"
   },
   {
-    id: "sbar", topic: "Kommunikation", levels: ["FaGe","HF"], min: 4,
+    id: "sbar", topic: "Kommunikation", levels: ["FaGe","HF"], min: 8,
     title: "SBAR: strukturiert übergeben",
-    teaser: "Vier Schritte, damit beim Rapport und am Telefon nichts verloren geht.",
-    lead: "Viele Fehler entstehen bei der Übergabe von Informationen. SBAR gibt eine feste Reihenfolge vor, die alle im Team kennen.",
+    teaser: "Vier Schritte, damit beim Rapport und am Telefon nichts verloren geht. Mit Beispiel.",
+    lead: "Viele Fehler im Gesundheitswesen entstehen nicht durch fehlendes Wissen, sondern bei der Weitergabe von Informationen. SBAR gibt eine feste Reihenfolge vor, die alle im Team kennen.",
+    theory: [
+      { h: "Woher SBAR kommt",
+        p: ["SBAR stammt ursprünglich aus der US-Marine, wo auf U-Booten wichtige Informationen schnell und klar weitergegeben werden mussten. Anfang der 2000er Jahre wurde die Methode in amerikanischen Spitälern eingeführt und hat sich seither weltweit verbreitet.",
+            "Die Struktur hilft besonders in Stresssituationen und bei Kommunikation über Berufsgrenzen hinweg, etwa zwischen Pflege und Ärzteschaft."] },
+      { h: "Die vier Schritte",
+        table: { head: ["", "Inhalt", "Typische Formulierung"], rows: [
+          ["S, Situation", "Wer spricht, um wen geht es, was ist das Problem?", "«Ich rufe an wegen Herrn K., Zimmer 12. Er hat seit einer Stunde Atemnot.»"],
+          ["B, Background", "Relevante Vorgeschichte, Diagnosen, Medikamente", "«Er ist seit 5 Tagen nach Knie-TP bei uns, hat eine COPD.»"],
+          ["A, Assessment", "Aktuelle Werte und deine Einschätzung", "«AF 28, SpO2 88 %. Ich denke, sein Zustand verschlechtert sich.»"],
+          ["R, Recommendation", "Was brauchst du, was schlägst du vor?", "«Bitte kommen Sie in den nächsten 15 Minuten vorbei.»"] ] } },
+      { h: "ISBAR: mit Identifikation",
+        p: ["Viele Betriebe verwenden ISBAR. Das I steht für Identify: Zuerst stellst du dich mit Name, Funktion und Station vor und nennst die Person, um die es geht."] },
+      { h: "Vor dem Anruf vorbereiten",
+        list: ["Person selbst gesehen und beurteilt", "Aktuelle Vitalzeichen und Verlauf bereit", "Diagnosen, Medikamentenliste und Allergien zur Hand", "Patientendokumentation offen", "Klar wissen, was du willst"] },
+      { h: "Read back und geschlossener Kreis",
+        p: ["Gibt die Ärztin oder der Arzt am Telefon eine Verordnung, wiederholst du sie vollständig (Read back). Die Gegenseite bestätigt. Erst dann ist die Information gesichert. Diese Rückmeldeschleife heisst Closed Loop Communication. Telefonische Verordnungen werden sofort dokumentiert und später visiert."] }
+    ],
     points: [
-      "S, Situation: Wer bin ich, um wen geht es, was ist das aktuelle Problem?",
-      "B, Background: Relevante Vorgeschichte, Diagnose, Medikamente",
-      "A, Assessment: Meine Einschätzung mit aktuellen Werten",
-      "R, Recommendation: Was brauche ich, was schlage ich vor?"
+      "S, Situation: Wer, um wen, welches Problem?",
+      "B, Background: relevante Vorgeschichte",
+      "A, Assessment: Werte und deine Einschätzung",
+      "R, Recommendation: was du brauchst oder vorschlägst",
+      "Telefonische Verordnungen immer wiederholen und dokumentieren"
     ],
-    merke: "Am Telefon mit der Ärztin oder dem Arzt die Verordnung immer wiederholen (Read back) und dokumentieren.",
-    levelNotes: { FaGe: "Du nutzt SBAR beim Rapport und beim Melden von Veränderungen.", HF: "Du nutzt SBAR auch in komplexen Situationen und bei der ärztlichen Kommunikation." },
+    merke: "Die Empfehlung ist der Teil, der am häufigsten fehlt. Sag klar, was du brauchst, und mit welcher Dringlichkeit.",
+    facts: [
+      "Auch im Rapport von Pflege zu Pflege macht SBAR die Übergabe kürzer und vollständiger.",
+      "Unklare Kommunikation gehört international zu den häufigsten Ursachen von schweren Zwischenfällen im Spital.",
+      "Eine Übergabe am Bett mit Einbezug der Person erhöht die Sicherheit zusätzlich."
+    ],
+    levelNotes: { FaGe: "Du nutzt SBAR beim Rapport und beim Melden von Veränderungen an die diplomierte Pflegefachperson.", HF: "Du nutzt SBAR auch in komplexen und akuten Situationen und bei der Kommunikation mit der Ärzteschaft." },
     quiz: [
-      { q: "Zu welchem Teil gehört der Satz «Ich schlage vor, dass Sie den Patienten in den nächsten 30 Minuten anschauen»?", o: ["Situation", "Assessment", "Recommendation"], a: 2, e: "Das ist eine konkrete Empfehlung, also R." }
+      { q: "Zu welchem Teil gehört der Satz «Ich schlage vor, dass Sie den Patienten in den nächsten 30 Minuten anschauen»?", o: ["Situation", "Assessment", "Recommendation"], a: 2, e: "Das ist eine konkrete Empfehlung, also R." },
+      { q: "«Er hatte vor zwei Jahren einen Herzinfarkt.» Wohin gehört das?", o: ["Situation", "Background", "Recommendation"], a: 1, e: "Vorgeschichte und Diagnosen gehören in den Background." },
+      { q: "Wofür steht das I in ISBAR?", o: ["Information", "Identify, sich und die Person identifizieren", "Intervention"], a: 1, e: "Zuerst stellst du dich vor und nennst die Person, um die es geht." },
+      { q: "Der Arzt verordnet am Telefon ein Medikament. Was tust du?", o: ["Notieren und auflegen", "Die Verordnung vollständig wiederholen und bestätigen lassen", "Später schriftlich nachfragen"], a: 1, e: "Read back stellt sicher, dass Name, Dosis und Weg richtig verstanden wurden." },
+      { q: "Was solltest du vor einem Anruf bereit haben?", o: ["Nur den Namen der Person", "Aktuelle Vitalzeichen, Diagnosen, Medikamente und Dokumentation", "Die Telefonnummer der Angehörigen"], a: 1, e: "Ohne diese Angaben kann die Gegenseite die Situation nicht beurteilen." }
     ],
-    transfer: "Bereite für deinen nächsten Rapport einen Patienten in SBAR vor. Wie lange brauchst du im Vergleich zu sonst?",
-    src: "Stiftung Patientensicherheit Schweiz; Institute for Healthcare Improvement"
+    transfer: "Bereite für deinen nächsten Rapport eine Person in SBAR vor. Achte besonders auf das R: Was soll im nächsten Dienst passieren?",
+    src: "Stiftung Patientensicherheit Schweiz; Institute for Healthcare Improvement, SBAR Toolkit; WHO Patient Safety Solutions"
   },
   {
-    id: "6r", topic: "Medikamente", levels: ["FaGe","HF"], min: 3,
+    id: "6r", topic: "Medikamente", levels: ["FaGe","HF"], min: 8,
     title: "Die 6R-Regel beim Richten und Verabreichen",
-    teaser: "Sechs Kontrollen vor jeder Medikamentenabgabe.",
-    lead: "Medikationsfehler gehören zu den häufigsten vermeidbaren Fehlern. Die 6R-Regel ist eine Checkliste für jede Abgabe.",
+    teaser: "Sechs Kontrollen vor jeder Medikamentenabgabe, dazu Hochrisikomedikamente und typische Fehlerquellen.",
+    lead: "Medikationsfehler gehören zu den häufigsten vermeidbaren Fehlern im Spital. Die 6R-Regel ist eine einfache Checkliste, die vor jeder Abgabe durchgegangen wird.",
+    theory: [
+      { h: "Der Medikationsprozess",
+        p: ["Vom Rezept bis zur Wirkung durchläuft ein Medikament mehrere Schritte: Verordnung, Richten, Kontrolle, Verabreichung und Überwachung der Wirkung. In jedem Schritt können Fehler passieren. Die Pflege ist oft die letzte Sicherheitsstufe vor der Person."] },
+      { h: "Die sechs R",
+        table: { head: ["R", "Worauf du achtest"], rows: [
+          ["Richtige Person", "Zwei Merkmale prüfen, z. B. Name und Geburtsdatum, Patientenarmband"],
+          ["Richtiges Medikament", "Name und Wirkstoff mit der Verordnung vergleichen"],
+          ["Richtige Dosierung", "Stärke und Menge, besonders bei Tropfen und Spritzen"],
+          ["Richtige Applikationsform", "Oral, subkutan, intravenös, Pflaster..."],
+          ["Richtiger Zeitpunkt", "Uhrzeit, vor oder nach dem Essen, Abstände"],
+          ["Richtige Dokumentation", "Sofort nach der Abgabe, nie im Voraus"] ] } },
+      { h: "Hochrisikomedikamente",
+        p: ["Bei einigen Medikamenten hat ein Fehler besonders schwere Folgen. Dazu gehören Insulin, Opioide, Antikoagulanzien (Blutverdünner), konzentriertes Kalium und Zytostatika. Viele Betriebe verlangen dafür eine Doppelkontrolle nach dem Vier-Augen-Prinzip."] },
+      { h: "Typische Fehlerquellen",
+        list: ["Verwechslungsgefahr bei ähnlichen Namen oder Verpackungen (Look-alike, Sound-alike)", "Unterbrechungen beim Richten", "Mörsern oder Teilen von Retardtabletten und magensaftresistenten Tabletten: Das verändert die Wirkung oder macht sie gefährlich", "Unleserliche oder mündliche Verordnungen", "Neue Medikamente nach einer Verlegung"] },
+      { h: "Die Person einbeziehen",
+        p: ["Informiere die Person, welches Medikament sie bekommt und wofür. Sagt sie «Diese Tablette kenne ich nicht», nimmst du das ernst: Abgabe stoppen und die Verordnung prüfen. Patientinnen und Patienten sind eine wichtige Sicherheitsstufe."] }
+    ],
     points: [
-      "Richtige Patientin, richtiger Patient (zwei Merkmale, z. B. Name und Geburtsdatum)",
-      "Richtiges Medikament",
-      "Richtige Dosierung",
-      "Richtige Applikationsform",
+      "Richtige Person mit zwei Merkmalen identifizieren",
+      "Richtiges Medikament, richtige Dosierung, richtige Applikationsform",
       "Richtiger Zeitpunkt",
-      "Richtige Dokumentation"
+      "Richtige Dokumentation, sofort nach der Abgabe",
+      "Bei Hochrisikomedikamenten Doppelkontrolle"
     ],
     merke: "Bei Unterbrechung während des Richtens neu beginnen. Bei Unsicherheit nachfragen, nie raten.",
-    levelNotes: { FaGe: "Du richtest und verabreichst nach Kompetenzregelung des Betriebs.", HF: "Du überprüfst Verordnungen auf Plausibilität und erkennst Wechselwirkungen." },
-    quiz: [
-      { q: "Wie identifizierst du die Patientin vor der Abgabe sicher?", o: ["Zimmernummer prüfen", "Mit zwei Merkmalen, z. B. Name und Geburtsdatum nachfragen", "Sie kennt mich schon"], a: 1, e: "Zimmernummern ändern sich. Zwei unabhängige Merkmale sind Standard." }
+    facts: [
+      "Manche Spitäler kennzeichnen Personen beim Richten mit einer Weste «Bitte nicht stören», um Unterbrechungen zu reduzieren.",
+      "Retardtabletten geben den Wirkstoff langsam über Stunden ab. Zermörsert wird die ganze Dosis auf einmal frei.",
+      "Einige Betriebe erweitern die Regel auf 8 oder 10 R, zum Beispiel mit richtiger Aufbewahrung oder richtigem Verfalldatum."
     ],
-    transfer: "Frage auf deiner Station nach: Was gilt bei uns, wenn ich beim Richten unterbrochen werde?",
-    src: "Stiftung Patientensicherheit Schweiz, Medikationssicherheit"
+    levelNotes: { FaGe: "Du richtest und verabreichst Medikamente nach der Kompetenzregelung deines Betriebs und kennst die Grenzen.", HF: "Du überprüfst Verordnungen auf Plausibilität, erkennst Wechselwirkungen und überwachst die Wirkung." },
+    quiz: [
+      { q: "Wie identifizierst du die Patientin vor der Abgabe sicher?", o: ["Zimmernummer prüfen", "Mit zwei Merkmalen, z. B. Name und Geburtsdatum", "Sie kennt mich schon"], a: 1, e: "Zimmer ändern sich. Zwei unabhängige Merkmale sind Standard." },
+      { q: "Ein Patient kann nicht schlucken. Darfst du seine Retardtablette mörsern?", o: ["Ja, immer", "Nein, das verändert die Wirkung, Rücksprache halten", "Ja, wenn du sie in Joghurt gibst"], a: 1, e: "Zermörsert wird die ganze Dosis auf einmal frei. Nachfragen, ob es eine andere Form gibt." },
+      { q: "Welches ist ein Hochrisikomedikament?", o: ["Insulin", "Paracetamol in Normaldosis", "Vitamin D"], a: 0, e: "Fehler bei Insulin können zu lebensgefährlichen Unterzuckerungen führen." },
+      { q: "Die Patientin sagt: «Diese Tablette kenne ich nicht.» Was tust du?", o: ["Sie beruhigen und die Tablette geben", "Abgabe stoppen und die Verordnung prüfen", "Die Tablette weglassen und nichts sagen"], a: 1, e: "Ihr Hinweis kann einen Fehler aufdecken. Erst prüfen, dann abgeben." },
+      { q: "Du wirst beim Richten durch ein Telefon unterbrochen. Was ist richtig?", o: ["Dort weitermachen, wo du aufgehört hast", "Neu beginnen", "Eine Kollegin fertig machen lassen"], a: 1, e: "Nach einer Unterbrechung ist unklar, welche Schritte schon erledigt sind." }
+    ],
+    transfer: "Frage auf deiner Station nach: Welche Medikamente gelten bei uns als Hochrisikomedikamente? Was gilt bei Unterbrechungen beim Richten?",
+    src: "Stiftung Patientensicherheit Schweiz, Medikationssicherheit; ISMP List of High-Alert Medications"
   },
   {
-    id: "news2", topic: "Beobachten", levels: ["HF"], min: 6,
+    id: "news2", topic: "Beobachten", levels: ["HF"], min: 10,
     title: "NEWS2: Verschlechterung früh erkennen",
-    teaser: "Ein Punktesystem aus sieben Parametern für die klinische Einschätzung.",
-    lead: "Der National Early Warning Score 2 fasst Vitalzeichen in einem Wert zusammen. So wird eine Verschlechterung sichtbar, bevor sie offensichtlich ist.",
+    teaser: "Ein Punktesystem aus sieben Parametern, mit Punktetabelle und Rechenbeispiel.",
+    lead: "Der National Early Warning Score 2 fasst Vitalzeichen in einem einzigen Wert zusammen. So wird eine Verschlechterung sichtbar, bevor sie offensichtlich ist, und alle im Team sprechen dieselbe Sprache.",
+    theory: [
+      { h: "Hintergrund",
+        p: ["Der NEWS wurde 2012 vom Royal College of Physicians in Grossbritannien entwickelt und 2017 als NEWS2 überarbeitet. Er gilt für Erwachsene ab 16 Jahren, nicht für Kinder und nur eingeschränkt für Schwangere.",
+            "Viele schwere Ereignisse wie ein Herzstillstand auf der Bettenstation kündigen sich Stunden vorher durch veränderte Vitalzeichen an. NEWS2 macht diese Signale sichtbar."] },
+      { h: "Die Punktetabelle",
+        table: { head: ["Parameter", "0 Punkte", "1 Punkt", "2 Punkte", "3 Punkte"], rows: [
+          ["Atemfrequenz", "12 bis 20", "9 bis 11", "21 bis 24", "≤ 8 oder ≥ 25"],
+          ["SpO2 (Skala 1)", "≥ 96 %", "94 bis 95 %", "92 bis 93 %", "≤ 91 %"],
+          ["Sauerstoffgabe", "Raumluft", "", "Ja", ""],
+          ["Systolischer Blutdruck", "111 bis 219", "101 bis 110", "91 bis 100", "≤ 90 oder ≥ 220"],
+          ["Puls", "51 bis 90", "41 bis 50 oder 91 bis 110", "111 bis 130", "≤ 40 oder ≥ 131"],
+          ["Bewusstsein", "A", "", "", "C, V, P oder U"],
+          ["Temperatur", "36,1 bis 38,0 °C", "35,1 bis 36,0 oder 38,1 bis 39,0 °C", "≥ 39,1 °C", "≤ 35,0 °C"] ] },
+        after: "Für Menschen mit chronisch erhöhtem CO2 im Blut (z. B. bei schwerer COPD) gibt es eine eigene Sauerstoffskala 2 mit tieferen Zielwerten. Sie wird nur auf ärztliche Anordnung verwendet." },
+      { h: "ACVPU: das Bewusstsein",
+        list: ["A: Alert, wach und orientiert", "C: Confusion, neue Verwirrtheit", "V: Voice, reagiert nur auf Ansprache", "P: Pain, reagiert nur auf Schmerzreiz", "U: Unresponsive, keine Reaktion"] },
+      { h: "Die Reaktion auf den Score",
+        table: { head: ["Score", "Risiko", "Reaktion"], rows: [
+          ["0", "Tief", "Mindestens alle 12 Stunden messen"],
+          ["1 bis 4", "Tief", "Mindestens alle 4 bis 6 Stunden, Pflegefachperson beurteilt"],
+          ["3 in einem Parameter", "Tief bis mittel", "Mindestens stündlich, zeitnahe ärztliche Beurteilung"],
+          ["5 bis 6", "Mittel", "Mindestens stündlich, dringende ärztliche Beurteilung"],
+          ["7 und mehr", "Hoch", "Kontinuierliche Überwachung, Notfallteam"] ] } },
+      { h: "Grenzen des Scores",
+        p: ["NEWS2 ersetzt nicht den klinischen Blick. Wenn du dir Sorgen machst, obwohl der Score tief ist, eskalierst du trotzdem. Umgekehrt kann ein erhöhter Wert bei einer Person mit bekannten chronischen Werten erwartet sein. Wichtig ist der Verlauf."] }
+    ],
     points: [
-      "Sieben Parameter: Atemfrequenz, Sauerstoffsättigung, Sauerstoffgabe, systolischer Blutdruck, Puls, Bewusstsein (ACVPU), Temperatur",
+      "Sieben Parameter: Atemfrequenz, SpO2, Sauerstoffgabe, systolischer Blutdruck, Puls, Bewusstsein, Temperatur",
       "Score 1 bis 4: Überwachung verstärken, Fachperson beurteilt",
-      "Score 3 in einem einzelnen Parameter: zeitnahe ärztliche Beurteilung",
+      "3 Punkte in einem einzelnen Parameter: zeitnahe ärztliche Beurteilung",
       "Score 5 bis 6: dringende ärztliche Beurteilung",
       "Score 7 und mehr: Notfallreaktion"
     ],
-    merke: "Neue Verwirrtheit zählt beim Bewusstsein (C in ACVPU) direkt 3 Punkte.",
-    levelNotes: { HF: "Du berechnest den Score, interpretierst ihn im Kontext und löst die passende Eskalation aus." },
+    merke: "Neue Verwirrtheit zählt beim Bewusstsein direkt 3 Punkte. Dein Bauchgefühl zählt auch: Bei Sorge immer eskalieren.",
+    facts: [
+      "Die Atemfrequenz ist im NEWS2 der Parameter, der eine Verschlechterung oft am frühesten zeigt.",
+      "Ein Score von 0 bedeutet nicht, dass alles in Ordnung ist. Er bedeutet nur, dass die gemessenen Werte im Normbereich liegen.",
+      "In vielen Schweizer Spitälern ist NEWS2 oder ein ähnlicher Frühwarnscore direkt in die elektronische Dokumentation integriert."
+    ],
+    levelNotes: { HF: "Du berechnest den Score, interpretierst ihn im Kontext und löst die passende Eskalation aus. Du leitest FaGe und AGS an, Veränderungen sofort zu melden." },
     quiz: [
       { q: "Ein Patient hat einen NEWS2 von 5. Was ist angezeigt?", o: ["Weiter wie bisher", "Dringende ärztliche Beurteilung", "Sofort Reanimation"], a: 1, e: "5 bis 6 Punkte verlangen eine dringende ärztliche Beurteilung." },
-      { q: "Ein Patient ist neu verwirrt, sonst sind alle Werte normal. Wie viele Punkte gibt das?", o: ["0", "1", "3"], a: 2, e: "Neue Verwirrtheit ergibt 3 Punkte in einem Parameter und löst eine zeitnahe Beurteilung aus." }
+      { q: "Ein Patient ist neu verwirrt, sonst sind alle Werte normal. Wie viele Punkte gibt das?", o: ["0", "1", "3"], a: 2, e: "Neue Verwirrtheit ergibt 3 Punkte in einem Parameter und löst eine zeitnahe Beurteilung aus." },
+      { q: "AF 22, SpO2 95 % bei Raumluft, BD 105/70, Puls 95, wach, 37,0 °C. Wie hoch ist der Score?", o: ["3", "5", "7"], a: 1, e: "AF 22 gibt 2, SpO2 95 gibt 1, BD 105 gibt 1, Puls 95 gibt 1. Zusammen 5 Punkte." },
+      { q: "Für wen ist NEWS2 nicht vorgesehen?", o: ["Für Kinder unter 16 Jahren", "Für Menschen über 80", "Für Reha-Patienten"], a: 0, e: "Für Kinder gibt es eigene Scores mit altersabhängigen Normwerten." },
+      { q: "Der Score ist 1, aber du hast ein ungutes Gefühl. Was tust du?", o: ["Nichts, der Score ist tief", "Deine Sorge ernst nehmen und eskalieren", "Bis zur nächsten Messung warten"], a: 1, e: "Der Score ersetzt nicht den klinischen Blick. Sorge ist ein Grund zu eskalieren." }
     ],
-    transfer: "Berechne für einen Patienten deiner Bezugsgruppe den NEWS2 aus den aktuellen Werten. Passt das Ergebnis zu deinem klinischen Eindruck?",
-    src: "Royal College of Physicians: National Early Warning Score (NEWS) 2"
+    transfer: "Berechne für eine Person deiner Bezugsgruppe den NEWS2 aus den aktuellen Werten. Passt das Ergebnis zu deinem klinischen Eindruck? Wie ist der Verlauf der letzten Tage?",
+    src: "Royal College of Physicians: National Early Warning Score (NEWS) 2, 2017"
   }
 ];
-
 
 const TOPIC = {
   "Hygiene":       { c: "#0f7f72", bg: "#e2f4f0", d: "#bfe6dd" },
@@ -387,6 +642,8 @@ const UI = {
   user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
   quiz: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/>',
   go: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  book: '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/>',
+  star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
 };
 const ui = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${UI[k]}</svg>`;
@@ -433,7 +690,7 @@ function card(n) {
 function renderGrid() {
   const q = state.q.toLowerCase();
   const list = pool().filter(n => (state.topic === "Alle" || n.topic === state.topic) &&
-    (!q || (n.title + " " + n.teaser + " " + n.points.join(" ")).toLowerCase().includes(q)));
+    (!q || (n.title + " " + n.teaser + " " + n.points.join(" ") + " " + JSON.stringify(n.theory)).toLowerCase().includes(q)));
   const p = pool(), d = p.filter(n => done[n.id]).length;
   $("#prog").innerHTML = `<div class="bar"><i style="width:${p.length ? d / p.length * 100 : 0}%"></i></div><span><b>${d}/${p.length}</b> erledigt</span>`;
   $("#grid").innerHTML = list.length ? list.map(card).join("") : `<p class="empty">Kein Nugget passt zu dieser Auswahl.</p>`;
@@ -479,6 +736,16 @@ function renderHome() {
   renderGrid();
 }
 
+function theoryHtml(n) {
+  return n.theory.map(sec => {
+    let h = `<h3>${esc(sec.h)}</h3>`;
+    (sec.p || []).forEach(x => h += `<p>${esc(x)}</p>`);
+    if (sec.list) h += `<ul>${sec.list.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+    if (sec.table) { const sc = sec.table.head[1] === "0 Punkte"; h += `<div class="tbl${sc ? " score" : ""}"><table><thead><tr>${sec.table.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${sec.table.rows.map(r => `<tr>${r.map((x, k) => `<td data-label="${esc(sec.table.head[k])}">${esc(x) || "<span class=\"nil\">·</span>"}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`; }
+    if (sec.after) h += `<p>${esc(sec.after)}</p>`;
+    return h;
+  }).join("");
+}
 function renderNugget(n) {
   const t = TOPIC[n.topic], i = NUGGETS.indexOf(n);
   const roles = Object.entries(n.levelNotes).filter(([l]) => state.level === "Alle" || state.level === l);
@@ -495,10 +762,12 @@ function renderNugget(n) {
   </div></section>
   <div class="wrap ncontent" style="--tc:${t.c};--tc-bg:${t.bg}">
     <div>
-      <div class="panel"><h2><i>${ui("list")}</i>Kernpunkte</h2>
+      <div class="panel theory"><h2><i>${ui("book")}</i>Theorie</h2>${theoryHtml(n)}</div>
+      <div class="panel"><h2><i>${ui("list")}</i>Auf einen Blick</h2>
         <ol class="points">${n.points.map(p => `<li>${esc(p.replace(/^\d+\.\s*/, ""))}</li>`).join("")}</ol>
         <div class="merke">${ui("bulb")}<div><b>Merke</b>${esc(n.merke)}</div></div>
       </div>
+      <div class="panel"><h2><i>${ui("star")}</i>Gut zu wissen</h2><ul class="facts-list">${n.facts.map(f => `<li><i>!</i><span>${esc(f)}</span></li>`).join("")}</ul></div>
       ${roles.length ? `<div class="panel"><h2><i>${ui("user")}</i>Deine Rolle</h2><div class="roles">${roles.map(([l, x]) => `<div class="role ${l}"><b>${LEVEL_LABEL[l]}</b>${esc(x)}</div>`).join("")}</div></div>` : ""}
       <div class="panel"><h2><i>${ui("quiz")}</i>Quiz</h2>
         ${n.quiz.map((q, qi) => `<div class="q"><p><small>Frage ${qi + 1} von ${n.quiz.length}</small>${esc(q.q)}</p>
@@ -532,7 +801,7 @@ function renderNugget(n) {
     if (++answered === n.quiz.length) {
       const all = right === n.quiz.length, r = $("#result");
       r.className = "result show " + (all ? "good" : "try");
-      r.textContent = all ? `Super, ${right} von ${n.quiz.length} richtig. Nugget erledigt!` : `${right} von ${n.quiz.length} richtig. Lies die Kernpunkte nochmals und versuche es später erneut.`;
+      r.textContent = all ? `Super, ${right} von ${n.quiz.length} richtig. Nugget erledigt!` : `${right} von ${n.quiz.length} richtig. Lies die Theorie nochmals und versuche es später erneut.`;
       if (all) { done[n.id] = true; save(); $("#status").innerHTML = '<span style="color:var(--ok)">✓ Erledigt</span>'; }
     }
   }));
