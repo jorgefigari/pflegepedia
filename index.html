@@ -212,6 +212,10 @@ section.block { padding: 44px 0 8px; }
 .lvtext.AGS { color: var(--ags); } .lvtext.FaGe { color: var(--fage); } .lvtext.HF { color: var(--hf); }
 .facts .st { flex-wrap: wrap; }
 #status { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.fig { margin: 14px 0 16px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; }
+.fig-scroll { overflow-x: auto; }
+.fig svg { display: block; width: 100%; min-width: 560px; height: auto; }
+.fig figcaption { font-size: 14px; color: var(--muted); padding: 10px 14px; border-top: 1px solid var(--line); background: var(--soft); }
 footer { background: var(--soft); border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
 footer .wrap { padding-top: 22px; padding-bottom: 32px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
@@ -352,12 +356,12 @@ const NUGGETS = [
       { h: "Was ist ein Dekubitus?",
         p: ["Ein Dekubitus ist eine lokal begrenzte Schädigung der Haut und des darunterliegenden Gewebes, meist über einem Knochenvorsprung. Er entsteht durch Druck oder durch Druck in Kombination mit Scherkräften.",
             "Wird Gewebe länger zusammengedrückt, werden die kleinen Blutgefässe verschlossen. Die Zellen bekommen keinen Sauerstoff mehr und sterben ab. Bei gefährdeten Menschen kann das bereits nach kurzer Zeit passieren. Scherkräfte entstehen, wenn die Haut an der Unterlage haftet, das Skelett aber verrutscht, etwa beim Hochrutschen im Bett."] },
-      { h: "Gefährdete Körperstellen",
+      { h: "Gefährdete Körperstellen", fig: "druckstellen", figcap: "Druckstellen entstehen dort, wo Knochen nahe unter der Haut auf der Unterlage aufliegen.",
         table: { head: ["Position", "Besonders gefährdet"], rows: [
           ["Rückenlage", "Kreuzbein (Sakrum), Fersen, Hinterkopf, Ellbogen"],
           ["Seitenlage", "Grosser Rollhügel (Trochanter), Knöchel, Ohr, Schulter"],
           ["Sitzen, z. B. im Rollstuhl", "Sitzbeinhöcker, Steissbein"] ] } },
-      { h: "Die Kategorien",
+      { h: "Die Kategorien", fig: "kategorien", figcap: "Schematischer Hautschnitt: Je höher die Kategorie, desto tiefer reicht die Schädigung.",
         list: ["Kategorie 1: nicht wegdrückbare Rötung bei intakter Haut", "Kategorie 2: Teilverlust der Haut, z. B. Blase oder flache, offene Wunde", "Kategorie 3: Verlust aller Hautschichten, Fettgewebe sichtbar", "Kategorie 4: vollständiger Gewebeverlust, Knochen, Sehne oder Muskel liegen frei"],
         after: "Dazu kommen der nicht kategorisierbare Dekubitus (Wundgrund bedeckt) und die vermutete tiefe Gewebeschädigung (violette, geschlossene Haut)." },
       { h: "Die Braden-Skala",
@@ -2295,6 +2299,58 @@ const UI = {
 const ui = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${UI[k]}</svg>`;
 
 /* Illustrationen, 320 x 200 */
+/* Schemazeichnungen für Nuggets */
+const FIG = {
+  druckstellen: () => {
+    const body = "#9db0c4", mat = "#e3e8ee", red = "#c0463b";
+    const dot = (x, y, n) => `<circle cx="${x}" cy="${y}" r="11" fill="${red}" opacity=".18"/><circle cx="${x}" cy="${y}" r="7.5" fill="${red}"/><text x="${x}" y="${y + 3.6}" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">${n}</text>`;
+    const title = (x, t) => `<text x="${x}" y="24" text-anchor="middle" font-size="15" font-weight="800" fill="#1b2a3a" font-family="Plus Jakarta Sans,sans-serif">${t}</text>`;
+    const legend = (x, items) => items.map((t, i) => `<g transform="translate(${x} ${248 + i * 19})"><circle cx="7" cy="-4" r="7" fill="${red}"/><text x="7" y="-0.6" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">${i + 1}</text><text x="20" y="0" font-size="12.5" fill="#1b2a3a" font-family="Atkinson Hyperlegible,sans-serif">${t}</text></g>`).join("");
+    const L = (x1, y1, x2, y2, w) => `<path d="M${x1} ${y1}L${x2} ${y2}" stroke="${body}" stroke-width="${w}" stroke-linecap="round"/>`;
+    const rueck = `<rect x="12" y="196" width="216" height="14" rx="7" fill="${mat}"/><rect x="14" y="182" width="44" height="14" rx="7" fill="#eef2f6"/>
+      <circle cx="34" cy="172" r="15" fill="${body}"/>${L(62, 178, 128, 182, 30)}${L(80, 192, 118, 192, 9)}${L(132, 185, 208, 187, 18)}${L(208, 187, 214, 168, 10)}
+      ${dot(30, 192, 1)}${dot(70, 196, 2)}${dot(102, 199, 3)}${dot(134, 199, 4)}${dot(214, 196, 5)}`;
+    const seite = `<rect x="252" y="196" width="216" height="14" rx="7" fill="${mat}"/><rect x="254" y="178" width="44" height="18" rx="8" fill="#eef2f6"/>
+      <circle cx="276" cy="164" r="15" fill="${body}"/>${L(302, 172, 360, 176, 28)}<circle cx="374" cy="178" r="18" fill="${body}"/>${L(388, 182, 424, 184, 15)}${L(424, 184, 456, 188, 12)}
+      ${dot(276, 184, 1)}${dot(310, 191, 2)}${dot(374, 197, 3)}${dot(424, 196, 4)}${dot(456, 198, 5)}`;
+    const sitz = `<path d="M530 186h80M536 186v30M606 186v30M530 100v86" stroke="#c7d2de" stroke-width="7" stroke-linecap="round"/><rect x="612" y="214" width="50" height="7" rx="3.5" fill="${mat}"/>
+      <circle cx="556" cy="84" r="15" fill="${body}"/>${L(554, 106, 552, 166, 28)}${L(556, 172, 608, 172, 22)}${L(608, 172, 624, 206, 15)}${L(620, 210, 648, 210, 10)}${L(560, 122, 588, 144, 10)}
+      ${dot(540, 124, 1)}${dot(542, 180, 2)}${dot(570, 186, 3)}${dot(622, 216, 4)}`;
+    return `<svg viewBox="0 0 720 330" role="img" aria-label="Gefährdete Körperstellen in Rückenlage, Seitenlage und im Sitzen">
+      <rect width="720" height="330" fill="#fff"/>
+      ${title(120, "Rückenlage")}${title(360, "Seitenlage")}${title(600, "Sitzen")}
+      <g transform="translate(0 10)">${rueck}${seite}${sitz}</g>
+      ${legend(26, ["Hinterkopf", "Schulterblätter", "Ellbogen", "Kreuzbein (Sakrum)", "Fersen"])}
+      ${legend(266, ["Ohr", "Schulter", "Rollhügel (Trochanter)", "Knie, Innenseite", "Knöchel"])}
+      ${legend(506, ["Schulterblätter, Wirbelsäule", "Steissbein", "Sitzbeinhöcker", "Fersen"])}
+      <path d="M240 40v280M480 40v280" stroke="#e3e8ee" stroke-width="2"/>
+    </svg>`;
+  },
+  kategorien: () => {
+    const F = "Atkinson Hyperlegible,sans-serif", D = "Plus Jakarta Sans,sans-serif";
+    const layers = [["Oberhaut", 56, 64, "#f6d9c4"], ["Lederhaut", 64, 96, "#efbfa6"], ["Fettgewebe", 96, 140, "#f7e4a6"], ["Muskel", 140, 184, "#d98f86"], ["Knochen", 184, 220, "#e6e2da"]];
+    const col = (x, k) => {
+      const w = 140, cx = x + w / 2;
+      let s = layers.map(([, y1, y2, f]) => `<rect x="${x}" y="${y1}" width="${w}" height="${y2 - y1}" fill="${f}"/>`).join("");
+      s += `<path d="M${x} 196c30-8 110-8 ${w} 0v24h-${w}z" fill="#cfc8bb"/>`;
+      const wound = "#b23b2c";
+      if (k === 1) s += `<rect x="${cx - 38}" y="56" width="76" height="22" rx="4" fill="#d9534f" opacity=".55"/><path d="M${cx - 38} 56h76" stroke="#1b2a3a" stroke-width="2"/>`;
+      if (k === 2) s += `<path d="M${cx - 34} 56c4 26 64 26 68 0z" fill="${wound}" opacity=".85"/><path d="M${cx - 34} 56c4 26 64 26 68 0" fill="none" stroke="#7a2318" stroke-width="2"/>`;
+      if (k === 3) s += `<path d="M${cx - 40} 56c2 72 78 72 80 0z" fill="${wound}" opacity=".88"/><path d="M${cx - 40} 56c2 72 78 72 80 0" fill="none" stroke="#7a2318" stroke-width="2"/>`;
+      if (k === 4) s += `<path d="M${cx - 44} 56c-2 150 90 150 88 0z" fill="${wound}" opacity=".9"/><path d="M${cx - 44} 56c-2 150 90 150 88 0" fill="none" stroke="#7a2318" stroke-width="2"/><ellipse cx="${cx}" cy="198" rx="22" ry="8" fill="#f3efe7" stroke="#7a2318" stroke-width="1.5"/>`;
+      s += `<rect x="${x}" y="56" width="${w}" height="164" fill="none" stroke="#c7d2de" stroke-width="1.5"/>`;
+      const cap = { 1: ["Nicht wegdrückbare", "Rötung, Haut intakt"], 2: ["Teilverlust der Haut,", "Blase oder flache Wunde"], 3: ["Alle Hautschichten weg,", "Fettgewebe sichtbar"], 4: ["Knochen, Sehne oder", "Muskel liegen frei"] }[k];
+      s += `<text x="${cx}" y="40" text-anchor="middle" font-size="15" font-weight="800" fill="#1b2a3a" font-family="${D}">Kategorie ${k}</text>`;
+      s += cap.map((t, i) => `<text x="${cx}" y="${244 + i * 17}" text-anchor="middle" font-size="12.5" fill="#1b2a3a" font-family="${F}">${t}</text>`).join("");
+      return s;
+    };
+    const labels = layers.map(([t, y1, y2]) => `<text x="88" y="${(y1 + y2) / 2 + 4}" text-anchor="end" font-size="12" fill="#5d6b7a" font-family="${F}">${t}</text>`).join("");
+    return `<svg viewBox="0 0 720 290" role="img" aria-label="Dekubitus Kategorie 1 bis 4 im Hautschnitt">
+      <rect width="720" height="290" fill="#fff"/>${labels}${col(96, 1)}${col(252, 2)}${col(408, 3)}${col(564, 4)}
+    </svg>`;
+  }
+};
+
 const GLYPH = {
   delir: '<path d="M14 3a7 7 0 1 0 7 9 5.5 5.5 0 0 1-7-9z"/><path d="M3 21l2-2 2 2 2-2"/>',
   demenz: '<path d="M9 3h3a2 2 0 1 1 4 0h3v5a2 2 0 1 1 0 4v5h-5a2 2 0 1 0-4 0H5v-5a2 2 0 1 0 0-4V3z"/>',
@@ -2416,6 +2472,7 @@ function theoryHtml(n) {
     (sec.p || []).forEach(x => h += `<p>${esc(x)}</p>`);
     if (sec.list) h += `<ul>${sec.list.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
     if (sec.table) { const sc = sec.table.head[1] === "0 Punkte"; h += `<div class="tbl${sc ? " score" : ""}"><table><thead><tr>${sec.table.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${sec.table.rows.map(r => `<tr>${r.map((x, k) => `<td data-label="${esc(sec.table.head[k])}">${esc(x) || "<span class=\"nil\">·</span>"}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`; }
+    if (sec.fig && FIG[sec.fig]) h += `<figure class="fig"><div class="fig-scroll">${FIG[sec.fig]()}</div>${sec.figcap ? `<figcaption>${esc(sec.figcap)}</figcaption>` : ""}</figure>`;
     if (sec.after) h += `<p>${esc(sec.after)}</p>`;
     return h;
   }).join("");
