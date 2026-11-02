@@ -4,139 +4,162 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pflegepedia</title>
+<meta name="description" content="Kurze Lerneinheiten für AGS, FaGe und Pflege HF: Kernpunkte, Quiz und Praxistransfer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Layout: Kopf mit Stufenwahl, Filterleiste, Raster aus Nugget-Karten, Nugget öffnet als Lesepanel */
-  --bg: #f4f7f7;
-  --surface: #ffffff;
-  --ink: #15292e;
-  --muted: #56696d;
-  --line: #d8e2e3;
-  --accent: #0f6e74;
-  --accent-soft: #e0f0f0;
-  --ags: #8a5a00; --ags-bg: #fbefd6;
-  --fage: #1f5fa8; --fage-bg: #e2ecf8;
-  --hf: #7a2e6b; --hf-bg: #f4e3f0;
-  --ok: #1d7a43; --ok-bg: #e2f4ea;
-  --bad: #b03a2e; --bad-bg: #fbe6e3;
-  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  /* Lehrmittel-Layout: Kopfzeile, links Themenverzeichnis, rechts Inhaltsverzeichnis als Liste; Nugget als Leseseite */
+  --paper: #fcfcfa;
+  --ink: #1d2124;
+  --muted: #5f676b;
+  --rule: #dfe2df;
+  --accent: #2f5d50;
+  --accent-tint: #edf3f0;
+  --ags: #9a6a12;
+  --fage: #2f5f95;
+  --hf: #84406f;
+  --ok: #2c7a4b;
+  --bad: #a8402f;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0f1a1c; --surface: #172528; --ink: #e5eeee; --muted: #9fb2b4; --line: #2a3d40;
-    --accent: #5cc2c6; --accent-soft: #1d3a3c;
-    --ags: #f0c26a; --ags-bg: #3a2d12; --fage: #8db8ec; --fage-bg: #1a2c42; --hf: #e3a2d4; --hf-bg: #3a1f35;
-    --ok: #6fd39a; --ok-bg: #173526; --bad: #f19a8f; --bad-bg: #3d1e1a;
+    --paper: #161a1b; --ink: #e6e8e6; --muted: #a2aaa8; --rule: #2e3537;
+    --accent: #8cc2ad; --accent-tint: #1f2c28;
+    --ags: #e3b866; --fage: #8fb5e3; --hf: #dba0c9; --ok: #79c99a; --bad: #ec9a8b;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0f1a1c; --surface: #172528; --ink: #e5eeee; --muted: #9fb2b4; --line: #2a3d40;
-  --accent: #5cc2c6; --accent-soft: #1d3a3c;
-  --ags: #f0c26a; --ags-bg: #3a2d12; --fage: #8db8ec; --fage-bg: #1a2c42; --hf: #e3a2d4; --hf-bg: #3a1f35;
-  --ok: #6fd39a; --ok-bg: #173526; --bad: #f19a8f; --bad-bg: #3d1e1a;
+  --paper: #161a1b; --ink: #e6e8e6; --muted: #a2aaa8; --rule: #2e3537;
+  --accent: #8cc2ad; --accent-tint: #1f2c28;
+  --ags: #e3b866; --fage: #8fb5e3; --hf: #dba0c9; --ok: #79c99a; --bad: #ec9a8b;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-body { background: var(--bg); color: var(--ink); font: 17px/1.55 var(--font-body); }
-h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
-button { font: inherit; color: inherit; cursor: pointer; }
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+body { background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; text-wrap: balance; margin: 0; }
+a { color: var(--accent); }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-header { padding: 32px 0 20px; border-bottom: 1px solid var(--line); background: var(--surface); }
-.brand { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-.brand h1 { font-size: clamp(30px, 5vw, 44px); letter-spacing: -0.02em; }
-.brand h1 span { color: var(--accent); }
-.tagline { color: var(--muted); margin: 6px 0 20px; max-width: 62ch; }
-.levels { display: flex; gap: 8px; flex-wrap: wrap; }
-.levels button { border: 1.5px solid var(--line); background: var(--surface); padding: 8px 16px; border-radius: 999px; font-weight: 600; }
-.levels button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+/* Kopf */
+.masthead { border-bottom: 1px solid var(--rule); }
+.masthead .wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 22px; padding-bottom: 18px; }
+.logo { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+.logo span { color: var(--accent); }
+.levels { display: flex; gap: 22px; font-size: 15.5px; }
+.levels button { color: var(--muted); padding: 4px 0; border-bottom: 2px solid transparent; }
+.levels button[aria-pressed="true"] { color: var(--ink); font-weight: 700; border-color: var(--accent); }
 
-.bar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; padding: 18px 0 8px; }
-.bar input { flex: 1 1 240px; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font: inherit; }
-.topics { display: flex; gap: 6px; flex-wrap: wrap; }
-.topics button { border: 0; background: transparent; padding: 6px 10px; border-radius: 8px; color: var(--muted); font-weight: 600; font-size: 15px; }
-.topics button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
-.progress { color: var(--muted); font-size: 15px; padding: 4px 0 16px; font-variant-numeric: tabular-nums; }
-.progress b { color: var(--ink); }
+.intro { padding: 44px 0 30px; display: grid; grid-template-columns: 1fr; gap: 10px; }
+.intro h1 { font-size: clamp(30px, 4.6vw, 44px); max-width: 20ch; }
+.intro p { color: var(--muted); max-width: 58ch; margin: 0; font-size: 18px; }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; padding-bottom: 48px; }
-.card { text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 10px; transition: border-color .15s, transform .15s; }
-.card:hover { border-color: var(--accent); transform: translateY(-2px); }
-.card .topic { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
-.card h3 { font-size: 21px; }
-.card p { margin: 0; color: var(--muted); font-size: 15.5px; }
-.meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: auto; padding-top: 6px; }
-.chip { font-size: 12.5px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
-.chip.AGS { color: var(--ags); background: var(--ags-bg); }
-.chip.FaGe { color: var(--fage); background: var(--fage-bg); }
-.chip.HF { color: var(--hf); background: var(--hf-bg); }
-.time { font-size: 13.5px; color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
-.done { font-size: 12.5px; font-weight: 700; color: var(--ok); background: var(--ok-bg); padding: 3px 9px; border-radius: 999px; }
-.empty { color: var(--muted); padding: 30px 0; }
+/* Verzeichnis */
+.layout { display: grid; grid-template-columns: 200px 1fr; gap: 48px; padding-bottom: 64px; }
+.side { position: sticky; top: 20px; align-self: start; display: grid; gap: 22px; }
+.side h2 { font-family: var(--sans); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+.topics { display: grid; gap: 2px; }
+.topics button { text-align: left; padding: 5px 0; color: var(--muted); display: flex; justify-content: space-between; gap: 10px; }
+.topics button span { font-variant-numeric: tabular-nums; }
+.topics button[aria-pressed="true"] { color: var(--ink); font-weight: 700; }
+#search { width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--rule); padding: 6px 0; }
+#search:focus { outline: none; border-color: var(--accent); }
+.progress { font-size: 15px; color: var(--muted); }
+.progress b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.bar { height: 3px; background: var(--rule); margin-top: 8px; }
+.bar i { display: block; height: 100%; background: var(--accent); }
 
-/* Lesepanel */
-.overlay { position: fixed; inset: 0; background: rgba(10, 20, 22, .45); display: none; justify-content: flex-end; z-index: 10; }
-.overlay.open { display: flex; }
-.panel { background: var(--surface); width: min(720px, 100%); height: 100%; overflow-y: auto; padding: 28px clamp(18px, 4vw, 44px) 60px; box-shadow: -10px 0 30px rgba(0,0,0,.15); }
-.panel .close { float: right; border: 1.5px solid var(--line); background: var(--surface); border-radius: 10px; padding: 6px 12px; font-weight: 600; }
-.panel h2 { font-size: clamp(26px, 4vw, 34px); margin: 8px 0 10px; }
-.panel .lead { color: var(--muted); max-width: 62ch; }
-.panel h4 { font-family: var(--font-display); font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 28px 0 10px; }
-.panel ol, .panel ul { padding-left: 22px; margin: 0; max-width: 62ch; }
-.panel li { margin: 6px 0; }
-.merke { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 12px 16px; border-radius: 0 10px 10px 0; margin-top: 22px; max-width: 62ch; }
-.merke b { color: var(--accent); }
-.levelnote { margin-top: 10px; font-size: 15.5px; max-width: 62ch; }
-.q { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 12px 0; }
-.q p { margin: 0 0 10px; font-weight: 600; }
-.opts { display: grid; gap: 8px; }
-.opts button { text-align: left; border: 1.5px solid var(--line); background: var(--bg); border-radius: 10px; padding: 9px 12px; }
-.opts button.right { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); font-weight: 600; }
-.opts button.wrong { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+.group + .group { margin-top: 40px; }
+.group h2 { font-size: 24px; padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
+.item { display: grid; grid-template-columns: 44px 1fr auto; gap: 4px 16px; padding: 18px 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: inherit; }
+.item:hover h3 { color: var(--accent); }
+.num { font-family: var(--serif); font-size: 20px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 1px; }
+.item h3 { font-size: 21px; transition: color .15s; }
+.item p { margin: 4px 0 0; color: var(--muted); font-size: 16px; max-width: 60ch; }
+.item .side-meta { text-align: right; font-size: 14px; color: var(--muted); white-space: nowrap; }
+.item .check { color: var(--ok); font-weight: 700; display: block; }
+.lv { font-size: 14px; font-weight: 700; margin-top: 8px; display: flex; gap: 14px; }
+.lv span::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; margin-right: 6px; vertical-align: 1px; }
+.lv .AGS { color: var(--ags); } .lv .FaGe { color: var(--fage); } .lv .HF { color: var(--hf); }
+.empty { color: var(--muted); padding: 24px 0; }
+
+/* Leseseite */
+.article { max-width: 680px; margin: 0 auto; padding: 36px 0 80px; }
+.back { font-size: 15px; color: var(--muted); text-decoration: none; }
+.back:hover { color: var(--accent); }
+.kicker { margin-top: 30px; font-size: 14px; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.kicker .lv { margin: 0; }
+.article h1 { font-size: clamp(32px, 5vw, 46px); margin: 10px 0 16px; }
+.lead { font-family: var(--serif); font-size: 21px; line-height: 1.5; color: var(--ink); margin: 0; }
+.article h2 { font-size: 24px; margin: 44px 0 14px; }
+.points { margin: 0; padding-left: 22px; }
+.points li { margin: 8px 0; padding-left: 4px; }
+.points li::marker { color: var(--accent); }
+.merke { margin: 28px 0 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent); }
+.merke b { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+.role { display: grid; grid-template-columns: 90px 1fr; gap: 6px 16px; margin: 0; }
+.role dt { font-weight: 700; }
+.role dt.AGS { color: var(--ags); } .role dt.FaGe { color: var(--fage); } .role dt.HF { color: var(--hf); }
+.role dd { margin: 0; }
+.q { padding: 18px 0; border-top: 1px solid var(--rule); }
+.q:last-of-type { border-bottom: 1px solid var(--rule); }
+.q p { margin: 0 0 12px; font-weight: 700; }
+.q p small { color: var(--muted); font-weight: 400; margin-right: 6px; }
+.opts { display: grid; gap: 6px; }
+.opts button { text-align: left; display: grid; grid-template-columns: 30px 1fr; align-items: baseline; padding: 8px 10px; border-radius: 6px; }
+.opts button:hover:not(:disabled) { background: var(--accent-tint); }
+.opts button .k { font-family: var(--serif); font-weight: 600; color: var(--muted); }
+.opts button.right { background: var(--accent-tint); color: var(--ok); font-weight: 700; }
+.opts button.right .k { color: var(--ok); }
+.opts button.wrong { color: var(--bad); text-decoration: line-through; }
 .opts button:disabled { cursor: default; }
-.fb { font-size: 15px; margin-top: 8px; color: var(--muted); }
-.transfer { background: var(--bg); border: 1px dashed var(--line); border-radius: 12px; padding: 14px 16px; max-width: 62ch; }
-.result { margin-top: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.src { font-size: 14px; color: var(--muted); margin-top: 28px; max-width: 62ch; }
-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 18px 0 30px; }
-@media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+.fb { font-size: 15.5px; color: var(--muted); margin: 10px 0 0 40px; }
+.result { margin-top: 18px; font-weight: 700; }
+.transfer { background: var(--accent-tint); padding: 18px 20px; border-radius: 4px; margin: 0; }
+.src { margin-top: 44px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 14px; }
+.next { margin-top: 28px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; }
+.next a { text-decoration: none; }
+
+footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; }
+footer .wrap { padding-top: 18px; padding-bottom: 32px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; gap: 24px; }
+  .side { position: static; }
+  .topics { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  .topics button span { display: none; }
+  .item { grid-template-columns: 34px 1fr; }
+  .item .side-meta { grid-column: 2; text-align: left; }
+  .item .check { display: inline; margin-left: 10px; }
+  .levels { gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .item h3 { transition: none; } }
 </style>
 </head>
 <body>
-<header>
+<header class="masthead">
   <div class="wrap">
-    <div class="brand"><h1>Pflege<span>pedia</span></h1></div>
-    <p class="tagline">Kurze Lerneinheiten für AGS, FaGe und Pflege HF. Ein Nugget dauert 3 bis 6 Minuten: Kernpunkte lesen, Wissen im Quiz prüfen, auf die eigene Station übertragen.</p>
-    <div class="levels" role="group" aria-label="Ausbildungsstufe">
-      <button data-level="Alle" aria-pressed="true">Alle Stufen</button>
+    <a class="logo" href="#">Pflege<span>pedia</span></a>
+    <nav class="levels" aria-label="Ausbildungsstufe">
+      <button data-level="Alle" aria-pressed="true">Alle</button>
       <button data-level="AGS" aria-pressed="false">AGS</button>
       <button data-level="FaGe" aria-pressed="false">FaGe</button>
       <button data-level="HF" aria-pressed="false">Pflege HF</button>
-    </div>
+    </nav>
   </div>
 </header>
 
-<main class="wrap">
-  <div class="bar">
-    <label for="search" class="sr" style="position:absolute;left:-9999px">Suchen</label>
-    <input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Puls">
-    <div class="topics" id="topics" role="group" aria-label="Thema"></div>
-  </div>
-  <div class="progress" id="progress"></div>
-  <div class="grid" id="grid"></div>
-</main>
+<main id="app"></main>
 
-<footer><div class="wrap">Pflegepedia, Prototyp. Inhalte sind Beispiele und werden vor dem Einsatz fachlich geprüft.</div></footer>
-
-<div class="overlay" id="overlay"><article class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="ptitle"></article></div>
+<footer><div class="wrap"><span>Pflegepedia. Lerneinheiten für die Pflegeausbildung.</span><span>Inhalte ersetzen keine betrieblichen Richtlinien.</span></div></footer>
 
 <script>
 const NUGGETS = [
@@ -306,111 +329,108 @@ const NUGGETS = [
   }
 ];
 
+
 const LEVEL_LABEL = { AGS: "AGS", FaGe: "FaGe", HF: "Pflege HF" };
 const state = { level: "Alle", topic: "Alle", q: "" };
 let done = {};
 try { done = JSON.parse(localStorage.getItem("pp-done") || "{}"); } catch (e) { done = {}; }
-function saveDone() { try { localStorage.setItem("pp-done", JSON.stringify(done)); } catch (e) {} }
-
+try { const l = localStorage.getItem("pp-level"); if (l) state.level = l; } catch (e) {}
+const save = () => { try { localStorage.setItem("pp-done", JSON.stringify(done)); localStorage.setItem("pp-level", state.level); } catch (e) {} };
 const $ = s => document.querySelector(s);
-const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const TOPICS = [...new Set(NUGGETS.map(n => n.topic))];
+const levelsHtml = ls => `<span class="lv">${ls.map(l => `<span class="${l}">${LEVEL_LABEL[l]}</span>`).join("")}</span>`;
+const pool = () => NUGGETS.filter(n => state.level === "Alle" || n.levels.includes(state.level));
 
-function renderTopics() {
-  const topics = ["Alle", ...new Set(NUGGETS.map(n => n.topic))];
-  $("#topics").innerHTML = topics.map(t => `<button data-topic="${t}" aria-pressed="${t === state.topic}">${t === "Alle" ? "Alle Themen" : t}</button>`).join("");
-}
-
-function visible() {
+function renderIndex() {
   const q = state.q.toLowerCase();
-  return NUGGETS.filter(n =>
-    (state.level === "Alle" || n.levels.includes(state.level)) &&
-    (state.topic === "Alle" || n.topic === state.topic) &&
+  const list = pool().filter(n => (state.topic === "Alle" || n.topic === state.topic) &&
     (!q || (n.title + " " + n.teaser + " " + n.points.join(" ")).toLowerCase().includes(q)));
+  const p = pool(), d = p.filter(n => done[n.id]).length;
+  const groups = TOPICS.map(t => [t, list.filter(n => n.topic === t)]).filter(([, ns]) => ns.length);
+  $("#app").innerHTML = `
+    <section class="wrap intro">
+      <h1>Pflegewissen in kleinen Einheiten</h1>
+      <p>Jedes Nugget dauert drei bis sechs Minuten: Kernpunkte lesen, Wissen im Quiz prüfen und auf die eigene Station übertragen. Für AGS, FaGe und Studierende Pflege HF.</p>
+    </section>
+    <div class="wrap layout">
+      <aside class="side">
+        <div><label for="search" class="side-label" style="position:absolute;left:-9999px">Suchen</label>
+          <input id="search" type="search" placeholder="Suchen" value="${esc(state.q)}"></div>
+        <div><h2>Themen</h2><div class="topics" role="group" aria-label="Thema">
+          ${["Alle", ...TOPICS].map(t => `<button data-topic="${t}" aria-pressed="${t === state.topic}">${t === "Alle" ? "Alle Themen" : t}<span>${(t === "Alle" ? p : p.filter(n => n.topic === t)).length}</span></button>`).join("")}
+        </div></div>
+        <div class="progress"><b>${d} von ${p.length}</b> abgeschlossen<div class="bar"><i style="width:${p.length ? d / p.length * 100 : 0}%"></i></div></div>
+      </aside>
+      <div>${groups.length ? groups.map(([t, ns]) => `
+        <section class="group"><h2>${t}</h2>
+          ${ns.map(n => `<a class="item" href="#${n.id}">
+            <span class="num">${String(NUGGETS.indexOf(n) + 1).padStart(2, "0")}</span>
+            <span><h3>${esc(n.title)}</h3><p>${esc(n.teaser)}</p>${levelsHtml(n.levels)}</span>
+            <span class="side-meta">${n.min} Min.${done[n.id] ? '<span class="check">✓ erledigt</span>' : ""}</span>
+          </a>`).join("")}
+        </section>`).join("") : `<p class="empty">Kein Nugget passt zu dieser Auswahl.</p>`}
+      </div>
+    </div>`;
+  $(".topics").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { state.topic = b.dataset.topic; renderIndex(); } });
+  const s = $("#search");
+  s.addEventListener("input", e => { state.q = e.target.value; renderIndex(); const n = $("#search"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); });
 }
 
-function renderGrid() {
-  const list = visible();
-  const pool = NUGGETS.filter(n => state.level === "Alle" || n.levels.includes(state.level));
-  const doneCount = pool.filter(n => done[n.id]).length;
-  $("#progress").innerHTML = `<b>${doneCount} von ${pool.length}</b> Nuggets abgeschlossen${state.level !== "Alle" ? " für " + LEVEL_LABEL[state.level] : ""}`;
-  $("#grid").innerHTML = list.length ? list.map(n => `
-    <button class="card" data-id="${n.id}">
-      <span class="topic">${n.topic}</span>
-      <h3>${esc(n.title)}</h3>
-      <p>${esc(n.teaser)}</p>
-      <span class="meta">${n.levels.map(l => `<span class="chip ${l}">${LEVEL_LABEL[l]}</span>`).join("")}
-        ${done[n.id] ? '<span class="done">Erledigt</span>' : ""}
-        <span class="time">${n.min} Min.</span></span>
-    </button>`).join("") : `<p class="empty">Kein Nugget passt zu diesem Filter.</p>`;
-}
-
-function openNugget(id) {
-  const n = NUGGETS.find(x => x.id === id);
-  if (!n) return;
-  const notes = Object.entries(n.levelNotes)
-    .filter(([l]) => state.level === "Alle" || state.level === l)
-    .map(([l, t]) => `<p class="levelnote"><span class="chip ${l}">${LEVEL_LABEL[l]}</span> ${esc(t)}</p>`).join("");
-  $("#panel").innerHTML = `
-    <button class="close" id="close">Schliessen</button>
-    <span class="meta" style="margin:0">${n.levels.map(l => `<span class="chip ${l}">${LEVEL_LABEL[l]}</span>`).join("")}<span class="time" style="margin-left:6px">${n.topic}, ${n.min} Min.</span></span>
-    <h2 id="ptitle">${esc(n.title)}</h2>
-    <p class="lead">${esc(n.lead)}</p>
-    <h4>Kernpunkte</h4>
-    <ul>${n.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
-    <div class="merke"><b>Merke:</b> ${esc(n.merke)}</div>
-    <h4>Deine Rolle</h4>${notes}
-    <h4>Quiz</h4>
-    ${n.quiz.map((q, i) => `
-      <div class="q" data-q="${i}"><p>${esc(q.q)}</p>
-        <div class="opts">${q.o.map((o, j) => `<button data-q="${i}" data-o="${j}">${esc(o)}</button>`).join("")}</div>
-        <div class="fb" id="fb${i}"></div></div>`).join("")}
-    <div class="result" id="result"></div>
-    <h4>Praxistransfer</h4>
-    <div class="transfer">${esc(n.transfer)}</div>
-    <p class="src">Grundlage: ${esc(n.src)}</p>`;
+function renderNugget(n) {
+  const i = NUGGETS.indexOf(n), prev = NUGGETS[i - 1], next = NUGGETS[i + 1];
+  const roles = Object.entries(n.levelNotes).filter(([l]) => state.level === "Alle" || state.level === l);
+  $("#app").innerHTML = `
+    <article class="wrap"><div class="article">
+      <a class="back" href="#">← Alle Nuggets</a>
+      <div class="kicker"><span>${n.topic}</span><span>${n.min} Minuten</span>${levelsHtml(n.levels)}</div>
+      <h1>${esc(n.title)}</h1>
+      <p class="lead">${esc(n.lead)}</p>
+      <h2>Kernpunkte</h2>
+      <ul class="points">${n.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+      <div class="merke"><b>Merke</b>${esc(n.merke)}</div>
+      ${roles.length ? `<h2>Deine Rolle</h2><dl class="role">${roles.map(([l, t]) => `<dt class="${l}">${LEVEL_LABEL[l]}</dt><dd>${esc(t)}</dd>`).join("")}</dl>` : ""}
+      <h2>Quiz</h2>
+      ${n.quiz.map((q, qi) => `<div class="q"><p><small>${qi + 1}/${n.quiz.length}</small>${esc(q.q)}</p>
+        <div class="opts">${q.o.map((o, j) => `<button data-q="${qi}" data-o="${j}"><span class="k">${"ABC"[j]}</span><span>${esc(o)}</span></button>`).join("")}</div>
+        <p class="fb" id="fb${qi}" style="font-weight:400"></p></div>`).join("")}
+      <p class="result" id="result"></p>
+      <h2>Praxistransfer</h2>
+      <p class="transfer">${esc(n.transfer)}</p>
+      <p class="src">Grundlagen: ${esc(n.src)}</p>
+      <nav class="next">${prev ? `<a href="#${prev.id}">← ${esc(prev.title)}</a>` : "<span></span>"}${next ? `<a href="#${next.id}">${esc(next.title)} →</a>` : ""}</nav>
+    </div></article>`;
   let answered = 0, right = 0;
-  $("#panel").querySelectorAll(".opts button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".opts button").forEach(b => b.addEventListener("click", () => {
     const qi = +b.dataset.q, oi = +b.dataset.o, q = n.quiz[qi];
     const group = b.parentElement.querySelectorAll("button");
     group.forEach(x => x.disabled = true);
     group[q.a].classList.add("right");
     if (oi !== q.a) b.classList.add("wrong"); else right++;
     $("#fb" + qi).textContent = (oi === q.a ? "Richtig. " : "Nicht ganz. ") + q.e;
-    answered++;
-    if (answered === n.quiz.length) {
-      $("#result").textContent = `${right} von ${n.quiz.length} richtig.` + (right === n.quiz.length ? " Nugget abgeschlossen." : " Lies die Kernpunkte nochmals und versuche es erneut.");
-      if (right === n.quiz.length) { done[n.id] = true; saveDone(); renderGrid(); }
+    if (++answered === n.quiz.length) {
+      const all = right === n.quiz.length;
+      $("#result").textContent = `${right} von ${n.quiz.length} richtig. ` + (all ? "Nugget abgeschlossen." : "Lies die Kernpunkte nochmals und versuche es später erneut.");
+      if (all) { done[n.id] = true; save(); }
     }
   }));
-  $("#close").addEventListener("click", closeNugget);
-  $("#overlay").classList.add("open");
-  $("#panel").scrollTop = 0;
-  $("#close").focus();
-  if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
-}
-function closeNugget() {
-  $("#overlay").classList.remove("open");
-  history.replaceState(null, "", location.pathname + location.search);
+  window.scrollTo(0, 0);
 }
 
+function route() {
+  const n = NUGGETS.find(x => x.id === location.hash.slice(1));
+  n ? renderNugget(n) : renderIndex();
+  document.title = n ? n.title + " | Pflegepedia" : "Pflegepedia";
+}
 document.querySelector(".levels").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
-  state.level = b.dataset.level;
+  state.level = b.dataset.level; save();
   document.querySelectorAll(".levels button").forEach(x => x.setAttribute("aria-pressed", x === b));
-  renderGrid();
+  route();
 });
-$("#topics").addEventListener("click", e => {
-  const b = e.target.closest("button"); if (!b) return;
-  state.topic = b.dataset.topic; renderTopics(); renderGrid();
-});
-$("#search").addEventListener("input", e => { state.q = e.target.value; renderGrid(); });
-$("#grid").addEventListener("click", e => { const c = e.target.closest(".card"); if (c) openNugget(c.dataset.id); });
-$("#overlay").addEventListener("click", e => { if (e.target.id === "overlay") closeNugget(); });
-document.addEventListener("keydown", e => { if (e.key === "Escape" && $("#overlay").classList.contains("open")) closeNugget(); });
-window.addEventListener("hashchange", () => { const id = location.hash.slice(1); id ? openNugget(id) : closeNugget(); });
-
-renderTopics(); renderGrid();
-if (location.hash.length > 1) openNugget(location.hash.slice(1));
+document.querySelectorAll(".levels button").forEach(x => x.setAttribute("aria-pressed", x.dataset.level === state.level));
+window.addEventListener("hashchange", route);
+route();
 </script>
 </body>
 </html>
