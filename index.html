@@ -563,59 +563,287 @@ const NUGGETS = [
     src: "Stiftung Patientensicherheit Schweiz, Medikationssicherheit; ISMP List of High-Alert Medications"
   },
   {
-    id: "news2", topic: "Beobachten", levels: ["HF"], min: 10,
-    title: "NEWS2: Verschlechterung früh erkennen",
-    teaser: "Ein Punktesystem aus sieben Parametern, mit Punktetabelle und Rechenbeispiel.",
-    lead: "Der National Early Warning Score 2 fasst Vitalzeichen in einem einzigen Wert zusammen. So wird eine Verschlechterung sichtbar, bevor sie offensichtlich ist, und alle im Team sprechen dieselbe Sprache.",
+    id: "feedback", topic: "Kommunikation", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Feedback geben und annehmen",
+    teaser: "Wie Rückmeldungen beim Lernen helfen, statt zu verletzen. Regeln, das WWW-Modell und der blinde Fleck.",
+    lead: "In der Ausbildung bekommst du täglich Rückmeldungen, und bald gibst du selbst welche. Gutes Feedback ist eines der wirksamsten Mittel, um im Beruf zu wachsen.",
     theory: [
-      { h: "Hintergrund",
-        p: ["Der NEWS wurde 2012 vom Royal College of Physicians in Grossbritannien entwickelt und 2017 als NEWS2 überarbeitet. Er gilt für Erwachsene ab 16 Jahren, nicht für Kinder und nur eingeschränkt für Schwangere.",
-            "Viele schwere Ereignisse wie ein Herzstillstand auf der Bettenstation kündigen sich Stunden vorher durch veränderte Vitalzeichen an. NEWS2 macht diese Signale sichtbar."] },
-      { h: "Die Punktetabelle",
-        table: { head: ["Parameter", "0 Punkte", "1 Punkt", "2 Punkte", "3 Punkte"], rows: [
-          ["Atemfrequenz", "12 bis 20", "9 bis 11", "21 bis 24", "≤ 8 oder ≥ 25"],
-          ["SpO2 (Skala 1)", "≥ 96 %", "94 bis 95 %", "92 bis 93 %", "≤ 91 %"],
-          ["Sauerstoffgabe", "Raumluft", "", "Ja", ""],
-          ["Systolischer Blutdruck", "111 bis 219", "101 bis 110", "91 bis 100", "≤ 90 oder ≥ 220"],
-          ["Puls", "51 bis 90", "41 bis 50 oder 91 bis 110", "111 bis 130", "≤ 40 oder ≥ 131"],
-          ["Bewusstsein", "A", "", "", "C, V, P oder U"],
-          ["Temperatur", "36,1 bis 38,0 °C", "35,1 bis 36,0 oder 38,1 bis 39,0 °C", "≥ 39,1 °C", "≤ 35,0 °C"] ] },
-        after: "Für Menschen mit chronisch erhöhtem CO2 im Blut (z. B. bei schwerer COPD) gibt es eine eigene Sauerstoffskala 2 mit tieferen Zielwerten. Sie wird nur auf ärztliche Anordnung verwendet." },
-      { h: "ACVPU: das Bewusstsein",
-        list: ["A: Alert, wach und orientiert", "C: Confusion, neue Verwirrtheit", "V: Voice, reagiert nur auf Ansprache", "P: Pain, reagiert nur auf Schmerzreiz", "U: Unresponsive, keine Reaktion"] },
-      { h: "Die Reaktion auf den Score",
-        table: { head: ["Score", "Risiko", "Reaktion"], rows: [
-          ["0", "Tief", "Mindestens alle 12 Stunden messen"],
-          ["1 bis 4", "Tief", "Mindestens alle 4 bis 6 Stunden, Pflegefachperson beurteilt"],
-          ["3 in einem Parameter", "Tief bis mittel", "Mindestens stündlich, zeitnahe ärztliche Beurteilung"],
-          ["5 bis 6", "Mittel", "Mindestens stündlich, dringende ärztliche Beurteilung"],
-          ["7 und mehr", "Hoch", "Kontinuierliche Überwachung, Notfallteam"] ] } },
-      { h: "Grenzen des Scores",
-        p: ["NEWS2 ersetzt nicht den klinischen Blick. Wenn du dir Sorgen machst, obwohl der Score tief ist, eskalierst du trotzdem. Umgekehrt kann ein erhöhter Wert bei einer Person mit bekannten chronischen Werten erwartet sein. Wichtig ist der Verlauf."] }
+      { h: "Was Feedback ist",
+        p: ["Feedback ist eine Rückmeldung darüber, wie dein Verhalten auf andere wirkt. Es zeigt dir Dinge, die du selbst nicht sehen kannst, und hilft dir, gezielt besser zu werden. Feedback ist kein Urteil über dich als Person, sondern eine Beobachtung zu einer konkreten Situation.",
+            "Das Johari-Fenster erklärt, warum Feedback so wertvoll ist: Es gibt Seiten an uns, die andere sehen, wir selbst aber nicht. Diesen Bereich nennt man den blinden Fleck. Durch Feedback wird er kleiner."] },
+      { h: "Das WWW-Modell",
+        table: { head: ["Schritt", "Inhalt", "Beispiel"], rows: [
+          ["Wahrnehmung", "Was hast du konkret beobachtet?", "«Mir ist aufgefallen, dass du beim Waschen nicht mit Frau B. gesprochen hast.»"],
+          ["Wirkung", "Wie hat das auf dich gewirkt?", "«Auf mich wirkte sie dabei unsicher und angespannt.»"],
+          ["Wunsch", "Was wünschst du dir?", "«Ich wünsche mir, dass du ihr jeden Schritt kurz ankündigst.»"] ] } },
+      { h: "Regeln für das Geben",
+        list: ["Ich-Botschaften statt Du-Botschaften: «Ich habe beobachtet» statt «Du machst immer»", "Beschreiben statt bewerten: konkretes Verhalten, keine Eigenschaften", "Zeitnah, aber nicht vor Patientinnen, Patienten oder Angehörigen", "Nur auf Verhalten, das die Person ändern kann", "Auch Positives benennen, und zwar genauso konkret", "Am besten, wenn Feedback vereinbart oder erwünscht ist"] },
+      { h: "Regeln für das Annehmen",
+        list: ["Zuhören und ausreden lassen", "Nicht rechtfertigen oder verteidigen", "Nachfragen, wenn etwas unklar ist", "Danken: Feedback zu geben braucht Mut", "Danach selbst entscheiden, was du annimmst und umsetzt"],
+        after: "Es ist normal, dass kritisches Feedback zuerst unangenehm ist. Nimm dir Zeit, darüber nachzudenken, bevor du reagierst." },
+      { h: "Feedback in der Pflegeausbildung",
+        p: ["Feedback begleitet dich in Lernbegleitungen, Praxisaufträgen, Zwischen- und Qualifikationsgesprächen. Du kannst es auch aktiv einholen, zum Beispiel: «Kannst du mich heute beim Verbandwechsel beobachten und mir danach eine Rückmeldung geben?»",
+            "Ein hilfreicher Gedanke ist Feedforward: Statt nur auf das Vergangene zu schauen, fragt man, was beim nächsten Mal helfen würde."] }
     ],
     points: [
-      "Sieben Parameter: Atemfrequenz, SpO2, Sauerstoffgabe, systolischer Blutdruck, Puls, Bewusstsein, Temperatur",
-      "Score 1 bis 4: Überwachung verstärken, Fachperson beurteilt",
-      "3 Punkte in einem einzelnen Parameter: zeitnahe ärztliche Beurteilung",
-      "Score 5 bis 6: dringende ärztliche Beurteilung",
-      "Score 7 und mehr: Notfallreaktion"
+      "Feedback beschreibt Verhalten und seine Wirkung, nicht die Person",
+      "WWW: Wahrnehmung, Wirkung, Wunsch",
+      "Ich-Botschaften, konkret, zeitnah, unter vier Augen",
+      "Beim Annehmen: zuhören, nicht rechtfertigen, nachfragen, danken",
+      "Feedback aktiv einholen beschleunigt das Lernen"
     ],
-    merke: "Neue Verwirrtheit zählt beim Bewusstsein direkt 3 Punkte. Dein Bauchgefühl zählt auch: Bei Sorge immer eskalieren.",
+    merke: "Feedback ist ein Geschenk: Es zeigt dir deinen blinden Fleck. Was du daraus machst, entscheidest du selbst.",
     facts: [
-      "Die Atemfrequenz ist im NEWS2 der Parameter, der eine Verschlechterung oft am frühesten zeigt.",
-      "Ein Score von 0 bedeutet nicht, dass alles in Ordnung ist. Er bedeutet nur, dass die gemessenen Werte im Normbereich liegen.",
-      "In vielen Schweizer Spitälern ist NEWS2 oder ein ähnlicher Frühwarnscore direkt in die elektronische Dokumentation integriert."
+      "Das Johari-Fenster wurde 1955 von den Psychologen Joseph Luft und Harry Ingham entwickelt. Der Name setzt sich aus ihren Vornamen zusammen.",
+      "Die bekannte Sandwich-Methode (Lob, Kritik, Lob) gilt heute als umstritten: Die eigentliche Botschaft geht oft unter.",
+      "Lernende, die regelmässig Feedback einholen, werden im Team oft als besonders motiviert wahrgenommen."
     ],
-    levelNotes: { HF: "Du berechnest den Score, interpretierst ihn im Kontext und löst die passende Eskalation aus. Du leitest FaGe und AGS an, Veränderungen sofort zu melden." },
+    levelNotes: { AGS: "Du nimmst Feedback offen an und holst es aktiv bei deiner Berufsbildnerin oder deinem Berufsbildner ein.", FaGe: "Du gibst auch Mitlernenden und AGS konstruktive Rückmeldungen nach dem WWW-Modell.", HF: "Du gibst strukturiertes Feedback in der Anleitung von Lernenden und förderst eine offene Feedbackkultur im Team." },
     quiz: [
-      { q: "Ein Patient hat einen NEWS2 von 5. Was ist angezeigt?", o: ["Weiter wie bisher", "Dringende ärztliche Beurteilung", "Sofort Reanimation"], a: 1, e: "5 bis 6 Punkte verlangen eine dringende ärztliche Beurteilung." },
-      { q: "Ein Patient ist neu verwirrt, sonst sind alle Werte normal. Wie viele Punkte gibt das?", o: ["0", "1", "3"], a: 2, e: "Neue Verwirrtheit ergibt 3 Punkte in einem Parameter und löst eine zeitnahe Beurteilung aus." },
-      { q: "AF 22, SpO2 95 % bei Raumluft, BD 105/70, Puls 95, wach, 37,0 °C. Wie hoch ist der Score?", o: ["3", "5", "7"], a: 1, e: "AF 22 gibt 2, SpO2 95 gibt 1, BD 105 gibt 1, Puls 95 gibt 1. Zusammen 5 Punkte." },
-      { q: "Für wen ist NEWS2 nicht vorgesehen?", o: ["Für Kinder unter 16 Jahren", "Für Menschen über 80", "Für Reha-Patienten"], a: 0, e: "Für Kinder gibt es eigene Scores mit altersabhängigen Normwerten." },
-      { q: "Der Score ist 1, aber du hast ein ungutes Gefühl. Was tust du?", o: ["Nichts, der Score ist tief", "Deine Sorge ernst nehmen und eskalieren", "Bis zur nächsten Messung warten"], a: 1, e: "Der Score ersetzt nicht den klinischen Blick. Sorge ist ein Grund zu eskalieren." }
+      { q: "Welche Formulierung ist eine Ich-Botschaft?", o: ["«Du bist immer so hektisch.»", "«Ich habe beobachtet, dass du die Klingel nicht in Reichweite gelegt hast.»", "«Man macht das so nicht.»"], a: 1, e: "Sie beschreibt eine konkrete Beobachtung aus deiner Sicht, ohne zu urteilen." },
+      { q: "In welcher Reihenfolge läuft das WWW-Modell?", o: ["Wunsch, Wirkung, Wahrnehmung", "Wahrnehmung, Wirkung, Wunsch", "Wirkung, Wunsch, Wahrnehmung"], a: 1, e: "Zuerst die Beobachtung, dann die Wirkung auf dich, zum Schluss dein Wunsch." },
+      { q: "Was bezeichnet der blinde Fleck im Johari-Fenster?", o: ["Was niemand über mich weiss", "Was andere an mir sehen, ich selbst aber nicht", "Was ich bewusst verberge"], a: 1, e: "Feedback macht diesen Bereich sichtbar und damit kleiner." },
+      { q: "Du bekommst kritisches Feedback. Was ist eine hilfreiche Reaktion?", o: ["Sofort erklären, warum du so gehandelt hast", "Zuhören, nachfragen und danken", "Das Thema wechseln"], a: 1, e: "Rechtfertigungen blockieren das Gespräch. Entscheiden, was du annimmst, kannst du später." },
+      { q: "Wann und wo gibst du einer Kollegin kritisches Feedback?", o: ["Sofort im Patientenzimmer", "Zeitnah, unter vier Augen", "Erst im Qualifikationsgespräch Monate später"], a: 1, e: "Zeitnah, damit die Situation präsent ist, aber nie vor Patientinnen, Patienten oder Angehörigen." }
     ],
-    transfer: "Berechne für eine Person deiner Bezugsgruppe den NEWS2 aus den aktuellen Werten. Passt das Ergebnis zu deinem klinischen Eindruck? Wie ist der Verlauf der letzten Tage?",
-    src: "Royal College of Physicians: National Early Warning Score (NEWS) 2, 2017"
+    transfer: "Bitte heute eine Fachperson, dich bei einer konkreten Tätigkeit zu beobachten und dir danach eine Rückmeldung nach dem WWW-Modell zu geben. Notiere dir einen Punkt, den du beim nächsten Mal umsetzt.",
+    src: "Luft J., Ingham H.: The Johari Window (1955); Fengler J.: Feedback geben; Lehrmittel Berufsbildung Gesundheit"
+  },
+  {
+    id: "schlaganfall", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 10,
+    title: "Schlaganfall: erkennen und pflegen",
+    teaser: "BE FAST, typische Ausfälle wie Aphasie und Neglect und worauf es in der Reha ankommt.",
+    lead: "Ein Schlaganfall ist eine plötzliche Durchblutungsstörung des Gehirns. Jede Minute zählt: Je schneller die Behandlung beginnt, desto mehr Hirngewebe kann gerettet werden. In der Rehabilitation geht es danach darum, verlorene Fähigkeiten so weit wie möglich zurückzugewinnen.",
+    theory: [
+      { h: "Was passiert im Gehirn?",
+        p: ["In der Schweiz erleiden laut Schweizerischer Herzstiftung jedes Jahr rund 16'000 Menschen einen Schlaganfall. In etwa 85 Prozent der Fälle verschliesst ein Blutgerinnsel ein Hirngefäss (ischämischer Schlaganfall). In etwa 15 Prozent platzt ein Gefäss und es kommt zu einer Hirnblutung (hämorrhagischer Schlaganfall).",
+            "Ohne Sauerstoff sterben Nervenzellen schnell ab. Darum gilt: Time is brain. Eine Lyse oder eine mechanische Entfernung des Gerinnsels ist nur in den ersten Stunden möglich."] },
+      { h: "Schlaganfall erkennen: BE FAST",
+        table: { head: ["", "Achte auf", "Prüfung"], rows: [
+          ["B, Balance", "Plötzlicher Schwindel, Gangunsicherheit", "Kann die Person stehen und gehen?"],
+          ["E, Eyes", "Plötzliche Sehstörung, Doppelbilder", "Sieht sie auf beiden Seiten?"],
+          ["F, Face", "Hängender Mundwinkel", "Bitte lächeln lassen"],
+          ["A, Arm", "Lähmung oder Schwäche einer Seite", "Beide Arme vorstrecken lassen"],
+          ["S, Speech", "Verwaschene oder fehlende Sprache", "Einen einfachen Satz nachsprechen lassen"],
+          ["T, Time", "Jede Minute zählt", "Sofort Notruf 144 oder Notfallteam, Uhrzeit notieren"] ] } },
+      { h: "Typische Folgen",
+        list: ["Halbseitenlähmung (Hemiparese) auf der Gegenseite der Hirnschädigung", "Aphasie: Störung von Sprachverständnis oder Sprachproduktion, meist bei Schädigung der linken Hirnhälfte", "Neglect: Die Person nimmt eine Körper- oder Raumhälfte nicht wahr, meist die linke, nach Schädigung der rechten Hirnhälfte", "Schluckstörung (Dysphagie) mit Gefahr der Aspiration", "Gesichtsfeldausfall, Gleichgewichtsstörungen, Fatigue", "Depression nach Schlaganfall, häufig und oft übersehen"] },
+      { h: "Pflege in der Rehabilitation",
+        list: ["Vor dem ersten Essen und Trinken immer ein Schluckscreening, bei Auffälligkeiten Logopädie einbeziehen", "Nie am gelähmten Arm ziehen: Die Schulter ist instabil und schmerzt sonst schnell", "Betroffene Seite in Lagerung und Pflege bewusst einbeziehen, nach dem Konzept deiner Station (z. B. Bobath)", "Bei Aphasie: kurze Sätze, Zeit lassen, Gesten und Bilder nutzen, nicht für die Person sprechen", "Bei Neglect: die vernachlässigte Seite gezielt ansprechen und Sicherheit beachten", "Selbständigkeit fördern statt abnehmen: lieber länger dauern lassen"] },
+      { h: "Einem neuen Schlaganfall vorbeugen",
+        p: ["Die wichtigsten Risikofaktoren sind Bluthochdruck, Vorhofflimmern, Rauchen, Diabetes, erhöhte Blutfette und Bewegungsmangel. Die Pflege unterstützt die Person beim Verständnis ihrer Medikamente und bei gesundheitsförderndem Verhalten."] }
+    ],
+    points: [
+      "Ischämisch etwa 85 %, hämorrhagisch etwa 15 %",
+      "BE FAST: Balance, Eyes, Face, Arm, Speech, Time",
+      "Bei Verdacht sofort alarmieren und die Uhrzeit notieren",
+      "Aphasie meist links, Neglect meist rechts geschädigt",
+      "Vor dem ersten Essen Schluckscreening, nie am gelähmten Arm ziehen"
+    ],
+    merke: "Time is brain: Auch auf der Reha-Station kann ein neuer Schlaganfall auftreten. Bei neuen Ausfällen sofort Alarm auslösen.",
+    facts: [
+      "Bei einem grossen Schlaganfall gehen pro Minute ohne Behandlung schätzungsweise fast zwei Millionen Nervenzellen verloren.",
+      "Eine transitorische ischämische Attacke (TIA) zeigt Schlaganfallsymptome, die sich innerhalb kurzer Zeit zurückbilden. Sie ist ein Warnsignal und ein Notfall.",
+      "Das Gehirn kann sich neu organisieren (Neuroplastizität). Darum ist intensives, wiederholtes Üben in der Reha so wirksam."
+    ],
+    levelNotes: { AGS: "Du erkennst Warnzeichen nach BE FAST, alarmierst sofort und unterstützt bei der Pflege nach den Vorgaben des Teams.", FaGe: "Du führst Pflege nach Konzept durch, beobachtest Schluckfähigkeit und Kommunikation und förderst Selbständigkeit.", HF: "Du planst die Pflege interprofessionell, erkennst Komplikationen wie Aspiration oder Depression und beziehst Angehörige ein." },
+    quiz: [
+      { q: "Wofür steht das F in BE FAST?", o: ["Fieber", "Face, hängender Mundwinkel", "Fatigue"], a: 1, e: "Bitte die Person zu lächeln. Ein hängender Mundwinkel ist ein typisches Zeichen." },
+      { q: "Eine Patientin zeigt plötzlich eine neue Armschwäche. Was tust du?", o: ["Abwarten, ob es besser wird", "Sofort alarmieren und die Uhrzeit notieren", "Den Arm hochlagern"], a: 1, e: "Time is brain. Der Zeitpunkt des Beginns ist für die Behandlung entscheidend." },
+      { q: "Ein Patient isst nur die rechte Hälfte seines Tellers. Woran denkst du?", o: ["Appetitlosigkeit", "Neglect nach Schädigung der rechten Hirnhälfte", "Aphasie"], a: 1, e: "Bei einem Neglect wird meist die linke Raumhälfte nicht wahrgenommen." },
+      { q: "Was gilt vor dem ersten Essen nach einem Schlaganfall?", o: ["Mit Suppe beginnen", "Schluckscreening durchführen", "Nichts Besonderes"], a: 1, e: "Bei einer Schluckstörung droht Aspiration und damit eine Lungenentzündung." },
+      { q: "Wie hilfst du einer Person mit Halbseitenlähmung beim Aufsetzen?", o: ["Am gelähmten Arm hochziehen", "Nie am gelähmten Arm ziehen, Rumpf und Becken unterstützen", "Sie liegen lassen"], a: 1, e: "Die gelähmte Schulter ist instabil. Zug führt zu Verletzungen und Schmerzen." }
+    ],
+    transfer: "Übe BE FAST mit einer Kollegin oder einem Kollegen. Beobachte bei einer Person nach Schlaganfall: Welche Ausfälle zeigt sie, und wie unterstützt das Team ihre Selbständigkeit?",
+    src: "Schweizerische Herzstiftung; Swiss Stroke Society; Deutsche Schlaganfall-Hilfe; Thiemes Pflege"
+  },
+  {
+    id: "sht", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 10,
+    title: "Schädel-Hirn-Trauma",
+    teaser: "Glasgow Coma Scale, Hirndruckzeichen und der Umgang mit kognitiven und Verhaltensveränderungen in der Reha.",
+    lead: "Ein Schädel-Hirn-Trauma ist eine Verletzung des Gehirns durch äussere Gewalt, etwa bei Stürzen, Verkehrs- oder Sportunfällen. Die Folgen reichen von leichten Kopfschmerzen bis zu bleibenden Veränderungen der Persönlichkeit.",
+    theory: [
+      { h: "Schweregrad und Glasgow Coma Scale",
+        p: ["Die Glasgow Coma Scale (GCS) beurteilt das Bewusstsein anhand von drei Bereichen. Es gibt 3 bis 15 Punkte."],
+        table: { head: ["Bereich", "Punkte", "Bestes Ergebnis"], rows: [
+          ["Augen öffnen", "1 bis 4", "Spontan"],
+          ["Verbale Reaktion", "1 bis 5", "Orientiert"],
+          ["Motorische Reaktion", "1 bis 6", "Befolgt Aufforderungen"] ] },
+        after: "Leichtes SHT: 13 bis 15 Punkte. Mittelschweres SHT: 9 bis 12 Punkte. Schweres SHT: 8 Punkte und weniger." },
+      { h: "Primärer und sekundärer Schaden",
+        p: ["Der primäre Schaden entsteht im Moment des Unfalls und lässt sich nicht rückgängig machen. Der sekundäre Schaden entwickelt sich in den Stunden und Tagen danach, zum Beispiel durch Hirnschwellung, Blutungen, Sauerstoffmangel oder tiefen Blutdruck. Ihn zu verhindern ist ein Hauptziel der Akutbehandlung."] },
+      { h: "Warnzeichen für steigenden Hirndruck",
+        list: ["Zunehmende Kopfschmerzen, Übelkeit und Erbrechen", "Abnehmendes Bewusstsein, neue Verwirrtheit oder Unruhe", "Ungleich grosse Pupillen oder eine Pupille, die nicht mehr auf Licht reagiert", "Neue Lähmungen oder Krampfanfälle", "Spätzeichen: steigender Blutdruck, langsamer Puls, unregelmässige Atmung (Cushing-Trias)"],
+        after: "Diese Zeichen sind immer ein Notfall und werden sofort gemeldet." },
+      { h: "Folgen im Alltag",
+        p: ["Viele Folgen eines SHT sind von aussen nicht sichtbar. Darum spricht man auch von einer unsichtbaren Behinderung."],
+        list: ["Gedächtnis, Aufmerksamkeit und Konzentration sind eingeschränkt", "Planen und Handeln fallen schwer (exekutive Funktionen)", "Verhalten verändert sich: Reizbarkeit, Enthemmung, Antriebslosigkeit", "Starke Erschöpfung (Fatigue), oft über lange Zeit", "Reizempfindlichkeit für Lärm und Licht", "Angehörige erleben die Person oft als «verändert»"] },
+      { h: "Pflege in der Rehabilitation",
+        list: ["Reizarme Umgebung und klare Tagesstruktur mit festen Zeiten", "Kurze, klare Sätze und eine Information nach der anderen", "Regelmässige Pausen einplanen, Überforderung früh erkennen", "Orientierungshilfen wie Kalender, Tagesplan und Fotos", "Im Team einheitlich und konsequent handeln", "Herausforderndes Verhalten als Folge der Hirnverletzung verstehen, ruhig bleiben, klare Grenzen setzen", "Angehörige informieren und begleiten"] }
+    ],
+    points: [
+      "GCS 3 bis 15: leicht 13 bis 15, mittel 9 bis 12, schwer 8 und weniger",
+      "Sekundäre Schäden durch Hirnschwellung, Blutung oder Sauerstoffmangel verhindern",
+      "Neue Pupillendifferenz oder Bewusstseinsminderung sofort melden",
+      "Kognitive und Verhaltensfolgen sind oft unsichtbar",
+      "Struktur, Ruhe, kurze Sätze und Pausen helfen in der Reha"
+    ],
+    merke: "Wer sich nach einem SHT ungewohnt verhält, tut das meist nicht absichtlich. Das Verhalten ist oft eine Folge der Hirnverletzung.",
+    facts: [
+      "Die Glasgow Coma Scale wurde 1974 in Glasgow entwickelt und wird heute weltweit verwendet.",
+      "Auch ein leichtes SHT, etwa eine Gehirnerschütterung, kann wochenlang Kopfschmerzen, Konzentrationsprobleme und Müdigkeit verursachen.",
+      "In der Schweiz unterstützt die Organisation FRAGILE Suisse Menschen mit Hirnverletzung und ihre Angehörigen."
+    ],
+    levelNotes: { AGS: "Du hältst dich an die vereinbarte Tagesstruktur, sprichst ruhig und klar und meldest Veränderungen sofort.", FaGe: "Du beobachtest Bewusstsein und Pupillen nach Verordnung, gestaltest eine reizarme Umgebung und förderst die Orientierung.", HF: "Du erkennst Hirndruckzeichen, planst die Pflege bei kognitiven und Verhaltensveränderungen und begleitest Angehörige." },
+    quiz: [
+      { q: "Ein Patient hat einen GCS von 7. Wie wird das SHT eingeteilt?", o: ["Leicht", "Mittelschwer", "Schwer"], a: 2, e: "8 Punkte und weniger entsprechen einem schweren SHT." },
+      { q: "Du stellst neu ungleich grosse Pupillen fest. Was tust du?", o: ["Bei der nächsten Kontrolle nochmals schauen", "Sofort melden, es kann ein Hirndruckzeichen sein", "Licht im Zimmer dimmen"], a: 1, e: "Eine neue Pupillendifferenz ist ein Notfall." },
+      { q: "Welche Kombination gehört zur Cushing-Trias?", o: ["Tiefer Blutdruck, schneller Puls, Fieber", "Hoher Blutdruck, langsamer Puls, unregelmässige Atmung", "Hoher Blutdruck, schneller Puls, Durchfall"], a: 1, e: "Es sind Spätzeichen eines stark erhöhten Hirndrucks." },
+      { q: "Wie gibst du einer Person mit SHT Informationen?", o: ["Alles auf einmal, damit sie den ganzen Tag kennt", "Kurze Sätze, eine Information nach der anderen", "Nur schriftlich"], a: 1, e: "Gedächtnis und Aufmerksamkeit sind oft eingeschränkt. Kleine Schritte helfen." },
+      { q: "Ein Patient wird plötzlich laut und beleidigend. Was ist eine hilfreiche Haltung?", o: ["Das Verhalten persönlich nehmen und zurechtweisen", "Ruhig bleiben, Reize reduzieren, klare Grenzen setzen", "Das Zimmer verlassen und nicht mehr hingehen"], a: 1, e: "Enthemmung und Reizbarkeit sind häufige Folgen. Ruhe und Klarheit wirken deeskalierend." }
+    ],
+    transfer: "Beobachte eine Person nach SHT während eines Dienstes: Wann zeigt sie Erschöpfung oder Überforderung? Welche Struktur hilft ihr? Besprich deine Beobachtungen mit der Bezugsperson.",
+    src: "Teasdale G., Jennett B.: Glasgow Coma Scale (1974); FRAGILE Suisse; Thiemes Pflege; Leitlinien Neurorehabilitation"
+  },
+  {
+    id: "herzinsuffizienz", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 9,
+    title: "Herzinsuffizienz",
+    teaser: "Links oder rechts? Symptome erkennen, täglich richtig wiegen und bei Atemnot richtig positionieren.",
+    lead: "Bei einer Herzinsuffizienz kann das Herz nicht mehr genug Blut pumpen, um den Körper ausreichend zu versorgen. Sie ist eine der häufigsten Ursachen für Spitaleintritte bei älteren Menschen und begleitet viele Patientinnen und Patienten auch in der Rehabilitation.",
+    theory: [
+      { h: "Ursachen",
+        p: ["Die häufigsten Ursachen sind die koronare Herzkrankheit, zum Beispiel nach einem Herzinfarkt, und langjähriger Bluthochdruck. Weitere Ursachen sind Herzklappenfehler, Herzrhythmusstörungen wie Vorhofflimmern und Erkrankungen des Herzmuskels."] },
+      { h: "Linksherz- und Rechtsherzinsuffizienz",
+        p: ["Je nachdem, welche Herzhälfte schwach ist, staut sich das Blut an einem anderen Ort zurück. Oft sind beide Seiten betroffen."],
+        table: { head: ["", "Linksherzinsuffizienz", "Rechtsherzinsuffizienz"], rows: [
+          ["Rückstau in", "Die Lunge", "Den Körperkreislauf"],
+          ["Typische Zeichen", "Atemnot, zuerst bei Belastung, später in Ruhe", "Geschwollene Beine und Knöchel (Ödeme)"],
+          ["Weitere Zeichen", "Atemnot im Liegen, Husten, nächtliches Erwachen mit Atemnot", "Gewichtszunahme, gestaute Halsvenen, nächtliches Wasserlassen"],
+          ["Gefahr", "Lungenödem: brodelnde Atmung, schaumiger Auswurf", "Flüssigkeit im Bauch, Appetitlosigkeit"] ] } },
+      { h: "Schweregrad nach NYHA",
+        list: ["NYHA I: keine Beschwerden bei normaler Belastung", "NYHA II: Beschwerden bei stärkerer Belastung, z. B. zwei Stockwerke", "NYHA III: Beschwerden schon bei leichter Belastung, z. B. beim Anziehen", "NYHA IV: Beschwerden in Ruhe"] },
+      { h: "Täglich richtig wiegen",
+        p: ["Eine schnelle Gewichtszunahme ist meist eingelagertes Wasser und oft das erste Zeichen einer Verschlechterung. Darum wird die Person täglich gewogen: morgens, nach dem Wasserlassen, vor dem Frühstück, mit gleicher Kleidung und auf derselben Waage.",
+            "Eine Zunahme von mehr als 2 kg in drei Tagen wird der Ärztin oder dem Arzt gemeldet, oder nach den individuellen Vorgaben."] },
+      { h: "Pflege",
+        list: ["Bei Atemnot Oberkörper hoch und Beine tief positionieren (Herzbettlage)", "Trinkmenge und Salzzufuhr nach ärztlicher Verordnung beachten", "Wassertabletten (Diuretika): Toilette in der Nähe, Sturzgefahr nachts, Kalium im Blick", "Vitalzeichen, Ödeme und Atmung beobachten", "Angepasste Bewegung fördern: Training nach Plan verbessert die Leistungsfähigkeit", "Die Person schulen, Warnzeichen selbst zu erkennen"] }
+    ],
+    points: [
+      "Links: Rückstau in die Lunge, Atemnot. Rechts: Rückstau in den Körper, Ödeme",
+      "NYHA I bis IV beschreibt, ab welcher Belastung Beschwerden auftreten",
+      "Täglich unter gleichen Bedingungen wiegen",
+      "Mehr als 2 kg in drei Tagen melden",
+      "Bei Atemnot Oberkörper hoch, Beine tief"
+    ],
+    merke: "Die Waage ist das wichtigste Frühwarnsystem bei Herzinsuffizienz. Eine Gewichtszunahme ist hier fast immer Wasser, nicht Fett.",
+    facts: [
+      "Ein Liter eingelagerte Flüssigkeit entspricht etwa einem Kilogramm auf der Waage.",
+      "Menschen mit Herzinsuffizienz schlafen oft mit mehreren Kissen, weil sie flach liegend schlechter atmen.",
+      "Regelmässiges, angepasstes Training ist heute ein fester Bestandteil der Behandlung. Früher empfahl man Schonung."
+    ],
+    levelNotes: { AGS: "Du wiegst korrekt unter gleichen Bedingungen, beobachtest Atemnot und Beinödeme und meldest Veränderungen.", FaGe: "Du überwachst Gewicht, Bilanz und Vitalzeichen, setzt Verordnungen um und erkennst Zeichen einer Verschlechterung.", HF: "Du beurteilst den Verlauf, erkennst eine akute Dekompensation und schulst die Person im Selbstmanagement." },
+    quiz: [
+      { q: "Ein Patient hat beidseits geschwollene Unterschenkel und gestaute Halsvenen. Woran denkst du?", o: ["Linksherzinsuffizienz", "Rechtsherzinsuffizienz", "Lungenentzündung"], a: 1, e: "Bei der Rechtsherzinsuffizienz staut sich das Blut in den Körperkreislauf zurück." },
+      { q: "Eine Patientin kann nur mit drei Kissen schlafen, sonst bekommt sie keine Luft. Was zeigt das?", o: ["Atemnot im Liegen, typisch bei Linksherzinsuffizienz", "Rückenschmerzen", "Schlafgewohnheit ohne Bedeutung"], a: 0, e: "Im Liegen fliesst mehr Blut zur Lunge. Bei schwachem linkem Herz staut es sich dort." },
+      { q: "Wann wiegst du eine Person mit Herzinsuffizienz?", o: ["Irgendwann im Tagesverlauf", "Morgens nach dem Wasserlassen, vor dem Frühstück, gleiche Kleidung", "Nur beim Eintritt"], a: 1, e: "Nur unter gleichen Bedingungen sind die Werte vergleichbar." },
+      { q: "Das Gewicht ist in drei Tagen um 2,5 kg gestiegen. Was tust du?", o: ["Nichts, das schwankt", "Melden, es weist auf Wassereinlagerung hin", "Weniger Essen geben"], a: 1, e: "Mehr als 2 kg in drei Tagen ist ein Warnzeichen einer Verschlechterung." },
+      { q: "Ein Patient hat akute Atemnot. Wie positionierst du ihn?", o: ["Flach mit Beinen hoch", "Oberkörper hoch, Beine tief", "In Bauchlage"], a: 1, e: "Die Herzbettlage entlastet Herz und Lunge, weil weniger Blut zum Herzen zurückfliesst." }
+    ],
+    transfer: "Prüfe bei einer Person mit Herzinsuffizienz die Gewichtsverläufe der letzten Woche. Wurde immer unter gleichen Bedingungen gewogen? Wie erklärt die Person selbst ihre Warnzeichen?",
+    src: "ESC Guidelines for Heart Failure; Schweizerische Herzstiftung; Thiemes Pflege"
+  },
+  {
+    id: "epilepsie", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Epilepsie und epileptischer Anfall",
+    teaser: "Richtig handeln beim Anfall, genau beobachten und wissen, wann es ein Notfall ist.",
+    lead: "Ein epileptischer Anfall entsteht durch eine plötzliche, übermässige Entladung von Nervenzellen im Gehirn. Für Zuschauende wirkt er oft dramatisch. Mit klarem Wissen kannst du ruhig und richtig handeln.",
+    theory: [
+      { h: "Was ist Epilepsie?",
+        p: ["Von Epilepsie spricht man, wenn eine Person wiederholt Anfälle hat, die ohne erkennbaren akuten Auslöser auftreten. Etwa ein Prozent der Bevölkerung ist betroffen, in der Schweiz rund 80'000 Menschen.",
+            "In der Rehabilitation ist das Thema besonders wichtig: Nach einem Schlaganfall oder einem Schädel-Hirn-Trauma kann sich eine Epilepsie entwickeln, manchmal erst Monate später."] },
+      { h: "Anfallsformen",
+        table: { head: ["Form", "Was du siehst"], rows: [
+          ["Fokaler Anfall", "Beginnt in einer Hirnregion. Zuckungen in einem Arm, Kribbeln, Nesteln, starrer Blick. Das Bewusstsein kann erhalten oder gestört sein."],
+          ["Tonisch-klonischer Anfall", "Bewusstlosigkeit, Versteifung des Körpers (tonisch), dann rhythmische Zuckungen (klonisch). Oft Zungenbiss und Einnässen."],
+          ["Absence", "Kurze Bewusstseinspause von wenigen Sekunden, die Person «ist kurz weg»."] ] } },
+      { h: "Erste Hilfe beim Anfall",
+        list: ["Ruhig bleiben und bei der Person bleiben", "Uhrzeit notieren und die Dauer messen", "Verletzungen verhindern: Gegenstände wegräumen, Kopf weich polstern", "Nichts in den Mund stecken und die Person nicht festhalten", "Nach dem Anfall in stabile Seitenlage bringen und Atemwege freihalten", "Bei der Person bleiben, bis sie wieder orientiert ist, und Hilfe holen"] },
+      { h: "Wann ist es ein Notfall?",
+        p: ["Dauert ein Anfall länger als fünf Minuten oder folgen mehrere Anfälle aufeinander, ohne dass die Person dazwischen wieder zu sich kommt, spricht man von einem Status epilepticus. Er ist lebensbedrohlich: sofort Notfallteam oder Notruf 144 alarmieren und das Notfallmedikament nach ärztlicher Verordnung bereitstellen.",
+            "Auch ein erster Anfall, eine Verletzung oder Atemprobleme nach dem Anfall sind Gründe für eine sofortige ärztliche Beurteilung."] },
+      { h: "Beobachten und dokumentieren",
+        list: ["Beginn: Was ging voraus, wo begann der Anfall?", "Ablauf: welche Körperteile, welche Seite, Augen, Bewusstsein", "Dauer des Anfalls", "Nach dem Anfall: Verwirrtheit, Müdigkeit, Lähmungen, Zungenbiss, Einnässen", "Mögliche Auslöser"],
+        after: "Typische Auslöser sind Schlafmangel, vergessene Medikamente, Alkohol, Fieber und Stress. Nach dem Anfall sind viele Menschen verwirrt und sehr müde (postiktale Phase)." }
+    ],
+    points: [
+      "Ruhig bleiben, Zeit messen, Verletzungen verhindern",
+      "Nichts in den Mund, nicht festhalten",
+      "Nach dem Anfall stabile Seitenlage",
+      "Länger als 5 Minuten: Status epilepticus, Notfall",
+      "Ablauf genau beobachten und dokumentieren"
+    ],
+    merke: "Die Uhr ist dein wichtigstes Instrument: Anfälle wirken für Zuschauende viel länger, als sie sind. Miss die Dauer immer.",
+    facts: [
+      "Beim Anfall kann niemand seine Zunge verschlucken. Gegenstände im Mund verursachen dagegen Verletzungen an Zähnen und Kiefer.",
+      "Ein Video vom Anfall, mit Einverständnis aufgenommen, kann der Neurologie bei der Diagnose sehr helfen.",
+      "Die meisten Menschen mit Epilepsie werden mit Medikamenten anfallsfrei, wenn sie diese regelmässig einnehmen."
+    ],
+    levelNotes: { AGS: "Du bleibst bei der Person, schützt sie vor Verletzungen, misst die Zeit und holst Hilfe.", FaGe: "Du beobachtest den Anfall strukturiert, dokumentierst ihn und achtest auf regelmässige Medikamenteneinnahme.", HF: "Du erkennst einen Status epilepticus, leitest Notfallmassnahmen ein und beurteilst den Zustand nach dem Anfall." },
+    quiz: [
+      { q: "Ein Patient hat einen Krampfanfall. Steckst du ihm etwas zwischen die Zähne?", o: ["Ja, damit er sich nicht auf die Zunge beisst", "Nein, nichts in den Mund", "Nur einen weichen Gegenstand"], a: 1, e: "Gegenstände im Mund führen zu Verletzungen. Die Zunge kann nicht verschluckt werden." },
+      { q: "Der Anfall dauert seit sechs Minuten. Was gilt?", o: ["Abwarten, er hört bald auf", "Status epilepticus: sofort Notfall alarmieren", "Die Person festhalten"], a: 1, e: "Ab fünf Minuten spricht man von einem Status epilepticus, der lebensbedrohlich ist." },
+      { q: "Der Anfall ist vorbei, die Person ist noch nicht wach. Was tust du?", o: ["Aufsetzen und Wasser geben", "Stabile Seitenlage, Atemwege frei, bei ihr bleiben", "Allein ausruhen lassen"], a: 1, e: "So bleiben die Atemwege frei, und du erkennst sofort, wenn sich etwas verändert." },
+      { q: "Was ist für die Dokumentation besonders wichtig?", o: ["Nur die Uhrzeit", "Beginn, Ablauf, betroffene Seite, Dauer und Zustand danach", "Wer im Zimmer war"], a: 1, e: "Diese Beobachtungen helfen, die Anfallsform zu bestimmen und die Therapie anzupassen." },
+      { q: "Welcher Faktor kann einen Anfall auslösen?", o: ["Schlafmangel", "Regelmässige Mahlzeiten", "Spazieren gehen"], a: 0, e: "Schlafmangel, vergessene Medikamente, Alkohol und Fieber sind typische Auslöser." }
+    ],
+    transfer: "Finde heraus, wo auf deiner Station das Notfallmedikament bei Anfällen liegt und wie es verabreicht wird. Gibt es Personen mit erhöhtem Anfallsrisiko, zum Beispiel nach SHT?",
+    src: "Epilepsie-Liga Schweiz; ILAE Klassifikation der Anfallsformen; Thiemes Pflege"
+  },
+  {
+    id: "diabetes", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 10,
+    title: "Diabetes mellitus",
+    teaser: "Typ 1 und Typ 2, Unterzuckerung sicher erkennen und behandeln, Blutzucker messen und Füsse schützen.",
+    lead: "Diabetes mellitus ist eine chronische Stoffwechselerkrankung, bei der der Blutzucker dauerhaft zu hoch ist. In der Schweiz leben laut diabetesschweiz rund 500'000 Menschen mit Diabetes. Du wirst ihnen in jedem Pflegebereich begegnen.",
+    theory: [
+      { h: "Typ 1 und Typ 2",
+        table: { head: ["", "Typ 1", "Typ 2"], rows: [
+          ["Häufigkeit", "Etwa 5 bis 10 %", "Etwa 90 %"],
+          ["Ursache", "Das Immunsystem zerstört die insulinbildenden Zellen. Es fehlt Insulin.", "Die Zellen reagieren schlechter auf Insulin (Insulinresistenz)."],
+          ["Beginn", "Meist in Kindheit oder Jugend, oft plötzlich", "Meist im Erwachsenenalter, schleichend"],
+          ["Behandlung", "Immer Insulin", "Bewegung, Ernährung, Tabletten, später oft Insulin"] ] } },
+      { h: "Werte in der Schweiz (mmol/l)",
+        list: ["Nüchternblutzucker normal: unter 5,6 mmol/l", "Diabetes: nüchtern ab 7,0 mmol/l oder HbA1c ab 6,5 %", "Unterzuckerung (Hypoglykämie): unter 4,0 mmol/l", "Der HbA1c zeigt den durchschnittlichen Blutzucker der letzten zwei bis drei Monate"] },
+      { h: "Unterzuckerung erkennen und handeln",
+        p: ["Eine Unterzuckerung entsteht zum Beispiel durch zu viel Insulin, eine ausgelassene Mahlzeit, ungewohnte Bewegung oder Alkohol. Sie entwickelt sich schnell und ist gefährlich."],
+        list: ["Zeichen: Zittern, Schwitzen, Heisshunger, Herzklopfen, Blässe, Unruhe, Verwirrtheit, später Bewusstlosigkeit", "Person wach und kann schlucken: 15 bis 20 g schnelle Kohlenhydrate geben, z. B. Traubenzucker oder 2 dl Süssgetränk", "Nach 15 Minuten erneut messen, wenn nötig wiederholen", "Danach langsame Kohlenhydrate wie Brot, damit der Zucker nicht wieder fällt", "Person bewusstlos: nichts in den Mund, Notfall alarmieren, Medikament nach ärztlicher Verordnung"] },
+      { h: "Überzuckerung",
+        p: ["Zeichen einer Überzuckerung sind starker Durst, häufiges Wasserlassen, Müdigkeit und trockene Haut. Bei Typ 1 kann eine lebensbedrohliche Ketoazidose entstehen: Obstgeruch der Atemluft, tiefe Atmung, Bauchschmerzen, Bewusstseinsstörung. Das ist ein Notfall."] },
+      { h: "Pflege im Alltag",
+        list: ["Blutzucker messen: Hände vorher mit Wasser waschen und gut trocknen, da Zuckerreste den Wert verfälschen, seitlich an der Fingerbeere stechen", "Insulin ist ein Hochrisikomedikament: Doppelkontrolle nach Betriebsregel", "Injektionsstellen wechseln, sonst entstehen Verhärtungen, die das Insulin schlechter aufnehmen", "Füsse täglich kontrollieren: Durch Nervenschäden werden Verletzungen oft nicht gespürt", "Keine Wärmflaschen an die Füsse, gut passende Schuhe, Nägel vorsichtig pflegen", "Die Person zum Selbstmanagement befähigen"] }
+    ],
+    points: [
+      "Typ 1: Insulinmangel. Typ 2: Insulinresistenz, etwa 90 %",
+      "Unterzuckerung unter 4,0 mmol/l: wach, schnelle Kohlenhydrate. Bewusstlos, nichts in den Mund",
+      "Nach 15 Minuten erneut messen",
+      "Vor dem Messen Hände waschen und trocknen",
+      "Füsse täglich kontrollieren, Injektionsstellen wechseln"
+    ],
+    merke: "Im Zweifel ist es eine Unterzuckerung: Eine verwirrte Person mit Diabetes bekommt zuerst eine Blutzuckermessung.",
+    facts: [
+      "Eine Unterzuckerung kann wie ein Schlaganfall oder ein Rausch aussehen. Darum wird bei Verwirrtheit immer der Blutzucker gemessen.",
+      "Das diabetische Fusssyndrom ist eine der häufigsten Ursachen für Amputationen. Tägliche Fusskontrolle kann viele davon verhindern.",
+      "Bewegung senkt den Blutzucker. Nach intensiver Therapie in der Reha kann deshalb eine Unterzuckerung auftreten, auch Stunden später."
+    ],
+    levelNotes: { AGS: "Du erkennst Zeichen einer Unterzuckerung, meldest sofort und unterstützt bei der Fusspflege und Beobachtung.", FaGe: "Du misst den Blutzucker korrekt, verabreichst Insulin nach Kompetenzregelung und handelst bei Hypoglykämie nach Schema.", HF: "Du beurteilst Blutzuckerverläufe, erkennst Komplikationen und schulst die Person im Umgang mit ihrer Erkrankung." },
+    quiz: [
+      { q: "Eine Patientin ist zittrig und verschwitzt, Blutzucker 3,2 mmol/l. Sie ist wach. Was tust du?", o: ["Insulin geben", "15 bis 20 g schnelle Kohlenhydrate geben und nach 15 Minuten messen", "Sie schlafen lassen"], a: 1, e: "Schnelle Kohlenhydrate heben den Blutzucker rasch an. Danach Kontrolle." },
+      { q: "Ein Patient mit Diabetes ist bewusstlos. Was ist falsch?", o: ["Notfall alarmieren", "Traubenzucker in den Mund geben", "Blutzucker messen"], a: 1, e: "Bei Bewusstlosigkeit besteht Erstickungsgefahr. Nichts in den Mund." },
+      { q: "Warum wäschst du vor der Blutzuckermessung die Hände?", o: ["Nur aus Hygienegründen", "Zuckerreste an den Fingern verfälschen den Wert", "Damit es weniger weh tut"], a: 1, e: "Schon Reste von Obst oder Süssem können einen falsch hohen Wert ergeben." },
+      { q: "Warum sind tägliche Fusskontrollen wichtig?", o: ["Wegen der Schönheit", "Durch Nervenschäden werden Verletzungen oft nicht gespürt", "Weil die Füsse oft kalt sind"], a: 1, e: "Unbemerkte Wunden können sich schwer entzünden und zu Amputationen führen." },
+      { q: "Was passiert, wenn Insulin immer an derselben Stelle gespritzt wird?", o: ["Nichts", "Es entstehen Verhärtungen, das Insulin wirkt unzuverlässig", "Es wirkt stärker"], a: 1, e: "Diese Verhärtungen (Lipohypertrophien) stören die Aufnahme. Darum Stellen wechseln." }
+    ],
+    transfer: "Lass dir auf deiner Station das Vorgehen bei Hypoglykämie zeigen: Wo liegen Traubenzucker und Notfallmedikament? Führe bei einer Person mit Diabetes eine Fussinspektion durch.",
+    src: "diabetesschweiz; SGED Schweizerische Gesellschaft für Endokrinologie und Diabetologie; ADA Standards of Care"
   }
 ];
 
@@ -625,7 +853,8 @@ const TOPIC = {
   "Prophylaxen":   { c: "#b26a00", bg: "#fff3df", d: "#f7d9a6" },
   "Pflegeprozess": { c: "#3a5fc4", bg: "#e9eefc", d: "#c6d3f6" },
   "Kommunikation": { c: "#7448b8", bg: "#f1eafb", d: "#d9c8f2" },
-  "Medikamente":   { c: "#17799e", bg: "#e3f3fa", d: "#b9e0ef" }
+  "Medikamente":   { c: "#17799e", bg: "#e3f3fa", d: "#b9e0ef" },
+  "Krankheitsbilder": { c: "#4e7d1e", bg: "#eef6e4", d: "#cfe5b4" }
 };
 const ICON = {
   "Hygiene": '<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/>',
@@ -633,6 +862,7 @@ const ICON = {
   "Prophylaxen": '<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/>',
   "Pflegeprozess": '<path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/>',
   "Kommunikation": '<path d="M4 5h12v8H9l-4 3v-3H4z"/><path d="M16 9h4v8h-1v3l-3-3h-5v-2"/>',
+  "Krankheitsbilder": '<path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-1"/><circle cx="20" cy="12" r="2"/>',
   "Medikamente": '<rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="m9.5 8 5 9"/>'
 };
 const ico = (t, color) => `<svg viewBox="0 0 24 24" fill="none" stroke="${color || "currentColor"}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[t]}</svg>`;
@@ -660,6 +890,12 @@ function art(n) {
     sturz: `<path d="M110 54h80l14 106M110 54l-10 106" fill="none" stroke="${c}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M103 112h94" stroke="${c}" stroke-width="6" stroke-linecap="round"/><rect x="100" y="48" width="28" height="12" rx="6" fill="${c}"/><rect x="172" y="48" width="28" height="12" rx="6" fill="${c}"/><circle cx="100" cy="162" r="7" fill="#fff" stroke="${c}" stroke-width="4"/><circle cx="204" cy="162" r="7" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M40 170h240" stroke="${d}" stroke-width="5" stroke-linecap="round"/><path d="M236 70l22 0-11-20z" fill="#f2b33d" stroke="#b26a00" stroke-width="2" stroke-linejoin="round"/><path d="M247 58v6M247 68v.5" stroke="#1b2a3a" stroke-width="2.5" stroke-linecap="round"/><path d="M226 120c10 0 10 8 20 8s10-8 20-8" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round"/>`,
     pflegeprozess: (() => { let s = `<circle cx="160" cy="100" r="62" fill="none" stroke="${d}" stroke-width="10"/>`; for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2 - Math.PI / 2, x = 160 + 62 * Math.cos(a), y = 100 + 62 * Math.sin(a); s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="17" fill="${i === 0 ? c : "#fff"}" stroke="${c}" stroke-width="3"/><text x="${x.toFixed(1)}" y="${(y + 5.5).toFixed(1)}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="15" fill="${i === 0 ? "#fff" : c}">${i + 1}</text>`; } return s + `<path d="M196 50a62 62 0 0 1 18 22" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round"/><path d="M214 62l1 11-10-3" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`; })(),
     sbar: `<rect x="52" y="44" width="130" height="74" rx="16" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M80 118l-6 24 26-24" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="140" y="92" width="130" height="68" rx="16" fill="${c}"/><path d="M240 160l6 22-26-22" fill="${c}"/><text x="117" y="90" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="26" letter-spacing="4" fill="${c}">S B</text><text x="205" y="135" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="26" letter-spacing="4" fill="#fff">A R</text>`,
+    feedback: `<rect x="44" y="40" width="140" height="78" rx="16" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M76 118l-8 24 28-24" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/>${[0,1,2].map(k => `<path d="M${84 + k * 30} 64l5 10 11 1.5-8 7.5 2 11-10-5.5-10 5.5 2-11-8-7.5 11-1.5z" fill="${k < 2 ? c : d}"/>`).join("")}<rect x="150" y="96" width="126" height="66" rx="16" fill="${c}"/><path d="M246 162l8 22-28-22" fill="${c}"/><path d="M186 130l12 12 24-26" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`,
+    schlaganfall: (() => { const X = 140, Y = 100; return `<ellipse cx="${X}" cy="${Y}" rx="62" ry="48" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M${X} ${Y-46}v92M${X-40} ${Y-20}c12 4 18 14 14 26M${X-44} ${Y+20}c14-6 26-2 30 8M${X+40} ${Y-22}c-14 6-18 16-12 26M${X+46} ${Y+16}c-14-4-26 2-30 12M${X-20} ${Y-40}c4 10 0 20-10 24M${X+18} ${Y-40}c-2 10 4 18 14 20" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity=".75"/>` + `<path d="M150 70l-18 34h16l-10 30 26-40h-16l12-24z" fill="#f2b33d" stroke="#b26a00" stroke-width="2" stroke-linejoin="round"/><circle cx="250" cy="70" r="30" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M250 52v18l12 8" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round"/><text x="250" y="128" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="14" fill="${c}">BE FAST</text>`; })(),
+    sht: `<path d="M110 166v-22c-18-10-30-30-30-52 0-34 28-58 62-58 32 0 58 22 60 52l14 26-12 4v14c0 8-6 12-14 12h-14v24" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M106 70c8-6 18-6 24 2M122 92c8-4 16-2 20 4M98 100c6 6 14 6 20 2M140 64c8 2 12 8 12 16" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity=".7"/><path d="M84 54l-14-14M76 72l-20-4M96 40l-6-18" stroke="#f2b33d" stroke-width="5" stroke-linecap="round"/><rect x="214" y="110" width="74" height="46" rx="10" fill="${c}"/><text x="251" y="140" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="#fff">GCS</text>`,
+    herzinsuffizienz: `<path d="M140 160c-34-24-58-44-58-72a30 30 0 0 1 58-12 30 30 0 0 1 58 12c0 28-24 48-58 72z" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M96 98h22l8-16 12 30 10-22 6 8h34" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="214" y="118" width="70" height="44" rx="10" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M234 132a15 15 0 0 1 30 0" fill="none" stroke="${c}" stroke-width="3"/><path d="M249 132l6-8" stroke="${c}" stroke-width="3" stroke-linecap="round"/><text x="249" y="155" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="11" fill="${c}">kg</text><path d="M250 50c7 10 11 16 11 21a11 11 0 0 1-22 0c0-5 4-11 11-21z" fill="#4a90c8"/>`,
+    epilepsie: (() => { const X = 100, Y = 92; return `<ellipse cx="${X}" cy="${Y}" rx="50" ry="40" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M${X} ${Y-46}v92M${X-40} ${Y-20}c12 4 18 14 14 26M${X-44} ${Y+20}c14-6 26-2 30 8M${X+40} ${Y-22}c-14 6-18 16-12 26M${X+46} ${Y+16}c-14-4-26 2-30 12M${X-20} ${Y-40}c4 10 0 20-10 24M${X+18} ${Y-40}c-2 10 4 18 14 20" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity=".75"/>` + `<rect x="160" y="54" width="132" height="90" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M170 80h14l4-8 4 14 4-22 4 30 4-26 4 22 4-10h50" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/><path d="M170 116h22l4-6 4 10 4-14 4 22 4-18 4 12 4-6h56" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round" opacity=".6"/><circle cx="246" cy="164" r="18" fill="${c}"/><text x="246" y="170" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" fill="#fff">5'</text>`; })(),
+    diabetes: `<rect x="70" y="44" width="96" height="128" rx="18" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="84" y="60" width="68" height="44" rx="8" fill="${bg}"/><text x="118" y="90" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="${c}">5,4</text><text x="118" y="120" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" font-size="11" fill="${c}">mmol/l</text><circle cx="118" cy="146" r="10" fill="${d}"/><rect x="114" y="22" width="8" height="24" rx="2" fill="${c}"/><path d="M200 70c10 14 16 22 16 30a16 16 0 0 1-32 0c0-8 6-16 16-30z" fill="#c0463b"/><g transform="rotate(35 250 120)"><rect x="236" y="66" width="28" height="104" rx="10" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="236" y="96" width="28" height="22" fill="${d}"/><rect x="246" y="170" width="8" height="14" fill="${c}"/></g>`,
     "6r": `<rect x="56" y="60" width="150" height="100" rx="14" fill="#fff" stroke="${c}" stroke-width="4"/>${[0,1,2].map(r => [0,1].map(k => `<circle cx="${92 + r * 40}" cy="${90 + k * 40}" r="13" fill="${bg}" stroke="${c}" stroke-width="3"/>`).join("")).join("")}<g transform="rotate(-30 236 92)"><rect x="206" y="78" width="64" height="28" rx="14" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M238 78h18a14 14 0 0 1 0 28h-18z" fill="${c}"/></g><circle cx="250" cy="150" r="20" fill="${c}"/><text x="250" y="157" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="18" fill="#fff">6R</text>`
   };
   return `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:${bg}" aria-hidden="true">${base}${A[n.id] || ""}</svg>`;
