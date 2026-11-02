@@ -7,159 +7,193 @@
 <meta name="description" content="Kurze Lerneinheiten für AGS, FaGe und Pflege HF: Kernpunkte, Quiz und Praxistransfer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Lehrmittel-Layout: Kopfzeile, links Themenverzeichnis, rechts Inhaltsverzeichnis als Liste; Nugget als Leseseite */
-  --paper: #fcfcfa;
-  --ink: #1d2124;
-  --muted: #5f676b;
-  --rule: #dfe2df;
-  --accent: #2f5d50;
-  --accent-tint: #edf3f0;
-  --ags: #9a6a12;
-  --fage: #2f5f95;
-  --hf: #84406f;
-  --ok: #2c7a4b;
-  --bad: #a8402f;
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --sans: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  /* Weiss, Navy als Hausfarbe, jedes Thema mit eigener Farbe; Startseite: Hero, Stufen, Themen, Kartenraster; Nugget: farbiger Kopf, Inhaltskarten */
+  --bg: #ffffff;
+  --soft: #f4f6f9;
+  --ink: #1b2a3a;
+  --muted: #5d6b7a;
+  --line: #e3e8ee;
+  --brand: #1f4f82;
+  --brand-2: #e8f0f9;
+  --ags: #b26a00; --ags-bg: #fff3df;
+  --fage: #1f6fb2; --fage-bg: #e6f1fb;
+  --hf: #8b3a86; --hf-bg: #f6e8f5;
+  --ok: #1e8048; --ok-bg: #e5f5ec;
+  --bad: #b23b2c; --bad-bg: #fcebe8;
+  --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --shadow: 0 1px 2px rgba(27,42,58,.06), 0 4px 14px rgba(27,42,58,.06);
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #161a1b; --ink: #e6e8e6; --muted: #a2aaa8; --rule: #2e3537;
-    --accent: #8cc2ad; --accent-tint: #1f2c28;
-    --ags: #e3b866; --fage: #8fb5e3; --hf: #dba0c9; --ok: #79c99a; --bad: #ec9a8b;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #161a1b; --ink: #e6e8e6; --muted: #a2aaa8; --rule: #2e3537;
-  --accent: #8cc2ad; --accent-tint: #1f2c28;
-  --ags: #e3b866; --fage: #8fb5e3; --hf: #dba0c9; --ok: #79c99a; --bad: #ec9a8b;
-  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-body { background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
-h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; text-wrap: balance; margin: 0; }
-a { color: var(--accent); }
-button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+body { background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); }
+h1, h2, h3 { font-family: var(--display); line-height: 1.2; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 
 /* Kopf */
-.masthead { border-bottom: 1px solid var(--rule); }
-.masthead .wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 22px; padding-bottom: 18px; }
-.logo { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
-.logo span { color: var(--accent); }
-.levels { display: flex; gap: 22px; font-size: 15.5px; }
-.levels button { color: var(--muted); padding: 4px 0; border-bottom: 2px solid transparent; }
-.levels button[aria-pressed="true"] { color: var(--ink); font-weight: 700; border-color: var(--accent); }
+.top { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.95); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--ink); }
+.logo svg { width: 34px; height: 34px; }
+.logo span { color: var(--brand); }
+.levels { display: flex; gap: 4px; background: var(--soft); padding: 4px; border-radius: 10px; }
+.levels button { border: 0; background: transparent; padding: 6px 12px; border-radius: 7px; font-weight: 700; font-size: 14.5px; color: var(--muted); }
+.levels button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: var(--shadow); }
 
-.intro { padding: 44px 0 30px; display: grid; grid-template-columns: 1fr; gap: 10px; }
-.intro h1 { font-size: clamp(30px, 4.6vw, 44px); max-width: 20ch; }
-.intro p { color: var(--muted); max-width: 58ch; margin: 0; font-size: 18px; }
+/* Hero */
+.hero { background: linear-gradient(180deg, var(--brand-2), #fff); border-bottom: 1px solid var(--line); }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding-top: 48px; padding-bottom: 48px; }
+.hero h1 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 800; }
+.hero h1 em { font-style: normal; color: var(--brand); }
+.hero p { color: var(--muted); font-size: 18.5px; max-width: 50ch; margin: 14px 0 22px; }
+.how { display: flex; gap: 10px; flex-wrap: wrap; }
+.how span { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-weight: 700; font-size: 15px; display: flex; gap: 8px; align-items: center; }
+.how b { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--brand); color: #fff; font-size: 12.5px; }
+.hero-art svg { width: 100%; height: auto; display: block; }
 
-/* Verzeichnis */
-.layout { display: grid; grid-template-columns: 200px 1fr; gap: 48px; padding-bottom: 64px; }
-.side { position: sticky; top: 20px; align-self: start; display: grid; gap: 22px; }
-.side h2 { font-family: var(--sans); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
-.topics { display: grid; gap: 2px; }
-.topics button { text-align: left; padding: 5px 0; color: var(--muted); display: flex; justify-content: space-between; gap: 10px; }
-.topics button span { font-variant-numeric: tabular-nums; }
-.topics button[aria-pressed="true"] { color: var(--ink); font-weight: 700; }
-#search { width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--rule); padding: 6px 0; }
-#search:focus { outline: none; border-color: var(--accent); }
-.progress { font-size: 15px; color: var(--muted); }
-.progress b { color: var(--ink); font-variant-numeric: tabular-nums; }
-.bar { height: 3px; background: var(--rule); margin-top: 8px; }
-.bar i { display: block; height: 100%; background: var(--accent); }
+/* Stufen */
+section.block { padding: 44px 0 8px; }
+.block-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+.block-head h2 { font-size: 26px; }
+.block-head p { margin: 4px 0 0; color: var(--muted); }
+.stufen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.stufe { text-align: left; border: 2px solid transparent; border-radius: 16px; padding: 20px; display: grid; gap: 6px; transition: transform .15s, border-color .15s; }
+.stufe:hover { transform: translateY(-2px); }
+.stufe[aria-pressed="true"] { border-color: currentColor; }
+.stufe .t { font-family: var(--display); font-weight: 800; font-size: 22px; }
+.stufe .d { color: var(--ink); font-size: 15.5px; }
+.stufe .n { font-weight: 700; font-size: 14.5px; }
+.stufe.AGS { background: var(--ags-bg); color: var(--ags); }
+.stufe.FaGe { background: var(--fage-bg); color: var(--fage); }
+.stufe.HF { background: var(--hf-bg); color: var(--hf); }
 
-.group + .group { margin-top: 40px; }
-.group h2 { font-size: 24px; padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
-.item { display: grid; grid-template-columns: 44px 1fr auto; gap: 4px 16px; padding: 18px 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: inherit; }
-.item:hover h3 { color: var(--accent); }
-.num { font-family: var(--serif); font-size: 20px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 1px; }
-.item h3 { font-size: 21px; transition: color .15s; }
-.item p { margin: 4px 0 0; color: var(--muted); font-size: 16px; max-width: 60ch; }
-.item .side-meta { text-align: right; font-size: 14px; color: var(--muted); white-space: nowrap; }
-.item .check { color: var(--ok); font-weight: 700; display: block; }
-.lv { font-size: 14px; font-weight: 700; margin-top: 8px; display: flex; gap: 14px; }
-.lv span::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; margin-right: 6px; vertical-align: 1px; }
-.lv .AGS { color: var(--ags); } .lv .FaGe { color: var(--fage); } .lv .HF { color: var(--hf); }
-.empty { color: var(--muted); padding: 24px 0; }
+/* Themen */
+.themen { display: flex; gap: 10px; flex-wrap: wrap; }
+.thema { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: #fff; border-radius: 12px; padding: 8px 14px 8px 8px; font-weight: 700; font-size: 15.5px; }
+.thema i { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; }
+.thema i svg { width: 18px; height: 18px; }
+.thema small { color: var(--muted); font-weight: 400; }
+.thema[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.toolbar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 16px; }
+#search { flex: 1 1 260px; max-width: 420px; font: inherit; padding: 10px 14px 10px 40px; border: 1px solid var(--line); border-radius: 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%235d6b7a' stroke-width='2'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E") 14px center no-repeat; color: var(--ink); }
+.prog { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 15px; }
+.prog .bar { width: 120px; height: 8px; background: var(--soft); border-radius: 99px; overflow: hidden; }
+.prog .bar i { display: block; height: 100%; background: var(--ok); border-radius: 99px; }
+.prog b { color: var(--ink); font-variant-numeric: tabular-nums; }
 
-/* Leseseite */
-.article { max-width: 680px; margin: 0 auto; padding: 36px 0 80px; }
-.back { font-size: 15px; color: var(--muted); text-decoration: none; }
-.back:hover { color: var(--accent); }
-.kicker { margin-top: 30px; font-size: 14px; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-.kicker .lv { margin: 0; }
-.article h1 { font-size: clamp(32px, 5vw, 46px); margin: 10px 0 16px; }
-.lead { font-family: var(--serif); font-size: 21px; line-height: 1.5; color: var(--ink); margin: 0; }
-.article h2 { font-size: 24px; margin: 44px 0 14px; }
-.points { margin: 0; padding-left: 22px; }
-.points li { margin: 8px 0; padding-left: 4px; }
-.points li::marker { color: var(--accent); }
-.merke { margin: 28px 0 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent); }
-.merke b { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
-.role { display: grid; grid-template-columns: 90px 1fr; gap: 6px 16px; margin: 0; }
-.role dt { font-weight: 700; }
-.role dt.AGS { color: var(--ags); } .role dt.FaGe { color: var(--fage); } .role dt.HF { color: var(--hf); }
-.role dd { margin: 0; }
-.q { padding: 18px 0; border-top: 1px solid var(--rule); }
-.q:last-of-type { border-bottom: 1px solid var(--rule); }
+/* Karten */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding: 22px 0 64px; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(27,42,58,.06), 0 12px 28px rgba(27,42,58,.12); }
+.card .art { height: 132px; position: relative; }
+.card .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.card .badge { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,.92); border-radius: 8px; padding: 3px 9px; font-size: 13px; font-weight: 700; }
+.card .doneb { position: absolute; top: 12px; right: 12px; background: var(--ok); color: #fff; border-radius: 8px; padding: 3px 9px; font-size: 13px; font-weight: 700; }
+.card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card h3 { font-size: 19px; font-weight: 700; }
+.card p { margin: 0; color: var(--muted); font-size: 15.5px; }
+.foot { margin-top: auto; padding-top: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; border-top: 1px solid var(--line); }
+.lv { font-size: 12.5px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+.lv.AGS { color: var(--ags); background: var(--ags-bg); }
+.lv.FaGe { color: var(--fage); background: var(--fage-bg); }
+.lv.HF { color: var(--hf); background: var(--hf-bg); }
+.min { margin-left: auto; font-size: 13.5px; color: var(--muted); display: flex; gap: 5px; align-items: center; }
+.empty { color: var(--muted); padding: 30px 0 60px; }
+
+/* Nugget-Seite */
+.nhero { border-bottom: 1px solid var(--line); }
+.nhero .wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; padding-top: 28px; padding-bottom: 32px; }
+.back { display: inline-flex; gap: 6px; align-items: center; font-weight: 700; font-size: 15px; text-decoration: none; color: var(--ink); background: rgba(255,255,255,.75); padding: 6px 12px; border-radius: 9px; }
+.nhero .kick { margin: 22px 0 10px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-weight: 700; font-size: 14.5px; }
+.nhero h1 { font-size: clamp(30px, 4.4vw, 44px); font-weight: 800; }
+.nhero .lead { font-size: 18.5px; margin: 14px 0 0; max-width: 56ch; }
+.nhero .art { aspect-ratio: 16/10; border-radius: 18px; overflow: hidden; position: relative; background: rgba(255,255,255,.5); }
+.nhero .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ncontent { display: grid; grid-template-columns: 1fr 300px; gap: 28px; padding: 32px 24px 70px; }
+.panel { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow); }
+.panel + .panel { margin-top: 20px; }
+.panel h2 { font-size: 21px; display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+.panel h2 i { width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; background: var(--brand-2); color: var(--brand); }
+.panel h2 i svg { width: 18px; height: 18px; }
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: p; }
+.points li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; counter-increment: p; }
+.points li::before { content: counter(p); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px; background: var(--tc-bg); color: var(--tc); }
+.merke { margin-top: 20px; display: grid; grid-template-columns: 34px 1fr; gap: 12px; background: #fff8e1; border: 1px solid #f3e1a6; border-radius: 12px; padding: 14px 16px; }
+.merke svg { width: 26px; height: 26px; color: #b07d00; }
+.merke b { display: block; color: #8a6200; }
+.roles { display: grid; gap: 12px; }
+.role { border-radius: 12px; padding: 12px 16px; }
+.role b { display: block; font-size: 14.5px; }
+.role.AGS { background: var(--ags-bg); } .role.AGS b { color: var(--ags); }
+.role.FaGe { background: var(--fage-bg); } .role.FaGe b { color: var(--fage); }
+.role.HF { background: var(--hf-bg); } .role.HF b { color: var(--hf); }
+.q + .q { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
 .q p { margin: 0 0 12px; font-weight: 700; }
-.q p small { color: var(--muted); font-weight: 400; margin-right: 6px; }
-.opts { display: grid; gap: 6px; }
-.opts button { text-align: left; display: grid; grid-template-columns: 30px 1fr; align-items: baseline; padding: 8px 10px; border-radius: 6px; }
-.opts button:hover:not(:disabled) { background: var(--accent-tint); }
-.opts button .k { font-family: var(--serif); font-weight: 600; color: var(--muted); }
-.opts button.right { background: var(--accent-tint); color: var(--ok); font-weight: 700; }
-.opts button.right .k { color: var(--ok); }
-.opts button.wrong { color: var(--bad); text-decoration: line-through; }
+.q p small { display: block; color: var(--muted); font-weight: 400; font-size: 14px; }
+.opts { display: grid; gap: 8px; }
+.opts button { text-align: left; display: flex; gap: 12px; align-items: center; border: 1.5px solid var(--line); background: #fff; border-radius: 11px; padding: 10px 12px; }
+.opts button:hover:not(:disabled) { border-color: var(--brand); background: var(--brand-2); }
+.opts .k { flex: none; width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: var(--soft); font-weight: 700; font-size: 14px; }
+.opts button.right { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); font-weight: 700; }
+.opts button.right .k { background: var(--ok); color: #fff; }
+.opts button.wrong { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+.opts button.wrong .k { background: var(--bad); color: #fff; }
 .opts button:disabled { cursor: default; }
-.fb { font-size: 15.5px; color: var(--muted); margin: 10px 0 0 40px; }
-.result { margin-top: 18px; font-weight: 700; }
-.transfer { background: var(--accent-tint); padding: 18px 20px; border-radius: 4px; margin: 0; }
-.src { margin-top: 44px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 14px; }
-.next { margin-top: 28px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; }
-.next a { text-decoration: none; }
+.fb { font-size: 15.5px; margin: 10px 0 0; color: var(--muted); }
+.result { margin-top: 18px; padding: 12px 16px; border-radius: 11px; font-weight: 700; display: none; }
+.result.show { display: block; }
+.result.good { background: var(--ok-bg); color: var(--ok); }
+.result.try { background: var(--soft); color: var(--ink); }
+.transfer { background: var(--brand-2); border-radius: 12px; padding: 16px 18px; margin: 0; }
+.aside { display: grid; gap: 20px; align-content: start; position: sticky; top: 86px; }
+.facts { display: grid; gap: 12px; margin: 0; }
+.facts div { display: flex; justify-content: space-between; gap: 10px; font-size: 15.5px; }
+.facts dt { color: var(--muted); } .facts dd { margin: 0; font-weight: 700; text-align: right; }
+.mini { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center; text-decoration: none; padding: 8px; margin: 0 -8px; border-radius: 10px; }
+.mini:hover { background: var(--soft); }
+.mini .art { width: 56px; height: 44px; border-radius: 8px; overflow: hidden; position: relative; }
+.mini .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mini span { font-weight: 700; font-size: 15px; line-height: 1.3; }
+.mini small { display: block; color: var(--muted); font-weight: 400; font-size: 13px; }
+.src { font-size: 14px; color: var(--muted); margin: 0; }
 
-footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; }
-footer .wrap { padding-top: 18px; padding-bottom: 32px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+footer { background: var(--soft); border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
+footer .wrap { padding-top: 22px; padding-bottom: 32px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
-@media (max-width: 760px) {
-  .layout { grid-template-columns: 1fr; gap: 24px; }
-  .side { position: static; }
-  .topics { display: flex; flex-wrap: wrap; gap: 4px 16px; }
-  .topics button span { display: none; }
-  .item { grid-template-columns: 34px 1fr; }
-  .item .side-meta { grid-column: 2; text-align: left; }
-  .item .check { display: inline; margin-left: 10px; }
-  .levels { gap: 16px; }
+@media (max-width: 860px) {
+  .hero .wrap, .nhero .wrap { grid-template-columns: 1fr; }
+  .hero-art { display: none; }
+  .ncontent { grid-template-columns: 1fr; padding-left: 16px; padding-right: 16px; }
+  .aside { position: static; }
+  .stufen { grid-template-columns: 1fr; }
 }
-@media (prefers-reduced-motion: reduce) { .item h3 { transition: none; } }
+@media (max-width: 520px) {
+  .top .wrap { height: auto; padding-top: 10px; padding-bottom: 10px; flex-wrap: wrap; }
+  .panel { padding: 20px 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .card, .stufe { transition: none; } .card:hover, .stufe:hover { transform: none; } }
 </style>
 </head>
 <body>
-<header class="masthead">
-  <div class="wrap">
-    <a class="logo" href="#">Pflege<span>pedia</span></a>
-    <nav class="levels" aria-label="Ausbildungsstufe">
-      <button data-level="Alle" aria-pressed="true">Alle</button>
-      <button data-level="AGS" aria-pressed="false">AGS</button>
-      <button data-level="FaGe" aria-pressed="false">FaGe</button>
-      <button data-level="HF" aria-pressed="false">Pflege HF</button>
-    </nav>
-  </div>
-</header>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#" aria-label="Pflegepedia Startseite">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#1f4f82"/><path d="M11 13c3-2 6-2 9 0v16c-3-2-6-2-9 0z" fill="#fff"/><path d="M29 13c-3-2-6-2-9 0v16c3-2 6-2 9 0z" fill="#9cc3ea"/><circle cx="29.5" cy="11" r="4.5" fill="#f2b33d"/></svg>
+    <div>Pflege<span>pedia</span></div></a>
+  <nav class="levels" aria-label="Ausbildungsstufe">
+    <button data-level="Alle">Alle</button><button data-level="AGS">AGS</button><button data-level="FaGe">FaGe</button><button data-level="HF">HF</button>
+  </nav>
+</div></header>
 
 <main id="app"></main>
 
-<footer><div class="wrap"><span>Pflegepedia. Lerneinheiten für die Pflegeausbildung.</span><span>Inhalte ersetzen keine betrieblichen Richtlinien.</span></div></footer>
+<footer><div class="wrap"><span>Pflegepedia · Lerneinheiten für die Pflegeausbildung</span><span>Inhalte ersetzen keine betrieblichen Richtlinien.</span></div></footer>
 
 <script>
 const NUGGETS = [
@@ -330,7 +364,52 @@ const NUGGETS = [
 ];
 
 
+const TOPIC = {
+  "Hygiene":       { c: "#0f7f72", bg: "#e2f4f0", d: "#bfe6dd" },
+  "Beobachten":    { c: "#c0463b", bg: "#fdecea", d: "#f6c9c3" },
+  "Prophylaxen":   { c: "#b26a00", bg: "#fff3df", d: "#f7d9a6" },
+  "Pflegeprozess": { c: "#3a5fc4", bg: "#e9eefc", d: "#c6d3f6" },
+  "Kommunikation": { c: "#7448b8", bg: "#f1eafb", d: "#d9c8f2" },
+  "Medikamente":   { c: "#17799e", bg: "#e3f3fa", d: "#b9e0ef" }
+};
+const ICON = {
+  "Hygiene": '<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/>',
+  "Beobachten": '<path d="M3 12h4l2-5 4 10 2-5h6"/>',
+  "Prophylaxen": '<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  "Pflegeprozess": '<path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/>',
+  "Kommunikation": '<path d="M4 5h12v8H9l-4 3v-3H4z"/><path d="M16 9h4v8h-1v3l-3-3h-5v-2"/>',
+  "Medikamente": '<rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="m9.5 8 5 9"/>'
+};
+const ico = (t, color) => `<svg viewBox="0 0 24 24" fill="none" stroke="${color || "currentColor"}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[t]}</svg>`;
+const UI = {
+  list: '<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
+  bulb: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+  quiz: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/>',
+  go: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
+};
+const ui = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${UI[k]}</svg>`;
+
+/* Illustrationen, 320 x 200 */
+function art(n) {
+  const t = TOPIC[n.topic], c = t.c, d = t.d, bg = t.bg;
+  const base = `<rect width="320" height="200" fill="${bg}"/><circle cx="280" cy="30" r="70" fill="${d}" opacity=".55"/><circle cx="30" cy="190" r="50" fill="${d}" opacity=".45"/>`;
+  const A = {
+    haendehygiene: `<rect x="128" y="62" width="64" height="104" rx="14" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="146" y="40" width="28" height="24" rx="4" fill="${c}"/><path d="M160 40V26h30" stroke="${c}" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="140" y="96" width="40" height="40" rx="8" fill="${d}"/><path d="M160 104c6 8 9 12 9 16a9 9 0 0 1-18 0c0-4 3-8 9-16z" fill="${c}"/><path d="M196 34c4 6 6 9 6 12a6 6 0 0 1-12 0c0-3 2-6 6-12z" fill="${c}" opacity=".7"/><circle cx="92" cy="80" r="14" fill="#fff" stroke="${c}" stroke-width="3"/><circle cx="74" cy="118" r="9" fill="#fff" stroke="${c}" stroke-width="3"/><circle cx="236" cy="120" r="12" fill="#fff" stroke="${c}" stroke-width="3"/><circle cx="252" cy="88" r="6" fill="#fff" stroke="${c}" stroke-width="3"/><text x="160" y="186" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="15" fill="${c}">30 s</text>`,
+    vitalzeichen: `<rect x="70" y="40" width="180" height="120" rx="16" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="84" y="54" width="152" height="70" rx="8" fill="${bg}"/><path d="M90 92h30l8-20 12 40 10-28 8 8h68" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="142" r="6" fill="${c}"/><rect x="114" y="138" width="40" height="8" rx="4" fill="${d}"/><rect x="190" y="136" width="44" height="12" rx="6" fill="${c}" opacity=".85"/><path d="M160 178c-12-9-20-15-20-23a10 10 0 0 1 20-3 10 10 0 0 1 20 3c0 8-8 14-20 23z" fill="${c}" transform="translate(110 -128) scale(.55)"/>`,
+    news2: `<rect x="60" y="44" width="200" height="116" rx="16" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M80 136h160" stroke="${d}" stroke-width="3"/><rect x="88" y="112" width="22" height="24" rx="4" fill="#57b37a"/><rect x="120" y="100" width="22" height="36" rx="4" fill="#57b37a"/><rect x="152" y="86" width="22" height="50" rx="4" fill="#e8a33a"/><rect x="184" y="70" width="22" height="66" rx="4" fill="${c}"/><rect x="216" y="56" width="22" height="80" rx="4" fill="${c}"/><path d="M84 96l40-10 34-14 30-16 40-6" fill="none" stroke="#1b2a3a" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round"/><text x="160" y="186" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="15" fill="${c}">0 · 5 · 7+</text>`,
+    dekubitus: `<rect x="50" y="110" width="220" height="16" rx="6" fill="${c}"/><rect x="58" y="126" width="10" height="34" rx="4" fill="${c}"/><rect x="252" y="126" width="10" height="34" rx="4" fill="${c}"/><rect x="40" y="74" width="16" height="70" rx="6" fill="${c}"/><rect x="62" y="88" width="64" height="24" rx="12" fill="#fff" stroke="${c}" stroke-width="3"/><path d="M118 110c20-26 140-26 148 0z" fill="#fff" stroke="${c}" stroke-width="3"/><circle cx="210" cy="56" r="26" fill="#fff" stroke="${c}" stroke-width="3"/><path d="M200 56h20M210 46v20" stroke="${c}" stroke-width="0"/><path d="M196 58l9 9 17-19" fill="none" stroke="${c}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M80 60c0-10 10-10 10-20M96 62c0-10 10-10 10-20" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity=".6"/>`,
+    sturz: `<path d="M110 54h80l14 106M110 54l-10 106" fill="none" stroke="${c}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M103 112h94" stroke="${c}" stroke-width="6" stroke-linecap="round"/><rect x="100" y="48" width="28" height="12" rx="6" fill="${c}"/><rect x="172" y="48" width="28" height="12" rx="6" fill="${c}"/><circle cx="100" cy="162" r="7" fill="#fff" stroke="${c}" stroke-width="4"/><circle cx="204" cy="162" r="7" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M40 170h240" stroke="${d}" stroke-width="5" stroke-linecap="round"/><path d="M236 70l22 0-11-20z" fill="#f2b33d" stroke="#b26a00" stroke-width="2" stroke-linejoin="round"/><path d="M247 58v6M247 68v.5" stroke="#1b2a3a" stroke-width="2.5" stroke-linecap="round"/><path d="M226 120c10 0 10 8 20 8s10-8 20-8" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round"/>`,
+    pflegeprozess: (() => { let s = `<circle cx="160" cy="100" r="62" fill="none" stroke="${d}" stroke-width="10"/>`; for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2 - Math.PI / 2, x = 160 + 62 * Math.cos(a), y = 100 + 62 * Math.sin(a); s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="17" fill="${i === 0 ? c : "#fff"}" stroke="${c}" stroke-width="3"/><text x="${x.toFixed(1)}" y="${(y + 5.5).toFixed(1)}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="15" fill="${i === 0 ? "#fff" : c}">${i + 1}</text>`; } return s + `<path d="M196 50a62 62 0 0 1 18 22" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round"/><path d="M214 62l1 11-10-3" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`; })(),
+    sbar: `<rect x="52" y="44" width="130" height="74" rx="16" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M80 118l-6 24 26-24" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="140" y="92" width="130" height="68" rx="16" fill="${c}"/><path d="M240 160l6 22-26-22" fill="${c}"/><text x="117" y="90" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="26" letter-spacing="4" fill="${c}">S B</text><text x="205" y="135" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="26" letter-spacing="4" fill="#fff">A R</text>`,
+    "6r": `<rect x="56" y="60" width="150" height="100" rx="14" fill="#fff" stroke="${c}" stroke-width="4"/>${[0,1,2].map(r => [0,1].map(k => `<circle cx="${92 + r * 40}" cy="${90 + k * 40}" r="13" fill="${bg}" stroke="${c}" stroke-width="3"/>`).join("")).join("")}<g transform="rotate(-30 236 92)"><rect x="206" y="78" width="64" height="28" rx="14" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M238 78h18a14 14 0 0 1 0 28h-18z" fill="${c}"/></g><circle cx="250" cy="150" r="20" fill="${c}"/><text x="250" y="157" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="18" fill="#fff">6R</text>`
+  };
+  return `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:${bg}" aria-hidden="true">${base}${A[n.id] || ""}</svg>`;
+}
+
 const LEVEL_LABEL = { AGS: "AGS", FaGe: "FaGe", HF: "Pflege HF" };
+const LEVEL_DESC = { AGS: "Assistentin, Assistent Gesundheit und Soziales EBA", FaGe: "Fachfrau, Fachmann Gesundheit EFZ", HF: "Studierende Pflege HF" };
 const state = { level: "Alle", topic: "Alle", q: "" };
 let done = {};
 try { done = JSON.parse(localStorage.getItem("pp-done") || "{}"); } catch (e) { done = {}; }
@@ -338,68 +417,110 @@ try { const l = localStorage.getItem("pp-level"); if (l) state.level = l; } catc
 const save = () => { try { localStorage.setItem("pp-done", JSON.stringify(done)); localStorage.setItem("pp-level", state.level); } catch (e) {} };
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const TOPICS = [...new Set(NUGGETS.map(n => n.topic))];
-const levelsHtml = ls => `<span class="lv">${ls.map(l => `<span class="${l}">${LEVEL_LABEL[l]}</span>`).join("")}</span>`;
+const TOPICS = Object.keys(TOPIC).filter(t => NUGGETS.some(n => n.topic === t));
+const lvs = ls => ls.map(l => `<span class="lv ${l}">${LEVEL_LABEL[l]}</span>`).join("");
 const pool = () => NUGGETS.filter(n => state.level === "Alle" || n.levels.includes(state.level));
+const setLevel = l => { state.level = l; save(); syncLevels(); };
+const syncLevels = () => document.querySelectorAll(".levels button").forEach(x => x.setAttribute("aria-pressed", x.dataset.level === state.level));
 
-function renderIndex() {
+function card(n) {
+  return `<a class="card" href="#${n.id}">
+    <div class="art">${art(n)}<span class="badge" style="color:${TOPIC[n.topic].c}">${n.topic}</span>${done[n.id] ? '<span class="doneb">✓ Erledigt</span>' : ""}</div>
+    <div class="body"><h3>${esc(n.title)}</h3><p>${esc(n.teaser)}</p>
+      <div class="foot">${lvs(n.levels)}<span class="min">${ui("clock").replace("<svg", '<svg width="15" height="15"')} ${n.min} Min.</span></div></div></a>`;
+}
+
+function renderGrid() {
   const q = state.q.toLowerCase();
   const list = pool().filter(n => (state.topic === "Alle" || n.topic === state.topic) &&
     (!q || (n.title + " " + n.teaser + " " + n.points.join(" ")).toLowerCase().includes(q)));
   const p = pool(), d = p.filter(n => done[n.id]).length;
-  const groups = TOPICS.map(t => [t, list.filter(n => n.topic === t)]).filter(([, ns]) => ns.length);
+  $("#prog").innerHTML = `<div class="bar"><i style="width:${p.length ? d / p.length * 100 : 0}%"></i></div><span><b>${d}/${p.length}</b> erledigt</span>`;
+  $("#grid").innerHTML = list.length ? list.map(card).join("") : `<p class="empty">Kein Nugget passt zu dieser Auswahl.</p>`;
+  document.querySelectorAll(".stufe").forEach(x => x.setAttribute("aria-pressed", x.dataset.level === state.level));
+  document.querySelectorAll(".thema").forEach(x => x.setAttribute("aria-pressed", x.dataset.topic === state.topic));
+}
+
+function renderHome() {
   $("#app").innerHTML = `
-    <section class="wrap intro">
-      <h1>Pflegewissen in kleinen Einheiten</h1>
-      <p>Jedes Nugget dauert drei bis sechs Minuten: Kernpunkte lesen, Wissen im Quiz prüfen und auf die eigene Station übertragen. Für AGS, FaGe und Studierende Pflege HF.</p>
-    </section>
-    <div class="wrap layout">
-      <aside class="side">
-        <div><label for="search" class="side-label" style="position:absolute;left:-9999px">Suchen</label>
-          <input id="search" type="search" placeholder="Suchen" value="${esc(state.q)}"></div>
-        <div><h2>Themen</h2><div class="topics" role="group" aria-label="Thema">
-          ${["Alle", ...TOPICS].map(t => `<button data-topic="${t}" aria-pressed="${t === state.topic}">${t === "Alle" ? "Alle Themen" : t}<span>${(t === "Alle" ? p : p.filter(n => n.topic === t)).length}</span></button>`).join("")}
-        </div></div>
-        <div class="progress"><b>${d} von ${p.length}</b> abgeschlossen<div class="bar"><i style="width:${p.length ? d / p.length * 100 : 0}%"></i></div></div>
-      </aside>
-      <div>${groups.length ? groups.map(([t, ns]) => `
-        <section class="group"><h2>${t}</h2>
-          ${ns.map(n => `<a class="item" href="#${n.id}">
-            <span class="num">${String(NUGGETS.indexOf(n) + 1).padStart(2, "0")}</span>
-            <span><h3>${esc(n.title)}</h3><p>${esc(n.teaser)}</p>${levelsHtml(n.levels)}</span>
-            <span class="side-meta">${n.min} Min.${done[n.id] ? '<span class="check">✓ erledigt</span>' : ""}</span>
-          </a>`).join("")}
-        </section>`).join("") : `<p class="empty">Kein Nugget passt zu dieser Auswahl.</p>`}
-      </div>
-    </div>`;
-  $(".topics").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { state.topic = b.dataset.topic; renderIndex(); } });
-  const s = $("#search");
-  s.addEventListener("input", e => { state.q = e.target.value; renderIndex(); const n = $("#search"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); });
+  <section class="hero"><div class="wrap">
+    <div>
+      <h1>Pflegewissen in <em>kleinen Einheiten</em></h1>
+      <p>Kurze Lernnuggets für die Pflegeausbildung. Lies die Kernpunkte, prüfe dein Wissen im Quiz und übertrage es auf deine Station.</p>
+      <div class="how"><span><b>1</b>Lesen</span><span><b>2</b>Quiz lösen</span><span><b>3</b>Im Alltag anwenden</span></div>
+    </div>
+    <div class="hero-art"><svg viewBox="0 0 420 300" aria-hidden="true">
+      <rect x="20" y="30" width="250" height="170" rx="20" fill="#fff" stroke="#c9d8ea" stroke-width="2"/><rect x="20" y="30" width="250" height="78" rx="20" fill="#e2f4f0"/><rect x="20" y="88" width="250" height="20" fill="#e2f4f0"/>
+      <path d="M150 50c5 7 8 11 8 15a8 8 0 0 1-16 0c0-4 3-8 8-15z" fill="#0f7f72"/><rect x="40" y="124" width="150" height="12" rx="6" fill="#1b2a3a"/><rect x="40" y="146" width="200" height="9" rx="4.5" fill="#d5dde6"/><rect x="40" y="162" width="160" height="9" rx="4.5" fill="#d5dde6"/><rect x="40" y="180" width="38" height="12" rx="5" fill="#fff3df"/><rect x="84" y="180" width="38" height="12" rx="5" fill="#e6f1fb"/>
+      <rect x="170" y="110" width="230" height="160" rx="20" fill="#fff" stroke="#c9d8ea" stroke-width="2"/><rect x="170" y="110" width="230" height="70" rx="20" fill="#fdecea"/><rect x="170" y="160" width="230" height="20" fill="#fdecea"/>
+      <path d="M200 146h26l7-16 11 32 8-22 6 6h52" fill="none" stroke="#c0463b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="190" y="196" width="140" height="12" rx="6" fill="#1b2a3a"/><rect x="190" y="218" width="190" height="9" rx="4.5" fill="#d5dde6"/><rect x="190" y="234" width="120" height="9" rx="4.5" fill="#d5dde6"/>
+      <circle cx="372" cy="104" r="26" fill="#1e8048"/><path d="M360 104l8 8 16-17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="40" cy="250" r="18" fill="#f2b33d" opacity=".9"/><circle cx="300" cy="40" r="10" fill="#9cc3ea"/>
+    </svg></div>
+  </div></section>
+
+  <section class="block"><div class="wrap">
+    <div class="block-head"><div><h2>Für deine Ausbildung</h2><p>Wähle deine Stufe. Die Auswahl wird gespeichert.</p></div></div>
+    <div class="stufen">${["AGS", "FaGe", "HF"].map(l => `<button class="stufe ${l}" data-level="${l}"><span class="t">${LEVEL_LABEL[l]}</span><span class="d">${LEVEL_DESC[l]}</span><span class="n">${NUGGETS.filter(n => n.levels.includes(l)).length} Nuggets →</span></button>`).join("")}</div>
+  </div></section>
+
+  <section class="block"><div class="wrap">
+    <div class="block-head"><div><h2>Alle Nuggets</h2><p>Nach Thema filtern oder direkt suchen.</p></div></div>
+    <div class="themen">
+      <button class="thema" data-topic="Alle"><i style="background:var(--brand-2)">${ui("list").replace('stroke="currentColor"', 'stroke="#1f4f82"')}</i>Alle</button>
+      ${TOPICS.map(t => `<button class="thema" data-topic="${t}"><i style="background:${TOPIC[t].bg}">${ico(t, TOPIC[t].c)}</i>${t} <small>${NUGGETS.filter(n => n.topic === t).length}</small></button>`).join("")}
+    </div>
+    <div class="toolbar"><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Suchen, z. B. Braden, SBAR, Puls" value="${esc(state.q)}"><div class="prog" id="prog"></div></div>
+    <div class="grid" id="grid"></div>
+  </div></section>`;
+  document.querySelectorAll(".stufe").forEach(b => b.addEventListener("click", () => { setLevel(state.level === b.dataset.level ? "Alle" : b.dataset.level); renderGrid(); }));
+  document.querySelectorAll(".thema").forEach(b => b.addEventListener("click", () => { state.topic = b.dataset.topic; renderGrid(); }));
+  $("#search").addEventListener("input", e => { state.q = e.target.value; renderGrid(); });
+  renderGrid();
 }
 
 function renderNugget(n) {
-  const i = NUGGETS.indexOf(n), prev = NUGGETS[i - 1], next = NUGGETS[i + 1];
+  const t = TOPIC[n.topic], i = NUGGETS.indexOf(n);
   const roles = Object.entries(n.levelNotes).filter(([l]) => state.level === "Alle" || state.level === l);
+  const more = NUGGETS.filter(x => x !== n && (x.topic === n.topic || x.levels.some(l => n.levels.includes(l)))).sort((a, b) => (b.topic === n.topic) - (a.topic === n.topic)).slice(0, 3);
   $("#app").innerHTML = `
-    <article class="wrap"><div class="article">
+  <section class="nhero" style="background:${t.bg};--tc:${t.c};--tc-bg:${t.bg}"><div class="wrap">
+    <div>
       <a class="back" href="#">← Alle Nuggets</a>
-      <div class="kicker"><span>${n.topic}</span><span>${n.min} Minuten</span>${levelsHtml(n.levels)}</div>
+      <div class="kick"><span style="color:${t.c}">${n.topic}</span>${lvs(n.levels)}</div>
       <h1>${esc(n.title)}</h1>
       <p class="lead">${esc(n.lead)}</p>
-      <h2>Kernpunkte</h2>
-      <ul class="points">${n.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
-      <div class="merke"><b>Merke</b>${esc(n.merke)}</div>
-      ${roles.length ? `<h2>Deine Rolle</h2><dl class="role">${roles.map(([l, t]) => `<dt class="${l}">${LEVEL_LABEL[l]}</dt><dd>${esc(t)}</dd>`).join("")}</dl>` : ""}
-      <h2>Quiz</h2>
-      ${n.quiz.map((q, qi) => `<div class="q"><p><small>${qi + 1}/${n.quiz.length}</small>${esc(q.q)}</p>
-        <div class="opts">${q.o.map((o, j) => `<button data-q="${qi}" data-o="${j}"><span class="k">${"ABC"[j]}</span><span>${esc(o)}</span></button>`).join("")}</div>
-        <p class="fb" id="fb${qi}" style="font-weight:400"></p></div>`).join("")}
-      <p class="result" id="result"></p>
-      <h2>Praxistransfer</h2>
-      <p class="transfer">${esc(n.transfer)}</p>
+    </div>
+    <div class="art">${art(n)}</div>
+  </div></section>
+  <div class="wrap ncontent" style="--tc:${t.c};--tc-bg:${t.bg}">
+    <div>
+      <div class="panel"><h2><i>${ui("list")}</i>Kernpunkte</h2>
+        <ol class="points">${n.points.map(p => `<li>${esc(p.replace(/^\d+\.\s*/, ""))}</li>`).join("")}</ol>
+        <div class="merke">${ui("bulb")}<div><b>Merke</b>${esc(n.merke)}</div></div>
+      </div>
+      ${roles.length ? `<div class="panel"><h2><i>${ui("user")}</i>Deine Rolle</h2><div class="roles">${roles.map(([l, x]) => `<div class="role ${l}"><b>${LEVEL_LABEL[l]}</b>${esc(x)}</div>`).join("")}</div></div>` : ""}
+      <div class="panel"><h2><i>${ui("quiz")}</i>Quiz</h2>
+        ${n.quiz.map((q, qi) => `<div class="q"><p><small>Frage ${qi + 1} von ${n.quiz.length}</small>${esc(q.q)}</p>
+          <div class="opts">${q.o.map((o, j) => `<button data-q="${qi}" data-o="${j}"><span class="k">${"ABC"[j]}</span><span>${esc(o)}</span></button>`).join("")}</div>
+          <p class="fb" id="fb${qi}"></p></div>`).join("")}
+        <div class="result" id="result"></div>
+      </div>
+      <div class="panel"><h2><i>${ui("go")}</i>Praxistransfer</h2><p class="transfer">${esc(n.transfer)}</p></div>
+    </div>
+    <aside class="aside">
+      <div class="panel"><dl class="facts">
+        <div><dt>Thema</dt><dd style="color:${t.c}">${n.topic}</dd></div>
+        <div><dt>Dauer</dt><dd>${n.min} Minuten</dd></div>
+        <div><dt>Quizfragen</dt><dd>${n.quiz.length}</dd></div>
+        <div><dt>Status</dt><dd id="status">${done[n.id] ? '<span style="color:var(--ok)">✓ Erledigt</span>' : "Offen"}</dd></div>
+      </dl></div>
+      <div class="panel"><h2 style="font-size:17px;margin-bottom:10px">Weitere Nuggets</h2>
+        ${more.map(m => `<a class="mini" href="#${m.id}"><span class="art">${art(m)}</span><span>${esc(m.title)}<small>${m.topic} · ${m.min} Min.</small></span></a>`).join("")}
+      </div>
       <p class="src">Grundlagen: ${esc(n.src)}</p>
-      <nav class="next">${prev ? `<a href="#${prev.id}">← ${esc(prev.title)}</a>` : "<span></span>"}${next ? `<a href="#${next.id}">${esc(next.title)} →</a>` : ""}</nav>
-    </div></article>`;
+    </aside>
+  </div>`;
   let answered = 0, right = 0;
   document.querySelectorAll(".opts button").forEach(b => b.addEventListener("click", () => {
     const qi = +b.dataset.q, oi = +b.dataset.o, q = n.quiz[qi];
@@ -409,26 +530,26 @@ function renderNugget(n) {
     if (oi !== q.a) b.classList.add("wrong"); else right++;
     $("#fb" + qi).textContent = (oi === q.a ? "Richtig. " : "Nicht ganz. ") + q.e;
     if (++answered === n.quiz.length) {
-      const all = right === n.quiz.length;
-      $("#result").textContent = `${right} von ${n.quiz.length} richtig. ` + (all ? "Nugget abgeschlossen." : "Lies die Kernpunkte nochmals und versuche es später erneut.");
-      if (all) { done[n.id] = true; save(); }
+      const all = right === n.quiz.length, r = $("#result");
+      r.className = "result show " + (all ? "good" : "try");
+      r.textContent = all ? `Super, ${right} von ${n.quiz.length} richtig. Nugget erledigt!` : `${right} von ${n.quiz.length} richtig. Lies die Kernpunkte nochmals und versuche es später erneut.`;
+      if (all) { done[n.id] = true; save(); $("#status").innerHTML = '<span style="color:var(--ok)">✓ Erledigt</span>'; }
     }
   }));
-  window.scrollTo(0, 0);
 }
 
 function route() {
   const n = NUGGETS.find(x => x.id === location.hash.slice(1));
-  n ? renderNugget(n) : renderIndex();
-  document.title = n ? n.title + " | Pflegepedia" : "Pflegepedia";
+  n ? renderNugget(n) : renderHome();
+  document.title = n ? n.title + " · Pflegepedia" : "Pflegepedia";
+  window.scrollTo(0, 0);
 }
 document.querySelector(".levels").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
-  state.level = b.dataset.level; save();
-  document.querySelectorAll(".levels button").forEach(x => x.setAttribute("aria-pressed", x === b));
-  route();
+  setLevel(b.dataset.level);
+  location.hash.length > 1 ? route() : renderGrid();
 });
-document.querySelectorAll(".levels button").forEach(x => x.setAttribute("aria-pressed", x.dataset.level === state.level));
+syncLevels();
 window.addEventListener("hashchange", route);
 route();
 </script>
