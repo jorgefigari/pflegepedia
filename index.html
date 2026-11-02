@@ -192,6 +192,26 @@ section.block { padding: 44px 0 8px; }
 .facts-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .facts-list li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; }
 .facts-list li i { width: 30px; height: 30px; border-radius: 50%; background: var(--tc-bg); color: var(--tc); display: grid; place-items: center; font-style: normal; font-weight: 800; font-family: var(--display); }
+.comp { display: grid; gap: 12px; }
+.comp.multi { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.comp .role b { font-size: 16px; }
+.comp .ch { margin: 10px 0 4px; font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.comp ul { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 5px; font-size: 15.5px; }
+.comp li { display: grid; grid-template-columns: 18px 1fr; gap: 6px; }
+.comp ul.do li::before { content: "✓"; color: var(--ok); font-weight: 700; }
+.comp ul.no li::before { content: "✕"; color: var(--bad); font-weight: 700; }
+.note { font-size: 14.5px; color: var(--muted); margin: 14px 0 0; }
+.warnbox { margin-top: 14px; background: #fff; border-left: 4px solid var(--bad); padding: 10px 14px; border-radius: 8px; font-size: 15.5px; max-width: 56ch; }
+.qtabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.qt { border: 2px solid var(--line); background: #fff; border-radius: 10px; padding: 7px 14px; font-weight: 700; font-size: 15px; }
+.qt.AGS { color: var(--ags); } .qt.FaGe { color: var(--fage); } .qt.HF { color: var(--hf); }
+.qt[aria-selected="true"].AGS { background: var(--ags-bg); border-color: var(--ags); }
+.qt[aria-selected="true"].FaGe { background: var(--fage-bg); border-color: var(--fage); }
+.qt[aria-selected="true"].HF { background: var(--hf-bg); border-color: var(--hf); }
+.qintro { margin: 0 0 16px; color: var(--muted); font-size: 15.5px; }
+.lvtext.AGS { color: var(--ags); } .lvtext.FaGe { color: var(--fage); } .lvtext.HF { color: var(--hf); }
+.facts .st { flex-wrap: wrap; }
+#status { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
 footer { background: var(--soft); border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
 footer .wrap { padding-top: 22px; padding-bottom: 32px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
@@ -420,7 +440,7 @@ const NUGGETS = [
     src: "DNQP Expertenstandard Sturzprophylaxe; Stiftung Patientensicherheit Schweiz; BFU, Sturzprävention"
   },
   {
-    id: "pflegeprozess", topic: "Pflegeprozess", levels: ["FaGe","HF"], min: 9,
+    id: "pflegeprozess", topic: "Berufsrolle", levels: ["FaGe","HF"], min: 9,
     title: "Der Pflegeprozess in sechs Schritten",
     teaser: "Vom Erfassen bis zur Evaluation: das Gerüst für jede Pflegeplanung, mit SMART-Zielen.",
     lead: "Der Pflegeprozess ist eine systematische Arbeitsmethode. Er sorgt dafür, dass Pflege geplant, nachvollziehbar und überprüfbar ist, statt zufällig oder nach Gewohnheit.",
@@ -844,23 +864,1419 @@ const NUGGETS = [
     ],
     transfer: "Lass dir auf deiner Station das Vorgehen bei Hypoglykämie zeigen: Wo liegen Traubenzucker und Notfallmedikament? Führe bei einer Person mit Diabetes eine Fussinspektion durch.",
     src: "diabetesschweiz; SGED Schweizerische Gesellschaft für Endokrinologie und Diabetologie; ADA Standards of Care"
+  },
+  {
+    id: "delir", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 9,
+    title: "Delir erkennen und vorbeugen",
+    teaser: "Akute Verwirrtheit ist ein Notfall. Formen, Ursachen, Screening und was das Team vorbeugend tun kann.",
+    lead: "Ein Delir ist eine akute Störung von Aufmerksamkeit und Bewusstsein. Es tritt bei älteren Menschen nach Operationen, bei Infekten oder neuen Medikamenten häufig auf und wird oft übersehen, besonders wenn die Person still und zurückgezogen ist.",
+    theory: [
+      { h: "Was ist ein Delir?",
+        p: ["Ein Delir beginnt plötzlich, innerhalb von Stunden oder Tagen. Typisch ist, dass der Zustand im Tagesverlauf schwankt: Am Morgen wirkt die Person klar, am Abend ist sie verwirrt. Die Aufmerksamkeit ist gestört, die Person kann einem Gespräch kaum folgen.",
+            "Ein Delir hat immer eine körperliche Ursache. Es ist ein medizinischer Notfall, weil die Ursache gefunden und behandelt werden muss."] },
+      { h: "Drei Formen",
+        table: { head: ["Form", "Was du siehst"], rows: [
+          ["Hyperaktiv", "Unruhe, Nesteln, will aufstehen, Halluzinationen, Aggressivität"],
+          ["Hypoaktiv", "Still, schläfrig, verlangsamt, zurückgezogen. Wird am häufigsten übersehen"],
+          ["Gemischt", "Wechsel zwischen beiden Formen"] ] } },
+      { h: "Häufige Ursachen",
+        list: ["Infekte, z. B. Harnwegsinfekt oder Lungenentzündung", "Flüssigkeitsmangel", "Medikamente, z. B. Schlaf- und Beruhigungsmittel, Opioide, anticholinerge Mittel", "Schmerzen, Harnverhalt, Verstopfung", "Operation und Narkose", "Schlafmangel, fremde Umgebung, fehlende Brille oder Hörgerät"] },
+      { h: "Delir oder Demenz?",
+        table: { head: ["", "Delir", "Demenz"], rows: [
+          ["Beginn", "Plötzlich", "Schleichend über Monate"],
+          ["Verlauf", "Schwankend im Tagesverlauf", "Langsam fortschreitend"],
+          ["Aufmerksamkeit", "Stark gestört", "Anfangs meist erhalten"],
+          ["Verlauf", "Meist rückbildungsfähig", "Nicht heilbar"] ] },
+        after: "Menschen mit Demenz haben ein besonders hohes Risiko, zusätzlich ein Delir zu entwickeln." },
+      { h: "Vorbeugen im Alltag",
+        list: ["Orientierung geben: Uhr, Kalender, Namen nennen, Tagesstruktur", "Brille und Hörgerät tragen lassen", "Genug trinken, Ausscheidung beobachten", "Früh mobilisieren", "Nachtruhe schützen, Licht am Tag", "Angehörige einbeziehen, vertraute Gegenstände"] }
+    ],
+    points: ["Delir: plötzlich, schwankend, Aufmerksamkeit gestört", "Hypoaktives Delir wird am häufigsten übersehen", "Immer körperliche Ursache, deshalb medizinischer Notfall", "Screening z. B. mit DOS, 4AT oder CAM", "Orientierung, Brille, Hörgerät, Trinken, Mobilisation und Schlaf beugen vor"],
+    merke: "Eine plötzliche Veränderung des Verhaltens ist nie «einfach das Alter». Melde jede neue Verwirrtheit sofort.",
+    facts: ["Die Delirium Observation Screening Scale (DOS) wurde für Pflegende entwickelt und wird in vielen Schweizer Spitälern dreimal täglich angewendet.", "Ein Delir kann Wochen bis Monate nachwirken und die Selbständigkeit dauerhaft verschlechtern.", "Ein grosser Teil der Delire lässt sich mit einfachen pflegerischen Massnahmen verhindern."],
+    comp: {
+      AGS: { do: ["Neue Verwirrtheit, Unruhe oder auffällige Müdigkeit sofort melden", "Orientierung geben: Namen nennen, Tageszeit, Uhr und Kalender", "Brille und Hörgerät bereitstellen, Trinken anbieten"], no: ["Beruhigungsmittel oder freiheitsbeschränkende Massnahmen: Entscheid der Fachperson und Ärzteschaft"] },
+      FaGe: { do: ["Delir-Screening nach Betriebsstandard, z. B. DOS", "Mögliche Ursachen beobachten: Trinkmenge, Ausscheidung, Schmerz, Fieber", "Massnahmen zur Delirprävention umsetzen"], no: ["Ursachenabklärung und medikamentöse Therapie"] },
+      HF: { do: ["Delir erkennen und von Demenz unterscheiden", "Ursachen interprofessionell abklären lassen", "Präventions- und Pflegeplan erstellen, Angehörige einbeziehen"], no: ["Als Studierende HF: Eskalation mit der diplomierten Fachperson"] }
+    },
+    quiz: {
+      AGS: [
+        ["Ein Patient war gestern klar, heute weiss er nicht, wo er ist. Was tust du?", ["Das ist das Alter", "Sofort der Fachperson melden", "Morgen nochmals schauen"], 1, "Plötzliche Verwirrtheit kann ein Delir sein."],
+        ["Eine Patientin ist heute ungewohnt still und schläfrig. Kann das ein Delir sein?", ["Nein, ein Delir ist immer laut", "Ja, das hypoaktive Delir ist still", "Nur bei Fieber"], 1, "Die stille Form wird am häufigsten übersehen."],
+        ["Was hilft der Orientierung?", ["Dunkles Zimmer am Tag", "Uhr, Kalender und Namen nennen", "Zimmerwechsel"], 1, "Klare Hinweise geben Halt."],
+        ["Warum gibst du der Person ihre Brille und ihr Hörgerät?", ["Damit sie gut aussieht", "Wer schlecht sieht oder hört, wird leichter verwirrt", "Wegen der Vorschrift"], 1, "Sinneseinschränkungen erhöhen das Delirrisiko."],
+        ["Was kannst du zur Vorbeugung beitragen?", ["Wenig zu trinken anbieten", "Regelmässig Trinken anbieten und zur Bewegung ermutigen", "Lange schlafen lassen am Tag"], 1, "Flüssigkeit und Bewegung beugen vor."]
+      ],
+      FaGe: [
+        ["Welches Merkmal spricht für ein Delir?", ["Schleichender Beginn über Jahre", "Akuter Beginn mit schwankendem Verlauf", "Gute Aufmerksamkeit"], 1, "Plötzlich und schwankend."],
+        ["Welche Ursache prüfst du bei neuer Verwirrtheit?", ["Haarfarbe", "Trinkmenge, Ausscheidung, Schmerz und Fieber", "Lieblingsessen"], 1, "Harnverhalt, Exsikkose oder Infekt sind häufig."],
+        ["Was ist die DOS?", ["Ein Medikament", "Ein Delir-Screening für Pflegende", "Eine Dosierhilfe"], 1, "Delirium Observation Screening Scale."],
+        ["Welche Medikamente können ein Delir auslösen?", ["Beruhigungs- und Schlafmittel, Opioide", "Vitamin D", "Nasenspray mit Salzwasser"], 0, "Neue Medikamente immer bedenken."],
+        ["Wie förderst du die Nachtruhe?", ["Licht anlassen", "Ruhe, gedämpftes Licht, Pflegehandlungen bündeln", "Häufige Kontrollen mit Licht"], 1, "Schlafmangel begünstigt ein Delir."]
+      ],
+      HF: [
+        ["Wie unterscheidest du Delir und Demenz?", ["Gar nicht", "Beginn, Verlauf und Aufmerksamkeit", "Am Alter"], 1, "Delir: akut, schwankend, Aufmerksamkeit gestört."],
+        ["Warum ist ein Delir ein medizinischer Notfall?", ["Weil es laut ist", "Weil eine körperliche Ursache gefunden und behandelt werden muss", "Weil es ansteckend ist"], 1, "Unbehandelt steigen Komplikationen und Sterblichkeit."],
+        ["Welches Instrument ist für die schnelle Delir-Erfassung verbreitet?", ["4AT", "Braden", "NYHA"], 0, "Auch CAM und DOS werden verwendet."],
+        ["Eine Person mit Demenz wird plötzlich unruhiger. Woran denkst du?", ["Fortschreiten der Demenz", "Zusätzliches Delir möglich, Ursache abklären", "Normal"], 1, "Menschen mit Demenz haben ein hohes Delirrisiko."],
+        ["Welche Rolle haben Angehörige?", ["Keine", "Sie erkennen Veränderungen früh und geben Sicherheit", "Sie stören"], 1, "Vertraute Personen helfen der Orientierung."]
+      ]
+    },
+    transfer: "Frage nach, welches Delir-Screening auf deiner Station verwendet wird. Beobachte bei einer älteren Person: Schwankt ihr Zustand im Tagesverlauf?",
+    src: "Schweizerische Fachgesellschaft für Geriatrie; NICE Guideline Delirium; Schuurmans: Delirium Observation Screening Scale"
+  },
+  {
+    id: "demenz", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 9,
+    title: "Demenz: verstehen und begleiten",
+    teaser: "Formen der Demenz, wertschätzende Kommunikation und der Umgang mit herausforderndem Verhalten.",
+    lead: "Demenz ist ein Oberbegriff für Erkrankungen, bei denen Gedächtnis, Denken und Orientierung fortschreitend nachlassen. Für die Pflege steht die Beziehung im Zentrum: Menschen mit Demenz spüren Gefühle, auch wenn sie Worte nicht mehr verstehen.",
+    theory: [
+      { h: "Häufigkeit und Formen",
+        p: ["In der Schweiz leben laut Alzheimer Schweiz über 150'000 Menschen mit Demenz. Die häufigste Form ist die Alzheimer-Krankheit. Daneben gibt es die vaskuläre Demenz nach Durchblutungsstörungen, die Lewy-Körperchen-Demenz und die frontotemporale Demenz, die oft mit Veränderungen der Persönlichkeit beginnt."] },
+      { h: "Was sich verändert",
+        list: ["Kurzzeitgedächtnis lässt zuerst nach, alte Erinnerungen bleiben lange", "Orientierung zu Zeit, Ort und später zur Person", "Sprache und Verstehen", "Planen und Handeln, z. B. beim Anziehen", "Gefühle und Stimmung bleiben lange erhalten"] },
+      { h: "Kommunikation",
+        list: ["Von vorne ansprechen, Blickkontakt, Namen nennen", "Kurze, einfache Sätze, eine Frage nach der anderen", "Ja- oder Nein-Fragen statt offener Fragen", "Nicht korrigieren oder diskutieren, sondern auf das Gefühl eingehen (Validation)", "Biografie nutzen: Beruf, Gewohnheiten, Vorlieben", "Ruhig bleiben, Zeit lassen"] },
+      { h: "Herausforderndes Verhalten",
+        p: ["Unruhe, Rufen, Weglaufen oder Abwehr bei der Pflege sind oft eine Form von Kommunikation. Die Person kann ein Bedürfnis nicht anders ausdrücken. Frage dich zuerst: Hat sie Schmerzen, Hunger, Durst, muss sie zur Toilette, ist sie überfordert oder hat sie Angst?",
+            "Schmerzen werden bei Demenz oft nicht erkannt. Für die Einschätzung gibt es Beobachtungsinstrumente wie BESD oder Doloplus."] }
+    ],
+    points: ["Alzheimer ist die häufigste Form", "Kurzzeitgedächtnis zuerst betroffen, Gefühle bleiben lange", "Kurze Sätze, Ja- oder Nein-Fragen, nicht korrigieren", "Herausforderndes Verhalten zeigt oft ein Bedürfnis", "An Schmerzen denken"],
+    merke: "Nicht die Person ist schwierig, sondern die Situation ist für sie schwierig. Suche das Bedürfnis hinter dem Verhalten.",
+    facts: ["Validation wurde von Naomi Feil entwickelt: Man nimmt die Gefühle der Person ernst, statt sie mit der Realität zu konfrontieren.", "Musik aus der Jugendzeit kann Menschen mit fortgeschrittener Demenz erreichen, wenn Worte es nicht mehr tun.", "Menschen mit Demenz haben ein stark erhöhtes Risiko für ein Delir im Spital."],
+    comp: {
+      AGS: { do: ["Wertschätzend und in einfachen Sätzen kommunizieren", "Tagesstruktur und Gewohnheiten unterstützen", "Veränderungen im Verhalten, beim Essen oder Schlaf melden"], no: ["Freiheitsbeschränkende Massnahmen", "Medikamente bei Unruhe"] },
+      FaGe: { do: ["Biografie in die Pflege einbeziehen", "Schmerz mit Beobachtungsinstrumenten erfassen, z. B. BESD", "Herausforderndes Verhalten beobachten, Auslöser dokumentieren"], no: ["Entscheide zu freiheitsbeschränkenden Massnahmen: Fachperson HF und Ärzteschaft nach Verfahren"] },
+      HF: { do: ["Bedürfnisorientierte Pflege planen", "Delir von Demenz unterscheiden", "Angehörige beraten und Fallbesprechungen leiten"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Bewohnerin sucht ihre Mutter, die längst verstorben ist. Wie reagierst du?", ["«Ihre Mutter ist tot.»", "Auf das Gefühl eingehen: «Sie vermissen Ihre Mutter. Erzählen Sie mir von ihr.»", "Ignorieren"], 1, "Validation nimmt das Gefühl ernst."],
+        ["Wie sprichst du eine Person mit Demenz an?", ["Von hinten, schnell", "Von vorne, Blickkontakt, kurze Sätze", "Laut aus der Distanz"], 1, "So erschrickt sie nicht und versteht besser."],
+        ["Welche Frage ist einfacher zu beantworten?", ["«Was möchten Sie heute anziehen?»", "«Möchten Sie die blaue Bluse?»", "«Wie geht es Ihnen im Allgemeinen?»"], 1, "Ja- oder Nein-Fragen überfordern weniger."],
+        ["Ein Patient wehrt sich beim Waschen. Woran denkst du?", ["Er ist böse", "Vielleicht hat er Angst, Schmerzen oder versteht die Situation nicht", "Er will nicht sauber sein"], 1, "Abwehr ist oft Kommunikation."],
+        ["Was bleibt bei Demenz lange erhalten?", ["Kurzzeitgedächtnis", "Gefühle", "Orientierung zur Zeit"], 1, "Menschen spüren, wie man ihnen begegnet."]
+      ],
+      FaGe: [
+        ["Wie erfasst du Schmerzen bei einer Person, die sich nicht äussern kann?", ["Gar nicht", "Mit einem Beobachtungsinstrument wie BESD", "Nur fragen"], 1, "Mimik, Atmung, Körpersprache, Lautäusserungen."],
+        ["Was nützt die Biografie?", ["Nichts", "Gewohnheiten und Vorlieben verstehen und Verhalten einordnen", "Nur für die Akte"], 1, "Ein früherer Bäcker steht vielleicht um 4 Uhr auf."],
+        ["Wie dokumentierst du herausforderndes Verhalten?", ["«Patient schwierig»", "Was, wann, wo, Auslöser, Reaktion", "Gar nicht"], 1, "Muster werden erst so sichtbar."],
+        ["Welche Demenzform beginnt oft mit Persönlichkeitsveränderungen?", ["Frontotemporale Demenz", "Alzheimer", "Vaskuläre Demenz"], 0, "Gedächtnis ist anfangs oft weniger betroffen."],
+        ["Eine Person mit Demenz ist plötzlich viel verwirrter als gestern. Was denkst du?", ["Normaler Verlauf", "Mögliches Delir, sofort melden", "Müdigkeit"], 1, "Demenz verläuft langsam, ein Delir plötzlich."]
+      ],
+      HF: [
+        ["Was steht im Zentrum bedürfnisorientierter Pflege bei Demenz?", ["Ruhe auf der Station", "Das Bedürfnis hinter dem Verhalten erkennen", "Medikamente"], 1, "Verhalten ist Ausdruck eines Bedürfnisses."],
+        ["Wann ist eine freiheitsbeschränkende Massnahme zulässig?", ["Immer bei Unruhe", "Nur als letztes Mittel, nach Verfahren, begründet, befristet und dokumentiert", "Auf Wunsch der Angehörigen"], 1, "Weniger einschränkende Alternativen zuerst."],
+        ["Was ist eine Fallbesprechung?", ["Ein Rapport", "Strukturierte Teambesprechung zu einer herausfordernden Situation", "Ein Arztgespräch"], 1, "Gemeinsame Sicht führt zu einheitlichem Vorgehen."],
+        ["Wie unterstützt du Angehörige?", ["Gar nicht", "Informieren, entlasten, Beratungsangebote wie Alzheimer Schweiz zeigen", "Ihnen Schuld geben"], 1, "Angehörige sind oft stark belastet."],
+        ["Was zeichnet die Lewy-Körperchen-Demenz aus?", ["Schwankende Aufmerksamkeit, Halluzinationen, Parkinson-Symptome", "Nur Gedächtnisverlust", "Plötzlicher Beginn"], 0, "Neuroleptika können hier schwere Reaktionen auslösen."]
+      ]
+    },
+    transfer: "Lies die Biografie einer Person mit Demenz auf deiner Station. Welche Gewohnheit könntest du heute in die Pflege einbauen?",
+    src: "Alzheimer Schweiz; Feil N.: Validation; Kitwood T.: Person-zentrierte Pflege"
+  },
+  {
+    id: "thrombose", topic: "Prophylaxen", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Thromboseprophylaxe",
+    teaser: "Virchow-Trias, Warnzeichen einer Thrombose und Lungenembolie und was im Alltag schützt.",
+    lead: "Eine Thrombose ist ein Blutgerinnsel in einer Vene, meist im Bein. Löst es sich, kann es eine lebensgefährliche Lungenembolie verursachen. Nach Operationen und bei Bewegungsmangel steigt das Risiko deutlich, darum ist die Prophylaxe in der Reha so wichtig.",
+    theory: [
+      { h: "Wie eine Thrombose entsteht: die Virchow-Trias",
+        list: ["Verlangsamter Blutfluss, z. B. durch Bettruhe, Lähmung oder lange Sitzen", "Schaden an der Gefässwand, z. B. durch Operation oder Verletzung", "Erhöhte Gerinnbarkeit des Blutes, z. B. bei Flüssigkeitsmangel, Tumor oder Hormonen"],
+        after: "Weitere Risikofaktoren: frühere Thrombose, Hüft- oder Knieoperation, Übergewicht, höheres Alter, Herzinsuffizienz." },
+      { h: "Warnzeichen",
+        table: { head: ["", "Zeichen", "Handeln"], rows: [
+          ["Tiefe Venenthrombose", "Einseitige Schwellung, Schmerz oder Spannungsgefühl in der Wade, Überwärmung, bläuliche Haut", "Sofort melden, nicht massieren"],
+          ["Lungenembolie", "Plötzliche Atemnot, Brustschmerz, schneller Puls, Angst", "Notfall: alarmieren, Oberkörper hoch, bei der Person bleiben"] ] } },
+      { h: "Massnahmen",
+        list: ["Frühe Mobilisation und Bewegung im Alltag", "Bewegungsübungen im Bett: Fussgelenke kreisen, Zehen anziehen (Muskelpumpe)", "Genug trinken", "Medizinische Thromboseprophylaxestrümpfe nach Verordnung, korrekt angemessen und faltenfrei", "Medikamente nach Verordnung, z. B. niedermolekulares Heparin subkutan oder Tabletten"] }
+    ],
+    points: ["Virchow-Trias: Blutfluss, Gefässwand, Gerinnbarkeit", "Thrombose: einseitige Schwellung, Wadenschmerz, Überwärmung", "Lungenembolie: plötzliche Atemnot, Brustschmerz, Notfall", "Bewegung, Muskelpumpe, Trinken, Strümpfe, Medikamente", "Bei Verdacht nicht massieren"],
+    merke: "Die beste Thromboseprophylaxe ist Bewegung. Jeder Gang zur Toilette zählt.",
+    facts: ["Die Wadenmuskulatur wirkt wie eine Pumpe: Bei jeder Bewegung presst sie das Blut zum Herzen zurück.", "Rudolf Virchow beschrieb die drei Entstehungsfaktoren bereits im 19. Jahrhundert.", "Thromboseprophylaxestrümpfe müssen genau passen: Zu enge Strümpfe schnüren ein, zu weite wirken nicht."],
+    comp: {
+      AGS: { do: ["Bewegung fördern und zu Fussübungen motivieren", "Prophylaxestrümpfe nach Anleitung anziehen und auf Falten achten", "Einseitige Beinschwellung oder Atemnot sofort melden"], no: ["Heparin spritzen", "Bei Thromboseverdacht mobilisieren, bevor die Fachperson entschieden hat"] },
+      FaGe: { do: ["Thromboserisiko beobachten, Strümpfe anmessen", "Heparin subkutan nach Verordnung verabreichen", "Warnzeichen erkennen und melden"], no: ["Über Antikoagulation entscheiden"] },
+      HF: { do: ["Risiko einschätzen und Prophylaxe planen", "Bei Verdacht Abklärung einleiten, Lungenembolie erkennen und eskalieren", "Person zur Prophylaxe nach Austritt schulen"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Was ist die beste Thromboseprophylaxe?", ["Bettruhe", "Bewegung", "Wenig trinken"], 1, "Die Muskelpumpe bringt das Blut zurück."],
+        ["Eine Patientin hat ein geschwollenes, warmes linkes Bein. Was tust du?", ["Bein massieren", "Sofort der Fachperson melden", "Spazieren gehen"], 1, "Verdacht auf Thrombose. Nicht massieren."],
+        ["Worauf achtest du beim Anziehen der Prophylaxestrümpfe?", ["Faltenfrei, nicht hochgekrempelt", "Locker hängend", "Umgekrempelter Rand"], 0, "Falten schnüren ein."],
+        ["Ein Patient bekommt plötzlich keine Luft und hat Brustschmerzen. Was tust du?", ["Später melden", "Sofort Hilfe holen, bei ihm bleiben", "Wasser holen"], 1, "Möglicherweise eine Lungenembolie: Notfall."],
+        ["Darfst du als AGS Heparin spritzen?", ["Ja", "Nein, das gehört nicht zu deinen Kompetenzen", "Nur abends"], 1, "Injektionen sind FaGe- und HF-Aufgaben."]
+      ],
+      FaGe: [
+        ["Was gehört zur Virchow-Trias?", ["Fieber, Husten, Schmerz", "Verlangsamter Blutfluss, Gefässwandschaden, erhöhte Gerinnbarkeit", "Puls, Blutdruck, Atmung"], 1, "Die drei Entstehungsfaktoren."],
+        ["Was ist bei der Heparin-Fertigspritze wichtig?", ["Luftblase entfernen", "Luftblase belassen, nicht massieren", "Intramuskulär spritzen"], 1, "Die Luftblase verhindert Rückfluss, Massieren fördert Hämatome."],
+        ["Wann misst du die Prophylaxestrümpfe an?", ["Nie", "Bei abgeschwollenen Beinen, z. B. am Morgen, nach Herstellerangaben", "Nach dem Gefühl"], 1, "Falsche Grösse wirkt nicht oder schadet."],
+        ["Wie unterstützt du die Muskelpumpe im Bett?", ["Beine ruhig lagern", "Fussgelenke kreisen und Zehen anziehen lassen", "Beine ganz hoch"], 1, "Aktive Bewegung ist wirksam."],
+        ["Bei Thromboseverdacht: Was gilt?", ["Massieren", "Melden, nicht massieren, ärztlicher Entscheid zur Mobilisation", "Kalt abduschen"], 1, "Ein Gerinnsel könnte sich lösen."]
+      ],
+      HF: [
+        ["Warum ist das Risiko nach Hüft- oder Knieoperation erhöht?", ["Wegen des Essens", "Gefässwandschaden, Bewegungsmangel und veränderte Gerinnung", "Wegen der Narkose allein"], 1, "Mehrere Faktoren der Virchow-Trias treffen zusammen."],
+        ["Plötzliche Atemnot, Tachykardie, Brustschmerz am 5. postoperativen Tag. Was vermutest du?", ["Angst", "Lungenembolie", "Erkältung"], 1, "Notfall: sofort eskalieren."],
+        ["Wann sind Prophylaxestrümpfe kontraindiziert?", ["Bei schwerer peripherer arterieller Verschlusskrankheit", "Bei Diabetes immer", "Bei Kopfschmerz"], 0, "Bei arterieller Durchblutungsstörung können sie schaden."],
+        ["Was gehört zur Austrittsschulung?", ["Nichts", "Bewegung, Trinken, korrekte Einnahme oder Injektion, Warnzeichen", "Nur Strümpfe"], 1, "Die Prophylaxe läuft oft nach Austritt weiter."],
+        ["Was bewirkt niedermolekulares Heparin?", ["Löst Gerinnsel auf", "Hemmt die Blutgerinnung und beugt vor", "Senkt den Blutdruck"], 1, "Es verhindert neue Gerinnsel."]
+      ]
+    },
+    transfer: "Prüfe bei einer Person mit Thromboseprophylaxe: Welche Massnahmen sind verordnet? Sitzen die Strümpfe korrekt? Wie viel bewegt sie sich am Tag?",
+    src: "AWMF S3-Leitlinie Prophylaxe der venösen Thromboembolie; Thiemes Pflege"
+  },
+  {
+    id: "aspiration", topic: "Prophylaxen", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Aspirationsprophylaxe und Dysphagie",
+    teaser: "Schluckstörungen erkennen, sicher beim Essen unterstützen und richtig reagieren, wenn sich jemand verschluckt.",
+    lead: "Bei einer Aspiration gelangen Speichel, Nahrung oder Flüssigkeit in die Atemwege. Die Folge kann eine Lungenentzündung sein. Menschen nach Schlaganfall, mit Parkinson, Demenz oder geschwächtem Allgemeinzustand sind besonders gefährdet.",
+    theory: [
+      { h: "Zeichen einer Schluckstörung",
+        list: ["Husten oder Räuspern während oder nach dem Essen", "Gurgelnde, feuchte Stimme nach dem Schlucken", "Essensreste im Mund, Speichelfluss", "Sehr lange Essdauer, Gewichtsverlust", "Wiederholtes Fieber oder Lungenentzündung"],
+        after: "Achtung: Bei der stillen Aspiration fehlt der Hustenreflex. Die Person verschluckt sich, ohne zu husten." },
+      { h: "Sicher essen und trinken",
+        list: ["Aufrecht sitzen, möglichst 90 Grad, Kopf leicht nach vorne geneigt", "Kleine Bissen, kleine Schlucke, Zeit lassen", "Ruhige Umgebung, nicht sprechen beim Schlucken", "Konsistenz nach Logopädie: z. B. angedickte Getränke oder pürierte Kost", "Nach dem Essen 30 Minuten aufrecht bleiben", "Gründliche Mundpflege: Keime im Mund verursachen bei Aspiration Lungenentzündungen"] },
+      { h: "Wenn sich jemand verschluckt",
+        p: ["Kann die Person husten, ermutigst du sie, kräftig weiter zu husten. Kann sie nicht mehr husten, sprechen oder atmen, ist es ein Notfall: Hilfe holen und nach Erste-Hilfe-Schema Rückenschläge und Oberbauchkompressionen durchführen.",
+            "Personen mit eingeschränktem Bewusstsein erhalten nichts zu essen oder zu trinken."] }
+    ],
+    points: ["Husten, gurgelnde Stimme und Essensreste sind Warnzeichen", "Stille Aspiration ohne Husten möglich", "Aufrecht, Kopf leicht vorne, kleine Bissen", "Konsistenz nach Logopädie, 30 Minuten aufrecht bleiben", "Mundpflege senkt das Pneumonierisiko"],
+    merke: "Dünnflüssiges ist für Menschen mit Schluckstörung oft am gefährlichsten, weil es schnell fliesst.",
+    facts: ["Die internationale IDDSI-Skala beschreibt Kostformen und Trinkkonsistenzen in Stufen von 0 bis 7, damit alle dieselbe Sprache sprechen.", "Den Kopf nach hinten zu kippen erhöht das Aspirationsrisiko. Leicht nach vorne ist sicherer.", "Auch Menschen mit PEG-Sonde brauchen Mundpflege, weil Speichel aspiriert werden kann."],
+    comp: {
+      AGS: { do: ["Beim Essen sicher positionieren und unterstützen", "Konsistenz nach Vorgabe einhalten", "Husten, gurgelnde Stimme oder Verschlucken melden", "Mundpflege"], no: ["Schluckscreening durchführen", "Konsistenz selbst verändern"] },
+      FaGe: { do: ["Schluckscreening nach Betriebsstandard, wenn geschult", "Warnzeichen beobachten und dokumentieren", "Medikamente in geeigneter Form geben, Rücksprache bei Schluckproblemen"], no: ["Kostform festlegen: Das macht die Logopädie mit der Ärzteschaft"] },
+      HF: { do: ["Aspirationsrisiko einschätzen und Massnahmen planen", "Logopädie einbeziehen, stille Aspiration bedenken", "Aspirationspneumonie erkennen"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Wie sitzt eine Person beim Essen am sichersten?", ["Halb liegend", "Aufrecht, Kopf leicht nach vorne", "Kopf nach hinten"], 1, "So schliesst der Kehlkopf besser."],
+        ["Die Stimme klingt nach dem Schlucken gurgelnd. Was bedeutet das?", ["Nichts", "Möglicherweise ist etwas in den Atemwegen, melden", "Sie hat Freude"], 1, "Ein Warnzeichen für Aspiration."],
+        ["Darfst du die angedickte Flüssigkeit durch normales Wasser ersetzen, wenn die Person es wünscht?", ["Ja", "Nein, die Konsistenz ist verordnet, Wunsch an die Fachperson weitergeben", "Nur einmal"], 1, "Dünnflüssiges kann gefährlich sein."],
+        ["Was gilt nach dem Essen?", ["Sofort hinlegen", "30 Minuten aufrecht bleiben", "Sofort Mund spülen im Liegen"], 1, "So fliesst nichts zurück."],
+        ["Eine Person kann nicht mehr husten, sprechen oder atmen. Was tust du?", ["Wasser geben", "Notfall: Hilfe holen, Erste Hilfe", "Warten"], 1, "Ein verschlucktes Stück blockiert die Atemwege."]
+      ],
+      FaGe: [
+        ["Was ist eine stille Aspiration?", ["Aspiration ohne Husten", "Leises Husten", "Aspiration nur nachts"], 0, "Besonders gefährlich, weil unbemerkt."],
+        ["Warum ist Mundpflege eine Aspirationsprophylaxe?", ["Nur für frischen Atem", "Weniger Keime gelangen bei Aspiration in die Lunge", "Sie ist es nicht"], 1, "Senkt das Pneumonierisiko."],
+        ["Eine Person mit Dysphagie hat grosse Tabletten. Was tust du?", ["Einfach geben", "Rücksprache: andere Darreichungsform oder ob mörsern erlaubt ist", "Weglassen"], 1, "Retardtabletten nicht mörsern."],
+        ["Was beschreibt IDDSI?", ["Kostformen und Trinkkonsistenzen", "Wundstadien", "Schmerzstärke"], 0, "Einheitliche Stufen von 0 bis 7."],
+        ["Was dokumentierst du bei Schluckauffälligkeiten?", ["Nichts", "Bei welcher Konsistenz, welche Zeichen, Menge", "Nur «schluckt schlecht»"], 1, "Konkrete Angaben helfen der Logopädie."]
+      ],
+      HF: [
+        ["Eine Person nach Schlaganfall hat wiederholt Fieber ohne erkennbaren Grund. Woran denkst du?", ["Aspirationspneumonie bei stiller Aspiration", "Erkältung", "Nichts"], 0, "Logopädische Abklärung einleiten."],
+        ["Wen beziehst du bei Dysphagie ein?", ["Nur die Küche", "Logopädie, Ärzteschaft, Ernährungsberatung, Küche", "Niemanden"], 1, "Dysphagie ist interprofessionell."],
+        ["Was ist bei eingeschränktem Bewusstsein?", ["Kleine Schlucke geben", "Nichts per os", "Nur Suppe"], 1, "Schutzreflexe sind eingeschränkt."],
+        ["Welche Erkrankungen erhöhen das Aspirationsrisiko?", ["Schlaganfall, Parkinson, Demenz", "Kurzsichtigkeit", "Allergie gegen Pollen"], 0, "Neurologische Erkrankungen stören das Schlucken."],
+        ["Wie evaluierst du die Massnahmen?", ["Gar nicht", "Gewicht, Essmenge, Temperatur, Atmung und Rückmeldung der Logopädie", "Nur nach Gefühl"], 1, "Systematische Verlaufsbeobachtung."]
+      ]
+    },
+    transfer: "Begleite eine Person mit Schluckstörung bei einer Mahlzeit. Welche Konsistenz ist verordnet? Welche Warnzeichen beobachtest du?",
+    src: "IDDSI Framework; Deutsche Gesellschaft für Neurologie, Leitlinie neurogene Dysphagie; Thiemes Pflege"
+  },
+  {
+    id: "kontrakturen", topic: "Prophylaxen", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Kontrakturenprophylaxe",
+    teaser: "Warum Gelenke bei Bewegungsmangel versteifen und wie Bewegung und Positionierung das verhindern.",
+    lead: "Eine Kontraktur ist eine bleibende Bewegungseinschränkung eines Gelenks. Muskeln, Sehnen und Gelenkkapsel verkürzen sich, wenn ein Gelenk lange nicht bewegt wird. In der Neuro-Reha, mit Lähmungen und Spastik, ist das Risiko besonders hoch.",
+    theory: [
+      { h: "Wer ist gefährdet?",
+        list: ["Menschen mit Lähmungen oder Spastik, z. B. nach Schlaganfall", "Bettlägerige und wenig mobile Personen", "Menschen mit Schmerzen, die eine Schonhaltung einnehmen", "Nach Verletzungen und Operationen", "Menschen mit Demenz in fortgeschrittenem Stadium"] },
+      { h: "Typische Kontrakturen",
+        table: { head: ["Gelenk", "Kontraktur", "Folge im Alltag"], rows: [
+          ["Sprunggelenk", "Spitzfuss", "Gehen und Stehen werden schwierig"],
+          ["Knie und Hüfte", "Beugekontraktur", "Aufrechtes Stehen kaum möglich"],
+          ["Hand", "Faustschluss", "Greifen und Hygiene der Handfläche erschwert"],
+          ["Schulter", "Eingeschränkte Bewegung", "An- und Ausziehen schmerzhaft"] ] } },
+      { h: "Massnahmen",
+        list: ["Bewegung im Alltag fördern, die Person macht so viel wie möglich selbst", "Gelenke mehrmals täglich bewegen: aktiv, assistiv oder passiv", "Passiv nur im schmerzfreien Bereich, nie gegen Widerstand", "Bei Spastik langsam und gleichmässig bewegen", "Physiologisch positionieren, z. B. Füsse in Neutralstellung, Bettdecke ohne Druck auf die Füsse", "Schmerzen behandeln, damit Bewegung möglich ist", "Eng mit Physio- und Ergotherapie zusammenarbeiten, z. B. bei Schienen"] }
+    ],
+    points: ["Kontraktur: bleibende Bewegungseinschränkung durch Verkürzung", "Gefährdet: Lähmung, Spastik, Bettlägerigkeit, Schmerz", "Gelenke täglich bewegen, aktiv vor passiv", "Nie gegen Widerstand oder Schmerz bewegen", "Positionierung und Zusammenarbeit mit der Therapie"],
+    merke: "Jede Alltagsbewegung ist Prophylaxe: Beim Anziehen, Waschen und Aufstehen werden Gelenke bewegt.",
+    facts: ["Kontrakturen können sich schon nach wenigen Wochen Bewegungsmangel bilden. Sie zurückzubilden dauert viel länger.", "Eine schwere Bettdecke kann den Fuss in Spitzfussstellung drücken. Ein Bettbogen schafft Raum.", "Ein Faustschluss erschwert die Hautpflege der Handfläche und kann zu Hautschäden führen."],
+    comp: {
+      AGS: { do: ["Bewegung bei Alltagsaktivitäten fördern", "Positionierung nach Plan unterstützen", "Schmerzen oder neue Bewegungseinschränkungen melden"], no: ["Passive Bewegungsübungen bei Spastik ohne Anleitung", "Schienen anlegen ohne Instruktion"] },
+      FaGe: { do: ["Bewegungsübungen nach Plan durchführen", "Positionieren und Schienen nach therapeutischer Instruktion anlegen", "Bewegungsausmass beobachten und dokumentieren"], no: ["Therapieplan ändern"] },
+      HF: { do: ["Kontrakturenrisiko einschätzen", "Massnahmen mit Physio- und Ergotherapie planen", "Wirkung evaluieren, Schmerzmanagement einbeziehen"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Wie förderst du die Kontrakturenprophylaxe beim Anziehen?", ["Alles selbst machen", "Die Person so viel wie möglich selbst bewegen lassen", "Anziehen auslassen"], 1, "Jede Alltagsbewegung zählt."],
+        ["Die Bettdecke drückt auf die Füsse. Was kann passieren?", ["Nichts", "Ein Spitzfuss kann entstehen", "Die Füsse werden warm"], 1, "Bettbogen oder lockere Decke helfen."],
+        ["Eine Person hat beim Bewegen des Arms Schmerzen. Was tust du?", ["Weiter bewegen", "Stoppen und der Fachperson melden", "Schneller bewegen"], 1, "Nie gegen Schmerz bewegen."],
+        ["Wer ist besonders gefährdet?", ["Menschen mit Lähmungen", "Gesunde Jugendliche", "Sportlerinnen"], 0, "Auch Bettlägerige und Menschen mit Schmerzen."],
+        ["Darfst du bei Spastik ohne Anleitung passiv bewegen?", ["Ja", "Nein, nur nach Instruktion", "Immer schnell"], 1, "Bei Spastik braucht es Fachwissen."]
+      ],
+      FaGe: [
+        ["Was ist der Unterschied zwischen aktiv, assistiv und passiv?", ["Kein Unterschied", "Selbst, mit Unterstützung, vollständig durch die Pflegeperson", "Nur das Tempo"], 1, "Aktiv geht vor passiv."],
+        ["Wie bewegst du bei Spastik?", ["Ruckartig", "Langsam und gleichmässig, nach Instruktion", "Gar nicht"], 1, "Schnelle Bewegungen verstärken die Spastik."],
+        ["Was dokumentierst du?", ["Nichts", "Durchgeführte Übungen, Bewegungsausmass, Schmerzen", "Nur die Uhrzeit"], 1, "Veränderungen werden so sichtbar."],
+        ["Wer instruiert dich zu Schienen?", ["Niemand", "Physio- oder Ergotherapie", "Angehörige"], 1, "Falsch angelegte Schienen verursachen Druckstellen."],
+        ["Welche Kontraktur erschwert das Gehen besonders?", ["Spitzfuss", "Fingerkontraktur", "Kieferkontraktur"], 0, "Der Fuss kann nicht mehr aufgesetzt werden."]
+      ],
+      HF: [
+        ["Warum gehört Schmerzmanagement zur Kontrakturenprophylaxe?", ["Gehört es nicht", "Schmerz führt zu Schonhaltung und Bewegungsvermeidung", "Wegen der Abrechnung"], 1, "Ohne Schmerzlinderung keine Bewegung."],
+        ["Wie planst du die Prophylaxe bei Hemiparese?", ["Allein", "Mit Physio- und Ergotherapie, einheitlich im Alltag umgesetzt", "Nur medikamentös"], 1, "Gemeinsame Ziele verstärken die Wirkung."],
+        ["Was zeigt eine wirksame Prophylaxe?", ["Gleichbleibendes oder besseres Bewegungsausmass", "Mehr Schmerzen", "Mehr Spastik"], 0, "Regelmässig evaluieren."],
+        ["Welche Folge hat ein Faustschluss für die Pflege?", ["Keine", "Hautprobleme in der Handfläche, erschwertes Greifen", "Bessere Durchblutung"], 1, "Feuchtigkeit und Druck schädigen die Haut."],
+        ["Wie schnell können Kontrakturen entstehen?", ["Erst nach Jahren", "Schon nach wenigen Wochen", "Nie im Spital"], 1, "Frühe Prophylaxe ist entscheidend."]
+      ]
+    },
+    transfer: "Frage bei der Physiotherapie nach, welche Bewegungsübungen eine Person deiner Bezugsgruppe im Alltag braucht, und baue eine davon heute in die Pflege ein.",
+    src: "Thiemes Pflege; DNQP Expertenstandard Erhaltung und Förderung der Mobilität; Bobath-Konzept"
+  },
+  {
+    id: "schmerz", topic: "Beobachten", levels: ["AGS","FaGe","HF"], min: 9,
+    title: "Schmerzerfassung",
+    teaser: "Schmerz ist, was die Person sagt. Skalen, Schmerzanamnese und Fremdeinschätzung bei Menschen, die sich nicht äussern können.",
+    lead: "Schmerzen sind subjektiv: Nur die betroffene Person weiss, wie stark sie sind. Unbehandelte Schmerzen verhindern Schlaf, Bewegung und Therapie. In der Reha ist gutes Schmerzmanagement deshalb Voraussetzung für Fortschritte.",
+    theory: [
+      { h: "Akut und chronisch",
+        p: ["Akuter Schmerz ist ein Warnsignal, zum Beispiel nach einer Operation. Er klingt mit der Heilung ab. Chronischer Schmerz dauert länger als drei Monate und hat seine Warnfunktion verloren. Er beeinflusst Stimmung, Schlaf und soziale Kontakte stark."] },
+      { h: "Selbsteinschätzung: die Skalen",
+        table: { head: ["Skala", "So funktioniert sie"], rows: [
+          ["NRS, numerische Skala", "0 = kein Schmerz, 10 = stärkster vorstellbarer Schmerz"],
+          ["VAS, visuelle Analogskala", "Die Person zeigt auf einem Schieber, wie stark der Schmerz ist"],
+          ["VRS, verbale Skala", "Kein, leicht, mittel, stark, sehr stark"],
+          ["Gesichterskala", "Bilder von Gesichtern, hilfreich bei Sprachbarrieren"] ] },
+        after: "Wichtig ist, bei derselben Person immer dieselbe Skala zu verwenden." },
+      { h: "Die Schmerzanamnese",
+        list: ["Wo? Lokalisation, Ausstrahlung", "Wie stark? In Ruhe und bei Bewegung", "Wie fühlt er sich an? Stechend, brennend, dumpf, ziehend", "Seit wann, wann besonders? Tageszeit, Auslöser", "Was hilft, was verschlimmert?"] },
+      { h: "Fremdeinschätzung",
+        p: ["Menschen mit Demenz, Aphasie oder Bewusstseinsstörung können ihre Schmerzen oft nicht benennen. Dann beobachtet die Pflege Mimik, Atmung, Körperhaltung, Lautäusserungen und Verhalten. Instrumente wie BESD oder Doloplus machen diese Beobachtung strukturiert."] },
+      { h: "Wirkung überprüfen",
+        p: ["Nach einem Schmerzmittel wird die Wirkung erneut erfasst, nach oralen Mitteln meist nach 30 bis 60 Minuten. Nichtmedikamentöse Massnahmen wie Positionierung, Wärme, Kälte oder Ablenkung ergänzen die Therapie. In der Reha werden Schmerzmittel oft so geplant, dass sie vor der Therapie wirken."] }
+    ],
+    points: ["Schmerz ist, was die Person sagt", "Gleiche Skala verwenden, in Ruhe und bei Bewegung erfassen", "Schmerzanamnese: wo, wie stark, wie, wann, was hilft", "Bei fehlender Selbstauskunft Fremdeinschätzung, z. B. BESD", "Wirkung nach der Gabe erneut erfassen und dokumentieren"],
+    merke: "Ein ruhiger Mensch hat nicht automatisch keine Schmerzen. Frage aktiv nach und beobachte.",
+    facts: ["Die Pflegeexpertin Margo McCaffery prägte den Satz: Schmerz ist das, was die Person sagt, und er existiert, wann immer sie sagt, dass er existiert.", "Schmerzen bei Bewegung werden oft unterschätzt, wenn nur in Ruhe gefragt wird.", "Gut eingestellte Schmerzmittel vor der Physiotherapie verbessern die Mitarbeit deutlich."],
+    comp: {
+      AGS: { do: ["Nach Schmerzen fragen und die Antwort ernst nehmen", "Schmerzäusserungen und Verhalten beobachten und melden", "Nichtmedikamentöse Massnahmen nach Auftrag, z. B. Positionierung"], no: ["Schmerzmittel abgeben", "Schmerzen selbst beurteilen und abwarten"] },
+      FaGe: { do: ["Schmerz mit Skalen und Schmerzanamnese erfassen", "Schmerzmittel nach Verordnung verabreichen, Reserve nach Betriebsregel", "Wirkung erneut erfassen und dokumentieren"], no: ["Dosierung oder Medikament ändern"] },
+      HF: { do: ["Schmerzsituation umfassend beurteilen, auch Fremdeinschätzung", "Schmerzmanagement interprofessionell planen", "Person zum Umgang mit Schmerzen beraten"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Patientin sagt, sie habe Schmerzen 7 von 10, wirkt aber ruhig. Was gilt?", ["Sie übertreibt", "Ihre Angabe zählt, sofort der Fachperson melden", "Abwarten"], 1, "Schmerz ist, was die Person sagt."],
+        ["Was bedeutet 0 auf der NRS?", ["Stärkster Schmerz", "Kein Schmerz", "Mittlerer Schmerz"], 1, "0 bis 10."],
+        ["Darfst du als AGS ein Schmerzmittel abgeben?", ["Ja", "Nein, das ist Aufgabe von FaGe oder HF", "Nur Paracetamol"], 1, "Medikamente gehören nicht zu deinen Kompetenzen."],
+        ["Ein Bewohner mit Demenz verzieht beim Bewegen das Gesicht und stöhnt. Was tust du?", ["Ignorieren", "Als mögliches Schmerzzeichen melden", "Schneller bewegen"], 1, "Mimik und Laute können Schmerzen zeigen."],
+        ["Was kannst du nichtmedikamentös tun?", ["Nichts", "Nach Auftrag bequem positionieren, Ruhe ermöglichen", "Massieren ohne Rücksprache"], 1, "Ergänzende Massnahmen nach Auftrag."]
+      ],
+      FaGe: [
+        ["Welche Frage gehört zur Schmerzanamnese?", ["Lieblingsfarbe", "Wo, wie stark, wie fühlt es sich an, was hilft", "Wohnort"], 1, "Strukturiert und vollständig."],
+        ["Wann überprüfst du die Wirkung eines oralen Schmerzmittels?", ["Nach 5 Minuten", "Nach etwa 30 bis 60 Minuten", "Am nächsten Tag"], 1, "Dann ist die Wirkung beurteilbar."],
+        ["Welches Instrument nutzt du bei einer Person mit Demenz, die sich nicht äussern kann?", ["NRS", "BESD", "Braden"], 1, "Beurteilung von Schmerzen bei Demenz."],
+        ["Warum fragst du auch bei Bewegung nach Schmerzen?", ["Gar nicht nötig", "Bewegungsschmerz wird sonst unterschätzt und hemmt die Therapie", "Aus Neugier"], 1, "In Ruhe kann der Wert tief sein."],
+        ["Die Physiotherapie beginnt um 10 Uhr. Wann gibst du das verordnete Schmerzmittel?", ["Um 10 Uhr", "Rechtzeitig vorher nach Verordnung, damit es während der Therapie wirkt", "Danach"], 1, "Gute Planung verbessert die Mitarbeit."]
+      ],
+      HF: [
+        ["Wann spricht man von chronischem Schmerz?", ["Nach 1 Woche", "Nach mehr als 3 Monaten", "Nach 1 Jahr"], 1, "Er hat seine Warnfunktion verloren."],
+        ["Warum immer dieselbe Skala bei einer Person?", ["Vorschrift", "Werte sind nur so vergleichbar", "Spart Papier"], 1, "Verlauf beurteilen."],
+        ["Eine Person gibt NRS 2 an, schläft aber nicht und bewegt sich kaum. Was tust du?", ["Nichts", "Umfassender beurteilen: Bewegungsschmerz, Schlaf, Stimmung, Verständnis der Skala", "Schlafmittel verlangen"], 1, "Zahlen allein reichen nicht."],
+        ["Was gehört zum interprofessionellen Schmerzmanagement?", ["Nur Medikamente", "Medikamente, Therapien, Positionierung, Edukation, psychische Faktoren", "Nur Ruhe"], 1, "Schmerz ist multidimensional."],
+        ["Welche Haltung prägte Margo McCaffery?", ["Schmerz ist, was die Person sagt", "Schmerz muss messbar sein", "Schmerz ist normal im Alter"], 0, "Die Selbstauskunft ist der Goldstandard."]
+      ]
+    },
+    transfer: "Erfasse heute bei einer Person Schmerzen in Ruhe und bei Bewegung mit derselben Skala. Wie unterscheiden sich die Werte?",
+    src: "DNQP Expertenstandard Schmerzmanagement in der Pflege; McCaffery M.: Pain; BESD nach Basler et al."
+  },
+  {
+    id: "ausscheidung", topic: "Beobachten", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Ausscheidung beobachten",
+    teaser: "Urin und Stuhl richtig beobachten, Inkontinenzformen unterscheiden, Obstipation vorbeugen und Bilanz führen.",
+    lead: "Die Ausscheidung verrät viel über den Gesundheitszustand. Veränderungen bei Menge, Farbe oder Häufigkeit sind oft frühe Hinweise auf Infekte, Flüssigkeitsmangel oder Nebenwirkungen. Gleichzeitig ist das Thema für viele Menschen schambesetzt.",
+    theory: [
+      { h: "Urin",
+        table: { head: ["", "Normal", "Abweichung"], rows: [
+          ["Menge", "Etwa 1 bis 2 Liter pro Tag", "Unter 500 ml pro Tag: Oligurie. Unter 100 ml: Anurie"],
+          ["Farbe", "Hellgelb, klar", "Dunkel: Flüssigkeitsmangel. Trüb, übelriechend: Infekt möglich. Rot: Blut"],
+          ["Häufigkeit", "Etwa 4 bis 6 Mal am Tag", "Häufig mit Brennen: Harnwegsinfekt möglich"] ] },
+        after: "Kann die Person trotz voller Blase nicht oder nur wenig Wasser lassen, besteht ein Harnverhalt. Ein Blasenscanner misst den Restharn." },
+      { h: "Inkontinenzformen",
+        list: ["Belastungsinkontinenz: Urinverlust bei Husten, Lachen, Heben", "Dranginkontinenz: plötzlicher, starker Harndrang, die Toilette wird nicht rechtzeitig erreicht", "Überlaufinkontinenz: volle Blase, ständiges Tröpfeln", "Funktionelle Inkontinenz: Die Blase funktioniert, aber die Person kommt nicht rechtzeitig zur Toilette, z. B. wegen eingeschränkter Mobilität. In der Reha häufig"] },
+      { h: "Stuhl und Obstipation",
+        p: ["Die Bristol-Stuhlformen-Skala beschreibt sieben Typen: Typ 1 und 2 sind harte Knollen und zeigen Verstopfung, Typ 3 und 4 sind normal, Typ 6 und 7 sind breiig bis flüssig. Von Obstipation spricht man bei weniger als drei Stuhlgängen pro Woche mit hartem Stuhl und starkem Pressen.",
+            "Vorbeugen: genug trinken, Bewegung, ballaststoffreiche Kost, regelmässige Toilettenzeiten, Privatsphäre. Opioide verursachen fast immer Verstopfung."] },
+      { h: "Flüssigkeitsbilanz",
+        p: ["Die Bilanz vergleicht alles, was in den Körper kommt (Trinken, Infusionen, Sondennahrung), mit allem, was hinausgeht (Urin, Erbrechen, Drainagen). Eine positive Bilanz kann Einlagerung bedeuten, eine negative Flüssigkeitsverlust."] }
+    ],
+    points: ["Urin: 1 bis 2 Liter, hellgelb, klar", "Oligurie unter 500 ml, Anurie unter 100 ml pro Tag", "Inkontinenz: Belastung, Drang, Überlauf, funktionell", "Bristol-Skala: Typ 3 und 4 normal", "Bilanz: Einfuhr minus Ausfuhr"],
+    merke: "Scham ist bei diesem Thema normal. Sprich ruhig und sachlich, sorge für Privatsphäre und verwende Worte, die die Person versteht.",
+    facts: ["Bei funktioneller Inkontinenz hilft oft schon ein Toilettentraining mit festen Zeiten oder ein Nachtstuhl neben dem Bett.", "Ein Harnverhalt kann bei älteren Menschen ein Delir auslösen.", "Rote Bete kann den Urin rot färben, ohne dass Blut vorhanden ist."],
+    comp: {
+      AGS: { do: ["Bei der Ausscheidung unterstützen, Privatsphäre wahren", "Urin und Stuhl beobachten, Auffälligkeiten melden", "Trinkmengen nach Auftrag notieren"], no: ["Katheter legen oder pflegen", "Abführmittel geben"] },
+      FaGe: { do: ["Flüssigkeitsbilanz erstellen", "Ausscheidung mit Bristol-Skala beobachten und dokumentieren", "Abführmittel nach Verordnung, Einmalkatheter und Katheterpflege nach Betriebsregel"], no: ["Diagnose eines Harnwegsinfekts stellen"] },
+      HF: { do: ["Bilanz und Ausscheidung im Gesamtbild interpretieren", "Inkontinenzform einschätzen und Kontinenzförderung planen", "Ursachen wie Harnverhalt oder Medikamente erkennen"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Der Urin ist sehr dunkel und riecht stark. Was tust du?", ["Nichts", "Melden, möglicher Flüssigkeitsmangel oder Infekt", "Mehr Kaffee geben"], 1, "Beobachten und melden."],
+        ["Wie wahrst du Privatsphäre?", ["Tür offen lassen", "Tür schliessen, Vorhang ziehen, nur nötige Personen", "Im Gang fragen, ob jemand muss"], 1, "Scham respektieren."],
+        ["Ein Patient schafft es nicht rechtzeitig zur Toilette, weil er langsam geht. Was kann helfen?", ["Weniger trinken lassen", "Regelmässig Toilettengang anbieten, Hilfsmittel in der Nähe, melden", "Windel ohne Rücksprache"], 1, "Funktionelle Inkontinenz."],
+        ["Was notierst du für die Trinkmenge?", ["Nur Wasser", "Alles Getrunkene in ml nach Auftrag", "Nichts"], 1, "Genaue Angaben für die Bilanz."],
+        ["Welcher Stuhl ist normal nach der Bristol-Skala?", ["Typ 1, harte Knollen", "Typ 4, glatt und weich", "Typ 7, flüssig"], 1, "Typ 3 und 4 sind normal."]
+      ],
+      FaGe: [
+        ["Die Urinausscheidung betrug in 24 Stunden 400 ml. Wie nennt man das?", ["Polyurie", "Oligurie", "Normal"], 1, "Unter 500 ml pro Tag. Melden."],
+        ["Einfuhr 1800 ml, Ausfuhr 1300 ml. Wie ist die Bilanz?", ["Minus 500 ml", "Plus 500 ml", "Ausgeglichen"], 1, "Einfuhr minus Ausfuhr."],
+        ["Ein Patient mit Opioiden hatte seit 4 Tagen keinen Stuhlgang. Was tust du?", ["Abwarten", "Melden, Abführmittel nach Verordnung, Trinken und Bewegung fördern", "Weniger trinken"], 1, "Opioide verursachen fast immer Verstopfung."],
+        ["Eine Patientin hat Unterbauchschmerzen, ständiges Tröpfeln und kann nicht richtig Wasser lassen. Woran denkst du?", ["Harnverhalt mit Überlaufinkontinenz", "Belastungsinkontinenz", "Normal"], 0, "Restharn messen nach Verordnung."],
+        ["Was gehört zur Einfuhr in der Bilanz?", ["Nur Wasser", "Getränke, Infusionen, Sondennahrung", "Nur Suppe"], 1, "Alle Flüssigkeitszufuhren."]
+      ],
+      HF: [
+        ["Ein älterer Patient ist neu verwirrt, der Blasenscanner zeigt 700 ml. Was schliesst du?", ["Kein Zusammenhang", "Harnverhalt als mögliche Delirursache, ärztlich klären", "Normal"], 1, "Harnverhalt kann ein Delir auslösen."],
+        ["Welche Inkontinenzform zeigt plötzlichen starken Harndrang?", ["Belastungsinkontinenz", "Dranginkontinenz", "Überlaufinkontinenz"], 1, "Oft mit Blasentraining behandelbar."],
+        ["Was gehört zur Kontinenzförderung?", ["Nur Einlagen", "Ursache klären, Toilettentraining, Beckenbodentraining, Hilfsmittel, Trinkplan", "Weniger trinken"], 1, "Ziel ist Selbständigkeit."],
+        ["Bilanz über drei Tage deutlich positiv, Gewicht steigt. Woran denkst du?", ["Flüssigkeitseinlagerung, z. B. bei Herzinsuffizienz", "Gesundheit", "Messfehler immer"], 0, "Im Gesamtbild beurteilen."],
+        ["Warum ist ein Dauerkatheter möglichst zu vermeiden?", ["Er ist teuer", "Er erhöht das Infektionsrisiko deutlich", "Er stört nicht"], 1, "Indikation täglich prüfen."]
+      ]
+    },
+    transfer: "Beobachte heute bei einer Person die Ausscheidung mit der Bristol-Skala und vergleiche mit der Dokumentation der letzten Tage.",
+    src: "Thiemes Pflege; DNQP Expertenstandard Förderung der Harnkontinenz; Lewis & Heaton: Bristol Stool Form Scale"
+  },
+  {
+    id: "mobilisation", topic: "Pflegetechniken", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Mobilisation und Transfer",
+    teaser: "Rückenschonend arbeiten, Ressourcen nutzen und sicher vom Bett in den Rollstuhl, mit oder ohne Hilfsmittel.",
+    lead: "In der Rehabilitation ist jede Bewegung Training. Die Pflege unterstützt so wenig wie möglich und so viel wie nötig. Gleichzeitig schützt rückenschonendes Arbeiten die eigene Gesundheit: Rückenbeschwerden gehören zu den häufigsten Gesundheitsproblemen in der Pflege.",
+    theory: [
+      { h: "Grundsätze",
+        list: ["Ressourcen nutzen: Die Person macht so viel wie möglich selbst", "Jeden Schritt ankündigen und Zeit lassen", "Bewegung führen, nicht heben", "Sicherheit zuerst: Bremsen, rutschfeste Schuhe, Hilfsmittel bereit", "Bei Unsicherheit zu zweit oder mit Hilfsmittel arbeiten"] },
+      { h: "Rückenschonend arbeiten",
+        list: ["Bett auf Arbeitshöhe einstellen", "Füsse hüftbreit, in Schrittstellung", "Knie beugen statt Rücken krümmen", "Nah an der Person arbeiten", "Nicht mit verdrehter Wirbelsäule heben, sondern mit den Füssen drehen"] },
+      { h: "Transfer Bett in den Rollstuhl",
+        list: ["Rollstuhl im Winkel von etwa 30 bis 45 Grad zum Bett, Bremsen fest, Fussstützen weg", "Bei Halbseitenlähmung meist über die stärkere Seite transferieren, nach Konzept der Station", "Person an die Bettkante setzen, Füsse flach am Boden", "Gewicht nach vorne verlagern, aufstehen oder drehen", "Nie unter den Achseln oder an den Armen ziehen"] },
+      { h: "Hilfsmittel",
+        table: { head: ["Hilfsmittel", "Einsatz"], rows: [
+          ["Rutschbrett", "Sitzender Transfer, wenn Stehen nicht möglich ist"],
+          ["Drehscheibe", "Drehen im Stehen bei eingeschränkter Gehfähigkeit"],
+          ["Aufstehhilfe", "Person kann teilweise Gewicht übernehmen"],
+          ["Patientenlifter", "Person kann kein Gewicht übernehmen"] ] },
+        after: "Kinästhetik ist ein Konzept, das Bewegung über Massen und Zwischenräume erklärt. Die Bewegung wird gemeinsam gestaltet, statt die Person zu heben." }
+    ],
+    points: ["So wenig Hilfe wie möglich, so viel wie nötig", "Ankündigen, führen statt heben", "Bett auf Arbeitshöhe, Knie beugen, nah arbeiten", "Rollstuhl 30 bis 45 Grad, Bremsen fest", "Nie unter den Achseln ziehen, Hilfsmittel nutzen"],
+    merke: "Wer für die Person alles übernimmt, nimmt ihr Training weg. In der Reha ist Geduld eine Pflegemassnahme.",
+    facts: ["Kinästhetik wurde in den 1970er Jahren von Frank Hatch und Lenny Maietta entwickelt und ist in Schweizer Gesundheitsinstitutionen weit verbreitet.", "Ziehen am Arm einer Person mit Halbseitenlähmung kann die Schulter verletzen und lange Schmerzen verursachen.", "Ein Lifter ist kein Zeichen von Schwäche, sondern schützt beide Seiten vor Verletzungen."],
+    comp: {
+      AGS: { do: ["Mobilisationen, Positionierungen und Transfers nach Plan unterstützen", "Hilfsmittel bereitstellen und sichern", "Rückenschonend arbeiten, bei Unsicherheit Hilfe holen"], no: ["Erstmobilisation nach Operation oder bei unklarem Zustand allein durchführen"] },
+      FaGe: { do: ["Transfers selbständig nach Plan durchführen, Hilfsmittel wählen", "Ressourcen einschätzen und fördern", "AGS anleiten, Belastbarkeit beobachten und Vitalzeichen bei Bedarf kontrollieren"], no: ["Belastungsvorgaben nach Operation ändern: Das ist ärztliche und therapeutische Vorgabe"] },
+      HF: { do: ["Mobilitätsziele interprofessionell planen", "Erstmobilisationen nach Vorgaben verantworten", "Sturz- und Verletzungsrisiko einschätzen"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Was machst du vor dem Transfer in den Rollstuhl?", ["Nichts", "Bremsen fest, Fussstützen weg, Schuhe an", "Rollstuhl parallel weit weg"], 1, "Sicherheit zuerst."],
+        ["Darfst du die Person unter den Achseln hochziehen?", ["Ja", "Nein, das verletzt Schultern", "Nur bei leichten Personen"], 1, "Führen statt ziehen."],
+        ["Wie schonst du deinen Rücken?", ["Rücken krümmen", "Bett hoch, Knie beugen, nah an der Person", "Schnell heben"], 1, "Kraft aus den Beinen."],
+        ["Die Person kann sich heute kaum halten. Was tust du?", ["Allein probieren", "Hilfe holen oder Hilfsmittel nach Plan verwenden", "Mobilisation streichen ohne Info"], 1, "Bei Unsicherheit nie allein."],
+        ["Warum lässt du die Person möglichst viel selbst machen?", ["Damit du Zeit sparst", "Jede eigene Bewegung ist Training", "Weil du müde bist"], 1, "Ressourcen fördern."]
+      ],
+      FaGe: [
+        ["In welchem Winkel stellst du den Rollstuhl zum Bett?", ["90 Grad", "Etwa 30 bis 45 Grad", "Parallel mit Abstand"], 1, "Kurzer Drehweg."],
+        ["Eine Person kann kein Gewicht übernehmen. Welches Hilfsmittel?", ["Drehscheibe", "Patientenlifter", "Gehstock"], 1, "Sicherer Transfer ohne Heben."],
+        ["Bei Hemiparese rechts: Über welche Seite transferierst du meist?", ["Die gelähmte rechte", "Die stärkere linke, nach Konzept der Station", "Egal"], 1, "Die stärkere Seite trägt."],
+        ["Was beobachtest du bei einer Mobilisation?", ["Nichts", "Kreislauf, Schmerzen, Kraft, Gleichgewicht", "Nur die Uhrzeit"], 1, "Belastbarkeit einschätzen."],
+        ["Wann ist ein Rutschbrett sinnvoll?", ["Wenn die Person sitzend transferiert, aber nicht stehen kann", "Wenn sie gehen kann", "Nie"], 0, "Sitzender Transfer."]
+      ],
+      HF: [
+        ["Eine Patientin hat nach Hüft-TP Teilbelastung 15 kg verordnet. Was ist deine Aufgabe?", ["Ignorieren", "Vorgabe in Planung und Alltag sicherstellen, mit Physiotherapie abstimmen", "Belastung selbst erhöhen"], 1, "Einheitliche Umsetzung im Team."],
+        ["Was gehört zur Erstmobilisation nach Operation?", ["Allein durch AGS", "Vitalzeichen, Schmerz, Kreislauf beachten, schrittweise, zu zweit", "Sofort Treppe"], 1, "Kreislaufreaktionen sind häufig."],
+        ["Was beschreibt Kinästhetik?", ["Eine Hebetechnik", "Bewegung über Massen und Zwischenräume gemeinsam gestalten", "Ein Medikament"], 1, "Bewegungslernen für beide Seiten."],
+        ["Wie formulierst du ein Mobilitätsziel?", ["«Mobilität verbessern»", "«Herr K. transferiert bis Freitag mit Drehscheibe und einer Person vom Bett in den Rollstuhl»", "«Mehr laufen»"], 1, "SMART und überprüfbar."],
+        ["Warum ist interprofessionelle Abstimmung bei Transfers wichtig?", ["Wegen der Zeit", "Gleiche Technik in Pflege und Therapie fördert das Lernen", "Nicht wichtig"], 1, "Einheitlichkeit schafft Sicherheit."]
+      ]
+    },
+    transfer: "Lass dir von der Physiotherapie den Transfer einer Person deiner Bezugsgruppe zeigen und führe ihn dann gemeinsam durch.",
+    src: "Kinaesthetics Schweiz; SUVA, Rückenschonendes Arbeiten in der Pflege; DNQP Expertenstandard Mobilität"
+  },
+  {
+    id: "sc-injektion", topic: "Medikamente", levels: ["FaGe","HF"], min: 8,
+    title: "Subkutane Injektion",
+    teaser: "Injektionsstellen, Technik mit Spritze und Pen, Besonderheiten bei Heparin und Insulin und sicherer Umgang mit Nadeln.",
+    lead: "Bei der subkutanen Injektion wird ein Medikament ins Unterhautfettgewebe gespritzt. Typisch sind Heparin zur Thromboseprophylaxe und Insulin. Die Technik ist einfach, Fehler bei Stelle, Dosis oder Nadel können aber Folgen haben.",
+    theory: [
+      { h: "Injektionsstellen",
+        table: { head: ["Stelle", "Hinweis"], rows: [
+          ["Bauch", "Häufigste Stelle, mit Abstand zum Bauchnabel, nicht in Narben"],
+          ["Oberschenkel", "Vorder- und Aussenseite"],
+          ["Oberarm", "Aussenseite, eher bei Selbstinjektion schwieriger"] ] },
+        after: "Injektionsstellen regelmässig wechseln. Nicht in Hämatome, Entzündungen, Narben oder Verhärtungen spritzen." },
+      { h: "Technik",
+        list: ["6R prüfen, Händedesinfektion, Hautdesinfektion nach Betriebsstandard", "Hautfalte zwischen Daumen und Zeigefinger bilden", "Einstich meist im 90-Grad-Winkel, bei langer Nadel oder sehr dünner Person 45 Grad", "Langsam injizieren", "Bei Insulin-Pen die Nadel nach der Injektion etwa 10 Sekunden in der Haut lassen", "Nadel herausziehen, Hautfalte lösen, nicht massieren"] },
+      { h: "Besonderheiten",
+        list: ["Heparin-Fertigspritze: Luftblase nicht entfernen, nicht aspirieren, Stelle nicht massieren, sonst entstehen Hämatome", "Insulin-Pen: vor jeder Injektion Sicherheitstest, z. B. 2 Einheiten, um Luft zu entfernen", "Trübes Insulin (NPH) vor der Gabe sanft schwenken, nicht schütteln", "Insulin ist ein Hochrisikomedikament: Doppelkontrolle nach Betriebsregel"] },
+      { h: "Sicherer Umgang mit Nadeln",
+        p: ["Nadeln nie in die Schutzkappe zurückstecken (kein Recapping) und sofort in den Abwurfbehälter. Bei einer Nadelstichverletzung: Wunde ausbluten lassen, mit Wasser und Seife waschen, desinfizieren und sofort nach Betriebsregel melden. Eine allfällige HIV-Prophylaxe muss innerhalb weniger Stunden beginnen."] }
+    ],
+    points: ["Stellen: Bauch, Oberschenkel, Oberarm, regelmässig wechseln", "Hautfalte, meist 90 Grad, langsam injizieren", "Heparin: Luftblase belassen, nicht massieren", "Insulin-Pen: Sicherheitstest, 10 Sekunden warten", "Kein Recapping, Nadelstich sofort melden"],
+    merke: "Die Nadel gehört direkt nach der Injektion in den Abwurfbehälter. Nie zurück in die Kappe.",
+    facts: ["Wer immer an dieselbe Stelle spritzt, riskiert Fettgewebsverhärtungen (Lipohypertrophien). Insulin wirkt dort unzuverlässig.", "Moderne Pen-Nadeln sind nur 4 bis 6 mm lang. Bei den meisten Erwachsenen ist dann keine Hautfalte nötig, die Betriebsregel gilt.", "Die subkutane Injektion gehört laut Bildungsverordnung zu den Kompetenzen der FaGe, nicht der AGS."],
+    comp: {
+      FaGe: { do: ["Subkutane Injektionen nach ärztlicher Verordnung durchführen", "Insulin nach Verordnung und Schema verabreichen, Doppelkontrolle nach Betriebsregel", "Injektionsstellen beurteilen und Wechsel dokumentieren", "Person in der Selbstinjektion anleiten nach Auftrag"], no: ["Dosis selbst festlegen oder ändern", "Unsicher spritzen: Bei Unsicherheit Aufgabe ablehnen und nachfragen"] },
+      HF: { do: ["Verordnung auf Plausibilität prüfen", "Schulung zur Selbstinjektion planen und durchführen", "Komplikationen beurteilen, z. B. Hämatome, Lipohypertrophien, Hypoglykämie"], no: ["Als Studierende HF: Injektionen nach Ausbildungsstand und unter Aufsicht"] }
+    },
+    quiz: {
+      FaGe: [
+        ["Was tust du mit der Luftblase in der Heparin-Fertigspritze?", ["Herausdrücken", "Belassen", "Mit mehr Luft ergänzen"], 1, "Sie verhindert Rückfluss und Hämatome."],
+        ["Nach der Heparin-Injektion: Massierst du die Stelle?", ["Ja", "Nein", "Nur kurz"], 1, "Massieren fördert Hämatome."],
+        ["Was machst du vor jeder Insulin-Pen-Injektion?", ["Nichts", "Sicherheitstest, z. B. 2 Einheiten", "Den Pen schütteln"], 1, "So wird Luft entfernt und die Funktion geprüft."],
+        ["Was tust du mit der gebrauchten Nadel?", ["Zurück in die Kappe", "Sofort in den Abwurfbehälter", "In den normalen Abfall"], 1, "Kein Recapping."],
+        ["Du hast dich an einer gebrauchten Nadel gestochen. Was zuerst?", ["Weiterarbeiten", "Ausbluten lassen, waschen, desinfizieren, sofort melden", "Nur Pflaster"], 1, "Eine allfällige Prophylaxe muss rasch beginnen."]
+      ],
+      HF: [
+        ["Eine Patientin hat Verhärtungen an der üblichen Insulinstelle und schwankende Werte. Woran denkst du?", ["Lipohypertrophie mit unzuverlässiger Aufnahme", "Allergie", "Normal"], 0, "Rotationsschema schulen."],
+        ["Die Verordnung lautet «Insulin 40 IE» statt der üblichen 4 IE. Was tust du?", ["Verabreichen", "Als unplausibel erkennen und ärztlich klären", "Halbieren"], 1, "Plausibilitätsprüfung."],
+        ["Was gehört zur Schulung der Selbstinjektion?", ["Nur zuschauen lassen", "Technik, Stellenwechsel, Lagerung, Entsorgung, Hypoglykämie", "Nichts"], 1, "Sicherheit nach Austritt."],
+        ["Warum ist trübes Insulin vor der Gabe zu schwenken?", ["Damit es warm wird", "Damit die Suspension gleichmässig verteilt ist", "Zum Entlüften"], 1, "Sonst stimmt die Dosis nicht."],
+        ["Wer darf laut Bildungsverordnung subkutan injizieren?", ["AGS", "FaGe und Pflegefachpersonen HF", "Alle Lernenden ab dem ersten Tag"], 1, "AGS haben diese Kompetenz nicht."]
+      ]
+    },
+    transfer: "Lass dir bei deiner nächsten Injektion von einer Fachperson zuschauen und eine Rückmeldung zu Technik und Stellenwahl geben.",
+    src: "Bildungsverordnung FaGe EFZ (SBFI); FIT Forum for Injection Technique; Swissmedic Fachinformationen"
+  },
+  {
+    id: "peg", topic: "Pflegetechniken", levels: ["FaGe","HF"], min: 8,
+    title: "PEG-Sonde",
+    teaser: "Sondennahrung sicher verabreichen, Medikamente über die Sonde, Pflege der Einstichstelle und Komplikationen.",
+    lead: "Eine PEG (perkutane endoskopische Gastrostomie) ist eine Ernährungssonde, die durch die Bauchwand direkt in den Magen führt. Sie wird eingesetzt, wenn eine Person längerfristig nicht genug oder nicht sicher schlucken kann, etwa nach einem Schlaganfall.",
+    theory: [
+      { h: "Sondennahrung verabreichen",
+        list: ["Oberkörper mindestens 30 bis 45 Grad hoch, während und noch etwa 30 bis 60 Minuten nach der Gabe", "Lage und Markierung der Sonde kontrollieren", "Vor und nach jeder Gabe mit Wasser spülen, Menge nach Betriebsstandard", "Nahrung mit Pumpe oder als Bolus nach Verordnung, auf Raumtemperatur", "Verträglichkeit beobachten: Übelkeit, Völlegefühl, Durchfall"] },
+      { h: "Medikamente über die Sonde",
+        list: ["Nur Medikamente, die sondengängig sind: Rücksprache mit Apotheke oder Ärzteschaft", "Retard- und magensaftresistente Tabletten nicht mörsern", "Jedes Medikament einzeln geben und dazwischen spülen", "Nie Medikamente in die Sondennahrung mischen"] },
+      { h: "Pflege der Einstichstelle",
+        p: ["In den ersten Tagen wird die Einstichstelle täglich steril verbunden, später seltener nach Betriebsstandard. Dabei beobachtest du Rötung, Schwellung, Sekret und Schmerzen.",
+            "Nach ärztlicher Freigabe wird die Sonde regelmässig mobilisiert: etwas in den Magen schieben, drehen und wieder in die Ausgangsposition bringen. Das verhindert, dass die innere Halteplatte in die Magenwand einwächst."] },
+      { h: "Komplikationen",
+        table: { head: ["Problem", "Handeln"], rows: [
+          ["Sonde verstopft", "Mit lauwarmem Wasser spülen, keinen Druck mit kleiner Spritze, melden"],
+          ["Sonde herausgerutscht", "Sofort melden: Der Kanal schliesst sich innerhalb weniger Stunden"],
+          ["Rötung, Eiter an der Einstichstelle", "Melden, Infekt möglich"],
+          ["Husten, Atemnot während der Gabe", "Gabe stoppen, Oberkörper hoch, sofort melden: Aspiration möglich"] ] } }
+    ],
+    points: ["Oberkörper 30 bis 45 Grad hoch, auch danach", "Vor und nach jeder Gabe spülen", "Medikamente einzeln, sondengängig, nie in die Nahrung", "Einstichstelle beobachten, Sonde nach Freigabe mobilisieren", "Herausgerutschte Sonde sofort melden"],
+    merke: "Auch mit PEG braucht der Mund Pflege. Ohne Kauen und Schlucken trocknet er aus, und Keime können aspiriert werden.",
+    facts: ["Die Abkürzung PEG steht für perkutane endoskopische Gastrostomie: durch die Haut, mit Endoskop, in den Magen.", "Viele Menschen mit PEG dürfen nach Logopädie trotzdem kleine Mengen essen, zum Beispiel zum Genuss.", "Das Einwachsen der Halteplatte nennt man Buried-Bumper-Syndrom."],
+    comp: {
+      FaGe: { do: ["Sondennahrung bereitstellen und bei bestehendem Zugang verabreichen", "Medikamente über die Sonde nach Verordnung", "Einstichstelle pflegen, beobachten und dokumentieren"], no: ["Sonde neu einlegen oder ersetzen", "Nahrungsmenge oder Art ändern"] },
+      HF: { do: ["Ernährungsplan mit Ärzteschaft und Ernährungsberatung abstimmen", "Komplikationen beurteilen und eskalieren", "Person und Angehörige vor dem Austritt schulen"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      FaGe: [
+        ["Wie positionierst du die Person während der Sondenkost?", ["Flach", "Oberkörper mindestens 30 bis 45 Grad hoch", "Seitenlage flach"], 1, "Aspirationsschutz."],
+        ["Was tust du vor und nach jeder Gabe?", ["Nichts", "Mit Wasser spülen", "Mit Tee spülen immer"], 1, "Verhindert Verstopfung."],
+        ["Darfst du Medikamente in die Sondennahrung mischen?", ["Ja", "Nein, einzeln geben und dazwischen spülen", "Nur Pulver"], 1, "Wechselwirkungen und Verstopfung."],
+        ["Die Sonde ist herausgerutscht. Was tust du?", ["Später melden", "Sofort melden, der Kanal schliesst sich schnell", "Selbst zurückstecken"], 1, "Rasch handeln."],
+        ["Während der Gabe beginnt die Person zu husten und hat Atemnot. Was tust du?", ["Weiter laufen lassen", "Gabe stoppen, Oberkörper hoch, sofort melden", "Mehr Wasser spülen"], 1, "Mögliche Aspiration."]
+      ],
+      HF: [
+        ["Warum wird die PEG nach Freigabe regelmässig mobilisiert?", ["Wegen des Komforts", "Damit die Halteplatte nicht einwächst", "Damit sie länger wird"], 1, "Buried-Bumper-Syndrom vorbeugen."],
+        ["Welche Medikamente dürfen nicht gemörsert werden?", ["Retard- und magensaftresistente", "Alle Tabletten", "Vitamintabletten"], 0, "Rücksprache mit der Apotheke."],
+        ["Die Person hat seit zwei Tagen Durchfall unter Sondenkost. Was prüfst du?", ["Nichts", "Laufrate, Hygiene, Medikamente, Infekt, Temperatur der Nahrung", "Nur die Farbe"], 1, "Ursachen systematisch prüfen."],
+        ["Was gehört zur Schulung vor Austritt?", ["Nur Sondennahrung bestellen", "Verabreichung, Spülen, Medikamente, Pflege, Komplikationen", "Nichts"], 1, "Sicherheit zu Hause."],
+        ["Wen beziehst du in den Ernährungsplan ein?", ["Niemanden", "Ärzteschaft, Ernährungsberatung, Logopädie, Person", "Nur die Küche"], 1, "Interprofessionell planen."]
+      ]
+    },
+    transfer: "Begleite eine Sondenkostgabe auf deiner Station. Wie viel wird gespült? Welche Medikamente gehen über die Sonde und in welcher Form?",
+    src: "Bildungsverordnung FaGe EFZ (SBFI); ESPEN Leitlinie Enterale Ernährung; Thiemes Pflege"
+  },
+  {
+    id: "isolation", topic: "Hygiene", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Isolationsmassnahmen",
+    teaser: "Standardmassnahmen, Kontakt-, Tröpfchen- und aerogene Isolation: wann welche Schutzmassnahme gilt.",
+    lead: "Manche Erreger brauchen mehr Schutz als die Standardhygiene. Isolationsmassnahmen verhindern, dass sie auf andere Patientinnen, Patienten oder das Personal übertragen werden. Welche Massnahme gilt, hängt vom Übertragungsweg ab.",
+    theory: [
+      { h: "Standardmassnahmen gelten immer",
+        list: ["Händehygiene nach den 5 Momenten", "Handschuhe bei möglichem Kontakt mit Körperflüssigkeiten", "Schürze, Mund-Nasen-Schutz und Brille bei Spritzgefahr", "Flächendesinfektion, sichere Entsorgung", "Husten- und Niesetikette"] },
+      { h: "Zusätzliche Massnahmen nach Übertragungsweg",
+        table: { head: ["Isolation", "Übertragung", "Beispiele", "Schutz"], rows: [
+          ["Kontakt", "Hände, Flächen, Material", "MRSA, ESBL, Clostridioides difficile", "Schürze oder Überschürze, Handschuhe"],
+          ["Tröpfchen", "Grosse Tröpfchen, etwa 1 bis 2 Meter", "Influenza, Keuchhusten", "Mund-Nasen-Schutz"],
+          ["Aerogen", "Kleinste Partikel in der Luft, über grosse Distanz", "Tuberkulose, Masern, Windpocken", "FFP2-Maske, Einzelzimmer, Tür geschlossen"] ] },
+        after: "Beim Norovirus gelten Kontakt- und Tröpfchenmassnahmen, weil beim Erbrechen Tröpfchen entstehen. Die genauen Regeln legt die Spitalhygiene deines Betriebs fest." },
+      { h: "Organisation",
+        list: ["Isolationsschild an der Tür, ohne Diagnose zu nennen", "Material möglichst im Zimmer belassen, nur Nötiges hinein", "Transporte und Therapien vorher informieren", "Besuchende instruieren", "Isolierte Person zuletzt pflegen, wenn möglich"] },
+      { h: "Die Person nicht vergessen",
+        p: ["Isolation kann einsam machen. Personal kommt seltener und wirkt hinter Maske und Schürze fremd. Nimm dir bewusst Zeit, erkläre die Massnahmen und plane Kontakte, damit die Person nicht vernachlässigt wird."] }
+    ],
+    points: ["Standardmassnahmen gelten bei allen", "Kontakt: Schürze und Handschuhe", "Tröpfchen: Mund-Nasen-Schutz", "Aerogen: FFP2, Einzelzimmer, Tür zu", "Isolierte Personen bewusst begleiten"],
+    merke: "Nicht der Erreger bestimmt die Schutzmassnahme, sondern sein Übertragungsweg.",
+    facts: ["Sporen von Clostridioides difficile überleben monatelang auf Flächen. Dafür braucht es spezielle sporozide Desinfektionsmittel.", "Multiresistente Keime wie MRSA sind für Gesunde meist harmlos, für geschwächte Patientinnen und Patienten aber gefährlich.", "Studien zeigen, dass isolierte Personen weniger oft besucht werden und häufiger Komplikationen wie Stürze erleiden."],
+    comp: {
+      AGS: { do: ["Isolationsmassnahmen nach Instruktion einhalten", "Schutzausrüstung korrekt verwenden", "Unklarheiten sofort bei der Fachperson klären"], no: ["Isolation aufheben oder ändern"] },
+      FaGe: { do: ["Massnahmen nach Übertragungsweg umsetzen", "Zimmer und Material organisieren, Besuchende instruieren", "AGS anleiten"], no: ["Isolation anordnen oder aufheben: Spitalhygiene und Ärzteschaft"] },
+      HF: { do: ["Isolationsmassnahmen mit der Spitalhygiene planen", "Interprofessionelle Abläufe organisieren", "Person und Angehörige informieren, psychische Folgen beachten"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Welche Massnahmen gelten bei allen Patientinnen und Patienten?", ["Keine", "Die Standardmassnahmen wie Händehygiene", "Nur bei Fieber"], 1, "Immer und überall."],
+        ["An der Tür hängt ein Schild «Kontaktisolation». Was ziehst du an?", ["Nichts", "Schürze und Handschuhe nach Instruktion", "Nur eine FFP2-Maske"], 1, "Kontakt wird über Hände und Material übertragen."],
+        ["Du bist unsicher, welche Isolation gilt. Was tust du?", ["Raten", "Vor dem Betreten bei der Fachperson nachfragen", "Ohne Schutz hinein"], 1, "Lieber fragen."],
+        ["Eine isolierte Patientin klingelt selten und wirkt traurig. Was tust du?", ["Nichts", "Zeit nehmen, nachfragen, der Fachperson melden", "Weniger hingehen"], 1, "Isolation kann einsam machen."],
+        ["Darfst du Material aus dem Isolationszimmer einfach mitnehmen?", ["Ja", "Nein, nur nach Desinfektion oder Regel", "Nur Kugelschreiber"], 1, "Material kann Erreger tragen."]
+      ],
+      FaGe: [
+        ["Welche Isolation gilt bei Tuberkulose?", ["Kontakt", "Tröpfchen", "Aerogen mit FFP2"], 2, "Kleinste Partikel in der Luft."],
+        ["Welche Isolation bei Influenza?", ["Tröpfchen mit Mund-Nasen-Schutz", "Aerogen", "Keine"], 0, "Grosse Tröpfchen."],
+        ["Was gilt bei Norovirus?", ["Nur Händehygiene", "Kontakt- und Tröpfchenmassnahmen", "Aerogen"], 1, "Beim Erbrechen entstehen Tröpfchen."],
+        ["Ein isolierter Patient hat Physiotherapie im Gruppenraum. Was tust du?", ["Einfach schicken", "Therapie vorher informieren, Vorgehen nach Spitalhygiene klären", "Therapie streichen ohne Info"], 1, "Transporte und Therapien vorher informieren."],
+        ["Was steht auf dem Isolationsschild?", ["Die Diagnose", "Die nötigen Schutzmassnahmen, ohne Diagnose", "Der Name"], 1, "Datenschutz wahren."]
+      ],
+      HF: [
+        ["Wer legt Isolationsmassnahmen fest?", ["Die AGS", "Spitalhygiene und Ärzteschaft nach Betriebsstandard", "Die Angehörigen"], 1, "Die Pflege HF setzt um und organisiert."],
+        ["Welche psychischen Folgen kann Isolation haben?", ["Keine", "Einsamkeit, Angst, Depression, weniger Pflegekontakte", "Nur Langeweile"], 1, "Bewusst planen und begleiten."],
+        ["Warum braucht es bei C. difficile spezielle Flächendesinfektion?", ["Sporen überleben normale Desinfektion", "Wegen des Geruchs", "Braucht es nicht"], 0, "Sporozide Mittel verwenden."],
+        ["Wie informierst du Besuchende?", ["Gar nicht", "Massnahmen erklären und Schutz instruieren, ohne Diagnose an Dritte", "Nur schriftlich"], 1, "Verständnis erhöht die Einhaltung."],
+        ["Was bedeutet der Übertragungsweg für die Planung?", ["Nichts", "Er bestimmt die nötige Schutzmassnahme", "Nur für die Reinigung"], 1, "Nicht der Erreger, sondern der Weg."]
+      ]
+    },
+    transfer: "Finde heraus, wo die Isolationsrichtlinien deines Betriebs abgelegt sind, und lies die Massnahmen zu MRSA und Norovirus.",
+    src: "Swissnoso; BAG, Strategie NOSO; Richtlinien der Spitalhygiene"
+  },
+  {
+    id: "psa", topic: "Hygiene", levels: ["AGS","FaGe","HF"], min: 6,
+    title: "Persönliche Schutzausrüstung",
+    teaser: "Schürze, Maske, Brille, Handschuhe: in welcher Reihenfolge an- und ausziehen, ohne sich zu kontaminieren.",
+    lead: "Persönliche Schutzausrüstung (PSA) schützt dich und andere nur, wenn sie richtig verwendet wird. Am meisten Fehler passieren beim Ausziehen: Dann ist die Aussenseite kontaminiert.",
+    theory: [
+      { h: "Die Bestandteile",
+        table: { head: ["PSA", "Schützt vor", "Hinweis"], rows: [
+          ["Handschuhe", "Kontakt mit Körperflüssigkeiten und Erregern", "Ersetzen keine Händehygiene"],
+          ["Schürze oder Überschürze", "Kontamination der Kleidung", "Langärmlige Überschürze bei viel Körperkontakt"],
+          ["Mund-Nasen-Schutz", "Tröpfchen, Spritzer", "Schützt vor allem andere und vor Spritzern"],
+          ["FFP2-Maske", "Aerogene Partikel", "Muss dicht sitzen, Bart vermindert die Dichtigkeit"],
+          ["Schutzbrille", "Spritzer in die Augen", "Bei Absaugen, Erbrechen, Spritzgefahr"] ] } },
+      { h: "Anziehen",
+        list: ["1. Händedesinfektion", "2. Schürze oder Überschürze", "3. Maske, bei FFP2 Dichtsitz prüfen", "4. Schutzbrille", "5. Handschuhe, über die Bündchen der Überschürze"] },
+      { h: "Ausziehen: die Aussenseite ist schmutzig",
+        list: ["1. Handschuhe ausziehen, ohne die Aussenseite zu berühren", "2. Händedesinfektion", "3. Schürze von innen nach aussen einrollen", "4. Händedesinfektion", "5. Schutzbrille an den Bügeln abnehmen", "6. Maske an den Bändern entfernen, nicht an der Vorderseite", "7. Händedesinfektion"],
+        after: "Die Reihenfolge kann je nach Betrieb leicht abweichen. Bei aerogener Isolation wird die FFP2-Maske meist erst ausserhalb des Zimmers nach geschlossener Tür ausgezogen." }
+    ],
+    points: ["An: Händedesinfektion, Schürze, Maske, Brille, Handschuhe", "Aus: Handschuhe zuerst, Maske zuletzt", "Zwischendurch Hände desinfizieren", "Aussenseite nie berühren", "FFP2: Dichtsitz prüfen"],
+    merke: "Die Vorderseite der Maske ist nach der Pflege kontaminiert. Nur an den Bändern anfassen.",
+    facts: ["Ein Mund-Nasen-Schutz, der unter der Nase getragen wird, schützt praktisch nicht.", "Beim Dichtsitztest atmest du kräftig aus: Wenn Luft am Rand entweicht, sitzt die FFP2-Maske nicht richtig.", "Handschuhe gehören nicht in den Gang: Sie werden direkt nach der Tätigkeit ausgezogen."],
+    comp: {
+      AGS: { do: ["PSA nach Instruktion korrekt an- und ausziehen", "Fehlendes Material melden", "Bei Unsicherheit nachfragen"], no: ["Auf PSA verzichten, wenn sie vorgeschrieben ist"] },
+      FaGe: { do: ["PSA situationsgerecht auswählen nach Massnahme", "AGS und Mitlernende anleiten", "Material bewirtschaften"], no: ["Isolationsart festlegen"] },
+      HF: { do: ["Einhaltung im Team sicherstellen und Feedback geben", "Bei Abweichungen mit der Spitalhygiene klären", "Schulungen anregen"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Was ziehst du beim Ausziehen zuerst aus?", ["Maske", "Handschuhe", "Brille"], 1, "Sie sind am stärksten kontaminiert."],
+        ["Wo fasst du die Maske beim Ausziehen an?", ["Vorne", "An den Bändern", "Egal"], 1, "Die Vorderseite ist kontaminiert."],
+        ["Was tust du nach dem Ausziehen der Handschuhe?", ["Nichts", "Hände desinfizieren", "Neue Handschuhe"], 1, "Immer."],
+        ["Wie trägst du den Mund-Nasen-Schutz richtig?", ["Unter der Nase", "Über Mund und Nase, eng anliegend", "Am Kinn"], 1, "Sonst schützt er nicht."],
+        ["Darfst du mit Handschuhen in den Gang gehen?", ["Ja", "Nein, direkt nach der Tätigkeit ausziehen", "Nur kurz"], 1, "Sonst verteilst du Erreger."]
+      ],
+      FaGe: [
+        ["In welcher Reihenfolge ziehst du PSA an?", ["Handschuhe, Maske, Schürze", "Händedesinfektion, Schürze, Maske, Brille, Handschuhe", "Brille, Handschuhe, Schürze"], 1, "Handschuhe zuletzt, über die Bündchen."],
+        ["Wie entfernst du die Schürze?", ["Über den Kopf, Aussenseite nach aussen", "Von innen nach aussen einrollen", "Schütteln"], 1, "Kontaminierte Seite nach innen."],
+        ["Welche Maske bei Tuberkulose?", ["Mund-Nasen-Schutz", "FFP2", "Keine"], 1, "Aerogene Übertragung."],
+        ["Wann trägst du eine Schutzbrille?", ["Nie", "Bei Spritzgefahr, z. B. Absaugen oder Erbrechen", "Nur bei Sonne"], 1, "Augen schützen."],
+        ["Ein Kollege hat einen Vollbart und trägt FFP2. Was ist das Problem?", ["Keins", "Die Maske sitzt nicht dicht", "Sie ist zu warm"], 1, "Bart vermindert die Dichtigkeit."]
+      ],
+      HF: [
+        ["Warum passieren die meisten Kontaminationen beim Ausziehen?", ["Zufall", "Die Aussenseite ist kontaminiert und wird leicht berührt", "Material ist schlecht"], 1, "Reihenfolge und Technik schulen."],
+        ["Du beobachtest, dass Masken oft unter der Nase getragen werden. Was tust du?", ["Nichts", "Konkret ansprechen und Schutzwirkung erklären", "Melden ohne Gespräch"], 1, "Feedback und Vorbild."],
+        ["Wann wird die FFP2-Maske bei aerogener Isolation meist ausgezogen?", ["Im Zimmer", "Ausserhalb nach geschlossener Tür", "Gar nicht"], 1, "Nach Betriebsstandard."],
+        ["Was zeigt der Dichtsitztest?", ["Die Farbe", "Ob Luft am Rand entweicht", "Die Grösse"], 1, "Bei Leck nachjustieren."],
+        ["Wer ist bei Abweichungen von PSA-Regeln Ansprechpartner?", ["Niemand", "Die Spitalhygiene", "Die Küche"], 1, "Fachliche Klärung."]
+      ]
+    },
+    transfer: "Übe das An- und Ausziehen der PSA zu zweit: Eine Person zieht aus, die andere beobachtet, ob die Aussenseite berührt wird.",
+    src: "Swissnoso; WHO, Personal Protective Equipment; CDC Sequence for PPE"
+  },
+  {
+    id: "aphasie", topic: "Kommunikation", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Kommunikation bei Aphasie",
+    teaser: "Formen der Aphasie, Unterschied zur Dysarthrie und konkrete Strategien für das Gespräch.",
+    lead: "Aphasie ist eine erworbene Sprachstörung, meist nach Schlaganfall oder Schädel-Hirn-Trauma. Sprechen, Verstehen, Lesen oder Schreiben können betroffen sein. Wichtig: Die Intelligenz ist nicht beeinträchtigt. Die Person weiss, was sie sagen will.",
+    theory: [
+      { h: "Formen",
+        table: { head: ["Form", "Sprechen", "Verstehen"], rows: [
+          ["Broca-Aphasie (expressiv)", "Mühsam, stockend, kurze Sätze im Telegrammstil", "Relativ gut"],
+          ["Wernicke-Aphasie (rezeptiv)", "Flüssig, aber oft inhaltsleer, vertauschte Wörter", "Stark gestört"],
+          ["Globale Aphasie", "Kaum möglich", "Stark gestört"],
+          ["Amnestische Aphasie", "Flüssig, aber Wortfindungsstörungen", "Gut"] ] },
+        after: "Davon unterscheidet sich die Dysarthrie: Hier ist die Sprechmotorik gestört. Die Sprache klingt verwaschen, aber Wortwahl und Verstehen sind normal." },
+      { h: "So gelingt das Gespräch",
+        list: ["Ruhige Umgebung, Fernseher aus", "Blickkontakt, normal laut sprechen, nicht schreien", "Kurze, einfache Sätze, ein Thema nach dem anderen", "Ja- oder Nein-Fragen stellen", "Zeit lassen, nicht unterbrechen", "Nicht ungefragt Sätze beenden", "Gesten, Bilder, Gegenstände, Schreiben oder Kommunikationstafeln nutzen", "Verstehen überprüfen, z. B. mit Zusammenfassen", "Wie mit Erwachsenen sprechen, nicht wie mit Kindern"] },
+      { h: "Zusammenarbeit",
+        p: ["Die Logopädie klärt die Art der Aphasie und gibt Empfehlungen für die Kommunikation. Wenn alle im Team dieselben Strategien verwenden, lernt die Person schneller und fühlt sich sicherer."] }
+    ],
+    points: ["Aphasie betrifft die Sprache, nicht die Intelligenz", "Broca: Sprechen mühsam. Wernicke: Verstehen gestört", "Dysarthrie: Sprechmotorik gestört, Sprache intakt", "Kurze Sätze, Ja- oder Nein-Fragen, Zeit lassen", "Gesten, Bilder und Logopädie-Empfehlungen nutzen"],
+    merke: "Wer nicht sprechen kann, hat trotzdem etwas zu sagen. Geduld ist die wichtigste Kommunikationshilfe.",
+    facts: ["Menschen mit Aphasie können oft noch singen, weil Melodie und Sprache teilweise in unterschiedlichen Hirnregionen verarbeitet werden.", "Automatisierte Sätze wie Zählen oder Grussformeln gelingen oft besser als frei formulierte Sätze.", "Laut sprechen hilft nicht, wenn das Hören intakt ist. Es wirkt eher bedrohlich."],
+    comp: {
+      AGS: { do: ["Kommunikationsstrategien im Alltag anwenden", "Geduldig sein und Zeit lassen", "Beobachtungen zur Verständigung weitergeben"], no: ["Diagnose der Aphasieform"] },
+      FaGe: { do: ["Logopädie-Empfehlungen konsequent umsetzen", "Kommunikationshilfen einsetzen", "Wichtige Informationen auf Verständnis prüfen und dokumentieren"], no: ["Einwilligungen ohne gesichertes Verstehen einholen"] },
+      HF: { do: ["Kommunikation in Planung und Information verankern", "Urteilsfähigkeit und Verständnis bei Entscheiden mit dem Team klären", "Angehörige in Strategien einführen"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Ein Patient mit Aphasie findet ein Wort nicht. Was tust du?", ["Sofort das Wort sagen", "Zeit lassen, bei Bedarf nachfragen, ob du helfen darfst", "Weggehen"], 1, "Nicht ungefragt unterbrechen."],
+        ["Wie laut sprichst du?", ["Sehr laut", "Normal laut", "Flüstern"], 1, "Das Hören ist meist intakt."],
+        ["Welche Frage ist hilfreich?", ["«Was wollen Sie heute machen und wann?»", "«Möchten Sie Kaffee?»", "Mehrere Fragen auf einmal"], 1, "Ja- oder Nein-Fragen."],
+        ["Ist ein Mensch mit Aphasie weniger intelligent?", ["Ja", "Nein, die Sprache ist gestört, nicht das Denken", "Manchmal"], 1, "Respektvoll wie mit Erwachsenen sprechen."],
+        ["Was hilft zusätzlich zur Sprache?", ["Nichts", "Gesten, Bilder, Gegenstände zeigen", "Nur Schreiben"], 1, "Mehrere Kanäle nutzen."]
+      ],
+      FaGe: [
+        ["Eine Patientin spricht flüssig, aber ohne Sinn, und versteht Fragen nicht. Welche Form?", ["Broca", "Wernicke", "Dysarthrie"], 1, "Rezeptive Aphasie."],
+        ["Was unterscheidet Dysarthrie von Aphasie?", ["Nichts", "Bei Dysarthrie ist die Sprechmotorik gestört, die Sprache selbst intakt", "Dysarthrie betrifft nur das Lesen"], 1, "Verwaschen, aber richtige Wörter."],
+        ["Woher hast du Strategien für eine Person?", ["Aus dem Internet", "Von der Logopädie", "Von Angehörigen allein"], 1, "Einheitlich im Team umsetzen."],
+        ["Wie prüfst du, ob eine Information verstanden wurde?", ["Gar nicht", "Zusammenfassen, Zeigen lassen, Ja-Nein-Kontrollfragen", "Nur fragen «Alles klar?»"], 1, "«Alles klar?» wird oft automatisch bejaht."],
+        ["Was störst du bewusst nicht?", ["Ruhige Umgebung", "Die Person beim Formulieren", "Blickkontakt"], 1, "Nicht unterbrechen."]
+      ],
+      HF: [
+        ["Für eine Einwilligung ist unklar, ob die Person mit globaler Aphasie versteht. Was tust du?", ["Unterschrift einholen", "Verständnis mit Hilfsmitteln prüfen, Urteilsfähigkeit im Team und ärztlich klären", "Angehörige allein entscheiden lassen"], 1, "Rechtlich und ethisch wichtig."],
+        ["Welche Form zeigt Telegrammstil bei gutem Verstehen?", ["Broca", "Wernicke", "Global"], 0, "Expressive Aphasie."],
+        ["Warum ist Einheitlichkeit im Team wichtig?", ["Wegen der Zeit", "Gleiche Strategien geben Sicherheit und fördern das Lernen", "Nicht wichtig"], 1, "In der Pflegeplanung verankern."],
+        ["Wie beziehst du Angehörige ein?", ["Gar nicht", "Strategien erklären und gemeinsam üben", "Sie für die Person sprechen lassen"], 1, "Angehörige sind wichtige Kommunikationspartner."],
+        ["Was zeigt, dass jemand Melodie noch nutzen kann?", ["Singen gelingt oft besser als Sprechen", "Nichts", "Nur Pfeifen"], 0, "Kann in der Therapie genutzt werden."]
+      ]
+    },
+    transfer: "Frage die Logopädie nach den Kommunikationsempfehlungen für eine Person mit Aphasie und wende sie heute bewusst an.",
+    src: "Aphasie Suisse; Deutsche Gesellschaft für Neurologie, Leitlinie Aphasie; Thiemes Pflege"
+  },
+  {
+    id: "angehoerige", topic: "Kommunikation", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Angehörige einbeziehen",
+    teaser: "Angehörige als Ressource und als Betroffene. Informieren, anleiten und dabei Schweigepflicht und Grenzen wahren.",
+    lead: "Angehörige kennen die Person am besten und tragen nach dem Austritt oft einen grossen Teil der Unterstützung. Gleichzeitig sind sie selbst betroffen: Sorge, Überforderung und Trauer gehören dazu. Gute Zusammenarbeit beginnt mit Information und echtem Interesse.",
+    theory: [
+      { h: "Zwei Rollen",
+        p: ["Angehörige sind Ressource: Sie kennen Gewohnheiten, Vorlieben und Biografie, geben Sicherheit und unterstützen beim Training im Alltag. Sie sind aber auch Betroffene, die selbst Unterstützung brauchen. Beides verdient Aufmerksamkeit."] },
+      { h: "Information und Schweigepflicht",
+        list: ["Auskünfte zu Gesundheitsdaten nur mit Einverständnis der Person", "Am Telefon die Identität und Berechtigung prüfen", "Bei Urteilsunfähigkeit entscheidet die vertretungsberechtigte Person nach Zivilgesetzbuch, z. B. mit Vorsorgeauftrag", "Medizinische Fragen an die zuständige Fachperson oder Ärzteschaft weiterleiten"] },
+      { h: "Einbeziehen in der Reha",
+        list: ["Angehörige nach Gewohnheiten und Wünschen fragen", "Mit Einverständnis bei Pflege und Training zuschauen und mitmachen lassen", "Vor dem Austritt anleiten, z. B. Transfer, Hilfsmittel, Sondennahrung", "Angehörigengespräche planen, Ziele gemeinsam festlegen", "Auf Zeichen von Überlastung achten und Entlastungsangebote zeigen"] },
+      { h: "Schwierige Situationen",
+        p: ["Angehörige können fordernd oder verärgert wirken. Oft stecken Angst, Hilflosigkeit oder Schuldgefühle dahinter. Zuhören, Gefühle anerkennen und konkrete nächste Schritte vereinbaren hilft mehr als Rechtfertigungen."] }
+    ],
+    points: ["Angehörige sind Ressource und Betroffene", "Auskünfte nur mit Einverständnis der Person", "Medizinische Fragen an Fachperson weiterleiten", "Vor dem Austritt anleiten", "Hinter Ärger steckt oft Angst"],
+    merke: "Frage Angehörige: «Was sollten wir über Ihre Mutter wissen, damit es ihr bei uns gut geht?» Diese Frage öffnet Türen.",
+    facts: ["In der Schweiz leisten Angehörige jedes Jahr Millionen Stunden unbezahlte Betreuungsarbeit.", "Das Erwachsenenschutzrecht im Zivilgesetzbuch regelt, wer eine urteilsunfähige Person vertreten darf.", "Gut vorbereitete Angehörige senken das Risiko für Wiedereintritte nach dem Austritt."],
+    comp: {
+      AGS: { do: ["Angehörige freundlich empfangen und Fragen weiterleiten", "Beobachtungen und Wünsche der Angehörigen an die Fachperson geben", "Angehörige nach Gewohnheiten der Person fragen"], no: ["Auskünfte zu Diagnosen, Befunden oder Prognose geben"] },
+      FaGe: { do: ["Über eigene Pflegehandlungen informieren, mit Einverständnis der Person", "Angehörige in einfachen Handgriffen anleiten", "Belastung wahrnehmen und melden"], no: ["Medizinische Auskünfte oder Prognosen"] },
+      HF: { do: ["Angehörigengespräche vorbereiten und führen", "Austritt und Edukation planen", "Bei Konflikten vermitteln, Vertretungsrecht klären"], no: ["Als Studierende HF: Gespräche nach Absprache und Ausbildungsstand"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Tochter fragt dich nach dem Ergebnis des Röntgenbilds ihres Vaters. Was tust du?", ["Sagen, was du gehört hast", "Freundlich an die zuständige Fachperson verweisen", "Ignorieren"], 1, "Medizinische Auskünfte sind nicht deine Aufgabe."],
+        ["Was fragst du Angehörige gerne?", ["Nichts", "Gewohnheiten und Vorlieben der Person", "Ihr Einkommen"], 1, "Wertvolles Wissen für die Pflege."],
+        ["Angehörige erzählen dir, dass die Patientin zu Hause nie Milch trinkt. Was tust du?", ["Vergessen", "An die Fachperson weitergeben", "Selbst den Menüplan ändern"], 1, "Informationen weiterleiten."],
+        ["Ein Unbekannter ruft an und fragt nach einem Patienten. Was tust du?", ["Auskunft geben", "Keine Auskunft, an die Fachperson weiterleiten", "Nur die Zimmernummer sagen"], 1, "Schweigepflicht."],
+        ["Ein Sohn ist laut und verärgert. Was hilft?", ["Zurückschimpfen", "Ruhig bleiben, zuhören, Fachperson holen", "Weggehen"], 1, "Hinter Ärger steckt oft Sorge."]
+      ],
+      FaGe: [
+        ["Wann darfst du Angehörigen über die Pflege informieren?", ["Immer", "Mit Einverständnis der Person, im Rahmen deiner Pflegehandlungen", "Nie"], 1, "Einverständnis zuerst."],
+        ["Vor dem Austritt soll der Ehemann den Transfer lernen. Was ist deine Rolle?", ["Keine", "Anleiten, üben lassen, Rückmeldung geben und dokumentieren", "Nur zeigen"], 1, "Anleitung mit Übung."],
+        ["Eine Angehörige wirkt erschöpft und weint. Was tust du?", ["Nichts", "Ansprechen, zuhören, der Fachperson HF melden", "Ratschläge geben"], 1, "Angehörige sind auch Betroffene."],
+        ["Welche Auskunft gibst du nicht?", ["Wie die Nacht war, mit Einverständnis", "Prognose zur Genesung", "Wann das Mittagessen kommt"], 1, "Prognosen gehören zu Ärzteschaft."],
+        ["Wie prüfst du am Telefon, wer anruft?", ["Gar nicht", "Nach Betriebsregel, z. B. Rückruf oder vereinbartes Codewort", "Nach Stimme"], 1, "Identität sichern."]
+      ],
+      HF: [
+        ["Eine Person ist urteilsunfähig. Wer entscheidet über medizinische Massnahmen?", ["Immer die Kinder", "Die vertretungsberechtigte Person nach ZGB, z. B. aus dem Vorsorgeauftrag", "Die Pflege"], 1, "Reihenfolge gemäss Erwachsenenschutzrecht."],
+        ["Wie bereitest du ein Angehörigengespräch vor?", ["Spontan", "Ziel, Teilnehmende, Einverständnis, Informationen, Raum und Zeit", "Gar nicht"], 1, "Struktur gibt Sicherheit."],
+        ["Angehörige und Person haben unterschiedliche Wünsche zum Austritt. Was tust du?", ["Angehörige entscheiden lassen", "Wille der urteilsfähigen Person ins Zentrum, vermitteln, Optionen klären", "Ignorieren"], 1, "Selbstbestimmung."],
+        ["Was senkt Wiedereintritte nach Austritt?", ["Nichts", "Gute Anleitung und Vorbereitung der Angehörigen", "Keine Information"], 1, "Edukation wirkt."],
+        ["Wie reagierst du auf fordernde Angehörige?", ["Rechtfertigen", "Gefühle anerkennen, Anliegen klären, nächste Schritte vereinbaren", "Kontakt abbrechen"], 1, "Deeskalierend und konkret."]
+      ]
+    },
+    transfer: "Frage bei der nächsten Gelegenheit Angehörige: «Was sollten wir über die Person wissen, damit es ihr bei uns gut geht?» Gib die Antwort ans Team weiter.",
+    src: "Schweizerisches Zivilgesetzbuch, Erwachsenenschutzrecht; BAG, Förderprogramm Entlastungsangebote für betreuende Angehörige"
+  },
+  {
+    id: "deeskalation", topic: "Kommunikation", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Deeskalation",
+    teaser: "Frühwarnzeichen erkennen, ruhig reagieren und sich selbst schützen, wenn eine Situation angespannt wird.",
+    lead: "Aggression im Gesundheitswesen hat oft Ursachen wie Angst, Schmerzen, Überforderung, Kontrollverlust oder eine Hirnverletzung. Deeskalation heisst, die Spannung zu senken, bevor es zu Gewalt kommt, und dabei die eigene Sicherheit nie zu vergessen.",
+    theory: [
+      { h: "Frühwarnzeichen",
+        list: ["Unruhe, Hin- und Hergehen", "Lauter werdende Stimme, Drohungen", "Angespannte Haltung, geballte Fäuste", "Starrer Blick oder Vermeiden von Blickkontakt", "Gerötetes Gesicht, schnelle Atmung"] },
+      { h: "Eigene Sicherheit zuerst",
+        list: ["Abstand halten, mehr als eine Armlänge", "Fluchtweg frei halten, für dich und für die Person", "Seitlich stehen, nicht frontal", "Nichts in der Hand halten, was als Waffe dienen kann, z. B. Schere oder Kugelschreiber", "Frühzeitig Hilfe holen, nie allein bleiben, wenn Gefahr droht"] },
+      { h: "Deeskalierend kommunizieren",
+        list: ["Ruhig und langsam sprechen, tiefe Stimme", "Person mit Namen ansprechen", "Gefühle benennen: «Ich sehe, dass Sie wütend sind.»", "Zuhören, nicht diskutieren oder belehren", "Keine Drohungen, keine Machtkämpfe", "Wahlmöglichkeiten anbieten", "Offene Hände zeigen, nicht berühren ohne Ankündigung"] },
+      { h: "Nach dem Ereignis",
+        p: ["Nach einem Vorfall braucht es eine Nachbesprechung im Team: Was ist passiert, was hat geholfen, was ändern wir? Vorfälle werden nach Betriebsregel gemeldet. Auch die betroffenen Mitarbeitenden brauchen Unterstützung, denn Aggression belastet."] }
+    ],
+    points: ["Frühwarnzeichen ernst nehmen", "Abstand, Fluchtweg, seitlich stehen", "Ruhig sprechen, Gefühle benennen, nicht diskutieren", "Früh Hilfe holen", "Nachbesprechung und Meldung"],
+    merke: "Deine Sicherheit hat Vorrang. Wer sich selbst in Gefahr bringt, kann niemandem mehr helfen.",
+    facts: ["In vielen Schweizer Institutionen wird das Deeskalationstraining ProDeMa angeboten.", "Menschen nach Schädel-Hirn-Trauma reagieren oft schneller gereizt, weil die Impulskontrolle gestört ist.", "Eine ruhige, tiefe Stimme wirkt nachweislich beruhigender als eine hohe, schnelle."],
+    comp: {
+      AGS: { do: ["Frühwarnzeichen erkennen und melden", "Ruhig bleiben, Abstand halten, Hilfe holen", "Sich selbst in Sicherheit bringen"], no: ["Allein in eine eskalierende Situation gehen", "Freiheitsbeschränkende Massnahmen"] },
+      FaGe: { do: ["Deeskalierend kommunizieren", "Auslöser beobachten und dokumentieren", "Im Team nach vereinbartem Vorgehen handeln"], no: ["Über Zwangsmassnahmen entscheiden"] },
+      HF: { do: ["Situation einschätzen und das Vorgehen im Team leiten", "Präventive Massnahmen planen, Auslöser reduzieren", "Nachbesprechung leiten, Vorfälle melden"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Ein Patient wird laut und ballt die Fäuste. Was tust du zuerst?", ["Näher gehen und ihn berühren", "Abstand halten, ruhig sprechen, Hilfe holen", "Zurückschreien"], 1, "Sicherheit zuerst."],
+        ["Wo stehst du in einer angespannten Situation?", ["Zwischen Person und Tür blockierend", "Seitlich, mit freiem Fluchtweg", "Ganz nah"], 1, "Fluchtweg für beide frei."],
+        ["Wie sprichst du?", ["Schnell und laut", "Ruhig, langsam, tiefe Stimme", "Gar nicht"], 1, "Wirkt beruhigend."],
+        ["Darfst du allein bleiben, wenn Gefahr droht?", ["Ja", "Nein, früh Hilfe holen", "Wenn du stark bist"], 1, "Nie allein."],
+        ["Warum kann eine Person aggressiv werden?", ["Weil sie böse ist", "Angst, Schmerz, Überforderung oder Hirnverletzung", "Ohne Grund"], 1, "Ursachen verstehen."]
+      ],
+      FaGe: [
+        ["Welche Aussage wirkt deeskalierend?", ["«Beruhigen Sie sich sofort!»", "«Ich sehe, dass Sie wütend sind. Was ist passiert?»", "«Sonst rufe ich die Polizei.»"], 1, "Gefühle benennen statt drohen."],
+        ["Was hältst du nicht in der Hand?", ["Nichts", "Scheren oder Kugelschreiber", "Ein Taschentuch"], 1, "Kann als Waffe dienen."],
+        ["Was dokumentierst du nach einem Vorfall?", ["Nichts", "Situation, Auslöser, Verhalten, Massnahmen, beschreibend", "«Patient aggressiv»"], 1, "Beschreibend und konkret."],
+        ["Warum Wahlmöglichkeiten anbieten?", ["Zeitgewinn", "Gibt Kontrolle zurück und senkt Spannung", "Gar nicht"], 1, "Kontrollverlust ist oft Auslöser."],
+        ["Ein Patient nach SHT reagiert schnell gereizt. Was hilft vorbeugend?", ["Viele Reize", "Reizarme Umgebung, klare Struktur, Pausen", "Häufige Zimmerwechsel"], 1, "Überforderung vermeiden."]
+      ],
+      HF: [
+        ["Was gehört nach einem aggressiven Vorfall dazu?", ["Nichts", "Nachbesprechung, Meldung, Unterstützung für Betroffene, Massnahmen anpassen", "Nur Meldung"], 1, "Lernen und Schützen."],
+        ["Welches Deeskalationstraining ist in der Schweiz verbreitet?", ["ProDeMa", "Kinästhetik", "Bobath"], 0, "Professionelles Deeskalationsmanagement."],
+        ["Wie planst du präventiv bei wiederholter Aggression?", ["Gar nicht", "Auslöser analysieren, Tagesstruktur und Kommunikation anpassen, Team einheitlich", "Nur Medikamente"], 1, "Ursachenorientiert."],
+        ["Wann ist eine Zwangsmassnahme zulässig?", ["Bei jeder Unruhe", "Nur als letztes Mittel nach gesetzlichem und betrieblichem Verfahren, dokumentiert", "Nie"], 1, "Verhältnismässigkeit."],
+        ["Wie unterstützt du eine Lernende nach einem Übergriff?", ["Es gehört zum Beruf", "Gespräch anbieten, ernst nehmen, Unterstützung organisieren, melden", "Ignorieren"], 1, "Fürsorgepflicht."]
+      ]
+    },
+    transfer: "Frage nach, welches Vorgehen dein Betrieb bei Aggression vorsieht: Alarmierung, Ansprechpersonen, Meldung. Wo findest du diese Informationen?",
+    src: "ProDeMa; Walter G., Nau J., Oud N.: Aggression und Aggressionsmanagement"
+  },
+  {
+    id: "transkulturell", topic: "Kommunikation", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Transkulturelle Pflege",
+    teaser: "Jeder Mensch ist individuell. Stereotype vermeiden, offen fragen und professionell dolmetschen lassen.",
+    lead: "In der Schweiz pflegen und werden Menschen aus vielen Ländern, Sprachen und Lebenswelten gepflegt. Transkulturelle Pflege heisst nicht, Listen über «Kulturen» auswendig zu lernen, sondern jedem Menschen offen und neugierig zu begegnen und die eigene Prägung zu reflektieren.",
+    theory: [
+      { h: "Kultur ist individuell",
+        p: ["Kultur ist kein fester Rucksack, den alle Menschen aus einem Land gleich tragen. Sie verändert sich und mischt sich mit Bildung, Alter, Religion, Migrationsgeschichte und persönlichen Erfahrungen. Wer Menschen auf ihre Herkunft reduziert, riskiert Stereotype. Man spricht dann von Kulturalisierung."] },
+      { h: "Transkulturelle Kompetenz",
+        p: ["Die Schweizer Pflegewissenschaftlerin Dagmar Domenig beschreibt transkulturelle Kompetenz mit drei Säulen:"],
+        list: ["Selbstreflexion: Welche Werte und Vorurteile bringe ich mit?", "Hintergrundwissen und Erfahrung: z. B. zu Migration, Gesundheitssystemen, Religion", "Narrative Empathie: Sich für die Geschichte und Sichtweise der Person interessieren"] },
+      { h: "Offen fragen statt annehmen",
+        list: ["«Was ist Ihnen bei der Pflege wichtig?»", "«Gibt es Gewohnheiten beim Essen, Beten oder bei der Körperpflege, die wir beachten sollen?»", "«Möchten Sie lieber von einer Frau oder einem Mann gepflegt werden?»", "«Wie erklären Sie sich Ihre Krankheit?»"] },
+      { h: "Dolmetschen",
+        p: ["Bei wichtigen Gesprächen, etwa zu Diagnose, Einwilligung oder Austritt, braucht es professionelle interkulturelle Dolmetschende, vor Ort oder per Telefon. Kinder oder Angehörige sollten nicht für medizinische Inhalte dolmetschen: Sie sind emotional beteiligt, übersetzen oft ungenau, und Kinder werden belastet."] }
+    ],
+    points: ["Kultur ist individuell und veränderlich", "Stereotype und Kulturalisierung vermeiden", "Selbstreflexion, Wissen, narrative Empathie", "Offen fragen statt annehmen", "Professionelle Dolmetschende für wichtige Gespräche"],
+    merke: "Die wichtigste transkulturelle Frage ist einfach: «Was ist Ihnen wichtig?»",
+    facts: ["In der Schweiz gibt es einen nationalen Telefondolmetschdienst, der rund um die Uhr in vielen Sprachen erreichbar ist.", "Auch Pflegende haben eine Kultur: Pünktlichkeit, Nähe und Distanz oder Schmerzäusserung sind kulturell geprägt.", "Gesundheitskompetenz hängt stark von Sprache ab. Wer Informationen nicht versteht, kann nicht mitentscheiden."],
+    comp: {
+      AGS: { do: ["Offen und respektvoll fragen, was der Person wichtig ist", "Wünsche, z. B. zur Pflege durch Frau oder Mann, weitergeben", "Eigene Vorurteile wahrnehmen"], no: ["Für medizinische Inhalte selbst dolmetschen oder Angehörige dolmetschen lassen"] },
+      FaGe: { do: ["Individuelle Bedürfnisse in die Pflege einbeziehen", "Bedarf an Dolmetschenden erkennen und melden", "Kommunikationshilfen nutzen"], no: ["Wichtige Gespräche ohne gesicherte Verständigung führen"] },
+      HF: { do: ["Professionelle Dolmetschende organisieren", "Transkulturelle Aspekte in der Pflegeplanung berücksichtigen", "Team zur Selbstreflexion anregen"], no: ["Als Studierende HF: unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Patientin aus der Türkei ist neu bei euch. Was tust du?", ["Annehmen, dass sie kein Schweinefleisch isst", "Sie fragen, was ihr beim Essen wichtig ist", "Nichts beachten"], 1, "Fragen statt annehmen."],
+        ["Was ist Kulturalisierung?", ["Ein Museum besuchen", "Einen Menschen auf seine Herkunft reduzieren", "Eine Sprache lernen"], 1, "Führt zu Stereotypen."],
+        ["Ein Patient wünscht sich Pflege durch einen Mann. Was tust du?", ["Ignorieren", "Den Wunsch an die Fachperson weitergeben", "Lachen"], 1, "Wünsche ernst nehmen und weiterleiten."],
+        ["Die Tochter will für ihre Mutter das Arztgespräch übersetzen. Ist das ideal?", ["Ja", "Nein, besser professionelle Dolmetschende", "Egal"], 1, "Angehörige sind emotional beteiligt."],
+        ["Haben auch Pflegende eine Kultur?", ["Nein", "Ja, z. B. bei Nähe, Pünktlichkeit oder Schmerzäusserung", "Nur ausländische Pflegende"], 1, "Selbstreflexion gehört dazu."]
+      ],
+      FaGe: [
+        ["Welche Frage ist offen und respektvoll?", ["«Bei Ihnen macht man das doch so, oder?»", "«Was ist Ihnen bei der Körperpflege wichtig?»", "«Sie verstehen sicher nichts.»"], 1, "Offen und individuell."],
+        ["Eine Person versteht deine Erklärungen zur Medikation nicht. Was tust du?", ["Lauter sprechen", "Bedarf an Dolmetschenden melden, Hilfsmittel nutzen", "Weitermachen"], 1, "Sicherheit braucht Verständigung."],
+        ["Was gehört zu narrativer Empathie?", ["Sich für die Geschichte der Person interessieren", "Mitleid zeigen", "Eigene Geschichten erzählen"], 0, "Zuhören und verstehen."],
+        ["Darf ein 12-jähriges Kind für medizinische Informationen dolmetschen?", ["Ja", "Nein, das belastet das Kind und ist ungenau", "Wenn es gut Deutsch kann"], 1, "Professionelle Lösung suchen."],
+        ["Eine Patientin äussert Schmerzen sehr expressiv. Wie reagierst du?", ["Sie übertreibt", "Ernst nehmen und systematisch erfassen", "Ignorieren"], 1, "Schmerzausdruck ist kulturell geprägt, Schmerz ist real."]
+      ],
+      HF: [
+        ["Welche drei Säulen beschreibt Domenig?", ["Wissen, Macht, Kontrolle", "Selbstreflexion, Hintergrundwissen und Erfahrung, narrative Empathie", "Sprache, Religion, Essen"], 1, "Transkulturelle Kompetenz."],
+        ["Für ein Austrittsgespräch fehlt die gemeinsame Sprache. Was organisierst du?", ["Nichts", "Professionelle interkulturelle Dolmetschende, vor Ort oder per Telefon", "Den Nachbarn"], 1, "Für Einwilligung und Verständnis zentral."],
+        ["Was ist das Risiko von «Kultur-Checklisten»?", ["Keines", "Stereotype und Übersehen der individuellen Person", "Zu viel Wissen"], 1, "Individuum vor Gruppe."],
+        ["Wie förderst du Selbstreflexion im Team?", ["Gar nicht", "Fallbesprechungen zu eigenen Werten und Vorannahmen", "Mit Schulungen über Länder allein"], 1, "Eigene Prägung bewusst machen."],
+        ["Warum ist Gesundheitskompetenz in der Transkulturellen Pflege wichtig?", ["Ist sie nicht", "Wer nicht versteht, kann nicht mitentscheiden", "Nur für Ärzte"], 1, "Verständliche Information ist Chancengleichheit."]
+      ]
+    },
+    transfer: "Frage heute eine Person bewusst: «Was ist Ihnen bei der Pflege wichtig?» Notiere, was du dabei Neues erfährst.",
+    src: "Domenig D.: Transkulturelle Kompetenz; INTERPRET Schweiz; BAG, Chancengleichheit in der Gesundheitsversorgung"
+  },
+  {
+    id: "lernen", topic: "Berufsrolle", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Lernen in der Praxis",
+    teaser: "Drei Lernorte, Lernziele, Reflexion und wie du Lernbegleitungen und Fehler für dich nutzt.",
+    lead: "In der Pflegeausbildung lernst du an mehreren Orten. Die Praxis ist dabei kein Ort, an dem du einfach mitarbeitest, sondern ein Lernort. Wer aktiv fragt, reflektiert und Ziele setzt, lernt schneller und sicherer.",
+    theory: [
+      { h: "Die Lernorte",
+        table: { head: ["Ausbildung", "Lernorte"], rows: [
+          ["AGS EBA und FaGe EFZ", "Lehrbetrieb, Berufsfachschule und überbetriebliche Kurse (üK)"],
+          ["Pflege HF", "Höhere Fachschule, Praxis in Praktika und Lernbereich Training und Transfer (LTT)"] ] },
+        after: "Die Lernorte arbeiten zusammen. Was du in der Schule lernst, übst du in der Praxis, und Fragen aus der Praxis nimmst du in die Schule mit." },
+      { h: "Lernziele und Lernbegleitung",
+        list: ["Setze dir konkrete Ziele für Woche oder Einsatz, z. B. «Ich führe bis Ende Monat selbständig einen Transfer mit Drehscheibe durch»", "Bespreche Ziele mit deiner Berufsbildnerin oder deinem Berufsbildner", "Nutze Lernbegleitungen aktiv: Bereite Fragen vor", "Hole Feedback ein und dokumentiere deinen Fortschritt, z. B. im Lernjournal"] },
+      { h: "Reflexion",
+        p: ["Reflexion heisst, eine Situation bewusst nachzudenken: Was ist passiert? Was habe ich gedacht und gefühlt? Was lief gut, was nicht? Was mache ich beim nächsten Mal anders? Ein einfaches Modell dafür ist der Reflexionskreis nach Gibbs."] },
+      { h: "Fehler als Lernchance",
+        p: ["Fehler passieren allen, auch erfahrenen Fachpersonen. Wichtig ist, sie sofort zu melden, damit Schaden verhindert wird, und daraus zu lernen. Eine gute Fehlerkultur fragt nicht «Wer war es?», sondern «Wie konnte es passieren und wie verhindern wir es?»"] }
+    ],
+    points: ["Praxis ist ein Lernort", "Konkrete Lernziele setzen und besprechen", "Lernbegleitungen vorbereiten, Feedback einholen", "Reflektieren: Was, warum, was nächstes Mal?", "Fehler sofort melden und daraus lernen"],
+    merke: "Es gibt keine dummen Fragen. Gefährlich ist nur, was du nicht fragst.",
+    facts: ["Der Reflexionskreis von Graham Gibbs stammt aus dem Jahr 1988 und hat sechs Schritte: Beschreibung, Gefühle, Bewertung, Analyse, Schlussfolgerung, Aktionsplan.", "Lernende, die ihre Lernziele schriftlich festhalten, erreichen sie häufiger.", "Auch in der Luftfahrt gilt: Gemeldete Fehler machen das System sicherer."],
+    comp: {
+      AGS: { do: ["Eigenes Verhalten beschreiben und daraus Folgerungen ziehen", "Prüfen, ob die eigenen Ressourcen für einen Auftrag reichen, sonst Hilfe holen", "Rollen im Team kennen"], no: ["Aufträge ausführen, für die du nicht ausgebildet bist"] },
+      FaGe: { do: ["Lernziele selbst formulieren und verfolgen", "Lernsituationen und Praxisaufträge reflektieren", "Wissen aus Schule und üK in die Praxis übertragen"], no: ["Verrichtungen ausführen, bei denen du unsicher bist: Du darfst und sollst ablehnen"] },
+      HF: { do: ["Lernprozess selbständig steuern", "Praxis wissenschaftlich begründet reflektieren", "Zunehmend Verantwortung übernehmen und andere Lernende anleiten"], no: ["Verantwortung ohne Absprache übernehmen, die deinem Ausbildungsstand nicht entspricht"] }
+    },
+    quiz: {
+      AGS: [
+        ["Du sollst eine Aufgabe übernehmen, die du noch nie gemacht hast. Was tust du?", ["Einfach machen", "Sagen, dass du es noch nicht kannst, und Hilfe holen", "Heimlich im Internet schauen"], 1, "Ressourcen prüfen und Hilfe holen gehört zu deiner Kompetenz."],
+        ["Was ist ein Lernort?", ["Nur die Schule", "Lehrbetrieb, Berufsfachschule und üK", "Nur das Internet"], 1, "Drei Lernorte."],
+        ["Dir ist ein Fehler passiert. Was tust du?", ["Verschweigen", "Sofort melden", "Abwarten, ob es jemand merkt"], 1, "So wird Schaden verhindert."],
+        ["Wie bereitest du eine Lernbegleitung vor?", ["Gar nicht", "Fragen und Situationen notieren", "Nur zuhören"], 1, "Aktiv lernen."],
+        ["Was heisst reflektieren?", ["Spiegel putzen", "Über eine Situation nachdenken und daraus lernen", "Kritisieren"], 1, "Was lief gut, was nächstes Mal anders?"]
+      ],
+      FaGe: [
+        ["Welches Lernziel ist konkret?", ["«Ich will besser werden.»", "«Ich führe bis Ende Monat eine s.c. Injektion selbständig nach Standard durch.»", "«Mehr lernen.»"], 1, "Konkret und überprüfbar."],
+        ["Was sind die Schritte nach Gibbs?", ["Beschreibung, Gefühle, Bewertung, Analyse, Schlussfolgerung, Aktionsplan", "Lesen, Schreiben, Rechnen", "Planen, Tun, Vergessen"], 0, "Sechs Schritte."],
+        ["Wozu dient ein Lernjournal?", ["Für Noten", "Lernfortschritt und Reflexion festhalten", "Für Patientendaten"], 1, "Ohne Patientennamen führen."],
+        ["Was fragt eine gute Fehlerkultur?", ["Wer war es?", "Wie konnte es passieren und wie verhindern wir es?", "Gar nichts"], 1, "Systemisch lernen."],
+        ["Du bist bei einer Verrichtung unsicher. Was ist richtig?", ["Trotzdem machen", "Ablehnen oder Begleitung verlangen", "Delegieren an AGS"], 1, "Sicherheit vor Tempo."]
+      ],
+      HF: [
+        ["Was ist der LTT?", ["Ein Test", "Lernbereich Training und Transfer", "Ein Lehrbuch"], 1, "Brücke zwischen Schule und Praxis."],
+        ["Wie begründest du dein Handeln in der Reflexion?", ["Mit Gewohnheit", "Mit Fachwissen, Evidenz und Situation der Person", "Mit Meinung"], 1, "Wissenschaftlich begründet."],
+        ["Eine FaGe-Lernende fragt dich etwas, das du nicht weisst. Was tust du?", ["Raten", "Ehrlich sagen und gemeinsam nachschauen", "Ausweichen"], 1, "Vorbild für Lernkultur."],
+        ["Was tust du nach einem Medikationsfehler?", ["Verschweigen", "Sofort melden, Person schützen, im System nach Ursachen suchen, z. B. CIRS", "Allein korrigieren"], 1, "Meldesysteme machen sicherer."],
+        ["Wie übernimmst du zunehmend Verantwortung?", ["Sofort alles allein", "Schrittweise nach Ausbildungsstand und in Absprache", "Gar nicht"], 1, "Begleitete Entwicklung."]
+      ]
+    },
+    transfer: "Formuliere heute ein konkretes Lernziel für diese Woche und besprich es mit deiner Berufsbildnerin oder deinem Berufsbildner.",
+    src: "Bildungspläne AGS EBA und FaGe EFZ (OdASanté); Rahmenlehrplan Pflege HF; Gibbs G.: Learning by Doing (1988)"
+  },
+  {
+    id: "dokumentation", topic: "Berufsrolle", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Pflegedokumentation",
+    teaser: "Warum dokumentieren, und wie schreibe ich beschreibend statt wertend, präzise und rechtlich sicher?",
+    lead: "Die Pflegedokumentation ist das Gedächtnis des Teams. Sie sichert die Kontinuität zwischen den Diensten, macht Pflege nachvollziehbar und ist ein rechtliches Dokument.",
+    theory: [
+      { h: "Wozu dokumentieren?",
+        list: ["Informationsweitergabe zwischen Diensten und Berufsgruppen", "Nachweis der erbrachten Pflege, auch rechtlich", "Grundlage für Pflegeplanung und Evaluation", "Qualitätssicherung und Leistungserfassung"] },
+      { h: "Beschreiben statt bewerten",
+        table: { head: ["Wertend", "Beschreibend"], rows: [
+          ["«Patient ist aggressiv.»", "«Patient schreit beim Waschen ‹Lassen Sie mich in Ruhe›, schlägt mit der rechten Hand in Richtung Pflegeperson.»"],
+          ["«Hat gut gegessen.»", "«Hat das Mittagessen zu etwa drei Vierteln gegessen.»"],
+          ["«Ist schlecht drauf.»", "«Spricht wenig, antwortet kurz, sagt: ‹Ich mag heute nicht.›»"],
+          ["«Wunde sieht gut aus.»", "«Wunde trocken, Wundränder reizlos, keine Rötung.»"] ] } },
+      { h: "Grundsätze",
+        list: ["Zeitnah, idealerweise direkt nach der Tätigkeit", "Objektiv, konkret, mit Zahlen und Zeiten", "Aussagen der Person wörtlich in Anführungszeichen", "Nur selbst Beobachtetes und Durchgeführtes dokumentieren", "Nur betrieblich erlaubte Abkürzungen", "Nichts löschen oder unleserlich machen: Korrekturen nachvollziehbar"] },
+      { h: "Rechtliche Bedeutung",
+        p: ["Im Streitfall gilt oft der Grundsatz: Was nicht dokumentiert ist, gilt als nicht gemacht. Die Dokumentation ist vertraulich und unterliegt dem Berufsgeheimnis und dem Datenschutz."] }
+    ],
+    points: ["Dokumentation ist das Gedächtnis des Teams", "Beschreibend statt wertend", "Zeitnah, konkret, mit Zahlen", "Zitate in Anführungszeichen", "Was nicht dokumentiert ist, gilt als nicht gemacht"],
+    merke: "Schreibe so, dass eine Kollegin, die die Person nie gesehen hat, genau versteht, was passiert ist.",
+    facts: ["Wertende Begriffe wie «unkooperativ» begleiten eine Person oft durch alle Dienste und prägen das Bild, das andere sich machen.", "In der elektronischen Dokumentation ist jede Änderung mit Benutzerkennung und Zeit nachvollziehbar.", "Gute Dokumentation spart Zeit beim Rapport."],
+    comp: {
+      AGS: { do: ["Eigene Beobachtungen und durchgeführte Tätigkeiten nach Betriebsregel dokumentieren oder weitergeben", "Beschreibend formulieren", "Werte wie Gewicht und Vitalzeichen korrekt eintragen"], no: ["Pflegeplanung ändern", "Für andere dokumentieren"] },
+      FaGe: { do: ["Pflegehandlungen und Beobachtungen im Verlaufsbericht dokumentieren", "Medizinaltechnische Verrichtungen und Medikamentengaben dokumentieren", "Bilanzen und Assessments erfassen"], no: ["Pflegediagnosen festlegen"] },
+      HF: { do: ["Pflegeprozess vollständig dokumentieren, inklusive Planung und Evaluation", "Dokumentationsqualität im Team fördern", "Rechtlich relevante Ereignisse sorgfältig festhalten"], no: ["Als Studierende HF: Einträge nach Betriebsregel gegenlesen lassen"] }
+    },
+    quiz: {
+      AGS: [
+        ["Welcher Eintrag ist beschreibend?", ["«Frau B. war schwierig.»", "«Frau B. lehnte das Duschen zweimal ab und sagte: ‹Mir ist kalt.›»", "«Frau B. ist mühsam.»"], 1, "Konkret und mit Zitat."],
+        ["Wann dokumentierst du?", ["Am Ende der Woche", "Zeitnah nach der Tätigkeit", "Gar nicht"], 1, "Sonst gehen Details verloren."],
+        ["Darfst du für eine Kollegin dokumentieren, was sie gemacht hat?", ["Ja", "Nein, nur selbst Durchgeführtes", "Wenn sie es sagt"], 1, "Jede Person dokumentiert ihre eigene Arbeit."],
+        ["Wie notierst du das Essen?", ["«Gut gegessen»", "«Etwa die Hälfte des Mittagessens gegessen»", "«Hat Hunger»"], 1, "Mengen angeben."],
+        ["Was gilt, wenn etwas nicht dokumentiert ist?", ["Es gilt als gemacht", "Es gilt oft als nicht gemacht", "Egal"], 1, "Dokumentation ist ein rechtliches Dokument."]
+      ],
+      FaGe: [
+        ["Wie dokumentierst du eine Aussage der Person?", ["Sinngemäss", "Wörtlich in Anführungszeichen", "Gar nicht"], 1, "So bleibt sie unverfälscht."],
+        ["Welcher Wundeintrag ist präzise?", ["«Wunde gut»", "«Wunde 2 × 3 cm, Wundrand reizlos, wenig seröses Exsudat»", "«Wunde ok»"], 1, "Messbar und beschreibend."],
+        ["Du hast einen Fehler im elektronischen Eintrag. Was tust du?", ["Löschen ohne Spur", "Nach Betriebsregel nachvollziehbar korrigieren", "Ignorieren"], 1, "Nachvollziehbarkeit."],
+        ["Welche Abkürzungen darfst du verwenden?", ["Alle, die du kennst", "Nur betrieblich festgelegte", "Eigene"], 1, "Sonst entstehen Missverständnisse."],
+        ["Wann dokumentierst du eine Medikamentengabe?", ["Vorher", "Direkt nach der Gabe", "Am Dienstende"], 1, "Nie im Voraus."]
+      ],
+      HF: [
+        ["Warum sind wertende Begriffe wie «unkooperativ» problematisch?", ["Sie sind zu lang", "Sie prägen das Bild der Person und sind nicht überprüfbar", "Sie sind korrekt"], 1, "Beschreibung statt Etikett."],
+        ["Was gehört zur vollständigen Prozessdokumentation?", ["Nur der Verlaufsbericht", "Assessment, Diagnosen, Ziele, Massnahmen, Evaluation", "Nur Vitalzeichen"], 1, "Der ganze Pflegeprozess."],
+        ["Nach einem Sturz: Was dokumentierst du?", ["«Gestürzt»", "Zeitpunkt, Umstände, Befunde, Massnahmen, Information an Ärzteschaft und Angehörige", "Nichts"], 1, "Rechtlich relevant und vollständig."],
+        ["Wie förderst du Dokumentationsqualität?", ["Gar nicht", "Feedback, Beispiele, gemeinsame Standards", "Nur Kontrolle"], 1, "Lernen im Team."],
+        ["Welchem Schutz unterliegt die Dokumentation?", ["Keinem", "Berufsgeheimnis und Datenschutz", "Nur Urheberrecht"], 1, "Gesundheitsdaten sind besonders schützenswert."]
+      ]
+    },
+    transfer: "Lies deine letzten drei Einträge. Findest du wertende Begriffe? Formuliere einen davon beschreibend um.",
+    src: "Thiemes Pflege; SBK, Ethik und Recht in der Pflege; Bundesgesetz über den Datenschutz (DSG)"
+  },
+  {
+    id: "datenschutz", topic: "Berufsrolle", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Berufsgeheimnis und Datenschutz",
+    teaser: "Was du wem sagen darfst, warum Gesundheitsdaten besonders geschützt sind und typische Fallen im Alltag.",
+    lead: "Wer im Gesundheitswesen arbeitet, erfährt sehr persönliche Dinge. Patientinnen und Patienten vertrauen darauf, dass diese Informationen geschützt bleiben. Das Berufsgeheimnis gilt auch für Lernende und Studierende.",
+    theory: [
+      { h: "Rechtliche Grundlagen",
+        p: ["Das Strafgesetzbuch (Art. 321 StGB) schützt das Berufsgeheimnis. Es gilt für Gesundheitsfachpersonen, ihre Hilfspersonen und ausdrücklich auch für Studierende. Wer ein Geheimnis unbefugt weitergibt, kann bestraft werden.",
+            "Das Datenschutzgesetz (DSG) bezeichnet Gesundheitsdaten als besonders schützenswerte Personendaten. Für sie gelten strenge Regeln."] },
+      { h: "Was ist erlaubt?",
+        list: ["Informationen im Behandlungsteam, soweit sie für die Behandlung nötig sind", "Weitergabe mit Einwilligung der Person", "Weitergabe bei gesetzlicher Pflicht oder Entbindung durch die Aufsichtsbehörde"] },
+      { h: "Typische Fallen im Alltag",
+        list: ["Gespräche über Patientinnen und Patienten im Lift, in der Kantine, im Zug", "Fotos oder Posts in sozialen Medien, auch ohne Namen", "Bildschirm nicht gesperrt, Akten offen liegen gelassen", "Telefonauskünfte an Unbekannte", "Dossiers von Personen anschauen, die man nicht betreut, z. B. Bekannte", "Patientennamen in Lernjournal, Praxisauftrag oder Chat mit Kolleginnen"] },
+      { h: "Auch nach der Arbeit",
+        p: ["Das Berufsgeheimnis gilt zeitlich unbeschränkt, auch nach Ende der Ausbildung oder Anstellung. Für Lernaufträge werden Daten anonymisiert: keine Namen, keine Geburtsdaten, keine Details, die eine Person erkennbar machen."] }
+    ],
+    points: ["Berufsgeheimnis gilt auch für Lernende und Studierende", "Gesundheitsdaten sind besonders schützenswert", "Weitergabe nur im Team nach Bedarf, mit Einwilligung oder gesetzlicher Grundlage", "Keine Gespräche in der Öffentlichkeit, keine Fotos, Bildschirm sperren", "Lernaufträge anonymisieren"],
+    merke: "Frage dich vor jeder Weitergabe: Braucht diese Person diese Information für die Behandlung?",
+    facts: ["Elektronische Dossiers protokollieren jeden Zugriff. Wer ohne Grund ins Dossier einer bekannten Person schaut, kann ermittelt werden.", "Auch ein Foto vom Stationszimmer kann Patientendaten zeigen, zum Beispiel auf einem Bildschirm im Hintergrund.", "Seit September 2023 gilt in der Schweiz das revidierte Datenschutzgesetz."],
+    comp: {
+      AGS: { do: ["Schweigepflicht einhalten, auch nach der Arbeit", "Telefonanfragen an die Fachperson weiterleiten", "Keine Fotos oder Posts"], no: ["Auskünfte an Angehörige oder Dritte zu Gesundheitsdaten"] },
+      FaGe: { do: ["Daten nur im nötigen Umfang weitergeben", "Bildschirm sperren, Akten sichern", "Lernaufträge anonymisieren"], no: ["Dossiers ohne Behandlungsauftrag öffnen"] },
+      HF: { do: ["Informationsflüsse im Team datenschutzkonform gestalten", "Einwilligungen und Vertretungsrechte klären", "Bei Verstössen handeln und melden"], no: ["Weitergabe ohne Rechtsgrundlage, z. B. an Arbeitgeber oder Versicherungen ohne Einwilligung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Gilt das Berufsgeheimnis auch für dich als Lernende?", ["Nein", "Ja", "Nur nach dem Abschluss"], 1, "Auch für Lernende und Hilfspersonen."],
+        ["Im Bus erzählst du einer Kollegin von einem Patienten, ohne Namen. Ist das in Ordnung?", ["Ja, ohne Namen", "Nein, Personen können trotzdem erkennbar sein und andere hören mit", "Nur leise"], 1, "Keine Patientengespräche in der Öffentlichkeit."],
+        ["Darfst du ein lustiges Foto vom Stationsalltag posten, auf dem im Hintergrund ein Bildschirm zu sehen ist?", ["Ja", "Nein", "Nur in Stories"], 1, "Patientendaten können sichtbar sein."],
+        ["Eine Nachbarin fragt dich, ob Herr M. bei euch liegt. Was sagst du?", ["Ja", "Darüber darf ich keine Auskunft geben", "Er liegt im Zimmer 12"], 1, "Schon der Aufenthalt ist geschützt."],
+        ["Wie lange gilt das Berufsgeheimnis?", ["Bis Dienstende", "Bis zum Lehrabschluss", "Zeitlich unbeschränkt"], 2, "Auch nach der Ausbildung."]
+      ],
+      FaGe: [
+        ["Darfst du das Dossier deiner Tante öffnen, die auf einer anderen Station liegt?", ["Ja, aus Sorge", "Nein, nur Dossiers mit Behandlungsauftrag", "Nur lesen"], 1, "Zugriffe werden protokolliert."],
+        ["Was gehört in dein Lernjournal?", ["Name und Diagnose", "Anonymisierte Beschreibung ohne erkennbare Angaben", "Foto der Wunde"], 1, "Anonymisieren."],
+        ["Was bezeichnet das DSG als besonders schützenswert?", ["Lieblingsessen", "Gesundheitsdaten", "Wetter"], 1, "Strenge Regeln."],
+        ["Du verlässt kurz den Computer im Stationszimmer. Was tust du?", ["Offen lassen", "Bildschirm sperren", "Ausschalten"], 1, "Schützt vor unbefugtem Einblick."],
+        ["Im Team-Chat auf dem privaten Handy werden Patientennamen ausgetauscht. Was ist richtig?", ["Praktisch", "Nicht erlaubt, nur betriebliche, sichere Kanäle", "Mit Emojis ok"], 1, "Private Chats sind nicht datenschutzkonform."]
+      ],
+      HF: [
+        ["Welches Gesetz schützt das Berufsgeheimnis?", ["Art. 321 Strafgesetzbuch", "Strassenverkehrsgesetz", "Arbeitsgesetz"], 0, "Gilt auch für Studierende."],
+        ["Der Arbeitgeber eines Patienten ruft an und fragt nach der Diagnose. Was tust du?", ["Auskunft geben", "Keine Auskunft ohne Einwilligung der Person", "Nur die Prognose"], 1, "Arbeitgeber haben kein Auskunftsrecht."],
+        ["Wann ist eine Weitergabe ohne Einwilligung erlaubt?", ["Nie", "Bei gesetzlicher Pflicht oder Entbindung durch die Aufsichtsbehörde", "Wenn es dringend scheint"], 1, "Klare Rechtsgrundlage nötig."],
+        ["Du merkst, dass eine Kollegin Dossiers ohne Grund öffnet. Was tust du?", ["Nichts", "Ansprechen und nach Betriebsregel melden", "Mitmachen"], 1, "Verstoss gegen Berufsgeheimnis."],
+        ["Was gilt bei einer urteilsunfähigen Person für Auskünfte an Angehörige?", ["Allen Angehörigen alles", "Die vertretungsberechtigte Person erhält die nötigen Informationen", "Niemandem"], 1, "Nach Erwachsenenschutzrecht."]
+      ]
+    },
+    transfer: "Prüfe dein Handy: Gibt es Fotos oder Chats mit Patientendaten? Lösche sie und sprich im Team über sichere Kanäle.",
+    src: "Schweizerisches Strafgesetzbuch Art. 321; Bundesgesetz über den Datenschutz (DSG, 2023); SBK, Ethik und Recht"
+  },
+  {
+    id: "resilienz", topic: "Berufsrolle", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Selbstpflege und Resilienz",
+    teaser: "Belastung erkennen, Grenzen setzen und Unterstützung holen. Gesund bleiben in der Ausbildung.",
+    lead: "Pflege ist sinnvoll und schön, aber auch körperlich und emotional fordernd. Schichtarbeit, schwierige Situationen und Lernen gleichzeitig kosten Kraft. Wer gut für sich sorgt, kann auch gut für andere sorgen.",
+    theory: [
+      { h: "Was ist Resilienz?",
+        p: ["Resilienz ist die Fähigkeit, mit Belastungen umzugehen und sich nach schwierigen Situationen wieder zu erholen. Sie ist nicht angeboren und fertig, sondern lässt sich stärken, zum Beispiel durch gute Beziehungen, Selbstwirksamkeit und gesunde Gewohnheiten."] },
+      { h: "Warnzeichen für Überlastung",
+        list: ["Dauernde Müdigkeit, schlechter Schlaf", "Gereiztheit, Rückzug, weniger Freude", "Kopfschmerzen, Magenprobleme, häufige Infekte", "Konzentrationsprobleme, mehr Fehler", "Gedanken an die Arbeit lassen nicht los"] },
+      { h: "Was hilft",
+        list: ["Pausen wirklich machen, trinken und essen", "Schlaf schützen, besonders nach Nachtdiensten", "Bewegung und Ausgleich in der Freizeit", "Mit Vertrauenspersonen reden", "Grenzen setzen und Nein sagen lernen", "Belastende Situationen nachbesprechen", "Früh Hilfe holen bei Berufsbildner, Lehrperson oder Beratungsstelle"] },
+      { h: "Nach belastenden Ereignissen",
+        p: ["Ein Todesfall, ein Notfall, ein eigener Fehler oder ein aggressiver Vorfall können lange nachwirken. Das ist eine normale Reaktion. Wer nach einem Fehler stark leidet, wird manchmal als «Second Victim» bezeichnet. Sprich darüber und nimm Nachbesprechungen und Unterstützungsangebote an. In einer akuten Krise erreichst du die Dargebotene Hand rund um die Uhr unter der Nummer 143."] }
+    ],
+    points: ["Resilienz lässt sich stärken", "Warnzeichen: Müdigkeit, Rückzug, Gereiztheit, Fehler", "Pausen, Schlaf, Bewegung, Austausch", "Grenzen setzen, Nein sagen", "Früh Hilfe holen, belastende Situationen besprechen"],
+    merke: "Um Hilfe zu bitten ist kein Zeichen von Schwäche, sondern von Professionalität.",
+    facts: ["Mitgefühlserschöpfung (Compassion Fatigue) entsteht, wenn man lange viel Mitgefühl gibt, ohne selbst aufzutanken.", "Schon kurze, echte Pausen ohne Handy senken nachweislich das Stresserleben.", "Die Dargebotene Hand ist in der Schweiz unter 143 rund um die Uhr erreichbar, anonym und kostenlos."],
+    comp: {
+      AGS: { do: ["Eigene Grenzen wahrnehmen und Hilfe holen", "Pausen einhalten", "Belastende Erlebnisse ansprechen"], no: ["Aufträge übernehmen, die dich überfordern, ohne es zu sagen"] },
+      FaGe: { do: ["Belastung früh erkennen und ansprechen", "Nachbesprechungen nutzen", "Mitlernende unterstützen"], no: ["Dauerhaft Zusatzschichten übernehmen, ohne auf Erholung zu achten"] },
+      HF: { do: ["Eigene Gesundheit bewusst pflegen", "Belastung im Team wahrnehmen und ansprechen", "Nachbesprechungen anregen, Lernende begleiten"], no: ["Belastungszeichen bei Lernenden übersehen oder bagatellisieren"] }
+    },
+    quiz: {
+      AGS: [
+        ["Du fühlst dich seit Wochen erschöpft und schläfst schlecht. Was tust du?", ["Durchbeissen", "Mit deiner Berufsbildnerin oder einer Vertrauensperson sprechen", "Nichts sagen"], 1, "Früh Hilfe holen."],
+        ["Was ist eine echte Pause?", ["Am Handy Mails lesen", "Etwas essen, trinken, kurz abschalten", "Weiterarbeiten im Sitzen"], 1, "Erholung braucht Abschalten."],
+        ["Eine Patientin, die du betreut hast, ist gestorben. Du bist traurig. Ist das normal?", ["Nein, du bist zu empfindlich", "Ja, sprich darüber", "Nur bei Anfängern"], 1, "Gefühle gehören dazu."],
+        ["Du sollst eine Aufgabe übernehmen und fühlst dich überfordert. Was tust du?", ["Trotzdem machen", "Es sagen und Hilfe holen", "Krank melden"], 1, "Ehrlichkeit schützt alle."],
+        ["Welche Nummer erreicht die Dargebotene Hand?", ["117", "143", "144"], 1, "Rund um die Uhr, anonym."]
+      ],
+      FaGe: [
+        ["Welches ist ein Warnzeichen für Überlastung?", ["Mehr Freude", "Gereiztheit, Rückzug, mehr Fehler", "Guter Schlaf"], 1, "Ernst nehmen."],
+        ["Was ist Compassion Fatigue?", ["Müdigkeit nach Sport", "Erschöpfung durch lang anhaltendes Mitgefühl ohne Auftanken", "Langeweile"], 1, "Mitgefühlserschöpfung."],
+        ["Dir ist ein Fehler passiert und du kannst nicht mehr schlafen. Was hilft?", ["Verdrängen", "Darüber sprechen und Unterstützung annehmen", "Mehr arbeiten"], 1, "Second Victim braucht Unterstützung."],
+        ["Eine Mitlernende wirkt seit Tagen bedrückt. Was tust du?", ["Nichts", "Ansprechen und Unterstützung anbieten, ggf. Berufsbildner informieren", "Gerüchte verbreiten"], 1, "Achtsam im Team."],
+        ["Wie schützt du deinen Schlaf nach Nachtdienst?", ["Sofort Termine", "Dunkler, ruhiger Raum, Handy weg, feste Schlafzeit", "Kaffee trinken"], 1, "Erholung planen."]
+      ],
+      HF: [
+        ["Was ist Resilienz?", ["Eine Krankheit", "Fähigkeit, Belastungen zu bewältigen und sich zu erholen", "Ein Medikament"], 1, "Sie lässt sich stärken."],
+        ["Wie unterstützt du das Team nach einem belastenden Notfall?", ["Gar nicht", "Nachbesprechung anregen, Raum für Gefühle, Angebote zeigen", "Sofort weiter"], 1, "Debriefing hilft."],
+        ["Was bedeutet Second Victim?", ["Zweiter Patient", "Fachperson, die nach einem Fehler selbst stark leidet", "Ein Zeuge"], 1, "Braucht Unterstützung, nicht Schuld."],
+        ["Eine Lernende macht seit Wochen mehr Fehler und wirkt erschöpft. Was tust du?", ["Nur Fehler kritisieren", "Gespräch suchen, Belastung ansprechen, Unterstützung organisieren", "Ignorieren"], 1, "Fehler können ein Warnzeichen sein."],
+        ["Warum ist Selbstpflege eine professionelle Aufgabe?", ["Ist sie nicht", "Nur gesunde Fachpersonen können sicher und empathisch pflegen", "Wegen Freizeit"], 1, "Patientensicherheit beginnt bei dir."]
+      ]
+    },
+    transfer: "Überlege dir: Was gibt dir nach einem anstrengenden Dienst Kraft? Plane diese Woche bewusst eine Sache davon ein.",
+    src: "WHO, Burn-out; Dargebotene Hand Schweiz; Stiftung Patientensicherheit Schweiz, Second Victim"
   }
 ];
+/* Kompetenzen und Quiz pro Stufe für die bestehenden Nuggets. Frage: [Frage, [Optionen], Index richtig, Erklärung] */
+const OVERLAY = {
+  haendehygiene: {
+    comp: {
+      AGS: { do: ["Händedesinfektion nach den 5 Momenten bei jeder Unterstützung im Alltag und in der Körperpflege", "Voraussetzungen einhalten: kurze Nägel, kein Schmuck", "Flächen und Material nach Hygienerichtlinie desinfizieren"], no: ["Unsicherheit bei speziellen Erregern oder Isolation: bei der Fachperson nachfragen"] },
+      FaGe: { do: ["Händehygiene auch bei aseptischen Tätigkeiten wie Verbandwechsel, Injektion oder Blutentnahme", "AGS und Mitlernende in der korrekten Technik anleiten", "Massnahmen bei Clostridioides difficile kennen und umsetzen"], no: ["Festlegen von Isolationsmassnahmen: Das entscheidet die Fachperson HF mit der Spitalhygiene"] },
+      HF: { do: ["Händehygiene im Team beobachten und Lücken wertschätzend ansprechen", "Hygienemassnahmen bei multiresistenten Erregern planen, mit der Spitalhygiene", "Patientinnen, Patienten und Angehörige zur Händehygiene anleiten"], no: ["Als Studierende HF arbeitest du unter Anleitung: Entscheide zu Isolationen mit der diplomierten Fachperson absprechen"] }
+    },
+    quiz: {
+      AGS: [
+        ["Du hast das Bett frisch bezogen, die Patientin war nicht im Zimmer. Ist eine Händedesinfektion nötig?", ["Nein, es gab keinen Patientenkontakt", "Ja, Moment 5: Kontakt mit der Patientenumgebung", "Nur bei sichtbarer Verschmutzung"], 1, "Die Patientenumgebung ist mit den Keimen der Patientin besiedelt."],
+        ["Wie lange reibst du das Desinfektionsmittel ein?", ["10 Sekunden", "30 Sekunden, bis die Hände trocken sind", "2 Minuten"], 1, "Erst trockene Hände sind vollständig desinfiziert."],
+        ["Welche Aussage stimmt?", ["Ein glatter Ehering ist erlaubt", "Kurze Gelnägel sind erlaubt", "Kurze Naturnägel, kein Schmuck an Händen und Unterarmen"], 2, "Schmuck und künstliche Nägel verhindern eine wirksame Desinfektion."],
+        ["Du ziehst nach dem Wechseln einer Inkontinenzeinlage die Handschuhe aus. Was folgt?", ["Nichts", "Hände desinfizieren", "Hände mit Wasser abspülen"], 1, "Beim Ausziehen werden die Hände leicht kontaminiert."],
+        ["Welche Stellen werden beim Einreiben am häufigsten vergessen?", ["Handflächen", "Daumen, Fingerkuppen und Handrücken", "Handgelenke"], 1, "Genau dort bleiben dann Keime zurück."]
+      ],
+      FaGe: [
+        ["Vor welcher Tätigkeit gilt Moment 2, die aseptische Tätigkeit?", ["Vor dem Bettenmachen", "Vor einer subkutanen Injektion", "Vor dem Servieren des Essens"], 1, "Bei Injektionen, Verbandwechseln und Blutentnahmen gelangen Keime sonst direkt in den Körper."],
+        ["Warum wäschst du bei Clostridioides difficile die Hände zusätzlich?", ["Weil Alkohol die Sporen nicht abtötet", "Weil Waschen hautschonender ist", "Weil Desinfektionsmittel dort verboten ist"], 0, "Sporen überleben den Alkohol, Waschen entfernt sie mechanisch."],
+        ["Eine AGS-Lernende desinfiziert nur 10 Sekunden. Was tust du?", ["Nichts, das ist ihre Sache", "Sie freundlich auf die 30 Sekunden hinweisen und die Technik zeigen", "Es der Bildungsverantwortlichen melden, ohne mit ihr zu sprechen"], 1, "Anleiten gehört zu deiner Rolle. Direkt und wertschätzend wirkt am besten."],
+        ["Was unterscheidet residente und transiente Hautflora?", ["Die transiente Flora wird durch Kontakt aufgenommen und lässt sich gut entfernen", "Die residente Flora ist gefährlicher", "Es gibt keinen Unterschied"], 0, "Die transiente Flora kann Erreger enthalten und wird durch Desinfektion gut entfernt."],
+        ["Du ziehst nach dem Verbandwechsel die Handschuhe aus. Was folgt?", ["Neue Handschuhe anziehen", "Hände desinfizieren", "Nichts, die Hände waren geschützt"], 1, "Handschuhe können undicht sein, und beim Ausziehen werden die Hände kontaminiert."]
+      ],
+      HF: [
+        ["Du beobachtest, dass eine erfahrene Kollegin Moment 1 oft auslässt. Wie gehst du vor?", ["Nichts sagen, sie ist erfahrener", "Unter vier Augen ansprechen, konkret und wertschätzend", "Vor dem Patienten darauf hinweisen"], 1, "Hygiene ist Teamaufgabe. Feedback unter vier Augen mit konkreter Beobachtung."],
+        ["Ein Patient hat MRSA. Welche Massnahme ist zusätzlich zur Händehygiene typisch?", ["Keine", "Kontaktisolation nach Spitalhygiene", "Aerogene Isolation mit FFP2"], 1, "MRSA wird über Kontakt übertragen. Die Details legt die Spitalhygiene fest."],
+        ["Warum ist Hautpflege Teil der Händehygiene?", ["Nur aus kosmetischen Gründen", "Rissige Haut ist schwerer zu desinfizieren und wird stärker besiedelt", "Weil Desinfektionsmittel sonst nicht riecht"], 1, "Intakte Haut ist Voraussetzung für eine wirksame Desinfektion."],
+        ["Wie beziehst du Patientinnen und Patienten in die Händehygiene ein?", ["Gar nicht, das ist Aufgabe des Personals", "Sie anleiten und ermutigen, auch das Personal darauf anzusprechen", "Nur bei Kindern"], 1, "Informierte Patientinnen und Patienten unterstützen die Infektionsprävention."],
+        ["Wie viele Patientinnen und Patienten erkranken in der Schweiz jährlich an einer Spitalinfektion, laut BAG?", ["Rund 6'000", "Rund 60'000", "Rund 600'000"], 1, "Ein grosser Teil davon wäre durch Händehygiene vermeidbar."]
+      ]
+    }
+  },
+  vitalzeichen: {
+    comp: {
+      AGS: { do: ["Puls, Atmung, Blutdruck, Temperatur, Gewicht und Grösse korrekt messen", "Werte dokumentieren", "Abweichungen sofort der Fachperson melden"], no: ["Werte interpretieren und Massnahmen ableiten: Das macht die Fachperson"] },
+      FaGe: { do: ["Vitalzeichen kontrollieren und im Verlauf interpretieren", "Flüssigkeitsbilanz erstellen", "Massnahmen nach Verordnung einleiten und die Fachperson HF informieren"], no: ["Ärztliche Verordnungen anpassen oder selbst festlegen"] }
+    },
+    quiz: {
+      AGS: [
+        ["Ein Patient hat eine Atemfrequenz von 26 pro Minute. Was tust du?", ["Nichts, das ist normal", "Sofort der Fachperson melden", "In einer Stunde nochmals messen"], 1, "Über 20 pro Minute ist erhöht, ab 25 ein deutliches Warnzeichen."],
+        ["Mit welchen Fingern misst du den Puls?", ["Mit dem Daumen", "Mit Zeige-, Mittel- und Ringfinger", "Mit dem kleinen Finger"], 1, "Mit dem Daumen spürst du deinen eigenen Puls."],
+        ["Warum zählst du die Atmung möglichst unbemerkt?", ["Weil es schneller geht", "Weil die Person sonst anders atmet", "Weil es vorgeschrieben ist"], 1, "Wer sich beobachtet fühlt, verändert seine Atmung."],
+        ["Was gehört vor die Blutdruckmessung?", ["Etwa 5 Minuten Ruhe", "Ein Spaziergang", "Ein Glas Wasser"], 0, "Nach Bewegung wären die Werte falsch erhöht."],
+        ["Der Puls ist unregelmässig. Wie lange zählst du?", ["15 Sekunden mal vier", "30 Sekunden mal zwei", "Eine volle Minute"], 2, "Nur eine volle Minute ergibt einen zuverlässigen Wert."]
+      ],
+      FaGe: [
+        ["Puls 120 pro Minute, Blutdruck 100/60 mmHg. Wie hoch ist der Schockindex?", ["0,8", "1,2", "2,0"], 1, "Über 1 weist auf einen drohenden Schock hin: sofort melden."],
+        ["Du verwendest eine zu kleine Blutdruckmanschette. Was passiert?", ["Falsch hoher Wert", "Falsch tiefer Wert", "Kein Einfluss"], 0, "Es braucht mehr Druck, um die Arterie zu verschliessen."],
+        ["Die Temperatur war gestern rektal 37,8 °C, heute axillär 37,4 °C. Was schliesst du?", ["Das Fieber ist gesunken", "Die Werte sind wegen des Messorts nicht direkt vergleichbar", "Das Thermometer ist defekt"], 1, "Rektal liegt etwa 0,5 °C höher. Messort dokumentieren und beibehalten."],
+        ["Das Pulsoxymeter zeigt 86 %, die Person ist rosig und spricht normal, die Finger sind kalt. Was tust du?", ["Sofort Sauerstoff geben", "Messung prüfen: Finger wärmen, Pulskurve kontrollieren, nochmals messen", "Wert ignorieren"], 1, "Kalte Finger verfälschen die Messung. Bei bestätigtem Wert sofort melden."],
+        ["Was ist wichtiger als ein einzelner Messwert?", ["Die Uhrzeit", "Der Verlauf im Vergleich zu den Vorwerten", "Das Gerät"], 1, "Auch ein Normalwert kann eine deutliche Veränderung bedeuten."]
+      ]
+    }
+  },
+  dekubitus: {
+    levels: ["AGS","FaGe","HF"],
+    comp: {
+      AGS: { do: ["Positionswechsel nach Plan unterstützen", "Haut bei der Körperpflege beobachten und Rötungen sofort melden", "Haut trocken halten und pflegen", "Bewegung im Alltag fördern"], no: ["Braden-Einschätzung und Massnahmenplanung: Das machen FaGe und HF"] },
+      FaGe: { do: ["Braden-Einschätzung durchführen", "Fingertest und Hautinspektion, Befunde dokumentieren", "Geplante Massnahmen und Hilfsmittel umsetzen", "Verbandwechsel bei bestehender Wunde nach Verordnung"], no: ["Behandlungsplan für einen Dekubitus festlegen: Das erfolgt durch HF und Ärzteschaft, oft mit der Wundexpertin"] },
+      HF: { do: ["Risiko im Gesamtbild beurteilen", "Massnahmen interprofessionell planen und evaluieren", "Dekubitus kategorisieren und Wundexpertise beiziehen"], no: ["Als Studierende HF unter Anleitung: Planungen mit der diplomierten Fachperson besprechen"] }
+    },
+    quiz: {
+      AGS: [
+        ["Bei der Körperpflege siehst du eine Rötung am Steiss. Was tust du?", ["Kräftig einmassieren", "Der Fachperson sofort zeigen und melden", "Nichts, das ist normal"], 1, "Du beobachtest, die Fachperson beurteilt. Massieren schadet."],
+        ["Welche Stelle ist im Rollstuhl besonders gefährdet?", ["Hinterkopf", "Sitzbeinhöcker", "Ohr"], 1, "Im Sitzen liegt das Gewicht auf Sitzbeinhöckern und Steissbein."],
+        ["Wie lagerst du die Fersen frei?", ["Kissen direkt unter die Ferse", "Kissen unter die Wade, die Ferse hängt frei", "Gar nicht"], 1, "So liegt kein Druck auf der Ferse."],
+        ["Warum hältst du die Haut trocken?", ["Feuchte Haut wird schneller geschädigt", "Wegen des Geruchs", "Es spielt keine Rolle"], 0, "Feuchtigkeit macht die Haut empfindlich für Druck und Reibung."],
+        ["Darfst du gerötete Haut mit Eis kühlen?", ["Ja", "Nein, das schädigt das Gewebe", "Nur 5 Minuten"], 1, "Eis und Föhnen sind nicht empfohlen."]
+      ],
+      FaGe: [
+        ["Eine Patientin hat 14 Punkte auf der Braden-Skala. Was bedeutet das?", ["Kein Risiko", "Erhöhtes Dekubitusrisiko", "Falsch ausgefüllt"], 1, "18 und tiefer zeigt ein Risiko an."],
+        ["Die Rötung bleibt beim Fingertest bestehen. Welche Kategorie?", ["Keine", "Kategorie 1", "Kategorie 3"], 1, "Nicht wegdrückbare Rötung bei intakter Haut."],
+        ["Am Sakrum findest du eine Blase. Welche Kategorie?", ["Kategorie 1", "Kategorie 2", "Kategorie 4"], 1, "Teilverlust der Haut entspricht Kategorie 2."],
+        ["Welche Positionierung entlastet Sakrum und Trochanter?", ["90-Grad-Seitenlage", "30-Grad-Seitenlage", "Flache Rückenlage"], 1, "In der 30-Grad-Lage liegt das Gewicht auf der Gesässmuskulatur."],
+        ["Was verursacht Scherkräfte?", ["Hochrutschen im Bett, wenn die Haut haftet", "Ein weiches Kissen", "Trinken"], 0, "Die Haut bleibt an der Unterlage, das Skelett verschiebt sich."]
+      ],
+      HF: [
+        ["Am Sakrum liegt freiliegendes Fettgewebe, kein Knochen sichtbar. Welche Kategorie?", ["Kategorie 2", "Kategorie 3", "Kategorie 4"], 1, "Verlust aller Hautschichten mit sichtbarem Fett entspricht Kategorie 3."],
+        ["Der Wundgrund ist vollständig mit Belag bedeckt. Wie kategorisierst du?", ["Kategorie 1", "Nicht kategorisierbar", "Kategorie 2"], 1, "Die Tiefe ist nicht beurteilbar, solange der Wundgrund bedeckt ist."],
+        ["Welche Faktoren gehören zusätzlich zur Braden-Skala ins Gesamtbild?", ["Nur der Braden-Wert", "Ernährungszustand, Durchblutung, Medizinprodukte und klinischer Eindruck", "Das Alter allein"], 1, "Die Skala ersetzt nicht die klinische Beurteilung."],
+        ["Eine Sauerstoffbrille verursacht eine Druckstelle am Ohr. Was ist das?", ["Ein medizinproduktbedingter Dekubitus", "Eine Allergie", "Kein Problem"], 0, "Auch Medizinprodukte können Dekubitus verursachen. Polstern und kontrollieren."],
+        ["Wie evaluierst du die Wirksamkeit der Prophylaxe?", ["Gar nicht", "Regelmässige Hautinspektion, Re-Assessment und Anpassung des Plans", "Nur beim Austritt"], 1, "Der Plan wird laufend an den Zustand angepasst."]
+      ]
+    }
+  },
+  sturz: {
+    comp: {
+      AGS: { do: ["Umgebung bei jedem Verlassen sichern: Bremsen, Klingel, Licht, Hilfsmittel", "Beim Aufstehen und Gehen begleiten", "Nach einem Sturz bei der Person bleiben und Hilfe holen"], no: ["Nach einem Sturz die Person allein hochheben", "Verletzungen beurteilen: Das macht die Fachperson"] },
+      FaGe: { do: ["Risikofaktoren erkennen, auch bei Medikamenten", "Nach einem Sturz Vitalzeichen und Verletzungen erfassen und dokumentieren", "Sturzprotokoll ausfüllen"], no: ["Über freiheitsbeschränkende Massnahmen wie Bettgitter entscheiden"] },
+      HF: { do: ["Sturzrisiko systematisch einschätzen", "Massnahmen interprofessionell mit Physio- und Ergotherapie planen", "Nach einem Sturz die Ursachenanalyse leiten"], no: ["Freiheitsbeschränkende Massnahmen nur nach betrieblichem Verfahren und mit Begründung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Du findest einen Patienten am Boden. Was tust du zuerst?", ["Ihn ins Bett heben", "Ansprechen, bei ihm bleiben, Hilfe holen", "Das Protokoll ausfüllen"], 1, "Erst beurteilen lassen, dann gemeinsam aufhelfen."],
+        ["Was prüfst du, bevor du das Zimmer verlässt?", ["Ob das Fenster offen ist", "Bremsen, Klingel in Reichweite, Licht, Hilfsmittel", "Ob der Fernseher läuft"], 1, "So bleibt die Person sicher, wenn sie aufstehen will."],
+        ["Wann passieren die meisten Stürze?", ["Beim Essen", "Beim Aufstehen und auf dem Weg zur Toilette", "In der Therapie"], 1, "Besonders nachts."],
+        ["Welche Schuhe sind sicher?", ["Offene Pantoffeln", "Geschlossene, rutschfeste Schuhe", "Nur Socken"], 1, "Rutschfeste, gut sitzende Schuhe geben Halt."],
+        ["Eine Patientin wird beim Aufstehen schwindlig. Was hilft?", ["Schnell aufstehen", "Zuerst an der Bettkante sitzen, dann langsam aufstehen", "Liegen lassen"], 1, "So kann sich der Kreislauf anpassen."]
+      ],
+      FaGe: [
+        ["Welches Medikament erhöht das Sturzrisiko?", ["Schlafmittel wie Benzodiazepine", "Vitamin C", "Augentropfen mit Tränenersatz"], 0, "Auch Neuroleptika, Opioide, Antihypertensiva und Diuretika."],
+        ["Ein Patient mit Blutverdünner hat sich beim Sturz den Kopf angeschlagen und sagt, es gehe ihm gut. Was ist richtig?", ["Weiter wie bisher", "Ärztliche Beurteilung und neurologische Überwachung", "Ein Kühlbeutel genügt"], 1, "Hirnblutungen können sich verzögert zeigen."],
+        ["Was erfasst du nach einem Sturz?", ["Nur die Uhrzeit", "Vitalzeichen, Bewusstsein, Schmerzen, Verletzungen und Umstände", "Nur, ob er wieder läuft"], 1, "Diese Angaben braucht es für die ärztliche Beurteilung und das Protokoll."],
+        ["Was ist ein Sturz?", ["Nur ein Fall mit Verletzung", "Jedes unbeabsichtigte Zuliegenkommen auf dem Boden oder einer tieferen Ebene", "Nur ein Fall aus dem Bett"], 1, "Auch sanftes Hinunterrutschen zählt und wird dokumentiert."],
+        ["Eine Patientin will nachts Bettgitter, ein Kollege stellt sie einfach hoch. Was stimmt?", ["Das ist immer in Ordnung", "Bettgitter sind eine freiheitsbeschränkende Massnahme und müssen nach Verfahren begründet und dokumentiert werden", "Bettgitter sind verboten"], 1, "Auch auf Wunsch der Person braucht es eine klare Regelung und Dokumentation."]
+      ],
+      HF: [
+        ["Der Timed Up and Go Test dauert 18 Sekunden. Wie interpretierst du das?", ["Normal", "Erhöhtes Sturzrisiko", "Test ungültig"], 1, "Über etwa 12 bis 14 Sekunden weist auf ein erhöhtes Risiko hin."],
+        ["Warum sind Bettgitter keine zuverlässige Sturzprophylaxe?", ["Sie sind zu teuer", "Wer darüber klettert, fällt aus grösserer Höhe", "Sie sind zu niedrig"], 1, "Zudem sind sie eine freiheitsbeschränkende Massnahme."],
+        ["Was ist das Post-Fall-Syndrom?", ["Eine Fraktur", "Sturzangst mit Rückzug und Bewegungsmangel nach einem Sturz", "Ein Laborwert"], 1, "Es erhöht das Risiko für weitere Stürze. Gezielt ansprechen und üben."],
+        ["Wen beziehst du in die Sturzprophylaxe ein?", ["Nur die Pflege", "Physio- und Ergotherapie, Ärzteschaft, Person und Angehörige", "Nur die Ärzteschaft"], 1, "Sturzprophylaxe ist eine interprofessionelle Aufgabe."],
+        ["Nach einem Sturz: Was gehört zur Ursachenanalyse?", ["Schuldige suchen", "Umstände, Medikamente, Umgebung und Zustand systematisch prüfen und Massnahmen anpassen", "Nichts, Stürze passieren"], 1, "Ziel ist Lernen und Vorbeugen, nicht Schuldzuweisung."]
+      ]
+    }
+  },
+  pflegeprozess: {
+    comp: {
+      FaGe: { do: ["Informationen sammeln und beobachten", "Pflegemassnahmen nach Plan durchführen und dokumentieren", "Wirkung beobachten und der Fachperson HF zurückmelden"], no: ["Pflegediagnosen stellen und die Pflegeplanung verantworten: Das ist Aufgabe der Pflegefachperson HF"] },
+      HF: { do: ["Den ganzen Pflegeprozess verantworten", "Pflegediagnosen und SMART-Ziele formulieren", "Massnahmen planen, delegieren und evaluieren"], no: ["Als Studierende HF erstellst du Planungen unter Anleitung und lässt sie gegenlesen"] }
+    },
+    quiz: {
+      FaGe: [
+        ["Beim Eintritt misst du Blutdruck und fragst nach Gewohnheiten. Welcher Schritt ist das?", ["Informationssammlung", "Durchführung", "Evaluation"], 0, "Alles, was du zu Beginn erfasst, gehört zur Informationssammlung."],
+        ["«Die Tochter hilft täglich beim Essen.» Was ist das?", ["Ein Problem", "Eine äussere Ressource", "Ein Ziel"], 1, "Unterstützung durch das Umfeld ist eine äussere Ressource."],
+        ["Du stellst fest, dass eine geplante Massnahme nicht wirkt. Was tust du?", ["Einfach weglassen", "Beobachtung dokumentieren und der Fachperson HF melden", "Selbst eine neue Planung schreiben"], 1, "Deine Beobachtung ist wichtig für die Evaluation durch die Fachperson HF."],
+        ["Was folgt auf die Evaluation?", ["Der Prozess endet", "Der Kreis beginnt von vorn", "Der Austritt"], 1, "Der Pflegeprozess ist ein Regelkreis."],
+        ["«Mobilität fördern» ist...", ["ein Ziel", "eine Massnahme", "eine Ressource"], 1, "Ziele beschreiben den Zustand der Person, nicht die Handlung der Pflege."]
+      ],
+      HF: [
+        ["Welches Ziel ist SMART formuliert?", ["Frau M. fühlt sich besser", "Frau M. geht bis Freitag mit Rollator 20 m bis zur Toilette", "Mobilität fördern"], 1, "Spezifisch, messbar, terminiert."],
+        ["Wofür steht PES bei Pflegediagnosen?", ["Problem, Einflussfaktoren, Symptome", "Plan, Evaluation, Ziel", "Person, Erkrankung, Situation"], 0, "Problem, Ätiologie und Symptome."],
+        ["Wofür steht das A in SMART?", ["Aktiv", "Akzeptiert, mit der Person vereinbart", "Anspruchsvoll"], 1, "Ziele werden mit der Person vereinbart."],
+        ["Du delegierst eine Massnahme an eine FaGe. Was musst du beachten?", ["Nichts", "Ob sie dafür ausgebildet ist und es der Kompetenzregelung entspricht", "Nur ob sie Zeit hat"], 1, "Die Verantwortung für die Auswahl der Person bleibt bei dir."],
+        ["Wie unterscheiden sich Nah- und Fernziele?", ["Gar nicht", "Nahziele für Tage, Fernziele für Wochen oder den Austritt", "Fernziele sind unwichtig"], 1, "Nahziele führen schrittweise zum Fernziel."]
+      ]
+    }
+  },
+  sbar: {
+    comp: {
+      FaGe: { do: ["Rapport nach SBAR strukturieren", "Veränderungen an die Fachperson HF in SBAR melden", "Werte und Beobachtungen bereithalten"], no: ["Telefonische ärztliche Verordnungen entgegennehmen: nach Betriebsregel meist Aufgabe der Fachperson HF"] },
+      HF: { do: ["SBAR in akuten Situationen und gegenüber der Ärzteschaft anwenden", "Telefonische Verordnungen mit Read back entgegennehmen und dokumentieren", "Lernende in SBAR anleiten"], no: ["Als Studierende HF: Verordnungen nur nach Betriebsregel und unter Aufsicht entgegennehmen"] }
+    },
+    quiz: {
+      FaGe: [
+        ["«Er hatte vor zwei Jahren einen Herzinfarkt.» Wohin gehört das?", ["Situation", "Background", "Recommendation"], 1, "Vorgeschichte gehört in den Background."],
+        ["Eine Patientin hat plötzlich Atemnot. Wem meldest du in SBAR?", ["Der Küche", "Der zuständigen Fachperson HF", "Niemandem"], 1, "Du meldest strukturiert, die Fachperson HF beurteilt und eskaliert."],
+        ["Welche Aussage gehört zu A, Assessment?", ["«Ich bin FaGe auf Station 3.»", "«AF 28, SpO2 89 %, ich denke, es geht ihr schlechter.»", "«Bitte kommen Sie.»"], 1, "Aktuelle Werte und deine Einschätzung."],
+        ["Was hilft dir beim Rapport nach SBAR?", ["Alles erzählen, was dir einfällt", "Vorbereitung pro Person nach den vier Schritten", "Nur die Diagnose nennen"], 1, "Die Struktur macht die Übergabe kürzer und vollständiger."],
+        ["Was bedeutet R?", ["Rapport", "Recommendation, was du brauchst oder vorschlägst", "Ressource"], 1, "Sag klar, was du brauchst."]
+      ],
+      HF: [
+        ["Zu welchem Teil gehört «Ich schlage vor, dass Sie den Patienten in 30 Minuten anschauen»?", ["Situation", "Assessment", "Recommendation"], 2, "Eine konkrete Empfehlung."],
+        ["Der Arzt verordnet am Telefon ein Medikament. Was tust du?", ["Notieren und auflegen", "Vollständig wiederholen und bestätigen lassen", "Später nachfragen"], 1, "Read back sichert Name, Dosis und Weg."],
+        ["Wofür steht das I in ISBAR?", ["Information", "Identify", "Intervention"], 1, "Dich und die Person identifizieren."],
+        ["Was bereitest du vor einem Anruf vor?", ["Nur den Namen", "Vitalzeichen, Diagnosen, Medikamente, Dokumentation, dein Anliegen", "Telefonnummer der Angehörigen"], 1, "Ohne diese Angaben kann die Gegenseite nicht beurteilen."],
+        ["Was ist Closed Loop Communication?", ["Ein geschlossenes Telefonnetz", "Eine Rückmeldeschleife: Auftrag, Wiederholung, Bestätigung", "Ein Rapport hinter geschlossener Tür"], 1, "So werden Missverständnisse vermieden."]
+      ]
+    }
+  },
+  "6r": {
+    comp: {
+      FaGe: { do: ["Medikamente richten und verabreichen nach Verordnung und 6R", "Subkutane und intramuskuläre Injektionen", "Wirkung und Nebenwirkungen beobachten und melden"], no: ["Intravenöse Medikamente verabreichen", "Verordnungen ändern oder Reservemedikamente ohne Rücksprache geben, je nach Betriebsregel"] },
+      HF: { do: ["Verordnungen auf Plausibilität prüfen", "Wechselwirkungen und Kontraindikationen erkennen", "Intravenöse Medikation nach Betriebsregel", "Doppelkontrollen bei Hochrisikomedikamenten"], no: ["Als Studierende HF: Medikamente nur unter Aufsicht nach Ausbildungsstand"] }
+    },
+    quiz: {
+      FaGe: [
+        ["Wie identifizierst du die Patientin vor der Abgabe?", ["Zimmernummer", "Zwei Merkmale, z. B. Name und Geburtsdatum", "Sie kennt mich"], 1, "Zwei unabhängige Merkmale sind Standard."],
+        ["Darfst du eine Retardtablette mörsern?", ["Ja", "Nein, Rücksprache halten", "Ja, in Joghurt"], 1, "Die ganze Dosis würde auf einmal frei."],
+        ["Die Patientin sagt: «Diese Tablette kenne ich nicht.» Was tust du?", ["Trotzdem geben", "Abgabe stoppen und Verordnung prüfen", "Weglassen ohne Info"], 1, "Ihr Hinweis kann einen Fehler aufdecken."],
+        ["Du wirst beim Richten unterbrochen. Was ist richtig?", ["Weitermachen", "Neu beginnen", "Kollegin fertig machen lassen"], 1, "Sonst ist unklar, welche Schritte erledigt sind."],
+        ["Wann dokumentierst du die Abgabe?", ["Vor dem Gang ins Zimmer", "Sofort nach der Abgabe", "Am Ende des Dienstes"], 1, "Nie im Voraus, sonst entstehen Fehler bei Nichtabgabe."]
+      ],
+      HF: [
+        ["Welches ist ein Hochrisikomedikament?", ["Insulin", "Vitamin D", "Paracetamol in Normaldosis"], 0, "Fehler können zu lebensgefährlichen Unterzuckerungen führen."],
+        ["Eine Verordnung lautet «Enoxaparin 400 mg s.c.». Was tust du?", ["Verabreichen", "Als unplausibel erkennen und ärztlich klären", "Halbe Dosis geben"], 1, "Plausibilitätsprüfung: Die Dosis passt nicht zum Präparat."],
+        ["Was bedeutet Look-alike, Sound-alike?", ["Ähnlich aussehende oder klingende Medikamente mit Verwechslungsgefahr", "Generika", "Neue Medikamente"], 0, "Getrennte Lagerung und bewusstes Lesen helfen."],
+        ["Wozu dient die Doppelkontrolle?", ["Zur Zeitersparnis", "Zwei Personen prüfen unabhängig bei Hochrisikomedikamenten", "Für die Abrechnung"], 1, "Unabhängig heisst: jede Person rechnet und prüft selbst."],
+        ["Was gehört nach der Verabreichung zu deiner Rolle?", ["Nichts mehr", "Wirkung und Nebenwirkungen überwachen und beurteilen", "Nur dokumentieren"], 1, "Die Überwachung ist Teil des Medikationsprozesses."]
+      ]
+    }
+  },
+  feedback: {
+    comp: {
+      AGS: { do: ["Feedback offen annehmen", "Feedback aktiv bei der Berufsbildnerin oder dem Berufsbildner einholen", "Eigenes Verhalten beschreiben und daraus lernen"], no: ["Andere vor Patientinnen oder Patienten kritisieren"] },
+      FaGe: { do: ["Mitlernenden und AGS konstruktiv nach dem WWW-Modell Rückmeldung geben", "Feedback einholen und umsetzen"], no: ["Qualifikationen anderer Lernender bewerten: Das macht die Berufsbildnerin oder der Berufsbildner"] },
+      HF: { do: ["Strukturiertes Feedback in der Anleitung von Lernenden geben", "Feedbackkultur im Team fördern", "Feedback zu eigenem Handeln reflektieren"], no: ["Beurteilungen ohne konkrete Beobachtungen abgeben"] }
+    },
+    quiz: {
+      AGS: [
+        ["Du bekommst kritisches Feedback. Was hilft?", ["Sofort erklären, warum", "Zuhören, nachfragen, danken", "Thema wechseln"], 1, "Entscheiden, was du annimmst, kannst du später."],
+        ["Wie holst du aktiv Feedback ein?", ["Gar nicht, das kommt von selbst", "«Kannst du mich beim Waschen beobachten und mir danach Rückmeldung geben?»", "Erst im Qualifikationsgespräch"], 1, "Konkrete Bitten führen zu konkretem Feedback."],
+        ["Was ist Feedback?", ["Ein Urteil über dich als Person", "Eine Rückmeldung zu deinem Verhalten in einer Situation", "Eine Strafe"], 1, "Es geht um Verhalten, nicht um die Person."],
+        ["Was ist der blinde Fleck?", ["Was niemand weiss", "Was andere an mir sehen, ich selbst aber nicht", "Was ich verberge"], 1, "Feedback macht ihn kleiner."],
+        ["Kritisches Feedback fühlt sich zuerst unangenehm an. Ist das normal?", ["Nein, dann war es falsch", "Ja, nimm dir Zeit zum Nachdenken", "Nur bei schlechten Lernenden"], 1, "Das ist normal und gehört zum Lernen."]
+      ],
+      FaGe: [
+        ["Welche Formulierung ist eine Ich-Botschaft?", ["«Du bist hektisch.»", "«Ich habe beobachtet, dass die Klingel nicht in Reichweite lag.»", "«Man macht das so nicht.»"], 1, "Konkrete Beobachtung aus deiner Sicht."],
+        ["In welcher Reihenfolge läuft WWW?", ["Wunsch, Wirkung, Wahrnehmung", "Wahrnehmung, Wirkung, Wunsch", "Wirkung, Wunsch, Wahrnehmung"], 1, "Beobachtung, Wirkung, Wunsch."],
+        ["Wann und wo gibst du einer AGS-Lernenden kritisches Feedback?", ["Im Patientenzimmer", "Zeitnah, unter vier Augen", "Monate später"], 1, "Nie vor Patientinnen, Patienten oder Angehörigen."],
+        ["Was ist an «Du machst das immer falsch» problematisch?", ["Nichts", "Es verallgemeinert und bewertet statt zu beschreiben", "Es ist zu kurz"], 1, "Besser: eine konkrete Situation beschreiben."],
+        ["Warum benennst du auch Positives?", ["Aus Höflichkeit", "Damit die Person weiss, was sie beibehalten soll", "Es ist unnötig"], 1, "Positives Feedback ist genauso konkret und wertvoll."]
+      ],
+      HF: [
+        ["Warum gilt die Sandwich-Methode als umstritten?", ["Sie ist zu lang", "Die eigentliche Botschaft geht oft unter", "Sie ist zu direkt"], 1, "Klar und konkret ist wirksamer."],
+        ["Was ist Feedforward?", ["Feedback weiterleiten", "Den Blick darauf richten, was beim nächsten Mal hilft", "Feedback per E-Mail"], 1, "Es öffnet den Blick nach vorn."],
+        ["Eine FaGe-Lernende reagiert auf Feedback mit Tränen. Wie gehst du vor?", ["Gespräch sofort abbrechen und nie mehr ansprechen", "Raum geben, nachfragen, die Wertschätzung betonen und bei Bedarf später weiterführen", "Feedback zurücknehmen"], 1, "Emotionen sind normal. Haltung und Beziehung tragen das Gespräch."],
+        ["Was fördert eine Feedbackkultur im Team?", ["Feedback nur von oben nach unten", "Regelmässige, gegenseitige und vereinbarte Rückmeldungen, auch an Vorgesetzte", "Keine Fehler zulassen"], 1, "Gegenseitigkeit und Vertrauen sind zentral."],
+        ["Worauf stützt du eine Beurteilung von Lernenden?", ["Auf dein Bauchgefühl", "Auf konkrete, dokumentierte Beobachtungen in Lernsituationen", "Auf Aussagen Dritter allein"], 1, "Nachvollziehbare Beobachtungen machen Beurteilungen fair."]
+      ]
+    }
+  },
+  schlaganfall: {
+    comp: {
+      AGS: { do: ["Warnzeichen nach BE FAST erkennen und sofort Hilfe holen", "Bei der Körperpflege und Mobilisation nach Konzept unterstützen", "Mit Menschen mit Aphasie geduldig kommunizieren"], no: ["Essen und Trinken anbieten, solange die Schluckfähigkeit nicht geklärt ist", "Am gelähmten Arm ziehen"] },
+      FaGe: { do: ["Schluckscreening nach Betriebsstandard, wenn geschult", "Pflege nach Konzept, z. B. Bobath, und Selbständigkeit fördern", "Vitalzeichen, Bewusstsein und neue Ausfälle beobachten"], no: ["Diagnostik und Therapieentscheide"] },
+      HF: { do: ["Pflege interprofessionell planen", "Komplikationen erkennen: Aspiration, Depression, Schulterschmerz", "Person und Angehörige zur Sekundärprävention schulen"], no: ["Als Studierende HF: Planungen unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Wofür steht das F in BE FAST?", ["Fieber", "Face, hängender Mundwinkel", "Fatigue"], 1, "Bitte die Person zu lächeln."],
+        ["Eine Patientin zeigt plötzlich eine neue Armschwäche. Was tust du?", ["Abwarten", "Sofort Hilfe holen und die Uhrzeit merken", "Arm hochlagern"], 1, "Time is brain."],
+        ["Darfst du am gelähmten Arm ziehen, um beim Aufsetzen zu helfen?", ["Ja", "Nein, die Schulter ist instabil", "Nur leicht"], 1, "Unterstütze am Rumpf und Becken."],
+        ["Ein Patient hat Aphasie. Wie sprichst du mit ihm?", ["Laut und schnell", "Kurze Sätze, Zeit lassen, Gesten nutzen", "Gar nicht"], 1, "Aphasie betrifft die Sprache, nicht die Intelligenz."],
+        ["Ein frisch eingetretener Patient nach Schlaganfall möchte Wasser. Was tust du?", ["Sofort geben", "Zuerst bei der Fachperson klären, ob Trinken erlaubt ist", "Mit dem Strohhalm geben"], 1, "Bei Schluckstörungen droht Aspiration."]
+      ],
+      FaGe: [
+        ["Ein Patient isst nur die rechte Tellerhälfte. Woran denkst du?", ["Appetitlosigkeit", "Neglect", "Aphasie"], 1, "Meist nach Schädigung der rechten Hirnhälfte."],
+        ["Was gilt vor dem ersten Essen nach Schlaganfall?", ["Mit Suppe beginnen", "Schluckscreening", "Nichts"], 1, "Dünnflüssiges ist oft am gefährlichsten."],
+        ["Welche Hirnhälfte ist bei Aphasie meist geschädigt?", ["Links", "Rechts", "Beide"], 0, "Das Sprachzentrum liegt bei den meisten Menschen links."],
+        ["Was bedeutet «Selbständigkeit fördern» in der Reha?", ["Alles abnehmen, damit es schneller geht", "Die Person so viel wie möglich selbst machen lassen, auch wenn es länger dauert", "Nur Therapie fördert"], 1, "Jede Alltagshandlung ist Training."],
+        ["Während der Pflege werden die Worte eines Patienten plötzlich verwaschen. Was tust du?", ["Später melden", "Sofort Notfallteam alarmieren, Uhrzeit notieren", "Ihn schlafen lassen"], 1, "Ein neuer Schlaganfall ist auch in der Reha möglich."]
+      ],
+      HF: [
+        ["Welche Komplikation wird nach Schlaganfall häufig übersehen?", ["Depression", "Haarausfall", "Kurzsichtigkeit"], 0, "Sie hemmt die Rehabilitation und muss erkannt werden."],
+        ["Was ist eine TIA?", ["Ein harmloses Ereignis", "Vorübergehende Schlaganfallsymptome, ein Warnsignal und Notfall", "Eine Therapieform"], 1, "Das Risiko für einen Schlaganfall ist danach erhöht."],
+        ["Was ist eine stille Aspiration?", ["Aspiration ohne Husten", "Ein leises Husten", "Aspiration im Schlaf allein"], 0, "Fehlender Hustenreflex macht sie gefährlich. Logopädie einbeziehen."],
+        ["Welche Risikofaktoren sind für die Sekundärprävention zentral?", ["Bluthochdruck, Vorhofflimmern, Rauchen, Diabetes", "Nur das Alter", "Nur die Ernährung"], 0, "Die Pflege schult die Person zu Medikamenten und Lebensstil."],
+        ["Warum ist interprofessionelle Planung in der Neuro-Reha so wichtig?", ["Wegen der Abrechnung", "Pflege, Therapien und Ärzteschaft verfolgen gemeinsame Ziele, und der Alltag wird zum Training", "Aus Tradition"], 1, "Einheitliches Vorgehen verstärkt den Therapieeffekt."]
+      ]
+    }
+  },
+  sht: {
+    comp: {
+      AGS: { do: ["Vereinbarte Tagesstruktur einhalten", "Ruhig und in kurzen Sätzen sprechen", "Veränderungen wie Erbrechen, Kopfschmerzen oder Verwirrtheit sofort melden"], no: ["GCS und Pupillen beurteilen"] },
+      FaGe: { do: ["Bewusstsein und Pupillen nach Verordnung kontrollieren", "Reizarme Umgebung gestalten, Orientierung fördern", "Pausen und Belastung beobachten"], no: ["Therapeutische Entscheide bei Verhaltensveränderungen allein treffen"] },
+      HF: { do: ["Hirndruckzeichen erkennen und eskalieren", "Pflege bei kognitiven und Verhaltensveränderungen planen", "Angehörige begleiten und informieren"], no: ["Als Studierende HF: Entscheide unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Patientin mit SHT erbricht und klagt über zunehmende Kopfschmerzen. Was tust du?", ["Ein Glas Wasser geben", "Sofort der Fachperson melden", "Später erwähnen"], 1, "Das können Hirndruckzeichen sein."],
+        ["Wie gibst du Informationen?", ["Alles auf einmal", "Kurze Sätze, eine Information nach der anderen", "Nur schriftlich"], 1, "Aufmerksamkeit und Gedächtnis sind oft eingeschränkt."],
+        ["Ein Patient wird laut und beleidigend. Was hilft?", ["Zurechtweisen", "Ruhig bleiben, Reize reduzieren, Hilfe holen", "Weggehen und nicht mehr kommen"], 1, "Das Verhalten ist oft eine Folge der Hirnverletzung."],
+        ["Warum hilft eine feste Tagesstruktur?", ["Sie gibt Sicherheit und Orientierung", "Sie spart Personal", "Sie ist Vorschrift"], 0, "Vorhersehbarkeit reduziert Überforderung."],
+        ["Die Person wirkt sehr erschöpft. Was tust du?", ["Weiter fordern", "Pause ermöglichen und beobachten", "Ignorieren"], 1, "Fatigue ist nach SHT häufig."]
+      ],
+      FaGe: [
+        ["Ein Patient hat GCS 14. Wie wird das SHT eingeteilt?", ["Leicht", "Mittelschwer", "Schwer"], 0, "13 bis 15 Punkte gelten als leicht."],
+        ["Du stellst neu ungleich grosse Pupillen fest. Was tust du?", ["Später kontrollieren", "Sofort melden", "Licht dimmen"], 1, "Ein mögliches Hirndruckzeichen."],
+        ["Was beurteilt die Glasgow Coma Scale?", ["Augen öffnen, verbale und motorische Reaktion", "Puls und Blutdruck", "Schmerz"], 0, "3 bis 15 Punkte."],
+        ["Was gestaltest du für eine reizempfindliche Person?", ["Fernseher laut", "Reizarme Umgebung mit wenig Lärm und gedämpftem Licht", "Viele Besuchende gleichzeitig"], 1, "Reizüberflutung führt zu Überforderung."],
+        ["Was hilft der Orientierung?", ["Kalender, Tagesplan, vertraute Fotos", "Häufig wechselnde Zimmer", "Keine Uhr"], 0, "Orientierungshilfen geben Halt."]
+      ],
+      HF: [
+        ["Welche Kombination gehört zur Cushing-Trias?", ["Tiefer Blutdruck, schneller Puls, Fieber", "Hoher Blutdruck, langsamer Puls, unregelmässige Atmung", "Hoher Blutdruck, schneller Puls"], 1, "Spätzeichen eines stark erhöhten Hirndrucks."],
+        ["Ein Patient hat GCS 7. Wie wird das SHT eingeteilt?", ["Leicht", "Mittelschwer", "Schwer"], 2, "8 und weniger ist schwer."],
+        ["Was ist ein sekundärer Hirnschaden?", ["Der Schaden im Moment des Unfalls", "Ein Schaden durch Hirnschwellung, Sauerstoffmangel oder tiefen Blutdruck danach", "Eine zweite Verletzung"], 1, "Ihn zu verhindern ist ein Hauptziel der Akutphase."],
+        ["Angehörige sagen: «Er ist nicht mehr derselbe.» Wie reagierst du?", ["Widersprechen", "Zuhören, Veränderungen als mögliche Folgen erklären und Unterstützung anbieten", "Thema wechseln"], 1, "Angehörige brauchen Information und Begleitung, z. B. durch FRAGILE Suisse."],
+        ["Warum ist einheitliches Handeln im Team bei SHT wichtig?", ["Es spart Zeit", "Widersprüchliche Reaktionen verstärken Unsicherheit und herausforderndes Verhalten", "Aus Tradition"], 1, "Konsequenz gibt Struktur."]
+      ]
+    }
+  },
+  herzinsuffizienz: {
+    comp: {
+      AGS: { do: ["Täglich korrekt wiegen", "Atemnot und Beinödeme beobachten und melden", "Trinkmengen notieren nach Auftrag"], no: ["Diuretika verabreichen", "Trinkmenge selbst festlegen"] },
+      FaGe: { do: ["Gewicht, Flüssigkeitsbilanz und Vitalzeichen überwachen", "Medikamente nach Verordnung verabreichen", "Zeichen einer Verschlechterung erkennen und melden"], no: ["Diuretikadosis anpassen"] },
+      HF: { do: ["Verlauf beurteilen, akute Dekompensation erkennen", "Person im Selbstmanagement schulen", "Interprofessionell planen, z. B. Training und Ernährung"], no: ["Als Studierende HF: Eskalationen mit der diplomierten Fachperson"] }
+    },
+    quiz: {
+      AGS: [
+        ["Wann wiegst du die Person?", ["Irgendwann", "Morgens nach dem Wasserlassen, vor dem Frühstück, gleiche Kleidung", "Nur beim Eintritt"], 1, "Nur so sind die Werte vergleichbar."],
+        ["Die Person schläft nur mit drei Kissen. Was meldest du?", ["Nichts", "Dass sie im Liegen schlecht Luft bekommt", "Dass sie bequem liegt"], 1, "Atemnot im Liegen ist typisch."],
+        ["Die Beine sind beidseits stärker geschwollen als gestern. Was tust du?", ["Beine massieren", "Der Fachperson melden", "Nichts"], 1, "Ödeme können eine Verschlechterung zeigen."],
+        ["Eine Person hat akute Atemnot. Wie hilfst du bis die Fachperson kommt?", ["Flach lagern", "Oberkörper hoch, Beine tief, Hilfe holen", "Spazieren gehen"], 1, "Herzbettlage entlastet."],
+        ["Ein Liter eingelagerte Flüssigkeit entspricht etwa...", ["100 g", "1 kg", "5 kg"], 1, "Darum ist die Waage so wichtig."]
+      ],
+      FaGe: [
+        ["Beidseits Unterschenkelödeme und gestaute Halsvenen: Woran denkst du?", ["Linksherzinsuffizienz", "Rechtsherzinsuffizienz", "Pneumonie"], 1, "Rückstau in den Körperkreislauf."],
+        ["Gewicht +2,5 kg in drei Tagen. Was tust du?", ["Nichts", "Melden", "Weniger Essen"], 1, "Mehr als 2 kg in drei Tagen ist ein Warnzeichen."],
+        ["Worauf achtest du bei Diuretika?", ["Toilette in der Nähe, Sturzgefahr, Kalium und Bilanz", "Nur auf die Uhrzeit", "Auf nichts"], 0, "Häufiges Wasserlassen erhöht das Sturzrisiko."],
+        ["Was zeigt NYHA III?", ["Keine Beschwerden", "Beschwerden schon bei leichter Belastung", "Beschwerden nur bei Sport"], 1, "Z. B. beim Anziehen."],
+        ["Was erfasst die Flüssigkeitsbilanz?", ["Nur das Trinken", "Einfuhr und Ausfuhr über einen Zeitraum", "Nur den Urin"], 1, "Die Differenz zeigt Einlagerung oder Verlust."]
+      ],
+      HF: [
+        ["Brodelnde Atmung, schaumiger Auswurf, starke Atemnot. Was liegt nahe?", ["Lungenödem, Notfall", "Erkältung", "Angst"], 0, "Sofort eskalieren, Herzbettlage."],
+        ["Was gehört zur Schulung im Selbstmanagement?", ["Nur Medikamentenliste", "Tägliches Wiegen, Warnzeichen, Medikamente, Trinkmenge und Bewegung", "Nichts"], 1, "Selbstmanagement senkt Spitaleintritte."],
+        ["Warum wird heute angepasstes Training empfohlen?", ["Es verbessert Leistungsfähigkeit und Lebensqualität", "Es heilt die Erkrankung", "Es ist veraltet"], 0, "Früher empfahl man Schonung."],
+        ["Was ist Orthopnoe?", ["Atemnot im Liegen", "Atemnot nur beim Treppensteigen", "Husten am Morgen"], 0, "Typisch bei Linksherzinsuffizienz."],
+        ["Häufigste Ursachen der Herzinsuffizienz?", ["Koronare Herzkrankheit und Bluthochdruck", "Allergien", "Asthma"], 0, "Weitere: Klappenfehler, Vorhofflimmern."]
+      ]
+    }
+  },
+  epilepsie: {
+    comp: {
+      AGS: { do: ["Bei der Person bleiben, vor Verletzungen schützen, Zeit messen", "Hilfe holen", "Nach dem Anfall stabile Seitenlage mit Unterstützung"], no: ["Notfallmedikament verabreichen", "Etwas in den Mund stecken"] },
+      FaGe: { do: ["Anfall strukturiert beobachten und dokumentieren", "Regelmässige Medikamenteneinnahme sicherstellen", "Notfallmedikament nach Verordnung und Betriebsregel bereitstellen oder verabreichen"], no: ["Antiepileptika selbst anpassen"] },
+      HF: { do: ["Status epilepticus erkennen und Notfallmassnahmen leiten", "Zustand nach dem Anfall beurteilen", "Auslöser analysieren und Person schulen"], no: ["Als Studierende HF: im Notfall unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Steckst du etwas zwischen die Zähne?", ["Ja", "Nein", "Nur etwas Weiches"], 1, "Das verursacht Verletzungen."],
+        ["Was tust du während des Anfalls?", ["Festhalten", "Gegenstände wegräumen, Kopf polstern, Zeit messen, Hilfe holen", "Wasser geben"], 1, "Schützen, nicht festhalten."],
+        ["Der Anfall ist vorbei. Was dann?", ["Aufsetzen", "Mit Unterstützung in stabile Seitenlage, bei der Person bleiben", "Allein lassen"], 1, "Atemwege frei halten."],
+        ["Warum misst du die Zeit?", ["Für die Statistik", "Ab 5 Minuten ist es ein Notfall", "Aus Gewohnheit"], 1, "Anfälle wirken länger, als sie sind."],
+        ["Darfst du das Notfallmedikament geben?", ["Ja, immer", "Nein, das macht die Fachperson", "Nur nachts"], 1, "Das gehört nicht zu den AGS-Kompetenzen."]
+      ],
+      FaGe: [
+        ["Der Anfall dauert 6 Minuten. Was gilt?", ["Abwarten", "Status epilepticus: Notfall alarmieren", "Festhalten"], 1, "Lebensbedrohlich."],
+        ["Was dokumentierst du?", ["Nur die Uhrzeit", "Beginn, Ablauf, Seite, Dauer, Zustand danach", "Wer da war"], 1, "Hilft der Diagnose und Therapie."],
+        ["Was ist die postiktale Phase?", ["Die Zeit vor dem Anfall", "Verwirrtheit und Müdigkeit nach dem Anfall", "Ein Medikament"], 1, "Bei der Person bleiben, bis sie orientiert ist."],
+        ["Welcher Faktor kann einen Anfall auslösen?", ["Vergessene Medikamente", "Regelmässige Mahlzeiten", "Spazieren"], 0, "Auch Schlafmangel, Alkohol, Fieber."],
+        ["Eine Person zeigt Nesteln und starren Blick, reagiert kaum. Was kann das sein?", ["Fokaler Anfall mit Bewusstseinsstörung", "Müdigkeit", "Langeweile"], 0, "Nicht jeder Anfall zeigt Zuckungen."]
+      ],
+      HF: [
+        ["Was gehört zum Notfallmanagement beim Status epilepticus?", ["Abwarten", "Alarmieren, Atemwege sichern, Notfallmedikament nach Verordnung, Überwachung", "Festhalten"], 1, "Strukturiertes Vorgehen rettet Leben."],
+        ["Warum ist Epilepsie in der Neuro-Reha relevant?", ["Gar nicht", "Nach Schlaganfall oder SHT kann sie sich entwickeln", "Nur bei Kindern"], 1, "Teils erst Monate später."],
+        ["Was unterscheidet eine Absence?", ["Lange Krämpfe", "Kurze Bewusstseinspause von Sekunden", "Lähmung"], 1, "Wird leicht übersehen."],
+        ["Was ist nach einem ersten Anfall wichtig?", ["Nichts", "Ärztliche Abklärung", "Nur Ruhe"], 1, "Ein erster Anfall muss immer abgeklärt werden."],
+        ["Wie unterstützt du die Person langfristig?", ["Gar nicht", "Schulung zu Medikamenten, Auslösern und Schlaf", "Nur Bettruhe"], 1, "Regelmässige Einnahme macht viele anfallsfrei."]
+      ]
+    }
+  },
+  diabetes: {
+    comp: {
+      AGS: { do: ["Zeichen einer Unterzuckerung erkennen und sofort melden", "Bei der Fusspflege unterstützen und Veränderungen melden", "Bei Mahlzeiten unterstützen"], no: ["Blutzucker messen und Insulin spritzen: je nach Betrieb nicht AGS-Kompetenz", "Kohlenhydrate bei bewusstloser Person geben"] },
+      FaGe: { do: ["Kapillären Blutzucker messen", "Insulin s.c. nach Verordnung verabreichen", "Bei Hypoglykämie nach Schema handeln"], no: ["Insulindosis selbst anpassen, ausser nach verordnetem Schema"] },
+      HF: { do: ["Blutzuckerverläufe beurteilen", "Komplikationen wie Ketoazidose erkennen", "Person zum Selbstmanagement schulen"], no: ["Als Studierende HF: Insulin nur nach Betriebsregel und unter Aufsicht"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Patientin mit Diabetes zittert und schwitzt plötzlich. Was tust du?", ["Abwarten", "Sofort der Fachperson melden, bei ihr bleiben", "Spazieren gehen"], 1, "Möglicherweise eine Unterzuckerung."],
+        ["Eine Person mit Diabetes ist bewusstlos. Was ist falsch?", ["Hilfe holen", "Traubenzucker in den Mund", "Bei ihr bleiben"], 1, "Erstickungsgefahr."],
+        ["Warum kontrollierst du die Füsse?", ["Schönheit", "Verletzungen werden oft nicht gespürt", "Kälte"], 1, "Nervenschäden verhindern das Spüren."],
+        ["Darfst du eine Wärmflasche an die Füsse legen?", ["Ja", "Nein, Verbrennungsgefahr", "Nur kurz"], 1, "Hitze wird oft nicht gespürt."],
+        ["Was meldest du bei der Fusspflege?", ["Nichts", "Rötungen, Blasen, Risse, Wunden", "Nur Schmerzen"], 1, "Früh erkannt, früh behandelt."]
+      ],
+      FaGe: [
+        ["Blutzucker 3,2 mmol/l, Person wach. Was tust du?", ["Insulin geben", "15 bis 20 g schnelle Kohlenhydrate, nach 15 Minuten messen", "Schlafen lassen"], 1, "Danach langsame Kohlenhydrate."],
+        ["Warum Hände vor der Messung waschen?", ["Hygiene allein", "Zuckerreste verfälschen den Wert", "Weniger Schmerz"], 1, "Falsch hohe Werte möglich."],
+        ["Warum Injektionsstellen wechseln?", ["Damit es weniger weh tut", "Sonst entstehen Verhärtungen und Insulin wirkt unzuverlässig", "Vorschrift"], 1, "Lipohypertrophien stören die Aufnahme."],
+        ["Wo stichst du für die kapilläre Messung?", ["Fingerkuppe Mitte", "Seitlich an der Fingerbeere", "Ohrläppchen immer"], 1, "Seitlich ist weniger schmerzhaft."],
+        ["Nach intensiver Therapie am Nachmittag: Worauf achtest du?", ["Nichts", "Unterzuckerung, auch Stunden später", "Fieber"], 1, "Bewegung senkt den Blutzucker."]
+      ],
+      HF: [
+        ["Obstgeruch der Atemluft, tiefe Atmung, Bauchschmerzen bei Typ 1. Was liegt nahe?", ["Ketoazidose, Notfall", "Grippe", "Hunger"], 0, "Sofort eskalieren."],
+        ["Was zeigt der HbA1c?", ["Den aktuellen Wert", "Den Durchschnitt der letzten 2 bis 3 Monate", "Das Cholesterin"], 1, "Ab 6,5 % spricht man von Diabetes."],
+        ["Welche Diabetesform ist am häufigsten?", ["Typ 1", "Typ 2, etwa 90 %", "Schwangerschaftsdiabetes"], 1, "Insulinresistenz."],
+        ["Was gehört zur Schulung im Selbstmanagement?", ["Nur Insulin spritzen", "Messen, Hypoglykämie erkennen und behandeln, Fusspflege, Ernährung, Bewegung", "Nichts"], 1, "Ziel ist Sicherheit im Alltag nach Austritt."],
+        ["Eine verwirrte Person mit Diabetes: Was zuerst?", ["Abwarten", "Blutzucker messen", "Sedieren"], 1, "Im Zweifel ist es eine Unterzuckerung."]
+      ]
+    }
+  }
+};
+
+NUGGETS.forEach(n => {
+  const o = OVERLAY[n.id];
+  if (o) { if (o.levels) n.levels = o.levels; n.comp = o.comp; n.quiz = o.quiz; }
+  Object.keys(n.quiz).forEach(l => { n.quiz[l] = n.quiz[l].map(q => Array.isArray(q) ? { q: q[0], o: q[1], a: q[2], e: q[3] } : q); });
+});
+
 
 const TOPIC = {
   "Hygiene":       { c: "#0f7f72", bg: "#e2f4f0", d: "#bfe6dd" },
   "Beobachten":    { c: "#c0463b", bg: "#fdecea", d: "#f6c9c3" },
   "Prophylaxen":   { c: "#b26a00", bg: "#fff3df", d: "#f7d9a6" },
-  "Pflegeprozess": { c: "#3a5fc4", bg: "#e9eefc", d: "#c6d3f6" },
+  "Pflegetechniken": { c: "#b4436c", bg: "#fbe9f0", d: "#f3c6d6" },
   "Kommunikation": { c: "#7448b8", bg: "#f1eafb", d: "#d9c8f2" },
   "Medikamente":   { c: "#17799e", bg: "#e3f3fa", d: "#b9e0ef" },
-  "Krankheitsbilder": { c: "#4e7d1e", bg: "#eef6e4", d: "#cfe5b4" }
+  "Krankheitsbilder": { c: "#4e7d1e", bg: "#eef6e4", d: "#cfe5b4" },
+  "Berufsrolle": { c: "#3a5fc4", bg: "#e9eefc", d: "#c6d3f6" }
 };
 const ICON = {
   "Hygiene": '<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/>',
   "Beobachten": '<path d="M3 12h4l2-5 4 10 2-5h6"/>',
   "Prophylaxen": '<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/>',
-  "Pflegeprozess": '<path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/>',
+  "Pflegetechniken": '<circle cx="10" cy="4" r="1.6"/><path d="M10 7v6h6l2 5"/><path d="M10 10h5"/><path d="M7 11a6 6 0 1 0 8 7"/>',
+  "Berufsrolle": '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>',
   "Kommunikation": '<path d="M4 5h12v8H9l-4 3v-3H4z"/><path d="M16 9h4v8h-1v3l-3-3h-5v-2"/>',
   "Krankheitsbilder": '<path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-1"/><circle cx="20" cy="12" r="2"/>',
   "Medikamente": '<rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="m9.5 8 5 9"/>'
@@ -879,6 +2295,28 @@ const UI = {
 const ui = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${UI[k]}</svg>`;
 
 /* Illustrationen, 320 x 200 */
+const GLYPH = {
+  delir: '<path d="M14 3a7 7 0 1 0 7 9 5.5 5.5 0 0 1-7-9z"/><path d="M3 21l2-2 2 2 2-2"/>',
+  demenz: '<path d="M9 3h3a2 2 0 1 1 4 0h3v5a2 2 0 1 1 0 4v5h-5a2 2 0 1 0-4 0H5v-5a2 2 0 1 0 0-4V3z"/>',
+  thrombose: '<path d="M9 2h6v9l2 6a3 3 0 0 1-3 4H8a2 2 0 0 1-2-2v-1l3-2z"/><path d="M9 6h6"/>',
+  aspiration: '<path d="M5 8h12v5a6 6 0 0 1-12 0z"/><path d="M17 9h2a2 2 0 0 1 0 4h-2"/><path d="M8 3c0 1 1 1 1 2M12 3c0 1 1 1 1 2"/>',
+  kontrakturen: '<circle cx="7" cy="16" r="2.5"/><path d="M8.8 14.2L17 6M9.5 16H20"/><path d="M13 10.5a6 6 0 0 1 2.5 5.5"/>',
+  schmerz: '<circle cx="12" cy="10" r="7"/><path d="M9 13.5c2-1.5 4-1.5 6 0M9.5 8h.01M14.5 8h.01"/><path d="M4 21h16M8 21v-1.5M12 21v-1.5M16 21v-1.5"/>',
+  ausscheidung: '<path d="M7 3h10M9 3v6l-4 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-4-9V3"/><path d="M6.5 15h11"/>',
+  mobilisation: '<circle cx="10" cy="4" r="1.6"/><path d="M10 7v6h6l2 5"/><path d="M10 10h5"/><path d="M7 11a6 6 0 1 0 8 7"/>',
+  "sc-injektion": '<path d="M18 2l4 4M20 4l-4 4M15 5l4 4M14 6l-8 8-1 4 4-1 8-8M3 21l3-3M9 11l2 2"/>',
+  peg: '<rect x="6" y="2" width="8" height="10" rx="2"/><path d="M10 12v4c0 3 3 5 6 5h4"/><path d="M8.5 6h3"/>',
+  isolation: '<rect x="5" y="3" width="12" height="18" rx="1"/><path d="M14 12h.01M20 9v6M17 12h6"/>',
+  psa: '<path d="M4 9c3-2 13-2 16 0v4c0 3-4 6-8 6s-8-3-8-6z"/><path d="M4 10H2M20 10h2M8 12h8M9 15h6"/>',
+  aphasie: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 10.5h.01M12 10.5h.01M16 10.5h.01"/>',
+  angehoerige: '<circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c1-4 3.5-6 6-6s5 2 6 6M14.5 20c.5-3 1.5-4.5 2.5-4.5s3 1.5 4 4.5"/>',
+  deeskalation: '<path d="M2 12c1.5-7 3.5-7 5 0s2.5 5 3.5 0 2-3 3 0 1.5 2 2.5 0 1-1 2 0 1 .5 2 0"/>',
+  transkulturell: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
+  lernen: '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/><path d="M22 9v6"/>',
+  dokumentation: '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 2h6v4H9zM8 11h8M8 15h5"/>',
+  datenschutz: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4M12 15v2"/>',
+  resilienz: '<path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15"/><path d="M5 19l8-8"/>'
+};
 function art(n) {
   const t = TOPIC[n.topic], c = t.c, d = t.d, bg = t.bg;
   const base = `<rect width="320" height="200" fill="${bg}"/><circle cx="280" cy="30" r="70" fill="${d}" opacity=".55"/><circle cx="30" cy="190" r="50" fill="${d}" opacity=".45"/>`;
@@ -898,12 +2336,12 @@ function art(n) {
     diabetes: `<rect x="70" y="44" width="96" height="128" rx="18" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="84" y="60" width="68" height="44" rx="8" fill="${bg}"/><text x="118" y="90" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="${c}">5,4</text><text x="118" y="120" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" font-size="11" fill="${c}">mmol/l</text><circle cx="118" cy="146" r="10" fill="${d}"/><rect x="114" y="22" width="8" height="24" rx="2" fill="${c}"/><path d="M200 70c10 14 16 22 16 30a16 16 0 0 1-32 0c0-8 6-16 16-30z" fill="#c0463b"/><g transform="rotate(35 250 120)"><rect x="236" y="66" width="28" height="104" rx="10" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="236" y="96" width="28" height="22" fill="${d}"/><rect x="246" y="170" width="8" height="14" fill="${c}"/></g>`,
     "6r": `<rect x="56" y="60" width="150" height="100" rx="14" fill="#fff" stroke="${c}" stroke-width="4"/>${[0,1,2].map(r => [0,1].map(k => `<circle cx="${92 + r * 40}" cy="${90 + k * 40}" r="13" fill="${bg}" stroke="${c}" stroke-width="3"/>`).join("")).join("")}<g transform="rotate(-30 236 92)"><rect x="206" y="78" width="64" height="28" rx="14" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M238 78h18a14 14 0 0 1 0 28h-18z" fill="${c}"/></g><circle cx="250" cy="150" r="20" fill="${c}"/><text x="250" y="157" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="18" fill="#fff">6R</text>`
   };
-  return `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:${bg}" aria-hidden="true">${base}${A[n.id] || ""}</svg>`;
+  return `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:${bg}" aria-hidden="true">${base}${A[n.id] || (GLYPH[n.id] ? `<circle cx="70" cy="60" r="8" fill="${d}"/><circle cx="252" cy="150" r="12" fill="${d}"/><rect x="105" y="35" width="110" height="110" rx="28" fill="#fff" stroke="${d}" stroke-width="3"/><g transform="translate(124 54) scale(3)" fill="none" stroke="${c}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${GLYPH[n.id]}</g>` : "")}</svg>`;
 }
 
 const LEVEL_LABEL = { AGS: "AGS", FaGe: "FaGe", HF: "Pflege HF" };
 const LEVEL_DESC = { AGS: "Assistentin, Assistent Gesundheit und Soziales EBA", FaGe: "Fachfrau, Fachmann Gesundheit EFZ", HF: "Studierende Pflege HF" };
-const state = { level: "Alle", topic: "Alle", q: "" };
+const state = { level: "Alle", topic: "Alle", q: "", qlevel: null };
 let done = {};
 try { done = JSON.parse(localStorage.getItem("pp-done") || "{}"); } catch (e) { done = {}; }
 try { const l = localStorage.getItem("pp-level"); if (l) state.level = l; } catch (e) {}
@@ -918,7 +2356,7 @@ const syncLevels = () => document.querySelectorAll(".levels button").forEach(x =
 
 function card(n) {
   return `<a class="card" href="#${n.id}">
-    <div class="art">${art(n)}<span class="badge" style="color:${TOPIC[n.topic].c}">${n.topic}</span>${done[n.id] ? '<span class="doneb">✓ Erledigt</span>' : ""}</div>
+    <div class="art">${art(n)}<span class="badge" style="color:${TOPIC[n.topic].c}">${n.topic}</span>${isDone(n, state.level) ? '<span class="doneb">✓ Erledigt</span>' : ""}</div>
     <div class="body"><h3>${esc(n.title)}</h3><p>${esc(n.teaser)}</p>
       <div class="foot">${lvs(n.levels)}<span class="min">${ui("clock").replace("<svg", '<svg width="15" height="15"')} ${n.min} Min.</span></div></div></a>`;
 }
@@ -927,7 +2365,7 @@ function renderGrid() {
   const q = state.q.toLowerCase();
   const list = pool().filter(n => (state.topic === "Alle" || n.topic === state.topic) &&
     (!q || (n.title + " " + n.teaser + " " + n.points.join(" ") + " " + JSON.stringify(n.theory)).toLowerCase().includes(q)));
-  const p = pool(), d = p.filter(n => done[n.id]).length;
+  const p = pool(), d = p.filter(n => isDone(n, state.level)).length;
   $("#prog").innerHTML = `<div class="bar"><i style="width:${p.length ? d / p.length * 100 : 0}%"></i></div><span><b>${d}/${p.length}</b> erledigt</span>`;
   $("#grid").innerHTML = list.length ? list.map(card).join("") : `<p class="empty">Kein Nugget passt zu dieser Auswahl.</p>`;
   document.querySelectorAll(".stufe").forEach(x => x.setAttribute("aria-pressed", x.dataset.level === state.level));
@@ -939,7 +2377,7 @@ function renderHome() {
   <section class="hero"><div class="wrap">
     <div>
       <h1>Pflegewissen in <em>kleinen Einheiten</em></h1>
-      <p>Kurze Lernnuggets für die Pflegeausbildung. Lies die Kernpunkte, prüfe dein Wissen im Quiz und übertrage es auf deine Station.</p>
+      <p>Kurze Lernnuggets für die Pflegeausbildung. Lies die Theorie, prüfe dein Wissen im Quiz für deine Stufe und übertrage es auf deine Station.</p>
       <div class="how"><span><b>1</b>Lesen</span><span><b>2</b>Quiz lösen</span><span><b>3</b>Im Alltag anwenden</span></div>
     </div>
     <div class="hero-art"><svg viewBox="0 0 420 300" aria-hidden="true">
@@ -982,10 +2420,49 @@ function theoryHtml(n) {
     return h;
   }).join("");
 }
+const isDone = (n, l) => l === "Alle" ? n.levels.some(x => done[n.id + ":" + x]) || done[n.id] === true : !!done[n.id + ":" + l];
+function quizLevels(n) { return n.levels.filter(l => n.quiz[l] && n.quiz[l].length); }
+function compHtml(n) {
+  const ls = n.levels.filter(l => n.comp[l] && (state.level === "Alle" || state.level === l));
+  if (!ls.length) return `<p class="note">Dieses Nugget richtet sich an ${n.levels.map(l => LEVEL_LABEL[l]).join(" und ")}. Für deine Stufe gehört das Thema nicht zu den Kompetenzen. Kläre bei Fragen mit deiner Fachperson, was du übernehmen darfst.</p>`;
+  return `<div class="comp${ls.length > 1 ? " multi" : ""}">${ls.map(l => `<div class="role ${l}"><b>${LEVEL_LABEL[l]}</b>
+    <p class="ch">Deine Aufgaben</p><ul class="do">${n.comp[l].do.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+    <p class="ch">Grenze: nicht deine Aufgabe</p><ul class="no">${n.comp[l].no.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div>`;
+}
+function renderQuiz(n, ql) {
+  const ls = quizLevels(n), box = $("#quizbox");
+  const qs = n.quiz[ql].map(q => { const ord = q.o.map((_, i) => i).sort(() => Math.random() - .5); return { q: q.q, e: q.e, o: ord.map(i => q.o[i]), a: ord.indexOf(q.a) }; });
+  box.innerHTML = `
+    ${ls.length > 1 ? `<div class="qtabs" role="tablist" aria-label="Quiz für Stufe">${ls.map(l => `<button role="tab" class="qt ${l}" data-l="${l}" aria-selected="${l === ql}">Quiz ${LEVEL_LABEL[l]}${isDone(n, l) ? " ✓" : ""}</button>`).join("")}</div>` : ""}
+    <p class="qintro">Diese ${qs.length} Fragen prüfen die Kompetenzen der Stufe <b class="lvtext ${ql}">${LEVEL_LABEL[ql]}</b>.</p>
+    ${qs.map((q, qi) => `<div class="q"><p><small>Frage ${qi + 1} von ${qs.length}</small>${esc(q.q)}</p>
+      <div class="opts">${q.o.map((o, j) => `<button data-q="${qi}" data-o="${j}"><span class="k">${"ABCD"[j]}</span><span>${esc(o)}</span></button>`).join("")}</div>
+      <p class="fb" id="fb${qi}"></p></div>`).join("")}
+    <div class="result" id="result"></div>`;
+  box.querySelectorAll(".qt").forEach(b => b.addEventListener("click", () => { state.qlevel = b.dataset.l; renderQuiz(n, b.dataset.l); }));
+  let answered = 0, right = 0;
+  box.querySelectorAll(".opts button").forEach(b => b.addEventListener("click", () => {
+    const qi = +b.dataset.q, oi = +b.dataset.o, q = qs[qi];
+    const group = b.parentElement.querySelectorAll("button");
+    group.forEach(x => x.disabled = true);
+    group[q.a].classList.add("right");
+    if (oi !== q.a) b.classList.add("wrong"); else right++;
+    $("#fb" + qi).textContent = (oi === q.a ? "Richtig. " : "Nicht ganz. ") + q.e;
+    if (++answered === qs.length) {
+      const all = right === qs.length, r = $("#result");
+      r.className = "result show " + (all ? "good" : "try");
+      r.textContent = all ? `Super, ${right} von ${qs.length} richtig. Nugget für ${LEVEL_LABEL[ql]} erledigt!` : `${right} von ${qs.length} richtig. Lies die Theorie nochmals und versuche es später erneut.`;
+      if (all) { done[n.id + ":" + ql] = true; save(); $("#status").innerHTML = statusHtml(n); }
+    }
+  }));
+}
+const statusHtml = n => quizLevels(n).map(l => `<span class="lv ${l}">${LEVEL_LABEL[l]} ${isDone(n, l) ? "✓" : "offen"}</span>`).join(" ");
 function renderNugget(n) {
-  const t = TOPIC[n.topic], i = NUGGETS.indexOf(n);
-  const roles = Object.entries(n.levelNotes).filter(([l]) => state.level === "Alle" || state.level === l);
-  const more = NUGGETS.filter(x => x !== n && (x.topic === n.topic || x.levels.some(l => n.levels.includes(l)))).sort((a, b) => (b.topic === n.topic) - (a.topic === n.topic)).slice(0, 3);
+  const t = TOPIC[n.topic];
+  const more = NUGGETS.filter(x => x !== n && (state.level === "Alle" || x.levels.includes(state.level)) && (x.topic === n.topic || x.levels.some(l => n.levels.includes(l)))).sort((a, b) => (b.topic === n.topic) - (a.topic === n.topic)).slice(0, 3);
+  const ls = quizLevels(n);
+  const ql = ls.includes(state.level) ? state.level : (ls.includes(state.qlevel) ? state.qlevel : ls[0]);
+  const fits = state.level === "Alle" || n.levels.includes(state.level);
   $("#app").innerHTML = `
   <section class="nhero" style="background:${t.bg};--tc:${t.c};--tc-bg:${t.bg}"><div class="wrap">
     <div>
@@ -993,6 +2470,7 @@ function renderNugget(n) {
       <div class="kick"><span style="color:${t.c}">${n.topic}</span>${lvs(n.levels)}</div>
       <h1>${esc(n.title)}</h1>
       <p class="lead">${esc(n.lead)}</p>
+      ${fits ? "" : `<p class="warnbox">Hinweis: Dieses Nugget ist für ${n.levels.map(l => LEVEL_LABEL[l]).join(" und ")}. Die beschriebenen Tätigkeiten gehören nicht zu den Kompetenzen von ${LEVEL_LABEL[state.level]}.</p>`}
     </div>
     <div class="art">${art(n)}</div>
   </div></section>
@@ -1004,43 +2482,24 @@ function renderNugget(n) {
         <div class="merke">${ui("bulb")}<div><b>Merke</b>${esc(n.merke)}</div></div>
       </div>
       <div class="panel"><h2><i>${ui("star")}</i>Gut zu wissen</h2><ul class="facts-list">${n.facts.map(f => `<li><i>!</i><span>${esc(f)}</span></li>`).join("")}</ul></div>
-      ${roles.length ? `<div class="panel"><h2><i>${ui("user")}</i>Deine Rolle</h2><div class="roles">${roles.map(([l, x]) => `<div class="role ${l}"><b>${LEVEL_LABEL[l]}</b>${esc(x)}</div>`).join("")}</div></div>` : ""}
-      <div class="panel"><h2><i>${ui("quiz")}</i>Quiz</h2>
-        ${n.quiz.map((q, qi) => `<div class="q"><p><small>Frage ${qi + 1} von ${n.quiz.length}</small>${esc(q.q)}</p>
-          <div class="opts">${q.o.map((o, j) => `<button data-q="${qi}" data-o="${j}"><span class="k">${"ABC"[j]}</span><span>${esc(o)}</span></button>`).join("")}</div>
-          <p class="fb" id="fb${qi}"></p></div>`).join("")}
-        <div class="result" id="result"></div>
-      </div>
+      <div class="panel"><h2><i>${ui("user")}</i>Kompetenzen nach Stufe</h2>${compHtml(n)}<p class="note">Grundlage sind die Bildungsverordnungen. Im Betrieb gilt zusätzlich die betriebliche Kompetenzregelung.</p></div>
+      <div class="panel"><h2><i>${ui("quiz")}</i>Quiz</h2><div id="quizbox"></div></div>
       <div class="panel"><h2><i>${ui("go")}</i>Praxistransfer</h2><p class="transfer">${esc(n.transfer)}</p></div>
     </div>
     <aside class="aside">
       <div class="panel"><dl class="facts">
         <div><dt>Thema</dt><dd style="color:${t.c}">${n.topic}</dd></div>
         <div><dt>Dauer</dt><dd>${n.min} Minuten</dd></div>
-        <div><dt>Quizfragen</dt><dd>${n.quiz.length}</dd></div>
-        <div><dt>Status</dt><dd id="status">${done[n.id] ? '<span style="color:var(--ok)">✓ Erledigt</span>' : "Offen"}</dd></div>
+        <div><dt>Quiz</dt><dd>5 Fragen pro Stufe</dd></div>
+        <div class="st"><dt>Status</dt><dd id="status">${statusHtml(n)}</dd></div>
       </dl></div>
-      <div class="panel"><h2 style="font-size:17px;margin-bottom:10px">Weitere Nuggets</h2>
+      ${more.length ? `<div class="panel"><h2 style="font-size:17px;margin-bottom:10px">Weitere Nuggets</h2>
         ${more.map(m => `<a class="mini" href="#${m.id}"><span class="art">${art(m)}</span><span>${esc(m.title)}<small>${m.topic} · ${m.min} Min.</small></span></a>`).join("")}
-      </div>
+      </div>` : ""}
       <p class="src">Grundlagen: ${esc(n.src)}</p>
     </aside>
   </div>`;
-  let answered = 0, right = 0;
-  document.querySelectorAll(".opts button").forEach(b => b.addEventListener("click", () => {
-    const qi = +b.dataset.q, oi = +b.dataset.o, q = n.quiz[qi];
-    const group = b.parentElement.querySelectorAll("button");
-    group.forEach(x => x.disabled = true);
-    group[q.a].classList.add("right");
-    if (oi !== q.a) b.classList.add("wrong"); else right++;
-    $("#fb" + qi).textContent = (oi === q.a ? "Richtig. " : "Nicht ganz. ") + q.e;
-    if (++answered === n.quiz.length) {
-      const all = right === n.quiz.length, r = $("#result");
-      r.className = "result show " + (all ? "good" : "try");
-      r.textContent = all ? `Super, ${right} von ${n.quiz.length} richtig. Nugget erledigt!` : `${right} von ${n.quiz.length} richtig. Lies die Theorie nochmals und versuche es später erneut.`;
-      if (all) { done[n.id] = true; save(); $("#status").innerHTML = '<span style="color:var(--ok)">✓ Erledigt</span>'; }
-    }
-  }));
+  renderQuiz(n, ql);
 }
 
 function route() {
