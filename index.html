@@ -2638,13 +2638,26 @@ const RL = (() => {
     <path d="M572 132Q584 172 602 190Q626 200 652 196" fill="none" stroke="#c48f70" stroke-width="15" stroke-linecap="round"/><path d="M572 132Q584 170 602 187Q626 196 652 193" fill="none" stroke="#e6bea0" stroke-width="9" stroke-linecap="round"/>
     <g transform="rotate(${headFwd ? 10 : -22} 562 112)"><ellipse cx="564" cy="88" rx="22" ry="25" fill="url(#r-skin)"/><path d="M542 90c-2-20 12-30 28-28-14 4-22 14-20 30z" fill="url(#r-hair)"/><path d="M584 84q6 4 2 8" fill="none" stroke="#c48f70" stroke-width="3" stroke-linecap="round"/><path d="M578 102q5 2 8-1" fill="none" stroke="#a8705a" stroke-width="2" stroke-linecap="round"/></g>`;
   const table = `<path d="M628 206h120" stroke="#c3ccd7" stroke-width="10" stroke-linecap="round"/><path d="M728 212V360" stroke="#9aa7b5" stroke-width="7" stroke-linecap="round"/><path d="M658 172h26l-3 30h-20z" fill="url(#r-glass)" stroke="#8fa9c2" stroke-width="1.5"/><path d="M661 184h20l-2 18h-16z" fill="#9ec5ee" opacity=".8"/>`;
+  const bedScene = () => `
+    <path d="M524 300h222" stroke="#6f7e8e" stroke-width="10" stroke-linecap="round"/><path d="M536 304V352M736 304V352" stroke="#7e8d9d" stroke-width="8" stroke-linecap="round"/><circle cx="536" cy="358" r="7" fill="#5e6d7d"/><circle cx="736" cy="358" r="7" fill="#5e6d7d"/>
+    <rect x="598" y="262" width="152" height="26" rx="10" fill="url(#r-mat)" filter="url(#r-sh)"/>
+    <g transform="rotate(30 604 275)"><rect x="500" y="262" width="108" height="26" rx="10" fill="url(#r-mat)" filter="url(#r-sh)"/>
+      <path d="M604 262C580 262 540 262 512 262C506 256 506 236 512 230C540 226 580 226 604 230Z" fill="url(#r-gown)"/>
+      <path d="M520 240Q556 252 590 246" fill="none" stroke="#c48f70" stroke-width="14" stroke-linecap="round"/><path d="M520 239Q556 250 590 244" fill="none" stroke="#e6bea0" stroke-width="8" stroke-linecap="round"/>
+      <rect x="500" y="236" width="16" height="18" fill="url(#r-skin)"/>
+      <g transform="rotate(-28 504 246)"><ellipse cx="482" cy="244" rx="24" ry="21" fill="url(#r-skin)"/><path d="M490 264c-18 2-32-8-32-22 6 10 16 16 32 22z" fill="url(#r-hair)"/><path d="M476 224q4-6 10-2" fill="none" stroke="#c48f70" stroke-width="3" stroke-linecap="round"/><path d="M466 230q-2-5 3-7" fill="none" stroke="#a8705a" stroke-width="2" stroke-linecap="round"/></g></g>
+    <path d="M600 232C630 232 680 234 720 236C730 236 736 232 738 224C742 218 750 220 748 230C746 246 742 256 734 260C700 262 640 262 604 262Z" fill="url(#r-skin)"/>
+    <path d="M600 230C626 230 650 232 668 234L668 262C646 262 624 262 604 262Z" fill="url(#r-gown)"/>
+    <path d="M588 214Q616 214 640 208" fill="none" stroke="#c48f70" stroke-width="13" stroke-linecap="round"/><path d="M588 213Q616 212 640 206" fill="none" stroke="#e6bea0" stroke-width="7" stroke-linecap="round"/>
+    <path d="M630 196h112" stroke="#c3ccd7" stroke-width="9" stroke-linecap="round"/><path d="M736 200V300" stroke="#9aa7b5" stroke-width="7" stroke-linecap="round"/>
+    <path d="M664 162h26l-3 30h-20z" fill="url(#r-glass)" stroke="#8fa9c2" stroke-width="1.5"/><path d="M667 174h20l-2 18h-16z" fill="#9ec5ee" opacity=".8"/>`;
   const essen = () => {
     const panel = (x, ok) => `<g transform="translate(${x} 0)">
       <rect x="0" y="10" width="340" height="300" rx="16" fill="${ok ? "#f1f9f4" : "#fdf1ef"}"/>
-      <g transform="translate(78 46) scale(.76) translate(-518 -64)">${ok ? `${seated(true)}${table}` : `<g transform="rotate(-24 600 262)">${seated(false)}</g>${table}`}</g>
+      <g transform="translate(84 56) scale(.74) translate(-518 -64)">${ok ? `${seated(true)}${table}` : bedScene()}</g>
       <circle cx="30" cy="40" r="16" fill="${ok ? "#1e7f4a" : "#c0463b"}"/>${ok ? `<path d="M22 40l6 6 11-12" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>` : `<path d="M23 33l14 14M37 33l-14 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>`}
       <text x="54" y="46" font-size="15" font-weight="800" fill="${ok ? "#1e7f4a" : "#c0463b"}" font-family="${D}">${ok ? "Sicher" : "Gefährlich"}</text>
-      <text x="170" y="282" text-anchor="middle" font-size="12.5" fill="#17283b" font-family="${F}">${ok ? "Aufrecht, etwa 90 Grad, Kopf leicht nach vorne" : "Halb liegend, Kopf nach hinten"}</text>
+      <text x="170" y="282" text-anchor="middle" font-size="12.5" fill="#17283b" font-family="${F}">${ok ? "Aufrecht, etwa 90 Grad, Kopf leicht nach vorne" : "Halb liegend im Bett, Kopf nach hinten"}</text>
       <text x="170" y="299" text-anchor="middle" font-size="12.5" fill="#5b6878" font-family="${F}">${ok ? "Danach 30 Minuten aufrecht bleiben" : "Flüssigkeit gelangt leichter in die Luftröhre"}</text></g>`;
     return `<svg viewBox="0 0 720 320" role="img" aria-label="Sichere und unsichere Sitzposition beim Essen"><rect width="720" height="320" fill="#fff"/>${defs}${panel(10, true)}${panel(370, false)}</svg>`;
   };
@@ -2681,7 +2694,6 @@ const RL = (() => {
   };
   return { essen, inj };
 })();
-
 Object.assign(FIG, { druckstellen: DK.druck, kategorien: DK.kat, injektionsstellen: RL.inj, essen: RL.essen });
 const GLYPH = {
   delir: '<path d="M14 3a7 7 0 1 0 7 9 5.5 5.5 0 0 1-7-9z"/><path d="M3 21l2-2 2 2 2-2"/>',
