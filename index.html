@@ -95,7 +95,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .choose button { text-align: left; display: grid; grid-template-columns: 88px 1fr; align-items: center; gap: 12px; border: 2px solid var(--line); background: #fff; border-radius: 12px; padding: 10px 12px; }
 .choose button:hover { border-color: var(--brand); }
 .choose button .lv { font-size: 14px; padding: 5px 0; text-align: center; }
-.choose button span:last-child { font-size: 14.5px; color: var(--muted); }
+.choose button span:last-child { font-size: 15px; color: var(--ink); font-weight: 700; }
 .mine .bar { height: 10px; background: var(--soft); border-radius: 99px; overflow: hidden; margin: 10px 0 8px; }
 .mine .bar i { display: block; height: 100%; border-radius: 99px; }
 .mine .big { font-family: var(--display); font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
@@ -2499,7 +2499,7 @@ function art(n) {
 }
 
 const LEVEL_LABEL = { AGS: "AGS", FaGe: "FaGe", HF: "Pflege HF" };
-const LEVEL_DESC = { AGS: "Assistentin, Assistent Gesundheit und Soziales EBA", FaGe: "Fachfrau, Fachmann Gesundheit EFZ", HF: "Studierende Pflege HF" };
+const LEVEL_DESC = { AGS: "Assistentin / Assistent Gesundheit und Soziales EBA", FaGe: "Fachfrau / Fachmann Gesundheit EFZ", HF: "Pflegefachfrau / Pflegefachmann HF in Ausbildung" };
 const state = { level: "Alle", topic: "Alle", q: "", qlevel: null };
 let done = {};
 try { done = JSON.parse(localStorage.getItem("pp-done") || "{}"); } catch (e) { done = {}; }
@@ -2639,7 +2639,7 @@ function card(n) {
 function renderHeroBox() {
   const box = $("#herobox"); if (!box) return;
   if (state.level === "Alle") {
-    box.innerHTML = `<div class="choose"><h2>Für wen lernst du?</h2><p>Wähle deine Ausbildung. Du siehst dann die passenden Nuggets, Kompetenzen und Quizfragen.</p>
+    box.innerHTML = `<div class="choose"><h2>Welche Ausbildung machst du?</h2><p>Danach siehst du die passenden Nuggets, Kompetenzen und Quizfragen.</p>
       <div class="opts3">${["AGS", "FaGe", "HF"].map(l => `<button data-level="${l}"><span class="lv ${l}">${LEVEL_LABEL[l]}</span><span>${LEVEL_DESC[l]}</span></button>`).join("")}</div></div>`;
     box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { setLevel(b.dataset.level); refreshHome(); }));
   } else {
