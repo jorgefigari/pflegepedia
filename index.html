@@ -2601,7 +2601,7 @@ function renderNugget(n) {
       ${more.length ? `<div class="panel"><h2 style="font-size:17px;margin-bottom:10px">Weitere Nuggets</h2>
         ${more.map(m => `<a class="mini" href="#${m.id}"><span class="art">${art(m)}</span><span>${esc(m.title)}<small>${m.topic} · ${m.min} Min.</small></span></a>`).join("")}
       </div>` : ""}
-      <div class="panel report"><h2>Fehler entdeckt?</h2><p>Hast du einen Fehler gefunden oder ist etwas unklar? Es öffnet sich eine vorbereitete E-Mail.</p>
+      <div class="panel report"><h2>Fehler entdeckt?</h2><p>Hast du einen Fehler gefunden oder ist etwas unklar? Schreib uns!</p>
         <a class="btn" href="mailto:info@pflegepedia.ch?subject=${encodeURIComponent("Fehler melden: " + n.title)}&body=${encodeURIComponent("Nugget: " + n.title + "\nAbschnitt (z. B. Theorie, Quiz FaGe): \nWas ist falsch oder unklar: \n\nBitte keine Patientendaten senden.")}">Fehler melden</a>
         <small>Oder direkt an info@pflegepedia.ch</small></div>
       <p class="src">Grundlagen: ${esc(n.src)}</p>
