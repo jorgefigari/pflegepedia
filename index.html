@@ -1976,6 +1976,58 @@ const NUGGETS = [
     },
     transfer: "Überlege dir: Was gibt dir nach einem anstrengenden Dienst Kraft? Plane diese Woche bewusst eine Sache davon ein.",
     src: "WHO, Burn-out; Dargebotene Hand Schweiz; Stiftung Patientensicherheit Schweiz, Second Victim"
+  },
+  {
+    id: "ipa", topic: "Berufsrolle", levels: ["AGS","FaGe"], min: 10,
+    title: "IPA-Vorbereitung: dein Weg zum Abschluss",
+    teaser: "Was die individuelle praktische Arbeit ist, wie sie abläuft, wie sie bewertet wird und wie du dich gut vorbereitest.",
+    lead: "Die IPA ist der praktische Teil deiner Abschlussprüfung. Du zeigst an deinem eigenen Arbeitsplatz, dass du deinen Beruf beherrschst. Wer weiss, was auf ihn zukommt, kann ruhiger und besser arbeiten.",
+    theory: [
+      { h: "Was ist die IPA?",
+        p: ["IPA heisst individuelle praktische Arbeit. Sie ist ein Teil des Qualifikationsverfahrens (QV) am Ende deiner Ausbildung. Du arbeitest an deinem gewohnten Arbeitsplatz, mit echten Klientinnen und Klienten, und zwei Prüfungsexpertinnen oder Prüfungsexperten beurteilen deine Leistung.",
+            "Das QV besteht aus mehreren Teilen: der praktischen Arbeit (IPA), der schriftlichen Prüfung in Berufskenntnissen, der Allgemeinbildung und der Erfahrungsnote aus Betrieb und Schule. Die Regeln stehen in der Bildungsverordnung deines Berufs."] },
+      { h: "AGS und FaGe im Vergleich",
+        table: { head: ["", "AGS EBA", "FaGe EFZ"], rows: [
+          ["Dauer der IPA", "3 bis 4 Stunden, mit integriertem Fachgespräch", "4 bis 6 Stunden"],
+          ["Fachgespräch", "Im Rahmen der IPA", "Präsentation und Fachgespräch, zählen ein Drittel der IPA-Note"],
+          ["Schriftliche Prüfung", "Berufskenntnisse, 2 Stunden", "Berufskenntnisse, 3 Stunden"],
+          ["Erlaubte Hilfsmittel", "Lerndokumentation und Unterlagen der üK", "Lerndokumentation und Unterlagen der üK"],
+          ["Bestanden, wenn", "IPA mindestens 4 und Gesamtnote mindestens 4", "IPA mindestens 4 und Gesamtnote mindestens 4"] ] },
+        fig: "qvgewichtung", figcap: "So zählen die Teile zur Gesamtnote, gemäss Bildungsverordnung (Stand 2026)." },
+      { h: "Der Ablauf",
+        list: ["Vorbereitung: Deine vorgesetzte Fachkraft plant die IPA und legt fest, welche Handlungskompetenzen geprüft werden. Bei FaGe sind es mindestens vier", "Aufgabenstellung: Die Prüfungsexpertinnen oder Prüfungsexperten prüfen und genehmigen die Planung", "Durchführung: Du arbeitest an deinem Arbeitsplatz, die Pflegedokumentation gehört zur Prüfung", "Fachgespräch: Du erklärst und begründest dein Handeln. Bei FaGe gehört oft eine kurze Präsentation dazu", "Bewertung: Die vorgesetzte Fachkraft schlägt eine Bewertung vor, das Expertenteam entscheidet"],
+        after: "Termine, Formulare und Details regelt dein Kanton. Frag deine Berufsbildnerin oder deinen Berufsbildner früh nach den Unterlagen für dein Prüfungsjahr." },
+      { h: "Gut vorbereitet",
+        list: ["Führe deine Lerndokumentation laufend nach, du darfst sie in der IPA benutzen", "Übe Tätigkeiten, die oft geprüft werden, bis sie Routine sind, inklusive Händehygiene und Dokumentation", "Mach eine Probe-IPA und übe das Fachgespräch mit deiner Berufsbildnerin oder deinem Berufsbildner", "Begründe dein Handeln: Warum machst du es so? Was beobachtest du?", "Kenne deine Station: Abläufe, Material, Notfallnummern, Ansprechpersonen", "Kenne deine Grenzen: Was ausserhalb deiner Kompetenzen liegt, gibst du auch in der IPA ab", "Schlaf genug, iss vor der Prüfung und plane den Arbeitsweg"] },
+      { h: "Am Prüfungstag",
+        p: ["Stell dich den Expertinnen und Experten kurz vor und arbeite so, wie du es im Alltag tust. Sie wollen sehen, wie du sicher und personenzentriert handelst, nicht eine Show. Passiert dir ein Fehler, sprich ihn an und korrigiere ihn: Fehler erkennen und richtig reagieren zeigt Professionalität.",
+            "Wenn du eine Lernschwierigkeit hast, zum Beispiel eine Legasthenie, kannst du einen Nachteilsausgleich beantragen. Kläre das früh mit deiner Berufsfachschule und deinem Betrieb."] }
+    ],
+    points: ["Die IPA ist der praktische Teil des QV an deinem Arbeitsplatz", "AGS: 3 bis 4 Stunden. FaGe: 4 bis 6 Stunden", "Bestanden mit IPA mindestens 4 und Gesamtnote mindestens 4", "Lerndokumentation und üK-Unterlagen sind erlaubte Hilfsmittel", "Handeln begründen, Grenzen kennen, Fehler ansprechen"],
+    merke: "Die IPA ist keine Show. Arbeite so sorgfältig wie im Alltag, und begründe, warum du es so machst.",
+    facts: ["Die IPA ist eine Fallnote: Ist sie unter 4, ist das QV nicht bestanden, auch wenn alle anderen Noten gut sind.", "Muss ein Teil des QV wiederholt werden, wird er ganz wiederholt, nicht nur einzelne Aufgaben.", "Die Prüfungsexpertinnen und Prüfungsexperten sind erfahrene Berufsleute. Sie wollen sehen, was du kannst, nicht dich hereinlegen."],
+    comp: {
+      AGS: { do: ["Lerndokumentation aktuell halten und mitbringen", "Pflege und Begleitung nach Auftrag sicher durchführen", "Beobachtungen weitergeben und dokumentieren nach Betriebsregel", "Im Fachgespräch dein Handeln erklären"], no: ["Tätigkeiten ausserhalb der AGS-Kompetenzen übernehmen, zum Beispiel Medikamente oder Injektionen, auch nicht in der IPA"] },
+      FaGe: { do: ["Mehrere Handlungskompetenzen in einer echten Situation zeigen, auch medizinaltechnische Verrichtungen", "Pflegeprozess und Dokumentation sauber umsetzen", "Präsentation vorbereiten und im Fachgespräch fachlich begründen"], no: ["Aufgaben ausserhalb deiner Kompetenzen oder der betrieblichen Kompetenzregelung übernehmen, um zu beeindrucken"] }
+    },
+    quiz: {
+      AGS: [
+        ["Wie lange dauert die IPA bei AGS EBA?", ["1 Stunde", "3 bis 4 Stunden, mit integriertem Fachgespräch", "2 Tage"], 1, "So steht es in der Bildungsverordnung AGS EBA."],
+        ["Welche Hilfsmittel darfst du in der IPA benutzen?", ["Das Handy", "Deine Lerndokumentation und die Unterlagen der üK", "Keine"], 1, "Deshalb lohnt es sich, die Lerndokumentation laufend nachzuführen."],
+        ["Wann hast du das QV bestanden?", ["Wenn die Gesamtnote mindestens 4 ist", "Wenn die IPA mindestens 4 und die Gesamtnote mindestens 4 ist", "Wenn die Schulnoten gut sind"], 1, "Die IPA ist eine Fallnote."],
+        ["In der IPA soll eine Patientin eine Tablette nehmen. Was tust du?", ["Ich gebe sie, um zu zeigen, was ich kann", "Ich informiere die zuständige Fachperson, Medikamente gehören nicht zu meinen Kompetenzen", "Ich lasse es aus und sage nichts"], 1, "Grenzen kennen und abgeben ist auch in der IPA richtig."],
+        ["Dir passiert während der IPA ein kleiner Fehler. Was ist richtig?", ["Verstecken", "Ansprechen und richtig reagieren", "Die IPA abbrechen"], 1, "Fehler erkennen und korrigieren zeigt Professionalität."]
+      ],
+      FaGe: [
+        ["Wie lange dauert die praktische Arbeit (IPA) bei FaGe EFZ?", ["2 Stunden", "4 bis 6 Stunden", "2 Tage"], 1, "So steht es in der Bildungsverordnung FaGe EFZ."],
+        ["Wie viel zählen Präsentation und Fachgespräch an der IPA-Note?", ["Gar nicht", "Ein Drittel", "Die Hälfte"], 1, "Zwei Drittel zählen Ausführung, Resultat und Dokumentation."],
+        ["Wie stark zählt die praktische Arbeit an der Gesamtnote?", ["10 %", "30 %", "50 %"], 1, "Berufskenntnisse 30 %, Allgemeinbildung 20 %, Erfahrungsnote 20 %."],
+        ["Gehört die Pflegedokumentation zur IPA?", ["Nein, nur die Pflege zählt", "Ja, sie ist Teil der Prüfung", "Nur wenn Zeit bleibt"], 1, "Dokumentation ist zeitlicher und inhaltlicher Bestandteil."],
+        ["Deine IPA-Note ist 3,5, alle anderen Noten sind 5. Hast du bestanden?", ["Ja, der Durchschnitt reicht", "Nein, die IPA muss mindestens 4 sein", "Ja, mit Auflage"], 1, "Die praktische Arbeit ist eine Fallnote."]
+      ]
+    },
+    transfer: "Frag deine Berufsbildnerin oder deinen Berufsbildner nach dem Ablauf und den Unterlagen der IPA in deinem Kanton und vereinbare einen Termin für eine Probe-IPA.",
+    src: "Verordnung des SBFI über die berufliche Grundbildung FaGe EFZ, Art. 18 und 19 (Stand 1.1.2026); Verordnung des SBFI über die berufliche Grundbildung AGS EBA, Art. 16 und 17 (Stand 1.1.2026); kantonale Ausführungsbestimmungen zum QV"
   }
 ];
 /* Kompetenzen und Quiz pro Stufe für die bestehenden Nuggets. Frage: [Frage, [Optionen], Index richtig, Erklärung] */
@@ -2777,6 +2829,19 @@ Object.assign(FIG, {
   }
 });
 
+Object.assign(FIG, {
+  qvgewichtung: () => {
+    const parts = { AGS: [["Praktische Arbeit (IPA)", 30], ["Berufskenntnisse", 20], ["Allgemeinbildung", 20], ["Erfahrungsnote", 30]], FaGe: [["Praktische Arbeit (IPA)", 30], ["Berufskenntnisse", 30], ["Allgemeinbildung", 20], ["Erfahrungsnote", 20]] };
+    const col = [YE, NV, "#6f8fb3", "#b9cbe0"], X0 = 110, W = 590;
+    let s = "";
+    ["AGS", "FaGe"].forEach((l, r) => { const y = 40 + r * 92; let x = X0;
+      s += T(96, y + 30, l === "AGS" ? "AGS EBA" : "FaGe EFZ", { a: "end", s: 15, w: 800, f: FD, c: l === "AGS" ? "#d9480f" : "#1971c2" });
+      parts[l].forEach(([t, v], i) => { const w = W * v / 100; s += `<rect x="${x + 1}" y="${y}" width="${w - 2}" height="46" rx="8" fill="${col[i]}"/>` + T(x + w / 2, y + 29, v + " %", { s: 15, w: 800, f: FD, c: i === 0 || i === 3 ? "#17283b" : "#fff" }); x += w; }); });
+    s += [["Praktische Arbeit (IPA)", 0], ["Berufskenntnisse", 1], ["Allgemeinbildung", 2], ["Erfahrungsnote", 3]].map(([t, i]) => `<rect x="${110 + i * 150}" y="232" width="16" height="16" rx="4" fill="${col[i]}"/>` + T(132 + i * 150, 245, t, { a: "start", s: 12.5 })).join("");
+    s += T(405, 284, "Bestanden: IPA mindestens 4 und Gesamtnote mindestens 4", { s: 13.5, w: 700, c: NV, f: FD });
+    return `<svg viewBox="0 0 720 300" role="img" aria-label="Gewichtung der Noten im Qualifikationsverfahren"><rect width="720" height="300" fill="#fff"/>${s}</svg>`;
+  }
+});
 const GLYPH = {
   delir: '<path d="M14 3a7 7 0 1 0 7 9 5.5 5.5 0 0 1-7-9z"/><path d="M3 21l2-2 2 2 2-2"/>',
   demenz: '<path d="M9 3h3a2 2 0 1 1 4 0h3v5a2 2 0 1 1 0 4v5h-5a2 2 0 1 0-4 0H5v-5a2 2 0 1 0 0-4V3z"/>',
@@ -2836,6 +2901,7 @@ function art(n) {
     dokumentation: `<rect x="96" y="30" width="116" height="148" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="130" y="20" width="48" height="20" rx="6" fill="${c}"/><path d="M114 66l6 6 10-12M114 98l6 6 10-12M114 130l6 6 10-12" fill="none" stroke="#1e7f4a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M140 66h54M140 98h46M140 130h50M140 152h36" stroke="${d}" stroke-width="6" stroke-linecap="round"/><g transform="rotate(35 246 104)"><rect x="236" y="40" width="20" height="96" rx="4" fill="#f2b33d" stroke="#b26a00" stroke-width="2.5"/><path d="M236 136l10 20 10-20z" fill="#fff" stroke="#b26a00" stroke-width="2.5" stroke-linejoin="round"/><rect x="236" y="40" width="20" height="14" fill="${c}"/></g>`,
     datenschutz: `<rect x="44" y="70" width="90" height="70" rx="8" fill="${d}" stroke="${c}" stroke-width="4"/><path d="M44 78h36l8-10h46" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M190 26l64 22v46c0 40-28 64-64 78-36-14-64-38-64-78V48z" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="166" y="96" width="48" height="40" rx="8" fill="${c}"/><path d="M176 96V84a14 14 0 0 1 28 0v12" fill="none" stroke="${c}" stroke-width="6"/><circle cx="190" cy="114" r="5" fill="#f2b33d"/><path d="M190 118v8" stroke="#f2b33d" stroke-width="4" stroke-linecap="round"/>`,
     resilienz: `<rect x="56" y="70" width="120" height="66" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="176" y="90" width="10" height="26" rx="3" fill="${c}"/><rect x="68" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="102" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="136" y="82" width="28" height="42" rx="4" fill="${d}"/><path d="M152 84l-12 22h12l-8 16" fill="none" stroke="#f2b33d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M246 170v-58" stroke="${c}" stroke-width="5" stroke-linecap="round"/><path d="M246 128c-30 0-40-22-40-40 26 0 40 16 40 40z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M246 112c0-26 14-44 42-44 0 26-16 44-42 44z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M214 172h64" stroke="${c}" stroke-width="5" stroke-linecap="round"/>`,
+    ipa: `<rect x="92" y="34" width="136" height="132" rx="10" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M112 64h96M112 84h80M112 104h88" stroke="${d}" stroke-width="6" stroke-linecap="round"/><path d="M112 130l8 8 14-16" fill="none" stroke="#1e7f4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M144 132h40" stroke="${d}" stroke-width="6" stroke-linecap="round"/><circle cx="232" cy="146" r="26" fill="#f2b33d" stroke="#b26a00" stroke-width="3"/><path d="M220 168l-8 26 20-10 20 10-8-26" fill="#f2b33d" stroke="#b26a00" stroke-width="3" stroke-linejoin="round"/><text x="232" y="152" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="15" fill="#5a3d00">QV</text>`,
     "6r": `<rect x="56" y="60" width="150" height="100" rx="14" fill="#fff" stroke="${c}" stroke-width="4"/>${[0,1,2].map(r => [0,1].map(k => `<circle cx="${92 + r * 40}" cy="${90 + k * 40}" r="13" fill="${bg}" stroke="${c}" stroke-width="3"/>`).join("")).join("")}<g transform="rotate(-30 236 92)"><rect x="206" y="78" width="64" height="28" rx="14" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M238 78h18a14 14 0 0 1 0 28h-18z" fill="${c}"/></g><circle cx="250" cy="150" r="20" fill="${c}"/><text x="250" y="157" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="18" fill="#fff">6R</text>`
   };
   return `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:${bg}" aria-hidden="true">${base}${A[n.id] || (GLYPH[n.id] ? `<circle cx="70" cy="60" r="8" fill="${d}"/><circle cx="252" cy="150" r="12" fill="${d}"/><rect x="105" y="35" width="110" height="110" rx="28" fill="#fff" stroke="${d}" stroke-width="3"/><g transform="translate(124 54) scale(3)" fill="none" stroke="${c}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${GLYPH[n.id]}</g>` : "")}</svg>`;
