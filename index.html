@@ -579,7 +579,327 @@ const NUGGETS = [
     src: "Fiechter V., Meier M.: Pflegeplanung; NANDA International: Pflegediagnosen"
   },
   {
-    id: "sbar", topic: "Kommunikation", levels: ["FaGe","HF"], min: 8,
+    id: "lernbegleitung", topic: "Teamarbeit", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Lernbegleitung und Tagesbezugsperson",
+    teaser: "Wer begleitet dich in der Praxis, und wie nutzt du den Tag mit deiner Tagesbezugsperson zum Lernen?",
+    lead: "In der Praxis lernst du nicht allein. Jeden Tag begleitet dich eine Fachperson, die dir Aufträge gibt, dich anleitet und dir Rückmeldung gibt. Je klarer ihr euch absprecht, desto mehr lernst du.",
+    theory: [
+      { h: "Wer ist für dich da?",
+        table: { head: ["Rolle", "Aufgabe"], rows: [
+          ["Berufsbildnerin, Berufsbildner", "Verantwortet deine Ausbildung im Betrieb: Bildungsplan, Lernziele, Standortgespräche und Qualifikation"],
+          ["Lernbegleitung", "Begleitet dich gezielt bei Lernsituationen, zum Beispiel bei einer neuen Tätigkeit oder einem Praxisauftrag"],
+          ["Tagesbezugsperson", "Die Fachperson, mit der du heute arbeitest: Sie teilt dir Aufgaben zu, unterstützt dich und ist deine erste Ansprechperson"],
+          ["Du als lernende Person", "Gestaltest dein Lernen aktiv mit: Ziele nennen, Fragen stellen, reflektieren"] ] },
+        after: "Die Bezeichnungen sind je nach Betrieb verschieden. Frag nach, wer bei euch welche Rolle hat." },
+      { h: "Ein Tag mit deiner Tagesbezugsperson",
+        list: ["Zu Beginn: Kurz absprechen, welche Personen du betreust, welche Aufgaben du übernimmst und woran du heute lernen willst", "Kompetenzen klären: Was darfst du selbständig, was nur unter Aufsicht, was gar nicht?", "Während des Tages: Veränderungen sofort melden, Fragen stellen, bei Unsicherheit stoppen", "Zwischenhalt: Kurz austauschen, ob alles nach Plan läuft", "Am Ende: Rückmeldung einholen, gemeinsam reflektieren, Lerndokumentation nachführen"] },
+      { h: "So wird aus Arbeit Lernen",
+        p: ["Eine neue Tätigkeit lernst du oft in vier Schritten: Die Fachperson erklärt und zeigt sie, du machst sie unter Anleitung nach, du übst sie unter Beobachtung, und schliesslich führst du sie selbständig aus. Sag deiner Tagesbezugsperson, auf welcher Stufe du gerade bist.",
+            "Hilfreich sind konkrete Lernziele für den Tag, zum Beispiel: «Heute möchte ich die Braden-Einschätzung selbständig durchführen und von dir Rückmeldung bekommen.»"] },
+      { h: "Wenn es nicht passt",
+        p: ["Manchmal fehlt im Alltag die Zeit, oder die Zusammenarbeit läuft nicht gut. Sprich das zuerst direkt und freundlich an. Hilft das nicht, wende dich an deine Berufsbildnerin oder deinen Berufsbildner. Du hast ein Recht auf Begleitung in deiner Ausbildung."] }
+    ],
+    points: ["Berufsbildner verantwortet die Ausbildung, die Tagesbezugsperson begleitet dich im Alltag", "Tagesbeginn: Aufgaben, Kompetenzen und Lernziel absprechen", "Während des Tages: melden, fragen, bei Unsicherheit stoppen", "Tagesende: Rückmeldung und Reflexion", "Vier Schritte: zeigen, nachmachen, üben, selbständig"],
+    merke: "Sag jeden Morgen ein konkretes Lernziel. So weiss deine Tagesbezugsperson, wie sie dich unterstützen kann.",
+    facts: ["Lernende, die ihre Lernziele aktiv nennen, bekommen nachweislich mehr gezielte Rückmeldungen.", "Auch erfahrene Fachpersonen lernen beim Anleiten: Wer erklärt, reflektiert das eigene Handeln.", "In vielen Betrieben gibt es feste Zeitfenster für Lernbegleitungen. Nutze sie und bereite Fragen vor."],
+    comp: {
+      AGS: { do: ["Zu Tagesbeginn Aufgaben und Lernziel mit der Tagesbezugsperson absprechen", "Beobachtungen und Veränderungen sofort melden", "Rückmeldung einholen und in der Lerndokumentation festhalten"], no: ["Aufgaben übernehmen, die nicht mit der Tagesbezugsperson abgesprochen sind"] },
+      FaGe: { do: ["Eigene Lernziele formulieren und einfordern", "Aufträge selbständig ausführen und den Stand zurückmelden", "AGS-Lernende im Alltag unterstützen, wenn es vereinbart ist"], no: ["Verantwortung für die Ausbildung anderer Lernender übernehmen"] },
+      HF: { do: ["Den eigenen Lernprozess in der Praxis steuern und mit der Praxisausbildnerin abstimmen", "Zunehmend als Tagesbezugsperson für Lernende AGS und FaGe mitwirken, unter Anleitung", "Anleitungssituationen planen und reflektieren"], no: ["Allein die Verantwortung für die Ausbildung von Lernenden tragen"] }
+    },
+    quiz: {
+      AGS: [
+        ["Wer ist im Alltag deine erste Ansprechperson?", ["Die Küche", "Deine Tagesbezugsperson", "Die Patientin"], 1, "Sie ist heute mit dir unterwegs und teilt dir Aufgaben zu."],
+        ["Was besprichst du am Morgen mit deiner Tagesbezugsperson?", ["Nur die Pausenzeiten", "Aufgaben, Kompetenzen und dein Lernziel", "Nichts"], 1, "Eine klare Absprache gibt Sicherheit."],
+        ["Eine Bewohnerin wirkt plötzlich anders als sonst. Was tust du?", ["Bis zur Pause warten", "Sofort der Tagesbezugsperson melden", "Selbst entscheiden"], 1, "Veränderungen werden sofort gemeldet."],
+        ["Wer verantwortet deine Ausbildung im Betrieb?", ["Die Tagesbezugsperson", "Deine Berufsbildnerin oder dein Berufsbildner", "Die Teamleitung allein"], 1, "Die Tagesbezugsperson begleitet dich im Alltag."],
+        ["Was tust du am Ende des Tages?", ["Sofort gehen", "Rückmeldung einholen und die Lerndokumentation nachführen", "Nur dokumentieren"], 1, "So wird aus dem Tag Lernen."]
+      ],
+      FaGe: [
+        ["Welches Lernziel ist für den Tag hilfreich?", ["«Ich will viel lernen.»", "«Ich möchte heute die Braden-Einschätzung selbständig machen und Rückmeldung bekommen.»", "«Mal schauen.»"], 1, "Konkret und überprüfbar."],
+        ["In welcher Reihenfolge lernst du eine neue Tätigkeit oft?", ["Selbständig, dann zeigen lassen", "Zeigen, nachmachen, üben, selbständig", "Lesen, dann selbständig"], 1, "Schrittweise zur Selbständigkeit."],
+        ["Deine Tagesbezugsperson hat keine Zeit für Rückmeldung. Was tust du?", ["Nichts", "Einen kurzen Zeitpunkt vereinbaren oder später nachfragen", "Dich bei allen beschweren"], 1, "Aktiv einfordern, freundlich und konkret."],
+        ["Was klärst du zu Beginn zu deinen Kompetenzen?", ["Was du selbständig, unter Aufsicht oder gar nicht machst", "Nur die Pausen", "Nichts, das ist klar"], 0, "Gerade bei medizinaltechnischen Verrichtungen wichtig."],
+        ["Die Zusammenarbeit mit einer Tagesbezugsperson läuft wiederholt schlecht. Was ist der erste Schritt?", ["Krank melden", "Direkt und freundlich ansprechen", "Im Team schlecht reden"], 1, "Hilft es nicht, die Berufsbildnerin oder den Berufsbildner einbeziehen."]
+      ],
+      HF: [
+        ["Du begleitest heute eine AGS-Lernende. Womit beginnst du?", ["Mit einer kurzen Absprache zu Aufgaben, Kompetenzen und Lernziel", "Sie soll einfach mitlaufen", "Mit der Qualifikation"], 0, "Klare Absprache am Tagesbeginn."],
+        ["Was zeichnet gute Anleitung aus?", ["Alles selbst machen", "Zeigen, erklären, nachmachen lassen, Rückmeldung geben", "Nur korrigieren"], 1, "Schrittweise Selbständigkeit."],
+        ["Wer trägt die Verantwortung für die Ausbildung der Lernenden?", ["Du als Studierende HF allein", "Die Berufsbildnerin oder der Berufsbildner", "Die Lernenden selbst"], 1, "Du wirkst mit, die Verantwortung liegt bei der Berufsbildung."],
+        ["Wie steuerst du deinen eigenen Lernprozess in der Praxis?", ["Gar nicht", "Lernziele mit der Praxisausbildnerin abstimmen und reflektieren", "Nur die Schule entscheidet"], 1, "Selbstgesteuertes Lernen ist zentral in der HF."],
+        ["Eine Lernende macht wiederholt den gleichen Fehler. Wie reagierst du?", ["Sie blossstellen", "Situation beschreiben, Ursache klären, Lernschritt vereinbaren, Berufsbildung informieren", "Aufgaben selbst übernehmen"], 1, "Lernorientiert und transparent."]
+      ]
+    },
+    transfer: "Formuliere morgen zu Dienstbeginn ein konkretes Lernziel und besprich es mit deiner Tagesbezugsperson. Hol am Ende des Dienstes eine kurze Rückmeldung ein.",
+    src: "Bildungspläne AGS EBA und FaGe EFZ (OdASanté); Rahmenlehrplan Pflege HF; Handbuch betriebliche Grundbildung (SDBB)"
+  },
+  {
+    id: "rollen", topic: "Teamarbeit", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Rollen und Verantwortung im Team",
+    teaser: "AGS, FaGe, Pflege HF und weitere Berufe: Wer macht was im Pflegeteam, und warum ist das wichtig?",
+    lead: "Ein Pflegeteam besteht aus Menschen mit unterschiedlichen Ausbildungen. Jede Rolle hat eigene Aufgaben und Grenzen. Wenn alle ihre Rolle kennen, ist die Pflege sicherer und die Zusammenarbeit einfacher.",
+    theory: [
+      { h: "Die Berufe im Pflegeteam",
+        table: { head: ["Beruf", "Schwerpunkt"], rows: [
+          ["Assistentin, Assistent Gesundheit und Soziales EBA", "Unterstützt bei Alltag, Körperpflege, Mobilität und Ernährung nach Auftrag"],
+          ["Fachfrau, Fachmann Gesundheit EFZ", "Pflegt und betreut selbständig im Rahmen des Pflegeprozesses, inklusive medizinaltechnischer Verrichtungen"],
+          ["Pflegefachfrau, Pflegefachmann HF oder FH", "Verantwortet den Pflegeprozess, beurteilt komplexe Situationen, delegiert und leitet an"],
+          ["Pflegeexpertin, Pflegeexperte (z. B. APN)", "Fachliche Vertiefung, Beratung des Teams, Praxisentwicklung"] ] } },
+      { h: "Skill- und Grademix",
+        p: ["Im Team arbeiten Personen mit unterschiedlichen Fähigkeiten (Skills) und Ausbildungsstufen (Grades) zusammen. Ziel ist, dass jede Aufgabe von der Person übernommen wird, die dafür passend ausgebildet ist. So wird das Wissen aller gut genutzt."] },
+      { h: "Die Kompetenzregelung",
+        p: ["Jeder Betrieb legt in einer Kompetenzregelung fest, wer welche Tätigkeiten ausführen darf. Sie stützt sich auf die Bildungsverordnungen und auf betriebliche Vorgaben. Kenne die Regelung deines Betriebs, besonders für Medikamente und medizinaltechnische Verrichtungen."] },
+      { h: "Gute Zusammenarbeit",
+        list: ["Die eigene Rolle kennen und ausfüllen", "Die Rollen der anderen respektieren", "Informationen zuverlässig weitergeben", "Grenzen ansprechen: «Das darf ich nicht» ist professionell", "Einander unterstützen, besonders in strengen Situationen"] }
+    ],
+    points: ["Jeder Beruf im Team hat eigene Aufgaben und Grenzen", "Skill- und Grademix: die richtige Person für die richtige Aufgabe", "Die Kompetenzregelung des Betriebs ist verbindlich", "Grenzen ansprechen ist professionell", "Informationen zuverlässig weitergeben"],
+    merke: "Wer seine Grenzen kennt und offen sagt, ist eine sichere Teamkollegin, ein sicherer Teamkollege.",
+    facts: ["Die Pflegefachperson HF und FH ist in der Schweiz ein im Gesundheitsberufegesetz geregelter Beruf.", "Ein guter Skill- und Grademix wirkt sich positiv auf die Patientensicherheit aus.", "Rollenklarheit gehört zu den wichtigsten Faktoren für Zufriedenheit im Team."],
+    comp: {
+      AGS: { do: ["Aufgaben nach Auftrag ausführen und Ergebnisse zurückmelden", "Die Rolle von FaGe und HF kennen und wissen, wen du fragst", "Grenzen offen ansprechen"], no: ["Aufgaben übernehmen, die FaGe oder HF vorbehalten sind"] },
+      FaGe: { do: ["Eigene Aufgaben im Rahmen des Pflegeprozesses selbständig übernehmen", "AGS unterstützen und anleiten nach Absprache", "Mit der Fachperson HF abstimmen"], no: ["Den Pflegeprozess allein verantworten"] },
+      HF: { do: ["Aufgaben nach Skill- und Grademix verteilen", "Verantwortung für den Pflegeprozess übernehmen", "Rollenklarheit im Team fördern"], no: ["Als Studierende HF: Verantwortung nur nach Ausbildungsstand und unter Anleitung"] }
+    },
+    quiz: {
+      AGS: [
+        ["Wer verantwortet den Pflegeprozess?", ["AGS", "Die Pflegefachperson HF oder FH", "Die Küche"], 1, "AGS und FaGe arbeiten darin mit."],
+        ["Du sollst eine Aufgabe übernehmen, die du nicht darfst. Was sagst du?", ["Nichts und mache es", "«Das darf ich als AGS nicht. Ich hole die zuständige Fachperson.»", "«Später.»"], 1, "Grenzen ansprechen ist professionell."],
+        ["Was regelt die Kompetenzregelung?", ["Die Dienstpläne", "Wer welche Tätigkeiten ausführen darf", "Die Löhne"], 1, "Sie ist verbindlich."],
+        ["Was gehört zu guter Zusammenarbeit?", ["Informationen für sich behalten", "Informationen zuverlässig weitergeben", "Allein arbeiten"], 1, "Das Team braucht deine Beobachtungen."],
+        ["Was ist der Schwerpunkt der AGS?", ["Medikamente richten", "Unterstützung bei Alltag, Körperpflege, Mobilität und Ernährung", "Pflegediagnosen stellen"], 1, "Nach Auftrag."]
+      ],
+      FaGe: [
+        ["Was bedeutet Skill- und Grademix?", ["Alle machen alles", "Aufgaben werden nach Fähigkeiten und Ausbildungsstufe verteilt", "Ein Schichtmodell"], 1, "Die passende Person für die passende Aufgabe."],
+        ["Welche Aufgabe gehört zur FaGe, nicht zur AGS?", ["Bett beziehen", "Subkutane Injektion nach Verordnung", "Beim Essen unterstützen"], 1, "Medizinaltechnische Verrichtung."],
+        ["Wer stellt Pflegediagnosen?", ["FaGe", "Pflegefachperson HF oder FH", "AGS"], 1, "FaGe arbeiten im Pflegeprozess mit."],
+        ["Eine AGS fragt dich um Hilfe bei einer Aufgabe. Was tust du?", ["Ignorieren", "Unterstützen oder anleiten, im Rahmen deiner Kompetenzen", "Sie zur Teamleitung schicken"], 1, "Gegenseitige Unterstützung."],
+        ["Warum ist Rollenklarheit wichtig?", ["Wegen der Hierarchie", "Sie macht Pflege sicherer und Zusammenarbeit einfacher", "Ist sie nicht"], 1, "Jeder weiss, wer wofür zuständig ist."]
+      ],
+      HF: [
+        ["Wie verteilst du Aufgaben im Team?", ["Nach Sympathie", "Nach Skill- und Grademix und Kompetenzregelung", "Zufällig"], 1, "Die richtige Person für die richtige Aufgabe."],
+        ["Wer ist eine Pflegeexpertin APN?", ["Eine Pflegefachperson mit Masterabschluss und vertiefter klinischer Expertise", "Eine Lernende", "Eine Ärztin"], 0, "Advanced Practice Nurse."],
+        ["Was fördert Rollenklarheit?", ["Unklare Aufträge", "Klare Absprachen und transparente Kompetenzregelung", "Möglichst wenig reden"], 1, "Transparenz schafft Sicherheit."],
+        ["Welches Gesetz regelt die Pflegeberufe HF und FH?", ["Gesundheitsberufegesetz", "Arbeitsgesetz", "Strassenverkehrsgesetz"], 0, "GesBG."],
+        ["Eine FaGe übernimmt regelmässig Aufgaben über ihre Kompetenzen hinaus. Was tust du?", ["Nichts", "Ansprechen, Kompetenzregelung klären, bei Bedarf Leitung einbeziehen", "Loben"], 1, "Sicherheit für Patientinnen und Mitarbeitende."]
+      ]
+    },
+    transfer: "Lies die Kompetenzregelung deines Betriebs. Welche drei Tätigkeiten unterscheiden deine Stufe am deutlichsten von der nächsten?",
+    src: "Bildungsverordnungen AGS EBA und FaGe EFZ (SBFI); Gesundheitsberufegesetz (GesBG); OdASanté"
+  },
+  {
+    id: "delegation", topic: "Teamarbeit", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Delegation: Aufgaben übergeben und übernehmen",
+    teaser: "Wer delegiert, wer führt aus, und wer trägt welche Verantwortung? Und wann darfst du Nein sagen?",
+    lead: "Im Pflegealltag werden ständig Aufgaben übergeben. Damit das sicher ist, braucht es klare Regeln: Die richtige Aufgabe muss an die richtige Person mit der richtigen Anleitung gehen.",
+    theory: [
+      { h: "Verantwortung teilen",
+        table: { head: ["", "Wer?", "Verantwortung"], rows: [
+          ["Delegieren", "Die Person, die eine Aufgabe übergibt", "Für die Auswahl der geeigneten Person, die klare Anleitung und die Kontrolle"],
+          ["Übernehmen", "Die Person, die die Aufgabe ausführt", "Für die korrekte Ausführung und die Rückmeldung"] ] },
+        after: "Beide tragen also Verantwortung, nur für unterschiedliche Teile." },
+      { h: "Die fünf Fragen vor dem Delegieren",
+        list: ["Richtige Aufgabe: Darf diese Aufgabe überhaupt delegiert werden?", "Richtige Person: Ist sie ausgebildet und laut Kompetenzregelung berechtigt?", "Richtige Umstände: Ist die Situation der Patientin stabil genug?", "Richtige Anleitung: Ist klar, was, wie, bis wann und was gemeldet werden muss?", "Richtige Kontrolle: Wie wird die Rückmeldung sichergestellt?"] },
+      { h: "Nein sagen ist professionell",
+        p: ["Wer eine Aufgabe nicht beherrscht oder nicht dazu berechtigt ist, muss sie ablehnen. Das ist keine Schwäche, sondern Verantwortung. Formuliere klar und biete eine Lösung an: «Das darf ich nicht machen. Ich hole die zuständige Fachperson.»",
+            "Medizinaltechnische Verrichtungen brauchen auf allen Stufen eine ärztliche Verordnung."] },
+      { h: "Gute Rückmeldung",
+        p: ["Nach der Ausführung meldest du zurück: erledigt, Auffälligkeiten, offene Punkte. Ohne Rückmeldung weiss die delegierende Person nicht, ob alles gut gegangen ist."] }
+    ],
+    points: ["Delegierende Person: Auswahl, Anleitung, Kontrolle", "Ausführende Person: korrekte Ausführung und Rückmeldung", "Fünf Fragen: Aufgabe, Person, Umstände, Anleitung, Kontrolle", "Nicht beherrschte Aufgaben ablehnen und eine Lösung anbieten", "Immer zurückmelden"],
+    merke: "Eine Aufgabe ist erst abgeschlossen, wenn du sie zurückgemeldet hast.",
+    facts: ["Unklare Aufträge gehören zu den häufigsten Ursachen von Fehlern im Team.", "Medizinaltechnische Verrichtungen brauchen auf allen Bildungsstufen eine ärztliche Verordnung.", "Wer Aufgaben ablehnt, die er nicht beherrscht, schützt sich und die Patientin."],
+    comp: {
+      AGS: { do: ["Aufträge nach Anleitung ausführen", "Rückfragen stellen, wenn etwas unklar ist", "Nicht beherrschte oder nicht erlaubte Aufgaben ablehnen", "Zuverlässig zurückmelden"], no: ["Aufgaben an andere weitergeben, ohne die Auftraggeberin zu informieren"] },
+      FaGe: { do: ["Delegierte Aufgaben ausführen und zurückmelden", "Einfache Aufgaben nach Absprache an AGS übergeben, mit klarer Anleitung", "Ablehnen, wenn Kompetenz oder Sicherheit fehlen"], no: ["Aufgaben delegieren, für die die AGS nicht berechtigt ist"] },
+      HF: { do: ["Aufgaben nach den fünf Fragen delegieren", "Klare Anleitung geben und Rückmeldung sicherstellen", "Die Verantwortung für Auswahl und Kontrolle übernehmen"], no: ["Als Studierende HF: Delegation nur in Absprache mit der diplomierten Fachperson"] }
+    },
+    quiz: {
+      AGS: [
+        ["Du sollst eine Aufgabe übernehmen, die du nicht beherrschst. Was tust du?", ["Trotzdem machen", "Ablehnen und eine Lösung anbieten", "Heimlich jemand anderen fragen"], 1, "Ablehnen ist professionell."],
+        ["Wann ist eine delegierte Aufgabe abgeschlossen?", ["Wenn sie gemacht ist", "Wenn du sie zurückgemeldet hast", "Am Dienstende"], 1, "Rückmeldung schliesst den Kreis."],
+        ["Der Auftrag ist unklar. Was tust du?", ["Raten", "Nachfragen", "Nichts tun"], 1, "Rückfragen verhindern Fehler."],
+        ["Wofür bist du bei einer delegierten Aufgabe verantwortlich?", ["Für nichts", "Für die korrekte Ausführung und die Rückmeldung", "Für die Auswahl der Person"], 1, "Die Auswahl verantwortet die delegierende Person."],
+        ["Darfst du eine Aufgabe, die du bekommen hast, ohne Info weitergeben?", ["Ja", "Nein, du informierst die Auftraggeberin", "Nur an Freunde"], 1, "Sonst geht die Verantwortung verloren."]
+      ],
+      FaGe: [
+        ["Welche Verantwortung trägt die delegierende Person?", ["Keine", "Auswahl der Person, Anleitung und Kontrolle", "Nur die Ausführung"], 1, "Die Ausführung verantwortet die ausführende Person."],
+        ["Welche Aufgabe darfst du an eine AGS delegieren?", ["Insulin spritzen", "Bei der Körperpflege unterstützen", "Medikamente richten"], 1, "Nur Aufgaben im Kompetenzbereich der AGS."],
+        ["Was gehört zu einer klaren Anleitung?", ["Nur «mach mal»", "Was, wie, bis wann und was gemeldet werden muss", "Nichts"], 1, "Präzise Aufträge sind sicher."],
+        ["Was brauchen medizinaltechnische Verrichtungen immer?", ["Eine ärztliche Verordnung", "Eine Unterschrift der Angehörigen", "Nichts"], 0, "Auf allen Stufen."],
+        ["Du bist unsicher bei einer delegierten Injektion. Was tust du?", ["Machen", "Aufgabe ablehnen oder Begleitung verlangen", "Selbst entscheiden"], 1, "Sicherheit vor Tempo."]
+      ],
+      HF: [
+        ["Welche fünf Fragen klärst du vor dem Delegieren?", ["Aufgabe, Person, Umstände, Anleitung, Kontrolle", "Wer, wann, wo, wie, warum", "Keine"], 0, "Die fünf Richtigkeiten der Delegation."],
+        ["Die Patientin ist instabil. Delegierst du die Vitalzeichenkontrolle an eine AGS?", ["Ja, ohne Zusatz", "Eher nicht, oder nur mit engmaschiger Kontrolle und klaren Meldekriterien", "Immer"], 1, "Richtige Umstände prüfen."],
+        ["Wie stellst du die Kontrolle sicher?", ["Gar nicht", "Rückmeldezeitpunkt und Meldekriterien vereinbaren", "Erst am Dienstende fragen"], 1, "Kontrolle gehört zur Verantwortung."],
+        ["Eine FaGe lehnt eine Aufgabe ab, weil sie unsicher ist. Wie reagierst du?", ["Unter Druck setzen", "Ablehnung respektieren, Lösung suchen, Lernbedarf festhalten", "Ignorieren"], 1, "Ablehnen ist verantwortungsvoll."],
+        ["Wer trägt die Verantwortung für die Auswahl der ausführenden Person?", ["Die ausführende Person", "Die delegierende Person", "Niemand"], 1, "Auswahlverantwortung."]
+      ]
+    },
+    transfer: "Achte heute darauf, wie Aufträge im Team übergeben werden. Sind sie klar? Wird zurückgemeldet? Notiere ein gutes Beispiel.",
+    src: "ARTISET, Faktenblatt Medizinaltechnische Verrichtungen; NCSBN, National Guidelines for Nursing Delegation; Kompetenzregelungen der Betriebe"
+  },
+  {
+    id: "konflikte", topic: "Teamarbeit", levels: ["AGS","FaGe","HF"], min: 8,
+    title: "Konflikte im Team",
+    teaser: "Konflikte früh erkennen, sachlich ansprechen und gemeinsam lösen, bevor sie eskalieren.",
+    lead: "Wo Menschen zusammenarbeiten, gibt es Konflikte. Sie sind nicht automatisch schlecht: Gut gelöst, verbessern sie die Zusammenarbeit. Gefährlich werden sie, wenn niemand sie anspricht.",
+    theory: [
+      { h: "Wie Konflikte eskalieren",
+        p: ["Der Konfliktforscher Friedrich Glasl beschreibt neun Eskalationsstufen in drei Phasen. Je früher ein Konflikt angesprochen wird, desto leichter lässt er sich lösen."],
+        table: { head: ["Phase", "Was passiert", "Lösung"], rows: [
+          ["1. Beide können gewinnen", "Meinungen prallen aufeinander, Debatten, Spannung", "Direktes Gespräch genügt oft"],
+          ["2. Einer gewinnt, einer verliert", "Koalitionen, Gesichtsverlust, Drohungen", "Vermittlung durch Dritte nötig"],
+          ["3. Beide verlieren", "Ziel ist, dem anderen zu schaden", "Nur noch Intervention von aussen"] ] } },
+      { h: "Ein Konfliktgespräch führen",
+        list: ["Einen ruhigen Zeitpunkt und Ort wählen, unter vier Augen", "Beobachtung beschreiben, nicht bewerten", "Ich-Botschaften verwenden: «Ich habe bemerkt ... Das hat mich ...»", "Zuhören und die Sicht der anderen Person verstehen wollen", "Gemeinsam eine Lösung suchen und konkret vereinbaren", "Später nachfragen, ob die Lösung funktioniert"],
+        after: "Ein hilfreiches Modell ist die gewaltfreie Kommunikation nach Marshall Rosenberg: Beobachtung, Gefühl, Bedürfnis, Bitte." },
+      { h: "Wann Hilfe holen?",
+        p: ["Wenn ein Gespräch nicht weiterhilft, ziehst du deine Berufsbildnerin, deinen Berufsbildner oder die Teamleitung bei. Bei Mobbing, also wenn eine Person über längere Zeit systematisch ausgegrenzt oder angegriffen wird, holst du sofort Unterstützung und notierst Vorfälle mit Datum."] }
+    ],
+    points: ["Konflikte sind normal, wichtig ist der Umgang", "Früh ansprechen: Glasl-Phase 1 lässt sich im Gespräch lösen", "Unter vier Augen, beschreibend, mit Ich-Botschaften", "Zuhören und gemeinsam eine Lösung vereinbaren", "Bei Mobbing sofort Hilfe holen"],
+    merke: "Sprich Konflikte an, solange sie klein sind. Ein kurzes Gespräch heute erspart grosse Probleme morgen.",
+    facts: ["Friedrich Glasl ist ein österreichischer Konfliktforscher. Sein Stufenmodell wird in vielen Teams verwendet.", "Ungelöste Konflikte gehören zu den häufigsten Gründen für Unzufriedenheit und Kündigungen in der Pflege.", "Konflikte vor Patientinnen und Patienten auszutragen verunsichert diese und ist unprofessionell."],
+    comp: {
+      AGS: { do: ["Konflikte unter vier Augen und sachlich ansprechen", "Bei Bedarf die Berufsbildnerin oder den Berufsbildner einbeziehen", "Konflikte nicht vor Patientinnen oder Patienten austragen"], no: ["Gerüchte verbreiten oder Koalitionen bilden"] },
+      FaGe: { do: ["Konfliktgespräche mit Ich-Botschaften führen", "Lösungen vereinbaren und nachfragen", "Mitlernende unterstützen, Hilfe zu holen"], no: ["Konflikte anderer allein schlichten, wenn sie über dich hinausgehen"] },
+      HF: { do: ["Konflikte im Team früh wahrnehmen und ansprechen", "Gespräche moderieren und zur Lösung beitragen", "Bei Eskalation die Leitung einbeziehen"], no: ["Als Studierende HF: keine Führungsentscheide bei Konflikten treffen"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Kollegin kritisiert dich vor einer Patientin. Was tust du?", ["Sofort zurückschimpfen", "Ruhig bleiben und später unter vier Augen ansprechen", "Weinen und gehen"], 1, "Konflikte nicht vor Patientinnen austragen."],
+        ["Wann sprichst du einen Konflikt am besten an?", ["Nie", "Früh, solange er klein ist", "Wenn er gross ist"], 1, "Früh ist es am einfachsten."],
+        ["Welche Aussage ist eine Ich-Botschaft?", ["«Du bist immer unfreundlich.»", "«Ich habe mich heute übergangen gefühlt, als ...»", "«Alle sagen das.»"], 1, "Eigene Wahrnehmung, ohne Vorwurf."],
+        ["Das Gespräch hilft nicht. Was tust du?", ["Aufgeben", "Berufsbildnerin oder Berufsbildner einbeziehen", "Gerüchte erzählen"], 1, "Hilfe holen ist richtig."],
+        ["Was ist Mobbing?", ["Ein einzelner Streit", "Systematische Ausgrenzung oder Angriffe über längere Zeit", "Eine Meinungsverschiedenheit"], 1, "Dann sofort Unterstützung holen."]
+      ],
+      FaGe: [
+        ["Was sind die vier Schritte der gewaltfreien Kommunikation?", ["Beobachtung, Gefühl, Bedürfnis, Bitte", "Angriff, Abwehr, Rückzug, Schweigen", "Frage, Antwort, Lob, Kritik"], 0, "Nach Marshall Rosenberg."],
+        ["In Glasl-Phase 1 hilft oft...", ["eine Intervention von aussen", "ein direktes Gespräch", "nichts mehr"], 1, "Beide können noch gewinnen."],
+        ["Was gehört zum Ende eines Konfliktgesprächs?", ["Nichts", "Eine konkrete Vereinbarung und später nachfragen", "Ein Vorwurf"], 1, "Sonst bleibt alles beim Alten."],
+        ["Zwei Mitlernende streiten oft. Was tust du?", ["Partei ergreifen", "Ermutigen, das Gespräch zu suchen oder Hilfe zu holen", "Es allen erzählen"], 1, "Nicht in den Konflikt hineinziehen lassen."],
+        ["Warum ist «Beschreiben statt Bewerten» wichtig?", ["Es ist kürzer", "Es vermeidet Angriffe und macht die Sache klar", "Es ist egal"], 1, "Die andere Person kann zuhören, ohne sich zu verteidigen."]
+      ],
+      HF: [
+        ["In welcher Glasl-Phase braucht es eine Vermittlung durch Dritte?", ["Phase 1", "Phase 2", "Keine"], 1, "Einer gewinnt, einer verliert."],
+        ["Wie moderierst du ein Konfliktgespräch?", ["Partei ergreifen", "Beide Sichtweisen hören, Gemeinsamkeiten suchen, Lösung vereinbaren", "Schnell ein Urteil fällen"], 1, "Neutral und lösungsorientiert."],
+        ["Woran erkennst du eine Eskalation im Team?", ["Mehr Lachen", "Koalitionen, Gerüchte, Rückzug, Fehler", "Bessere Übergaben"], 1, "Früh reagieren."],
+        ["Was tust du bei Verdacht auf Mobbing gegen eine Lernende?", ["Abwarten", "Ernst nehmen, Gespräch anbieten, dokumentieren, Leitung einbeziehen", "Ignorieren"], 1, "Fürsorgepflicht."],
+        ["Warum können Konflikte auch positiv sein?", ["Sind sie nie", "Gut gelöst, verbessern sie Abläufe und Zusammenarbeit", "Sie schaffen Hierarchie"], 1, "Konflikte zeigen, wo etwas nicht passt."]
+      ]
+    },
+    transfer: "Denk an eine Spannung im Team, die du erlebt hast. Wie könntest du sie mit Beobachtung, Gefühl, Bedürfnis und Bitte ansprechen? Schreib den ersten Satz auf.",
+    src: "Glasl F.: Konfliktmanagement; Rosenberg M. B.: Gewaltfreie Kommunikation; SECO, Mobbing und andere Belästigungen"
+  },
+  {
+    id: "interprofessionell", topic: "Teamarbeit", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Interprofessionelle Zusammenarbeit",
+    teaser: "Pflege, Ärzteschaft, Physio, Ergo, Logopädie und mehr: gemeinsam auf ein Ziel hinarbeiten, besonders in der Reha.",
+    lead: "In der Rehabilitation arbeiten viele Berufe an einem Ziel: Die Person soll möglichst selbständig nach Hause oder an ihren Arbeitsplatz zurückkehren. Das gelingt nur, wenn alle eng zusammenarbeiten.",
+    theory: [
+      { h: "Was heisst interprofessionell?",
+        p: ["Die Weltgesundheitsorganisation beschreibt interprofessionelle Zusammenarbeit so: Mehrere Gesundheitsberufe mit unterschiedlichem Hintergrund arbeiten gemeinsam mit der Person, ihren Angehörigen und dem Umfeld, um die bestmögliche Versorgung zu erreichen. Das ist mehr als nebeneinander arbeiten: Man plant und entscheidet gemeinsam."] },
+      { h: "Das Reha-Team",
+        table: { head: ["Beruf", "Beitrag"], rows: [
+          ["Ärzteschaft", "Diagnose, medizinische Behandlung, Verordnungen"],
+          ["Pflege", "24 Stunden nah an der Person, Alltagstraining, Beobachtung"],
+          ["Physiotherapie", "Kraft, Gleichgewicht, Gehen, Transfers"],
+          ["Ergotherapie", "Alltagsaktivitäten, Hand- und Armfunktion, Hilfsmittel"],
+          ["Logopädie", "Sprache, Sprechen, Schlucken"],
+          ["Neuropsychologie", "Gedächtnis, Aufmerksamkeit, Verhalten"],
+          ["Sozialdienst", "Austritt, Finanzen, Unterstützung zu Hause"] ] } },
+      { h: "Gemeinsame Ziele",
+        p: ["In der Reha wird oft mit dem ICF-Modell der WHO gearbeitet. Es schaut nicht nur auf die Krankheit, sondern auf Körperfunktionen, Aktivitäten, Teilhabe am Leben und Umweltfaktoren. Die Ziele werden gemeinsam mit der Person festgelegt, zum Beispiel: «Wieder allein duschen können.»",
+            "Die Pflege setzt das Training aus den Therapien im Alltag um. Wer in der Therapie den Transfer übt, soll ihn auf der Station genauso machen."] },
+      { h: "Was hilft",
+        list: ["Die Aufgaben der anderen Berufe kennen", "Beobachtungen aktiv weitergeben, zum Beispiel an Rapporten", "Fragen stellen, wenn eine Empfehlung unklar ist", "Gleiche Technik und Sprache wie in der Therapie verwenden", "Wertschätzung zeigen: Jeder Beruf trägt etwas bei"] }
+    ],
+    points: ["Interprofessionell heisst gemeinsam planen und entscheiden", "Jeder Beruf trägt etwas Eigenes bei", "ICF: Körperfunktionen, Aktivitäten, Teilhabe, Umweltfaktoren", "Gemeinsame Ziele mit der Person", "Pflege überträgt das Training in den Alltag"],
+    merke: "Die Pflege ist 24 Stunden bei der Person. Deine Beobachtungen sind für das ganze Team wertvoll.",
+    facts: ["Die ICF ist die Internationale Klassifikation der Funktionsfähigkeit, Behinderung und Gesundheit der WHO.", "Gute interprofessionelle Zusammenarbeit verkürzt Aufenthalte und verbessert die Ergebnisse für Patientinnen und Patienten.", "Das BAG hat ein Förderprogramm zur interprofessionellen Zusammenarbeit im Gesundheitswesen durchgeführt."],
+    comp: {
+      AGS: { do: ["Empfehlungen der Therapien im Alltag umsetzen, nach Anleitung", "Beobachtungen an die Pflegefachperson weitergeben", "Fragen stellen, wenn etwas unklar ist"], no: ["Therapeutische Massnahmen selbst ändern"] },
+      FaGe: { do: ["Therapieziele in die Pflege einbauen", "Beobachtungen im Rapport einbringen", "Mit Therapien direkt abstimmen, zum Beispiel zum Transfer"], no: ["Verordnungen anpassen"] },
+      HF: { do: ["An interprofessionellen Rapporten mitwirken und die Pflegesicht einbringen", "Ziele nach ICF gemeinsam mit der Person mitplanen", "Austritt interprofessionell koordinieren"], no: ["Als Studierende HF: Entscheide nach Absprache"] }
+    },
+    quiz: {
+      AGS: [
+        ["Die Physiotherapie hat einen neuen Transfer mit der Person geübt. Was tust du?", ["Weiter wie bisher", "Nachfragen und den Transfer gleich machen", "Ignorieren"], 1, "Gleiche Technik im Alltag."],
+        ["Wer ist für Schluckstörungen zuständig?", ["Logopädie", "Ergotherapie", "Sozialdienst"], 0, "Sprache, Sprechen, Schlucken."],
+        ["Du beobachtest, dass ein Patient beim Essen hustet. Wem meldest du es?", ["Niemandem", "Der Pflegefachperson", "Der Küche"], 1, "Sie bringt es ins Team."],
+        ["Warum sind deine Beobachtungen wichtig?", ["Sind sie nicht", "Die Pflege ist am längsten bei der Person", "Nur für die Doku"], 1, "24 Stunden nah dran."],
+        ["Wer hilft bei Fragen zum Austritt und Unterstützung zu Hause?", ["Sozialdienst", "Physiotherapie", "Küche"], 0, "Auch bei finanziellen Fragen."]
+      ],
+      FaGe: [
+        ["Was ist ein Beitrag der Ergotherapie?", ["Medikamente", "Alltagsaktivitäten und Hilfsmittel", "Diagnosen"], 1, "Zum Beispiel Anziehen oder Kochen."],
+        ["Was heisst interprofessionell?", ["Nebeneinander arbeiten", "Gemeinsam planen und entscheiden", "Nur Ärzte entscheiden"], 1, "Gemeinsame Ziele."],
+        ["Wie unterstützt du Therapieziele?", ["Gar nicht", "Training im Pflegealltag umsetzen", "Nur in der Therapie"], 1, "Jede Alltagshandlung ist Training."],
+        ["Was beschreibt das ICF-Modell?", ["Nur die Diagnose", "Körperfunktionen, Aktivitäten, Teilhabe und Umweltfaktoren", "Die Kosten"], 1, "Ganzheitlicher Blick."],
+        ["Eine Empfehlung der Logopädie ist dir unklar. Was tust du?", ["Raten", "Direkt bei der Logopädie nachfragen", "Weglassen"], 1, "Fragen ist professionell."]
+      ],
+      HF: [
+        ["Wie formulierst du ein Ziel nach ICF auf Ebene Teilhabe?", ["«Kraft im Arm verbessern»", "«Wieder selbständig einkaufen gehen»", "«Blutdruck senken»"], 1, "Teilhabe am Leben."],
+        ["Was ist deine Rolle im interprofessionellen Rapport?", ["Zuhören", "Pflegesicht einbringen, Beobachtungen zusammenfassen, Ziele mitplanen", "Protokoll allein"], 1, "Pflege bringt die 24-Stunden-Sicht."],
+        ["Was verbessert gute interprofessionelle Zusammenarbeit?", ["Nichts", "Ergebnisse und Aufenthaltsdauer", "Nur das Klima"], 1, "Belegt durch Studien."],
+        ["Wer koordiniert oft den Austritt mit?", ["Pflege und Sozialdienst", "Nur die Küche", "Niemand"], 0, "Interprofessionell."],
+        ["Eine Therapie und die Pflege machen den Transfer unterschiedlich. Was tust du?", ["Nichts", "Abstimmen und eine gemeinsame Technik festlegen", "Selbst entscheiden"], 1, "Einheitlichkeit fördert das Lernen."]
+      ]
+    },
+    transfer: "Frag eine Person aus einem anderen Beruf auf deiner Station, woran sie gerade mit einer Patientin arbeitet. Wie kannst du das im Alltag unterstützen?",
+    src: "WHO: Framework for Action on Interprofessional Education and Collaborative Practice (2010); WHO ICF; BAG, Förderprogramm Interprofessionalität"
+  },
+  {
+    id: "fehlerkultur", topic: "Teamarbeit", levels: ["AGS","FaGe","HF"], min: 7,
+    title: "Fehlerkultur und CIRS",
+    teaser: "Warum Fehler passieren, warum Melden wichtig ist und wie ein Team aus Fehlern lernt.",
+    lead: "Wo Menschen arbeiten, passieren Fehler. Entscheidend ist, wie ein Team damit umgeht. In einer guten Fehlerkultur werden Fehler gemeldet, besprochen und genutzt, um das System sicherer zu machen.",
+    theory: [
+      { h: "Das Schweizer-Käse-Modell",
+        p: ["Der Psychologe James Reason erklärt Fehler mit Scheiben Käse: Jede Scheibe ist eine Sicherheitsbarriere, zum Beispiel Verordnung, Richten, Kontrolle, Verabreichung. Jede Scheibe hat Löcher. Ein Schaden entsteht erst, wenn die Löcher mehrerer Scheiben genau hintereinander liegen.",
+            "Darum fragt man nach einem Fehler nicht nur «Wer war es?», sondern «Welche Barrieren haben versagt, und wie machen wir sie dichter?»"] },
+      { h: "Was tun nach einem Fehler?",
+        list: ["Zuerst die Person schützen: Situation sichern, Zustand beobachten", "Sofort der zuständigen Fachperson melden", "Ärztliche Information, wenn nötig", "Sachlich dokumentieren", "Im CIRS melden, wenn der Betrieb das vorsieht", "Mit der Berufsbildnerin oder dem Berufsbildner besprechen und daraus lernen"] },
+      { h: "CIRS",
+        p: ["CIRS steht für Critical Incident Reporting System. Mitarbeitende melden dort kritische Ereignisse und Beinahe-Fehler, meist anonym und ohne Strafe. Ziel ist, Schwachstellen im System zu finden, bevor ein Schaden entsteht. Besonders wertvoll sind Beinahe-Fehler: Sie zeigen Löcher im Käse, ohne dass jemand zu Schaden kam."] },
+      { h: "Speak up",
+        p: ["Wer eine Gefahr bemerkt, soll sie ansprechen, auch gegenüber erfahrenen Personen oder Ärztinnen und Ärzten. Eine klare Formulierung hilft: «Ich mache mir Sorgen um die Sicherheit von Frau K. Können wir die Dosis nochmals prüfen?» Die Stiftung Patientensicherheit Schweiz hat dazu Empfehlungen herausgegeben."] }
+    ],
+    points: ["Fehler passieren, entscheidend ist der Umgang", "Schweizer-Käse-Modell: Schaden entsteht, wenn mehrere Barrieren versagen", "Nach einem Fehler: Person schützen, melden, dokumentieren, lernen", "CIRS: anonym und ohne Strafe, auch Beinahe-Fehler melden", "Speak up: Gefahren ansprechen, auch gegenüber Erfahrenen"],
+    merke: "Ein gemeldeter Fehler macht das System sicherer. Ein verschwiegener Fehler kann wieder passieren.",
+    facts: ["In der Luftfahrt sind Fehlermeldesysteme seit Jahrzehnten Standard. Die Medizin hat viel davon übernommen.", "Wer nach einem Fehler stark leidet, wird als Second Victim bezeichnet und braucht Unterstützung.", "Beinahe-Fehler sind viel häufiger als Fehler mit Schaden und deshalb besonders lehrreich."],
+    comp: {
+      AGS: { do: ["Eigene Fehler und Beinahe-Fehler sofort melden", "Gefahren ansprechen", "Aus Fehlern lernen und darüber reden"], no: ["Fehler verschweigen oder allein korrigieren"] },
+      FaGe: { do: ["Fehler melden und sachlich dokumentieren", "CIRS nach Betriebsregel nutzen", "Speak up auch gegenüber Erfahrenen"], no: ["Schuld zuweisen statt Ursachen suchen"] },
+      HF: { do: ["Nach Fehlern die Sicherheit der Person sicherstellen und koordinieren", "Ursachen im System analysieren", "Eine offene Fehlerkultur vorleben und Lernende begleiten"], no: ["Als Studierende HF: Analysen und Meldungen in Absprache mit der Fachperson"] }
+    },
+    quiz: {
+      AGS: [
+        ["Dir ist ein Fehler passiert. Was tust du zuerst?", ["Verschweigen", "Die Person schützen und sofort melden", "Warten"], 1, "Sicherheit und Information zuerst."],
+        ["Was ist ein Beinahe-Fehler?", ["Ein Fehler ohne Schaden, der knapp verhindert wurde", "Ein schwerer Fehler", "Kein Fehler"], 0, "Besonders lehrreich."],
+        ["Du siehst, dass eine Kollegin die Bremse am Rollstuhl vergessen hat. Was tust du?", ["Nichts", "Freundlich ansprechen", "Später lachen"], 1, "Speak up."],
+        ["Warum meldet man Fehler?", ["Um bestraft zu werden", "Damit das System sicherer wird", "Für die Statistik"], 1, "Lernen statt Schuld."],
+        ["Wem kannst du nach einem belastenden Fehler sprechen?", ["Niemandem", "Berufsbildnerin, Berufsbildner oder Vertrauensperson", "Nur der Familie"], 1, "Unterstützung annehmen."]
+      ],
+      FaGe: [
+        ["Wofür steht CIRS?", ["Critical Incident Reporting System", "Care Information and Reporting Service", "Clinical Internal Review Staff"], 0, "Meldesystem für kritische Ereignisse."],
+        ["Was zeigt das Schweizer-Käse-Modell?", ["Fehler haben immer eine Person als Ursache", "Schaden entsteht, wenn mehrere Barrieren versagen", "Käse ist gesund"], 1, "Nach James Reason."],
+        ["Wie dokumentierst du einen Fehler?", ["Gar nicht", "Sachlich, mit Zeit, Ablauf und Massnahmen", "Mit Schuldzuweisung"], 1, "Beschreibend."],
+        ["Eine Ärztin verordnet eine Dosis, die dir zu hoch erscheint. Was tust du?", ["Ausführen", "Ansprechen und nachfragen", "Weglassen ohne Info"], 1, "Speak up."],
+        ["Werden CIRS-Meldungen bestraft?", ["Ja", "Nein, sie sind meist anonym und straffrei", "Nur bei Lernenden"], 1, "Ziel ist Lernen."]
+      ],
+      HF: [
+        ["Was fragst du in der Fehleranalyse?", ["Wer war schuld?", "Welche Barrieren haben versagt und wie machen wir sie dichter?", "Wer meldet?"], 1, "Systemorientiert."],
+        ["Was ist eine Just Culture?", ["Strafe für jeden Fehler", "Faire Fehlerkultur: Lernen bei menschlichen Fehlern, Konsequenzen bei bewusstem Fehlverhalten", "Keine Regeln"], 1, "Gerechte Sicherheitskultur."],
+        ["Eine Lernende hat einen Medikationsfehler gemacht und ist aufgelöst. Was tust du?", ["Tadeln", "Person schützen, Fehler gemeinsam analysieren, die Lernende unterstützen", "Ignorieren"], 1, "Second Victim begleiten."],
+        ["Warum sind Beinahe-Fehler wertvoll?", ["Sind sie nicht", "Sie zeigen Systemlücken, bevor ein Schaden entsteht", "Weil sie selten sind"], 1, "Sie sind häufig und lehrreich."],
+        ["Wie formulierst du Speak up gegenüber einem Arzt?", ["«Das ist falsch!»", "«Ich mache mir Sorgen um die Sicherheit von Frau K. Können wir die Dosis nochmals prüfen?»", "Gar nicht"], 1, "Klar, sachlich, auf die Sicherheit bezogen."]
+      ]
+    },
+    transfer: "Frag nach, ob dein Betrieb ein CIRS hat und wie du eine Meldung machst. Lies, wenn möglich, eine anonymisierte Meldung und überlege, welche Barriere versagt hat.",
+    src: "Reason J.: Human Error (Schweizer-Käse-Modell); Stiftung Patientensicherheit Schweiz, Speak Up; CIRRNET Schweiz"
+  },
+  {
+    id: "sbar", topic: "Teamarbeit", levels: ["FaGe","HF"], min: 8,
     title: "SBAR: strukturiert übergeben",
     teaser: "Vier Schritte, damit beim Rapport und am Telefon nichts verloren geht. Mit Beispiel.",
     lead: "Viele Fehler im Gesundheitswesen entstehen nicht durch fehlendes Wissen, sondern bei der Weitergabe von Informationen. SBAR gibt eine feste Reihenfolge vor, die alle im Team kennen.",
@@ -672,7 +992,7 @@ const NUGGETS = [
     src: "Stiftung Patientensicherheit Schweiz, Medikationssicherheit; ISMP List of High-Alert Medications"
   },
   {
-    id: "feedback", topic: "Kommunikation", levels: ["AGS","FaGe","HF"], min: 8,
+    id: "feedback", topic: "Teamarbeit", levels: ["AGS","FaGe","HF"], min: 8,
     title: "Feedback geben und annehmen",
     teaser: "Wie Rückmeldungen beim Lernen helfen, statt zu verletzen. Regeln, das WWW-Modell und der blinde Fleck.",
     lead: "In der Ausbildung bekommst du täglich Rückmeldungen, und bald gibst du selbst welche. Gutes Feedback ist eines der wirksamsten Mittel, um im Beruf zu wachsen.",
@@ -2413,6 +2733,7 @@ const TOPIC = {
   "Pflegetechniken": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Medikamente": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Kommunikation": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
+  "Teamarbeit": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Krankheitsbilder": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Berufsrolle": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" }
 };
@@ -2423,6 +2744,7 @@ const ICON = {
   "Pflegetechniken": '<circle cx="10" cy="4" r="1.6"/><path d="M10 7v6h6l2 5"/><path d="M10 10h5"/><path d="M7 11a6 6 0 1 0 8 7"/>',
   "Berufsrolle": '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>',
   "Kommunikation": '<path d="M4 5h12v8H9l-4 3v-3H4z"/><path d="M16 9h4v8h-1v3l-3-3h-5v-2"/>',
+  "Teamarbeit": '<circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-4 3-7 6-7s6 3 6 7M10 20c0-4 3-7 6-7s6 3 6 7"/>',
   "Krankheitsbilder": '<path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-1"/><circle cx="20" cy="12" r="2"/>',
   "Medikamente": '<rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="m9.5 8 5 9"/>'
 };
@@ -2849,6 +3171,12 @@ Object.assign(FIG, {
   }
 });
 const GLYPH = {
+  lernbegleitung: '<circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 21c0-5 3-8 6-8s6 3 6 8M13 21c.5-3 2-5 4-5s3.5 2 4 5"/><path d="M11 10l3 1"/>',
+  rollen: '<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M12 8v4M12 12l-5 3M12 12l5 3"/>',
+  delegation: '<path d="M3 12h12M11 7l5 5-5 5"/><rect x="17" y="8" width="5" height="8" rx="1.5"/>',
+  konflikte: '<path d="M4 5h9v6H8l-3 3v-3H4z"/><path d="M20 10h-7v6h4l3 3v-3h0z"/><path d="M16 4l2 2M19 3l-1 3"/>',
+  interprofessionell: '<circle cx="12" cy="12" r="3"/><circle cx="12" cy="3.5" r="2"/><circle cx="20" cy="9" r="2"/><circle cx="17" cy="19" r="2"/><circle cx="7" cy="19" r="2"/><circle cx="4" cy="9" r="2"/><path d="M12 5.5V9M18.2 9.7l-3.4 1.2M15.8 17.4l-2-3M8.2 17.4l2-3M5.8 9.7l3.4 1.2"/>',
+  fehlerkultur: '<path d="M3 7l4-3 4 2 4-2 6 3v12l-6-3-4 2-4-2-4 3z"/><circle cx="9" cy="11" r="1.5"/><circle cx="15" cy="13" r="1.8"/><circle cx="12" cy="17" r="1.2"/>',
   delir: '<path d="M14 3a7 7 0 1 0 7 9 5.5 5.5 0 0 1-7-9z"/><path d="M3 21l2-2 2 2 2-2"/>',
   demenz: '<path d="M9 3h3a2 2 0 1 1 4 0h3v5a2 2 0 1 1 0 4v5h-5a2 2 0 1 0-4 0H5v-5a2 2 0 1 0 0-4V3z"/>',
   thrombose: '<path d="M9 2h6v9l2 6a3 3 0 0 1-3 4H8a2 2 0 0 1-2-2v-1l3-2z"/><path d="M9 6h6"/>',
@@ -3038,7 +3366,8 @@ const TOPIC_DESC = {
   "Prophylaxen": "Komplikationen vorbeugen, bevor sie entstehen.",
   "Pflegetechniken": "Sicher und rückenschonend handeln, vom Transfer bis zur PEG.",
   "Medikamente": "Richten, verabreichen und injizieren nach den Regeln der Sicherheit.",
-  "Kommunikation": "Gespräche gestalten: mit Patientinnen, Patienten, Angehörigen und im Team.",
+  "Kommunikation": "Gespräche gestalten mit Patientinnen, Patienten und Angehörigen.",
+  "Teamarbeit": "Gemeinsam lernen und arbeiten: Begleitung, Rollen, Delegation, Feedback und Fehlerkultur.",
   "Krankheitsbilder": "Häufige Krankheitsbilder in der Rehabilitation verstehen und pflegen.",
   "Berufsrolle": "Lernen, dokumentieren, schützen und gesund bleiben."
 };
