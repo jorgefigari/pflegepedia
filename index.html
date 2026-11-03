@@ -273,6 +273,22 @@ section.block { padding: 40px 0 8px; }
 .report small { display: block; margin-top: 8px; font-size: 13px; color: var(--muted); text-align: center; }
 .warnsec { background: #fff8e1; border: 1px solid #f1dea0; border-left: 5px solid #e0a800; border-radius: 12px; padding: 16px 18px 6px; margin-bottom: 22px; }
 .warnsec h3 { color: #845f00 !important; margin-top: 0 !important; }
+.card.extra { display: none; }
+.topic.open .card.extra { display: flex; }
+.showall { margin: 16px auto 0; display: block; border: 1.5px solid var(--line); background: #fff; color: var(--brand); font-weight: 700; font-family: var(--display); font-size: 15px; border-radius: 99px; padding: 9px 20px; }
+.showall:hover { border-color: var(--brand); background: var(--brand-2); }
+@media (max-width: 640px) {
+  .hero .wrap { padding-top: 18px !important; padding-bottom: 20px !important; gap: 14px !important; }
+  .hero h1 { font-size: 27px; }
+  .hero p.intro { margin: 6px 0 0; font-size: 16px; }
+  .hero p.intro .long, .stats { display: none; }
+  .choose { padding: 16px; }
+  .choose p { display: none; }
+  .choose h2 { margin-bottom: 10px; }
+  .choose button { grid-template-columns: 74px 1fr; padding: 8px 10px; gap: 10px; }
+  .choose button span:last-child { font-size: 13.5px; line-height: 1.3; }
+  .choose button .lv { font-size: 13px; padding: 4px 0; }
+}
 footer { background: var(--ink); color: #c9d4e0; font-size: 14.5px; }
 footer .wrap { padding-top: 34px; padding-bottom: 34px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 28px; }
 footer .logo { color: #fff; }
@@ -3426,7 +3442,9 @@ function renderList() {
   $("#jump").querySelectorAll("button").forEach(b => b.addEventListener("click", () => document.getElementById("t-" + b.dataset.t).scrollIntoView({ behavior: "smooth" })));
   box.innerHTML = groups.map(([t, ns]) => `<section class="topic" id="t-${t}">
     <div class="topic-head"><i>${ico(t)}</i><div><h2>${t}</h2><p>${TOPIC_DESC[t] || ""}</p></div><span class="count">${ns.length} Nuggets</span></div>
-    <div class="grid">${ns.map(card).join("")}</div></section>`).join("");
+    <div class="grid">${ns.map((n, i) => i < 4 ? card(n) : card(n).replace('<a class="card"', '<a class="card extra"')).join("")}</div>
+    ${ns.length > 4 ? `<button class="showall" data-n="${ns.length}">Alle ${ns.length} Nuggets anzeigen</button>` : ""}</section>`).join("");
+  box.querySelectorAll(".showall").forEach(b => b.addEventListener("click", () => { const sec = b.closest(".topic"); const open = sec.classList.toggle("open"); b.textContent = open ? "Weniger anzeigen" : `Alle ${b.dataset.n} Nuggets anzeigen`; if (!open) sec.scrollIntoView({ block: "start" }); }));
 }
 
 function refreshHome() { renderHeroBox(); renderList(); }
@@ -3436,7 +3454,7 @@ function renderHome(scrollTo) {
   <section class="hero"><div class="wrap">
     <div>
       <h1>Pflegewissen in kleinen Einheiten</h1>
-      <p>Kurze Lernnuggets für die Pflegeausbildung in der Schweiz. Lies die Theorie, prüfe dein Wissen im Quiz für deine Stufe und übertrage es auf deine Station.</p>
+      <p class="intro">Kurze Lernnuggets für die Pflegeausbildung in der Schweiz.<span class="long"> Lies die Theorie, prüfe dein Wissen im Quiz für deine Stufe und übertrage es auf deine Station.</span></p>
       <div class="stats"><div><b>${NUGGETS.length}</b>Nuggets</div><div><b>${TOPICS.length}</b>Themen</div><div><b>5</b>Quizfragen pro Stufe</div><div><b>0</b>Anmeldung nötig</div></div>
     </div>
     <div id="herobox"></div>
