@@ -271,6 +271,8 @@ section.block { padding: 40px 0 8px; }
 .report .btn { display: block; text-align: center; background: var(--brand); color: #fff; text-decoration: none; font-weight: 700; font-family: var(--display); border-radius: 10px; padding: 10px 14px; }
 .report .btn:hover { background: #17345a; }
 .report small { display: block; margin-top: 8px; font-size: 13px; color: var(--muted); text-align: center; }
+.warnsec { background: #fff8e1; border: 1px solid #f1dea0; border-left: 5px solid #e0a800; border-radius: 12px; padding: 16px 18px 6px; margin-bottom: 22px; }
+.warnsec h3 { color: #845f00 !important; margin-top: 0 !important; }
 footer { background: var(--ink); color: #c9d4e0; font-size: 14.5px; }
 footer .wrap { padding-top: 34px; padding-bottom: 34px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 28px; }
 footer .logo { color: #fff; }
@@ -1983,6 +1985,10 @@ const NUGGETS = [
     teaser: "Was die individuelle praktische Arbeit ist, wie sie abläuft, wie sie bewertet wird und wie du dich gut vorbereitest.",
     lead: "Die IPA ist der praktische Teil deiner Abschlussprüfung. Du zeigst an deinem eigenen Arbeitsplatz, dass du deinen Beruf beherrschst. Wer weiss, was auf ihn zukommt, kann ruhiger und besser arbeiten.",
     theory: [
+      { h: "Wichtig: Dein Kanton regelt die Details", warn: true,
+        p: ["Schweizweit gleich sind die Grundregeln aus der Bildungsverordnung: Dauer der IPA, Gewichtung der Noten und die Bedingungen zum Bestehen. Wie die IPA in der Praxis abläuft, regelt jedoch jeder Kanton selbst. Diese Seite gibt dir einen Überblick, sie ersetzt nicht die Vorgaben deines Kantons."],
+        list: ["Termine und Anmeldung", "Formulare, Planung und Aufgabenstellung", "Ablauf von Präsentation und Fachgespräch", "Bewertungsraster und Kriterien", "Hilfsmittel im Detail und Nachteilsausgleich"],
+        after: "Informiere dich früh: beim kantonalen Amt für Berufsbildung, an deiner Berufsfachschule und bei deiner Berufsbildnerin oder deinem Berufsbildner. Massgebend sind immer die Unterlagen für dein Prüfungsjahr." },
       { h: "Was ist die IPA?",
         p: ["IPA heisst individuelle praktische Arbeit. Sie ist ein Teil des Qualifikationsverfahrens (QV) am Ende deiner Ausbildung. Du arbeitest an deinem gewohnten Arbeitsplatz, mit echten Klientinnen und Klienten, und zwei Prüfungsexpertinnen oder Prüfungsexperten beurteilen deine Leistung.",
             "Das QV besteht aus mehreren Teilen: der praktischen Arbeit (IPA), der schriftlichen Prüfung in Berufskenntnissen, der Allgemeinbildung und der Erfahrungsnote aus Betrieb und Schule. Die Regeln stehen in der Bildungsverordnung deines Berufs."] },
@@ -1995,16 +2001,16 @@ const NUGGETS = [
           ["Bestanden, wenn", "IPA mindestens 4 und Gesamtnote mindestens 4", "IPA mindestens 4 und Gesamtnote mindestens 4"] ] },
         fig: "qvgewichtung", figcap: "So zählen die Teile zur Gesamtnote, gemäss Bildungsverordnung (Stand 2026)." },
       { h: "Der Ablauf",
-        list: ["Vorbereitung: Deine vorgesetzte Fachkraft plant die IPA und legt fest, welche Handlungskompetenzen geprüft werden. Bei FaGe sind es mindestens vier", "Aufgabenstellung: Die Prüfungsexpertinnen oder Prüfungsexperten prüfen und genehmigen die Planung", "Durchführung: Du arbeitest an deinem Arbeitsplatz, die Pflegedokumentation gehört zur Prüfung", "Fachgespräch: Du erklärst und begründest dein Handeln. Bei FaGe gehört oft eine kurze Präsentation dazu", "Bewertung: Die vorgesetzte Fachkraft schlägt eine Bewertung vor, das Expertenteam entscheidet"],
-        after: "Termine, Formulare und Details regelt dein Kanton. Frag deine Berufsbildnerin oder deinen Berufsbildner früh nach den Unterlagen für dein Prüfungsjahr." },
+        list: ["Vorbereitung: Deine vorgesetzte Fachkraft plant die IPA und legt fest, welche Handlungskompetenzen geprüft werden. Bei FaGe sind es mindestens vier", "Aufgabenstellung: Die Prüfungsexpertinnen oder Prüfungsexperten prüfen und genehmigen die Planung", "Durchführung: Du arbeitest an deinem Arbeitsplatz, die Pflegedokumentation gehört zur Prüfung", "Fachgespräch: Du erklärst und begründest dein Handeln. Ob eine Präsentation dazugehört und wie lange sie dauert, legt dein Kanton fest", "Bewertung: Die vorgesetzte Fachkraft schlägt eine Bewertung vor, das Expertenteam entscheidet"],
+        after: "Die genauen Schritte, Fristen und Formulare unterscheiden sich von Kanton zu Kanton." },
       { h: "Gut vorbereitet",
         list: ["Führe deine Lerndokumentation laufend nach, du darfst sie in der IPA benutzen", "Übe Tätigkeiten, die oft geprüft werden, bis sie Routine sind, inklusive Händehygiene und Dokumentation", "Mach eine Probe-IPA und übe das Fachgespräch mit deiner Berufsbildnerin oder deinem Berufsbildner", "Begründe dein Handeln: Warum machst du es so? Was beobachtest du?", "Kenne deine Station: Abläufe, Material, Notfallnummern, Ansprechpersonen", "Kenne deine Grenzen: Was ausserhalb deiner Kompetenzen liegt, gibst du auch in der IPA ab", "Schlaf genug, iss vor der Prüfung und plane den Arbeitsweg"] },
       { h: "Am Prüfungstag",
         p: ["Stell dich den Expertinnen und Experten kurz vor und arbeite so, wie du es im Alltag tust. Sie wollen sehen, wie du sicher und personenzentriert handelst, nicht eine Show. Passiert dir ein Fehler, sprich ihn an und korrigiere ihn: Fehler erkennen und richtig reagieren zeigt Professionalität.",
             "Wenn du eine Lernschwierigkeit hast, zum Beispiel eine Legasthenie, kannst du einen Nachteilsausgleich beantragen. Kläre das früh mit deiner Berufsfachschule und deinem Betrieb."] }
     ],
-    points: ["Die IPA ist der praktische Teil des QV an deinem Arbeitsplatz", "AGS: 3 bis 4 Stunden. FaGe: 4 bis 6 Stunden", "Bestanden mit IPA mindestens 4 und Gesamtnote mindestens 4", "Lerndokumentation und üK-Unterlagen sind erlaubte Hilfsmittel", "Handeln begründen, Grenzen kennen, Fehler ansprechen"],
-    merke: "Die IPA ist keine Show. Arbeite so sorgfältig wie im Alltag, und begründe, warum du es so machst.",
+    points: ["Grundregeln gelten schweizweit, Ablauf und Details regelt dein Kanton", "Die IPA ist der praktische Teil des QV an deinem Arbeitsplatz", "AGS: 3 bis 4 Stunden. FaGe: 4 bis 6 Stunden", "Bestanden mit IPA mindestens 4 und Gesamtnote mindestens 4", "Lerndokumentation und üK-Unterlagen sind erlaubte Hilfsmittel", "Handeln begründen, Grenzen kennen, Fehler ansprechen"],
+    merke: "Prüfe die Vorgaben deines Kantons für dein Prüfungsjahr. Und am Prüfungstag gilt: Die IPA ist keine Show. Arbeite so sorgfältig wie im Alltag und begründe, warum du es so machst.",
     facts: ["Die IPA ist eine Fallnote: Ist sie unter 4, ist das QV nicht bestanden, auch wenn alle anderen Noten gut sind.", "Muss ein Teil des QV wiederholt werden, wird er ganz wiederholt, nicht nur einzelne Aufgaben.", "Die Prüfungsexpertinnen und Prüfungsexperten sind erfahrene Berufsleute. Sie wollen sehen, was du kannst, nicht dich hereinlegen."],
     comp: {
       AGS: { do: ["Lerndokumentation aktuell halten und mitbringen", "Pflege und Begleitung nach Auftrag sicher durchführen", "Beobachtungen weitergeben und dokumentieren nach Betriebsregel", "Im Fachgespräch dein Handeln erklären"], no: ["Tätigkeiten ausserhalb der AGS-Kompetenzen übernehmen, zum Beispiel Medikamente oder Injektionen, auch nicht in der IPA"] },
@@ -2016,17 +2022,17 @@ const NUGGETS = [
         ["Welche Hilfsmittel darfst du in der IPA benutzen?", ["Das Handy", "Deine Lerndokumentation und die Unterlagen der üK", "Keine"], 1, "Deshalb lohnt es sich, die Lerndokumentation laufend nachzuführen."],
         ["Wann hast du das QV bestanden?", ["Wenn die Gesamtnote mindestens 4 ist", "Wenn die IPA mindestens 4 und die Gesamtnote mindestens 4 ist", "Wenn die Schulnoten gut sind"], 1, "Die IPA ist eine Fallnote."],
         ["In der IPA soll eine Patientin eine Tablette nehmen. Was tust du?", ["Ich gebe sie, um zu zeigen, was ich kann", "Ich informiere die zuständige Fachperson, Medikamente gehören nicht zu meinen Kompetenzen", "Ich lasse es aus und sage nichts"], 1, "Grenzen kennen und abgeben ist auch in der IPA richtig."],
-        ["Dir passiert während der IPA ein kleiner Fehler. Was ist richtig?", ["Verstecken", "Ansprechen und richtig reagieren", "Die IPA abbrechen"], 1, "Fehler erkennen und korrigieren zeigt Professionalität."]
+        ["Wo erfährst du, wie die IPA in deinem Kanton genau abläuft?", ["Nur auf dieser Website", "Beim kantonalen Amt für Berufsbildung, in der Berufsfachschule und bei deiner Berufsbildnerin oder deinem Berufsbildner", "Bei Mitlernenden aus anderen Kantonen"], 1, "Ablauf, Termine und Formulare regelt jeder Kanton selbst."]
       ],
       FaGe: [
         ["Wie lange dauert die praktische Arbeit (IPA) bei FaGe EFZ?", ["2 Stunden", "4 bis 6 Stunden", "2 Tage"], 1, "So steht es in der Bildungsverordnung FaGe EFZ."],
         ["Wie viel zählen Präsentation und Fachgespräch an der IPA-Note?", ["Gar nicht", "Ein Drittel", "Die Hälfte"], 1, "Zwei Drittel zählen Ausführung, Resultat und Dokumentation."],
         ["Wie stark zählt die praktische Arbeit an der Gesamtnote?", ["10 %", "30 %", "50 %"], 1, "Berufskenntnisse 30 %, Allgemeinbildung 20 %, Erfahrungsnote 20 %."],
-        ["Gehört die Pflegedokumentation zur IPA?", ["Nein, nur die Pflege zählt", "Ja, sie ist Teil der Prüfung", "Nur wenn Zeit bleibt"], 1, "Dokumentation ist zeitlicher und inhaltlicher Bestandteil."],
+        ["Was ist schweizweit gleich geregelt?", ["Termine und Formulare", "Dauer der IPA, Gewichtung der Noten und Bedingungen zum Bestehen", "Ablauf der Präsentation"], 1, "Diese Grundregeln stehen in der Bildungsverordnung, die Details regelt der Kanton."],
         ["Deine IPA-Note ist 3,5, alle anderen Noten sind 5. Hast du bestanden?", ["Ja, der Durchschnitt reicht", "Nein, die IPA muss mindestens 4 sein", "Ja, mit Auflage"], 1, "Die praktische Arbeit ist eine Fallnote."]
       ]
     },
-    transfer: "Frag deine Berufsbildnerin oder deinen Berufsbildner nach dem Ablauf und den Unterlagen der IPA in deinem Kanton und vereinbare einen Termin für eine Probe-IPA.",
+    transfer: "Suche die QV-Unterlagen deines Kantons für dein Prüfungsjahr, zum Beispiel auf der Website des kantonalen Amts für Berufsbildung. Besprich sie mit deiner Berufsbildnerin oder deinem Berufsbildner und vereinbare eine Probe-IPA.",
     src: "Verordnung des SBFI über die berufliche Grundbildung FaGe EFZ, Art. 18 und 19 (Stand 1.1.2026); Verordnung des SBFI über die berufliche Grundbildung AGS EBA, Art. 16 und 17 (Stand 1.1.2026); kantonale Ausführungsbestimmungen zum QV"
   }
 ];
@@ -2925,11 +2931,13 @@ const syncLevels = () => document.querySelectorAll(".levels button").forEach(x =
 function theoryHtml(n) {
   return n.theory.map(sec => {
     let h = `<h3>${esc(sec.h)}</h3>`;
+    if (sec.warn) h = `<div class="warnsec"><h3>${esc(sec.h)}</h3>`;
     (sec.p || []).forEach(x => h += `<p>${esc(x)}</p>`);
     if (sec.list) h += `<ul>${sec.list.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
     if (sec.table) { const sc = sec.table.head[1] === "0 Punkte"; h += `<div class="tbl${sc ? " score" : ""}"><table><thead><tr>${sec.table.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${sec.table.rows.map(r => `<tr>${r.map((x, k) => `<td data-label="${esc(sec.table.head[k])}">${esc(x) || "<span class=\"nil\">·</span>"}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`; }
     if (sec.fig && FIG[sec.fig]) h += `<figure class="fig"><div class="fig-scroll">${FIG[sec.fig]()}</div>${sec.figcap ? `<figcaption>${esc(sec.figcap)}</figcaption>` : ""}</figure>`;
     if (sec.after) h += `<p>${esc(sec.after)}</p>`;
+    if (sec.warn) h += `</div>`;
     return h;
   }).join("");
 }
