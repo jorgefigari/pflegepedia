@@ -3460,7 +3460,7 @@ Object.assign(FIG, {
     return `<svg viewBox="0 0 720 316" role="img" aria-label="Reihenfolge der Blutentnahmeröhrchen"><defs><marker id="ra" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${NV}"/></marker></defs><rect width="720" height="316" fill="#fff"/>${s}</svg>`;
   }
 });
-// ===== Vertiefung (asynchroner WB-Teil) =====
+// ===== Vertiefung =====
 const FG = "#1971c2", FGB = "#e8f2fc", MU = "#5b6878";
 Object.assign(FIG, {
   medprozess: () => {
@@ -3598,7 +3598,7 @@ const DEEP = {
     level: "FaGe", min: 80,
     title: "Medikamente richten und verabreichen: Vertiefung",
     intro: "Die Vertiefung geht über die 6R hinaus. Du lernst, eine Verordnung vollständig zu lesen, Arzneiformen richtig zu behandeln, Medikamente nach einem sicheren Ablauf zu richten und zu verabreichen, Dosierungen zu berechnen und richtig zu reagieren, wenn doch ein Fehler passiert.",
-    how: "Bearbeite die acht Etappen in deinem Tempo, gern in mehreren Sitzungen. Hake jede Etappe ab, wenn du sie bearbeitet hast. Am Schluss prüfst du dein Wissen im Selbstcheck und bereitest dich mit den Reflexionsfragen auf den Präsenzteil vor. Lies vorher die Theorie zur 6R-Regel oben.",
+    how: "Bearbeite die acht Etappen in deinem Tempo, gern in mehreren Sitzungen. Hake jede Etappe ab, wenn du sie bearbeitet hast. Am Schluss prüfst du dein Wissen im Selbstcheck und hältst mit den Reflexionsfragen fest, was du in deinen Alltag mitnimmst. Lies vorher die Theorie zur 6R-Regel oben.",
     goals: [
       "Du liest eine Verordnung vollständig und erkennst fehlende, unklare oder unplausible Angaben.",
       "Du weisst, welche Arzneiformen nicht geteilt oder gemörsert werden dürfen, und kennst wichtige Einnahmeregeln.",
@@ -3612,7 +3612,7 @@ const DEEP = {
         { fig: "medprozess", cap: "Sechs Schritte, sechs typische Fehlerquellen. Blau markiert, wo du als FaGe beteiligt bist." },
         { comp: { do: ["Medikamente nach gültiger Verordnung richten und verabreichen: oral, rektal, transdermal, subkutan, intramuskulär, inhalativ, in Augen und Ohren", "Reservemedikamente geben, wenn alle Kriterien der Verordnung erfüllt sind und die Betriebsregel es erlaubt", "Wirkung und Nebenwirkungen beobachten, dokumentieren und melden", "Die Person über ihre Medikamente informieren und ihre Fragen ernst nehmen"], no: ["Verordnungen ändern, Dosierungen anpassen oder Medikamente absetzen", "Intravenöse Medikamente verabreichen, ausser Betriebsregel und Zusatzausbildung erlauben es ausdrücklich", "Mündliche Verordnungen entgegennehmen, wenn dein Betrieb das nicht vorsieht", "Medikamente abgeben, die du weder selbst gerichtet noch selbst kontrolliert hast"] } },
         { warn: "Betäubungsmittel", p: "Opioide wie Morphin, Oxycodon oder Fentanyl unterstehen in der Schweiz dem Betäubungsmittelgesetz. Sie werden verschlossen gelagert, und jede Entnahme wird lückenlos dokumentiert: Datum, Person, Menge und Visum. Stimmt der Bestand nicht, meldest du das sofort." },
-        { think: "In welchem der sechs Schritte passieren auf deiner Station wohl die meisten Fehler? Halte deine Vermutung fest und frag im Präsenzteil nach, ob andere es ähnlich sehen." }
+        { think: "In welchem der sechs Schritte passieren auf deiner Station wohl die meisten Fehler? Halte deine Vermutung fest und frag im Team nach, ob andere es ähnlich sehen." }
       ] },
       { h: "Die Verordnung lesen", min: 10, b: [
         { p: "Du richtest nur nach einer gültigen, schriftlichen Verordnung. Gültig heisst: aktuell, vollständig, mit Datum und Visum. Ist etwas unklar, unleserlich oder unplausibel, gibst du das Medikament nicht ab und klärst es mit der zuständigen Fachperson oder der Ärzteschaft." },
@@ -3713,7 +3713,7 @@ const DEEP = {
     ],
     pass: 8,
     notes: ["Wo im Medikationsprozess fühlst du dich sicher, wo unsicher?", "Welche Situation aus deinem Alltag passt zu einem der Fälle? Beschreibe sie ohne Namen.", "Was nimmst du dir für deinen nächsten Dienst konkret vor?"],
-    praesenz: ["Bring eine Frage oder Situation aus deinem Alltag mit, bei der du beim Richten oder Verabreichen unsicher warst. Ohne Namen und Patientendaten.", "Kläre auf deiner Station: Welche Medikamente brauchen eine Doppelkontrolle? Wo findest du die Teilbarkeitsliste?", "Bring deinen Lernnachweis mit: Selbstcheck mit mindestens 8 von 10 richtigen Antworten und deine Notizen."],
+    praesenz: ["Besprich mit deiner Berufsbildnerin, deinem Berufsbildner oder einer Fachperson eine Situation, in der du beim Richten oder Verabreichen unsicher warst.", "Kläre auf deiner Station: Welche Medikamente brauchen eine Doppelkontrolle? Wo findest du die Teilbarkeitsliste?", "Setze dir eines deiner Ziele aus der Reflexion für die nächsten Dienste und überprüfe es danach."],
     src: "Stiftung Patientensicherheit Schweiz, Medikationssicherheit; Swissmedic, Arzneimittelinformation; Betäubungsmittelgesetz BetmG; Bildungsplan Fachfrau, Fachmann Gesundheit EFZ"
   }
 };
@@ -3745,7 +3745,7 @@ function deepHtml(n) {
   return `<div class="panel deep" id="s-vertiefung">
     <h2><i>${ui("star")}</i>Vertiefung <span class="lv ${D.level}">${LEVEL_LABEL[D.level]}</span></h2>
     <div class="dp-intro">
-      <p class="dp-kick">Asynchroner Teil der Weiterbildung · ca. ${D.min} Minuten</p>
+      <p class="dp-kick">Vertiefung · ca. ${D.min} Minuten</p>
       <h3>${esc(D.title)}</h3>
       <p>${esc(D.intro)}</p>
       <div class="dp-goals"><b>Lernziele</b><ul>${D.goals.map(g => `<li>${esc(g)}</li>`).join("")}</ul></div>
@@ -3759,10 +3759,10 @@ function deepHtml(n) {
     <h3 class="dp-h">Selbstcheck</h3>
     <p class="qintro">${D.quiz.length} Fragen zur Vertiefung. Bestanden ab ${D.pass} richtigen Antworten.</p>
     <div id="dp-quiz"></div>
-    <h3 class="dp-h">Vorbereitung auf den Präsenzteil</h3>
+    <h3 class="dp-h">Reflexion</h3>
     <div class="dp-notes">${D.notes.map((q, i) => `<label><span>${i + 1}. ${esc(q)}</span><textarea data-note="${i}" rows="3" placeholder="Deine Notizen, ohne Namen und Patientendaten">${esc(st.notes[i] || "")}</textarea></label>`).join("")}</div>
     <p class="note">Deine Notizen bleiben nur in diesem Browser auf diesem Gerät gespeichert.</p>
-    <div class="dp-auftrag"><b>Auftrag für den Präsenzteil</b><ul>${D.praesenz.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
+    <div class="dp-auftrag"><b>Auftrag für die Praxis</b><ul>${D.praesenz.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
     <div id="dp-cert"></div>
     <div class="dp-actions"><button class="dp-btn" id="dp-print">Lernnachweis drucken</button><button class="dp-btn ghost" id="dp-copy">Notizen kopieren</button><span id="dp-msg" role="status"></span></div>
     <p class="src">Grundlagen: ${esc(D.src)}</p>
@@ -3825,12 +3825,12 @@ function bindDeep(n) {
   $("#dp-print").addEventListener("click", () => {
     const st = deepGet(n.id), cnt = D.steps.filter((_, i) => st.steps[i]).length;
     let p = $("#dp-printout"); if (!p) { p = document.createElement("div"); p.id = "dp-printout"; document.body.appendChild(p); }
-    p.innerHTML = `<p class="pp-brand">Pflegepedia · Lernnachweis</p><h1>${esc(D.title)}</h1><p>Asynchroner Teil der Weiterbildung, Stufe ${LEVEL_LABEL[D.level]}</p>
+    p.innerHTML = `<p class="pp-brand">Pflegepedia · Lernnachweis</p><h1>${esc(D.title)}</h1><p>Vertiefung, Stufe ${LEVEL_LABEL[D.level]}</p>
       <table><tr><td>Name</td><td class="line"></td></tr><tr><td>Datum</td><td>${new Date().toLocaleDateString("de-CH")}</td></tr>
       <tr><td>Etappen bearbeitet</td><td>${cnt} von ${D.steps.length}</td></tr><tr><td>Selbstcheck</td><td>${st.score === null ? "noch offen" : st.score + " von " + D.quiz.length + (st.score >= D.pass ? ", bestanden" : "")}</td></tr>
       ${st.doneAt ? `<tr><td>Abgeschlossen am</td><td>${st.doneAt}</td></tr>` : ""}</table>
       <h2>Reflexion</h2>${D.notes.map((q, i) => `<h3>${i + 1}. ${esc(q)}</h3><p class="ans">${esc(st.notes[i] || "").replace(/\n/g, "<br>") || "&nbsp;"}</p>`).join("")}
-      <h2>Auftrag für den Präsenzteil</h2><ul>${D.praesenz.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+      <h2>Auftrag für die Praxis</h2><ul>${D.praesenz.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
     document.body.classList.add("print-deep");
     const off = () => { document.body.classList.remove("print-deep"); window.removeEventListener("afterprint", off); };
     window.addEventListener("afterprint", off); window.print(); setTimeout(off, 1500);
@@ -4023,7 +4023,7 @@ function renderNugget(n, sub) {
         <div><dt>Quiz</dt><dd>5 Fragen pro Stufe</dd></div>
         <div class="st"><dt>Status</dt><dd id="status">${statusHtml(n)}</dd></div>
       </dl></div>
-      ${deep ? `<div class="panel dp-aside"><h2 style="font-size:17px;margin-bottom:8px">Vertiefung ${LEVEL_LABEL[DEEP[n.id].level]}</h2><p>Asynchroner Weiterbildungsteil mit Grafiken, Fallarbeit, Rechenaufgaben und Selbstcheck. Ca. ${DEEP[n.id].min} Minuten.</p><a class="btn" href="#${n.id}/vertiefung">Zur Vertiefung</a></div>` : ""}
+      ${deep ? `<div class="panel dp-aside"><h2 style="font-size:17px;margin-bottom:8px">Vertiefung ${LEVEL_LABEL[DEEP[n.id].level]}</h2><p>Vertiefung mit Grafiken, Fallarbeit, Rechenaufgaben und Selbstcheck. Ca. ${DEEP[n.id].min} Minuten.</p><a class="btn" href="#${n.id}/vertiefung">Zur Vertiefung</a></div>` : ""}
       ${more.length ? `<div class="panel"><h2 style="font-size:17px;margin-bottom:10px">Weitere Nuggets</h2>
         ${more.map(m => `<a class="mini" href="#${m.id}"><span class="art">${art(m)}</span><span>${esc(m.title)}<small>${m.topic} · ${m.min} Min.</small></span></a>`).join("")}
       </div>` : ""}
