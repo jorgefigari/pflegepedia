@@ -327,6 +327,100 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid #2c4058; padding-top:
   .tbl td:has(.nil) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+/* Vertiefung */
+.panel.deep { border-top: 5px solid var(--fage); }
+.panel.deep h2 .lv { margin-left: 4px; font-size: 13px; }
+.dp-intro { background: var(--fage-bg); border-radius: 14px; padding: 18px 20px; }
+.dp-kick { margin: 0 0 4px; font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--fage); font-family: var(--display); }
+.dp-intro h3 { font-size: 20px; color: var(--brand); margin-bottom: 8px; }
+.dp-intro p { margin: 0 0 10px; }
+.dp-goals { background: #fff; border-radius: 12px; padding: 12px 16px; margin: 12px 0; }
+.dp-goals b { font-family: var(--display); color: var(--fage); }
+.dp-goals ul { margin: 6px 0 0; padding-left: 20px; font-size: 15.5px; }
+.dp-goals li { margin: 3px 0; }
+.dp-how { font-size: 15.5px; }
+.dp-prog .bar { height: 10px; background: #fff; border-radius: 99px; overflow: hidden; }
+.dp-prog .bar i { display: block; height: 100%; background: var(--fage); border-radius: 99px; transition: width .3s; }
+.dp-prog small { display: block; margin-top: 6px; color: var(--muted); font-size: 14px; }
+.dp-steps { display: grid; gap: 10px; margin-top: 18px; }
+.dp-step { border: 1.5px solid var(--line); border-radius: 14px; background: #fff; scroll-margin-top: calc(var(--hh, 68px) + 60px); }
+.dp-step[open] { border-color: var(--fage); }
+.dp-step > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 38px 1fr 20px; gap: 12px; align-items: center; padding: 12px 16px; }
+.dp-step > summary::-webkit-details-marker { display: none; }
+.dp-n { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--fage-bg); color: var(--fage); font-weight: 800; font-family: var(--display); }
+.dp-step.done .dp-n { background: var(--ok); color: #fff; }
+.dp-t { font-weight: 700; font-family: var(--display); font-size: 16.5px; line-height: 1.3; }
+.dp-t small { display: block; font-weight: 400; font-family: var(--body); font-size: 13.5px; color: var(--muted); }
+.dp-chev { color: var(--muted); transition: transform .2s; }
+.dp-step[open] > summary .dp-chev { transform: rotate(180deg); }
+.dp-body { padding: 4px 20px 18px; border-top: 1px solid var(--line); }
+.dp-body > p { margin: 12px 0 10px; }
+.dp-body h4 { font-family: var(--display); font-size: 16.5px; color: var(--brand); margin: 20px 0 6px; }
+.dp-body ul { margin: 8px 0 12px; padding-left: 22px; }
+.dp-body li { margin: 4px 0; }
+.dp-body li::marker { color: var(--fage); }
+.dp-ol { counter-reset: s; list-style: none; padding-left: 0 !important; display: grid; gap: 8px; }
+.dp-ol li { counter-increment: s; display: grid; grid-template-columns: 28px 1fr; gap: 10px; margin: 0 !important; }
+.dp-ol li::before { content: counter(s); width: 26px; height: 26px; border-radius: 50%; background: var(--fage); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 13.5px; font-family: var(--display); }
+.dp-warn, .dp-tip, .dp-think, .dp-auftrag { border-radius: 12px; padding: 12px 16px; margin: 14px 0; }
+.dp-warn { background: var(--bad-bg); border-left: 5px solid var(--bad); }
+.dp-warn b { color: var(--bad); font-family: var(--display); }
+.dp-tip { background: #fff8e1; border-left: 5px solid #e0a800; }
+.dp-tip b { color: #845f00; font-family: var(--display); }
+.dp-think { background: var(--soft); border-left: 5px solid var(--brand); }
+.dp-think b { color: var(--brand); font-family: var(--display); }
+.dp-warn p, .dp-tip p, .dp-think p { margin: 4px 0 0; }
+.dp-warn ul { margin: 6px 0 0; }
+.role.dp-no { background: var(--bad-bg); border-color: var(--bad); } .role.dp-no b { color: var(--bad); }
+.dp-body .comp { margin: 14px 0; }
+.dp-case { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 12px 0; background: #fff; }
+.dp-case h5 { margin: 0 0 6px; font-size: 16px; font-family: var(--display); color: var(--fage); }
+.dp-case p { margin: 0 0 8px; }
+.dp-task { background: var(--fage-bg); border-radius: 8px; padding: 8px 12px; }
+.dp-case details summary { display: list-item; cursor: pointer; font-weight: 700; color: var(--brand); font-size: 15px; padding: 4px 0; }
+.dp-case details[open] summary { margin-bottom: 4px; }
+.dp-case details ul, .dp-case details p { background: var(--ok-bg); border-radius: 8px; padding: 10px 14px 10px 30px; margin: 4px 0 0; }
+.dp-case details p { padding-left: 14px; }
+.dp-check { display: flex; gap: 10px; align-items: center; margin-top: 16px; padding: 10px 14px; border-radius: 10px; background: var(--ok-bg); font-weight: 700; color: var(--ok); cursor: pointer; }
+.dp-check input { width: 20px; height: 20px; accent-color: var(--ok); }
+.dp-h { font-size: 19px; color: var(--brand); margin: 30px 0 8px; padding-top: 22px; border-top: 1px solid var(--line); }
+.dp-notes { display: grid; gap: 14px; }
+.dp-notes span { display: block; font-weight: 700; margin-bottom: 6px; }
+.dp-notes textarea { width: 100%; font: inherit; font-size: 15.5px; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; resize: vertical; }
+.dp-notes textarea:focus { border-color: var(--fage); outline: none; }
+.dp-auftrag { background: var(--fage-bg); }
+.dp-auftrag b { font-family: var(--display); color: var(--fage); }
+.dp-auftrag ul { margin: 6px 0 0; padding-left: 20px; }
+.dp-done, .dp-open { border-radius: 11px; padding: 12px 16px; font-weight: 700; margin: 16px 0 0; }
+.dp-done { background: var(--ok-bg); color: var(--ok); }
+.dp-open { background: var(--soft); color: var(--muted); }
+.dp-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
+.dp-btn { border: 0; background: var(--fage); color: #fff; font-weight: 700; font-family: var(--display); border-radius: 10px; padding: 10px 16px; font-size: 15px; }
+.dp-btn.ghost { background: #fff; color: var(--fage); border: 1.5px solid var(--fage); }
+.dp-btn.sm { padding: 5px 10px; font-size: 13.5px; margin-left: 8px; }
+#dp-msg { color: var(--ok); font-weight: 700; font-size: 14.5px; }
+.dp-aside { border-top: 5px solid var(--fage); }
+.dp-aside p { margin: 0 0 12px; font-size: 15px; color: var(--muted); }
+.dp-aside .btn { display: block; text-align: center; background: var(--fage); color: #fff; text-decoration: none; font-weight: 700; font-family: var(--display); border-radius: 10px; padding: 10px 14px; }
+.card .deepb { font-size: 12.5px; font-weight: 700; color: var(--fage); background: var(--fage-bg); border-radius: 99px; padding: 2px 9px; }
+#dp-printout { display: none; }
+@media print {
+  body.print-deep > *:not(#dp-printout) { display: none !important; }
+  body.print-deep #dp-printout { display: block; font: 12pt/1.5 var(--body); color: #000; }
+  #dp-printout h1 { font-size: 20pt; margin: 4px 0 6px; }
+  #dp-printout h2 { font-size: 14pt; margin: 18px 0 6px; }
+  #dp-printout h3 { font-size: 11.5pt; margin: 10px 0 4px; }
+  #dp-printout .pp-brand { font-weight: 700; color: #1971c2; margin: 0; }
+  #dp-printout table { border-collapse: collapse; margin-top: 10px; }
+  #dp-printout td { border: 1px solid #bbb; padding: 6px 10px; min-width: 160px; }
+  #dp-printout td.line { min-width: 300px; }
+  #dp-printout .ans { border: 1px solid #ccc; border-radius: 6px; padding: 8px 10px; min-height: 60px; margin: 0; }
+}
+@media (max-width: 640px) {
+  .dp-intro { padding: 14px; }
+  .dp-body { padding: 4px 12px 14px; }
+  .dp-step > summary { padding: 10px 12px; gap: 10px; }
+}
 </style>
 </head>
 <body>
@@ -3366,6 +3460,384 @@ Object.assign(FIG, {
     return `<svg viewBox="0 0 720 316" role="img" aria-label="Reihenfolge der Blutentnahmeröhrchen"><defs><marker id="ra" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${NV}"/></marker></defs><rect width="720" height="316" fill="#fff"/>${s}</svg>`;
   }
 });
+// ===== Vertiefung (asynchroner WB-Teil) =====
+const FG = "#1971c2", FGB = "#e8f2fc", MU = "#5b6878";
+Object.assign(FIG, {
+  medprozess: () => {
+    const st = [["Verordnen", ["Ärztin, Arzt"], 0], ["Richten", ["FaGe, HF"], 1], ["Kontrollieren", ["Doppelkontrolle", "bei Hochrisiko"], 1], ["Verabreichen", ["FaGe, HF"], 1], ["Dokumentieren", ["wer verabreicht,", "sofort danach"], 1], ["Überwachen", ["ganzes Team"], 1]];
+    const err = [["unleserlich,", "mündlich"], ["Unterbrechung,", "Verwechslung"], ["nur abgehakt,", "nicht geprüft"], ["falsche Person,", "falscher Weg"], ["im Voraus,", "vergessen"], ["Wirkung nicht", "erfasst"]];
+    let s = "";
+    st.forEach(([t, r, f], i) => {
+      const x = 14 + i * 118;
+      s += `<rect x="${x}" y="58" width="104" height="100" rx="12" fill="${f ? FGB : SF}" stroke="${f ? FG : LN}" stroke-width="2"/>${NUM(x + 52, 58, i + 1, f ? FG : NV)}${T(x + 52, 100, t, { s: 13, w: 800, f: FD })}${r.map((l, k) => T(x + 52, 122 + k * 16, l, { s: 11.5, c: MU })).join("")}`;
+      if (i < 5) s += `<path d="M${x + 105} 108h9" stroke="${NV}" stroke-width="2.5"/><path d="M${x + 110} 103l5 5-5 5" fill="none" stroke="${NV}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+      s += `<path d="M${x + 52} 176l10 17h-20z" fill="${RD}"/>${T(x + 52, 191, "!", { s: 11, w: 800, c: "#fff", f: FD })}${err[i].map((l, k) => T(x + 52, 212 + k * 16, l, { s: 11.5, c: RD })).join("")}`;
+    });
+    return `<svg viewBox="0 0 720 300" role="img" aria-label="Der Medikationsprozess in sechs Schritten mit typischen Fehlerquellen"><rect width="720" height="300" fill="#fff"/>
+      ${T(14, 26, "Der Medikationsprozess", { a: "start", s: 15, w: 800, c: NV, f: FD })}
+      <rect x="486" y="14" width="14" height="14" rx="4" fill="${FGB}" stroke="${FG}" stroke-width="2"/>${T(506, 26, "Hier bist du als FaGe beteiligt", { a: "start", s: 12, c: MU })}
+      ${s}
+      <rect x="14" y="252" width="694" height="38" rx="19" fill="#fff8e1" stroke="#f1dea0"/>${T(361, 276, "Die Person selbst ist die letzte Sicherheitsstufe: informieren, zuhören, Hinweise ernst nehmen", { s: 12.5, w: 700, c: "#845f00" })}
+    </svg>`;
+  },
+  verordnung: () => {
+    const B = (x, y, n) => `<circle cx="${x}" cy="${y}" r="10" fill="${YE}"/>${T(x, y + 4, n, { s: 11, w: 800, f: FD })}`;
+    const cols = [44, 152, 206, 264, 316, 342, 368, 394, 418];
+    const head = ["Präparat", "Stärke", "Form", "Weg", "Mo", "Mi", "Ab", "Na", "Hinweis"];
+    const rows = [["Torasemid", "10 mg", "Tbl.", "p.o.", "1", "0", "0", "0", "morgens"], ["Oxycodon ret.", "10 mg", "Ret.-Tbl.", "p.o.", "1", "0", "1", "0", "nicht mörsern"], ["Enoxaparin", "40 mg", "Fertigspr.", "s.c.", "0", "0", "1", "0", "Bauch"]];
+    const cell = (r, y, bold) => r.map((t, k) => T(k >= 4 && k <= 7 ? cols[k] : cols[k], y, t, { a: k >= 4 && k <= 7 ? "middle" : "start", s: 11.5, w: bold || k === 0 ? 700 : 400, c: bold ? MU : "#17283b" })).join("");
+    let s = cell(head, 106, true) + `<path d="M24 114H496" stroke="${LN}" stroke-width="2"/>`;
+    rows.forEach((r, i) => { const y = 138 + i * 28; s += cell(r, y) + `<path d="M24 ${y + 9}H496" stroke="${LN}"/>`; });
+    const items = [["Person: zwei Merkmale", "Name und Geburtsdatum"], ["Wirkstoff und Stärke", "mg, µg und IE genau lesen"], ["Form und Weg", "Tbl., Ret.-Tbl., p.o., s.c."], ["Zeitschema 1-0-1-0", "Morgen, Mittag, Abend, Nacht"], ["Reserve", "Indikation, Abstand, Maximum"], ["Datum und Visum", "gültige, aktuelle Verordnung"]];
+    const legend = items.map(([a, b], i) => { const y = 64 + i * 44; return B(534, y - 4, i + 1) + T(552, y, a, { a: "start", s: 12.5, w: 700 }) + T(552, y + 16, b, { a: "start", s: 11.5, c: MU }); }).join("");
+    return `<svg viewBox="0 0 720 330" role="img" aria-label="Muster einer Medikamentenverordnung mit Erklärungen"><rect width="720" height="330" fill="#fff"/>
+      <rect x="12" y="12" width="494" height="306" rx="12" fill="#fff" stroke="${LN}" stroke-width="2"/><path d="M12 24a12 12 0 0 1 12-12h470a12 12 0 0 1 12 12v28H12z" fill="${SF}"/>
+      ${T(24, 37, "Medikamentenverordnung", { a: "start", s: 13, w: 800, f: FD, c: NV })}${T(494, 37, "Muster, fiktive Person", { a: "end", s: 11, c: MU })}
+      ${B(30, 68, 1)}${T(46, 72, "Muster Hans, geb. 12.03.1946, Zimmer 214", { a: "start", s: 12, w: 700 })}
+      ${B(178, 88, 2)}${B(276, 88, 3)}${B(355, 88, 4)}
+      ${s}
+      ${B(30, 222, 5)}${T(46, 226, "Reserve", { a: "start", s: 12, w: 800, c: NV, f: FD })}
+      ${T(44, 250, "Paracetamol", { a: "start", s: 11.5, w: 700 })}${T(152, 250, "1 g", { a: "start", s: 11.5 })}${T(206, 250, "Tbl.", { a: "start", s: 11.5 })}${T(264, 250, "p.o.", { a: "start", s: 11.5 })}${T(316, 250, "bei Bedarf", { a: "start", s: 11.5 })}
+      <rect x="40" y="260" width="456" height="24" rx="6" fill="#fff8e1"/>${T(48, 276, "Indikation: Schmerz ab NRS 4 · Abstand mind. 6 h · max. 4 g in 24 h", { a: "start", s: 11.5, c: "#845f00" })}
+      ${B(30, 302, 6)}${T(46, 306, "Verordnet 02.11.2026, Dr. med. A. Beispiel, Visum", { a: "start", s: 11.5, c: MU })}
+      ${T(522, 30, "So liest du sie", { a: "start", s: 14, w: 800, c: NV, f: FD })}${legend}
+    </svg>`;
+  },
+  arzneiformen: () => {
+    const icon = {
+      bruch: `<circle r="22" fill="#fff" stroke="${NV}" stroke-width="2.5"/><path d="M-22 0H22" stroke="${NV}" stroke-width="2.5"/>`,
+      film: `<ellipse rx="28" ry="16" fill="#cfe1f3" stroke="${NV}" stroke-width="2.5"/><path d="M-14 -7c6-3 14-3 20 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`,
+      retard: `<ellipse rx="30" ry="16" fill="#f2d39b" stroke="${NV}" stroke-width="2.5"/><ellipse rx="20" ry="9" fill="none" stroke="${NV}" stroke-width="1.6" opacity=".55"/><ellipse rx="10" ry="4" fill="none" stroke="${NV}" stroke-width="1.6" opacity=".55"/>`,
+      msr: `<ellipse rx="30" ry="16" fill="#d6ecd9" stroke="${NV}" stroke-width="4.5"/><ellipse rx="20" ry="8" fill="none" stroke="${NV}" stroke-width="1.6" stroke-dasharray="3 3"/>`,
+      kapsel: `<g transform="rotate(-20)"><rect x="-30" y="-12" width="60" height="24" rx="12" fill="#fff" stroke="${NV}" stroke-width="2.5"/><path d="M0 -12h-18a12 12 0 0 0 0 24H0z" fill="#e8a19a" stroke="${NV}" stroke-width="2.5"/></g>`,
+      schmelz: `<circle r="18" fill="#fff" stroke="${NV}" stroke-width="2.5" stroke-dasharray="4 3"/><circle cx="-26" cy="-14" r="2.5" fill="#7fb2e5"/><circle cx="27" cy="-10" r="3" fill="#7fb2e5"/><circle cx="24" cy="16" r="2" fill="#7fb2e5"/>`,
+      tropfen: `<rect x="-18" y="-14" width="28" height="34" rx="6" fill="#cfe1f3" stroke="${NV}" stroke-width="2.5"/><rect x="-10" y="-24" width="12" height="10" rx="2" fill="${NV}"/><path d="M22 -8c5 7 7 10 7 13a7 7 0 0 1-14 0c0-3 2-6 7-13z" fill="#7fb2e5"/>`,
+      pflaster: `<rect x="-26" y="-20" width="52" height="40" rx="8" fill="#f6d9c4" stroke="${NV}" stroke-width="2.5"/><rect x="-13" y="-9" width="26" height="18" rx="4" fill="#fff" stroke="${NV}" stroke-width="1.6"/>`
+    };
+    const C = { g: GR, y: "#e0a800", r: RD };
+    const tiles = [["bruch", "Bruchrille", ["Rille heisst nicht", "immer teilbar"], "y"], ["film", "Filmtablette", ["Teilen oder mörsern", "nur nach Prüfung"], "y"], ["retard", "Retardtablette", ["ret., CR, XR, LA, Depot:", "nie mörsern"], "r"], ["msr", "Magensaftresistent", ["MSR, gastroresistent:", "nie mörsern oder teilen"], "r"],
+      ["kapsel", "Kapsel", ["nicht öffnen ohne", "Freigabe der Pharmazie"], "y"], ["schmelz", "Schmelztablette", ["auf der Zunge zergehen", "lassen, trocken anfassen"], "g"], ["tropfen", "Tropfen, Sirup", ["Anbruchdatum notieren,", "genau abmessen"], "g"], ["pflaster", "Pflaster", ["nie zerschneiden, altes", "Pflaster entfernen"], "r"]];
+    const s = tiles.map(([k, t, l, c], i) => { const x = 14 + (i % 4) * 176, y = 44 + Math.floor(i / 4) * 142;
+      return `<rect x="${x}" y="${y}" width="166" height="130" rx="12" fill="#fff" stroke="${LN}" stroke-width="2"/><path d="M${x} ${y + 12}a12 12 0 0 1 12-12h142a12 12 0 0 1 12 12z" fill="${C[c]}"/><g transform="translate(${x + 83} ${y + 46})">${icon[k]}</g>${T(x + 83, y + 90, t, { s: 13, w: 800, f: FD })}${l.map((z, j) => T(x + 83, y + 107 + j * 15, z, { s: 11.5, c: MU })).join("")}`; }).join("");
+    const lg = [["g", "einfach, mit Regel"], ["y", "nur nach Prüfung"], ["r", "nicht verändern"]].map(([c, t], i) => `<circle cx="${190 + i * 150}" cy="342" r="7" fill="${C[c]}"/>${T(202 + i * 150, 346, t, { a: "start", s: 12.5 })}`).join("");
+    return `<svg viewBox="0 0 720 360" role="img" aria-label="Arzneiformen und ob sie geteilt oder gemörsert werden dürfen"><rect width="720" height="360" fill="#fff"/>
+      ${T(14, 26, "Darf ich das teilen oder mörsern?", { a: "start", s: 15, w: 800, c: NV, f: FD })}${s}${lg}</svg>`;
+  },
+  richten: () => {
+    const eye = (x, y) => `<g transform="translate(${x} ${y})"><path d="M-14 0c6-9 22-9 28 0c-6 9-22 9-28 0z" fill="#fff" stroke="${NV}" stroke-width="2"/><circle r="4.5" fill="${NV}"/></g>`;
+    const box = (x, n, t, l) => `<rect x="${x}" y="44" width="210" height="104" rx="12" fill="${FGB}" stroke="${FG}" stroke-width="2"/>${NUM(x + 26, 74, n, FG)}${T(x + 48, 79, t, { a: "start", s: 13.5, w: 800, f: FD })}${eye(x + 184, 74)}${l.map((z, j) => T(x + 20, 112 + j * 18, z, { a: "start", s: 12.5, c: MU })).join("")}`;
+    const arrow = x => `<path d="M${x} 96h16" stroke="${NV}" stroke-width="2.5"/><path d="M${x + 11} 91l5 5-5 5" fill="none" stroke="${NV}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    const pill = (x, y, ret) => ret ? `<ellipse cx="${x}" cy="${y}" rx="13" ry="8" fill="#f2d39b" stroke="${NV}" stroke-width="2"/>` : `<circle cx="${x}" cy="${y}" r="9" fill="#fff" stroke="${NV}" stroke-width="2"/>`;
+    const comp = ["Morgen", "Mittag", "Abend", "Nacht"].map((t, i) => { const x = 132 + i * 117; return `<rect x="${x}" y="230" width="105" height="62" rx="10" fill="${SF}" stroke="${LN}" stroke-width="2"/>${T(x + 52, 312, t, { s: 12.5, w: 700 })}`; }).join("");
+    return `<svg viewBox="0 0 720 336" role="img" aria-label="Dreimal lesen beim Richten und beschrifteter Dispenser"><rect width="720" height="336" fill="#fff"/>
+      ${T(14, 28, "Dreimal lesen", { a: "start", s: 15, w: 800, c: NV, f: FD })}
+      ${box(14, 1, "Herausnehmen", ["Packung mit der", "Verordnung vergleichen"])}${arrow(230)}${box(255, 2, "Richten", ["Stärke, Menge und", "Zeitpunkt prüfen"])}${arrow(471)}${box(496, 3, "Zurückstellen", ["Name und Stärke", "nochmals lesen"])}
+      <rect x="120" y="186" width="480" height="140" rx="14" fill="#fff" stroke="${NV}" stroke-width="3"/><path d="M120 200a14 14 0 0 1 14-14h452a14 14 0 0 1 14 14v18H120z" fill="${FGB}"/>${T(360, 208, "Muster Hans · 12.03.1946 · Mi 04.11.", { s: 12.5, w: 700, c: NV })}
+      ${comp}${pill(172, 262)}${pill(198, 262, 1)}${pill(399, 262, 1)}
+      ${T(14, 236, "Beschriftet mit", { a: "start", s: 12, c: MU })}${T(14, 252, "Name und", { a: "start", s: 12, c: MU })}${T(14, 268, "Geburtsdatum", { a: "start", s: 12, c: MU })}
+      ${T(612, 236, "Tropfen erst", { a: "start", s: 12, c: MU })}${T(612, 252, "kurz vor der", { a: "start", s: 12, c: MU })}${T(612, 268, "Abgabe richten", { a: "start", s: 12, c: MU })}
+    </svg>`;
+  },
+  wirkung: () => {
+    const ticks = [["0", 170], ["5 Min", 230], ["15 Min", 300], ["30 Min", 370], ["1 h", 440], ["3 h", 520], ["12 h", 620], ["24 h", 700]];
+    const rows = [["Sublingual", 178, 230, "wenige Minuten", 1], ["Intramuskulär", 262, 370, "10 bis 30 Min", 1], ["Subkutan", 300, 370, "15 bis 30 Min", 1], ["Oral", 370, 440, "30 bis 60 Min", 1], ["Rektal", 300, 440, "sehr unterschiedlich", 0], ["Pflaster", 520, 700, "Stunden, Fentanyl 12 bis 24 h", 2]];
+    let s = ticks.map(([t, x]) => `<path d="M${x} 50V276" stroke="${LN}" stroke-dasharray="3 4"/>${T(x, 294, t, { s: 11.5, c: MU })}`).join("");
+    rows.forEach(([t, a, b, l, k], i) => { const y = 64 + i * 38;
+      s += T(150, y + 5, t, { a: "end", s: 13, w: 700 }) + `<rect x="${a}" y="${y - 9}" width="${b - a}" height="18" rx="9" fill="${k === 0 ? "#b9cbe0" : FG}"/>` + (k === 2 ? T(a - 8, y + 4, l, { a: "end", s: 11.5, c: MU }) : T(b + 8, y + 4, l, { a: "start", s: 11.5, c: MU })); });
+    return `<svg viewBox="0 0 720 336" role="img" aria-label="Ungefährer Wirkungseintritt je nach Applikationsweg"><rect width="720" height="336" fill="#fff"/>
+      ${T(14, 28, "Wann setzt die Wirkung ungefähr ein?", { a: "start", s: 15, w: 800, c: NV, f: FD })}${T(706, 28, "Richtwerte, je nach Medikament", { a: "end", s: 12, c: MU })}
+      ${s}<path d="M170 276H700" stroke="${NV}" stroke-width="2"/>
+      <rect x="170" y="306" width="370" height="24" rx="12" fill="${GR}" opacity=".12"/>${T(355, 322, "Wirkung prüfen: oral meist nach 30 bis 60 Minuten", { s: 12.5, w: 700, c: GR })}
+    </svg>`;
+  },
+  rechnen: () => {
+    const x0 = 420, w = 260, k = w / 20, fill = 12.5 * k;
+    let sc = "";
+    for (let m = 0; m <= 20; m++) { const x = x0 + m * k; sc += `<path d="M${x} 154v${m % 5 ? -7 : -13}" stroke="${NV}" stroke-width="${m % 5 ? 1 : 1.8}"/>`; if (!(m % 5)) sc += T(x, 194, m, { s: 11.5, c: MU }); }
+    return `<svg viewBox="0 0 720 320" role="img" aria-label="Grundformel für Dosierungsrechnen mit Beispiel"><rect width="720" height="320" fill="#fff"/>
+      ${T(177, 32, "Die Grundformel", { s: 15, w: 800, c: NV, f: FD })}
+      <rect x="14" y="50" width="326" height="116" rx="14" fill="${SF}"/>${T(100, 116, "Menge =", { s: 20, w: 800, f: FD, c: NV })}${T(250, 98, "verordnete Dosis", { s: 15, w: 700 })}<path d="M172 110H328" stroke="${NV}" stroke-width="2.5"/>${T(250, 136, "Konzentration", { s: 15, w: 700 })}
+      ${T(177, 204, "Beispiel: Paracetamol Sirup 40 mg/ml", { s: 13, w: 700 })}${T(177, 226, "verordnet sind 500 mg", { s: 13, c: MU })}
+      ${T(177, 262, "500 mg ÷ 40 mg/ml = 12.5 ml", { s: 17, w: 800, c: FG, f: FD })}${T(177, 290, "Probe: 12.5 ml × 40 mg/ml = 500 mg ✓", { s: 12.5, w: 700, c: GR })}
+      <path d="M368 40V300" stroke="${LN}" stroke-width="2"/>
+      ${T(548, 32, "Abmessen", { s: 15, w: 800, c: NV, f: FD })}
+      <rect x="400" y="140" width="22" height="14" rx="3" fill="#fff" stroke="${NV}" stroke-width="2"/>
+      <rect x="${x0}" y="124" width="${w}" height="46" rx="8" fill="#fff" stroke="${NV}" stroke-width="2.5"/>
+      <rect x="${x0 + 2}" y="126" width="${fill - 2}" height="42" rx="6" fill="#f7e4a6"/>
+      ${sc}
+      <rect x="${x0 + fill}" y="126" width="7" height="42" fill="${NV}"/><rect x="${x0 + fill + 7}" y="142" width="${w - fill + 10}" height="10" fill="#9db0c4"/><rect x="${x0 + w + 17}" y="122" width="9" height="50" rx="3" fill="${NV}"/>
+      <path d="M${x0 + fill + 3} 96v18" stroke="${RD}" stroke-width="2.5"/><path d="M${x0 + fill - 3} 108l6 7 6-7" fill="none" stroke="${RD}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>${T(x0 + fill + 3, 88, "12.5 ml", { s: 14, w: 800, c: RD, f: FD })}
+      ${T(548, 226, "Orale Lösungen mit einer Oral-Dosierspritze", { s: 12.5, c: MU })}${T(548, 244, "abmessen, nie mit einer Injektionsspritze", { s: 12.5, c: MU })}
+      ${T(548, 282, "ml nach Skala, nicht nach Augenmass", { s: 12.5, w: 700, c: NV })}
+    </svg>`;
+  },
+  kaese: () => {
+    const holes = [[[110, 9, 13], [170, 10, 15], [226, 8, 12]], [[124, 8, 12], [170, 10, 15], [242, 9, 13]], [[98, 9, 14], [170, 10, 15], [232, 8, 11]], [[126, 9, 13], [224, 9, 14]]];
+    const xs = [110, 250, 390, 530], names = [["Verordnung"], ["Lieferung,", "Apotheke"], ["Richten"], ["Abgabe: 6R,", "Person fragt nach"]];
+    let s = `<path d="M24 170H${xs[3] + 20}" stroke="${RD}" stroke-width="4" stroke-linecap="round"/>${T(24, 154, "Fehler", { a: "start", s: 13, w: 800, c: RD, f: FD })}`;
+    let sl = "";
+    xs.forEach((x, i) => {
+      sl += `<path d="M${x} 74l50-22v216l-50 22z" fill="#f7e4a6" stroke="#d9a72e" stroke-width="2"/>`;
+      sl += holes[i].map(([y, rx, ry]) => `<ellipse cx="${x + 25}" cy="${y}" rx="${rx}" ry="${ry}" fill="#fff" stroke="#d9a72e" stroke-width="1.5"/>`).join("");
+      sl += names[i].map((t, j) => T(x + 25, 312 + j * 16, t, { s: 12, w: j ? 400 : 700, c: j ? MU : "#17283b" })).join("");
+    });
+    const seg = xs.slice(0, 3).map(x => `<path d="M${x + 16} 170h18" stroke="${RD}" stroke-width="4"/>`).join("");
+    return `<svg viewBox="0 0 720 350" role="img" aria-label="Schweizer-Käse-Modell: Fehler passieren, wenn Lücken zusammentreffen"><rect width="720" height="350" fill="#fff"/>
+      ${T(14, 28, "Fehler erreichen die Person, wenn Lücken zusammentreffen", { a: "start", s: 15, w: 800, c: NV, f: FD })}
+      ${s}${sl}${seg}
+      <path d="M${xs[3] + 6} 170h14" stroke="${RD}" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="${xs[3] + 25}" cy="170" r="17" fill="${GR}"/><path d="M${xs[3] + 17} 170l6 6 11-12" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      ${T(xs[3] + 25, 50, "abgefangen", { s: 13, w: 800, c: GR, f: FD })}
+      <circle cx="664" cy="138" r="16" fill="#9db0c4"/><rect x="646" y="158" width="36" height="58" rx="14" fill="#9db0c4"/>${T(664, 238, "Person", { s: 12.5, w: 700 })}${T(664, 254, "geschützt", { s: 12, c: GR })}
+    </svg>`;
+  }
+});
+
+const DEEP = {
+  "6r": {
+    level: "FaGe", min: 80,
+    title: "Medikamente richten und verabreichen: Vertiefung",
+    intro: "Die Vertiefung geht über die 6R hinaus. Du lernst, eine Verordnung vollständig zu lesen, Arzneiformen richtig zu behandeln, Medikamente nach einem sicheren Ablauf zu richten und zu verabreichen, Dosierungen zu berechnen und richtig zu reagieren, wenn doch ein Fehler passiert.",
+    how: "Bearbeite die acht Etappen in deinem Tempo, gern in mehreren Sitzungen. Hake jede Etappe ab, wenn du sie bearbeitet hast. Am Schluss prüfst du dein Wissen im Selbstcheck und bereitest dich mit den Reflexionsfragen auf den Präsenzteil vor. Lies vorher die Theorie zur 6R-Regel oben.",
+    goals: [
+      "Du liest eine Verordnung vollständig und erkennst fehlende, unklare oder unplausible Angaben.",
+      "Du weisst, welche Arzneiformen nicht geteilt oder gemörsert werden dürfen, und kennst wichtige Einnahmeregeln.",
+      "Du richtest Medikamente nach einem sicheren Ablauf mit dreifacher Kontrolle.",
+      "Du verabreichst Medikamente korrekt, beobachtest Wirkung und Nebenwirkungen und meldest Auffälligkeiten.",
+      "Du berechnest einfache Dosierungen und handelst richtig bei einem Medikationsfehler."
+    ],
+    steps: [
+      { h: "Der Medikationsprozess und deine Rolle", min: 8, b: [
+        { p: "Medikation ist Teamarbeit. Die Ärztin oder der Arzt verordnet, die Apotheke liefert, die Pflege richtet, kontrolliert, verabreicht, dokumentiert und beobachtet. Als FaGe bist du an fast allen Schritten direkt beteiligt. Fehler entstehen besonders oft an Übergängen: bei Eintritt oder Verlegung, beim Schichtwechsel und wenn eine Verordnung geändert wird." },
+        { fig: "medprozess", cap: "Sechs Schritte, sechs typische Fehlerquellen. Blau markiert, wo du als FaGe beteiligt bist." },
+        { comp: { do: ["Medikamente nach gültiger Verordnung richten und verabreichen: oral, rektal, transdermal, subkutan, intramuskulär, inhalativ, in Augen und Ohren", "Reservemedikamente geben, wenn alle Kriterien der Verordnung erfüllt sind und die Betriebsregel es erlaubt", "Wirkung und Nebenwirkungen beobachten, dokumentieren und melden", "Die Person über ihre Medikamente informieren und ihre Fragen ernst nehmen"], no: ["Verordnungen ändern, Dosierungen anpassen oder Medikamente absetzen", "Intravenöse Medikamente verabreichen, ausser Betriebsregel und Zusatzausbildung erlauben es ausdrücklich", "Mündliche Verordnungen entgegennehmen, wenn dein Betrieb das nicht vorsieht", "Medikamente abgeben, die du weder selbst gerichtet noch selbst kontrolliert hast"] } },
+        { warn: "Betäubungsmittel", p: "Opioide wie Morphin, Oxycodon oder Fentanyl unterstehen in der Schweiz dem Betäubungsmittelgesetz. Sie werden verschlossen gelagert, und jede Entnahme wird lückenlos dokumentiert: Datum, Person, Menge und Visum. Stimmt der Bestand nicht, meldest du das sofort." },
+        { think: "In welchem der sechs Schritte passieren auf deiner Station wohl die meisten Fehler? Halte deine Vermutung fest und frag im Präsenzteil nach, ob andere es ähnlich sehen." }
+      ] },
+      { h: "Die Verordnung lesen", min: 10, b: [
+        { p: "Du richtest nur nach einer gültigen, schriftlichen Verordnung. Gültig heisst: aktuell, vollständig, mit Datum und Visum. Ist etwas unklar, unleserlich oder unplausibel, gibst du das Medikament nicht ab und klärst es mit der zuständigen Fachperson oder der Ärzteschaft." },
+        { fig: "verordnung", cap: "Muster mit fiktiver Person. Aufbau und Darstellung sind je nach Betrieb und Klinikinformationssystem anders, die Elemente bleiben gleich." },
+        { h: "Fixverordnung und Reserve" },
+        { p: "Eine Fixverordnung gibst du zu festen Zeiten. Eine Reserve gibst du nur bei Bedarf. Eine vollständige Reserveverordnung enthält immer: Medikament, Einzeldosis, Weg, Indikation (wofür und ab wann), Mindestabstand und Maximaldosis in 24 Stunden. Fehlt eine dieser Angaben, klärst du sie vor der ersten Gabe." },
+        { table: { head: ["Abkürzung", "Bedeutung", "Worauf du achtest"], rows: [
+          ["p.o.", "per os, über den Mund", "Kann die Person sicher schlucken?"],
+          ["s.l.", "sublingual, unter die Zunge", "zergehen lassen, nicht schlucken"],
+          ["s.c.", "subkutan, ins Unterhautfettgewebe", "Injektionsstelle wechseln"],
+          ["i.m.", "intramuskulär, in den Muskel", "bei Blutverdünnern Rücksprache"],
+          ["i.v.", "intravenös, in die Vene", "als FaGe in der Regel nicht deine Aufgabe"],
+          ["rect.", "rektal, als Zäpfchen", "Linksseitenlage, Intimsphäre wahren"],
+          ["TTS", "transdermales Pflaster", "Datum und Stelle dokumentieren"],
+          ["1-0-1-0", "Morgen, Mittag, Abend, Nacht", "Die Zahl ist die Anzahl Einheiten"],
+          ["i.R., b.B.", "in Reserve, bei Bedarf", "nur mit Indikation, Abstand, Maximum"],
+          ["IE", "Internationale Einheiten, z. B. Insulin", "nie «U» schreiben oder lesen"],
+          ["mg, µg", "Milligramm, Mikrogramm", "Unterschied: Faktor 1000"] ] } },
+        { warn: "Gefährliche Schreibweisen", list: ["«U» für Units kann als Null gelesen werden: Aus 4U wird 40. Richtig ist IE oder Einheiten.", "Eine überflüssige Null hinter der Zahl täuscht: 1.0 mg wird leicht als 10 mg gelesen. Richtig ist 1 mg.", "Eine fehlende Null davor täuscht: .5 mg wird als 5 mg gelesen. Richtig ist 0.5 mg.", "µg und mg unterscheiden sich um den Faktor 1000. Im Zweifel ausgeschrieben: Mikrogramm."] },
+        { think: "Nimm die Muster-Verordnung oben. Welche Tabletten kommen am Mittwochmorgen in den Dispenser, welche am Abend? Was prüfst du, bevor du Herrn Muster die Reserve gibst?" }
+      ] },
+      { h: "Arzneiformen und Einnahme", min: 10, b: [
+        { p: "Die Arzneiform bestimmt, wie und wann ein Wirkstoff frei wird. Wird sie verändert, also geteilt, gemörsert oder geöffnet, kann das die Wirkung verstärken, abschwächen oder den Wirkstoff zerstören." },
+        { fig: "arzneiformen", cap: "Im Zweifel gilt die Fachinformation oder die Teilbarkeitsliste deines Betriebs." },
+        { list: ["Retardformen erkennst du an Zusätzen wie ret., retard, CR, XR, SR, LA oder Depot im Namen. Gemörsert wird die ganze Dosis auf einmal frei.", "Magensaftresistente Tabletten schützen den Wirkstoff vor der Magensäure oder den Magen vor dem Wirkstoff. Ohne Schutzschicht wirkt das Medikament nicht wie geplant.", "Eine Bruchrille dient manchmal nur dem leichteren Schlucken. Ob geteilt werden darf, steht in der Fachinformation.", "Bei Sondengabe jedes Medikament einzeln mörsern und auflösen, nie zusammen, und vor, zwischen und nach den Medikamenten mit Wasser spülen.", "Zytostatika und hormonell wirksame Medikamente nie offen mörsern oder teilen: Der Staub ist auch für dich gefährlich."] },
+        { h: "Der richtige Einnahmezeitpunkt" },
+        { table: { head: ["Zeitpunkt", "Bedeutet", "Beispiel"], rows: [
+          ["Nüchtern", "etwa 30 bis 60 Minuten vor dem Essen", "Levothyroxin 30 Minuten vor dem Frühstück"],
+          ["Zum Essen", "während oder direkt nach dem Essen", "Entzündungshemmer wie Ibuprofen, schont den Magen"],
+          ["Feste Abstände", "gleichmässig über 24 Stunden verteilt", "Antibiotika, z. B. alle 8 Stunden"],
+          ["Besondere Regeln", "steht in der Fachinformation", "Alendronat: nüchtern, grosses Glas Wasser, danach 30 Minuten aufrecht bleiben"] ] } },
+        { tip: "Gib Tabletten wenn möglich mit Wasser. Grapefruitsaft kann den Abbau einiger Medikamente hemmen und ihre Wirkung verstärken. Milch und Kalzium können bestimmte Antibiotika binden, sodass weniger Wirkstoff aufgenommen wird." },
+        { think: "Schau auf deiner Station drei Medikamente an, die du oft richtest. Welche Arzneiform haben sie? Dürften sie geteilt oder gemörsert werden? Wo findest du das heraus?" }
+      ] },
+      { h: "Richten Schritt für Schritt", min: 10, b: [
+        { p: "Richten ist Konzentrationsarbeit. Die meisten Fehler beim Richten entstehen nicht aus Unwissen, sondern durch Ablenkung und Routine." },
+        { fig: "richten", cap: "Dreimal lesen und ein klar beschrifteter Dispenser verhindern viele Verwechslungen. Die Pillen passen zur Muster-Verordnung aus Etappe 2." },
+        { ol: ["Ruhigen Platz wählen, Störungen vermeiden, Hände desinfizieren.", "Aktuelle Verordnung öffnen: Gibt es Änderungen seit dem letzten Richten?", "Medikament herausnehmen und mit der Verordnung vergleichen: Name oder Wirkstoff, Stärke, Form.", "Verfalldatum prüfen, bei Tropfen, Säften, Salben und Insulin auch das Anbruchdatum.", "Richtige Menge in den beschrifteten Dispenser geben, ohne die Tabletten mit blossen Händen zu berühren.", "Packung zurückstellen und dabei nochmals lesen.", "Bei einer Unterbrechung neu beginnen. Bei Hochrisikomedikamenten Doppelkontrolle nach Betriebsregel."] },
+        { h: "Generika: anderer Name, gleicher Wirkstoff" },
+        { p: "Die Apotheke liefert oft ein anderes Präparat mit gleichem Wirkstoff, ein Generikum. Vergleiche dann Wirkstoff, Stärke und Form. Stimmen alle drei überein, gibst du es nach Betriebsregel ab. Achtung: Liegen Original und Generikum nebeneinander im Fach, droht eine doppelte Gabe des gleichen Wirkstoffs." },
+        { tip: "Viele Tropfen, Säfte und angebrochene Insulinpens sind nach dem Öffnen nur wenige Wochen haltbar. Schreib das Anbruchdatum auf die Packung. Die genaue Frist steht in der Packungsbeilage." },
+        { think: "Was lenkt dich beim Richten auf deiner Station am meisten ab? Welche eine Massnahme würde das verbessern?" }
+      ] },
+      { h: "Verabreichen und beobachten", min: 12, b: [
+        { p: "Die Verabreichung ist der letzte Moment, in dem ein Fehler noch abgefangen werden kann. Hier prüfst du die Person, informierst sie und bleibst dabei, bis das Medikament eingenommen ist." },
+        { list: ["Person mit zwei Merkmalen identifizieren, Allergien kennen.", "Informieren: Was ist das Medikament und wofür?", "Oral: Person sitzt aufrecht, bekommt genug Wasser. Du bleibst dabei, bis alles eingenommen ist. Medikamente nie auf dem Nachttisch liegen lassen.", "Bei Schluckstörung: Vorgaben der Logopädie beachten und vor jeder Änderung der Arzneiform Rücksprache halten.", "Pflaster: altes Pflaster entfernen, neue Stelle wählen, Datum notieren, keine Wärme wie Wärmflasche oder Heizkissen darauf.", "Sofort dokumentieren. Auch ein nicht gegebenes Medikament wird dokumentiert, mit Grund."] },
+        { h: "Wenn die Person ablehnt" },
+        { p: "Jede urteilsfähige Person darf ein Medikament ablehnen. Frag nach dem Grund, zum Beispiel Nebenwirkungen, Angst oder Schluckprobleme, und informiere sie über mögliche Folgen. Respektiere die Entscheidung, dokumentiere sie und melde sie der zuständigen Fachperson. Medikamente nie heimlich ins Essen mischen: Das ist nur in seltenen Ausnahmefällen nach ärztlicher Abklärung zulässig und nie deine Entscheidung." },
+        { fig: "wirkung", cap: "Je schneller ein Weg wirkt, desto früher beobachtest du Wirkung und Nebenwirkungen. Beim Pflaster dauert es Stunden bis zur vollen Wirkung." },
+        { h: "Was du nach der Gabe beobachtest" },
+        { table: { head: ["Medikamente", "Beobachten", "Melden, wenn"], rows: [
+          ["Opioide, z. B. Oxycodon, Morphin", "Schmerz, Wachheit, Atmung, Stuhlgang, Übelkeit", "sehr schläfrig, Atmung langsam oder flach, seit mehreren Tagen kein Stuhlgang"],
+          ["Blutverdünner, z. B. Enoxaparin, Rivaroxaban", "Blutungszeichen: Hämatome, Zahnfleisch, Nase, Urin, Stuhl", "Blut im Urin, schwarzer Stuhl, grosse Hämatome, Sturz mit Kopfanprall"],
+          ["Blutdrucksenker, Diuretika", "Blutdruck, Puls, Schwindel, Ausscheidung, Gewicht", "Schwindel beim Aufstehen, tiefer Blutdruck, starke Gewichtsveränderung"],
+          ["Insulin, orale Antidiabetika", "Blutzucker, Zeichen der Unterzuckerung, Essmenge", "tiefer Blutzucker, Person isst kaum oder erbricht"],
+          ["Schlaf- und Beruhigungsmittel", "Wachheit, Gangbild, Orientierung", "Sturz, neue Verwirrtheit, starke Schläfrigkeit am Tag"],
+          ["Paracetamol", "Schmerz, Gesamtmenge in 24 Stunden", "Maximaldosis erreicht, auch durch Kombipräparate"] ] } },
+        { think: "Wähle eine Person, die du gut kennst. Welche ihrer Medikamente beobachtest du nach der Gabe besonders, und worauf genau achtest du?" }
+      ] },
+      { h: "Dosierungen sicher berechnen", min: 8, b: [
+        { p: "Als FaGe rechnest du meist einfache Mengen: wie viele Milliliter, Tropfen oder Tabletten einer verordneten Dosis entsprechen. Rechne schriftlich, achte auf gleiche Einheiten und mach immer die Probe." },
+        { fig: "rechnen", cap: "Die Formel funktioniert für Säfte, Tropfen und Injektionslösungen. Die Einheiten müssen zusammenpassen, also mg mit mg." },
+        { calc: [
+          { q: "Verordnet ist Paracetamol 500 mg. Der Sirup enthält 40 mg pro ml. Wie viele ml gibst du?", a: "500 mg ÷ 40 mg/ml = 12.5 ml. Probe: 12.5 × 40 = 500 mg. Abmessen mit der Oral-Dosierspritze." },
+          { q: "Metamizol-Tropfen enthalten 500 mg pro ml, laut Packungsbeilage entspricht 1 ml 20 Tropfen. Verordnet sind 250 mg. Wie viele Tropfen?", a: "250 mg ÷ 500 mg/ml = 0.5 ml. 0.5 ml × 20 Tropfen = 10 Tropfen. Die Tropfenzahl pro ml ist je nach Präparat verschieden: immer die Packungsbeilage prüfen." },
+          { q: "Verordnet ist Bisoprolol 2.5 mg. Vorhanden sind Tabletten zu 5 mg mit Bruchrille. Was gibst du?", a: "Eine halbe Tablette. Vorher prüfen, ob die Tablette teilbar ist, und mit einem Tablettenteiler teilen. Die zweite Hälfte nach Betriebsregel aufbewahren oder entsorgen." },
+          { q: "Verordnet sind 8 IE Insulin mit dem Pen. Was stellst du ein und was machst du vorher?", a: "Vorher die Funktion prüfen: 2 IE einstellen und nach oben gerichtet abgeben, bis ein Tropfen erscheint. Dann 8 IE einstellen. Insulin ist ein Hochrisikomedikament: Doppelkontrolle nach Betriebsregel." } ] },
+        { tip: "Ergibt deine Rechnung 10 Tabletten, 0.05 ml oder 80 ml Sirup, stimmt etwas nicht. Unplausible Ergebnisse nie abgeben: nachrechnen lassen und nachfragen." }
+      ] },
+      { h: "Wenn ein Fehler passiert", min: 7, b: [
+        { p: "Fehler passieren auch erfahrenen Fachpersonen. Entscheidend ist, wie du reagierst. Das Schweizer-Käse-Modell zeigt: Ein Fehler erreicht die Person erst, wenn mehrere Sicherheitsstufen gleichzeitig Lücken haben. Jede Kontrolle, die du sorgfältig machst, schliesst eine Lücke." },
+        { fig: "kaese", cap: "Jede Schicht hat Lücken. Sicherheit entsteht, wenn mehrere Schichten zuverlässig prüfen." },
+        { ol: ["Person sichern und beobachten: Vitalzeichen, Bewusstsein, Befinden.", "Sofort die zuständige Fachperson und die Ärzteschaft informieren: welches Medikament, welche Dosis, wann.", "Anweisungen umsetzen und die Person engmaschig beobachten.", "Sachlich und vollständig dokumentieren.", "Nach Betriebsregel eine CIRS-Meldung erfassen.", "Im Team nachbesprechen: Was hat dazu geführt, was ändern wir?"] },
+        { p: "CIRS steht für Critical Incident Reporting System. Die Meldung ist anonym oder vertraulich und dient dem Lernen, nicht der Bestrafung. Auch Beinahe-Fehler, die rechtzeitig bemerkt wurden, sind wertvolle Meldungen, denn sie zeigen Lücken, bevor jemand zu Schaden kommt." },
+        { think: "Hast du schon einen Beinahe-Fehler erlebt oder beobachtet? Welche Sicherheitsstufe hat ihn abgefangen? Notiere die Situation ohne Namen." }
+      ] },
+      { h: "Fallarbeit", min: 10, b: [
+        { p: "Bearbeite jeden Fall zuerst selbst, am besten schriftlich. Öffne erst dann den Lösungsvorschlag und vergleiche." },
+        { cases: [
+          { t: "Reserve gegen Schmerzen", s: "Herr B., 78 Jahre, ist nach einer Hüftprothese bei euch. Verordnet sind Oxycodon ret. 10 mg 1-0-1-0. Reserve: Oxycodon 5 mg p.o. bei Schmerz ab NRS 4, Mindestabstand 4 Stunden, höchstens 4 Dosen in 24 Stunden. Um 14 Uhr gibt Herr B. Schmerz 7 von 10 an. Die letzte Reserve bekam er um 11.30 Uhr.", q: "Darfst du jetzt die Reserve geben? Was tust du?", a: ["Nein. Der Mindestabstand von 4 Stunden ist erst um 15.30 Uhr erreicht.", "Schmerz genauer erfassen: Ort, Art, neu oder bekannt, Wunde, Lagerung.", "Nichtmedikamentöse Massnahmen anbieten, z. B. Positionierung oder Kälte nach Verordnung.", "Die zuständige Fachperson informieren: Der Schmerz ist trotz Reserve hoch, die Therapie muss vielleicht angepasst werden.", "Bei Opioiden Wachheit, Atmung und Stuhlgang beobachten. Alles dokumentieren."] },
+          { t: "Schluckstörung", s: "Frau K., 71 Jahre, hat nach einem Schlaganfall eine Schluckstörung und erhält pürierte Kost. Verordnet ist Pantoprazol 40 mg, eine magensaftresistente Tablette. Sie kann die Tablette nicht schlucken. Eine Kollegin sagt: «Mörser sie halt und gib sie ins Apfelmus.»", q: "Wie reagierst du?", a: ["Nicht mörsern: Ohne die magensaftresistente Schicht wird der Wirkstoff von der Magensäure zerstört.", "Rücksprache mit der zuständigen Fachperson und der Ärzteschaft, Pharmazie nach einer anderen Darreichungsform fragen.", "Logopädie einbeziehen: Wie kann Frau K. Medikamente sicher einnehmen?", "Die Kollegin freundlich auf die Regel hinweisen.", "Dokumentieren, warum das Medikament nicht wie verordnet gegeben wurde."] },
+          { t: "Anderer Name im Fach", s: "Beim Richten für Herrn S. findest du statt «Torem 10 mg» eine Packung «Torasemid Sandoz 10 mg» im Fach. Auf der Verordnung steht Torem.", q: "Darfst du das Medikament richten? Worauf achtest du?", a: ["Torasemid Sandoz ist ein Generikum: gleicher Wirkstoff Torasemid, gleiche Stärke, gleiche Form.", "Stimmen Wirkstoff, Stärke und Form überein, richtest du es nach Betriebsregel.", "Prüfen, ob noch eine Packung Torem im Fach liegt: Sonst droht eine doppelte Gabe.", "Bei jeder Abweichung, z. B. andere Stärke oder retard statt normal, nachfragen."] },
+          { t: "Verwechslung", s: "Nach der Abendrunde merkst du, dass du Frau L. die Abendmedikamente von Frau M. aus dem Nachbarbett gegeben hast.", q: "Was tust du, und in welcher Reihenfolge?", a: ["Ruhe bewahren und Frau L. beobachten: Vitalzeichen, Bewusstsein, Befinden.", "Sofort die zuständige Fachperson und die Ärzteschaft informieren: welche Medikamente, welche Dosis, wann.", "Anweisungen umsetzen. Frau M. erhält ihre Medikamente nach Rücksprache.", "Ehrlich und sachlich dokumentieren, CIRS-Meldung erfassen. Wie die Person informiert wird, regelt der Betrieb.", "Nachbesprechen: Die Identifikation mit zwei Merkmalen hätte die Verwechslung verhindert."] }
+        ] }
+      ] }
+    ],
+    quiz: [
+      ["Auf der Verordnung steht «1-0-1-0». Was bedeutet das?", ["Morgens und abends je eine Einheit", "Einmal täglich 10 mg", "Alle 10 Stunden eine Einheit"], 0, "Die Stellen stehen für Morgen, Mittag, Abend und Nacht."],
+      ["Was fehlt bei der Reserve «Paracetamol 1 g p.o. bei Bedarf»?", ["Der Name des Herstellers", "Indikation, Mindestabstand und Maximaldosis in 24 Stunden", "Die Farbe der Tablette"], 1, "Ohne diese Angaben weisst du nicht, wann und wie oft du geben darfst."],
+      ["Eine Verordnung lautet «Insulin 4U». Was ist das Risiko?", ["Keines, U ist eine gängige Abkürzung", "Das U kann als Null gelesen werden, dann wären es 40 Einheiten", "Das Insulin wirkt langsamer"], 1, "Richtig ist IE oder Einheiten. Unklare Verordnungen immer klären."],
+      ["Wann vergleichst du beim Richten die Packung mit der Verordnung?", ["Nur beim Herausnehmen", "Beim Herausnehmen, beim Richten und beim Zurückstellen", "Erst bei der Abgabe"], 1, "Dreimal lesen fängt Verwechslungen ab."],
+      ["Welche Tablette darfst du nicht mörsern?", ["Eine Tablette mit dem Zusatz «retard»", "Eine Schmelztablette", "Jede Tablette mit Bruchrille"], 0, "Retardformen geben den Wirkstoff über Stunden ab. Gemörsert wird alles auf einmal frei."],
+      ["Wann gibst du Levothyroxin?", ["Zum Abendessen", "Nüchtern, etwa 30 Minuten vor dem Frühstück", "Zusammen mit einem Glas Milch"], 1, "Nahrung und Kalzium vermindern die Aufnahme."],
+      ["Eine Person hat ein Fentanylpflaster. Was ist richtig?", ["Bei zu starker Wirkung das Pflaster halbieren", "Altes Pflaster entfernen, neue Stelle wählen, keine Wärme darauf", "Das neue Pflaster auf das alte kleben"], 1, "Wärme erhöht die Aufnahme, Pflaster nie zerschneiden."],
+      ["Eine urteilsfähige Person lehnt ihre Tablette ab. Was tust du?", ["Die Tablette unbemerkt ins Essen geben", "Grund erfragen, informieren, Entscheidung respektieren, dokumentieren und melden", "Die Tablette auf dem Nachttisch liegen lassen"], 1, "Die Person entscheidet selbst. Die Fachperson muss davon wissen."],
+      ["Womit misst du 12.5 ml Sirup ab?", ["Mit einer Oral-Dosierspritze", "Mit einem Esslöffel", "Mit einer Injektionsspritze"], 0, "Oral-Dosierspritzen verhindern Verwechslungen mit Injektionen und sind genau."],
+      ["Du bemerkst einen Medikationsfehler. Was ist der erste Schritt?", ["Zuerst die CIRS-Meldung schreiben", "Person beobachten und sofort die zuständige Fachperson informieren", "Abwarten, ob etwas passiert"], 1, "Die Sicherheit der Person kommt zuerst, die Meldung danach."]
+    ],
+    pass: 8,
+    notes: ["Wo im Medikationsprozess fühlst du dich sicher, wo unsicher?", "Welche Situation aus deinem Alltag passt zu einem der Fälle? Beschreibe sie ohne Namen.", "Was nimmst du dir für deinen nächsten Dienst konkret vor?"],
+    praesenz: ["Bring eine Frage oder Situation aus deinem Alltag mit, bei der du beim Richten oder Verabreichen unsicher warst. Ohne Namen und Patientendaten.", "Kläre auf deiner Station: Welche Medikamente brauchen eine Doppelkontrolle? Wo findest du die Teilbarkeitsliste?", "Bring deinen Lernnachweis mit: Selbstcheck mit mindestens 8 von 10 richtigen Antworten und deine Notizen."],
+    src: "Stiftung Patientensicherheit Schweiz, Medikationssicherheit; Swissmedic, Arzneimittelinformation; Betäubungsmittelgesetz BetmG; Bildungsplan Fachfrau, Fachmann Gesundheit EFZ"
+  }
+};
+
+const deepAll = () => { try { return JSON.parse(localStorage.getItem("pp-deep") || "{}"); } catch (e) { return {}; } };
+const deepGet = id => Object.assign({ steps: {}, notes: {}, score: null, doneAt: null }, deepAll()[id] || {});
+const deepPut = (id, v) => { const d = deepAll(); d[id] = v; try { localStorage.setItem("pp-deep", JSON.stringify(d)); } catch (e) {} };
+const deepShown = (n, force) => !!DEEP[n.id] && (force || state.level === "Alle" || state.level === DEEP[n.id].level);
+const tblHtml = t => `<div class="tbl"><table><thead><tr>${t.head.map(x => `<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map((x, k) => `<td data-label="${esc(t.head[k])}">${esc(x)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+
+function deepBlock(b) {
+  if (b.h) return `<h4>${esc(b.h)}</h4>`;
+  if (b.fig) return `<figure class="fig"><div class="fig-scroll">${FIG[b.fig]()}</div>${b.cap ? `<figcaption>${esc(b.cap)}</figcaption>` : ""}</figure>`;
+  if (b.table) return tblHtml(b.table);
+  if (b.ol) return `<ol class="dp-ol">${b.ol.map(x => `<li>${esc(x)}</li>`).join("")}</ol>`;
+  if (b.warn) return `<div class="dp-warn"><b>${esc(b.warn)}</b>${b.p ? `<p>${esc(b.p)}</p>` : ""}${b.list ? `<ul>${b.list.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div>`;
+  if (b.list) return `<ul>${b.list.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+  if (b.tip) return `<div class="dp-tip"><b>Gut zu wissen</b><p>${esc(b.tip)}</p></div>`;
+  if (b.think) return `<div class="dp-think"><b>Denkpause</b><p>${esc(b.think)}</p></div>`;
+  if (b.comp) return `<div class="comp multi"><div class="role FaGe"><b>Das machst du als FaGe</b><ul class="do">${b.comp.do.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div><div class="role dp-no"><b>Das ist nicht deine Aufgabe</b><ul class="no">${b.comp.no.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div></div>`;
+  if (b.calc) return `<div class="dp-calc">${b.calc.map((c, i) => `<div class="dp-case"><h5>Aufgabe ${i + 1}</h5><p>${esc(c.q)}</p><details><summary>Lösung anzeigen</summary><p>${esc(c.a)}</p></details></div>`).join("")}</div>`;
+  if (b.cases) return b.cases.map((c, i) => `<div class="dp-case"><h5>Fall ${i + 1}: ${esc(c.t)}</h5><p>${esc(c.s)}</p><p class="dp-task"><b>Deine Aufgabe:</b> ${esc(c.q)}</p><details><summary>Lösungsvorschlag anzeigen</summary><ul>${c.a.map(x => `<li>${esc(x)}</li>`).join("")}</ul></details></div>`).join("");
+  if (b.p) return `<p>${esc(b.p)}</p>`;
+  return "";
+}
+
+function deepHtml(n) {
+  const D = DEEP[n.id], st = deepGet(n.id), cnt = D.steps.filter((_, i) => st.steps[i]).length;
+  return `<div class="panel deep" id="s-vertiefung">
+    <h2><i>${ui("star")}</i>Vertiefung <span class="lv ${D.level}">${LEVEL_LABEL[D.level]}</span></h2>
+    <div class="dp-intro">
+      <p class="dp-kick">Asynchroner Teil der Weiterbildung · ca. ${D.min} Minuten</p>
+      <h3>${esc(D.title)}</h3>
+      <p>${esc(D.intro)}</p>
+      <div class="dp-goals"><b>Lernziele</b><ul>${D.goals.map(g => `<li>${esc(g)}</li>`).join("")}</ul></div>
+      <p class="dp-how">${esc(D.how)}</p>
+      <div class="dp-prog"><div class="bar"><i id="dp-bar" style="width:${Math.round(cnt / D.steps.length * 100)}%"></i></div><small id="dp-progtxt">${cnt} von ${D.steps.length} Etappen bearbeitet</small></div>
+    </div>
+    <div class="dp-steps">${D.steps.map((s, i) => `<details class="dp-step${st.steps[i] ? " done" : ""}" data-i="${i}"${i === 0 && !cnt ? " open" : ""}>
+      <summary><span class="dp-n">${st.steps[i] ? "✓" : i + 1}</span><span class="dp-t">${esc(s.h)}<small>Etappe ${i + 1} · ${s.min} Min.</small></span><span class="dp-chev" aria-hidden="true">▾</span></summary>
+      <div class="dp-body">${s.b.map(deepBlock).join("")}
+        <label class="dp-check"><input type="checkbox" data-step="${i}"${st.steps[i] ? " checked" : ""}> Etappe ${i + 1} bearbeitet</label></div></details>`).join("")}</div>
+    <h3 class="dp-h">Selbstcheck</h3>
+    <p class="qintro">${D.quiz.length} Fragen zur Vertiefung. Bestanden ab ${D.pass} richtigen Antworten.</p>
+    <div id="dp-quiz"></div>
+    <h3 class="dp-h">Vorbereitung auf den Präsenzteil</h3>
+    <div class="dp-notes">${D.notes.map((q, i) => `<label><span>${i + 1}. ${esc(q)}</span><textarea data-note="${i}" rows="3" placeholder="Deine Notizen, ohne Namen und Patientendaten">${esc(st.notes[i] || "")}</textarea></label>`).join("")}</div>
+    <p class="note">Deine Notizen bleiben nur in diesem Browser auf diesem Gerät gespeichert.</p>
+    <div class="dp-auftrag"><b>Auftrag für den Präsenzteil</b><ul>${D.praesenz.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
+    <div id="dp-cert"></div>
+    <div class="dp-actions"><button class="dp-btn" id="dp-print">Lernnachweis drucken</button><button class="dp-btn ghost" id="dp-copy">Notizen kopieren</button><span id="dp-msg" role="status"></span></div>
+    <p class="src">Grundlagen: ${esc(D.src)}</p>
+  </div>`;
+}
+
+function deepCert(n) {
+  const D = DEEP[n.id], st = deepGet(n.id), cnt = D.steps.filter((_, i) => st.steps[i]).length, ok = st.score !== null && st.score >= D.pass;
+  const box = $("#dp-cert"); if (!box) return;
+  if (cnt === D.steps.length && ok) {
+    if (!st.doneAt) { st.doneAt = new Date().toLocaleDateString("de-CH"); deepPut(n.id, st); }
+    box.innerHTML = `<div class="dp-done">✓ Vertiefung abgeschlossen am ${st.doneAt}. Selbstcheck: ${st.score} von ${D.quiz.length}.</div>`;
+  } else {
+    const miss = [];
+    if (cnt < D.steps.length) miss.push(`${D.steps.length - cnt} Etappe${D.steps.length - cnt > 1 ? "n" : ""} noch nicht abgehakt`);
+    if (!ok) miss.push(st.score === null ? "Selbstcheck noch offen" : `Selbstcheck: ${st.score} von ${D.quiz.length}, nochmals versuchen`);
+    box.innerHTML = `<div class="dp-open">Für den Lernnachweis fehlt noch: ${miss.join(", ")}.</div>`;
+  }
+}
+
+function deepQuiz(n) {
+  const D = DEEP[n.id], box = $("#dp-quiz");
+  const qs = D.quiz.map(([q, o, a, e]) => { const ord = o.map((_, i) => i).sort(() => Math.random() - .5); return { q, e, o: ord.map(i => o[i]), a: ord.indexOf(a) }; });
+  box.innerHTML = qs.map((q, qi) => `<div class="q"><p><small>Frage ${qi + 1} von ${qs.length}</small>${esc(q.q)}</p>
+    <div class="opts">${q.o.map((o, j) => `<button data-q="${qi}" data-o="${j}"><span class="k">${"ABCD"[j]}</span><span>${esc(o)}</span></button>`).join("")}</div>
+    <p class="fb" id="dpfb${qi}"></p></div>`).join("") + `<div class="result" id="dp-result"></div>`;
+  let answered = 0, right = 0;
+  box.querySelectorAll(".opts button").forEach(b => b.addEventListener("click", () => {
+    const qi = +b.dataset.q, oi = +b.dataset.o, q = qs[qi], group = b.parentElement.querySelectorAll("button");
+    group.forEach(x => x.disabled = true); group[q.a].classList.add("right");
+    if (oi !== q.a) b.classList.add("wrong"); else right++;
+    $("#dpfb" + qi).textContent = (oi === q.a ? "Richtig. " : "Nicht ganz. ") + q.e;
+    if (++answered === qs.length) {
+      const st = deepGet(n.id); st.score = Math.max(st.score || 0, right); deepPut(n.id, st);
+      const r = $("#dp-result"), pass = right >= D.pass;
+      r.className = "result show " + (pass ? "good" : "try");
+      r.innerHTML = (pass ? `Bestanden: ${right} von ${qs.length} richtig.` : `${right} von ${qs.length} richtig. Lies die passenden Etappen nochmals und versuche es erneut.`) + ` <button class="dp-btn ghost sm" id="dp-again">Neu starten</button>`;
+      $("#dp-again").addEventListener("click", () => deepQuiz(n));
+      deepCert(n);
+    }
+  }));
+}
+
+function bindDeep(n) {
+  const D = DEEP[n.id]; if (!$("#s-vertiefung")) return;
+  document.querySelectorAll(".dp-check input").forEach(c => c.addEventListener("change", () => {
+    const st = deepGet(n.id), i = +c.dataset.step; st.steps[i] = c.checked; deepPut(n.id, st);
+    const d = c.closest(".dp-step"); d.classList.toggle("done", c.checked); d.querySelector(".dp-n").textContent = c.checked ? "✓" : i + 1;
+    const cnt = D.steps.filter((_, k) => st.steps[k]).length;
+    $("#dp-bar").style.width = Math.round(cnt / D.steps.length * 100) + "%"; $("#dp-progtxt").textContent = `${cnt} von ${D.steps.length} Etappen bearbeitet`;
+    if (c.checked) { d.open = false; const nx = d.nextElementSibling; if (nx && nx.classList.contains("dp-step") && !nx.classList.contains("done")) { nx.open = true; setTimeout(() => nx.scrollIntoView({ behavior: "smooth", block: "start" }), 60); } }
+    deepCert(n);
+  }));
+  document.querySelectorAll(".dp-notes textarea").forEach(t => t.addEventListener("input", () => { const st = deepGet(n.id); st.notes[t.dataset.note] = t.value; deepPut(n.id, st); }));
+  const notesText = () => { const st = deepGet(n.id); return D.notes.map((q, i) => `${i + 1}. ${q}\n${st.notes[i] || ""}`).join("\n\n"); };
+  $("#dp-copy").addEventListener("click", () => {
+    const done = () => $("#dp-msg").textContent = "Notizen kopiert.";
+    if (navigator.clipboard) navigator.clipboard.writeText(D.title + "\n\n" + notesText()).then(done, () => $("#dp-msg").textContent = "Kopieren nicht möglich.");
+  });
+  $("#dp-print").addEventListener("click", () => {
+    const st = deepGet(n.id), cnt = D.steps.filter((_, i) => st.steps[i]).length;
+    let p = $("#dp-printout"); if (!p) { p = document.createElement("div"); p.id = "dp-printout"; document.body.appendChild(p); }
+    p.innerHTML = `<p class="pp-brand">Pflegepedia · Lernnachweis</p><h1>${esc(D.title)}</h1><p>Asynchroner Teil der Weiterbildung, Stufe ${LEVEL_LABEL[D.level]}</p>
+      <table><tr><td>Name</td><td class="line"></td></tr><tr><td>Datum</td><td>${new Date().toLocaleDateString("de-CH")}</td></tr>
+      <tr><td>Etappen bearbeitet</td><td>${cnt} von ${D.steps.length}</td></tr><tr><td>Selbstcheck</td><td>${st.score === null ? "noch offen" : st.score + " von " + D.quiz.length + (st.score >= D.pass ? ", bestanden" : "")}</td></tr>
+      ${st.doneAt ? `<tr><td>Abgeschlossen am</td><td>${st.doneAt}</td></tr>` : ""}</table>
+      <h2>Reflexion</h2>${D.notes.map((q, i) => `<h3>${i + 1}. ${esc(q)}</h3><p class="ans">${esc(st.notes[i] || "").replace(/\n/g, "<br>") || "&nbsp;"}</p>`).join("")}
+      <h2>Auftrag für den Präsenzteil</h2><ul>${D.praesenz.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+    document.body.classList.add("print-deep");
+    const off = () => { document.body.classList.remove("print-deep"); window.removeEventListener("afterprint", off); };
+    window.addEventListener("afterprint", off); window.print(); setTimeout(off, 1500);
+  });
+  deepQuiz(n); deepCert(n);
+}
+
 const GLYPH = {
   lernbegleitung: '<circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 21c0-5 3-8 6-8s6 3 6 8M13 21c.5-3 2-5 4-5s3.5 2 4 5"/><path d="M11 10l3 1"/>',
   rollen: '<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M12 8v4M12 12l-5 3M12 12l5 3"/>',
@@ -3512,8 +3984,9 @@ function renderQuiz(n, ql) {
   }));
 }
 const statusHtml = n => quizLevels(n).filter(l => state.level === "Alle" || l === state.level || !n.levels.includes(state.level)).map(l => `<span class="lv ${l}">${LEVEL_LABEL[l]} ${isDone(n, l) ? "✓" : "offen"}</span>`).join(" ");
-function renderNugget(n) {
+function renderNugget(n, sub) {
   const t = TOPIC[n.topic];
+  const deep = deepShown(n, sub === "vertiefung");
   const more = NUGGETS.filter(x => x !== n && (state.level === "Alle" || x.levels.includes(state.level)) && (x.topic === n.topic || x.levels.some(l => n.levels.includes(l)))).sort((a, b) => (b.topic === n.topic) - (a.topic === n.topic)).slice(0, 3);
   const ls = quizLevels(n);
   const ql = ls.includes(state.level) ? state.level : (ls.includes(state.qlevel) ? state.qlevel : ls[0]);
@@ -3529,7 +4002,7 @@ function renderNugget(n) {
     </div>
     <div class="art">${art(n)}</div>
   </div></section>
-  <nav class="subnav" aria-label="Abschnitte"><div class="wrap">${[["s-theorie","Theorie"],["s-blick","Auf einen Blick"],["s-wissen","Gut zu wissen"],["s-komp","Kompetenzen"],["s-quiz","Quiz"],["s-transfer","Praxistransfer"]].map(([id, t]) => `<button data-s="${id}">${t}</button>`).join("")}</div></nav>
+  <nav class="subnav" aria-label="Abschnitte"><div class="wrap">${[["s-theorie","Theorie"],["s-blick","Auf einen Blick"],["s-wissen","Gut zu wissen"],["s-komp","Kompetenzen"],["s-quiz","Quiz"],["s-transfer","Praxistransfer"]].concat(deep ? [["s-vertiefung","Vertiefung " + LEVEL_LABEL[DEEP[n.id].level]]] : []).map(([id, t]) => `<button data-s="${id}">${t}</button>`).join("")}</div></nav>
   <div class="wrap ncontent" style="--tc:${t.c};--tc-bg:${t.bg}">
     <div>
       <div class="panel theory" id="s-theorie"><h2><i>${ui("book")}</i>Theorie</h2>${theoryHtml(n)}</div>
@@ -3541,6 +4014,7 @@ function renderNugget(n) {
       <div class="panel" id="s-komp"><h2><i>${ui("user")}</i>Kompetenzen nach Stufe</h2>${compHtml(n)}<p class="note">Grundlage sind die Bildungsverordnungen. Im Betrieb gilt zusätzlich die betriebliche Kompetenzregelung.</p></div>
       <div class="panel" id="s-quiz"><h2><i>${ui("quiz")}</i>Quiz</h2><div id="quizbox"></div></div>
       <div class="panel" id="s-transfer"><h2><i>${ui("go")}</i>Praxistransfer</h2><p class="transfer">${esc(n.transfer)}</p></div>
+      ${deep ? deepHtml(n) : ""}
     </div>
     <aside class="aside">
       <div class="panel"><dl class="facts">
@@ -3549,6 +4023,7 @@ function renderNugget(n) {
         <div><dt>Quiz</dt><dd>5 Fragen pro Stufe</dd></div>
         <div class="st"><dt>Status</dt><dd id="status">${statusHtml(n)}</dd></div>
       </dl></div>
+      ${deep ? `<div class="panel dp-aside"><h2 style="font-size:17px;margin-bottom:8px">Vertiefung ${LEVEL_LABEL[DEEP[n.id].level]}</h2><p>Asynchroner Weiterbildungsteil mit Grafiken, Fallarbeit, Rechenaufgaben und Selbstcheck. Ca. ${DEEP[n.id].min} Minuten.</p><a class="btn" href="#${n.id}/vertiefung">Zur Vertiefung</a></div>` : ""}
       ${more.length ? `<div class="panel"><h2 style="font-size:17px;margin-bottom:10px">Weitere Nuggets</h2>
         ${more.map(m => `<a class="mini" href="#${m.id}"><span class="art">${art(m)}</span><span>${esc(m.title)}<small>${m.topic} · ${m.min} Min.</small></span></a>`).join("")}
       </div>` : ""}
@@ -3559,6 +4034,7 @@ function renderNugget(n) {
     </aside>
   </div>`;
   renderQuiz(n, ql);
+  if (deep) bindDeep(n);
   document.querySelectorAll(".subnav button").forEach(b => b.addEventListener("click", () => document.getElementById(b.dataset.s).scrollIntoView({ behavior: "smooth" })));
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) document.querySelectorAll(".subnav button").forEach(b => b.classList.toggle("on", b.dataset.s === e.target.id)); }), { rootMargin: "-40% 0px -55% 0px" });
@@ -3585,7 +4061,7 @@ function card(n) {
   return `<a class="card" href="#${n.id}">
     <div class="art">${art(n)}${isDone(n, state.level) ? '<span class="doneb">✓ Erledigt</span>' : ""}</div>
     <div class="body"><span class="tp">${n.topic}</span><h3>${esc(n.title)}</h3><p>${esc(n.teaser)}</p>
-      <div class="foot">${lvsCard(n.levels)}<span class="min">${ui("clock").replace("<svg", '<svg width="15" height="15"')} ${n.min} Min.</span></div></div></a>`;
+      <div class="foot">${lvsCard(n.levels)}${DEEP[n.id] && (state.level === "Alle" || state.level === DEEP[n.id].level) ? `<span class="deepb">+ Vertiefung</span>` : ""}<span class="min">${ui("clock").replace("<svg", '<svg width="15" height="15"')} ${n.min} Min.</span></div></div></a>`;
 }
 
 function renderHeroBox() {
@@ -3682,19 +4158,20 @@ function renderPage(k) {
 }
 
 function route() {
-  const h = location.hash.slice(1);
-  const n = NUGGETS.find(x => x.id === h);
-  if (n) renderNugget(n);
+  const h = location.hash.slice(1), [hid, sub] = h.split("/");
+  const n = NUGGETS.find(x => x.id === hid);
+  if (n) renderNugget(n, sub);
   else if (PAGES[h]) renderPage(h);
   else renderHome(h === "ueber" ? "ueber" : null);
   document.title = n ? n.title + " · Pflegepedia" : h === "impressum" ? "Impressum · Pflegepedia" : h === "datenschutz" ? "Datenschutz · Pflegepedia" : "Pflegepedia";
   if (h !== "ueber") window.scrollTo(0, 0);
+  if (n && sub === "vertiefung" && $("#s-vertiefung")) setTimeout(() => $("#s-vertiefung").scrollIntoView(), 30);
 }
 document.querySelector(".levels").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
   setLevel(b.dataset.level);
   const h = location.hash.slice(1);
-  if (NUGGETS.some(x => x.id === h)) route(); else if ($("#herobox")) refreshHome();
+  if (NUGGETS.some(x => x.id === h.split("/")[0])) route(); else if ($("#herobox")) refreshHome();
 });
 document.querySelector("footer").addEventListener("click", e => {
   const a = e.target.closest("[data-lv]"); if (!a) return;
