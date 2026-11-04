@@ -3745,7 +3745,6 @@ function deepHtml(n) {
   return `<div class="panel deep" id="s-vertiefung">
     <h2><i>${ui("star")}</i>Vertiefung <span class="lv ${D.level}">${LEVEL_LABEL[D.level]}</span></h2>
     <div class="dp-intro">
-      <p class="dp-kick">Vertiefung · ca. ${D.min} Minuten</p>
       <h3>${esc(D.title)}</h3>
       <p>${esc(D.intro)}</p>
       <div class="dp-goals"><b>Lernziele</b><ul>${D.goals.map(g => `<li>${esc(g)}</li>`).join("")}</ul></div>
@@ -4019,7 +4018,8 @@ function renderNugget(n, sub) {
     <aside class="aside">
       <div class="panel"><dl class="facts">
         <div><dt>Thema</dt><dd>${n.topic}</dd></div>
-        <div><dt>Dauer</dt><dd>${n.min} Minuten</dd></div>
+        <div><dt>Dauer</dt><dd>${n.min} Minuten</dd></div>${deep ? `
+        <div><dt>Vertiefung</dt><dd>${DEEP[n.id].min} Minuten</dd></div>` : ""}
         <div><dt>Quiz</dt><dd>5 Fragen pro Stufe</dd></div>
         <div class="st"><dt>Status</dt><dd id="status">${statusHtml(n)}</dd></div>
       </dl></div>
