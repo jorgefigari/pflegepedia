@@ -1806,6 +1806,123 @@ const NUGGETS = [
     src: "Bildungsverordnung FaGe EFZ (SBFI); ESPEN Leitlinie Enterale Ernährung; Thiemes Pflege"
   },
   {
+    id: "blut-kapillaer", topic: "Pflegetechniken", levels: ["FaGe","HF"], min: 8,
+    title: "Kapilläre Blutentnahme",
+    teaser: "Blutzucker und andere Schnelltests: richtige Stelle, saubere Technik und die typischen Fehler, die Werte verfälschen.",
+    lead: "Bei der kapillären Blutentnahme gewinnst du wenige Tropfen Blut aus der Fingerbeere, dem Ohrläppchen oder bei Säuglingen aus der Ferse. Am häufigsten ist die Blutzuckermessung. Die Technik ist kurz, aber kleine Fehler führen zu falschen Werten und damit zu falschen Entscheidungen.",
+    theory: [
+      { h: "Wofür kapillär?",
+        list: ["Blutzucker (BZ) mit dem Messgerät, die häufigste Indikation", "Gerinnung (INR) mit einem patientennahen Messgerät, z. B. bei Marcoumar", "Hämoglobin, CRP oder Laktat mit Schnelltests, je nach Betrieb", "Neugeborenen-Screening (Guthrie-Test) aus der Ferse", "Kapilläre Blutgasanalyse am Ohrläppchen, Aufgabe von Fachpersonen nach Betriebsregel"],
+        after: "Kapillarblut ist eine Mischung aus Blut aus den kleinsten Gefässen und etwas Gewebeflüssigkeit. Deshalb ist die Technik so wichtig: Je mehr Gewebeflüssigkeit in den Tropfen kommt, desto ungenauer der Wert." },
+      { h: "Die richtige Stelle", fig: "fingerbeere", figcap: "Grün: seitliche Fingerbeere von Mittel- oder Ringfinger. Nicht in die Mitte der Kuppe stechen.",
+        table: { head: ["Stelle", "Hinweis"], rows: [
+          ["Fingerbeere seitlich", "Standard bei Erwachsenen, am besten Mittel- oder Ringfinger. Seitlich hat es weniger Nervenenden als in der Mitte"],
+          ["Daumen und Zeigefinger", "Möglichst meiden: Tastfinger, oft Hornhaut"],
+          ["Ohrläppchen", "Gut durchblutet, für kapilläre Blutgasanalyse"],
+          ["Ferse seitlich", "Bei Säuglingen, nie in der Mitte der Ferse (Knochen)"] ] },
+        after: "Nicht stechen in kalte, geschwollene, entzündete oder vernarbte Finger und nicht am Arm mit Dialyse-Shunt oder Lymphödem. Stichstellen wechseln, besonders bei Personen, die mehrmals täglich messen." },
+      { h: "Ablauf Schritt für Schritt",
+        list: ["Auftrag und Identität prüfen, Person informieren", "Person die Hände mit warmem Wasser waschen lassen: entfernt Zuckerreste und fördert die Durchblutung", "Händedesinfektion, Handschuhe, Material bereit: Messgerät, Teststreifen (Ablaufdatum!), Sicherheitslanzette, Tupfer", "Haut nach Betriebsstandard desinfizieren und vollständig trocknen lassen", "Finger nach unten halten, seitlich in die Fingerbeere stechen", "Ersten Tropfen nach Betriebsstandard mit dem Tupfer abwischen", "Den nächsten Tropfen ohne Quetschen an den Teststreifen bringen", "Tupfer auf die Stelle, Lanzette sofort in den Abwurfbehälter", "Wert ablesen, einschätzen, dokumentieren und abweichende Werte melden"] },
+      { h: "Fehlerquellen, die den Wert verfälschen", warn: true,
+        table: { head: ["Fehler", "Folge"], rows: [
+          ["Zuckerreste an den Fingern, z. B. nach Früchten", "Falsch hoher Blutzucker"],
+          ["Desinfektionsmittel nicht trocken", "Verdünnt den Tropfen, verfälschter Wert, mehr Schmerz"],
+          ["Finger quetschen oder «melken»", "Gewebeflüssigkeit verdünnt das Blut, Wert falsch tief"],
+          ["Zu kleiner Tropfen", "Fehlermeldung oder ungenauer Wert"],
+          ["Abgelaufene oder offen gelagerte Teststreifen", "Unzuverlässige Werte"],
+          ["Gerät ohne Qualitätskontrolle", "Unbemerkte Messfehler"] ] },
+        after: "Passt ein Wert nicht zum Zustand der Person, z. B. hoher Wert bei zittriger, schwitzender Person: Hände waschen lassen und sofort nachmessen, dann melden." },
+      { h: "Blutzuckerwerte einschätzen",
+        table: { head: ["Bereich", "Bedeutung"], rows: [
+          ["Unter 4 mmol/l", "Hypoglykämie: sofort handeln nach Betriebsstandard und melden"],
+          ["Etwa 4 bis 6 mmol/l nüchtern", "Normalbereich bei Menschen ohne Diabetes"],
+          ["Über dem Zielbereich", "Hyperglykämie: melden, Massnahmen nach Verordnung"] ] },
+        after: "Für Menschen mit Diabetes gilt der Zielbereich, den die Ärztin oder der Arzt festlegt. Er kann vom Normalbereich abweichen, zum Beispiel bei älteren Menschen." }
+    ],
+    points: ["Seitliche Fingerbeere von Mittel- oder Ringfinger", "Hände waschen und wärmen, Desinfektion trocknen lassen", "Nicht quetschen: sonst falsch tiefe Werte", "Unter 4 mmol/l: Hypoglykämie, sofort handeln", "Lanzette direkt in den Abwurf, Wert dokumentieren und melden"],
+    merke: "Ein Wert, der nicht zur Person passt, wird nicht einfach dokumentiert. Hände waschen, nachmessen, melden.",
+    facts: ["Die Fingerkuppe hat in der Mitte besonders viele Nervenenden. Seitlich zu stechen tut weniger weh.", "Eine Banane in der Hand kann den Blutzucker am Finger um mehrere mmol/l zu hoch erscheinen lassen.", "Venöse und kapilläre Blutentnahmen sind im Bildungsplan FaGe EFZ eine eigene Handlungskompetenz (D.2)."],
+    comp: {
+      FaGe: { do: ["Kapilläre Blutentnahme nach Verordnung oder Betriebsstandard durchführen, z. B. Blutzucker", "Messgerät korrekt bedienen, Teststreifen und Qualitätskontrolle nach Betriebsregel", "Werte einschätzen, abweichende Werte sofort melden", "Bei Hypoglykämie Sofortmassnahmen nach Betriebsstandard einleiten", "Messung und Wert dokumentieren"], no: ["Insulindosis ohne Verordnung oder Schema selbst festlegen", "Kapilläre Blutgasanalyse ohne Auftrag und Schulung nach Betriebsregel"] },
+      HF: { do: ["Werte im Verlauf beurteilen und Massnahmen ableiten", "Messplan und Zielbereich mit der Ärzteschaft abstimmen", "Personen und Angehörige in der Selbstmessung schulen", "Lernende anleiten und Ergebnisse überprüfen"], no: ["Als Studierende HF: nach Ausbildungsstand und unter Aufsicht"] }
+    },
+    quiz: {
+      FaGe: [
+        ["Wo stichst du bei Erwachsenen am besten?", ["In die Mitte der Daumenkuppe", "Seitlich in die Fingerbeere von Mittel- oder Ringfinger", "In die Handfläche"], 1, "Seitlich hat es weniger Nervenenden, Daumen und Zeigefinger sind Tastfinger."],
+        ["Warum lässt du die Person vor der Messung die Hände waschen?", ["Nur aus Höflichkeit", "Zuckerreste entfernen und Durchblutung fördern", "Damit der Finger nass ist"], 1, "Zuckerreste ergeben falsch hohe Werte."],
+        ["Der Tropfen ist zu klein. Was tust du?", ["Finger kräftig quetschen", "Hand nach unten halten, leicht vom Handballen her ausstreichen oder neu stechen", "Den kleinen Tropfen trotzdem verwenden"], 1, "Quetschen bringt Gewebeflüssigkeit und falsch tiefe Werte."],
+        ["Der Blutzucker liegt bei 3,2 mmol/l. Was gilt?", ["Normal, dokumentieren", "Hypoglykämie: sofort handeln nach Betriebsstandard und melden", "Später nochmals messen"], 1, "Unter 4 mmol/l ist eine Hypoglykämie."],
+        ["Warum muss das Desinfektionsmittel vollständig trocknen?", ["Es verfälscht den Wert und brennt beim Stechen", "Damit der Finger kalt wird", "Das spielt keine Rolle"], 0, "Alkohol verdünnt den Tropfen und schmerzt."]
+      ],
+      HF: [
+        ["Eine Person ist zittrig und schwitzt, das Gerät zeigt 14 mmol/l. Was tust du?", ["Insulin geben", "Hände waschen lassen, sofort nachmessen und Klinik einschätzen", "Wert dokumentieren und gehen"], 1, "Der Befund passt nicht zum Wert: an Zuckerreste denken."],
+        ["Eine Person hat periphere Ödeme und kalte Hände, die Werte schwanken stark. Welche Überlegung ist richtig?", ["Kapilläre Werte können unzuverlässig sein, ärztlich klären, ob venös bestimmt wird", "Immer kapillär messen, das ist am genauesten", "Messungen streichen"], 0, "Bei schlechter Durchblutung ist Kapillarblut weniger zuverlässig."],
+        ["Was gehört zur Schulung der Blutzucker-Selbstmessung?", ["Nur das Gerät zeigen", "Stichtechnik, Stellenwechsel, Fehlerquellen, Zielbereich und Vorgehen bei Hypoglykämie", "Nur die Zielwerte"], 1, "Selbstmanagement braucht alle Elemente."],
+        ["Wie stellst du sicher, dass die Messgeräte der Station zuverlässig sind?", ["Gar nicht nötig", "Qualitätskontrolle mit Kontrolllösung nach Betriebsregel und Dokumentation", "Geräte jährlich ersetzen"], 1, "Patientennahe Tests brauchen regelmässige Qualitätskontrollen."],
+        ["Eine FaGe meldet dir einen BZ von 2,9 mmol/l bei einer wachen Person. Was ist deine erste Massnahme?", ["Arzt anrufen und warten", "Rasch wirksame Kohlenhydrate nach Betriebsstandard geben lassen, Kontrolle nach 15 Minuten, dann melden", "Insulinpumpe erhöhen"], 1, "Bei wacher Person zuerst schnell Zucker, dann nachmessen."]
+      ]
+    },
+    transfer: "Lass dir bei der nächsten Blutzuckermessung zuschauen. Achte bewusst auf drei Dinge: Hände gewaschen, Desinfektion trocken, nicht gequetscht.",
+    src: "Bildungsplan FaGe EFZ (OdASanté), Handlungskompetenz D.2; Schweizerische Gesellschaft für Endokrinologie und Diabetologie (SGED); Herstellerangaben der Messgeräte"
+  },
+  {
+    id: "blut-venoes", topic: "Pflegetechniken", levels: ["FaGe","HF"], min: 10,
+    title: "Venöse Blutentnahme",
+    teaser: "Von der Identitätskontrolle bis zum Labor: Venenwahl, Stauung, Reihenfolge der Röhrchen und Komplikationen.",
+    lead: "Die venöse Blutentnahme liefert das Material für die meisten Laboruntersuchungen. Ein Laborwert ist nur so gut wie die Entnahme: falsche Person, zu lange Stauung oder die falsche Reihenfolge der Röhrchen können ein Ergebnis wertlos oder sogar gefährlich machen.",
+    theory: [
+      { h: "Vor dem Stechen: sicher vorbereiten",
+        list: ["Ärztliche Verordnung und Laborauftrag prüfen", "Identität aktiv erfragen: Name und Geburtsdatum nennen lassen, mit Armband und Etiketten vergleichen", "Besonderheiten klären: nüchtern? Zeitpunkt, z. B. Medikamentenspiegel vor der nächsten Dosis?", "Material: Stauschlauch, Entnahmesystem (z. B. S-Monovette oder Vacutainer), Kanüle oder Butterfly, Röhrchen, Hautdesinfektion, Tupfer, Pflaster, Handschuhe, Abwurfbehälter", "Person bequem liegend oder sitzend lagern, Arm gestreckt und gestützt"] },
+      { h: "Die richtige Vene", fig: "ellenbeuge", figcap: "Die Ellenbeuge ist die Standardstelle. Gestaut wird etwa eine Handbreit oberhalb.",
+        table: { head: ["Stelle", "Hinweis"], rows: [
+          ["Ellenbeuge (V. mediana cubiti)", "Erste Wahl: gross, gut tastbar, wenig schmerzhaft"],
+          ["Unterarm und Handrücken", "Wenn die Ellenbeuge nicht geht, eher mit Butterfly"],
+          ["Nicht punktieren", "Arm mit Dialyse-Shunt, Seite nach Brustoperation mit Lymphknotenentfernung oder mit Lymphödem, oberhalb einer laufenden Infusion, Hämatome, Entzündungen, Narben"] ] },
+        after: "Venen tasten statt nur sehen: Eine gute Vene fühlt sich prall und elastisch an. Eine Arterie pulsiert, eine Sehne ist hart. Nach der Hautdesinfektion nicht mehr palpieren." },
+      { h: "Stauen: kurz und mit Gefühl",
+        list: ["Etwa eine Handbreit (7 bis 10 cm) oberhalb der Punktionsstelle stauen", "Der Puls am Handgelenk muss tastbar bleiben", "Höchstens etwa eine Minute stauen, Stau lösen, sobald das Blut fliesst", "Person die Faust nicht pumpen lassen"],
+        after: "Zu lange oder zu starke Stauung und Faustpumpen verfälschen Werte, zum Beispiel falsch hohes Kalium." },
+      { h: "Ablauf der Punktion",
+        list: ["Händedesinfektion, Stauen, Vene tasten, Haut desinfizieren und Einwirkzeit einhalten", "Handschuhe anziehen, Haut unterhalb der Einstichstelle spannen", "Kanüle mit dem Schliff nach oben im flachen Winkel (etwa 15 bis 30 Grad) einstechen", "Röhrchen in der richtigen Reihenfolge füllen, jedes Röhrchen nach dem Füllen sanft schwenken, nicht schütteln", "Stau lösen, Tupfer auflegen, Kanüle ziehen und sofort in den Abwurfbehälter", "1 bis 2 Minuten mit gestrecktem Arm komprimieren, Arm nicht beugen", "Röhrchen direkt bei der Person beschriften, Auftrag ergänzen und Proben rasch ins Labor"] },
+      { h: "Reihenfolge der Röhrchen", fig: "roehrchen", figcap: "Empfohlene Reihenfolge. Die Farben unterscheiden sich je nach System: oben S-Monovette, unten Vacutainer.",
+        p: ["Die Röhrchen enthalten Zusätze. Würde ein Zusatz in das nächste Röhrchen verschleppt, verfälscht er dort die Werte. EDTA zum Beispiel bindet Kalzium und erhöht das Kalium. Darum gilt eine feste Reihenfolge: Blutkultur, Citrat (Gerinnung), Serum, Heparin, EDTA, Fluorid (Glukose).",
+            "Citrat-Röhrchen müssen genau bis zur Markierung gefüllt sein, sonst stimmt das Mischverhältnis nicht und die Gerinnungswerte sind falsch. Mit Butterfly zuerst ein Leerröhrchen füllen, damit die Luft aus dem Schlauch nicht ins Citrat-Röhrchen gelangt."] },
+      { h: "Komplikationen und Reaktionen", warn: true,
+        table: { head: ["Situation", "Was du tust"], rows: [
+          ["Person wird blass, schwitzt, ihr wird schwindlig", "Abbrechen, flach lagern, Beine hoch, Hilfe holen"],
+          ["Einschiessender, elektrisierender Schmerz", "Nerv getroffen: sofort abbrechen, melden, dokumentieren"],
+          ["Hellrotes, pulsierendes Blut", "Arterie getroffen: Kanüle ziehen, mindestens 5 Minuten komprimieren, melden"],
+          ["Hämatom", "Abbrechen, komprimieren, andere Stelle wählen"],
+          ["Zwei erfolglose Versuche", "Nicht weiterstechen, erfahrene Fachperson beiziehen"],
+          ["Nadelstichverletzung", "Ausbluten lassen, waschen, desinfizieren, sofort melden"] ] } }
+    ],
+    points: ["Identität aktiv erfragen, Röhrchen bei der Person beschriften", "Ellenbeuge zuerst, Shunt- und Lymphödemarm nie", "Stauen höchstens etwa 1 Minute, Puls bleibt tastbar", "Reihenfolge: Blutkultur, Citrat, Serum, Heparin, EDTA, Fluorid", "Nach zwei Fehlversuchen: Fachperson beiziehen"],
+    merke: "Falsch beschriftetes Blut ist gefährlicher als gar kein Blut. Röhrchen immer direkt bei der Person beschriften.",
+    facts: ["Verwechselte Blutproben gehören zu den bekannten Ursachen schwerer Transfusionszwischenfälle.", "Ein grosser Teil aller Laborfehler entsteht vor der Analyse, also bei Vorbereitung, Entnahme und Transport.", "Faustpumpen während der Stauung kann das Kalium im Labor deutlich zu hoch erscheinen lassen."],
+    comp: {
+      FaGe: { do: ["Venöse Blutentnahme nach ärztlicher Verordnung durchführen", "Identität und Auftrag prüfen, Röhrchen korrekt beschriften", "Reihenfolge der Röhrchen und Vorgaben des Labors einhalten", "Komplikationen erkennen, Sofortmassnahmen einleiten und melden"], no: ["Blutentnahme aus ZVK oder Port, ausser der Betrieb hat dies nach Schulung ausdrücklich geregelt", "Arterielle Blutentnahme", "Nach zwei erfolglosen Versuchen weiterstechen"] },
+      HF: { do: ["Blutentnahme aus ZVK oder Port nach Betriebsstandard", "Laborwerte im klinischen Kontext einschätzen und kritische Werte sofort weiterleiten", "Präanalytik auf der Station sicherstellen, z. B. Zeitpunkte und Transport", "Lernende anleiten und überwachen"], no: ["Als Studierende HF: nach Ausbildungsstand und unter Aufsicht"] }
+    },
+    quiz: {
+      FaGe: [
+        ["Wie prüfst du die Identität vor der Blutentnahme?", ["Ich frage: «Sind Sie Frau Müller?»", "Ich lasse Name und Geburtsdatum nennen und vergleiche mit Armband und Etiketten", "Ich schaue auf das Zimmerschild"], 1, "Aktiv erfragen. Auf eine Ja-Frage antworten Menschen oft einfach mit Ja."],
+        ["Wie lange stauen?", ["So lange wie nötig", "Höchstens etwa eine Minute, Puls bleibt tastbar", "Mindestens 3 Minuten"], 1, "Langes Stauen verfälscht Werte."],
+        ["Welches Röhrchen kommt vor EDTA?", ["Fluorid", "Citrat", "Keines, EDTA ist immer zuerst"], 1, "Reihenfolge: Blutkultur, Citrat, Serum, Heparin, EDTA, Fluorid."],
+        ["Die Person hat am linken Arm einen Dialyse-Shunt. Wo entnimmst du?", ["Am linken Arm, dort sind die Venen gut sichtbar", "Am rechten Arm", "Direkt aus dem Shunt"], 1, "Der Shuntarm wird nie punktiert und nie gestaut."],
+        ["Während der Entnahme wird die Person blass und sagt, ihr sei schwindlig. Was tust du?", ["Schnell fertig machen", "Abbrechen, flach lagern, Beine hoch, Hilfe holen", "Ein Glas Wasser holen und weitermachen"], 1, "Drohende Ohnmacht: Sicherheit vor Probe."]
+      ],
+      HF: [
+        ["Das Labor meldet ein Kalium von 6,4 mmol/l bei einer klinisch unauffälligen Person. Woran denkst du zuerst?", ["Sofort Kalium senkende Therapie", "Präanalytik prüfen: Hämolyse, langes Stauen, Faustpumpen, Reihenfolge, und ärztlich melden", "Ignorieren"], 1, "Kritischer Wert immer melden, aber Präanalytik mitdenken."],
+        ["Warum muss ein Citrat-Röhrchen genau bis zur Markierung gefüllt sein?", ["Wegen des Mischverhältnisses von Blut und Citrat", "Damit es nicht ausläuft", "Für die Optik"], 0, "Unterfüllung führt zu falschen Gerinnungswerten."],
+        ["Gerinnung soll mit Butterfly als einziges Röhrchen entnommen werden. Was beachtest du?", ["Nichts", "Zuerst ein Leerröhrchen füllen", "Röhrchen nur halb füllen"], 1, "Die Luft im Schlauch würde sonst das Citrat-Röhrchen unterfüllen."],
+        ["Eine FaGe hat zweimal erfolglos punktiert. Was ist richtig?", ["Sie soll es ein drittes Mal versuchen", "Du übernimmst oder ziehst eine erfahrene Fachperson bei und klärst mit der Person ab", "Die Blutentnahme streichen"], 1, "Nach zwei Fehlversuchen wechselt die Person, die sticht."],
+        ["Was gehört bei der Entnahme aus einem ZVK dazu?", ["Direkt das erste Blut für das Labor verwenden", "Infusion pausieren, Verwurfmenge nach Betriebsstandard verwerfen, danach spülen", "Kein steriles Arbeiten nötig"], 1, "Sonst wird die Probe mit Infusionslösung verdünnt."]
+      ]
+    },
+    transfer: "Schau dir auf deiner Station an, welches Entnahmesystem ihr nutzt und welche Farben die Röhrchen haben. Schreib dir die Reihenfolge auf und üb sie bei der nächsten Entnahme laut.",
+    src: "Bildungsplan FaGe EFZ (OdASanté), Handlungskompetenz D.2; CLSI GP41 Collection of Diagnostic Venous Blood Specimens; Herstellerangaben Sarstedt und BD"
+  },
+  {
     id: "isolation", topic: "Hygiene", levels: ["AGS","FaGe","HF"], min: 8,
     title: "Isolationsmassnahmen",
     teaser: "Standardmassnahmen, Kontakt-, Tröpfchen- und aerogene Isolation: wann welche Schutzmassnahme gilt.",
@@ -3186,6 +3303,69 @@ Object.assign(FIG, {
     return `<svg viewBox="0 0 720 300" role="img" aria-label="Gewichtung der Noten im Qualifikationsverfahren"><rect width="720" height="300" fill="#fff"/>${s}</svg>`;
   }
 });
+Object.assign(FIG, {
+  fingerbeere: () => {
+    const sk = "#f3d2bd", skl = "#d9a98c", G = "#2f9e5b";
+    const fingers = [[118, 150, 30, 74, false, "Daumen"], [168, 52, 30, 112, false, "Zeige"], [208, 40, 30, 124, true, "Mittel"], [248, 52, 30, 112, true, "Ring"], [286, 78, 26, 92, false, "Klein"]];
+    let s = `<path d="M150 150h150v70c0 30-20 50-60 50h-30c-40 0-60-20-60-50z" fill="${sk}" stroke="${skl}" stroke-width="3"/>`;
+    fingers.forEach(([x, y, w, h, ok, t], i) => {
+      if (i === 0) s += `<rect x="${x - 4}" y="${y}" width="${w + 6}" height="${h}" rx="${w / 2 + 3}" transform="rotate(-38 ${x + w / 2} ${y + h})" fill="${sk}" stroke="${skl}" stroke-width="3"/>`;
+      else s += `<rect x="${x}" y="${y}" width="${w}" height="${h + 40}" rx="${w / 2}" fill="${sk}" stroke="${skl}" stroke-width="3"/>`;
+      if (ok) s += `<path d="M${x + 3} ${y + 22}a${w / 2 - 3} ${w / 2 - 3} 0 0 1 4-15M${x + w - 3} ${y + 22}a${w / 2 - 3} ${w / 2 - 3} 0 0 0-4-15" stroke="${G}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+    });
+    s += `<path d="M150 186h150" stroke="${sk}" stroke-width="6"/>`;
+    s += T(222, 20, "Mittel- und Ringfinger", { s: 13, w: 800, c: G, f: FD }) + `<path d="M222 26v10" stroke="${G}" stroke-width="2"/>`;
+    s += T(70, 112, "Daumen und", { s: 12.5, c: "#5b6878" }) + T(70, 128, "Zeigefinger meiden", { s: 12.5, c: "#5b6878" });
+    // Nahansicht
+    const cx = 520, cy = 140;
+    s += `<rect x="${cx - 70}" y="${cy - 30}" width="140" height="190" fill="${sk}"/><path d="M${cx - 70} ${cy - 30}a70 70 0 0 1 140 0" fill="${sk}"/>`;
+    s += `<path d="M${cx - 70} ${cy + 160}V${cy - 30}a70 70 0 0 1 140 0V${cy + 160}" fill="none" stroke="${skl}" stroke-width="3"/>`;
+    s += `<path d="M${cx - 30} ${cy - 76}q30-14 60 0" fill="#fff" stroke="${skl}" stroke-width="2.5" opacity=".9"/>`;
+    s += `<path d="M${cx - 62} ${cy + 20}a62 70 0 0 1 22-78" stroke="${G}" stroke-width="16" fill="none" stroke-linecap="round" opacity=".85"/><path d="M${cx + 62} ${cy + 20}a62 70 0 0 0-22-78" stroke="${G}" stroke-width="16" fill="none" stroke-linecap="round" opacity=".85"/>`;
+    s += `<path d="M${cx - 12} ${cy - 18}l24 24M${cx + 12} ${cy - 18}l-24 24" stroke="${RD}" stroke-width="6" stroke-linecap="round"/>`;
+    s += `<path d="M${cx + 54} ${cy + 26}c6 8 8 14 8 18a8 8 0 0 1-16 0c0-4 2-10 8-18z" fill="${RD}"/>`;
+    s += T(cx + 80, cy - 40, "seitlich stechen", { a: "start", s: 13.5, w: 800, c: G, f: FD }) + `<path d="M${cx + 78} ${cy - 44}l-14 6" stroke="${G}" stroke-width="2"/>`;
+    s += T(cx + 80, cy - 4, "nicht in die Mitte", { a: "start", s: 13.5, w: 800, c: RD, f: FD }) + `<path d="M${cx + 78} ${cy - 8}h-58" stroke="${RD}" stroke-width="2" stroke-dasharray="4 3"/>`;
+    s += T(cx + 80, cy + 54, "kleiner Tropfen,", { a: "start", s: 12.5, c: "#5b6878" }) + T(cx + 80, cy + 70, "ohne Quetschen", { a: "start", s: 12.5, c: "#5b6878" });
+    s += T(cx, 296, "Fingerkuppe von vorne", { s: 12.5, w: 700, c: NV, f: FD }) + T(222, 296, "Handinnenfläche", { s: 12.5, w: 700, c: NV, f: FD });
+    return `<svg viewBox="0 0 720 310" role="img" aria-label="Geeignete Stellen für die kapilläre Blutentnahme an der Fingerbeere"><rect width="720" height="310" fill="#fff"/>${s}</svg>`;
+  },
+  ellenbeuge: () => {
+    const sk = "#f3d2bd", skl = "#d9a98c", V = "#4a78b8";
+    let s = `<path d="M40 112C200 100 330 104 420 110C520 116 610 118 690 112V198C610 196 520 196 420 200C330 204 200 206 40 196Z" fill="${sk}" stroke="${skl}" stroke-width="3"/>`;
+    s += `<path d="M418 112q-8 44 2 88" stroke="${skl}" stroke-width="2" fill="none" stroke-dasharray="5 5"/>`;
+    s += `<path d="M40 128C180 124 300 126 380 130C440 134 520 130 690 126" stroke="${V}" stroke-width="7" fill="none" stroke-linecap="round" opacity=".85"/>`;
+    s += `<path d="M40 184C180 186 300 184 380 180C450 176 540 182 690 186" stroke="${V}" stroke-width="7" fill="none" stroke-linecap="round" opacity=".85"/>`;
+    s += `<path d="M372 132C400 146 440 166 470 179" stroke="${V}" stroke-width="7" fill="none" stroke-linecap="round" opacity=".85"/>`;
+    s += `<rect x="236" y="96" width="26" height="118" rx="6" fill="${NV}"/><rect x="232" y="138" width="34" height="34" rx="6" fill="#2d5d93"/>`;
+    s += `<circle cx="422" cy="156" r="12" fill="none" stroke="${RD}" stroke-width="3.5"/><circle cx="422" cy="156" r="3.5" fill="${RD}"/>`;
+    s += `<path d="M268 236H410" stroke="${NV}" stroke-width="2.5"/><path d="M268 228v16M410 228v16" stroke="${NV}" stroke-width="2.5"/>` + T(339, 258, "etwa eine Handbreit (7 bis 10 cm)", { s: 13, w: 700, c: NV, f: FD });
+    s += T(249, 86, "Stauschlauch", { s: 13.5, w: 800, c: NV, f: FD }) + T(249, 70, "max. etwa 1 Minute", { s: 12, c: "#5b6878" });
+    s += T(470, 52, "V. mediana cubiti", { s: 13.5, w: 800, c: RD, f: FD }) + T(470, 68, "erste Wahl", { s: 12, c: "#5b6878" }) + `<path d="M458 74l-28 72" stroke="${RD}" stroke-width="2"/>`;
+    s += T(610, 112, "V. cephalica", { a: "start", s: 12.5, w: 700, c: V, f: FD }) + T(610, 216, "V. basilica", { a: "start", s: 12.5, w: 700, c: V, f: FD });
+    s += T(60, 236, "Oberarm", { a: "start", s: 12.5, c: "#5b6878" }) + T(680, 236, "Unterarm, Hand", { a: "end", s: 12.5, c: "#5b6878" });
+    return `<svg viewBox="0 0 720 280" role="img" aria-label="Venen der Ellenbeuge und Lage des Stauschlauchs"><rect width="720" height="280" fill="#fff"/>${s}</svg>`;
+  },
+  roehrchen: () => {
+    const tubes = [["Blutkultur", "Bakterien", null, null], ["Citrat", "Gerinnung", "#2f9e5b", "#7cc3ea"], ["Serum", "Klinische Chemie", "#ffffff", "#d64040"], ["Heparin", "Klinische Chemie", "#f08a24", "#2f9e5b"], ["EDTA", "Blutbild", "#d64040", "#9b6fc6"], ["Fluorid", "Glukose, Laktat", "#f2c230", "#9aa3ad"]];
+    let s = "";
+    tubes.forEach(([n, u, c1, c2], i) => {
+      const x = 70 + i * 116;
+      s += NUM(x, 26, i + 1);
+      if (!c1) {
+        s += `<rect x="${x - 22}" y="68" width="44" height="120" rx="12" fill="#eef3f8" stroke="${NV}" stroke-width="2.5"/><rect x="${x - 10}" y="48" width="20" height="22" rx="3" fill="#8aa0b8"/><rect x="${x - 22}" y="120" width="44" height="66" rx="10" fill="#c0463b" opacity=".8"/><rect x="${x - 16}" y="88" width="32" height="22" rx="3" fill="#fff" stroke="${LN}"/>`;
+        s += T(x, 214, "Flaschen", { s: 12, c: "#5b6878" });
+      } else {
+        s += `<rect x="${x - 15}" y="48" width="30" height="30" rx="5" fill="${c1}" stroke="${NV}" stroke-width="2.5"/>`;
+        s += `<path d="M${x - 13} 78v96a13 13 0 0 0 26 0V78" fill="#f4f7fa" stroke="${NV}" stroke-width="2.5"/><path d="M${x - 11.5} 122v52a11.5 11.5 0 0 0 23 0V122z" fill="#c0463b" opacity=".85"/>`;
+        s += `<rect x="${x - 15}" y="200" width="30" height="14" rx="4" fill="${c2}" stroke="${NV}" stroke-width="1.5"/>`;
+      }
+      s += T(x, 240, n, { s: 14, w: 800, c: NV, f: FD }) + T(x, 258, u, { s: 12, c: "#5b6878" });
+    });
+    s += `<path d="M40 286H690" stroke="${NV}" stroke-width="2.5" marker-end="url(#ra)"/>` + T(365, 304, "Reihenfolge der Entnahme", { s: 12.5, w: 700, c: NV, f: FD });
+    return `<svg viewBox="0 0 720 316" role="img" aria-label="Reihenfolge der Blutentnahmeröhrchen"><defs><marker id="ra" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${NV}"/></marker></defs><rect width="720" height="316" fill="#fff"/>${s}</svg>`;
+  }
+});
 const GLYPH = {
   lernbegleitung: '<circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 21c0-5 3-8 6-8s6 3 6 8M13 21c.5-3 2-5 4-5s3.5 2 4 5"/><path d="M11 10l3 1"/>',
   rollen: '<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M12 8v4M12 12l-5 3M12 12l5 3"/>',
@@ -3202,6 +3382,8 @@ const GLYPH = {
   ausscheidung: '<path d="M7 3h10M9 3v6l-4 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-4-9V3"/><path d="M6.5 15h11"/>',
   mobilisation: '<circle cx="10" cy="4" r="1.6"/><path d="M10 7v6h6l2 5"/><path d="M10 10h5"/><path d="M7 11a6 6 0 1 0 8 7"/>',
   "sc-injektion": '<path d="M18 2l4 4M20 4l-4 4M15 5l4 4M14 6l-8 8-1 4 4-1 8-8M3 21l3-3M9 11l2 2"/>',
+  "blut-kapillaer": '<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/><path d="M10 13a2 2 0 0 0 2 2"/>',
+  "blut-venoes": '<rect x="9" y="2" width="6" height="4" rx="1"/><path d="M10 6v13a2 2 0 0 0 4 0V6"/><path d="M10 13h4"/>',
   peg: '<rect x="6" y="2" width="8" height="10" rx="2"/><path d="M10 12v4c0 3 3 5 6 5h4"/><path d="M8.5 6h3"/>',
   isolation: '<rect x="5" y="3" width="12" height="18" rx="1"/><path d="M14 12h.01M20 9v6M17 12h6"/>',
   psa: '<path d="M4 9c3-2 13-2 16 0v4c0 3-4 6-8 6s-8-3-8-6z"/><path d="M4 10H2M20 10h2M8 12h8M9 15h6"/>',
@@ -3251,6 +3433,8 @@ function art(n) {
     dokumentation: `<rect x="96" y="30" width="116" height="148" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="130" y="20" width="48" height="20" rx="6" fill="${c}"/><path d="M114 66l6 6 10-12M114 98l6 6 10-12M114 130l6 6 10-12" fill="none" stroke="#1e7f4a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M140 66h54M140 98h46M140 130h50M140 152h36" stroke="${d}" stroke-width="6" stroke-linecap="round"/><g transform="rotate(35 246 104)"><rect x="236" y="40" width="20" height="96" rx="4" fill="#f2b33d" stroke="#b26a00" stroke-width="2.5"/><path d="M236 136l10 20 10-20z" fill="#fff" stroke="#b26a00" stroke-width="2.5" stroke-linejoin="round"/><rect x="236" y="40" width="20" height="14" fill="${c}"/></g>`,
     datenschutz: `<rect x="44" y="70" width="90" height="70" rx="8" fill="${d}" stroke="${c}" stroke-width="4"/><path d="M44 78h36l8-10h46" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M190 26l64 22v46c0 40-28 64-64 78-36-14-64-38-64-78V48z" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="166" y="96" width="48" height="40" rx="8" fill="${c}"/><path d="M176 96V84a14 14 0 0 1 28 0v12" fill="none" stroke="${c}" stroke-width="6"/><circle cx="190" cy="114" r="5" fill="#f2b33d"/><path d="M190 118v8" stroke="#f2b33d" stroke-width="4" stroke-linecap="round"/>`,
     resilienz: `<rect x="56" y="70" width="120" height="66" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="176" y="90" width="10" height="26" rx="3" fill="${c}"/><rect x="68" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="102" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="136" y="82" width="28" height="42" rx="4" fill="${d}"/><path d="M152 84l-12 22h12l-8 16" fill="none" stroke="#f2b33d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M246 170v-58" stroke="${c}" stroke-width="5" stroke-linecap="round"/><path d="M246 128c-30 0-40-22-40-40 26 0 40 16 40 40z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M246 112c0-26 14-44 42-44 0 26-16 44-42 44z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M214 172h64" stroke="${c}" stroke-width="5" stroke-linecap="round"/>`,
+    "blut-kapillaer": `<rect x="40" y="70" width="120" height="74" rx="37" fill="#f3d2bd" stroke="${c}" stroke-width="4"/><path d="M40 144h50" stroke="${c}" stroke-width="4"/><path d="M128 82h14a12 12 0 0 1 0 24h-14z" fill="#fff" stroke="${c}" stroke-width="3"/><path d="M168 96c10 14 14 22 14 28a14 14 0 0 1-28 0c0-6 4-14 14-28z" fill="#c0463b"/><rect x="196" y="56" width="84" height="110" rx="16" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="208" y="70" width="60" height="38" rx="6" fill="${bg}"/><text x="238" y="96" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="${c}">5.4</text><rect x="230" y="166" width="16" height="22" fill="#fff" stroke="${c}" stroke-width="3"/><circle cx="238" cy="134" r="10" fill="${d}"/>`,
+    "blut-venoes": `<path d="M30 92C120 86 210 88 290 94V150C210 152 120 156 30 150Z" fill="#f3d2bd" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M30 120C120 118 210 120 290 122" stroke="#4a78b8" stroke-width="6" opacity=".8" fill="none"/><rect x="92" y="78" width="18" height="86" rx="5" fill="${c}"/><path d="M178 121l50-46" stroke="${c}" stroke-width="4" stroke-linecap="round"/><rect x="214" y="30" width="22" height="64" rx="4" transform="rotate(42 225 62)" fill="#fff" stroke="${c}" stroke-width="4"/>${[["#2f9e5b",0],["#ffffff",1],["#f08a24",2],["#d64040",3]].map(([f,i]) => `<rect x="${150 + i * 30}" y="160" width="18" height="12" rx="3" fill="${f}" stroke="${c}" stroke-width="2.5"/>`).join("")}`,
     ipa: `<rect x="92" y="34" width="136" height="132" rx="10" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M112 64h96M112 84h80M112 104h88" stroke="${d}" stroke-width="6" stroke-linecap="round"/><path d="M112 130l8 8 14-16" fill="none" stroke="#1e7f4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M144 132h40" stroke="${d}" stroke-width="6" stroke-linecap="round"/><circle cx="232" cy="146" r="26" fill="#f2b33d" stroke="#b26a00" stroke-width="3"/><path d="M220 168l-8 26 20-10 20 10-8-26" fill="#f2b33d" stroke="#b26a00" stroke-width="3" stroke-linejoin="round"/><text x="232" y="152" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="15" fill="#5a3d00">QV</text>`,
     lernbegleitung: `<circle cx="96" cy="95" r="24" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M50 176c0-40 20-62 46-62s46 22 46 62z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="110" y="122" width="36" height="46" rx="5" fill="#fff" stroke="${c}" stroke-width="3" transform="rotate(10 128 145)"/><path d="M118 138h18M118 148h14M118 158h18" stroke="${d}" stroke-width="3" stroke-linecap="round" transform="rotate(10 128 145)"/><circle cx="238" cy="106" r="20" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M198 176c0-34 18-54 40-54s40 20 40 54z" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="138" y="22" width="78" height="50" rx="14" fill="#fff" stroke="${c}" stroke-width="3.5"/><path d="M160 72l-6 14 18-14" fill="#fff" stroke="${c}" stroke-width="3.5" stroke-linejoin="round"/><circle cx="177" cy="47" r="16" fill="none" stroke="${c}" stroke-width="3"/><circle cx="177" cy="47" r="9" fill="none" stroke="${c}" stroke-width="3"/><circle cx="177" cy="47" r="3" fill="#f2b33d"/><path d="M200 30l-20 15" stroke="#f2b33d" stroke-width="4" stroke-linecap="round"/>`,
     rollen: `${[[80, "#d9480f", "AGS", 18], [160, "#1971c2", "FaGe", 0], [240, "#8a2fa8", "HF", 12]].map(([x, col, t, dy]) => `<circle cx="${x}" cy="${104 + dy}" r="22" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M${x - 40} ${184}c0-${42 - dy} 18-${62 - dy} 40-${62 - dy}s40 ${20} 40 ${62 - dy}z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="${x - 22}" y="${154 + dy * .3}" width="44" height="20" rx="6" fill="${col}"/><text x="${x}" y="${168 + dy * .3}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="12" fill="#fff">${t}</text>`).join("")}`,
