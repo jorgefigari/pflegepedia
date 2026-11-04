@@ -4061,7 +4061,7 @@ function card(n) {
   return `<a class="card" href="#${n.id}">
     <div class="art">${art(n)}${isDone(n, state.level) ? '<span class="doneb">✓ Erledigt</span>' : ""}</div>
     <div class="body"><span class="tp">${n.topic}</span><h3>${esc(n.title)}</h3><p>${esc(n.teaser)}</p>
-      <div class="foot">${lvsCard(n.levels)}${DEEP[n.id] && (state.level === "Alle" || state.level === DEEP[n.id].level) ? `<span class="deepb">+ Vertiefung</span>` : ""}<span class="min">${ui("clock").replace("<svg", '<svg width="15" height="15"')} ${n.min} Min.</span></div></div></a>`;
+      <div class="foot">${lvsCard(n.levels)}${DEEP[n.id] && (state.level === "Alle" || state.level === DEEP[n.id].level) ? `<span class="deepb">+ Vertiefung ${DEEP[n.id].min} Min.</span>` : ""}<span class="min">${ui("clock").replace("<svg", '<svg width="15" height="15"')} ${n.min} Min.</span></div></div></a>`;
 }
 
 function renderHeroBox() {
