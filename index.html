@@ -345,7 +345,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid #2c4058; padding-top:
 .dp-steps { display: grid; gap: 10px; margin-top: 18px; }
 .dp-step { border: 1.5px solid var(--line); border-radius: 14px; background: #fff; scroll-margin-top: calc(var(--hh, 68px) + 60px); }
 .dp-step[open] { border-color: var(--fage); }
-.dp-step > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 38px 1fr 20px; gap: 12px; align-items: center; padding: 12px 16px; }
+.dp-step > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 38px minmax(0, 1fr) 20px; gap: 12px; align-items: center; padding: 12px 16px; }
 .dp-step > summary::-webkit-details-marker { display: none; }
 .dp-n { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--fage-bg); color: var(--fage); font-weight: 800; font-family: var(--display); }
 .dp-step.done .dp-n { background: var(--ok); color: #fff; }
@@ -373,6 +373,8 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid #2c4058; padding-top:
 .dp-warn ul { margin: 6px 0 0; }
 .role.dp-no { background: var(--bad-bg); border-color: var(--bad); } .role.dp-no b { color: var(--bad); }
 .dp-body .comp { margin: 14px 0; }
+.dp-body .comp.multi { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
+.dp-body, .dp-step, .dp-case, .dp-intro { min-width: 0; overflow-wrap: anywhere; }
 .dp-case { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 12px 0; background: #fff; }
 .dp-case h5 { margin: 0 0 6px; font-size: 16px; font-family: var(--display); color: var(--fage); }
 .dp-case p { margin: 0 0 8px; }
@@ -3464,7 +3466,7 @@ Object.assign(FIG, {
 const FG = "#1971c2", FGB = "#e8f2fc", MU = "#5b6878";
 Object.assign(FIG, {
   medprozess: () => {
-    const st = [["Verordnen", ["Ärztin, Arzt"], 0], ["Richten", ["FaGe, HF"], 1], ["Kontrollieren", ["Doppelkontrolle", "bei Hochrisiko"], 1], ["Verabreichen", ["FaGe, HF"], 1], ["Dokumentieren", ["wer verabreicht,", "sofort danach"], 1], ["Überwachen", ["ganzes Team"], 1]];
+    const st = [["Verordnen", ["Ärztin, Arzt"], 0], ["Richten", ["FaGe, HF"], 1], ["Kontrollieren", ["diplomierte", "Pflegefachperson"], 0], ["Verabreichen", ["FaGe, HF"], 1], ["Dokumentieren", ["wer verabreicht,", "sofort danach"], 1], ["Überwachen", ["ganzes Team"], 1]];
     const err = [["unleserlich,", "mündlich"], ["Unterbrechung,", "Verwechslung"], ["nur abgehakt,", "nicht geprüft"], ["falsche Person,", "falscher Weg"], ["im Voraus,", "vergessen"], ["Wirkung nicht", "erfasst"]];
     let s = "";
     st.forEach(([t, r, f], i) => {
@@ -3602,15 +3604,15 @@ const DEEP = {
     goals: [
       "Du liest eine Verordnung vollständig und erkennst fehlende, unklare oder unplausible Angaben.",
       "Du weisst, welche Arzneiformen nicht geteilt oder gemörsert werden dürfen, und kennst wichtige Einnahmeregeln.",
-      "Du richtest Medikamente nach einem sicheren Ablauf mit dreifacher Kontrolle.",
+      "Du richtest Medikamente nach einem sicheren Ablauf und liest dabei jede Packung dreimal.",
       "Du verabreichst Medikamente korrekt, beobachtest Wirkung und Nebenwirkungen und meldest Auffälligkeiten.",
       "Du berechnest einfache Dosierungen und handelst richtig bei einem Medikationsfehler."
     ],
     steps: [
       { h: "Der Medikationsprozess und deine Rolle", min: 8, b: [
-        { p: "Medikation ist Teamarbeit. Die Ärztin oder der Arzt verordnet, die Apotheke liefert, die Pflege richtet, kontrolliert, verabreicht, dokumentiert und beobachtet. Als FaGe bist du an fast allen Schritten direkt beteiligt. Fehler entstehen besonders oft an Übergängen: bei Eintritt oder Verlegung, beim Schichtwechsel und wenn eine Verordnung geändert wird." },
+        { p: "Medikation ist Teamarbeit. Die Ärztin oder der Arzt verordnet, die Apotheke liefert, die Pflege richtet, kontrolliert, verabreicht, dokumentiert und beobachtet. Als FaGe richtest und verabreichst du Medikamente, dokumentierst und beobachtest. Die Kontrolle der gerichteten Medikamente macht nach Bildungsverordnung eine diplomierte Pflegefachperson. Fehler entstehen besonders oft an Übergängen: bei Eintritt oder Verlegung, beim Schichtwechsel und wenn eine Verordnung geändert wird." },
         { fig: "medprozess", cap: "Sechs Schritte, sechs typische Fehlerquellen. Blau markiert, wo du als FaGe beteiligt bist." },
-        { comp: { do: ["Medikamente nach gültiger Verordnung richten und verabreichen: oral, rektal, transdermal, subkutan, intramuskulär, inhalativ, in Augen und Ohren", "Reservemedikamente geben, wenn alle Kriterien der Verordnung erfüllt sind und die Betriebsregel es erlaubt", "Wirkung und Nebenwirkungen beobachten, dokumentieren und melden", "Die Person über ihre Medikamente informieren und ihre Fragen ernst nehmen"], no: ["Verordnungen ändern, Dosierungen anpassen oder Medikamente absetzen", "Intravenöse Medikamente verabreichen, ausser Betriebsregel und Zusatzausbildung erlauben es ausdrücklich", "Mündliche Verordnungen entgegennehmen, wenn dein Betrieb das nicht vorsieht", "Medikamente abgeben, die du weder selbst gerichtet noch selbst kontrolliert hast"] } },
+        { comp: { do: ["Medikamente nach gültiger Verordnung richten und verabreichen: oral, rektal, transdermal, subkutan, intramuskulär, inhalativ, in Augen und Ohren", "Reservemedikamente geben, wenn alle Kriterien der Verordnung erfüllt sind und die Betriebsregel es erlaubt", "Wirkung und Nebenwirkungen beobachten, dokumentieren und melden", "Die Person über ihre Medikamente informieren und ihre Fragen ernst nehmen"], no: ["Verordnungen ändern, Dosierungen anpassen oder Medikamente absetzen", "Intravenöse Medikamente verabreichen, ausser Betriebsregel und Zusatzausbildung erlauben es ausdrücklich", "Mündliche Verordnungen entgegennehmen, wenn dein Betrieb das nicht vorsieht", "Gerichtete Medikamente kontrollieren oder Doppelkontrollen als kontrollierende Person durchführen: Das ist Aufgabe der diplomierten Pflegefachperson"] } },
         { warn: "Betäubungsmittel", p: "Opioide wie Morphin, Oxycodon oder Fentanyl unterstehen in der Schweiz dem Betäubungsmittelgesetz. Sie werden verschlossen gelagert, und jede Entnahme wird lückenlos dokumentiert: Datum, Person, Menge und Visum. Stimmt der Bestand nicht, meldest du das sofort." },
         { think: "In welchem der sechs Schritte passieren auf deiner Station wohl die meisten Fehler? Halte deine Vermutung fest und frag im Team nach, ob andere es ähnlich sehen." }
       ] },
@@ -3650,7 +3652,7 @@ const DEEP = {
       { h: "Richten Schritt für Schritt", min: 10, b: [
         { p: "Richten ist Konzentrationsarbeit. Die meisten Fehler beim Richten entstehen nicht aus Unwissen, sondern durch Ablenkung und Routine." },
         { fig: "richten", cap: "Dreimal lesen und ein klar beschrifteter Dispenser verhindern viele Verwechslungen. Die Pillen passen zur Muster-Verordnung aus Etappe 2." },
-        { ol: ["Ruhigen Platz wählen, Störungen vermeiden, Hände desinfizieren.", "Aktuelle Verordnung öffnen: Gibt es Änderungen seit dem letzten Richten?", "Medikament herausnehmen und mit der Verordnung vergleichen: Name oder Wirkstoff, Stärke, Form.", "Verfalldatum prüfen, bei Tropfen, Säften, Salben und Insulin auch das Anbruchdatum.", "Richtige Menge in den beschrifteten Dispenser geben, ohne die Tabletten mit blossen Händen zu berühren.", "Packung zurückstellen und dabei nochmals lesen.", "Bei einer Unterbrechung neu beginnen. Bei Hochrisikomedikamenten Doppelkontrolle nach Betriebsregel."] },
+        { ol: ["Ruhigen Platz wählen, Störungen vermeiden, Hände desinfizieren.", "Aktuelle Verordnung öffnen: Gibt es Änderungen seit dem letzten Richten?", "Medikament herausnehmen und mit der Verordnung vergleichen: Name oder Wirkstoff, Stärke, Form.", "Verfalldatum prüfen, bei Tropfen, Säften, Salben und Insulin auch das Anbruchdatum.", "Richtige Menge in den beschrifteten Dispenser geben, ohne die Tabletten mit blossen Händen zu berühren.", "Packung zurückstellen und dabei nochmals lesen.", "Bei einer Unterbrechung neu beginnen. Die gerichteten Medikamente kontrolliert danach eine diplomierte Pflegefachperson, Hochrisikomedikamente nach Betriebsregel doppelt."] },
         { h: "Generika: anderer Name, gleicher Wirkstoff" },
         { p: "Die Apotheke liefert oft ein anderes Präparat mit gleichem Wirkstoff, ein Generikum. Vergleiche dann Wirkstoff, Stärke und Form. Stimmen alle drei überein, gibst du es nach Betriebsregel ab. Achtung: Liegen Original und Generikum nebeneinander im Fach, droht eine doppelte Gabe des gleichen Wirkstoffs." },
         { tip: "Viele Tropfen, Säfte und angebrochene Insulinpens sind nach dem Öffnen nur wenige Wochen haltbar. Schreib das Anbruchdatum auf die Packung. Die genaue Frist steht in der Packungsbeilage." },
@@ -3679,11 +3681,11 @@ const DEEP = {
           { q: "Verordnet ist Paracetamol 500 mg. Der Sirup enthält 40 mg pro ml. Wie viele ml gibst du?", a: "500 mg ÷ 40 mg/ml = 12.5 ml. Probe: 12.5 × 40 = 500 mg. Abmessen mit der Oral-Dosierspritze." },
           { q: "Metamizol-Tropfen enthalten 500 mg pro ml, laut Packungsbeilage entspricht 1 ml 20 Tropfen. Verordnet sind 250 mg. Wie viele Tropfen?", a: "250 mg ÷ 500 mg/ml = 0.5 ml. 0.5 ml × 20 Tropfen = 10 Tropfen. Die Tropfenzahl pro ml ist je nach Präparat verschieden: immer die Packungsbeilage prüfen." },
           { q: "Verordnet ist Bisoprolol 2.5 mg. Vorhanden sind Tabletten zu 5 mg mit Bruchrille. Was gibst du?", a: "Eine halbe Tablette. Vorher prüfen, ob die Tablette teilbar ist, und mit einem Tablettenteiler teilen. Die zweite Hälfte nach Betriebsregel aufbewahren oder entsorgen." },
-          { q: "Verordnet sind 8 IE Insulin mit dem Pen. Was stellst du ein und was machst du vorher?", a: "Vorher die Funktion prüfen: 2 IE einstellen und nach oben gerichtet abgeben, bis ein Tropfen erscheint. Dann 8 IE einstellen. Insulin ist ein Hochrisikomedikament: Doppelkontrolle nach Betriebsregel." } ] },
+          { q: "Verordnet sind 8 IE Insulin mit dem Pen. Was stellst du ein und was machst du vorher?", a: "Vorher die Funktion prüfen: 2 IE einstellen und nach oben gerichtet abgeben, bis ein Tropfen erscheint. Dann 8 IE einstellen. Insulin ist ein Hochrisikomedikament: Die Kontrolle macht eine diplomierte Pflegefachperson nach Betriebsregel." } ] },
         { tip: "Ergibt deine Rechnung 10 Tabletten, 0.05 ml oder 80 ml Sirup, stimmt etwas nicht. Unplausible Ergebnisse nie abgeben: nachrechnen lassen und nachfragen." }
       ] },
       { h: "Wenn ein Fehler passiert", min: 7, b: [
-        { p: "Fehler passieren auch erfahrenen Fachpersonen. Entscheidend ist, wie du reagierst. Das Schweizer-Käse-Modell zeigt: Ein Fehler erreicht die Person erst, wenn mehrere Sicherheitsstufen gleichzeitig Lücken haben. Jede Kontrolle, die du sorgfältig machst, schliesst eine Lücke." },
+        { p: "Fehler passieren auch erfahrenen Fachpersonen. Entscheidend ist, wie du reagierst. Das Schweizer-Käse-Modell zeigt: Ein Fehler erreicht die Person erst, wenn mehrere Sicherheitsstufen gleichzeitig Lücken haben. Jeder Sicherheitsschritt, den du sorgfältig machst, schliesst eine Lücke." },
         { fig: "kaese", cap: "Jede Schicht hat Lücken. Sicherheit entsteht, wenn mehrere Schichten zuverlässig prüfen." },
         { ol: ["Person sichern und beobachten: Vitalzeichen, Bewusstsein, Befinden.", "Sofort die zuständige Fachperson und die Ärzteschaft informieren: welches Medikament, welche Dosis, wann.", "Anweisungen umsetzen und die Person engmaschig beobachten.", "Sachlich und vollständig dokumentieren.", "Nach Betriebsregel eine CIRS-Meldung erfassen.", "Im Team nachbesprechen: Was hat dazu geführt, was ändern wir?"] },
         { p: "CIRS steht für Critical Incident Reporting System. Die Meldung ist anonym oder vertraulich und dient dem Lernen, nicht der Bestrafung. Auch Beinahe-Fehler, die rechtzeitig bemerkt wurden, sind wertvolle Meldungen, denn sie zeigen Lücken, bevor jemand zu Schaden kommt." },
@@ -3713,7 +3715,7 @@ const DEEP = {
     ],
     pass: 8,
     notes: ["Wo im Medikationsprozess fühlst du dich sicher, wo unsicher?", "Welche Situation aus deinem Alltag passt zu einem der Fälle? Beschreibe sie ohne Namen.", "Was nimmst du dir für deinen nächsten Dienst konkret vor?"],
-    praesenz: ["Besprich mit deiner Berufsbildnerin, deinem Berufsbildner oder einer Fachperson eine Situation, in der du beim Richten oder Verabreichen unsicher warst.", "Kläre auf deiner Station: Welche Medikamente brauchen eine Doppelkontrolle? Wo findest du die Teilbarkeitsliste?", "Setze dir eines deiner Ziele aus der Reflexion für die nächsten Dienste und überprüfe es danach."],
+    praesenz: ["Besprich mit deiner Berufsbildnerin, deinem Berufsbildner oder einer Fachperson eine Situation, in der du beim Richten oder Verabreichen unsicher warst.", "Kläre auf deiner Station: Welche Medikamente brauchen eine Doppelkontrolle, und wer kontrolliert deine gerichteten Medikamente? Wo findest du die Teilbarkeitsliste?", "Setze dir eines deiner Ziele aus der Reflexion für die nächsten Dienste und überprüfe es danach."],
     src: "Stiftung Patientensicherheit Schweiz, Medikationssicherheit; Swissmedic, Arzneimittelinformation; Betäubungsmittelgesetz BetmG; Bildungsplan Fachfrau, Fachmann Gesundheit EFZ"
   }
 };
