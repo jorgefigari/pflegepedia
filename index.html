@@ -405,24 +405,60 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid #2c4058; padding-top:
 .dp-aside p { margin: 0 0 12px; font-size: 15px; color: var(--muted); }
 .dp-aside .btn { display: block; text-align: center; background: var(--fage); color: #fff; text-decoration: none; font-weight: 700; font-family: var(--display); border-radius: 10px; padding: 10px 14px; }
 .card .deepb { font-size: 12.5px; font-weight: 700; color: var(--fage); background: var(--fage-bg); border-radius: 99px; padding: 2px 9px; }
-#dp-printout { display: none; }
-@media print {
-  body.print-deep > *:not(#dp-printout) { display: none !important; }
-  body.print-deep #dp-printout { display: block; font: 12pt/1.5 var(--body); color: #000; }
-  #dp-printout h1 { font-size: 20pt; margin: 4px 0 6px; }
-  #dp-printout h2 { font-size: 14pt; margin: 18px 0 6px; }
-  #dp-printout h3 { font-size: 11.5pt; margin: 10px 0 4px; }
-  #dp-printout .pp-brand { font-weight: 700; color: #1971c2; margin: 0; }
-  #dp-printout table { border-collapse: collapse; margin-top: 10px; }
-  #dp-printout td { border: 1px solid #bbb; padding: 6px 10px; min-width: 160px; }
-  #dp-printout td.line { min-width: 300px; }
-  #dp-printout .ans { border: 1px solid #ccc; border-radius: 6px; padding: 8px 10px; min-height: 60px; margin: 0; }
-}
 @media (max-width: 640px) {
   .dp-intro { padding: 14px; }
   .dp-body { padding: 4px 12px 14px; }
   .dp-step > summary { padding: 10px 12px; gap: 10px; }
 }
+/* Abschlussquiz */
+.dp-alert { background: var(--bad-bg); color: var(--bad); border-left: 5px solid var(--bad); border-radius: 11px; padding: 12px 16px; font-weight: 700; margin-bottom: 14px; }
+.dp-start { border: 1.5px solid var(--fage); border-radius: 14px; padding: 18px 20px; background: #fff; }
+.dp-rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.dp-rules div { background: var(--fage-bg); border-radius: 12px; padding: 10px; text-align: center; }
+.dp-rules b { display: block; font-family: var(--display); font-size: 26px; color: var(--fage); line-height: 1.1; }
+.dp-rules span { font-size: 13.5px; color: var(--muted); }
+.dp-rulelist { margin: 0 0 14px; padding-left: 20px; font-size: 15.5px; }
+.dp-rulelist li { margin: 4px 0; }
+.dp-name span { display: block; font-weight: 700; margin-bottom: 6px; font-size: 15.5px; }
+.dp-name input { width: 100%; font: inherit; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 14px; }
+.dp-name input:focus { border-color: var(--fage); outline: none; }
+.dp-btn.big { width: 100%; padding: 13px 18px; font-size: 16.5px; }
+.dp-btn:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
+.dp-cert { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-top: 14px; padding: 14px 16px; border-radius: 14px; background: var(--soft); }
+.dp-cert.ok { background: var(--ok-bg); }
+.dp-cert b { display: block; font-family: var(--display); }
+.dp-cert small { color: var(--muted); font-size: 14px; }
+.dp-cert.ok .dp-btn { background: var(--ok); }
+.dp-result { border-radius: 14px; padding: 14px 18px; margin-bottom: 14px; }
+.dp-result.good { background: var(--ok-bg); }
+.dp-result.good > b { color: var(--ok); }
+.dp-result.try { background: var(--bad-bg); }
+.dp-result.try > b { color: var(--bad); }
+.dp-result > b { font-family: var(--display); font-size: 18px; }
+.dp-result p { margin: 6px 0 0; }
+.dp-result details { margin-top: 10px; }
+.dp-result summary { cursor: pointer; font-weight: 700; color: var(--brand); }
+.dp-result ol { padding-left: 22px; margin: 10px 0 0; display: grid; gap: 10px; font-size: 15px; }
+.dp-result li span { display: block; }
+.dp-result li.r span { color: var(--ok); } .dp-result li.w span { color: var(--bad); }
+.dp-result li small { display: block; color: var(--muted); }
+body.dp-exam { overflow: hidden; }
+body.dp-exam > *:not(#dp-exam) { display: none !important; }
+#dp-exam { position: fixed; inset: 0; z-index: 50; background: var(--soft); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.dx-top { position: sticky; top: 0; z-index: 2; background: #fff; border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
+.dx-in { max-width: 760px; margin: 0 auto; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.dx-in b { display: block; font-family: var(--display); color: var(--brand); font-size: 17px; }
+.dx-in small { color: var(--muted); font-size: 14px; }
+.dx-time { font-family: var(--display); font-weight: 800; font-size: 24px; color: var(--fage); font-variant-numeric: tabular-nums; background: var(--fage-bg); border-radius: 10px; padding: 4px 12px; }
+.dx-time.low { color: var(--bad); background: var(--bad-bg); }
+.dx-bar { height: 4px; background: var(--line); } .dx-bar i { display: block; height: 100%; width: 100%; background: var(--fage); transition: width 1s linear; }
+.dx-body { max-width: 760px; margin: 0 auto; padding: 18px 18px 60px; }
+.dx-body .q { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin: 0 0 12px !important; }
+.dx-body .opts button[aria-pressed="true"] { border-color: var(--fage); background: var(--fage-bg); font-weight: 700; }
+.dx-body .opts button[aria-pressed="true"] .k { background: var(--fage); color: #fff; }
+.dx-end { display: grid; gap: 10px; margin-top: 6px; }
+.dx-end p { margin: 0; color: var(--muted); text-align: center; }
+@media (max-width: 640px) { .dp-rules b { font-size: 22px; } .dp-start { padding: 14px; } .dx-time { font-size: 20px; } }
 </style>
 </head>
 <body>
@@ -3775,9 +3811,14 @@ const DEEP = {
       ["Eine Person hat ein Fentanylpflaster. Was ist richtig?", ["Bei zu starker Wirkung das Pflaster halbieren", "Altes Pflaster entfernen, neue Stelle wählen, keine Wärme darauf", "Das neue Pflaster auf das alte kleben"], 1, "Wärme erhöht die Aufnahme, Pflaster nie zerschneiden."],
       ["Eine urteilsfähige Person lehnt ihre Tablette ab. Was tust du?", ["Die Tablette unbemerkt ins Essen geben", "Grund erfragen, informieren, Entscheidung respektieren, dokumentieren und melden", "Die Tablette auf dem Nachttisch liegen lassen"], 1, "Die Person entscheidet selbst. Die Fachperson muss davon wissen."],
       ["Womit misst du 12.5 ml Sirup ab?", ["Mit einer Oral-Dosierspritze", "Mit einem Esslöffel", "Mit einer Injektionsspritze"], 0, "Oral-Dosierspritzen verhindern Verwechslungen mit Injektionen und sind genau."],
-      ["Du bemerkst einen Medikationsfehler. Was ist der erste Schritt?", ["Zuerst die CIRS-Meldung schreiben", "Person beobachten und sofort die zuständige Fachperson informieren", "Abwarten, ob etwas passiert"], 1, "Die Sicherheit der Person kommt zuerst, die Meldung danach."]
+      ["Du bemerkst einen Medikationsfehler. Was ist der erste Schritt?", ["Zuerst die CIRS-Meldung schreiben", "Person beobachten und sofort die zuständige Fachperson informieren", "Abwarten, ob etwas passiert"], 1, "Die Sicherheit der Person kommt zuerst, die Meldung danach."],
+      ["Wer kontrolliert die Medikamente, die du als FaGe gerichtet hast?", ["Niemand, du bist allein verantwortlich", "Eine diplomierte Pflegefachperson", "Eine andere FaGe"], 1, "Die Kontrolle ist nach Bildungsverordnung Aufgabe der diplomierten Pflegefachperson."],
+      ["Was bedeutet die Abkürzung «s.c.»?", ["Sublingual, unter die Zunge", "Subkutan, ins Unterhautfettgewebe", "Als Zäpfchen, rektal"], 1, "Subkutane Injektionen gehen ins Unterhautfettgewebe, die Stelle wird gewechselt."],
+      ["Verordnet sind 250 mg Metamizol. Die Tropfen enthalten 500 mg pro ml, 1 ml entspricht 20 Tropfen. Wie viele Tropfen gibst du?", ["5 Tropfen", "10 Tropfen", "20 Tropfen"], 1, "250 mg ÷ 500 mg/ml = 0.5 ml, das sind 10 Tropfen."],
+      ["Die Apotheke liefert statt des Originals ein Generikum. Was vergleichst du?", ["Nur den Preis", "Wirkstoff, Stärke und Form", "Nur die Farbe der Packung"], 1, "Stimmen alle drei überein, gibst du es nach Betriebsregel ab. Achte auf doppelte Gabe."],
+      ["Worauf achtest du nach der Gabe eines Blutverdünners besonders?", ["Auf Blutungszeichen wie Hämatome, Blut im Urin oder schwarzen Stuhl", "Auf die Körpertemperatur", "Auf den Appetit"], 0, "Blutungen sind die wichtigste Nebenwirkung von Antikoagulanzien."]
     ],
-    pass: 8,
+    pass: 12, time: 15,
     notes: ["Wo im Medikationsprozess fühlst du dich sicher, wo unsicher?", "Welche Situation aus deinem Alltag passt zu einem der Fälle? Beschreibe sie ohne Namen.", "Was nimmst du dir für deinen nächsten Dienst konkret vor?"],
     praesenz: ["Besprich mit deiner Berufsbildnerin, deinem Berufsbildner oder einer Fachperson eine Situation, in der du beim Richten oder Verabreichen unsicher warst.", "Kläre auf deiner Station: Welche Medikamente brauchen eine Doppelkontrolle, und wer kontrolliert deine gerichteten Medikamente? Wo findest du die Teilbarkeitsliste?", "Setze dir eines deiner Ziele aus der Reflexion für die nächsten Dienste und überprüfe es danach."],
     src: "Stiftung Patientensicherheit Schweiz, Medikationssicherheit; Swissmedic, Arzneimittelinformation; Betäubungsmittelgesetz BetmG; Bildungsplan Fachfrau, Fachmann Gesundheit EFZ"
@@ -3821,54 +3862,162 @@ function deepHtml(n) {
       <summary><span class="dp-n">${st.steps[i] ? "✓" : i + 1}</span><span class="dp-t">${esc(s.h)}<small>Etappe ${i + 1} · ${s.min} Min.</small></span><span class="dp-chev" aria-hidden="true">▾</span></summary>
       <div class="dp-body">${s.b.map(deepBlock).join("")}
         <label class="dp-check"><input type="checkbox" data-step="${i}"${st.steps[i] ? " checked" : ""}> Etappe ${i + 1} bearbeitet</label></div></details>`).join("")}</div>
-    <h3 class="dp-h">Selbstcheck</h3>
-    <p class="qintro">${D.quiz.length} Fragen zur Vertiefung. Bestanden ab ${D.pass} richtigen Antworten.</p>
-    <div id="dp-quiz"></div>
     <h3 class="dp-h">Reflexion</h3>
     <div class="dp-notes">${D.notes.map((q, i) => `<label><span>${i + 1}. ${esc(q)}</span><textarea data-note="${i}" rows="3" placeholder="Deine Notizen, ohne Namen und Patientendaten">${esc(st.notes[i] || "")}</textarea></label>`).join("")}</div>
-    <p class="note">Deine Notizen bleiben nur in diesem Browser auf diesem Gerät gespeichert.</p>
+    <p class="note">Deine Notizen bleiben nur in diesem Browser auf diesem Gerät gespeichert. Sie erscheinen auch im PDF-Lernnachweis.</p>
+    <div class="dp-actions"><button class="dp-btn ghost" id="dp-copy">Notizen kopieren</button><span id="dp-msg" role="status"></span></div>
     <div class="dp-auftrag"><b>Auftrag für die Praxis</b><ul>${D.praesenz.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
-    <div id="dp-cert"></div>
-    <div class="dp-actions"><button class="dp-btn" id="dp-print">Lernnachweis drucken</button><button class="dp-btn ghost" id="dp-copy">Notizen kopieren</button><span id="dp-msg" role="status"></span></div>
+    <h3 class="dp-h" id="dp-quiz-h">Abschlussquiz</h3>
+    <div id="dp-quizbox"></div>
     <p class="src">Grundlagen: ${esc(D.src)}</p>
   </div>`;
 }
 
-function deepCert(n) {
-  const D = DEEP[n.id], st = deepGet(n.id), cnt = D.steps.filter((_, i) => st.steps[i]).length, ok = st.score !== null && st.score >= D.pass;
-  const box = $("#dp-cert"); if (!box) return;
-  if (cnt === D.steps.length && ok) {
-    if (!st.doneAt) { st.doneAt = new Date().toLocaleDateString("de-CH"); deepPut(n.id, st); }
-    box.innerHTML = `<div class="dp-done">✓ Vertiefung abgeschlossen am ${st.doneAt}. Selbstcheck: ${st.score} von ${D.quiz.length}.</div>`;
-  } else {
-    const miss = [];
-    if (cnt < D.steps.length) miss.push(`${D.steps.length - cnt} Etappe${D.steps.length - cnt > 1 ? "n" : ""} noch nicht abgehakt`);
-    if (!ok) miss.push(st.score === null ? "Selbstcheck noch offen" : `Selbstcheck: ${st.score} von ${D.quiz.length}, nochmals versuchen`);
-    box.innerHTML = `<div class="dp-open">Für den Lernnachweis fehlt noch: ${miss.join(", ")}.</div>`;
-  }
+const fmtTime = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+let dpRun = null;
+function dpStop() { if (dpRun) { clearInterval(dpRun.iv); document.removeEventListener("visibilitychange", dpRun.vis); dpRun = null; } document.body.classList.remove("dp-exam"); const o = $("#dp-exam"); if (o) o.remove(); }
+
+function dpStartCard(n, msg) {
+  const D = DEEP[n.id], st = deepGet(n.id), P = st.passed, box = $("#dp-quizbox"); if (!box) return;
+  box.innerHTML = `${msg ? `<div class="dp-alert">${esc(msg)}</div>` : ""}
+    <div class="dp-start">
+      <div class="dp-rules">
+        <div><b>${D.quiz.length}</b><span>Fragen</span></div>
+        <div><b>${D.time}</b><span>Minuten</span></div>
+        <div><b>${D.pass}</b><span>richtig zum Bestehen</span></div>
+      </div>
+      <ul class="dp-rulelist">
+        <li>Während des Quiz ist der Lerninhalt ausgeblendet.</li>
+        <li>Läuft die Zeit ab, wird der Quiz zurückgesetzt und du beginnst von vorne.</li>
+        <li>Verlässt du die Seite oder wechselst du die App, wird der Quiz ebenfalls zurückgesetzt.</li>
+        <li>Nach dem Bestehen kannst du deinen Lernnachweis als PDF herunterladen und ausdrucken.</li>
+      </ul>
+      <label class="dp-name"><span>Dein Name für den Lernnachweis</span><input id="dp-name" type="text" autocomplete="name" maxlength="60" placeholder="Vorname Nachname" value="${esc(st.name || "")}"></label>
+      <button class="dp-btn big" id="dp-go">${P ? "Quiz nochmals starten" : "Quiz starten"}</button>
+    </div>
+    <div class="dp-cert${P ? " ok" : ""}">
+      <div><b>Lernnachweis als PDF</b><small>${P ? `Bestanden am ${esc(P.date)} mit ${P.score} von ${P.total} Punkten.` : "Wird aktiv, sobald du das Abschlussquiz bestanden hast."}</small></div>
+      <button class="dp-btn" id="dp-pdf"${P ? "" : " disabled"}>PDF herunterladen</button>
+    </div>`;
+  $("#dp-name").addEventListener("input", e => { const s = deepGet(n.id); s.name = e.target.value; deepPut(n.id, s); });
+  $("#dp-go").addEventListener("click", () => dpExam(n));
+  $("#dp-pdf").addEventListener("click", () => { const s = deepGet(n.id); if (s.passed) dpPdf(n, s); });
 }
 
-function deepQuiz(n) {
-  const D = DEEP[n.id], box = $("#dp-quiz");
-  const qs = D.quiz.map(([q, o, a, e]) => { const ord = o.map((_, i) => i).sort(() => Math.random() - .5); return { q, e, o: ord.map(i => o[i]), a: ord.indexOf(a) }; });
-  box.innerHTML = qs.map((q, qi) => `<div class="q"><p><small>Frage ${qi + 1} von ${qs.length}</small>${esc(q.q)}</p>
-    <div class="opts">${q.o.map((o, j) => `<button data-q="${qi}" data-o="${j}"><span class="k">${"ABCD"[j]}</span><span>${esc(o)}</span></button>`).join("")}</div>
-    <p class="fb" id="dpfb${qi}"></p></div>`).join("") + `<div class="result" id="dp-result"></div>`;
-  let answered = 0, right = 0;
-  box.querySelectorAll(".opts button").forEach(b => b.addEventListener("click", () => {
-    const qi = +b.dataset.q, oi = +b.dataset.o, q = qs[qi], group = b.parentElement.querySelectorAll("button");
-    group.forEach(x => x.disabled = true); group[q.a].classList.add("right");
-    if (oi !== q.a) b.classList.add("wrong"); else right++;
-    $("#dpfb" + qi).textContent = (oi === q.a ? "Richtig. " : "Nicht ganz. ") + q.e;
-    if (++answered === qs.length) {
-      const st = deepGet(n.id); st.score = Math.max(st.score || 0, right); deepPut(n.id, st);
-      const r = $("#dp-result"), pass = right >= D.pass;
-      r.className = "result show " + (pass ? "good" : "try");
-      r.innerHTML = (pass ? `Bestanden: ${right} von ${qs.length} richtig.` : `${right} von ${qs.length} richtig. Lies die passenden Etappen nochmals und versuche es erneut.`) + ` <button class="dp-btn ghost sm" id="dp-again">Neu starten</button>`;
-      $("#dp-again").addEventListener("click", () => deepQuiz(n));
-      deepCert(n);
-    }
+function dpExam(n) {
+  const D = DEEP[n.id];
+  const qs = D.quiz.map(([q, o, a, e]) => { const ord = o.map((_, i) => i).sort(() => Math.random() - .5); return { q, e, o: ord.map(i => o[i]), a: ord.indexOf(a), pick: null }; }).sort(() => Math.random() - .5);
+  const total = D.time * 60, t0 = Date.now();
+  dpStop();
+  const ov = document.createElement("div"); ov.id = "dp-exam"; ov.setAttribute("role", "dialog"); ov.setAttribute("aria-label", "Abschlussquiz");
+  ov.innerHTML = `<div class="dx-top"><div class="dx-in"><div><b>Abschlussquiz</b><small id="dx-count">0 von ${qs.length} beantwortet</small></div><div class="dx-time" id="dx-time">${fmtTime(total)}</div></div><div class="dx-bar"><i id="dx-bar"></i></div></div>
+    <div class="dx-body">${qs.map((q, qi) => `<div class="q" id="dxq${qi}"><p><small>Frage ${qi + 1} von ${qs.length}</small>${esc(q.q)}</p>
+      <div class="opts">${q.o.map((o, j) => `<button data-q="${qi}" data-o="${j}" aria-pressed="false"><span class="k">${"ABCD"[j]}</span><span>${esc(o)}</span></button>`).join("")}</div></div>`).join("")}
+      <div class="dx-end"><p id="dx-left"></p><button class="dp-btn big" id="dx-submit">Quiz abgeben</button><button class="dp-btn ghost" id="dx-cancel">Abbrechen</button></div></div>`;
+  document.body.appendChild(ov); document.body.classList.add("dp-exam"); window.scrollTo(0, 0); ov.scrollTop = 0;
+  const upd = () => { const a = qs.filter(q => q.pick !== null).length; $("#dx-count").textContent = `${a} von ${qs.length} beantwortet`; $("#dx-left").textContent = a < qs.length ? `Noch ${qs.length - a} Frage${qs.length - a > 1 ? "n" : ""} offen. Offene Fragen zählen als falsch.` : "Alle Fragen beantwortet."; };
+  upd();
+  ov.querySelectorAll(".opts button").forEach(b => b.addEventListener("click", () => {
+    const q = qs[+b.dataset.q]; q.pick = +b.dataset.o;
+    b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); upd();
   }));
+  const back = msg => { dpStop(); route(); setTimeout(() => { const h = $("#dp-quiz-h"); if (h) h.scrollIntoView(); if (msg) dpStartCard(n, msg); }, 40); };
+  const tick = () => {
+    const left = total - Math.floor((Date.now() - t0) / 1000);
+    if (left <= 0) return back(`Die Zeit von ${D.time} Minuten ist abgelaufen. Der Quiz wurde zurückgesetzt. Du kannst ihn jederzeit neu starten.`);
+    $("#dx-time").textContent = fmtTime(left); $("#dx-time").classList.toggle("low", left <= 120);
+    $("#dx-bar").style.width = (left / total * 100) + "%";
+  };
+  const vis = () => { if (document.hidden) back("Du hast die Seite während des Quiz verlassen. Der Quiz wurde zurückgesetzt."); };
+  dpRun = { iv: setInterval(tick, 1000), vis }; document.addEventListener("visibilitychange", vis);
+  $("#dx-cancel").addEventListener("click", () => back("Quiz abgebrochen. Du kannst ihn jederzeit neu starten."));
+  $("#dx-submit").addEventListener("click", () => {
+    const open = qs.filter(q => q.pick === null).length;
+    if (open && !confirmOpen(open)) return;
+    const used = Math.min(total, Math.round((Date.now() - t0) / 1000)), score = qs.filter(q => q.pick === q.a).length;
+    dpStop(); route();
+    setTimeout(() => dpResult(n, qs, score, used), 40);
+  });
+  function confirmOpen(k) { const b = $("#dx-submit"); if (b.dataset.sure) return true; b.dataset.sure = 1; b.textContent = `Trotzdem abgeben (${k} offen)`; return false; }
+}
+
+function dpResult(n, qs, score, used) {
+  const D = DEEP[n.id], pass = score >= D.pass, st = deepGet(n.id);
+  if (pass) {
+    const d = new Date();
+    st.passed = { score, total: qs.length, used, date: d.toLocaleDateString("de-CH"), time: d.toLocaleTimeString("de-CH", { hour: "2-digit", minute: "2-digit" }),
+      items: qs.map(q => ({ q: q.q, given: q.pick === null ? "" : q.o[q.pick], right: q.o[q.a], ok: q.pick === q.a })) };
+    deepPut(n.id, st);
+  }
+  dpStartCard(n);
+  const box = $("#dp-quizbox");
+  const res = document.createElement("div"); res.className = "dp-result " + (pass ? "good" : "try");
+  res.innerHTML = pass
+    ? `<b>Bestanden: ${score} von ${qs.length} richtig</b><p>Bearbeitungszeit ${fmtTime(used)} Minuten. Dein Lernnachweis ist bereit: Lade ihn unten als PDF herunter und drucke ihn aus.</p>
+       <details><summary>Auswertung anzeigen</summary><ol>${qs.map(q => `<li class="${q.pick === q.a ? "r" : "w"}"><b>${esc(q.q)}</b><span>${q.pick === q.a ? "✓ " + esc(q.o[q.a]) : `✕ ${q.pick === null ? "keine Antwort" : esc(q.o[q.pick])}<br>Richtig: ${esc(q.o[q.a])}`}</span><small>${esc(q.e)}</small></li>`).join("")}</ol></details>`
+    : `<b>Nicht bestanden: ${score} von ${qs.length} richtig</b><p>Zum Bestehen brauchst du ${D.pass} richtige Antworten. Lies die Etappen nochmals in Ruhe durch und starte den Quiz dann neu. Die Fragen kommen in neuer Reihenfolge.</p>`;
+  box.prepend(res);
+  $("#dp-quiz-h").scrollIntoView();
+}
+
+// Minimaler PDF-Generator (A4, Helvetica, WinAnsi)
+const HW = (() => { const w = {}; const s = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+  const v = [278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,556,556,333,500,278,556,500,722,500,500,500,334,260,334,584];
+  [...s].forEach((c, i) => w[c] = v[i]); return w; })();
+const pdfBase = c => c.normalize("NFD")[0];
+const pdfW = (t, size, bold) => [...t].reduce((a, c) => a + (HW[c] || HW[pdfBase(c)] || 556), 0) * size / 1000 * (bold ? 1.06 : 1);
+const pdfEnc = t => [...t].map(c => { const m = { "’": 146, "‘": 145, "“": 147, "”": 148, "…": 133, "•": 149, "€": 128, "–": 150 }; let k = m[c] || c.charCodeAt(0); if (k > 255) k = 63; const ch = String.fromCharCode(k); return ch === "(" || ch === ")" || ch === "\\" ? "\\" + ch : ch; }).join("");
+function pdfWrap(t, size, bold, max) { const out = []; String(t).split("\n").forEach(par => { let line = ""; par.split(" ").forEach(w => { const tr = line ? line + " " + w : w; if (pdfW(tr, size, bold) > max && line) { out.push(line); line = w; } else line = tr; }); out.push(line); }); return out; }
+
+function dpPdf(n, st) {
+  const D = DEEP[n.id], P = st.passed, W = 595.28, H = 841.89, M = 56, CW = W - 2 * M;
+  const pages = []; let ops = [], y = 0;
+  const col = c => { const h = c.replace("#", ""); return [0, 2, 4].map(i => (parseInt(h.substr(i, 2), 16) / 255).toFixed(3)).join(" "); };
+  const txt = (x, yy, t, size, bold, c = "#17283b") => ops.push(`BT ${col(c)} rg /${bold ? "F2" : "F1"} ${size} Tf ${x.toFixed(1)} ${(H - yy).toFixed(1)} Td (${pdfEnc(t)}) Tj ET`);
+  const rect = (x, yy, w, h, c) => ops.push(`${col(c)} rg ${x.toFixed(1)} ${(H - yy - h).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)} re f`);
+  const line = (x1, y1, x2, y2, c = "#c9d4e0", lw = 0.8) => ops.push(`${col(c)} RG ${lw} w ${x1.toFixed(1)} ${(H - y1).toFixed(1)} m ${x2.toFixed(1)} ${(H - y2).toFixed(1)} l S`);
+  const newPage = () => { if (ops.length) pages.push(ops); ops = []; y = M; rect(0, 0, W, 6, "#1971c2"); };
+  const need = h => { if (y + h > H - 60) newPage(); };
+  const para = (t, size = 10, bold = false, c, indent = 0, lh = 1.4) => pdfWrap(t, size, bold, CW - indent).forEach(l => { need(size * lh); y += size * lh; txt(M + indent, y, l, size, bold, c); });
+  newPage();
+  txt(M, y + 10, "Pflegepedia", 12, true, "#1d3f66"); txt(W - M - pdfW("Lernnachweis Vertiefung", 10, false), y + 10, "Lernnachweis Vertiefung", 10, false, "#5b6878");
+  y += 24; line(M, y, W - M, y);
+  y += 8; para(D.title, 17, true, "#1d3f66", 0, 1.3);
+  para(`Vertiefung für ${LEVEL_DESC[D.level]}`, 10, false, "#5b6878");
+  y += 14;
+  const rows = [["Name", st.name || ""], ["Datum und Uhrzeit", `${P.date}, ${P.time} Uhr`], ["Ergebnis", `${P.score} von ${P.total} richtig (${Math.round(P.score / P.total * 100)} %), bestanden`], ["Bestehensgrenze", `${D.pass} von ${P.total}`], ["Bearbeitungszeit", `${fmtTime(P.used)} Minuten (Zeitlimit ${D.time} Minuten)`]];
+  rect(M, y, CW, rows.length * 24 + 8, "#eef3f8");
+  rows.forEach(([k, v], i) => { const yy = y + 22 + i * 24; txt(M + 12, yy, k, 10, true, "#5b6878"); if (v) txt(M + 150, yy, v, 10.5, k === "Ergebnis", k === "Ergebnis" ? "#1e7f4a" : "#17283b"); else line(M + 150, yy + 2, W - M - 16, yy + 2, "#7a8796"); });
+  y += rows.length * 24 + 26;
+  para("Fragen und Antworten", 13, true, "#1d3f66"); y += 4;
+  P.items.forEach((it, i) => {
+    need(56); y += 8;
+    pdfWrap(`${i + 1}. ${it.q}`, 10, true, CW).forEach(l => { need(14); y += 14; txt(M, y, l, 10, true); });
+    para(`${it.ok ? "Richtig" : "Falsch"}: ${it.given || "keine Antwort"}`, 9.5, false, it.ok ? "#1e7f4a" : "#b23b2c", 14, 1.35);
+    if (!it.ok) para(`Richtige Antwort: ${it.right}`, 9.5, false, "#17283b", 14, 1.35);
+  });
+  const notes = D.notes.map((q, i) => [q, st.notes[i] || ""]);
+  need(80); y += 22; para("Reflexion", 13, true, "#1d3f66"); y += 2;
+  notes.forEach(([q, a]) => { need(60); y += 8; para(q, 10, true); if (a.trim()) para(a, 10, false, "#17283b", 0, 1.4); else for (let k = 0; k < 3; k++) { y += 20; line(M, y, W - M, y, "#9aa8b6"); } });
+  need(120); y += 50;
+  const half = (CW - 30) / 2;
+  line(M, y, M + half, y, "#17283b"); line(M + half + 30, y, W - M, y, "#17283b");
+  txt(M, y + 14, "Datum, Unterschrift Lernende Person", 9, false, "#5b6878"); txt(M + half + 30, y + 14, "Datum, Unterschrift Berufsbildung", 9, false, "#5b6878");
+  pages.push(ops);
+  const N = pages.length;
+  pages.forEach((p, i) => { const f = `pflegepedia.ch · Seite ${i + 1} von ${N}`; ops = p; txt(W / 2 - pdfW(f, 8.5) / 2, H - 30, f, 8.5, false, "#7a8796"); });
+  const objs = ["<< /Type /Catalog /Pages 2 0 R >>", "", "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>", "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>"];
+  const kids = [];
+  pages.forEach(p => { const s = p.join("\n"); objs.push(`<< /Length ${s.length} >>\nstream\n${s}\nendstream`); objs.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ${objs.length} 0 R >>`); kids.push(`${objs.length} 0 R`); });
+  objs[1] = `<< /Type /Pages /Kids [${kids.join(" ")}] /Count ${N} >>`;
+  let out = "%PDF-1.4\n%\xE2\xE3\xCF\xD3\n"; const off = [];
+  objs.forEach((o, i) => { off.push(out.length); out += `${i + 1} 0 obj\n${o}\nendobj\n`; });
+  const xr = out.length;
+  out += `xref\n0 ${objs.length + 1}\n0000000000 65535 f \n${off.map(o => String(o).padStart(10, "0") + " 00000 n \n").join("")}trailer\n<< /Size ${objs.length + 1} /Root 1 0 R /Info << /Title (${pdfEnc("Lernnachweis " + D.title)}) /Producer (Pflegepedia) >> >>\nstartxref\n${xr}\n%%EOF`;
+  const bytes = new Uint8Array(out.length); for (let i = 0; i < out.length; i++) bytes[i] = out.charCodeAt(i) & 255;
+  const url = URL.createObjectURL(new Blob([bytes], { type: "application/pdf" }));
+  const a = document.createElement("a"); a.href = url; a.download = `Lernnachweis_Vertiefung_${n.id}_${(st.name || "").trim().replace(/[^A-Za-zÀ-ÿ0-9]+/g, "_") || "Pflegepedia"}.pdf`;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 20000);
 }
 
 function bindDeep(n) {
@@ -3879,28 +4028,13 @@ function bindDeep(n) {
     const cnt = D.steps.filter((_, k) => st.steps[k]).length;
     $("#dp-bar").style.width = Math.round(cnt / D.steps.length * 100) + "%"; $("#dp-progtxt").textContent = `${cnt} von ${D.steps.length} Etappen bearbeitet`;
     if (c.checked) { d.open = false; const nx = d.nextElementSibling; if (nx && nx.classList.contains("dp-step") && !nx.classList.contains("done")) { nx.open = true; setTimeout(() => nx.scrollIntoView({ behavior: "smooth", block: "start" }), 60); } }
-    deepCert(n);
   }));
   document.querySelectorAll(".dp-notes textarea").forEach(t => t.addEventListener("input", () => { const st = deepGet(n.id); st.notes[t.dataset.note] = t.value; deepPut(n.id, st); }));
-  const notesText = () => { const st = deepGet(n.id); return D.notes.map((q, i) => `${i + 1}. ${q}\n${st.notes[i] || ""}`).join("\n\n"); };
   $("#dp-copy").addEventListener("click", () => {
-    const done = () => $("#dp-msg").textContent = "Notizen kopiert.";
-    if (navigator.clipboard) navigator.clipboard.writeText(D.title + "\n\n" + notesText()).then(done, () => $("#dp-msg").textContent = "Kopieren nicht möglich.");
+    const st = deepGet(n.id), txt = D.title + "\n\n" + D.notes.map((q, i) => `${i + 1}. ${q}\n${st.notes[i] || ""}`).join("\n\n");
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(() => $("#dp-msg").textContent = "Notizen kopiert.", () => $("#dp-msg").textContent = "Kopieren nicht möglich.");
   });
-  $("#dp-print").addEventListener("click", () => {
-    const st = deepGet(n.id), cnt = D.steps.filter((_, i) => st.steps[i]).length;
-    let p = $("#dp-printout"); if (!p) { p = document.createElement("div"); p.id = "dp-printout"; document.body.appendChild(p); }
-    p.innerHTML = `<p class="pp-brand">Pflegepedia · Lernnachweis</p><h1>${esc(D.title)}</h1><p>Vertiefung, Stufe ${LEVEL_LABEL[D.level]}</p>
-      <table><tr><td>Name</td><td class="line"></td></tr><tr><td>Datum</td><td>${new Date().toLocaleDateString("de-CH")}</td></tr>
-      <tr><td>Etappen bearbeitet</td><td>${cnt} von ${D.steps.length}</td></tr><tr><td>Selbstcheck</td><td>${st.score === null ? "noch offen" : st.score + " von " + D.quiz.length + (st.score >= D.pass ? ", bestanden" : "")}</td></tr>
-      ${st.doneAt ? `<tr><td>Abgeschlossen am</td><td>${st.doneAt}</td></tr>` : ""}</table>
-      <h2>Reflexion</h2>${D.notes.map((q, i) => `<h3>${i + 1}. ${esc(q)}</h3><p class="ans">${esc(st.notes[i] || "").replace(/\n/g, "<br>") || "&nbsp;"}</p>`).join("")}
-      <h2>Auftrag für die Praxis</h2><ul>${D.praesenz.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
-    document.body.classList.add("print-deep");
-    const off = () => { document.body.classList.remove("print-deep"); window.removeEventListener("afterprint", off); };
-    window.addEventListener("afterprint", off); window.print(); setTimeout(off, 1500);
-  });
-  deepQuiz(n); deepCert(n);
+  dpStartCard(n);
 }
 
 Object.assign(FIG, {
@@ -4243,6 +4377,7 @@ function renderPage(k) {
 }
 
 function route() {
+  if (dpRun) dpStop();
   const h = location.hash.slice(1), [hid, sub] = h.split("/");
   const n = NUGGETS.find(x => x.id === hid);
   if (n) renderNugget(n, sub);
