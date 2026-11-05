@@ -2019,6 +2019,70 @@ const NUGGETS = [
     src: "Bildungsplan FaGe EFZ (OdASanté), Handlungskompetenz D.2; CLSI GP41 Collection of Diagnostic Venous Blood Specimens; Herstellerangaben Sarstedt und BD"
   },
   {
+    id: "bls-aed", topic: "Pflegetechniken", levels: ["AGS","FaGe","HF"], min: 10,
+    title: "BLS-AED: Reanimation nach SRC",
+    teaser: "Kreislaufstillstand erkennen, alarmieren, drücken, defibrillieren: der Ablauf nach dem Swiss Resuscitation Council.",
+    lead: "Bei einem Kreislaufstillstand zählt jede Minute. Ohne Herzdruckmassage sinkt die Überlebenschance mit jeder Minute deutlich. Der BLS-AED-Ablauf des Swiss Resuscitation Council (SRC) gibt allen Helfenden die gleichen klaren Schritte vor, im Spital wie auf der Strasse.",
+    theory: [
+      { h: "Wichtig: Dieses Nugget ersetzt keinen Kurs", warn: true,
+        p: ["Reanimieren lernt man mit den Händen. Besuche einen anerkannten BLS-AED-SRC-Kurs und wiederhole ihn regelmässig, so wie es dein Betrieb vorschreibt. Die Guidelines wurden 2025 aktualisiert. Massgebend sind die aktuellen Vorgaben des SRC und die Notfallregeln deines Betriebs."] },
+      { h: "Der Ablauf auf einen Blick", fig: "blsablauf", figcap: "BLS-AED-Ablauf vereinfacht. Im Spital alarmierst du intern nach Betriebsregel, ausserhalb die 144.",
+        list: ["Sicherheit: Ist die Umgebung für dich sicher?", "Ansprechen und an den Schultern berühren: Reagiert die Person?", "Hilfe rufen: Andere herbeirufen, alarmieren lassen und einen AED holen lassen", "Atmung prüfen: Kopf überstrecken, höchstens 10 Sekunden schauen, hören, fühlen", "Keine normale Atmung: sofort mit der Herzdruckmassage beginnen", "AED einschalten, sobald er da ist, und den Anweisungen folgen"] },
+      { h: "Schnappatmung ist keine Atmung",
+        p: ["In den ersten Minuten nach einem Kreislaufstillstand zeigen viele Menschen eine Schnappatmung: seltene, unregelmässige, schnappende Atemzüge. Sie wird oft mit normaler Atmung verwechselt und verzögert so die Reanimation. Auch ein kurzer Krampfanfall kann am Anfang eines Kreislaufstillstands stehen.",
+            "Die Regel ist einfach: Reagiert die Person nicht und atmet sie nicht normal, beginnst du mit der Herzdruckmassage. Ein Puls wird von Laien nicht gesucht."] },
+      { h: "Gute Herzdruckmassage",
+        table: { head: ["Was", "Wie"], rows: [
+          ["Druckpunkt", "Mitte des Brustkorbs, untere Hälfte des Brustbeins"],
+          ["Tiefe", "5 bis 6 cm bei Erwachsenen"],
+          ["Frequenz", "100 bis 120 pro Minute"],
+          ["Entlastung", "Brustkorb nach jeder Kompression ganz entlasten, Hände bleiben auf der Brust"],
+          ["Verhältnis", "30 Kompressionen, dann 2 Beatmungen. Ohne Beatmung: durchgehend drücken"],
+          ["Unterlage", "Fest. Im Bett: Reanimationsbrett oder CPR-Funktion des Betts, Person nicht auf den Boden ziehen, sondern kräftiger drücken"],
+          ["Pausen", "So kurz wie möglich, auch für den AED höchstens wenige Sekunden"],
+          ["Wechsel", "Alle 2 Minuten die drückende Person wechseln, weil die Qualität sonst unbemerkt nachlässt"] ] } },
+      { h: "Der AED",
+        list: ["Einschalten, dann sagt dir das Gerät, was zu tun ist", "Brustkorb freimachen, bei Bedarf rasieren oder abtrocknen", "Elektroden nach Bild auf dem Gerät: eine rechts unter dem Schlüsselbein, eine links seitlich unter der Achsel. Nicht auf das Brustgewebe kleben", "Während der Analyse und beim Schock: niemand berührt die Person", "Nach dem Schock sofort wieder drücken, ohne Pulskontrolle", "Elektroden kleben lassen und Gerät eingeschaltet lassen, bis das Rettungsteam übernimmt"],
+        after: "Einen AED kann jede Person bedienen, auch ohne Ausbildung. Der AED gibt nur einen Schock, wenn er einen schockbaren Rhythmus erkennt." },
+      { h: "Im Spital und in der Klinik",
+        list: ["Reanimationsstatus kennen: Ist eine Reanimation gewünscht? Er steht in der Dokumentation, z. B. «REA ja» oder «REA nein»", "Internen Notfallalarm nach Betriebsregel auslösen, nicht nur die 144", "Notfallwagen, AED oder Defibrillator, Absaugung und Beatmungsbeutel holen lassen", "Zeit des Ereignisses notieren, eine Person dokumentiert", "Übergabe an das Notfallteam strukturiert, z. B. mit SBAR"],
+        after: "Bei Kindern gelten angepasste Abläufe, zum Beispiel 5 Initialbeatmungen. Wer nicht in Kinderreanimation geschult ist, reanimiert wie bei Erwachsenen mit 30:2. Das ist besser als nichts zu tun." }
+    ],
+    points: ["Keine Reaktion und keine normale Atmung: Herzdruckmassage starten", "Alarmieren: im Betrieb nach Notfallregel, sonst 144, und AED holen lassen", "Mitte der Brust, 5 bis 6 cm tief, 100 bis 120 pro Minute", "30:2 oder durchgehend drücken, Pausen kurz halten", "AED sofort einsetzen, beim Schock niemand berührt die Person"],
+    merke: "Du kannst bei einer Reanimation nichts falsch machen, ausser nichts zu tun.",
+    facts: ["In der Schweiz wurden 2024 über 7500 Kreislaufstillstände ausserhalb von Spitälern registriert.", "Wird innerhalb der ersten 3 bis 5 Minuten defibrilliert, überleben deutlich mehr Menschen als bei späterer Defibrillation.", "Über Apps wie Momentum oder First Responder Netzwerke werden in vielen Kantonen ausgebildete Ersthelfende in der Nähe automatisch alarmiert."],
+    comp: {
+      AGS: { do: ["Kreislaufstillstand erkennen: keine Reaktion, keine normale Atmung", "Hilfe rufen und Notfallalarm nach Betriebsregel auslösen", "Herzdruckmassage beginnen und AED anwenden", "Material holen und das Team unterstützen"], no: ["Den Reanimationsstatus selbst entscheiden", "Warten, bis eine Fachperson da ist, bevor du mit der Herzdruckmassage beginnst"] },
+      FaGe: { do: ["BLS-AED korrekt durchführen, Helferwechsel organisieren", "Notfallwagen, Beatmungsbeutel und Absaugung bereitstellen", "Reanimationsstatus in der Dokumentation prüfen oder prüfen lassen", "Zeiten und Massnahmen dokumentieren"], no: ["Medikamente in der Reanimation ohne ärztliche Anordnung geben", "Erweiterte Massnahmen wie Intubation durchführen"] },
+      HF: { do: ["Reanimation bis zum Eintreffen des Notfallteams koordinieren", "Reanimationsstatus und Patientenverfügung kennen und einbeziehen", "Strukturierte Übergabe an das Notfallteam, z. B. mit SBAR", "Nachbesprechung (Debriefing) anregen und Angehörige begleiten"], no: ["Als Studierende HF: Aufgaben nach Ausbildungsstand, im Notfall zählt BLS für alle"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Bewohnerin reagiert nicht und atmet nicht normal. Was ist richtig?", ["Zuerst die Pflegefachperson suchen und abwarten", "Hilfe rufen, alarmieren lassen und mit der Herzdruckmassage beginnen", "Die Person in die Seitenlage bringen"], 1, "Keine Reaktion und keine normale Atmung: sofort drücken."],
+        ["Wo drückst du?", ["Auf den Bauch", "In der Mitte des Brustkorbs", "Links auf das Herz"], 1, "Untere Hälfte des Brustbeins, Mitte der Brust."],
+        ["Wie schnell drückst du?", ["40 bis 60 pro Minute", "100 bis 120 pro Minute", "So schnell wie möglich"], 1, "Etwa im Takt von «Stayin' Alive»."],
+        ["Der AED sagt: «Schock empfohlen». Was tust du?", ["Die Person festhalten", "Niemand berührt die Person, Schock auslösen, danach weiterdrücken", "Den AED ausschalten"], 1, "Beim Schock darf niemand die Person berühren."],
+        ["Die Person macht seltene, schnappende Atemzüge. Was bedeutet das?", ["Sie atmet normal", "Das ist Schnappatmung und zählt nicht als normale Atmung", "Sie schläft"], 1, "Schnappatmung ist ein Zeichen des Kreislaufstillstands."]
+      ],
+      FaGe: [
+        ["Wie tief drückst du bei Erwachsenen?", ["2 bis 3 cm", "5 bis 6 cm", "8 bis 10 cm"], 1, "5 bis 6 cm bei 100 bis 120 pro Minute."],
+        ["Die Person liegt im weichen Spitalbett. Was ist richtig?", ["Auf den Boden ziehen", "Reanimationsbrett oder CPR-Funktion nutzen und kräftig drücken, ohne Zeit zu verlieren", "Weiterdrücken, die Matratze spielt keine Rolle"], 1, "Feste Unterlage, aber keine Zeit mit Umlagern verlieren."],
+        ["Wann wechselt die drückende Person?", ["Wenn sie nicht mehr kann", "Etwa alle 2 Minuten", "Nie"], 1, "Die Qualität lässt unbemerkt nach."],
+        ["Wo klebst du die AED-Elektroden bei Erwachsenen?", ["Beide auf das Brustbein", "Rechts unter dem Schlüsselbein und links seitlich unter der Achsel", "Auf den Rücken"], 1, "Nach Bild auf dem Gerät, nicht auf das Brustgewebe."],
+        ["Was tust du direkt nach dem Schock?", ["Puls fühlen", "Sofort wieder mit der Herzdruckmassage beginnen", "Elektroden entfernen"], 1, "2 Minuten drücken, dann analysiert der AED erneut."]
+      ],
+      HF: [
+        ["Du findest einen Patienten leblos. In der Dokumentation steht «REA nein». Was ist richtig?", ["Trotzdem reanimieren", "Keine Reanimation, Arzt informieren und Patienten und Angehörige würdevoll begleiten", "Nur den AED anschliessen"], 1, "Der dokumentierte Wille wird respektiert."],
+        ["Was ist bei Unklarheit über den Reanimationsstatus richtig?", ["Abwarten, bis es geklärt ist", "Mit der Reanimation beginnen und parallel klären lassen", "Nicht reanimieren"], 1, "Im Zweifel für das Leben."],
+        ["Welche Aufgabe übernimmst du als Pflegefachperson, bis das Notfallteam eintrifft?", ["Nur selbst drücken", "Rollen verteilen, Wechsel und Dokumentation sichern, Übergabe vorbereiten", "Angehörige anrufen"], 1, "Koordination verbessert die Qualität."],
+        ["Bei einem Kind reanimiert eine FaGe ohne Kinderschulung mit 30:2. Wie beurteilst du das?", ["Falsch, sofort aufhören", "Akzeptabel: besser als nichts, du übernimmst wenn möglich mit dem Kinderablauf", "Sie soll nur beatmen"], 1, "Nicht geschulte Helfende reanimieren wie bei Erwachsenen."],
+        ["Warum ist eine Nachbesprechung nach einer Reanimation sinnvoll?", ["Um Schuldige zu finden", "Um Abläufe zu verbessern und das Team zu entlasten", "Sie ist nicht sinnvoll"], 1, "Debriefing ist Lernen und Psychohygiene."]
+      ]
+    },
+    transfer: "Finde heraus, wo auf deiner Station der nächste AED und der Notfallwagen stehen, wie die interne Notfallnummer lautet und wann dein nächster BLS-AED-SRC-Kurs ist.",
+    src: "Swiss Resuscitation Council (SRC), BLS-AED-SRC Algorithmus und Kursrichtlinien 2025; European Resuscitation Council Guidelines 2025, Adult Basic Life Support; SIRMED Reanimation 2025"
+  },
+  {
     id: "isolation", topic: "Hygiene", levels: ["AGS","FaGe","HF"], min: 8,
     title: "Isolationsmassnahmen",
     teaser: "Standardmassnahmen, Kontakt-, Tröpfchen- und aerogene Isolation: wann welche Schutzmassnahme gilt.",
@@ -3839,6 +3903,23 @@ function bindDeep(n) {
   deepQuiz(n); deepCert(n);
 }
 
+Object.assign(FIG, {
+  blsablauf: () => {
+    const steps = [["Reagiert nicht?", "ansprechen, berühren"], ["Hilfe rufen", "Notfallalarm / 144, AED holen"], ["Atmung prüfen", "max. 10 Sekunden"], ["Atmet nicht normal", "Schnappatmung zählt nicht"], ["30 : 2", "100 bis 120/min, 5 bis 6 cm"], ["AED anschliessen", "Anweisungen folgen"]];
+    let s = "";
+    steps.forEach(([a, b], i) => {
+      const r = i < 3 ? 0 : 1, k = r ? 5 - i : i, x = 30 + k * 230, y = 30 + r * 130;
+      const hot = i >= 4;
+      s += `<rect x="${x}" y="${y}" width="200" height="84" rx="14" fill="${hot ? "#fcebe8" : SF}" stroke="${hot ? RD : NV}" stroke-width="2.5"/>`;
+      s += NUM(x + 26, y + 30, i + 1, hot ? RD : NV) + T(x + 48, y + 35, a, { a: "start", s: 15, w: 800, f: FD, c: hot ? RD : NV }) + T(x + 48, y + 58, b, { a: "start", s: 12, c: "#5b6878" });
+    });
+    s += `<path d="M232 72h26M462 72h26" stroke="${NV}" stroke-width="2.5" marker-end="url(#ba)"/>`;
+    s += `<path d="M590 114v46" stroke="${NV}" stroke-width="2.5" marker-end="url(#ba)"/>`;
+    s += `<path d="M490 202h-30M260 202h-30" stroke="${RD}" stroke-width="2.5" marker-end="url(#bb)"/>`;
+    s += `<path d="M130 246v18h460v-18" fill="none" stroke="${RD}" stroke-width="2" stroke-dasharray="5 4"/>` + T(360, 286, "Weiter drücken, bis das Notfallteam übernimmt oder die Person normal atmet. Wechsel alle 2 Minuten.", { s: 12.5, w: 700, c: RD, f: FD });
+    return `<svg viewBox="0 0 720 300" role="img" aria-label="Ablauf BLS-AED in sechs Schritten"><defs><marker id="ba" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${NV}"/></marker><marker id="bb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${RD}"/></marker></defs><rect width="720" height="300" fill="#fff"/>${s}</svg>`;
+  }
+});
 const GLYPH = {
   lernbegleitung: '<circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 21c0-5 3-8 6-8s6 3 6 8M13 21c.5-3 2-5 4-5s3.5 2 4 5"/><path d="M11 10l3 1"/>',
   rollen: '<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M12 8v4M12 12l-5 3M12 12l5 3"/>',
@@ -3855,6 +3936,7 @@ const GLYPH = {
   ausscheidung: '<path d="M7 3h10M9 3v6l-4 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-4-9V3"/><path d="M6.5 15h11"/>',
   mobilisation: '<circle cx="10" cy="4" r="1.6"/><path d="M10 7v6h6l2 5"/><path d="M10 10h5"/><path d="M7 11a6 6 0 1 0 8 7"/>',
   "sc-injektion": '<path d="M18 2l4 4M20 4l-4 4M15 5l4 4M14 6l-8 8-1 4 4-1 8-8M3 21l3-3M9 11l2 2"/>',
+  "bls-aed": '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/><path d="M13 8l-3 4h4l-3 4"/>',
   "blut-kapillaer": '<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/><path d="M10 13a2 2 0 0 0 2 2"/>',
   "blut-venoes": '<rect x="9" y="2" width="6" height="4" rx="1"/><path d="M10 6v13a2 2 0 0 0 4 0V6"/><path d="M10 13h4"/>',
   peg: '<rect x="6" y="2" width="8" height="10" rx="2"/><path d="M10 12v4c0 3 3 5 6 5h4"/><path d="M8.5 6h3"/>',
@@ -3906,6 +3988,7 @@ function art(n) {
     dokumentation: `<rect x="96" y="30" width="116" height="148" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="130" y="20" width="48" height="20" rx="6" fill="${c}"/><path d="M114 66l6 6 10-12M114 98l6 6 10-12M114 130l6 6 10-12" fill="none" stroke="#1e7f4a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M140 66h54M140 98h46M140 130h50M140 152h36" stroke="${d}" stroke-width="6" stroke-linecap="round"/><g transform="rotate(35 246 104)"><rect x="236" y="40" width="20" height="96" rx="4" fill="#f2b33d" stroke="#b26a00" stroke-width="2.5"/><path d="M236 136l10 20 10-20z" fill="#fff" stroke="#b26a00" stroke-width="2.5" stroke-linejoin="round"/><rect x="236" y="40" width="20" height="14" fill="${c}"/></g>`,
     datenschutz: `<rect x="44" y="70" width="90" height="70" rx="8" fill="${d}" stroke="${c}" stroke-width="4"/><path d="M44 78h36l8-10h46" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M190 26l64 22v46c0 40-28 64-64 78-36-14-64-38-64-78V48z" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="166" y="96" width="48" height="40" rx="8" fill="${c}"/><path d="M176 96V84a14 14 0 0 1 28 0v12" fill="none" stroke="${c}" stroke-width="6"/><circle cx="190" cy="114" r="5" fill="#f2b33d"/><path d="M190 118v8" stroke="#f2b33d" stroke-width="4" stroke-linecap="round"/>`,
     resilienz: `<rect x="56" y="70" width="120" height="66" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="176" y="90" width="10" height="26" rx="3" fill="${c}"/><rect x="68" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="102" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="136" y="82" width="28" height="42" rx="4" fill="${d}"/><path d="M152 84l-12 22h12l-8 16" fill="none" stroke="#f2b33d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M246 170v-58" stroke="${c}" stroke-width="5" stroke-linecap="round"/><path d="M246 128c-30 0-40-22-40-40 26 0 40 16 40 40z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M246 112c0-26 14-44 42-44 0 26-16 44-42 44z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M214 172h64" stroke="${c}" stroke-width="5" stroke-linecap="round"/>`,
+    "bls-aed": `<rect x="30" y="148" width="210" height="12" rx="6" fill="${c}" opacity=".35"/><circle cx="56" cy="128" r="18" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M78 118h120a20 20 0 0 1 20 20v10H78z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M104 14l20 52M156 14l-20 52" stroke="${c}" stroke-width="12" stroke-linecap="round"/><path d="M104 14l20 52M156 14l-20 52" stroke="#fff" stroke-width="5" stroke-linecap="round"/><ellipse cx="130" cy="78" rx="26" ry="11" fill="#fff" stroke="${c}" stroke-width="4"/><ellipse cx="130" cy="92" rx="24" ry="9" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M120 104v8M140 104v8" stroke="${c}" stroke-width="0"/><path d="M114 104l6 8 6-8M134 104l6 8 6-8" fill="none" stroke="#c0463b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="230" y="62" width="66" height="82" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M242 76h42" stroke="#2f9e5b" stroke-width="8"/><path d="M266 90l-9 16h11l-9 16" fill="none" stroke="#c0463b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="263" y="138" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="12" fill="${c}">AED</text><path d="M230 120c-30 0-40 4-60 6M230 128c-30 2-44 6-60 8" stroke="${c}" stroke-width="2.5" fill="none"/>`,
     "blut-kapillaer": `<rect x="40" y="70" width="120" height="74" rx="37" fill="#f3d2bd" stroke="${c}" stroke-width="4"/><path d="M40 144h50" stroke="${c}" stroke-width="4"/><path d="M128 82h14a12 12 0 0 1 0 24h-14z" fill="#fff" stroke="${c}" stroke-width="3"/><path d="M168 96c10 14 14 22 14 28a14 14 0 0 1-28 0c0-6 4-14 14-28z" fill="#c0463b"/><rect x="196" y="56" width="84" height="110" rx="16" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="208" y="70" width="60" height="38" rx="6" fill="${bg}"/><text x="238" y="96" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="${c}">5.4</text><rect x="230" y="166" width="16" height="22" fill="#fff" stroke="${c}" stroke-width="3"/><circle cx="238" cy="134" r="10" fill="${d}"/>`,
     "blut-venoes": `<path d="M30 92C120 86 210 88 290 94V150C210 152 120 156 30 150Z" fill="#f3d2bd" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M30 120C120 118 210 120 290 122" stroke="#4a78b8" stroke-width="6" opacity=".8" fill="none"/><rect x="92" y="78" width="18" height="86" rx="5" fill="${c}"/><path d="M178 121l50-46" stroke="${c}" stroke-width="4" stroke-linecap="round"/><rect x="214" y="30" width="22" height="64" rx="4" transform="rotate(42 225 62)" fill="#fff" stroke="${c}" stroke-width="4"/>${[["#2f9e5b",0],["#ffffff",1],["#f08a24",2],["#d64040",3]].map(([f,i]) => `<rect x="${150 + i * 30}" y="160" width="18" height="12" rx="3" fill="${f}" stroke="${c}" stroke-width="2.5"/>`).join("")}`,
     ipa: `<rect x="92" y="34" width="136" height="132" rx="10" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M112 64h96M112 84h80M112 104h88" stroke="${d}" stroke-width="6" stroke-linecap="round"/><path d="M112 130l8 8 14-16" fill="none" stroke="#1e7f4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M144 132h40" stroke="${d}" stroke-width="6" stroke-linecap="round"/><circle cx="232" cy="146" r="26" fill="#f2b33d" stroke="#b26a00" stroke-width="3"/><path d="M220 168l-8 26 20-10 20 10-8-26" fill="#f2b33d" stroke="#b26a00" stroke-width="3" stroke-linejoin="round"/><text x="232" y="152" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="15" fill="#5a3d00">QV</text>`,
