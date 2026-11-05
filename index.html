@@ -2056,7 +2056,7 @@ const NUGGETS = [
     src: "Bildungsplan FaGe EFZ (OdASanté), Handlungskompetenz D.2; CLSI GP41 Collection of Diagnostic Venous Blood Specimens; Herstellerangaben Sarstedt und BD"
   },
   {
-    id: "bls-aed", topic: "Pflegetechniken", levels: ["AGS","FaGe","HF"], min: 10,
+    id: "bls-aed", topic: "Notfälle", levels: ["AGS","FaGe","HF"], min: 10,
     title: "BLS-AED: Reanimation nach SRC",
     teaser: "Kreislaufstillstand erkennen, alarmieren, drücken, defibrillieren: der Ablauf nach dem Swiss Resuscitation Council.",
     lead: "Bei einem Kreislaufstillstand zählt jede Minute. Ohne Herzdruckmassage sinkt die Überlebenschance mit jeder Minute deutlich. Der BLS-AED-Ablauf des Swiss Resuscitation Council (SRC) gibt allen Helfenden die gleichen klaren Schritte vor, im Spital wie auf der Strasse.",
@@ -2118,6 +2118,199 @@ const NUGGETS = [
     },
     transfer: "Finde heraus, wo auf deiner Station der nächste AED und der Notfallwagen stehen, wie die interne Notfallnummer lautet und wann dein nächster BLS-AED-SRC-Kurs ist.",
     src: "Swiss Resuscitation Council (SRC), BLS-AED-SRC Algorithmus und Kursrichtlinien 2025; European Resuscitation Council Guidelines 2025, Adult Basic Life Support; SIRMED Reanimation 2025"
+  },
+  {
+    id: "notfall-erkennen", topic: "Notfälle", levels: ["AGS"], min: 7,
+    title: "Notfall erkennen und Hilfe holen",
+    teaser: "Woran du merkst, dass etwas nicht stimmt, wen du wie alarmierst und was du tust, bis Hilfe da ist.",
+    lead: "Ein Notfall kommt selten mit Ankündigung. Oft bist du als AGS die erste Person im Zimmer. Du musst nicht alles wissen und nicht alles können. Deine wichtigste Aufgabe ist: die Veränderung bemerken, sofort Hilfe holen und bei der Person bleiben.",
+    theory: [
+      { h: "Schauen, denken, handeln", fig: "notfallablauf", figcap: "Die drei Schritte der Ersten Hilfe. Auch erfahrene Fachpersonen gehen so vor.",
+        list: ["Schauen: Was ist passiert? Gibt es eine Gefahr für dich oder andere?", "Denken: Ist das ein Notfall? Wen brauche ich jetzt?", "Handeln: Hilfe rufen, bei der Person bleiben, das Nötigste tun"] },
+      { h: "Alarmzeichen, die du kennen musst",
+        table: { head: ["Bereich", "Darauf achtest du"], rows: [
+          ["Bewusstsein", "Reagiert nicht oder kaum, ist plötzlich verwirrt, schläfrig oder unruhig"],
+          ["Atmung", "Atemnot, sehr schnelle oder laute Atmung, blaue Lippen, spricht nur in kurzen Worten"],
+          ["Kreislauf", "Sehr blass oder grau, kalter Schweiss, Schwindel, Ohnmacht"],
+          ["Blutung", "Blut, das nicht aufhört, Blut im Erbrochenen, im Stuhl oder im Urin"],
+          ["Schmerz", "Plötzliche starke Schmerzen, besonders in der Brust, im Bauch oder im Kopf"],
+          ["Nerven", "Hängender Mundwinkel, Arm oder Bein schwach, Sprache plötzlich verändert"] ] },
+        after: "Dein Gefühl zählt: Wenn dir eine Person «anders als sonst» vorkommt, sag es sofort. Lieber einmal zu viel melden als einmal zu wenig." },
+      { h: "Richtig alarmieren",
+        list: ["Im Betrieb: Glocke oder Notfallknopf drücken, laut rufen, interne Notfallnummer nach Betriebsregel", "Ausserhalb oder wenn niemand kommt: 144 (Sanität)", "Kurz und klar melden: Wer ruft an? Wo genau? Was ist passiert? Wie geht es der Person jetzt?", "Nicht als Erste auflegen: Die Notrufzentrale führt das Gespräch"] },
+      { h: "Bis Hilfe kommt",
+        list: ["Bei der Person bleiben und mit ruhiger Stimme sprechen", "Nichts zu essen oder zu trinken geben", "Lagern, wie es der Person am wohlsten ist, ausser die Fachperson sagt etwas anderes", "Beobachten: Bewusstsein, Atmung, Hautfarbe. Veränderungen sofort weitergeben", "Material bringen, Weg frei machen, andere Personen aus dem Zimmer begleiten"] },
+      { h: "Nach dem Notfall",
+        p: ["Schreibe nach Auftrag auf, was du beobachtet und getan hast, mit Uhrzeit. Notfälle können belasten, auch wenn alles gut ausgeht. Sprich mit deiner Berufsbildnerin oder deinem Berufsbildner darüber. Eine Nachbesprechung im Team hilft allen, beim nächsten Mal sicherer zu sein."] }
+    ],
+    points: ["Schauen, denken, handeln", "Veränderung bemerkt: sofort Hilfe holen", "Wer, wo, was, wie geht es jetzt", "Bei der Person bleiben, nichts essen oder trinken", "Beobachten und Veränderungen weitergeben"],
+    merke: "Du musst einen Notfall nicht allein lösen. Du musst ihn bemerken und sofort Hilfe holen.",
+    facts: ["In der Schweiz erreichst du die Sanität über 144, die Polizei über 117, die Feuerwehr über 118 und Tox Info Suisse über 145.", "Die Notrufnummer 112 funktioniert in ganz Europa, auch in der Schweiz.", "Die Notrufzentrale kann dich am Telefon Schritt für Schritt anleiten, zum Beispiel bei der Herzdruckmassage."],
+    comp: {
+      AGS: { do: ["Alarmzeichen erkennen und sofort melden", "Hilfe holen nach Betriebsregel oder über 144", "Bei der Person bleiben, beruhigen und beobachten", "Erste Hilfe leisten, so wie du sie gelernt hast", "Material bringen und das Team unterstützen", "Beobachtungen nach Auftrag dokumentieren"], no: ["Medikamente geben", "Allein entscheiden, dass «es schon nicht so schlimm ist»", "Die Person allein lassen, um selbst Material zu holen, wenn du jemanden rufen kannst"] }
+    },
+    quiz: {
+      AGS: [
+        ["Ein Bewohner wirkt plötzlich sehr verwirrt und blass. Was tust du?", ["Abwarten, ob es besser wird", "Sofort die Fachperson informieren und bei ihm bleiben", "Ihm ein Glas Wasser geben"], 1, "Plötzliche Veränderungen sind Alarmzeichen."],
+        ["Welche Nummer wählst du in der Schweiz für die Sanität?", ["117", "144", "118"], 1, "144 ist die Sanität. Im Betrieb gilt zuerst die interne Notfallregel."],
+        ["Was gehört in eine Notfallmeldung?", ["Nur der Name der Person", "Wer ruft an, wo, was ist passiert, wie geht es der Person jetzt", "Die ganze Krankengeschichte"], 1, "Kurz und klar."],
+        ["Bis Hilfe kommt, möchte die Person etwas trinken. Was ist richtig?", ["Ein grosses Glas Wasser geben", "Nichts zu essen oder zu trinken geben und ruhig erklären warum", "Kaffee geben"], 1, "Vielleicht braucht sie eine Untersuchung oder Operation, oder sie kann sich verschlucken."],
+        ["Du hast ein komisches Gefühl bei einer Bewohnerin, kannst es aber nicht genau erklären. Was tust du?", ["Nichts, ich bin nicht sicher", "Ich sage es der Fachperson und beschreibe, was ich sehe", "Ich warte bis zum Schichtwechsel"], 1, "Lieber einmal zu viel melden."]
+      ]
+    },
+    transfer: "Finde heraus, wie bei dir im Betrieb ein Notfall alarmiert wird: Welche Nummer, welcher Knopf, wo steht der Notfallwagen? Schreib es dir auf.",
+    src: "Schweizerischer Samariterbund, Erste Hilfe; Interverband für Rettungswesen (IVR); Bildungsverordnung AGS EBA (SBFI)"
+  },
+  {
+    id: "atemnot", topic: "Notfälle", levels: ["AGS"], min: 7,
+    title: "Atemnot (Dyspnoe)",
+    teaser: "Atemnot erkennen, die Person richtig lagern und beruhigen und wissen, wann es sofort Hilfe braucht.",
+    lead: "Atemnot ist für Betroffene eines der schlimmsten Gefühle überhaupt. Sie macht Angst, und Angst macht die Atmung noch schneller. Wenn du ruhig bleibst, richtig lagerst und sofort Hilfe holst, hilfst du der Person schon sehr.",
+    theory: [
+      { h: "So erkennst du Atemnot",
+        list: ["Schnelle Atmung, mehr als etwa 20 Atemzüge pro Minute", "Die Person sitzt aufrecht und will sich nicht hinlegen", "Schultern und Hals arbeiten mit, die Nasenflügel bewegen sich", "Geräusche beim Atmen: Pfeifen, Brodeln, Rasseln", "Spricht nur in kurzen Sätzen oder einzelnen Worten", "Blasse, graue oder bläuliche Lippen und Finger", "Unruhe, Angst, kalter Schweiss"] },
+      { h: "Mögliche Ursachen",
+        p: ["Atemnot hat viele Ursachen: eine Lungenkrankheit wie Asthma oder COPD, ein schwaches Herz (Herzinsuffizienz), eine Lungenentzündung, Verschlucken, ein Blutgerinnsel in der Lunge oder starke Angst. Die Ursache klärt die Fachperson. Deine Aufgabe ist, die Atemnot zu bemerken und richtig zu reagieren."] },
+      { h: "Was du sofort tust", fig: "atemlagerung", figcap: "Lagerungen, die das Atmen erleichtern. Die Person wählt, was ihr am meisten hilft.",
+        list: ["Sofort Hilfe holen, nicht weggehen: Glocke, rufen oder Telefon", "Oberkörper hoch lagern oder aufrecht hinsetzen, Arme abstützen (z. B. Kutschersitz)", "Nie flach hinlegen", "Enge Kleidung öffnen, für frische Luft sorgen", "Ruhig und langsam sprechen, langsam mitatmen", "Lippenbremse anleiten: durch die Nase ein, langsam durch locker aufeinanderliegende Lippen aus"] },
+      { h: "Sauerstoff und Medikamente", warn: true,
+        p: ["Sauerstoff ist ein Medikament. Ob jemand Sauerstoff bekommt und wie viel, entscheidet die Ärztin oder der Arzt. Du stellst Sauerstoff nicht selbst ein und änderst ihn nicht. Hast du eine Person mit Sauerstoff, prüfe nach Auftrag, ob der Schlauch nicht abgeknickt ist und die Brille richtig sitzt. Notfallsprays und andere Medikamente gibt die Fachperson."] },
+      { h: "Weiter beobachten",
+        list: ["Atemzüge pro Minute zählen, wenn die Fachperson dich darum bittet", "Hautfarbe, Bewusstsein, Unruhe", "Wird die Person schläfrig oder plötzlich ruhig, obwohl die Atemnot nicht besser ist, ist das ein Alarmzeichen: sofort melden"] }
+    ],
+    points: ["Atemnot erkennen: schnell, laut, kurze Sätze, blaue Lippen", "Sofort Hilfe holen und bei der Person bleiben", "Oberkörper hoch, Arme abstützen, nie flach lagern", "Ruhig bleiben, Lippenbremse anleiten", "Sauerstoff und Medikamente: nur die Fachperson"],
+    merke: "Wer schlecht Luft bekommt, wird nie flach hingelegt.",
+    facts: ["Eine gesunde erwachsene Person atmet in Ruhe etwa 12 bis 20 Mal pro Minute.", "Die Lippenbremse hält die kleinen Atemwege länger offen. So kann mehr verbrauchte Luft entweichen.", "Atemnot und Angst verstärken sich gegenseitig. Deine Ruhe überträgt sich auf die Person."],
+    comp: {
+      AGS: { do: ["Zeichen von Atemnot erkennen und sofort melden", "Hilfe holen und bei der Person bleiben", "Atemerleichternd lagern und beruhigen", "Lippenbremse anleiten", "Atmung zählen und beobachten nach Auftrag"], no: ["Sauerstoff einstellen oder verändern", "Medikamente oder Notfallsprays verabreichen", "Die Person flach lagern"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Bewohnerin atmet schnell, spricht nur noch einzelne Worte und hat bläuliche Lippen. Was tust du zuerst?", ["Sie hinlegen, damit sie sich ausruhen kann", "Sofort Hilfe holen und sie aufrecht hinsetzen", "Fenster schliessen"], 1, "Atemnot ist ein Notfall. Oberkörper hoch."],
+        ["Welche Lagerung hilft bei Atemnot?", ["Flach auf dem Rücken", "Oberkörper hoch, Arme abgestützt", "Kopf tief, Beine hoch"], 1, "Aufrecht und abgestützt arbeitet die Atemmuskulatur leichter."],
+        ["Wie geht die Lippenbremse?", ["Schnell durch den Mund ein- und ausatmen", "Durch die Nase ein, langsam durch locker geschlossene Lippen aus", "Luft anhalten"], 1, "Das langsame Ausatmen hält die Atemwege offen."],
+        ["Ein Bewohner mit Sauerstoff hat Atemnot. Darfst du den Sauerstoff höher stellen?", ["Ja, mehr ist immer besser", "Nein. Ich hole sofort die Fachperson und prüfe, ob der Schlauch frei ist", "Ja, wenn er darum bittet"], 1, "Sauerstoff ist ein Medikament und wird ärztlich verordnet."],
+        ["Eine Person mit starker Atemnot wird plötzlich sehr ruhig und schläfrig. Was bedeutet das?", ["Es geht ihr besser", "Das kann ein gefährliches Alarmzeichen sein: sofort melden", "Sie ist müde, ich lasse sie schlafen"], 1, "Erschöpfung oder zu viel Kohlendioxid machen schläfrig."]
+      ]
+    },
+    transfer: "Üb die Lippenbremse selbst, bis du sie einfach und ruhig erklären kannst. Frag auf deiner Station, wer Sauerstoff bekommt und was du dabei kontrollieren sollst.",
+    src: "Lungenliga Schweiz, Atemtechniken; Schweizerischer Samariterbund, Erste Hilfe; Bildungsverordnung AGS EBA (SBFI)"
+  },
+  {
+    id: "blutung", topic: "Notfälle", levels: ["AGS"], min: 7,
+    title: "Akute Blutung",
+    teaser: "Starke Blutungen stoppen, Nasenbluten richtig behandeln und versteckte Blutungen erkennen.",
+    lead: "Eine Blutung sieht oft schlimmer aus, als sie ist. Manche Blutungen sind aber lebensgefährlich, und einige sieht man gar nicht von aussen. Mit Druck, ein paar einfachen Handgriffen und schneller Meldung kannst du viel bewirken.",
+    theory: [
+      { h: "Zuerst: dich schützen und Hilfe holen",
+        list: ["Handschuhe anziehen, bevor du Blut berührst", "Hilfe rufen, bei starker Blutung sofort", "Person hinsetzen oder hinlegen, sie kann ohnmächtig werden"] },
+      { h: "Starke Blutung stoppen", fig: "blutstopp", figcap: "Drei Schritte: Druck, hochhalten, Druckverband.",
+        list: ["Mit einer Kompresse oder einem sauberen Tuch direkt fest auf die Wunde drücken", "Verletzten Arm oder verletztes Bein hochhalten", "Druckverband: Kompresse auf die Wunde, ein Druckpolster (z. B. ungeöffnete Binde) darauf und mit einer Binde fest umwickeln", "Blutet es durch: nicht abnehmen, einen zweiten Verband darüber", "Fremdkörper in der Wunde nicht herausziehen, rundherum polstern"] },
+      { h: "Zeichen eines Schocks", warn: true,
+        p: ["Bei grossem Blutverlust kann ein Schock entstehen. Zeichen sind: blasse, kalte, feuchte Haut, schneller schwacher Puls, Unruhe, Durst, Schwindel bis zur Bewusstlosigkeit. Lagere die Person flach, decke sie zu, beruhige sie, gib nichts zu trinken und melde sofort."] },
+      { h: "Nasenbluten",
+        list: ["Hinsetzen, Kopf leicht nach vorne beugen, nicht nach hinten", "Blut ausspucken lassen, nicht schlucken", "Nasenflügel etwa 10 Minuten fest zusammendrücken", "Kühlen im Nacken kann helfen", "Hört es nach etwa 20 Minuten nicht auf oder ist es sehr stark: Fachperson"] },
+      { h: "Versteckte Blutungen",
+        table: { head: ["Was du siehst", "Mögliche Bedeutung"], rows: [
+          ["Erbrochenes rot oder wie Kaffeesatz", "Blutung im Magen"],
+          ["Schwarzer, glänzender Stuhl (Teerstuhl)", "Blutung im Magen oder Darm"],
+          ["Roter oder brauner Urin", "Blutung in Nieren oder Blase"],
+          ["Blut beim Husten", "Blutung in der Lunge"],
+          ["Grosser blauer Fleck, Schwellung nach Sturz", "Blutung im Gewebe"] ] },
+        after: "Immer sofort melden. Erbrochenes, Stuhl oder Urin nach Möglichkeit aufbewahren, damit die Fachperson es sehen kann." },
+      { h: "Achtung bei Blutverdünnern",
+        p: ["Viele ältere Menschen nehmen blutverdünnende Medikamente. Sie bluten länger und stärker, auch nach kleinen Verletzungen oder einem Sturz. Melde deshalb jede Blutung und jeden Sturz, auch wenn alles harmlos aussieht."] }
+    ],
+    points: ["Handschuhe, Hilfe rufen, Person hinsetzen oder hinlegen", "Direkter Druck, hochhalten, Druckverband", "Durchgeblutet: zweiter Verband darüber", "Nasenbluten: Kopf nach vorne, 10 Minuten zudrücken", "Versteckte Blutungen und Blutverdünner: immer melden"],
+    merke: "Druck stoppt Blut. Drücke fest und lass nicht zu früh los.",
+    facts: ["Ein Erwachsener hat etwa 5 bis 6 Liter Blut. Schon ein Verlust von etwa einem Liter kann gefährlich werden.", "Wenig Blut sieht auf dem Boden oder auf einem Tuch nach viel mehr aus, als es ist. Deshalb gilt: ruhig bleiben und handeln.", "Der Kopf nach hinten bei Nasenbluten ist ein alter Fehler. Das Blut fliesst in den Rachen und kann Übelkeit auslösen."],
+    comp: {
+      AGS: { do: ["Mit Handschuhen Erste Hilfe bei Blutungen leisten: Druck, hochhalten, Druckverband", "Nasenbluten richtig versorgen", "Zeichen von Schock und versteckten Blutungen erkennen und sofort melden", "Ausscheidungen mit Blut aufbewahren und zeigen"], no: ["Wunden selbst beurteilen und entscheiden, dass keine Behandlung nötig ist", "Fremdkörper aus Wunden ziehen", "Blutverdünner weglassen oder Medikamente geben"] }
+    },
+    quiz: {
+      AGS: [
+        ["Ein Bewohner hat sich tief in die Hand geschnitten, es blutet stark. Was tust du zuerst?", ["Wunde unter Wasser auswaschen", "Handschuhe, fest auf die Wunde drücken, Hand hochhalten, Hilfe rufen", "Pflaster aufkleben"], 1, "Druck stoppt die Blutung."],
+        ["Der Druckverband ist durchgeblutet. Was jetzt?", ["Abnehmen und neu machen", "Einen zweiten Verband darüber anlegen und melden", "Nichts tun"], 1, "Abnehmen reisst die Gerinnsel wieder auf."],
+        ["Wie behandelst du Nasenbluten?", ["Kopf nach hinten legen", "Kopf nach vorne, Nasenflügel etwa 10 Minuten zusammendrücken", "Hinlegen"], 1, "Blut soll nicht in den Rachen fliessen."],
+        ["Eine Bewohnerin hat schwarzen, glänzenden Stuhl. Was tust du?", ["Das ist normal", "Sofort melden und den Stuhl wenn möglich aufbewahren", "Am nächsten Tag beobachten"], 1, "Teerstuhl kann eine Blutung im Magen oder Darm bedeuten."],
+        ["Nach einem Sturz hat ein Bewohner nur eine kleine Schürfung. Er nimmt Blutverdünner. Was gilt?", ["Nicht melden, es ist ja klein", "Sturz und Verletzung immer melden", "Selbst einen Verband machen und vergessen"], 1, "Mit Blutverdünnern können auch innere Blutungen entstehen."]
+      ]
+    },
+    transfer: "Schau nach, wo auf deiner Station Kompressen und Binden für einen Druckverband liegen. Üb den Druckverband mit einer Kollegin oder einem Kollegen am Arm.",
+    src: "Schweizerischer Samariterbund, Erste Hilfe; Interverband für Rettungswesen (IVR); Bildungsverordnung AGS EBA (SBFI)"
+  },
+  {
+    id: "verschlucken", topic: "Notfälle", levels: ["AGS"], min: 6,
+    title: "Verschlucken und Erstickungsgefahr",
+    teaser: "Leichtes und schweres Verschlucken unterscheiden und mit Rückenschlägen und Oberbauchkompressionen richtig helfen.",
+    lead: "Beim Essen verschluckt sich jemand, hustet und bekommt kaum Luft. Jetzt zählt die Frage: Kann die Person noch husten? Davon hängt ab, was du tust.",
+    theory: [
+      { h: "Leicht oder schwer?", fig: "erstickung", figcap: "Vorgehen bei einem Fremdkörper in den Atemwegen bei Erwachsenen.",
+        table: { head: ["Leichte Verlegung", "Schwere Verlegung"], rows: [
+          ["Kann husten, sprechen und atmen", "Kann nicht husten, nicht sprechen, kaum atmen"],
+          ["Hustet kräftig", "Greift sich an den Hals, wird blau, gerät in Panik"],
+          ["Zum Husten auffordern, bei der Person bleiben", "Sofort handeln und Hilfe rufen"] ] } },
+      { h: "Leichte Verlegung",
+        list: ["Die Person kräftig husten lassen, Husten ist das Beste", "Nicht auf den Rücken klopfen, solange sie gut hustet", "Nichts zu trinken geben", "Bei ihr bleiben, bis es vorbei ist, dann melden"] },
+      { h: "Schwere Verlegung",
+        list: ["Hilfe rufen", "5 Rückenschläge: Person nach vorne beugen, mit dem Handballen kräftig zwischen die Schulterblätter schlagen", "Hilft das nicht: 5 Oberbauchkompressionen (Heimlich): hinter die Person stellen, Faust zwischen Nabel und Brustbein, mit der anderen Hand umfassen und kräftig nach innen oben ziehen", "Abwechseln: 5 Rückenschläge, 5 Oberbauchkompressionen", "Wird die Person bewusstlos: vorsichtig hinlegen, 144 oder Notfallalarm, mit Herzdruckmassage beginnen (BLS)"] },
+      { h: "Danach", warn: true,
+        p: ["Nach Oberbauchkompressionen muss die Person immer ärztlich untersucht werden, auch wenn es ihr gut geht. Die Kompressionen können innere Verletzungen verursachen. Melde jedes Verschlucken: Es kann ein Zeichen für eine Schluckstörung sein."] }
+    ],
+    points: ["Kann die Person husten? Dann husten lassen", "Kann sie nicht husten: Hilfe rufen", "5 Rückenschläge, dann 5 Oberbauchkompressionen, abwechseln", "Bewusstlos: hinlegen, alarmieren, BLS", "Nach Heimlich immer ärztlich untersuchen lassen"],
+    merke: "Wer hustet, bekommt noch Luft. Wer nicht mehr husten kann, braucht sofort deine Hilfe.",
+    facts: ["Verschlucken ist bei älteren Menschen häufig, zum Beispiel nach einem Schlaganfall oder bei Demenz.", "Das Nugget «Aspirationsprophylaxe und Dysphagie» zeigt, wie du Verschlucken vorbeugst.", "Bei Schwangeren und sehr übergewichtigen Personen drückt man statt auf den Oberbauch auf die Mitte des Brustkorbs."],
+    comp: {
+      AGS: { do: ["Leichte und schwere Verlegung unterscheiden", "Zum Husten auffordern und bei der Person bleiben", "Rückenschläge und Oberbauchkompressionen anwenden", "Hilfe holen und jedes Verschlucken melden"], no: ["Mit den Fingern blind im Mund nach dem Fremdkörper suchen", "Wasser geben, solange die Person sich verschluckt hat", "Nach Oberbauchkompressionen auf eine ärztliche Kontrolle verzichten"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Bewohnerin verschluckt sich und hustet kräftig. Was tust du?", ["Sofort auf den Rücken schlagen", "Zum Husten auffordern und bei ihr bleiben", "Wasser geben"], 1, "Kräftiges Husten ist am wirksamsten."],
+        ["Ein Bewohner kann nicht mehr husten und nicht sprechen, er greift sich an den Hals. Was zuerst?", ["Abwarten", "Hilfe rufen und 5 Rückenschläge geben", "Ihn hinlegen"], 1, "Schwere Verlegung: sofort handeln."],
+        ["Die Rückenschläge helfen nicht. Was kommt dann?", ["Nochmals 20 Rückenschläge", "5 Oberbauchkompressionen", "Wasser trinken lassen"], 1, "Dann abwechseln: 5 Rückenschläge, 5 Kompressionen."],
+        ["Die Person wird bewusstlos. Was tust du?", ["Weiter Oberbauchkompressionen im Stehen", "Vorsichtig hinlegen, alarmieren und mit Herzdruckmassage beginnen", "In die Seitenlage bringen und weggehen"], 1, "Die Herzdruckmassage kann den Fremdkörper auch lösen."],
+        ["Nach den Oberbauchkompressionen geht es der Person wieder gut. Was gilt?", ["Nichts mehr tun", "Melden, sie muss ärztlich untersucht werden", "Sofort weiteressen lassen"], 1, "Mögliche innere Verletzungen."]
+      ]
+    },
+    transfer: "Lass dir die Handposition für Rückenschläge und Oberbauchkompressionen von einer Fachperson zeigen und üb sie an einer Kollegin oder einem Kollegen, ohne zu drücken.",
+    src: "European Resuscitation Council Guidelines 2025, Adult Basic Life Support (Fremdkörperverlegung); Schweizerischer Samariterbund; Bildungsverordnung AGS EBA (SBFI)"
+  },
+  {
+    id: "bewusstlos", topic: "Notfälle", levels: ["AGS"], min: 7,
+    title: "Ohnmacht und Bewusstlosigkeit",
+    teaser: "Was du tust, wenn eine Person umkippt, nicht reagiert oder plötzlich verändert ist: Seitenlage, Unterzucker, Krampfanfall.",
+    lead: "Eine Person kippt beim Aufstehen weg oder liegt nicht ansprechbar im Bett. Zwei Fragen leiten dich: Reagiert sie? Atmet sie normal? Mit diesen Fragen weisst du immer, was als Nächstes kommt.",
+    theory: [
+      { h: "Zwei Fragen, klarer Weg", fig: "bewusstseinweg", figcap: "Reagiert die Person nicht, entscheidet die Atmung über die nächsten Schritte.",
+        list: ["Ansprechen und an den Schultern berühren: Reagiert die Person?", "Reagiert sie nicht: laut Hilfe rufen", "Atmung prüfen: Kopf nach hinten neigen, höchstens 10 Sekunden schauen, hören, fühlen", "Atmet normal: Seitenlage, alarmieren, Atmung weiter beobachten", "Atmet nicht normal: alarmieren, Herzdruckmassage (siehe Nugget BLS-AED)"] },
+      { h: "Ohnmacht (Synkope)",
+        p: ["Eine Ohnmacht ist ein kurzer Bewusstseinsverlust, meist durch zu wenig Blut im Gehirn. Typisch beim schnellen Aufstehen, bei Hitze, nach langem Stehen, bei Schmerz oder Schreck. Die Person ist nach kurzer Zeit wieder wach."],
+        list: ["Flach hinlegen, Beine hochlagern", "Enge Kleidung öffnen, für frische Luft sorgen", "Erst langsam aufsitzen lassen, wenn es wieder gut geht", "Immer melden: Auch eine kurze Ohnmacht kann eine ernste Ursache haben"] },
+      { h: "Seitenlage",
+        list: ["Für Personen, die nicht reagieren, aber normal atmen", "Hält die Atemwege frei, Erbrochenes kann abfliessen", "Mund ist der tiefste Punkt, Kopf leicht nach hinten geneigt", "Atmung regelmässig kontrollieren, bis Hilfe da ist", "Im Pflegebett: auf die Seite drehen und mit Kissen stützen"],
+        after: "Die Seitenlage übst du am besten im Erste-Hilfe- oder BLS-Kurs." },
+      { h: "An Unterzucker denken",
+        p: ["Menschen mit Diabetes können durch zu wenig Zucker im Blut verwirrt, zittrig, schwitzig oder bewusstlos werden. Hole sofort die Fachperson. Ist die Person wach und kann sicher schlucken, gib nach Betriebsstandard rasch Zucker, zum Beispiel Traubenzucker oder ein süsses Getränk. Einer bewusstlosen Person gibst du nie etwas in den Mund."] },
+      { h: "Krampfanfall", warn: true,
+        list: ["Ruhe bewahren, Zeit messen", "Gegenstände wegräumen, Kopf schützen, z. B. mit einem Kissen", "Nicht festhalten, nichts in den Mund stecken", "Nach dem Anfall: Seitenlage, Atmung beobachten", "Sofort Hilfe holen, besonders wenn der Anfall länger als 5 Minuten dauert"] }
+    ],
+    points: ["Reagiert sie? Atmet sie normal?", "Atmet normal: Seitenlage, alarmieren, beobachten", "Atmet nicht normal: alarmieren und Herzdruckmassage", "Ohnmacht: flach lagern, Beine hoch, melden", "Unterzucker und Krampfanfall: Fachperson sofort, nichts in den Mund bei Bewusstlosigkeit"],
+    merke: "Einer Person, die nicht ganz wach ist, gibst du nichts zu essen oder zu trinken.",
+    facts: ["Die Ohnmacht ist der häufigste Grund für einen kurzen Bewusstseinsverlust und meist harmlos. Sie muss trotzdem gemeldet werden.", "Bei Bewusstlosigkeit erschlafft die Zunge und kann die Atemwege verschliessen. Die Seitenlage verhindert das.", "Zum Krampfanfall gibt es ein eigenes Nugget: «Epilepsie»."],
+    comp: {
+      AGS: { do: ["Bewusstsein und Atmung prüfen", "Hilfe holen und alarmieren", "Bei Ohnmacht flach lagern und Beine hochlagern", "Seitenlage anwenden und die Atmung beobachten", "Bei Krampfanfall schützen und Zeit messen"], no: ["Einer nicht ganz wachen Person etwas zu essen oder zu trinken geben", "Notfallmedikamente verabreichen", "Die Person allein lassen"] }
+    },
+    quiz: {
+      AGS: [
+        ["Eine Bewohnerin reagiert nicht, atmet aber normal. Was tust du?", ["Sie auf dem Rücken liegen lassen und Hilfe holen gehen", "Hilfe rufen, Seitenlage, Atmung weiter beobachten", "Ihr Wasser geben"], 1, "Die Seitenlage hält die Atemwege frei."],
+        ["Ein Bewohner wird beim Aufstehen kurz ohnmächtig und ist gleich wieder wach. Was tust du?", ["Sofort weiter aufstehen lassen", "Flach hinlegen, Beine hoch, langsam aufsitzen lassen und melden", "Nichts, das passiert oft"], 1, "Auch kurze Ohnmachten werden gemeldet."],
+        ["Eine Bewohnerin mit Diabetes ist verwirrt, zittert und schwitzt, kann aber schlucken. Woran denkst du?", ["An Müdigkeit", "An Unterzucker: Fachperson holen, nach Betriebsstandard rasch Zucker geben", "An eine Erkältung"], 1, "Unterzucker ist ein Notfall."],
+        ["Ein Bewohner hat einen Krampfanfall. Was ist richtig?", ["Ihn festhalten", "Kopf schützen, Gegenstände weg, Zeit messen, Hilfe holen", "Einen Löffel zwischen die Zähne stecken"], 1, "Nicht festhalten, nichts in den Mund."],
+        ["Eine Person reagiert nicht und macht nur seltene, schnappende Atemzüge. Was gilt?", ["Sie atmet, Seitenlage reicht", "Das ist keine normale Atmung: alarmieren und Herzdruckmassage", "Abwarten"], 1, "Schnappatmung zeigt einen Kreislaufstillstand."]
+      ]
+    },
+    transfer: "Üb die Seitenlage mit einer Kollegin oder einem Kollegen, einmal auf dem Boden und einmal im Pflegebett. Frag, wo bei euch Traubenzucker für Notfälle bereitliegt.",
+    src: "Schweizerischer Samariterbund, Erste Hilfe; European Resuscitation Council Guidelines 2025, First Aid; Bildungsverordnung AGS EBA (SBFI)"
   },
   {
     id: "isolation", topic: "Hygiene", levels: ["AGS","FaGe","HF"], min: 8,
@@ -3062,12 +3255,14 @@ const TOPIC = {
   "Prophylaxen": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Pflegetechniken": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Medikamente": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
+  "Notfälle": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Kommunikation": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Teamarbeit": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Krankheitsbilder": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
   "Berufsrolle": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" }
 };
 const ICON = {
+  "Notfälle": '<path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
   "Hygiene": '<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/>',
   "Beobachten": '<path d="M3 12h4l2-5 4 10 2-5h6"/>',
   "Prophylaxen": '<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/>',
@@ -4067,6 +4262,76 @@ Object.assign(FIG, {
     return `<svg viewBox="0 0 720 300" role="img" aria-label="Ablauf BLS-AED in sechs Schritten"><defs><marker id="ba" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${NV}"/></marker><marker id="bb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${RD}"/></marker></defs><rect width="720" height="300" fill="#fff"/>${s}</svg>`;
   }
 });
+const BOXF = (x, y, w, h, n, a, b, hot) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="${hot ? "#fcebe8" : SF}" stroke="${hot ? RD : NV}" stroke-width="2.5"/>` + (n ? NUM(x + 26, y + 30, n, hot ? RD : NV) : "") + T(x + (n ? 48 : 18), y + 34, a, { a: "start", s: 15, w: 800, f: FD, c: hot ? RD : NV }) + (b || []).map((t, i) => T(x + (n ? 48 : 18), y + 56 + i * 17, t, { a: "start", s: 12.5, c: "#5b6878" })).join("");
+const ARR = (d, c = NV) => `<path d="${d}" stroke="${c}" stroke-width="2.5" fill="none" marker-end="url(#${c === RD ? "nb" : "na"})"/>`;
+const DEFS = `<defs><marker id="na" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${NV}"/></marker><marker id="nb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${RD}"/></marker></defs>`;
+const SKIN = "#f3d2bd", SKL = "#d9a98c", BODY = "#9db0c4";
+Object.assign(FIG, {
+  notfallablauf: () => {
+    let s = BOXF(20, 30, 210, 120, 1, "Schauen", ["Was ist passiert?", "Gefahr für mich?", "Reagiert die Person?"]) + BOXF(255, 30, 210, 120, 2, "Denken", ["Ist das ein Notfall?", "Wen brauche ich jetzt?"]) + BOXF(490, 30, 210, 120, 3, "Handeln", ["Hilfe rufen", "bei der Person bleiben", "Erste Hilfe leisten"], true);
+    s += ARR("M231 90h22") + ARR("M466 90h22");
+    s += `<rect x="20" y="176" width="680" height="62" rx="12" fill="#fff8e1" stroke="#f1dea0"/>` + T(40, 202, "Notfallmeldung", { a: "start", s: 14, w: 800, f: FD, c: "#845f00" }) + T(40, 224, "Wer ruft an?   Wo genau?   Was ist passiert?   Wie geht es der Person jetzt?", { a: "start", s: 13.5, c: "#17283b" });
+    s += T(690, 202, "Betrieb: interne Nummer   ·   sonst: 144", { a: "end", s: 12.5, w: 700, c: RD, f: FD });
+    return `<svg viewBox="0 0 720 256" role="img" aria-label="Schauen, denken, handeln">${DEFS}<rect width="720" height="256" fill="#fff"/>${s}</svg>`;
+  },
+  atemlagerung: () => {
+    const head = (x, y) => `<circle cx="${x}" cy="${y}" r="15" fill="#fff" stroke="${NV}" stroke-width="3"/>`;
+    const L = (d, w = 13) => `<path d="${d}" stroke="${BODY}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
+    let s = "";
+    // 1 Kutschersitz
+    s += `<path d="M60 170h70M66 170v56M124 170v56" stroke="${NV}" stroke-width="5" stroke-linecap="round"/>`;
+    s += L("M86 166L130 104") + L("M86 166h56l4 58") + L("M128 112L140 160", 10) + head(148, 88);
+    // 2 Bett Oberkörper hoch
+    s += `<path d="M270 186h150M276 186v40M414 186v40" stroke="${NV}" stroke-width="5" stroke-linecap="round"/><path d="M286 182L262 112" stroke="${NV}" stroke-width="6" stroke-linecap="round"/><rect x="292" y="168" width="120" height="14" rx="5" fill="${SF}" stroke="${NV}" stroke-width="2"/>`;
+    s += L("M296 162L278 108") + L("M296 162h104") + L("M286 122l18 30", 10) + head(276, 90) + `<path d="M380 140v-26" stroke="${NV}" stroke-width="0"/>`;
+    s += `<path d="M262 150h-12" stroke="${NV}" stroke-width="0"/>`;
+    // 3 am Tisch abgestützt
+    s += `<path d="M560 136h110M650 136v90" stroke="${NV}" stroke-width="5" stroke-linecap="round"/><path d="M520 176h46M526 176v50M560 176v50" stroke="${NV}" stroke-width="5" stroke-linecap="round"/>`;
+    s += L("M540 172L574 100") + L("M540 172h30v52") + L("M574 108l30 26", 10) + head(588, 86);
+    s += T(110, 254, "Kutschersitz", { s: 14, w: 800, c: NV, f: FD }) + T(110, 272, "vorgebeugt, Arme auf den Knien", { s: 12, c: "#5b6878" });
+    s += T(340, 254, "Oberkörper hoch", { s: 14, w: 800, c: NV, f: FD }) + T(340, 272, "im Bett, Arme mit Kissen gestützt", { s: 12, c: "#5b6878" });
+    s += T(600, 254, "Arme abgestützt", { s: 14, w: 800, c: NV, f: FD }) + T(600, 272, "am Tisch, leicht vorgebeugt", { s: 12, c: "#5b6878" });
+    s += `<path d="M90 30l10 0" stroke="${NV}" stroke-width="0"/>` + T(360, 30, "Nie flach hinlegen", { s: 14, w: 800, c: RD, f: FD });
+    return `<svg viewBox="0 0 720 290" role="img" aria-label="Atemerleichternde Lagerungen"><rect width="720" height="290" fill="#fff"/>${s}</svg>`;
+  },
+  blutstopp: () => {
+    const arm = (x, y, ang) => `<g transform="rotate(${ang} ${x} ${y})"><rect x="${x}" y="${y - 18}" width="170" height="36" rx="18" fill="${SKIN}" stroke="${SKL}" stroke-width="3"/><circle cx="${x + 178}" cy="${y}" r="22" fill="${SKIN}" stroke="${SKL}" stroke-width="3"/></g>`;
+    let s = "";
+    // 1 Druck
+    s += arm(30, 150, 0) + `` + `<rect x="92" y="122" width="44" height="20" rx="4" fill="#fff" stroke="${NV}" stroke-width="2.5"/><ellipse cx="114" cy="112" rx="30" ry="14" fill="${SKIN}" stroke="${SKL}" stroke-width="3"/>` + `<path d="M114 60v34" stroke="${NV}" stroke-width="3"/><path d="M106 86l8 10 8-10" fill="none" stroke="${NV}" stroke-width="3"/>`;
+    // 2 hochhalten
+    s += arm(296, 222, -50) + `<path d="M450 190v-60" stroke="${NV}" stroke-width="3"/><path d="M442 140l8-10 8 10" fill="none" stroke="${NV}" stroke-width="3"/>`;
+    // 3 Druckverband
+    s += arm(500, 150, 0) + `<rect x="576" y="128" width="46" height="44" rx="6" fill="#fff" stroke="${NV}" stroke-width="2.5"/>` + [0, 1, 2, 3].map(i => `<path d="M${580 + i * 11} 128l8 44" stroke="${LN}" stroke-width="2"/>`).join("") + `<rect x="586" y="116" width="26" height="14" rx="4" fill="${SF}" stroke="${NV}" stroke-width="2"/>`;
+    s += NUM(40, 40, 1, RD) + T(62, 45, "Fest drücken", { a: "start", s: 15, w: 800, c: RD, f: FD }) + T(62, 64, "Kompresse direkt auf die Wunde", { a: "start", s: 12, c: "#5b6878" });
+    s += NUM(280, 40, 2, RD) + T(302, 45, "Hochhalten", { a: "start", s: 15, w: 800, c: RD, f: FD }) + T(302, 64, "über Herzhöhe", { a: "start", s: 12, c: "#5b6878" });
+    s += NUM(510, 40, 3, RD) + T(532, 45, "Druckverband", { a: "start", s: 15, w: 800, c: RD, f: FD }) + T(532, 64, "Kompresse, Polster, Binde", { a: "start", s: 12, c: "#5b6878" });
+    s += T(360, 262, "Handschuhe tragen. Blutet es durch: zweiten Verband darüber, nicht abnehmen.", { s: 13, w: 700, c: NV, f: FD });
+    return `<svg viewBox="0 0 720 280" role="img" aria-label="Starke Blutung stoppen in drei Schritten"><rect width="720" height="280" fill="#fff"/>${s}</svg>`;
+  },
+  erstickung: () => {
+    let s = BOXF(250, 16, 220, 64, 0, "Kann die Person husten?", ["sprechen, atmen?"]);
+    s += BOXF(20, 120, 210, 84, 0, "Ja: leicht", ["kräftig husten lassen,", "bei ihr bleiben, melden"]);
+    s += BOXF(270, 120, 180, 84, 1, "5 Rückenschläge", ["vorbeugen, zwischen", "die Schulterblätter"], true);
+    s += BOXF(490, 120, 210, 84, 2, "5 Kompressionen", ["Oberbauch (Heimlich),", "dann wieder Schritt 1"], true);
+    s += BOXF(270, 236, 430, 62, 0, "Bewusstlos: hinlegen, alarmieren, Herzdruckmassage", [], true);
+    s += ARR("M300 80L170 118") + ARR("M380 80v38", RD) + ARR("M452 150h36", RD) + ARR("M560 204v30", RD);
+    s += T(214, 96, "ja", { s: 12.5, w: 700, c: NV, f: FD }) + T(394, 104, "nein", { a: "start", s: 12.5, w: 700, c: RD, f: FD }) + T(470, 142, "", {});
+    s += `<path d="M595 120c0-26-40-30-145-30" stroke="${RD}" stroke-width="2" fill="none" stroke-dasharray="5 4" marker-end="url(#nb)"/>` + T(600, 100, "abwechseln", { a: "start", s: 12, w: 700, c: RD, f: FD });
+    s += T(40, 258, "Hilfe rufen!", { a: "start", s: 15, w: 800, c: RD, f: FD });
+    return `<svg viewBox="0 0 720 312" role="img" aria-label="Vorgehen bei Verschlucken">${DEFS}<rect width="720" height="312" fill="#fff"/>${s}</svg>`;
+  },
+  bewusstseinweg: () => {
+    let s = BOXF(20, 30, 200, 84, 1, "Reagiert?", ["ansprechen,", "an den Schultern berühren"]);
+    s += BOXF(260, 30, 200, 84, 2, "Hilfe rufen", ["laut rufen,", "Glocke, Notfallalarm"]);
+    s += BOXF(500, 30, 200, 84, 3, "Atmet normal?", ["max. 10 Sekunden", "schauen, hören, fühlen"]);
+    s += BOXF(260, 170, 200, 84, 0, "Ja: Seitenlage", ["alarmieren,", "Atmung weiter beobachten"]);
+    s += BOXF(500, 170, 200, 84, 0, "Nein: Reanimation", ["Herzdruckmassage, AED,", "siehe BLS-AED"], true);
+    s += ARR("M221 72h37") + ARR("M461 72h37") + ARR("M560 115L400 168") + ARR("M620 115v53", RD);
+    s += T(20, 200, "Reagiert die Person:", { a: "start", s: 13, w: 800, c: NV, f: FD }) + T(20, 220, "bei ihr bleiben,", { a: "start", s: 12.5, c: "#5b6878" }) + T(20, 238, "fragen, beobachten, melden", { a: "start", s: 12.5, c: "#5b6878" });
+    return `<svg viewBox="0 0 720 270" role="img" aria-label="Vorgehen bei einer Person, die nicht reagiert">${DEFS}<rect width="720" height="270" fill="#fff"/>${s}</svg>`;
+  }
+});
 const GLYPH = {
   lernbegleitung: '<circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 21c0-5 3-8 6-8s6 3 6 8M13 21c.5-3 2-5 4-5s3.5 2 4 5"/><path d="M11 10l3 1"/>',
   rollen: '<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M12 8v4M12 12l-5 3M12 12l5 3"/>',
@@ -4083,6 +4348,11 @@ const GLYPH = {
   ausscheidung: '<path d="M7 3h10M9 3v6l-4 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-4-9V3"/><path d="M6.5 15h11"/>',
   mobilisation: '<circle cx="10" cy="4" r="1.6"/><path d="M10 7v6h6l2 5"/><path d="M10 10h5"/><path d="M7 11a6 6 0 1 0 8 7"/>',
   "sc-injektion": '<path d="M18 2l4 4M20 4l-4 4M15 5l4 4M14 6l-8 8-1 4 4-1 8-8M3 21l3-3M9 11l2 2"/>',
+  "notfall-erkennen": '<path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
+  atemnot: '<path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>',
+  blutung: '<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/>',
+  verschlucken: '<circle cx="12" cy="7" r="4"/><path d="M10 11v3h4v-3M8 21c0-4 2-6 4-6s4 2 4 6"/>',
+  bewusstlos: '<circle cx="5" cy="15" r="2.5"/><path d="M8 16h13M9 13h9a3 3 0 0 1 3 3"/><path d="M15 4l2 2M19 3l-1 3M12 6l2 1"/>',
   "bls-aed": '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/><path d="M13 8l-3 4h4l-3 4"/>',
   "blut-kapillaer": '<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/><path d="M10 13a2 2 0 0 0 2 2"/>',
   "blut-venoes": '<rect x="9" y="2" width="6" height="4" rx="1"/><path d="M10 6v13a2 2 0 0 0 4 0V6"/><path d="M10 13h4"/>',
@@ -4135,6 +4405,11 @@ function art(n) {
     dokumentation: `<rect x="96" y="30" width="116" height="148" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="130" y="20" width="48" height="20" rx="6" fill="${c}"/><path d="M114 66l6 6 10-12M114 98l6 6 10-12M114 130l6 6 10-12" fill="none" stroke="#1e7f4a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M140 66h54M140 98h46M140 130h50M140 152h36" stroke="${d}" stroke-width="6" stroke-linecap="round"/><g transform="rotate(35 246 104)"><rect x="236" y="40" width="20" height="96" rx="4" fill="#f2b33d" stroke="#b26a00" stroke-width="2.5"/><path d="M236 136l10 20 10-20z" fill="#fff" stroke="#b26a00" stroke-width="2.5" stroke-linejoin="round"/><rect x="236" y="40" width="20" height="14" fill="${c}"/></g>`,
     datenschutz: `<rect x="44" y="70" width="90" height="70" rx="8" fill="${d}" stroke="${c}" stroke-width="4"/><path d="M44 78h36l8-10h46" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M190 26l64 22v46c0 40-28 64-64 78-36-14-64-38-64-78V48z" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="166" y="96" width="48" height="40" rx="8" fill="${c}"/><path d="M176 96V84a14 14 0 0 1 28 0v12" fill="none" stroke="${c}" stroke-width="6"/><circle cx="190" cy="114" r="5" fill="#f2b33d"/><path d="M190 118v8" stroke="#f2b33d" stroke-width="4" stroke-linecap="round"/>`,
     resilienz: `<rect x="56" y="70" width="120" height="66" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="176" y="90" width="10" height="26" rx="3" fill="${c}"/><rect x="68" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="102" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="136" y="82" width="28" height="42" rx="4" fill="${d}"/><path d="M152 84l-12 22h12l-8 16" fill="none" stroke="#f2b33d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M246 170v-58" stroke="${c}" stroke-width="5" stroke-linecap="round"/><path d="M246 128c-30 0-40-22-40-40 26 0 40 16 40 40z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M246 112c0-26 14-44 42-44 0 26-16 44-42 44z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M214 172h64" stroke="${c}" stroke-width="5" stroke-linecap="round"/>`,
+    "notfall-erkennen": `<path d="M160 30l80 138H80z" fill="#fff" stroke="${c}" stroke-width="5" stroke-linejoin="round"/><path d="M160 80v44" stroke="#c0463b" stroke-width="10" stroke-linecap="round"/><circle cx="160" cy="146" r="7" fill="#c0463b"/><rect x="232" y="96" width="44" height="72" rx="10" fill="#fff" stroke="${c}" stroke-width="4"/><text x="254" y="140" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" fill="${c}">144</text>`,
+    atemnot: `<circle cx="96" cy="78" r="26" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M50 182c0-40 20-64 46-64s46 24 46 64z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M132 78c30-4 50-14 60-26M134 92c34 0 62 0 84-10M132 106c30 6 56 14 70 28" stroke="${c}" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="2 9"/><path d="M230 60c20 20 20 60 0 80M252 46c28 28 28 80 0 108" stroke="#9ec5ee" stroke-width="6" fill="none" stroke-linecap="round"/>`,
+    blutung: `<rect x="40" y="96" width="200" height="40" rx="20" fill="#f3d2bd" stroke="${c}" stroke-width="4"/><circle cx="250" cy="116" r="24" fill="#f3d2bd" stroke="${c}" stroke-width="4"/><rect x="130" y="88" width="56" height="56" rx="6" fill="#fff" stroke="${c}" stroke-width="4"/>${[0,1,2,3].map(i => `<path d="M${136 + i * 13} 88l8 56" stroke="${d}" stroke-width="3"/>`).join("")}<path d="M120 160c8 10 10 16 10 20a10 10 0 0 1-20 0c0-4 2-10 10-20z" fill="#c0463b"/><path d="M158 30v40M148 58l10 12 10-12" stroke="${c}" stroke-width="4" fill="none" stroke-linecap="round"/>`,
+    verschlucken: `<circle cx="150" cy="70" r="30" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M96 186c0-44 24-72 54-72s54 28 54 72z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M138 112c4 10 20 10 24 0" stroke="${c}" stroke-width="4" fill="none"/><path d="M184 86c20 6 34 16 40 30" stroke="${c}" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M226 120l-16-6" stroke="${c}" stroke-width="10" stroke-linecap="round"/><path d="M228 40l14-10M236 58l18-2M226 24l4-16" stroke="#c0463b" stroke-width="4" stroke-linecap="round"/>`,
+    bewusstlos: `<rect x="30" y="158" width="260" height="10" rx="5" fill="${c}" opacity=".35"/><circle cx="70" cy="132" r="20" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M94 140h110a26 26 0 0 1 26 18H94z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M150 140l20-30 24 4" stroke="${c}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M230 158l30-14" stroke="${c}" stroke-width="10" stroke-linecap="round"/><path d="M60 80c8-8 16-8 24 0M90 66c8-8 16-8 24 0" stroke="${c}" stroke-width="3" fill="none"/><circle cx="64" cy="128" r="2" fill="${c}"/><path d="M48 150c4 4 10 4 14 2" stroke="#9ec5ee" stroke-width="3" fill="none"/>`,
     "bls-aed": `<rect x="30" y="148" width="210" height="12" rx="6" fill="${c}" opacity=".35"/><circle cx="56" cy="128" r="18" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M78 118h120a20 20 0 0 1 20 20v10H78z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M104 14l20 52M156 14l-20 52" stroke="${c}" stroke-width="12" stroke-linecap="round"/><path d="M104 14l20 52M156 14l-20 52" stroke="#fff" stroke-width="5" stroke-linecap="round"/><ellipse cx="130" cy="78" rx="26" ry="11" fill="#fff" stroke="${c}" stroke-width="4"/><ellipse cx="130" cy="92" rx="24" ry="9" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M120 104v8M140 104v8" stroke="${c}" stroke-width="0"/><path d="M114 104l6 8 6-8M134 104l6 8 6-8" fill="none" stroke="#c0463b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="230" y="62" width="66" height="82" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M242 76h42" stroke="#2f9e5b" stroke-width="8"/><path d="M266 90l-9 16h11l-9 16" fill="none" stroke="#c0463b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="263" y="138" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="12" fill="${c}">AED</text><path d="M230 120c-30 0-40 4-60 6M230 128c-30 2-44 6-60 8" stroke="${c}" stroke-width="2.5" fill="none"/>`,
     "blut-kapillaer": `<rect x="40" y="70" width="120" height="74" rx="37" fill="#f3d2bd" stroke="${c}" stroke-width="4"/><path d="M40 144h50" stroke="${c}" stroke-width="4"/><path d="M128 82h14a12 12 0 0 1 0 24h-14z" fill="#fff" stroke="${c}" stroke-width="3"/><path d="M168 96c10 14 14 22 14 28a14 14 0 0 1-28 0c0-6 4-14 14-28z" fill="#c0463b"/><rect x="196" y="56" width="84" height="110" rx="16" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="208" y="70" width="60" height="38" rx="6" fill="${bg}"/><text x="238" y="96" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="${c}">5.4</text><rect x="230" y="166" width="16" height="22" fill="#fff" stroke="${c}" stroke-width="3"/><circle cx="238" cy="134" r="10" fill="${d}"/>`,
     "blut-venoes": `<path d="M30 92C120 86 210 88 290 94V150C210 152 120 156 30 150Z" fill="#f3d2bd" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M30 120C120 118 210 120 290 122" stroke="#4a78b8" stroke-width="6" opacity=".8" fill="none"/><rect x="92" y="78" width="18" height="86" rx="5" fill="${c}"/><path d="M178 121l50-46" stroke="${c}" stroke-width="4" stroke-linecap="round"/><rect x="214" y="30" width="22" height="64" rx="4" transform="rotate(42 225 62)" fill="#fff" stroke="${c}" stroke-width="4"/>${[["#2f9e5b",0],["#ffffff",1],["#f08a24",2],["#d64040",3]].map(([f,i]) => `<rect x="${150 + i * 30}" y="160" width="18" height="12" rx="3" fill="${f}" stroke="${c}" stroke-width="2.5"/>`).join("")}`,
@@ -4280,6 +4555,7 @@ const TOPIC_DESC = {
   "Prophylaxen": "Komplikationen vorbeugen, bevor sie entstehen.",
   "Pflegetechniken": "Sicher und rückenschonend handeln, vom Transfer bis zur PEG.",
   "Medikamente": "Richten, verabreichen und injizieren nach den Regeln der Sicherheit.",
+  "Notfälle": "Ausserordentliche Situationen erkennen, Hilfe holen und richtig handeln.",
   "Kommunikation": "Gespräche gestalten mit Patientinnen, Patienten und Angehörigen.",
   "Teamarbeit": "Gemeinsam lernen und arbeiten: Begleitung, Rollen, Delegation, Feedback und Fehlerkultur.",
   "Krankheitsbilder": "Häufige Krankheitsbilder in der Rehabilitation verstehen und pflegen.",
