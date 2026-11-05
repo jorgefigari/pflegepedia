@@ -423,6 +423,7 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid #2c4058; padding-top:
 .dp-name input { width: 100%; font: inherit; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 14px; }
 .dp-name input:focus { border-color: var(--fage); outline: none; }
 .dp-btn.big { width: 100%; padding: 13px 18px; font-size: 16.5px; }
+.dp-gate { margin: 10px 0 0; font-size: 14.5px; color: var(--muted); text-align: center; }
 .dp-btn:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
 .dp-cert { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-top: 14px; padding: 14px 16px; border-radius: 14px; background: var(--soft); }
 .dp-cert.ok { background: var(--ok-bg); }
@@ -3887,6 +3888,7 @@ function dpStartCard(n, msg) {
         <div><b>${D.pass}</b><span>richtig zum Bestehen</span></div>
       </div>
       <ul class="dp-rulelist">
+        <li>Der Quiz lässt sich erst starten, wenn alle Etappen abgehakt sind.</li>
         <li>Während des Quiz ist der Lerninhalt ausgeblendet.</li>
         <li>Läuft die Zeit ab, wird der Quiz zurückgesetzt und du beginnst von vorne.</li>
         <li>Verlässt du die Seite oder wechselst du die App, wird der Quiz ebenfalls zurückgesetzt.</li>
@@ -3894,16 +3896,26 @@ function dpStartCard(n, msg) {
       </ul>
       <label class="dp-name"><span>Dein Name für den Lernnachweis</span><input id="dp-name" type="text" autocomplete="name" maxlength="60" placeholder="Vorname Nachname" value="${esc(st.name || "")}"></label>
       <button class="dp-btn big" id="dp-go">${P ? "Quiz nochmals starten" : "Quiz starten"}</button>
+      <p class="dp-gate" id="dp-gate"></p>
     </div>
     <div class="dp-cert${P ? " ok" : ""}">
       <div><b>Lernnachweis als PDF</b><small>${P ? `Bestanden am ${esc(P.date)} mit ${P.score} von ${P.total} Punkten.` : "Wird aktiv, sobald du das Abschlussquiz bestanden hast."}</small></div>
       <button class="dp-btn" id="dp-pdf"${P ? "" : " disabled"}>PDF herunterladen</button>
     </div>`;
   $("#dp-name").addEventListener("input", e => { const s = deepGet(n.id); s.name = e.target.value; deepPut(n.id, s); });
-  $("#dp-go").addEventListener("click", () => dpExam(n));
+  $("#dp-go").addEventListener("click", () => { if (dpReady(n)) dpExam(n); });
+  dpGate(n);
   $("#dp-pdf").addEventListener("click", () => { const s = deepGet(n.id); if (s.passed) dpPdf(n, s); });
 }
 
+function dpReady(n) { const D = DEEP[n.id], st = deepGet(n.id); return D.steps.every((_, i) => st.steps[i]); }
+function dpGate(n) {
+  const D = DEEP[n.id], st = deepGet(n.id), b = $("#dp-go"), g = $("#dp-gate"); if (!b) return;
+  const open = D.steps.map((_, i) => i + 1).filter(i => !st.steps[i - 1]);
+  b.disabled = open.length > 0;
+  g.textContent = open.length ? `Der Quiz wird aktiv, sobald du alle Etappen abgehakt hast. Noch offen: Etappe ${open.join(", ")}.` : "";
+  g.style.display = open.length ? "" : "none";
+}
 function dpExam(n) {
   const D = DEEP[n.id];
   const qs = D.quiz.map(([q, o, a, e]) => { const ord = o.map((_, i) => i).sort(() => Math.random() - .5); return { q, e, o: ord.map(i => o[i]), a: ord.indexOf(a), pick: null }; }).sort(() => Math.random() - .5);
@@ -4027,6 +4039,7 @@ function bindDeep(n) {
     const d = c.closest(".dp-step"); d.classList.toggle("done", c.checked); d.querySelector(".dp-n").textContent = c.checked ? "✓" : i + 1;
     const cnt = D.steps.filter((_, k) => st.steps[k]).length;
     $("#dp-bar").style.width = Math.round(cnt / D.steps.length * 100) + "%"; $("#dp-progtxt").textContent = `${cnt} von ${D.steps.length} Etappen bearbeitet`;
+    dpGate(n);
     if (c.checked) { d.open = false; const nx = d.nextElementSibling; if (nx && nx.classList.contains("dp-step") && !nx.classList.contains("done")) { nx.open = true; setTimeout(() => nx.scrollIntoView({ behavior: "smooth", block: "start" }), 60); } }
   }));
   document.querySelectorAll(".dp-notes textarea").forEach(t => t.addEventListener("input", () => { const st = deepGet(n.id); st.notes[t.dataset.note] = t.value; deepPut(n.id, st); }));
