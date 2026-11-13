@@ -2135,6 +2135,58 @@ const NUGGETS = [
     src: "Swiss Resuscitation Council (SRC), BLS-AED-SRC Algorithmus und Kursrichtlinien 2025; European Resuscitation Council Guidelines 2025, Adult Basic Life Support; SIRMED Reanimation 2025"
   },
   {
+    id: "abcde", topic: "Notfälle", levels: ["FaGe","HF"], min: 10,
+    title: "ABCDE: Notfälle systematisch einschätzen",
+    teaser: "Atemnot, Blutung, Schock oder Bewusstseinsveränderung: mit dem ABCDE-Schema schnell erkennen, was zuerst bedrohlich ist.",
+    lead: "Im Notfall ist nicht die Diagnose das Wichtigste, sondern die Frage: Was bringt die Person zuerst in Lebensgefahr? Das ABCDE-Schema gibt dir eine feste Reihenfolge. Du prüfst Schritt für Schritt, behandelst sofort, was du findest, und beginnst dann wieder von vorne.",
+    theory: [
+      { h: "Das Prinzip", fig: "abcdeschema", figcap: "Die Reihenfolge folgt der Gefahr: Ein verlegter Atemweg tötet schneller als ein Kreislaufproblem, dieses schneller als ein Bewusstseinsproblem.",
+        list: ["Ersteindruck in wenigen Sekunden: Reagiert die Person? Atmet sie? Wie sieht sie aus?", "Früh Hilfe holen: Fachperson, Ärztin oder Arzt, internes Notfallteam nach Betriebsregel", "Von A nach E vorgehen. Ein Problem sofort behandeln, bevor du zum nächsten Buchstaben gehst", "Nach jeder Massnahme und bei jeder Veränderung wieder bei A beginnen", "Ergebnisse strukturiert weitergeben, zum Beispiel mit SBAR"] },
+      { h: "A bis E im Detail",
+        table: { head: ["Schritt", "Du prüfst", "Mögliche Sofortmassnahmen"], rows: [
+          ["A: Atemweg (Airway)", "Spricht die Person? Geräusche wie Gurgeln, Schnarchen, Pfeifen? Fremdkörper, Erbrochenes?", "Kopf überstrecken, Seitenlage, Absaugen nach Kompetenz, Fremdkörpermanöver"],
+          ["B: Atmung (Breathing)", "Atemfrequenz, Atemtiefe, Atemhilfsmuskulatur, Sauerstoffsättigung, Hautfarbe", "Oberkörper hoch, Sauerstoff nach Verordnung oder Notfallstandard, Lippenbremse"],
+          ["C: Kreislauf (Circulation)", "Puls, Blutdruck, Rekapillarisierungszeit, Hautfarbe und Temperatur, Blutung, Ausscheidung", "Blutung stoppen, flach lagern, Beine hoch bei Schockzeichen, Zugang vorbereiten"],
+          ["D: Neurologie (Disability)", "Bewusstsein nach AVPU, Pupillen, Blutzucker, Zeichen eines Schlaganfalls (BE FAST)", "Blutzucker messen, bei Hypoglykämie handeln nach Standard, Seitenlage"],
+          ["E: Ganzkörper (Exposure)", "Haut, Wunden, Schwellungen, Ödeme, Temperatur, Schmerz, Drainagen, Ausscheidungen", "Wärmeerhalt, Schmerz einschätzen, Befunde dokumentieren"] ] } },
+      { h: "Hilfsmittel für die Einschätzung",
+        table: { head: ["Instrument", "So geht es"], rows: [
+          ["AVPU", "A = wach (alert), V = reagiert auf Ansprache (voice), P = reagiert nur auf Schmerz (pain), U = reagiert nicht (unresponsive). Ab P ist es ein Notfall"],
+          ["Rekapillarisierungszeit", "Fingernagel 5 Sekunden drücken, loslassen: Die Farbe kehrt normalerweise in weniger als 2 Sekunden zurück"],
+          ["Schockindex", "Puls geteilt durch den systolischen Blutdruck. Über 1 ist ein Warnzeichen für einen Schock, zum Beispiel Puls 120 bei 100 mmHg"],
+          ["BE FAST", "Balance, Eyes (Sehen), Face (Gesicht), Arms (Arme), Speech (Sprache), Time (Zeit notieren). Siehe Nugget Schlaganfall"] ] } },
+      { h: "Typische Situationen",
+        list: ["Atemnot: B steht im Vordergrund. Denk aber auch an A (Verschlucken) und C (Herzinsuffizienz, Lungenembolie)", "Akute Blutung: C. Achte auf Schockzeichen wie schnellen Puls, blasse kalte Haut und Unruhe, bevor der Blutdruck fällt", "Plötzliche Verwirrtheit: D. Immer Blutzucker messen. Bedenke auch B (zu wenig Sauerstoff) und E (Fieber, Infekt)", "Sturz: E zeigt dir Verletzungen. Bei Blutverdünnern und Kopfverletzung gilt: engmaschig D überwachen"] },
+      { h: "Achtung: Der Blutdruck fällt spät", warn: true,
+        p: ["Der Körper hält den Blutdruck lange stabil, indem das Herz schneller schlägt und sich die Gefässe verengen. Ein normaler Blutdruck schliesst einen Schock deshalb nicht aus. Ein steigender Puls, eine schnelle Atmung, kalte Haut und Unruhe sind frühe Warnzeichen. Ältere Menschen und Personen mit Betablockern zeigen oft keinen schnellen Puls."] }
+    ],
+    points: ["Früh Hilfe holen", "A Atemweg, B Atmung, C Kreislauf, D Neurologie, E Ganzkörper", "Probleme sofort behandeln, dann weiter", "Nach jeder Massnahme wieder bei A beginnen", "Schockindex über 1 und steigender Puls sind Warnzeichen"],
+    merke: "Treat first what kills first: Behandle zuerst, was zuerst gefährlich wird.",
+    facts: ["Das ABCDE-Schema wird weltweit in der Notfallmedizin genutzt, von Rettungsdiensten bis zu Intensivstationen.", "Eine erhöhte Atemfrequenz ist eines der frühesten Warnzeichen für eine Verschlechterung und wird trotzdem oft nicht gemessen.", "Viele Notfälle im Spital kündigen sich Stunden vorher durch veränderte Vitalzeichen an."],
+    comp: {
+      FaGe: { do: ["Eine Notfallsituation nach ABCDE strukturiert einschätzen", "Vitalzeichen inklusive Sauerstoffsättigung und Blutzucker erheben", "Sofortmassnahmen einleiten: Lagerung, Blutung stoppen, Absaugen nach Betriebsregel", "Sauerstoff nach ärztlicher Verordnung oder Notfallstandard verabreichen", "Die Fachperson und das Notfallteam früh beiziehen und mit SBAR informieren"], no: ["Eine medizinische Diagnose stellen", "Medikamente ohne Verordnung geben", "Notfallmedikamente intravenös verabreichen"] },
+      HF: { do: ["Befunde nach ABCDE interpretieren und priorisieren", "Notfallteam oder ärztlichen Dienst aufbieten und Massnahmen nach Notfallstandard einleiten", "Verschlechterungen früh erkennen und Überwachung festlegen", "Das Team bis zum Eintreffen des Notfallteams koordinieren", "Nachbesprechung anregen"], no: ["Als Studierende HF: Aufgaben nach Ausbildungsstand und unter Aufsicht"] }
+    },
+    quiz: {
+      FaGe: [
+        ["Wofür steht das C im ABCDE-Schema?", ["Coma", "Circulation, also Kreislauf", "Check"], 1, "A Atemweg, B Atmung, C Kreislauf, D Neurologie, E Ganzkörper."],
+        ["Du findest bei B eine Sättigung von 86 % und starke Atemnot. Was tust du?", ["Zuerst noch D und E fertig prüfen", "Sofort handeln: Oberkörper hoch, Hilfe holen, Sauerstoff nach Verordnung oder Notfallstandard, dann weiter", "Nur dokumentieren"], 1, "Probleme werden sofort behandelt, bevor du weitergehst."],
+        ["Ein Patient hat Puls 120 und einen Blutdruck von 100/60 mmHg. Wie hoch ist der Schockindex?", ["0,8", "1,2", "2,0"], 1, "120 geteilt durch 100 ergibt 1,2. Über 1 ist ein Warnzeichen."],
+        ["Eine Patientin ist plötzlich verwirrt. Was gehört bei D immer dazu?", ["Blutzucker messen", "Gewicht messen", "Nichts, Verwirrtheit ist im Alter normal"], 0, "Unterzucker ist eine häufige und rasch behandelbare Ursache."],
+        ["Was bedeutet «P» im AVPU-Schema?", ["Die Person reagiert nur auf Schmerzreiz", "Die Person ist wach", "Puls"], 0, "Ab P ist das Bewusstsein deutlich eingeschränkt: Notfall."]
+      ],
+      HF: [
+        ["Ein älterer Patient mit Betablocker blutet nach einer Operation nach. Puls 78, Blutdruck 105/60, Haut kalt und blass, er ist unruhig. Wie beurteilst du die Lage?", ["Puls normal, also kein Schock", "Möglicher Schock: Betablocker verhindern den Pulsanstieg, kalte Haut und Unruhe sind Warnzeichen", "Unruhe ist postoperativ normal"], 1, "Der Puls kann bei Betablockern trotz Schock normal bleiben."],
+        ["Warum beginnst du nach einer Massnahme wieder bei A?", ["Aus Gewohnheit", "Weil sich der Zustand verändert und ein neues Problem auftreten kann", "Das ist nicht nötig"], 1, "Re-Evaluation ist Teil des Schemas."],
+        ["Welche Veränderung kündigt eine Verschlechterung oft am frühesten an?", ["Steigende Atemfrequenz", "Sinkendes Gewicht", "Veränderte Pupillengrösse bei allen Patienten"], 0, "Die Atemfrequenz reagiert früh und wird oft zu wenig gemessen."],
+        ["Eine FaGe meldet dir: «Frau K. geht es nicht gut.» Wie leitest du sie an?", ["«Ich komme später.»", "«Was siehst du bei A, B, C, D und E? Welche Werte hast du?» und du gehst sofort hin", "«Ruf den Arzt an.»"], 1, "Strukturierte Fragen helfen, und ein ungutes Gefühl wird ernst genommen."],
+        ["Welche Meldung an die Ärztin ist am besten?", ["«Kommen Sie schnell, es ist schlimm.»", "SBAR mit Situation, Hintergrund, ABCDE-Befunden und klarer Bitte", "Nur die Vitalzeichen vorlesen"], 1, "SBAR macht die Meldung kurz, vollständig und handlungsorientiert."]
+      ]
+    },
+    transfer: "Geh bei der nächsten Person, die dir «nicht gut» vorkommt, das ABCDE-Schema innerlich durch und notiere deine Befunde. Besprich sie danach mit deiner Berufsbildnerin oder deinem Berufsbildner.",
+    src: "Resuscitation Council UK, The ABCDE Approach; European Resuscitation Council Guidelines 2025; Thim T. et al.: Initial assessment and treatment with the ABCDE approach, International Journal of General Medicine (2012); Stiftung Patientensicherheit Schweiz"
+  },
+  {
     id: "notfall-erkennen", topic: "Notfälle", levels: ["AGS"], min: 7,
     title: "Notfall erkennen und Hilfe holen",
     teaser: "Woran du merkst, dass etwas nicht stimmt, wen du wie alarmierst und was du tust, bis Hilfe da ist.",
@@ -4348,6 +4400,23 @@ Object.assign(FIG, {
     return `<svg viewBox="0 0 720 270" role="img" aria-label="Vorgehen bei einer Person, die nicht reagiert">${DEFS}<rect width="720" height="270" fill="#fff"/>${s}</svg>`;
   }
 });
+Object.assign(FIG, {
+  abcdeschema: () => {
+    const L = [["A", "Atemweg", "frei?"], ["B", "Atmung", "Frequenz, SpO2"], ["C", "Kreislauf", "Puls, BD, Blutung"], ["D", "Neurologie", "AVPU, BZ, Pupillen"], ["E", "Ganzkörper", "Haut, Wunden, Temp."]];
+    const col = ["#1d3f66", "#1d3f66", "#1d3f66", "#1d3f66", "#1d3f66"];
+    let s = "";
+    L.forEach(([l, a, b], i) => {
+      const x = 20 + i * 140;
+      s += `<rect x="${x}" y="40" width="124" height="150" rx="16" fill="#fff" stroke="${col[i]}" stroke-width="3"/><circle cx="${x + 62}" cy="84" r="28" fill="${col[i]}"/>`;
+      s += T(x + 62, 95, l, { s: 30, w: 800, c: "#fff", f: FD }) + T(x + 62, 140, a, { s: 15, w: 800, c: NV, f: FD }) + T(x + 62, 162, b, { s: 11.5, c: "#5b6878" });
+      if (i < 4) s += `<path d="M${x + 126} 115h12" stroke="${NV}" stroke-width="2.5"/>`;
+    });
+    s += `<path d="M690 196v24H82v-24" fill="none" stroke="${NV}" stroke-width="2" stroke-dasharray="5 4"/><path d="M76 202l6-8 6 8" fill="none" stroke="${NV}" stroke-width="2"/>`;
+    s += T(386, 240, "Problem gefunden: sofort behandeln. Danach und bei jeder Veränderung wieder bei A beginnen.", { s: 13, w: 700, c: NV, f: FD });
+    s += T(360, 24, "Gefahr nimmt von links nach rechts ab", { s: 12.5, c: "#5b6878" });
+    return `<svg viewBox="0 0 720 256" role="img" aria-label="ABCDE-Schema"><rect width="720" height="256" fill="#fff"/>${s}</svg>`;
+  }
+});
 const GLYPH = {
   lernbegleitung: '<circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 21c0-5 3-8 6-8s6 3 6 8M13 21c.5-3 2-5 4-5s3.5 2 4 5"/><path d="M11 10l3 1"/>',
   rollen: '<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M12 8v4M12 12l-5 3M12 12l5 3"/>',
@@ -4364,6 +4433,7 @@ const GLYPH = {
   ausscheidung: '<path d="M7 3h10M9 3v6l-4 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-4-9V3"/><path d="M6.5 15h11"/>',
   mobilisation: '<circle cx="10" cy="4" r="1.6"/><path d="M10 7v6h6l2 5"/><path d="M10 10h5"/><path d="M7 11a6 6 0 1 0 8 7"/>',
   "sc-injektion": '<path d="M18 2l4 4M20 4l-4 4M15 5l4 4M14 6l-8 8-1 4 4-1 8-8M3 21l3-3M9 11l2 2"/>',
+  abcde: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v3h6V3M8 11h8M8 15h5"/>',
   "notfall-erkennen": '<path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
   atemnot: '<path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>',
   blutung: '<path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/>',
@@ -4421,6 +4491,7 @@ function art(n) {
     dokumentation: `<rect x="96" y="30" width="116" height="148" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="130" y="20" width="48" height="20" rx="6" fill="${c}"/><path d="M114 66l6 6 10-12M114 98l6 6 10-12M114 130l6 6 10-12" fill="none" stroke="#1e7f4a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M140 66h54M140 98h46M140 130h50M140 152h36" stroke="${d}" stroke-width="6" stroke-linecap="round"/><g transform="rotate(35 246 104)"><rect x="236" y="40" width="20" height="96" rx="4" fill="#f2b33d" stroke="#b26a00" stroke-width="2.5"/><path d="M236 136l10 20 10-20z" fill="#fff" stroke="#b26a00" stroke-width="2.5" stroke-linejoin="round"/><rect x="236" y="40" width="20" height="14" fill="${c}"/></g>`,
     datenschutz: `<rect x="44" y="70" width="90" height="70" rx="8" fill="${d}" stroke="${c}" stroke-width="4"/><path d="M44 78h36l8-10h46" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M190 26l64 22v46c0 40-28 64-64 78-36-14-64-38-64-78V48z" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="166" y="96" width="48" height="40" rx="8" fill="${c}"/><path d="M176 96V84a14 14 0 0 1 28 0v12" fill="none" stroke="${c}" stroke-width="6"/><circle cx="190" cy="114" r="5" fill="#f2b33d"/><path d="M190 118v8" stroke="#f2b33d" stroke-width="4" stroke-linecap="round"/>`,
     resilienz: `<rect x="56" y="70" width="120" height="66" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="176" y="90" width="10" height="26" rx="3" fill="${c}"/><rect x="68" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="102" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="136" y="82" width="28" height="42" rx="4" fill="${d}"/><path d="M152 84l-12 22h12l-8 16" fill="none" stroke="#f2b33d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M246 170v-58" stroke="${c}" stroke-width="5" stroke-linecap="round"/><path d="M246 128c-30 0-40-22-40-40 26 0 40 16 40 40z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M246 112c0-26 14-44 42-44 0 26-16 44-42 44z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M214 172h64" stroke="${c}" stroke-width="5" stroke-linecap="round"/>`,
+    abcde: `${[c,c,c,c,c].map((f, i) => `<circle cx="${52 + i * 54}" cy="104" r="24" fill="${f}"/><text x="${52 + i * 54}" y="113" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="24" fill="#fff">${"ABCDE"[i]}</text>`).join("")}<path d="M40 150h232" stroke="${c}" stroke-width="4" stroke-linecap="round"/><path d="M262 140l12 10-12 10" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round"/>`,
     "notfall-erkennen": `<path d="M160 30l80 138H80z" fill="#fff" stroke="${c}" stroke-width="5" stroke-linejoin="round"/><path d="M160 80v44" stroke="#c0463b" stroke-width="10" stroke-linecap="round"/><circle cx="160" cy="146" r="7" fill="#c0463b"/><rect x="232" y="96" width="44" height="72" rx="10" fill="#fff" stroke="${c}" stroke-width="4"/><text x="254" y="140" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" fill="${c}">144</text>`,
     atemnot: `<circle cx="96" cy="78" r="26" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M50 182c0-40 20-64 46-64s46 24 46 64z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M132 78c30-4 50-14 60-26M134 92c34 0 62 0 84-10M132 106c30 6 56 14 70 28" stroke="${c}" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="2 9"/><path d="M230 60c20 20 20 60 0 80M252 46c28 28 28 80 0 108" stroke="#9ec5ee" stroke-width="6" fill="none" stroke-linecap="round"/>`,
     blutung: `<rect x="40" y="96" width="200" height="40" rx="20" fill="#f3d2bd" stroke="${c}" stroke-width="4"/><circle cx="250" cy="116" r="24" fill="#f3d2bd" stroke="${c}" stroke-width="4"/><rect x="130" y="88" width="56" height="56" rx="6" fill="#fff" stroke="${c}" stroke-width="4"/>${[0,1,2,3].map(i => `<path d="M${136 + i * 13} 88l8 56" stroke="${d}" stroke-width="3"/>`).join("")}<path d="M120 160c8 10 10 16 10 20a10 10 0 0 1-20 0c0-4 2-10 10-20z" fill="#c0463b"/><path d="M158 30v40M148 58l10 12 10-12" stroke="${c}" stroke-width="4" fill="none" stroke-linecap="round"/>`,
