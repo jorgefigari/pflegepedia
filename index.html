@@ -4692,6 +4692,8 @@ function quellenPage() {
   [...all.keys()].sort((a, b) => a.localeCompare(b, "de")).forEach(it => { const i = SRC_KIND.findIndex(([, re]) => re.test(it)); groups[i][1].push(it); });
   return `<h1>Quellen und Qualität</h1>
     <p>Pflegewissen muss stimmen. Darum stützt sich jedes Nugget auf überprüfbare Quellen. Du findest sie bei jedem Nugget im Abschnitt «Quellen» und gesammelt auf dieser Seite.</p>
+    <h2>Wie die Inhalte entstehen</h2>
+    <p>Die Inhalte werden mit Unterstützung von künstlicher Intelligenz (KI) erstellt. Eine diplomierte Pflegefachperson HF mit Erfahrung in der Berufsbildung prüft sie fachlich, gleicht sie mit den Quellen ab und überarbeitet sie laufend. Die KI ist ein Werkzeug. Die fachliche Verantwortung für die Inhalte liegt bei Pflegepedia.</p>
     <h2>Welche Quellen wir nutzen</h2>
     <ol class="srcrank">
       <li><b>Gesetze und Bildungserlasse:</b> Bildungsverordnungen und Bildungspläne von SBFI und OdASanté, Rahmenlehrplan Pflege HF, Bundesrecht. Sie bestimmen vor allem, was zu welcher Stufe gehört.</li>
