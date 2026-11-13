@@ -2447,11 +2447,11 @@ const NUGGETS = [
           ["Schutzbrille", "Spritzer in die Augen", "Bei Absaugen, Erbrechen, Spritzgefahr"] ] } },
       { h: "Anziehen",
         list: ["1. Händedesinfektion", "2. Schürze oder Überschürze", "3. Maske, bei FFP2 Dichtsitz prüfen", "4. Schutzbrille", "5. Handschuhe, über die Bündchen der Überschürze"] },
-      { h: "Ausziehen: die Aussenseite ist schmutzig", fig: "psa", figcap: "Beim Ausziehen kommen die Handschuhe zuerst und die Maske zuletzt. Dazwischen immer die Hände desinfizieren.",
-        list: ["1. Handschuhe ausziehen, ohne die Aussenseite zu berühren", "2. Händedesinfektion", "3. Schürze von innen nach aussen einrollen", "4. Händedesinfektion", "5. Schutzbrille an den Bügeln abnehmen", "6. Maske an den Bändern entfernen, nicht an der Vorderseite", "7. Händedesinfektion"],
+      { h: "Ausziehen: die Aussenseite ist schmutzig", fig: "psa", figcap: "Beim Ausziehen kommen die Handschuhe zuerst und die Maske zuletzt. Nach den Handschuhen und am Schluss werden die Hände desinfiziert.",
+        list: ["1. Handschuhe ausziehen, ohne die Aussenseite zu berühren, danach die Hände desinfizieren", "2. Schürze von innen nach aussen einrollen", "3. Schutzbrille an den Bügeln abnehmen", "4. Maske an den Bändern entfernen, nicht an der Vorderseite, danach die Hände desinfizieren"],
         after: "Die Reihenfolge kann je nach Betrieb leicht abweichen. Bei aerogener Isolation wird die FFP2-Maske meist erst ausserhalb des Zimmers nach geschlossener Tür ausgezogen." }
     ],
-    points: ["An: Händedesinfektion, Schürze, Maske, Brille, Handschuhe", "Aus: Handschuhe zuerst, Maske zuletzt", "Zwischendurch Hände desinfizieren", "Aussenseite nie berühren", "FFP2: Dichtsitz prüfen"],
+    points: ["An: Händedesinfektion, Schürze, Maske, Brille, Handschuhe", "Aus: Handschuhe zuerst, Maske zuletzt", "Nach den Handschuhen und am Schluss Hände desinfizieren", "Aussenseite nie berühren", "FFP2: Dichtsitz prüfen"],
     merke: "Die Vorderseite der Maske ist nach der Pflege kontaminiert. Nur an den Bändern anfassen.",
     facts: ["Ein Mund-Nasen-Schutz, der unter der Nase getragen wird, schützt praktisch nicht.", "Beim Dichtsitztest atmest du kräftig aus: Wenn Luft am Rand entweicht, sitzt die FFP2-Maske nicht richtig.", "Handschuhe gehören nicht in den Gang: Sie werden direkt nach der Tätigkeit ausgezogen."],
     comp: {
@@ -3433,7 +3433,8 @@ Object.assign(FIG, {
     return `<svg viewBox="0 0 720 340" role="img" aria-label="Reihenfolge beim An- und Ausziehen der PSA"><rect width="720" height="340" fill="#fff"/>
       ${row(92, "Anziehen", [["hand", "Hände desinf."], ["apron", "Schürze"], ["mask", "Maske"], ["goggles", "Brille"], ["glove", "Handschuhe"]], GR)}
       <path d="M14 168h692" stroke="${LN}" stroke-width="2"/>
-      ${row(262, "Ausziehen", [["glove", "Handschuhe"], ["hand", "Hände desinf."], ["apron", "Schürze"], ["hand", "Hände desinf."], ["goggles", "Brille"], ["mask", "Maske"], ["hand", "Hände desinf."]], RD)}
+      ${row(262, "Ausziehen", [["glove", "Handschuhe"], ["apron", "Schürze"], ["goggles", "Brille"], ["mask", "Maske"]], RD)}
+      ${T(470, 248, "Nach den Handschuhen und", { a: "start", s: 12.5, w: 700, c: NV, f: FD })}${T(470, 266, "am Schluss: Hände desinfizieren", { a: "start", s: 12.5, w: 700, c: NV, f: FD })}<g transform="translate(446 256) scale(.8)">${ico.hand}</g>
     </svg>`;
   },
   injektionsstellen: () => {
