@@ -1,0 +1,29 @@
+name: Seiten pro Nugget erzeugen
+on:
+  push:
+    branches: [main]
+    paths: [index.html, tools/build-pages.js]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: build-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node tools/build-pages.js
+      - name: Commit
+        run: |
+          git config user.name "Pflegepedia"
+          git config user.email "pflegepedia@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Keine Änderungen"; exit 0; fi
+          git commit -m "Seiten pro Nugget automatisch aktualisiert"
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && exit 0; sleep 5; done
+          exit 1
