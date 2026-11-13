@@ -291,6 +291,13 @@ section.block { padding: 40px 0 8px; }
   .choose button span:last-child { font-size: 13.5px; line-height: 1.3; }
   .choose button .lv { font-size: 13px; padding: 4px 0; }
 }
+.srclist { margin: 0 0 10px; padding-left: 20px; }
+.srclist li { margin: 6px 0; line-height: 1.5; }
+.srclist a.ext { font-size: 13px; color: var(--brand); white-space: nowrap; }
+.srclist a.ext::after { content: " ↗"; }
+.srclist .usedin { display: block; font-size: 13px; color: var(--muted); }
+.srclist .usedin a { color: var(--muted); }
+.srcrank li { margin: 8px 0; }
 footer { background: var(--ink); color: #c9d4e0; font-size: 14.5px; }
 footer .wrap { padding-top: 34px; padding-bottom: 34px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 28px; }
 footer .logo { color: #fff; }
@@ -479,7 +486,7 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
 <footer><div class="wrap">
   <div><a class="logo" href="#"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -1 115 115"><path d="M21 34V104" stroke="#ffffff" stroke-width="20" stroke-linecap="round" fill="none"/><path d="M21 34C21 18 34 10 50 10C70 10 84 26 84 46C84 66 70 82 50 82H49" stroke="#ffffff" stroke-width="20" stroke-linecap="round" fill="none"/><rect x="38" y="31" width="25" height="25" rx="7" fill="#7fb2e5"/></svg><span>Pflegepedia</span></a><p>Kurze Lerneinheiten für AGS, FaGe und Pflege HF. Ein privates, nicht-kommerzielles Bildungsprojekt aus der Schweiz.</p></div>
   <div><h3>Lernen</h3><ul><li><a href="#" data-lv="AGS">Für AGS</a></li><li><a href="#" data-lv="FaGe">Für FaGe</a></li><li><a href="#" data-lv="HF">Für Pflege HF</a></li><li><a href="#" data-lv="Alle">Alle Nuggets</a></li></ul></div>
-  <div><h3>Pflegepedia</h3><ul><li><a href="#ueber">Über Pflegepedia</a></li><li><a href="#impressum">Impressum</a></li><li><a href="#datenschutz">Datenschutz</a></li><li>info@pflegepedia.ch</li></ul></div>
+  <div><h3>Pflegepedia</h3><ul><li><a href="#ueber">Über Pflegepedia</a></li><li><a href="#quellen">Quellen und Qualität</a></li><li><a href="#impressum">Impressum</a></li><li><a href="#datenschutz">Datenschutz</a></li><li>info@pflegepedia.ch</li></ul></div>
   <div class="legal">© 2026 Pflegepedia. Die Inhalte ersetzen keine betrieblichen Richtlinien, keine ärztlichen Verordnungen und keine Anleitung durch Fachpersonen.</div>
 </div></footer>
 
@@ -581,7 +588,7 @@ const NUGGETS = [
       { q: "Was ist wichtiger als ein einzelner Messwert?", o: ["Die Uhrzeit der Messung", "Der Verlauf im Vergleich zu den Vorwerten", "Das Messgerät"], a: 1, e: "Ein Wert im Normbereich kann trotzdem eine deutliche Veränderung bedeuten." }
     ],
     transfer: "Suche in der Dokumentation einer Person deiner Bezugsgruppe die Vitalzeichen der letzten drei Tage. Erkennst du einen Trend? Berechne den Schockindex.",
-    src: "Thiemes Pflege; Schweizerische Herzstiftung, Blutdruckwerte; ESH Leitlinie Hypertonie"
+    src: "Thiemes Pflege (Thieme Verlag); Schweizerische Herzstiftung, Blutdruckwerte; ESH Leitlinie Hypertonie"
   },
   {
     id: "dekubitus", topic: "Prophylaxen", levels: ["FaGe","HF"], min: 10,
@@ -1187,7 +1194,7 @@ const NUGGETS = [
       { q: "Wann und wo gibst du einer Kollegin kritisches Feedback?", o: ["Sofort im Patientenzimmer", "Zeitnah, unter vier Augen", "Erst im Qualifikationsgespräch Monate später"], a: 1, e: "Zeitnah, damit die Situation präsent ist, aber nie vor Patientinnen, Patienten oder Angehörigen." }
     ],
     transfer: "Bitte heute eine Fachperson, dich bei einer konkreten Tätigkeit zu beobachten und dir danach eine Rückmeldung nach dem WWW-Modell zu geben. Notiere dir einen Punkt, den du beim nächsten Mal umsetzt.",
-    src: "Luft J., Ingham H.: The Johari Window (1955); Fengler J.: Feedback geben; Lehrmittel Berufsbildung Gesundheit"
+    src: "Luft J., Ingham H.: The Johari Window (1955); Fengler J.: Feedback geben"
   },
   {
     id: "schlaganfall", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 10,
@@ -1235,7 +1242,7 @@ const NUGGETS = [
       { q: "Wie hilfst du einer Person mit Halbseitenlähmung beim Aufsetzen?", o: ["Am gelähmten Arm hochziehen", "Nie am gelähmten Arm ziehen, Rumpf und Becken unterstützen", "Sie liegen lassen"], a: 1, e: "Die gelähmte Schulter ist instabil. Zug führt zu Verletzungen und Schmerzen." }
     ],
     transfer: "Übe BE FAST mit einer Kollegin oder einem Kollegen. Beobachte bei einer Person nach Schlaganfall: Welche Ausfälle zeigt sie, und wie unterstützt das Team ihre Selbständigkeit?",
-    src: "Schweizerische Herzstiftung; Swiss Stroke Society; Deutsche Schlaganfall-Hilfe; Thiemes Pflege"
+    src: "Schweizerische Herzstiftung; Swiss Stroke Society; Deutsche Schlaganfall-Hilfe; Thiemes Pflege (Thieme Verlag)"
   },
   {
     id: "sht", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 10,
@@ -1283,7 +1290,7 @@ const NUGGETS = [
       { q: "Ein Patient wird plötzlich laut und beleidigend. Was ist eine hilfreiche Haltung?", o: ["Das Verhalten persönlich nehmen und zurechtweisen", "Ruhig bleiben, Reize reduzieren, klare Grenzen setzen", "Das Zimmer verlassen und nicht mehr hingehen"], a: 1, e: "Enthemmung und Reizbarkeit sind häufige Folgen. Ruhe und Klarheit wirken deeskalierend." }
     ],
     transfer: "Beobachte eine Person nach SHT während eines Dienstes: Wann zeigt sie Erschöpfung oder Überforderung? Welche Struktur hilft ihr? Besprich deine Beobachtungen mit der Bezugsperson.",
-    src: "Teasdale G., Jennett B.: Glasgow Coma Scale (1974); FRAGILE Suisse; Thiemes Pflege; Leitlinien Neurorehabilitation"
+    src: "Teasdale G., Jennett B.: Glasgow Coma Scale (1974); FRAGILE Suisse; Thiemes Pflege (Thieme Verlag)"
   },
   {
     id: "herzinsuffizienz", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 9,
@@ -1330,7 +1337,7 @@ const NUGGETS = [
       { q: "Ein Patient hat akute Atemnot. Wie positionierst du ihn?", o: ["Flach mit Beinen hoch", "Oberkörper hoch, Beine tief", "In Bauchlage"], a: 1, e: "Die Herzbettlage entlastet Herz und Lunge, weil weniger Blut zum Herzen zurückfliesst." }
     ],
     transfer: "Prüfe bei einer Person mit Herzinsuffizienz die Gewichtsverläufe der letzten Woche. Wurde immer unter gleichen Bedingungen gewogen? Wie erklärt die Person selbst ihre Warnzeichen?",
-    src: "ESC Guidelines for Heart Failure; Schweizerische Herzstiftung; Thiemes Pflege"
+    src: "ESC Guidelines for Heart Failure; Schweizerische Herzstiftung; Thiemes Pflege (Thieme Verlag)"
   },
   {
     id: "epilepsie", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 8,
@@ -1377,7 +1384,7 @@ const NUGGETS = [
       { q: "Welcher Faktor kann einen Anfall auslösen?", o: ["Schlafmangel", "Regelmässige Mahlzeiten", "Spazieren gehen"], a: 0, e: "Schlafmangel, vergessene Medikamente, Alkohol und Fieber sind typische Auslöser." }
     ],
     transfer: "Finde heraus, wo auf deiner Station das Notfallmedikament bei Anfällen liegt und wie es verabreicht wird. Gibt es Personen mit erhöhtem Anfallsrisiko, zum Beispiel nach SHT?",
-    src: "Epilepsie-Liga Schweiz; ILAE Klassifikation der Anfallsformen; Thiemes Pflege"
+    src: "Epilepsie-Liga Schweiz; ILAE Klassifikation der Anfallsformen; Thiemes Pflege (Thieme Verlag)"
   },
   {
     id: "diabetes", topic: "Krankheitsbilder", levels: ["AGS","FaGe","HF"], min: 10,
@@ -1583,7 +1590,7 @@ const NUGGETS = [
       ]
     },
     transfer: "Prüfe bei einer Person mit Thromboseprophylaxe: Welche Massnahmen sind verordnet? Sitzen die Strümpfe korrekt? Wie viel bewegt sie sich am Tag?",
-    src: "AWMF S3-Leitlinie Prophylaxe der venösen Thromboembolie; Thiemes Pflege"
+    src: "AWMF S3-Leitlinie Prophylaxe der venösen Thromboembolie; Thiemes Pflege (Thieme Verlag)"
   },
   {
     id: "aspiration", topic: "Prophylaxen", levels: ["AGS","FaGe","HF"], min: 8,
@@ -1632,7 +1639,7 @@ const NUGGETS = [
       ]
     },
     transfer: "Begleite eine Person mit Schluckstörung bei einer Mahlzeit. Welche Konsistenz ist verordnet? Welche Warnzeichen beobachtest du?",
-    src: "IDDSI Framework; Deutsche Gesellschaft für Neurologie, Leitlinie neurogene Dysphagie; Thiemes Pflege"
+    src: "IDDSI Framework; Deutsche Gesellschaft für Neurologie, Leitlinie neurogene Dysphagie; Thiemes Pflege (Thieme Verlag)"
   },
   {
     id: "kontrakturen", topic: "Prophylaxen", levels: ["AGS","FaGe","HF"], min: 7,
@@ -1683,7 +1690,7 @@ const NUGGETS = [
       ]
     },
     transfer: "Frage bei der Physiotherapie nach, welche Bewegungsübungen eine Person deiner Bezugsgruppe im Alltag braucht, und baue eine davon heute in die Pflege ein.",
-    src: "Thiemes Pflege; DNQP Expertenstandard Erhaltung und Förderung der Mobilität; Bobath-Konzept"
+    src: "Thiemes Pflege (Thieme Verlag); DNQP Expertenstandard Erhaltung und Förderung der Mobilität; Bobath-Konzept"
   },
   {
     id: "schmerz", topic: "Beobachten", levels: ["AGS","FaGe","HF"], min: 9,
@@ -1793,7 +1800,7 @@ const NUGGETS = [
       ]
     },
     transfer: "Beobachte heute bei einer Person die Ausscheidung mit der Bristol-Skala und vergleiche mit der Dokumentation der letzten Tage.",
-    src: "Thiemes Pflege; DNQP Expertenstandard Förderung der Harnkontinenz; Lewis & Heaton: Bristol Stool Form Scale"
+    src: "Thiemes Pflege (Thieme Verlag); DNQP Expertenstandard Förderung der Harnkontinenz; Lewis & Heaton: Bristol Stool Form Scale"
   },
   {
     id: "mobilisation", topic: "Pflegetechniken", levels: ["AGS","FaGe","HF"], min: 8,
@@ -1938,7 +1945,7 @@ const NUGGETS = [
       ]
     },
     transfer: "Begleite eine Sondenkostgabe auf deiner Station. Wie viel wird gespült? Welche Medikamente gehen über die Sonde und in welcher Form?",
-    src: "Bildungsverordnung FaGe EFZ (SBFI); ESPEN Leitlinie Enterale Ernährung; Thiemes Pflege"
+    src: "Bildungsverordnung FaGe EFZ (SBFI); ESPEN Leitlinie Enterale Ernährung; Thiemes Pflege (Thieme Verlag)"
   },
   {
     id: "blut-kapillaer", topic: "Pflegetechniken", levels: ["FaGe","HF"], min: 8,
@@ -1998,7 +2005,7 @@ const NUGGETS = [
       ]
     },
     transfer: "Lass dir bei der nächsten Blutzuckermessung zuschauen. Achte bewusst auf drei Dinge: Hände gewaschen, Desinfektion trocken, nicht gequetscht.",
-    src: "Bildungsplan FaGe EFZ (OdASanté), Handlungskompetenz D.2; Schweizerische Gesellschaft für Endokrinologie und Diabetologie (SGED); Herstellerangaben der Messgeräte"
+    src: "Bildungsplan FaGe EFZ (OdASanté), Handlungskompetenz D.2; SGED Schweizerische Gesellschaft für Endokrinologie und Diabetologie; Herstellerangaben der Messgeräte"
   },
   {
     id: "blut-venoes", topic: "Pflegetechniken", levels: ["FaGe","HF"], min: 10,
@@ -2365,7 +2372,7 @@ const NUGGETS = [
       ]
     },
     transfer: "Finde heraus, wo die Isolationsrichtlinien deines Betriebs abgelegt sind, und lies die Massnahmen zu MRSA und Norovirus.",
-    src: "Swissnoso; BAG, Strategie NOSO; Richtlinien der Spitalhygiene"
+    src: "Swissnoso; BAG, Strategie NOSO; CDC/HICPAC: Guideline for Isolation Precautions (2007)"
   },
   {
     id: "psa", topic: "Hygiene", levels: ["AGS","FaGe","HF"], min: 6,
@@ -2470,7 +2477,7 @@ const NUGGETS = [
       ]
     },
     transfer: "Frage die Logopädie nach den Kommunikationsempfehlungen für eine Person mit Aphasie und wende sie heute bewusst an.",
-    src: "Aphasie Suisse; Deutsche Gesellschaft für Neurologie, Leitlinie Aphasie; Thiemes Pflege"
+    src: "Aphasie Suisse; Deutsche Gesellschaft für Neurologie, Leitlinie Aphasie; Thiemes Pflege (Thieme Verlag)"
   },
   {
     id: "angehoerige", topic: "Kommunikation", levels: ["AGS","FaGe","HF"], min: 7,
@@ -2723,7 +2730,7 @@ const NUGGETS = [
       ]
     },
     transfer: "Lies deine letzten drei Einträge. Findest du wertende Begriffe? Formuliere einen davon beschreibend um.",
-    src: "Thiemes Pflege; SBK, Ethik und Recht in der Pflege; Bundesgesetz über den Datenschutz (DSG)"
+    src: "Thiemes Pflege (Thieme Verlag); SBK, Ethik und Recht in der Pflege; Bundesgesetz über den Datenschutz (DSG)"
   },
   {
     id: "datenschutz", topic: "Berufsrolle", levels: ["AGS","FaGe","HF"], min: 7,
@@ -3277,6 +3284,7 @@ const ICON = {
 };
 const ico = (t, color) => `<svg viewBox="0 0 24 24" fill="none" stroke="${color || "currentColor"}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[t]}</svg>`;
 const UI = {
+  src: '<path d="M7 4h10v16l-5-3-5 3z"/><path d="M10 9h4"/>',
   list: '<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
   bulb: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/>',
   user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
@@ -4510,7 +4518,7 @@ function renderNugget(n, sub) {
     </div>
     <div class="art">${art(n)}</div>
   </div></section>
-  <nav class="subnav" aria-label="Abschnitte"><div class="wrap">${[["s-theorie","Theorie"],["s-blick","Auf einen Blick"],["s-wissen","Gut zu wissen"],["s-komp","Kompetenzen"],["s-quiz","Quiz"],["s-transfer","Praxistransfer"]].concat(deep ? [["s-vertiefung","Vertiefung " + LEVEL_LABEL[DEEP[n.id].level]]] : []).map(([id, t]) => `<button data-s="${id}">${t}</button>`).join("")}</div></nav>
+  <nav class="subnav" aria-label="Abschnitte"><div class="wrap">${[["s-theorie","Theorie"],["s-blick","Auf einen Blick"],["s-wissen","Gut zu wissen"],["s-komp","Kompetenzen"],["s-quiz","Quiz"],["s-transfer","Praxistransfer"]].concat(deep ? [["s-vertiefung","Vertiefung " + LEVEL_LABEL[DEEP[n.id].level]]] : []).concat([["s-quellen","Quellen"]]).map(([id, t]) => `<button data-s="${id}">${t}</button>`).join("")}</div></nav>
   <div class="wrap ncontent" style="--tc:${t.c};--tc-bg:${t.bg}">
     <div>
       <div class="panel theory" id="s-theorie"><h2><i>${ui("book")}</i>Theorie</h2>${theoryHtml(n)}</div>
@@ -4523,6 +4531,7 @@ function renderNugget(n, sub) {
       <div class="panel" id="s-quiz"><h2><i>${ui("quiz")}</i>Quiz</h2><div id="quizbox"></div></div>
       <div class="panel" id="s-transfer"><h2><i>${ui("go")}</i>Praxistransfer</h2><p class="transfer">${esc(n.transfer)}</p></div>
       ${deep ? deepHtml(n) : ""}
+      ${srcPanel(n)}
     </div>
     <aside class="aside">
       <div class="panel"><dl class="facts">
@@ -4539,7 +4548,6 @@ function renderNugget(n, sub) {
       <div class="panel report"><h2>Fehler entdeckt?</h2><p>Hast du einen Fehler gefunden oder ist etwas unklar? Schreib uns!</p>
         <a class="btn" href="mailto:info@pflegepedia.ch?subject=${encodeURIComponent("Fehler melden: " + n.title)}&body=${encodeURIComponent("Nugget: " + n.title + "\nAbschnitt (z. B. Theorie, Quiz FaGe): \nWas ist falsch oder unklar: \n\nBitte keine Patientendaten senden.")}">Fehler melden</a>
         <small>Oder direkt an info@pflegepedia.ch</small></div>
-      <p class="src">Grundlagen: ${esc(n.src)}</p>
     </aside>
   </div>`;
   renderQuiz(n, ql);
@@ -4644,7 +4652,62 @@ function renderHome(scrollTo) {
   if (scrollTo) setTimeout(() => { const el = document.getElementById(scrollTo); if (el) el.scrollIntoView(); }, 30);
 }
 
+
+const SRC_STAND = "November 2026";
+const SRC_LINK = [
+  ["Bildungsplan FaGe", "https://www.odasante.ch/berufe/fachfrau-fachmann-gesundheit-efz/"], ["Bildungsplan Fachfrau", "https://www.odasante.ch/berufe/fachfrau-fachmann-gesundheit-efz/"],
+  ["Bildungspläne AGS", "https://www.odasante.ch/"], ["Bildungsverordnung", "https://www.fedlex.admin.ch/"], ["Verordnung des SBFI", "https://www.fedlex.admin.ch/"],
+  ["Rahmenlehrplan Pflege HF", "https://www.odasante.ch/"], ["OdASanté", "https://www.odasante.ch/"], ["Gesundheitsberufegesetz", "https://www.fedlex.admin.ch/"],
+  ["Strafgesetzbuch", "https://www.fedlex.admin.ch/"], ["Zivilgesetzbuch", "https://www.fedlex.admin.ch/"], ["Datenschutz (DSG", "https://www.fedlex.admin.ch/"], ["Betäubungsmittelgesetz", "https://www.fedlex.admin.ch/"],
+  ["Swissnoso", "https://www.swissnoso.ch/"], ["BAG", "https://www.bag.admin.ch/"], ["Stiftung Patientensicherheit", "https://patientensicherheit.ch/"], ["CIRRNET", "https://patientensicherheit.ch/"],
+  ["Swiss Resuscitation Council", "https://www.resuscitation.ch/"], ["European Resuscitation Council", "https://www.erc.edu/"], ["SIRMED", "https://www.sirmed.ch/"],
+  ["Samariterbund", "https://www.samariter.ch/"], ["Interverband für Rettungswesen", "https://www.144.ch/"], ["Lungenliga", "https://www.lungenliga.ch/"],
+  ["Herzstiftung", "https://swissheart.ch/"], ["Swiss Stroke Society", "https://www.neurovasc.ch/"], ["Epilepsie-Liga", "https://www.epi.ch/"], ["Alzheimer Schweiz", "https://www.alz.ch/"],
+  ["diabetesschweiz", "https://www.diabetesschweiz.ch/"], ["FRAGILE Suisse", "https://www.fragile.ch/"], ["Aphasie Suisse", "https://www.aphasie.org/"], ["INTERPRET", "https://www.inter-pret.ch/"],
+  ["Kinaesthetics Schweiz", "https://www.kinaesthetics.ch/"], ["SUVA", "https://www.suva.ch/"], ["BFU", "https://www.bfu.ch/"], ["SBK", "https://www.sbk-asi.ch/"], ["SECO", "https://www.seco.admin.ch/"],
+  ["Swissmedic", "https://www.swissmedic.ch/"], ["Dargebotene Hand", "https://www.143.ch/"], ["ARTISET", "https://www.artiset.ch/"], ["SDBB", "https://www.berufsbildung.ch/"],
+  ["DNQP", "https://www.dnqp.de/"], ["AWMF", "https://www.awmf.org/"], ["Deutsche Gesellschaft für Neurologie", "https://dgn.org/leitlinien/"], ["EPUAP", "https://www.epuap.org/"],
+  ["ESPEN", "https://www.espen.org/"], ["ESC Guidelines", "https://www.escardio.org/Guidelines"], ["ESH", "https://www.eshonline.org/"], ["ILAE", "https://www.ilae.org/"],
+  ["IDDSI", "https://iddsi.org/"], ["NICE", "https://www.nice.org.uk/"], ["WHO", "https://www.who.int/"], ["CDC", "https://www.cdc.gov/"], ["Thieme Verlag", "https://www.thieme.de/"], ["Institute for Healthcare Improvement", "https://www.ihi.org/"],
+  ["ISMP", "https://www.ismp.org/"], ["ADA Standards", "https://diabetesjournals.org/care"], ["NANDA", "https://nanda.org/"], ["FIT Forum", "https://fit4diabetes.com/"], ["NCSBN", "https://www.ncsbn.org/"], ["CLSI", "https://clsi.org/"]
+];
+const SRC_KIND = [
+  ["Gesetze und Bildungserlasse", /Verordnung|Bildungsplan|Bildungspläne|Rahmenlehrplan|gesetz|Gesetz|Strafgesetzbuch|Zivilgesetzbuch|QV|OdASanté|SDBB/],
+  ["Leitlinien und Expertenstandards", /Leitlinie|Guideline|Expertenstandard|Standards of Care|Framework|Klassifikation|Empfehlung|Algorithmus|CLSI|ISMP|Toolkit|NICE|WHO|CDC|Swissnoso|Strategie/],
+  ["Fachorganisationen und Fachstellen", /Stiftung|Liga|Schweiz|Suisse|Samariter|SUVA|BFU|SBK|SECO|Swissmedic|Interverband|ARTISET|INTERPRET|Hand|Society|Rat|Council|SIRMED|BAG|diabetesschweiz|Kinaesthetics|ProDeMa|Herstellerangaben/],
+  ["Fachbücher und Fachliteratur", /./]
+];
+function srcItems(str) { return String(str || "").split(/;\s*/).map(x => x.trim()).filter(Boolean); }
+function srcLink(item) { const m = SRC_LINK.find(([k]) => item.includes(k)); return m ? m[1] : null; }
+function srcLi(item) { const u = srcLink(item); return `<li>${esc(item)}${u ? ` <a href="${u}" target="_blank" rel="noopener" class="ext">${esc(new URL(u).hostname.replace(/^www\./, ""))}</a>` : ""}</li>`; }
+function srcPanel(n) {
+  return `<div class="panel srcpanel" id="s-quellen"><h2><i>${ui("src")}</i>Quellen</h2>
+    <ul class="srclist">${srcItems(n.src).map(srcLi).join("")}</ul>
+    <p class="note">Stand: ${SRC_STAND}. Massgebend sind immer die aktuellen Vorgaben, Leitlinien und die Standards deines Betriebs. <a href="#quellen">Wie wir Quellen auswählen</a></p></div>`;
+}
+function quellenPage() {
+  const all = new Map();
+  NUGGETS.forEach(n => srcItems(n.src).forEach(it => { if (!all.has(it)) all.set(it, []); all.get(it).push(n); }));
+  const groups = SRC_KIND.map(([t]) => [t, []]);
+  [...all.keys()].sort((a, b) => a.localeCompare(b, "de")).forEach(it => { const i = SRC_KIND.findIndex(([, re]) => re.test(it)); groups[i][1].push(it); });
+  return `<h1>Quellen und Qualität</h1>
+    <p>Pflegewissen muss stimmen. Darum stützt sich jedes Nugget auf überprüfbare Quellen. Du findest sie bei jedem Nugget im Abschnitt «Quellen» und gesammelt auf dieser Seite.</p>
+    <h2>Welche Quellen wir nutzen</h2>
+    <ol class="srcrank">
+      <li><b>Gesetze und Bildungserlasse:</b> Bildungsverordnungen und Bildungspläne von SBFI und OdASanté, Rahmenlehrplan Pflege HF, Bundesrecht. Sie bestimmen vor allem, was zu welcher Stufe gehört.</li>
+      <li><b>Leitlinien und Expertenstandards:</b> zum Beispiel Swissnoso, Swiss Resuscitation Council, DNQP-Expertenstandards, AWMF-Leitlinien, WHO.</li>
+      <li><b>Schweizer Fachorganisationen:</b> zum Beispiel Stiftung Patientensicherheit Schweiz, Lungenliga, Herzstiftung, Samariterbund.</li>
+      <li><b>Fachbücher und Fachliteratur:</b> anerkannte Lehrbücher der Pflege und grundlegende Fachartikel.</li>
+    </ol>
+    <p>Blogs, Foren und Werbung verwenden wir nicht als Quelle.</p>
+    <h2>Grenzen</h2>
+    <p>Die Nuggets sind Lernhilfen. Sie ersetzen weder den Unterricht noch die Anleitung im Betrieb, Kurse wie BLS-AED oder die ärztliche Verordnung. Wenn sich ein Nugget und der Standard deines Betriebs unterscheiden, gilt der Standard deines Betriebs. Kläre die Frage dann mit deiner Berufsbildnerin oder deinem Berufsbildner.</p>
+    <p>Leitlinien ändern sich. Wir überarbeiten die Inhalte regelmässig. Stand der Inhalte: ${SRC_STAND}. Hast du eine neuere Quelle oder einen Fehler gefunden? <a href="mailto:info@pflegepedia.ch?subject=Quelle">Schreib uns!</a></p>
+    <h2>Alle Quellen</h2>
+    ${groups.filter(([, l]) => l.length).map(([t, l]) => `<h3>${t}</h3><ul class="srclist all">${l.map(it => srcLi(it).replace("</li>", ` <span class="usedin">${all.get(it).map(n => `<a href="#${n.id}">${esc(n.title)}</a>`).join(", ")}</span></li>`)).join("")}</ul>`).join("")}`;
+}
 const PAGES = {
+  quellen: quellenPage,
   impressum: () => `<h1>Impressum</h1>
     <p>Pflegepedia ist ein privates, nicht-kommerzielles Bildungsprojekt. Es werden keine Produkte oder Dienstleistungen verkauft.</p>
     <h2>Kontakt</h2><p>E-Mail: info@pflegepedia.ch</p>
@@ -4674,7 +4737,7 @@ function route() {
   if (n) renderNugget(n, sub);
   else if (PAGES[h]) renderPage(h);
   else renderHome(h === "ueber" ? "ueber" : null);
-  document.title = n ? n.title + " · Pflegepedia" : h === "impressum" ? "Impressum · Pflegepedia" : h === "datenschutz" ? "Datenschutz · Pflegepedia" : "Pflegepedia";
+  document.title = n ? n.title + " · Pflegepedia" : h === "impressum" ? "Impressum · Pflegepedia" : h === "datenschutz" ? "Datenschutz · Pflegepedia" : h === "quellen" ? "Quellen und Qualität · Pflegepedia" : "Pflegepedia";
   if (h !== "ueber") window.scrollTo(0, 0);
   if (n && sub === "vertiefung" && $("#s-vertiefung")) setTimeout(() => $("#s-vertiefung").scrollIntoView(), 30);
 }
