@@ -1158,6 +1158,77 @@ const NUGGETS = [
     src: "Stiftung Patientensicherheit Schweiz, Medikationssicherheit; ISMP List of High-Alert Medications"
   },
   {
+    id: "lagerung", topic: "Medikamente", levels: ["FaGe","HF"], min: 9,
+    title: "Medikamente lagern: Aufbrauchfristen und Temperatur",
+    teaser: "Medikamente auf der Station richtig lagern, Aufbrauchfristen bestimmen und dokumentieren und Lagertemperaturen kontrollieren.",
+    lead: "Ein Medikament wirkt nur so gut, wie es gelagert wurde. Zu warm, zu kalt, zu lange offen oder verkeimt: Dann kann es schwächer wirken, schaden oder eine Infektion auslösen, ohne dass man es ihm ansieht. Mit ein paar klaren Regeln stellst du sicher, dass auf deiner Station nur einwandfreie Medikamente verabreicht werden.",
+    theory: [
+      { h: "Grundregeln der Lagerung",
+        list: ["Abschliessbar und für Unbefugte nicht zugänglich", "Sauber, trocken und ohne direkte Sonne, nicht im Bad oder neben der Heizung", "Übersichtlich geordnet, ähnlich aussehende Medikamente (Look-alike) getrennt", "In der Originalpackung: Verfalldatum und Chargennummer müssen sichtbar bleiben, Blister nicht zerschneiden", "FEFO: First expired, first out. Was zuerst verfällt, wird zuerst gebraucht", "Lagerhinweise der Packung beachten, z. B. «vor Licht schützen» oder «nicht einfrieren»"] },
+      { h: "Die richtige Temperatur",
+        table: { head: ["Angabe", "Bedeutung"], rows: [
+          ["Raumtemperatur", "15 bis 25 °C"],
+          ["Im Kühlschrank", "2 bis 8 °C, nie einfrieren"],
+          ["Nicht über 25 °C bzw. 30 °C", "Darf auch kühler gelagert werden, aber nicht wärmer"],
+          ["Vor Licht schützen", "In der Originalpackung oder lichtgeschützt lagern"] ] },
+        after: "Auch Kälte schadet: Insulin, Impfstoffe und viele Eiweisspräparate werden durch Einfrieren unbrauchbar, auch wenn sie danach normal aussehen." },
+      { h: "Der Medikamentenkühlschrank", fig: "medkuehlschrank", figcap: "Medikamente in die Mitte der Fächer, nicht in die Tür und nicht an die Rückwand oder ins Eisfach.",
+        list: ["Nur für Medikamente: keine Lebensmittel, keine Laborproben", "Medikamente in die Mitte der Fächer stellen, mit Abstand zur Rückwand und zum Gefrierfach", "Nicht in die Tür oder ins Gemüsefach, dort schwankt die Temperatur am stärksten", "Tür nur kurz öffnen und sicher schliessen", "Sauber halten, ein vorhandenes Gefrierfach regelmässig abtauen"] },
+      { h: "Temperatur kontrollieren und dokumentieren",
+        p: ["Ein Minimum-Maximum-Thermometer zeigt die tiefste und die höchste Temperatur seit der letzten Kontrolle. So siehst du auch, ob es nachts oder am Wochenende zu warm oder zu kalt war, zum Beispiel nach einem Stromausfall."],
+        list: ["Kühlschrank: in der Regel täglich ablesen", "Medikamentenraum oder Schrank: nach Vorgabe des Betriebs, oft täglich oder wöchentlich", "Aktuelle, minimale und maximale Temperatur, Datum und Visum eintragen", "Danach das Min-Max-Thermometer zurücksetzen", "Lückenlos dokumentieren: Eine fehlende Eintragung bedeutet, dass niemand belegen kann, dass die Lagerung korrekt war"] },
+      { h: "Was tun bei einer Abweichung?", warn: true,
+        list: ["Liegt der Kühlschrank unter 2 °C oder über 8 °C: Medikamente nicht mehr verwenden", "Betroffene Medikamente separieren und als «gesperrt» kennzeichnen, nicht wegwerfen", "Sofort die zuständige Fachperson und die Apotheke informieren", "Abweichung mit Werten, Dauer und Massnahmen dokumentieren", "Erst nach Freigabe durch die Apotheke weiterverwenden oder entsorgen"],
+        after: "Ob ein Medikament nach einer Abweichung noch brauchbar ist, entscheidet die verantwortliche Fachperson der Apotheke. Das hängt vom Präparat, von der Temperatur und von der Dauer ab." },
+      { h: "Verfalldatum und Aufbrauchfrist", fig: "anbruchetikett", figcap: "So beschriftest du eine angebrochene Packung. Das Aufbrauchdatum liegt nie nach dem Verfalldatum.",
+        table: { head: ["Begriff", "Bedeutung"], rows: [
+          ["Verfalldatum", "Steht auf der Packung. Gilt für die ungeöffnete, korrekt gelagerte Packung"],
+          ["Aufbrauchfrist", "Wie lange ein Medikament nach dem ersten Öffnen verwendet werden darf"],
+          ["Aufbrauchdatum", "Anbruchdatum plus Aufbrauchfrist. Ist das Verfalldatum früher, gilt das Verfalldatum"] ] },
+        after: "Nach dem Öffnen gelangen Luft und Keime in das Medikament. Darum haben vor allem flüssige und halbfeste Arzneiformen und Produkte für das Auge eine Aufbrauchfrist. Die genaue Frist steht in der Packungsbeilage oder in der Aufbrauchfristen-Liste deiner Spitalapotheke." },
+      { h: "Typische Aufbrauchfristen",
+        table: { head: ["Arzneiform", "Häufige Frist nach Anbruch"], rows: [
+          ["Tabletten und Kapseln im Blister", "Bis zum Verfalldatum"],
+          ["Augentropfen mit Konservierungsmittel", "Oft 4 Wochen"],
+          ["Einzeldosis-Augentropfen (ohne Konservierung)", "Nur für eine Anwendung"],
+          ["Säfte und Tropfen zum Einnehmen", "Wenige Tage bis mehrere Monate, je nach Präparat"],
+          ["Salben und Cremes", "Oft 3 bis 6 Monate"],
+          ["Insulin im Gebrauch", "Bei vielen Insulinen etwa 4 Wochen bei Raumtemperatur"],
+          ["Durchstechflasche (Vial)", "Oft 24 Stunden bei Raumtemperatur oder 7 Tage im Kühlschrank, Datum und Uhrzeit notieren"],
+          ["Ampulle", "Einmalgebrauch, Rest verwerfen"] ] },
+        after: "Diese Werte sind nur Richtwerte. Es gilt immer die Angabe des Herstellers und die Liste deines Betriebs." },
+      { h: "Anbruch richtig beschriften",
+        list: ["Datum des Anbruchs, bei Durchstechflaschen auch die Uhrzeit", "Aufbrauchdatum ausrechnen und notieren", "Visum, bei Medikamenten für eine bestimmte Person auch Name und Geburtsdatum", "Nicht beschriftete Anbrüche dürfen nicht verwendet werden"] },
+      { h: "Betäubungsmittel",
+        p: ["Betäubungsmittel wie Morphin, Oxycodon oder Fentanyl werden separat und verschlossen gelagert. Jeder Eingang, jeder Bezug und der Bestand werden lückenlos in der Betäubungsmittelkontrolle dokumentiert. Fehlbestände meldest du sofort. Abgelaufene oder nicht mehr gebrauchte Betäubungsmittel gehen nach Betriebsregel an die Apotheke zurück."] }
+    ],
+    points: ["Abschliessbar, trocken, lichtgeschützt, Originalpackung", "Raumtemperatur 15 bis 25 °C, Kühlschrank 2 bis 8 °C", "Kühlschrank täglich mit Min-Max-Thermometer kontrollieren und dokumentieren", "Abweichung: sperren, melden, Apotheke entscheidet", "Anbruch beschriften: Datum, Aufbrauchdatum, Visum"],
+    merke: "Was nicht beschriftet ist oder falsch gelagert wurde, wird nicht verabreicht.",
+    facts: ["In grossen Kühlschränken kann der Unterschied zwischen dem obersten und dem untersten Fach mehrere Grad betragen.", "Eingefrorenes Insulin sieht nach dem Auftauen oft unverändert aus, wirkt aber nicht mehr zuverlässig.", "Die Kantonsapotheker verlangen, dass Temperaturaufzeichnungen lückenlos belegen, dass Medikamente korrekt gelagert wurden."],
+    comp: {
+      FaGe: { do: ["Medikamente nach Vorgaben lagern und Ordnung halten (FEFO)", "Anbrüche beschriften und das Aufbrauchdatum bestimmen", "Kühlschrank- und Raumtemperatur ablesen und dokumentieren", "Abweichungen erkennen, betroffene Medikamente sperren und sofort melden", "Verfalldaten kontrollieren und abgelaufene Medikamente nach Betriebsregel zurückgeben"], no: ["Nach einer Temperaturabweichung selbst über die Weiterverwendung entscheiden", "Abgelaufene oder nicht beschriftete Anbrüche verwenden", "Betäubungsmittel ohne Dokumentation beziehen"] },
+      HF: { do: ["Lagerung und Temperaturkontrolle auf der Station sicherstellen und organisieren", "Abweichungen mit der Apotheke klären und Massnahmen veranlassen", "Betäubungsmittelkontrolle durchführen und Fehlbestände melden", "Lernende anleiten und die Dokumentation überprüfen", "Abläufe verbessern, z. B. Look-alike-Medikamente getrennt lagern"], no: ["Gesperrte Medikamente ohne Freigabe der Apotheke wieder freigeben"] }
+    },
+    quiz: {
+      FaGe: [
+        ["In welchem Bereich muss ein Medikamentenkühlschrank liegen?", ["2 bis 8 °C", "0 bis 4 °C", "8 bis 15 °C"], 0, "Unter 2 °C droht Einfrieren, über 8 °C ist es zu warm."],
+        ["Augentropfen werden am 3. März geöffnet, Aufbrauchfrist 4 Wochen, Verfalldatum Dezember. Was schreibst du als Aufbrauchdatum?", ["31. März", "Ende Dezember, das Verfalldatum gilt", "3. April, ein Monat später"], 0, "Anbruchdatum plus 4 Wochen: 31. März."],
+        ["Das Min-Max-Thermometer zeigt ein Maximum von 12 °C an. Was tust du?", ["Medikamente sperren, sofort melden und dokumentieren", "Thermometer zurücksetzen, aktuell sind es ja wieder 5 °C", "Die Medikamente rasch aufbrauchen, bevor sie verderben"], 0, "Auch eine vergangene Abweichung muss die Apotheke beurteilen."],
+        ["Wo stellst du Insulin in den Kühlschrank?", ["In die Mitte eines Fachs", "Ins Türfach, dort ist es griffbereit", "Hinten an die Rückwand, dort ist es am kältesten"], 0, "In Tür und an der Rückwand schwankt die Temperatur oder es droht Einfrieren."],
+        ["Was bedeutet FEFO?", ["Was zuerst verfällt, wird zuerst gebraucht", "Was zuerst geliefert wurde, wird zuerst gebraucht", "Angebrochene Packungen werden zuerst entsorgt"], 0, "First expired, first out."]
+      ],
+      HF: [
+        ["Am Montag zeigt der Kühlschrank ein Minimum von −1 °C. Wie gehst du vor?", ["Medikamente sperren, Apotheke einbeziehen, Ursache klären", "Weiterverwenden, denn Kälte schadet Medikamenten grundsätzlich nicht", "Nur die Impfstoffe entsorgen, alle anderen Medikamente sind unbedenklich"], 0, "Einfrieren kann z. B. Insulin und Impfstoffe unbrauchbar machen. Die Apotheke beurteilt."],
+        ["Im Temperaturprotokoll fehlen die Einträge vom Wochenende. Was bedeutet das?", ["Die Lagerung ist nicht belegt, du klärst es mit der Apotheke", "Nichts, die Werte vom Montag liegen ja wieder im richtigen Bereich", "Du trägst die fehlenden Werte nachträglich aus dem Gedächtnis ein"], 0, "Die Dokumentation muss lückenlos sein. Nachträgliches Erfinden von Werten ist Urkundenfälschung."],
+        ["Eine Durchstechflasche ohne Konservierungsmittel trägt kein Anbruchdatum. Was tust du?", ["Verwerfen, weil ihre Sicherheit nicht belegt ist", "Verwenden, wenn die Lösung klar und ohne Partikel aussieht", "Das heutige Datum nachtragen und wie gewohnt weiterverwenden"], 0, "Ohne Datum lässt sich die Aufbrauchfrist nicht bestimmen."],
+        ["Bei der Betäubungsmittelkontrolle fehlt eine Ampulle Morphin. Was ist richtig?", ["Sofort nach Betriebsregel melden und dokumentieren", "Bis zur nächsten Kontrolle abwarten, vielleicht taucht sie wieder auf", "Den Bestand im Protokoll anpassen, damit die Zahlen wieder stimmen"], 0, "Fehlbestände bei Betäubungsmitteln werden immer sofort gemeldet."],
+        ["Zwei Medikamente mit ähnlichem Namen stehen nebeneinander. Was veranlasst du?", ["Getrennt lagern und deutlich kennzeichnen", "Nichts, die Packungen sind ja unterschiedlich gross und farbig", "Eines der beiden Medikamente sofort aus dem Sortiment streichen"], 0, "Look-alike- und Sound-alike-Medikamente sind eine häufige Fehlerquelle."]
+      ]
+    },
+    transfer: "Lies auf deiner Station das Temperaturprotokoll des Kühlschranks und such drei angebrochene Medikamente. Sind sie korrekt beschriftet? Stimmen die Aufbrauchdaten mit der Liste der Spitalapotheke überein?",
+    src: "KAV Positionspapier 0024: Lagerung von Heilmitteln, Überwachung der Temperatur (2022); Kantonsapothekerin Graubünden: Merkblatt Umgang mit Arzneimitteln auf Pflegestationen (2020); Swissmedic; Stiftung Patientensicherheit Schweiz"
+  },
+  {
     id: "feedback", topic: "Teamarbeit", levels: ["AGS","FaGe","HF"], min: 8,
     title: "Feedback geben und annehmen",
     teaser: "Wie Rückmeldungen beim Lernen helfen, statt zu verletzen. Regeln, das WWW-Modell und der blinde Fleck.",
@@ -4420,6 +4491,35 @@ Object.assign(FIG, {
     return `<svg viewBox="0 0 720 256" role="img" aria-label="ABCDE-Schema"><rect width="720" height="256" fill="#fff"/>${s}</svg>`;
   }
 });
+Object.assign(FIG, {
+  medkuehlschrank: () => {
+    let s = `<rect x="40" y="20" width="240" height="290" rx="14" fill="#fff" stroke="${NV}" stroke-width="3"/><rect x="56" y="36" width="208" height="40" rx="6" fill="#e6f0fa" stroke="${LN}" stroke-width="2"/>`;
+    [116, 176, 236].forEach(y => s += `<path d="M56 ${y}h208" stroke="${LN}" stroke-width="3"/>`);
+    s += `<rect x="56" y="246" width="208" height="50" rx="6" fill="#fcebe8" stroke="${RD}" stroke-width="2" stroke-dasharray="5 4"/>`;
+    s += `<rect x="56" y="80" width="18" height="160" fill="#fcebe8"/><path d="M65 80v160" stroke="${RD}" stroke-width="2" stroke-dasharray="5 4"/>`;
+    [[110, 98], [150, 92], [190, 100], [120, 158], [170, 152], [220, 160], [130, 216], [200, 212]].forEach(([x, y]) => s += `<rect x="${x - 14}" y="${y - (116 - y > 0 ? 0 : 0)}" width="28" height="${(Math.ceil(y / 60) * 60 - 4) - y}" rx="4" fill="${GR}" opacity=".85"/>`);
+    s += `<rect x="226" y="86" width="22" height="26" rx="4" fill="#fff" stroke="${NV}" stroke-width="2"/>` + T(237, 104, "°C", { s: 10, w: 800, c: NV, f: FD });
+    s += `<rect x="290" y="30" width="34" height="270" rx="10" fill="#f4f6f9" stroke="${NV}" stroke-width="3"/>` + [70, 140, 210].map(y => `<rect x="296" y="${y}" width="22" height="34" rx="4" fill="#fcebe8" stroke="${RD}" stroke-width="1.5"/>`).join("");
+    const lab = (x, y, a, b, c) => T(x, y, a, { a: "start", s: 13.5, w: 800, c, f: FD }) + (b ? T(x, y + 18, b, { a: "start", s: 12, c: "#5b6878" }) : "");
+    s += lab(370, 56, "Gefrierfach", "nicht: Medikamente frieren ein", RD) + `<path d="M366 52H266" stroke="${RD}" stroke-width="1.5"/>`;
+    s += lab(370, 110, "Min-Max-Thermometer", "Mitte, täglich ablesen", NV) + `<path d="M366 106H250" stroke="${NV}" stroke-width="1.5"/>`;
+    s += lab(370, 160, "Mitte der Fächer: hier", "Abstand zu Wand und Gefrierfach", GR) + `<path d="M366 156H236" stroke="${GR}" stroke-width="1.5"/>`;
+    s += lab(370, 214, "Türfach und Rückwand: nicht", "Temperatur schwankt oder friert", RD) + `<path d="M366 210H326" stroke="${RD}" stroke-width="1.5"/>`;
+    s += lab(370, 268, "Gemüsefach: nicht", "", RD) + `<path d="M366 264H266" stroke="${RD}" stroke-width="1.5"/>`;
+    s += `<rect x="560" y="236" width="140" height="60" rx="12" fill="${SF}" stroke="${NV}" stroke-width="2"/>` + T(630, 262, "2 bis 8 °C", { s: 18, w: 800, c: NV, f: FD }) + T(630, 284, "keine Lebensmittel", { s: 12, c: "#5b6878" });
+    return `<svg viewBox="0 0 720 320" role="img" aria-label="Richtige Lagerung im Medikamentenkühlschrank"><rect width="720" height="320" fill="#fff"/>${s}</svg>`;
+  },
+  anbruchetikett: () => {
+    let s = `<rect x="40" y="40" width="130" height="200" rx="18" fill="#e6f0fa" stroke="${NV}" stroke-width="3"/><rect x="76" y="16" width="58" height="30" rx="6" fill="${NV}"/><rect x="58" y="120" width="94" height="96" rx="8" fill="#fff" stroke="${NV}" stroke-width="2"/>`;
+    s += T(105, 90, "Augentropfen", { s: 12, w: 800, c: NV, f: FD }) + T(105, 140, "Anbruch", { s: 10.5, c: "#5b6878" }) + T(105, 158, "03.03.", { s: 13, w: 800, c: NV, f: FD }) + T(105, 180, "Aufbrauchen bis", { s: 10.5, c: "#5b6878" }) + T(105, 198, "31.03.", { s: 13, w: 800, c: RD, f: FD });
+    s += `<path d="M160 168H250" stroke="${NV}" stroke-width="1.5"/>`;
+    s += `<rect x="256" y="40" width="430" height="200" rx="16" fill="#fff" stroke="${NV}" stroke-width="3"/>`;
+    const rows = [["Angebrochen am", "03.03.2026", NV], ["Aufbrauchfrist", "4 Wochen", "#5b6878"], ["Aufbrauchen bis", "31.03.2026", RD], ["Visum", "AB", NV]];
+    rows.forEach(([a, b, c], i) => { const y = 82 + i * 42; s += T(282, y, a, { a: "start", s: 14, w: 700, c: "#5b6878" }) + T(470, y, b, { a: "start", s: 15, w: 800, c, f: FD }) + (i < 3 ? `<path d="M282 ${y + 16}H662" stroke="${LN}" stroke-width="1.5"/>` : ""); });
+    s += T(360, 272, "Verfalldatum auf der Packung: 12.2026. Das frühere Datum gilt.", { s: 13, w: 700, c: NV, f: FD });
+    return `<svg viewBox="0 0 720 290" role="img" aria-label="Beispiel für die Beschriftung eines angebrochenen Medikaments"><rect width="720" height="290" fill="#fff"/>${s}</svg>`;
+  }
+});
 const GLYPH = {
   lernbegleitung: '<circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 21c0-5 3-8 6-8s6 3 6 8M13 21c.5-3 2-5 4-5s3.5 2 4 5"/><path d="M11 10l3 1"/>',
   rollen: '<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M12 8v4M12 12l-5 3M12 12l5 3"/>',
@@ -4436,6 +4536,7 @@ const GLYPH = {
   ausscheidung: '<path d="M7 3h10M9 3v6l-4 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-4-9V3"/><path d="M6.5 15h11"/>',
   mobilisation: '<circle cx="10" cy="4" r="1.6"/><path d="M10 7v6h6l2 5"/><path d="M10 10h5"/><path d="M7 11a6 6 0 1 0 8 7"/>',
   "sc-injektion": '<path d="M18 2l4 4M20 4l-4 4M15 5l4 4M14 6l-8 8-1 4 4-1 8-8M3 21l3-3M9 11l2 2"/>',
+  lagerung: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 9h14M8 6h2M12 13v4"/><circle cx="12" cy="17" r="1.5"/>',
   abcde: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v3h6V3M8 11h8M8 15h5"/>',
   "notfall-erkennen": '<path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
   atemnot: '<path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>',
@@ -4494,6 +4595,7 @@ function art(n) {
     dokumentation: `<rect x="96" y="30" width="116" height="148" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="130" y="20" width="48" height="20" rx="6" fill="${c}"/><path d="M114 66l6 6 10-12M114 98l6 6 10-12M114 130l6 6 10-12" fill="none" stroke="#1e7f4a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M140 66h54M140 98h46M140 130h50M140 152h36" stroke="${d}" stroke-width="6" stroke-linecap="round"/><g transform="rotate(35 246 104)"><rect x="236" y="40" width="20" height="96" rx="4" fill="#f2b33d" stroke="#b26a00" stroke-width="2.5"/><path d="M236 136l10 20 10-20z" fill="#fff" stroke="#b26a00" stroke-width="2.5" stroke-linejoin="round"/><rect x="236" y="40" width="20" height="14" fill="${c}"/></g>`,
     datenschutz: `<rect x="44" y="70" width="90" height="70" rx="8" fill="${d}" stroke="${c}" stroke-width="4"/><path d="M44 78h36l8-10h46" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M190 26l64 22v46c0 40-28 64-64 78-36-14-64-38-64-78V48z" fill="#fff" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><rect x="166" y="96" width="48" height="40" rx="8" fill="${c}"/><path d="M176 96V84a14 14 0 0 1 28 0v12" fill="none" stroke="${c}" stroke-width="6"/><circle cx="190" cy="114" r="5" fill="#f2b33d"/><path d="M190 118v8" stroke="#f2b33d" stroke-width="4" stroke-linecap="round"/>`,
     resilienz: `<rect x="56" y="70" width="120" height="66" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><rect x="176" y="90" width="10" height="26" rx="3" fill="${c}"/><rect x="68" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="102" y="82" width="28" height="42" rx="4" fill="#57b37a"/><rect x="136" y="82" width="28" height="42" rx="4" fill="${d}"/><path d="M152 84l-12 22h12l-8 16" fill="none" stroke="#f2b33d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M246 170v-58" stroke="${c}" stroke-width="5" stroke-linecap="round"/><path d="M246 128c-30 0-40-22-40-40 26 0 40 16 40 40z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M246 112c0-26 14-44 42-44 0 26-16 44-42 44z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M214 172h64" stroke="${c}" stroke-width="5" stroke-linecap="round"/>`,
+    lagerung: `<rect x="70" y="24" width="120" height="164" rx="12" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M70 70h120M70 118h120" stroke="${c}" stroke-width="3"/><rect x="86" y="80" width="18" height="34" rx="3" fill="${d}"/><rect x="112" y="84" width="18" height="30" rx="3" fill="${d}"/><rect x="138" y="78" width="18" height="36" rx="3" fill="${d}"/><path d="M178 40v20" stroke="${c}" stroke-width="4" stroke-linecap="round"/><rect x="214" y="40" width="26" height="110" rx="13" fill="#fff" stroke="${c}" stroke-width="4"/><circle cx="227" cy="150" r="20" fill="#c0463b" stroke="${c}" stroke-width="4"/><path d="M227 140V70" stroke="#c0463b" stroke-width="8" stroke-linecap="round"/><path d="M244 70h12M244 92h12M244 114h12" stroke="${c}" stroke-width="3"/><rect x="86" y="132" width="88" height="40" rx="6" fill="${bg}" stroke="${c}" stroke-width="3"/><text x="130" y="158" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" fill="${c}">2 bis 8 °C</text>`,
     abcde: `${[c,c,c,c,c].map((f, i) => `<circle cx="${52 + i * 54}" cy="104" r="24" fill="${f}"/><text x="${52 + i * 54}" y="113" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="24" fill="#fff">${"ABCDE"[i]}</text>`).join("")}<path d="M40 150h232" stroke="${c}" stroke-width="4" stroke-linecap="round"/><path d="M262 140l12 10-12 10" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round"/>`,
     "notfall-erkennen": `<path d="M160 30l80 138H80z" fill="#fff" stroke="${c}" stroke-width="5" stroke-linejoin="round"/><path d="M160 80v44" stroke="#c0463b" stroke-width="10" stroke-linecap="round"/><circle cx="160" cy="146" r="7" fill="#c0463b"/><rect x="232" y="96" width="44" height="72" rx="10" fill="#fff" stroke="${c}" stroke-width="4"/><text x="254" y="140" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" fill="${c}">144</text>`,
     atemnot: `<circle cx="96" cy="78" r="26" fill="#fff" stroke="${c}" stroke-width="4"/><path d="M50 182c0-40 20-64 46-64s46 24 46 64z" fill="${d}" stroke="${c}" stroke-width="4" stroke-linejoin="round"/><path d="M132 78c30-4 50-14 60-26M134 92c34 0 62 0 84-10M132 106c30 6 56 14 70 28" stroke="${c}" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="2 9"/><path d="M230 60c20 20 20 60 0 80M252 46c28 28 28 80 0 108" stroke="#9ec5ee" stroke-width="6" fill="none" stroke-linecap="round"/>`,
