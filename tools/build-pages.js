@@ -82,14 +82,14 @@ function jsonLd(n, url) {
 
 function page(p, extraHead, app) {
   const url = SITE + (p.id ? p.id + "/" : ""), t = esc(p.title + " · Pflegepedia"), d = esc(p.desc);
-  let h = src.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<base href="/">' + extraHead);
+  let h = src.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>\n?/, "")
+    .replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<base href="/">' + extraHead);
   h = h.replace(/<title>[^<]*<\/title>/, `<title>${t}</title>`)
     .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${d}">`)
     .replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${url}">`)
     .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${t}">`)
     .replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${d}">`)
     .replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${url}">`)
-    .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>\n?/, "")
     .replace(/<script>\n[\s\S]*?<\/script>/, () => `<script src="/${appFile}"></script>`);
   if (app !== undefined) h = putApp(h, app);
   return h;
