@@ -11,7 +11,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="google-site-verification" content="KkVOtLr0xJMq_KlIB6lryJJY6S548nZ2_Ipe-nEA7QE">
 <link rel="canonical" href="https://www.pflegepedia.ch/">
-<meta name="theme-color" content="#1d3f66">
+<meta name="theme-color" content="#fbf8f3">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Pflegepedia">
@@ -32,122 +32,198 @@
 @font-face { font-family: "Plus Jakarta Sans"; font-weight: 800; font-display: swap; src: url("fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2"); }
 @font-face { font-family: "Atkinson Hyperlegible"; font-weight: 400; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Atkinson Hyperlegible"; font-weight: 700; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-weight: 500; font-display: swap; src: url("fonts/newsreader-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-weight: 600; font-display: swap; src: url("fonts/newsreader-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-weight: 500; font-style: italic; font-display: swap; src: url("fonts/newsreader-latin-500-italic.woff2") format("woff2"); }
 :root {
-  /* Farbe bedeutet Stufe: AGS orange, FaGe blau, HF violett. Alles andere ruhig in Navy und Grau. */
-  --bg: #ffffff;
-  --soft: #f4f6f9;
-  --ink: #17283b;
-  --muted: #5b6878;
-  --line: #e2e7ee;
-  --brand: #1d3f66;
-  --brand-2: #edf2f8;
-  --brand-3: #d3dfeb;
+  /* Editorial Wissen: Elfenbein, Nachtblau, Messing. Farbe bedeutet Stufe: AGS orange, FaGe blau, HF violett. */
+  --bg: #fbf8f3;
+  --paper: #ffffff;
+  --soft: #f4efe7;
+  --sand: #efe6d8;
+  --ink: #16202c;
+  --muted: #565f6b;
+  --line: #e7dfd2;
+  --line-2: #d9cfbf;
+  --brand: #14304f;
+  --brand-2: #eef1f4;
+  --brand-3: #d5dde6;
+  --gold: #b48a4c;
+  --gold-ink: #85601f;
+  --gold-soft: #f5ecdc;
+  --night: #0f2238;
   --ags: #c2410c; --ags-bg: #fff1e8;
   --fage: #1971c2; --fage-bg: #e8f2fc;
   --hf: #8a2fa8; --hf-bg: #f6eafa;
-  --ok: #1e7f4a; --ok-bg: #e4f4ea;
-  --bad: #b23b2c; --bad-bg: #fcebe8;
+  --ok: #1e7547; --ok-bg: #e5f2e9;
+  --bad: #b23b2c; --bad-bg: #fbebe7;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
   --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
-  --shadow: 0 1px 2px rgba(23,40,59,.05), 0 6px 18px rgba(23,40,59,.06);
+  --shadow: 0 1px 1px rgba(44,32,18,.03), 0 2px 6px rgba(44,32,18,.04), 0 12px 32px -14px rgba(44,32,18,.14);
+  --shadow-lift: 0 1px 1px rgba(44,32,18,.04), 0 6px 14px rgba(44,32,18,.06), 0 28px 56px -20px rgba(20,48,79,.26);
+  --r: 20px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
   color-scheme: light;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-body { background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); }
-h1, h2, h3 { font-family: var(--display); line-height: 1.2; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font: 17.5px/1.65 var(--body); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.12; text-wrap: balance; margin: 0; letter-spacing: -0.015em; hyphens: auto; }
 a { color: inherit; }
 button { font: inherit; color: inherit; cursor: pointer; }
-:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+::selection { background: var(--gold-soft); color: var(--ink); }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
 .skip { position: absolute; left: 12px; top: -60px; z-index: 60; background: var(--brand); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-family: var(--display); text-decoration: none; }
 .skip:focus { top: 10px; }
 #app:focus, #app h1:focus, .fb:focus { outline: none; }
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.eyebrow { font-family: var(--display); font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-ink); }
 
 /* Kopf */
-.top { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; gap: 20px; min-height: 68px; flex-wrap: wrap; }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 21px; color: var(--brand); letter-spacing: -0.02em; }
-.logo svg { width: 38px; height: 38px; flex: none; margin: -2px -4px -2px -4px; }
-.nav { display: flex; gap: 18px; margin-left: 8px; }
-.nav a { text-decoration: none; color: var(--muted); font-weight: 700; font-size: 15px; font-family: var(--display); }
+.top { position: sticky; top: 0; z-index: 5; background: rgba(251,248,243,.86); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 24px; min-height: 72px; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-weight: 600; font-size: 25px; color: var(--brand); letter-spacing: -0.02em; }
+.logo svg { width: 36px; height: 36px; flex: none; margin: -2px -2px -2px -4px; }
+.nav { display: flex; gap: 22px; margin-left: 10px; }
+.nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 15px; font-family: var(--display); position: relative; padding: 4px 0; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1.5px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
 .nav a:hover { color: var(--brand); }
-.picker { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-.picker > span { font-size: 14px; color: var(--muted); font-weight: 700; }
-.levels { display: flex; gap: 4px; background: var(--soft); padding: 4px; border-radius: 12px; }
-.levels button { border: 0; background: transparent; padding: 7px 13px; border-radius: 9px; font-weight: 700; font-size: 14.5px; color: var(--muted); font-family: var(--display); }
-.levels button:hover { color: var(--ink); }
-.levels button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: var(--shadow); }
+.nav a:hover::after { transform: scaleX(1); }
+.picker { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.picker > span { font-size: 13px; color: var(--muted); font-weight: 700; font-family: var(--display); letter-spacing: .08em; text-transform: uppercase; }
+.levels { display: flex; gap: 3px; background: var(--paper); padding: 4px; border-radius: 99px; border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(44,32,18,.04); }
+.levels button { border: 0; background: transparent; padding: 7px 15px; border-radius: 99px; font-weight: 700; font-size: 14px; color: var(--muted); font-family: var(--display); transition: background .3s var(--ease), color .3s var(--ease); min-height: 36px; }
+.levels button:hover { color: var(--ink); background: var(--soft); }
+.levels button[aria-pressed="true"] { background: var(--brand); color: #fff; }
 .levels button[data-level="AGS"][aria-pressed="true"] { background: var(--ags); color: #fff; }
 .levels button[data-level="FaGe"][aria-pressed="true"] { background: var(--fage); color: #fff; }
 .levels button[data-level="HF"][aria-pressed="true"] { background: var(--hf); color: #fff; }
 
 /* Stufen-Badges: einzige farbige Elemente */
-.lv { font-size: 12.5px; font-weight: 700; padding: 2px 9px; border-radius: 6px; color: #fff; font-family: var(--display); white-space: nowrap; }
+.lv { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; color: #fff; font-family: var(--display); white-space: nowrap; letter-spacing: .01em; }
 .lv.AGS { background: var(--ags); } .lv.FaGe { background: var(--fage); } .lv.HF { background: var(--hf); }
 .lv.dim { opacity: .28; }
 
 /* Hero */
-.hero { border-bottom: 1px solid var(--line); background: var(--soft); }
-.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; padding-top: 40px; padding-bottom: 40px; }
-.hero h1 { font-size: clamp(30px, 4.2vw, 44px); font-weight: 800; color: var(--brand); }
-.hero p { color: var(--muted); font-size: 18px; max-width: 52ch; margin: 12px 0 18px; }
-.stats { display: flex; gap: 22px; flex-wrap: wrap; font-size: 15px; color: var(--muted); }
-.stats b { display: block; font-family: var(--display); font-size: 22px; color: var(--ink); font-variant-numeric: tabular-nums; }
-.choose { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: var(--shadow); }
-.choose h2 { font-size: 19px; margin-bottom: 4px; }
-.choose p { margin: 0 0 14px; font-size: 15px; }
-.choose .opts3 { display: grid; gap: 10px; }
-.choose button { text-align: left; display: grid; grid-template-columns: 88px 1fr; align-items: center; gap: 12px; border: 2px solid var(--line); background: #fff; border-radius: 12px; padding: 10px 12px; }
-.choose button:hover { border-color: var(--brand); }
-.choose button .lv { font-size: 14px; padding: 5px 0; text-align: center; }
-.choose button span:last-child { font-size: 15px; color: var(--ink); font-weight: 700; }
-.mine .bar { height: 10px; background: var(--soft); border-radius: 99px; overflow: hidden; margin: 10px 0 8px; }
+.hero { position: relative; overflow: hidden; background:
+  radial-gradient(60% 80% at 88% 10%, rgba(180,138,76,.10), transparent 60%),
+  radial-gradient(50% 70% at 5% 100%, rgba(20,48,79,.06), transparent 60%), var(--bg); }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2) 20%, var(--line-2) 80%, transparent); }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; padding-top: 72px; padding-bottom: 40px; }
+.hero h1 { font-size: clamp(40px, 5.6vw, 76px); font-weight: 500; color: var(--brand); letter-spacing: -0.03em; line-height: 1.02; margin-top: 16px; }
+.hero h1 em { font-style: italic; color: var(--gold-ink); font-weight: 500; }
+.hero p { color: var(--muted); font-size: 19px; max-width: 50ch; margin: 22px 0 30px; }
+.hero-art { position: relative; aspect-ratio: 560 / 460; }
+.hero-art svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.stats { display: flex; gap: 0; flex-wrap: wrap; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line-2); padding-top: 18px; }
+.stats div { padding: 0 26px; border-left: 1px solid var(--line); line-height: 1.35; }
+.stats div:first-child { padding-left: 0; border-left: 0; }
+.stats b { display: block; font-family: var(--serif); font-weight: 500; font-size: 34px; color: var(--ink); font-variant-numeric: lining-nums tabular-nums; letter-spacing: -0.02em; margin-bottom: 2px; }
+#herobox { grid-column: 1 / -1; }
+.choose { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 24px 26px; box-shadow: var(--shadow); display: grid; grid-template-columns: minmax(220px, .9fr) 2.1fr; grid-template-rows: auto 1fr; column-gap: 32px; row-gap: 4px; align-items: start; }
+.choose > h2, .choose > p { grid-column: 1; }
+.choose > h2 { align-self: end; }
+.choose > :not(h2):not(p) { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+.choose h2 { font-size: 24px; font-weight: 500; color: var(--brand); }
+.choose p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+.choose .opts3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.choose button { text-align: left; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; border: 1px solid var(--line); background: var(--bg); border-radius: 16px; padding: 14px 16px; transition: transform .45s var(--ease), border-color .3s var(--ease), box-shadow .45s var(--ease), background .3s; }
+.choose button:hover { border-color: var(--line-2); background: var(--paper); transform: translateY(-2px); box-shadow: var(--shadow); }
+.choose button .lv { font-size: 13px; padding: 4px 12px; }
+.choose button span:last-child { font-size: 14.5px; color: var(--ink); font-weight: 700; line-height: 1.35; }
+.mine { display: block; }
+.mine .bar { height: 8px; background: var(--soft); border-radius: 99px; overflow: hidden; margin: 12px 0 8px; }
 .mine .bar i { display: block; height: 100%; border-radius: 99px; }
-.mine .big { font-family: var(--display); font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.mine .big { font-family: var(--serif); font-size: 40px; font-weight: 500; font-variant-numeric: lining-nums tabular-nums; }
 .mine small { color: var(--muted); font-size: 14px; }
 
 /* Abschnitte */
-section.block { padding: 40px 0 8px; }
-.block-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
-.block-head h2 { font-size: 25px; }
-.block-head p { margin: 4px 0 0; color: var(--muted); }
-.toolbar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 26px 0 0; }
-#search { flex: 1 1 280px; max-width: 440px; font: inherit; padding: 11px 14px 11px 42px; border: 1px solid var(--line); border-radius: 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%235b6878' stroke-width='2'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E") 14px center no-repeat; color: var(--ink); }
-.jump { display: flex; gap: 6px; flex-wrap: wrap; }
-.jump button { border: 1px solid var(--line); background: #fff; border-radius: 99px; padding: 6px 12px 6px 8px; font-size: 14px; font-weight: 700; display: flex; gap: 6px; align-items: center; color: var(--ink); font-family: var(--display); }
-.jump button:hover { border-color: var(--brand); color: var(--brand); }
-.jump svg { width: 16px; height: 16px; color: var(--brand); }
-.topic { padding-top: 34px; scroll-margin-top: 80px; }
-.topic-head { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-.topic-head i { width: 42px; height: 42px; border-radius: 12px; background: var(--brand-2); color: var(--brand); display: grid; place-items: center; flex: none; }
-.topic-head i svg { width: 22px; height: 22px; }
-.topic-head h2 { font-size: 22px; }
-.topic-head p { margin: 2px 0 0; color: var(--muted); font-size: 15.5px; }
-.topic-head .count { margin-left: auto; color: var(--muted); font-size: 14px; white-space: nowrap; }
+section.block { padding: 56px 0 8px; }
+.block-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+.block-head h2 { font-size: 34px; font-weight: 500; color: var(--brand); }
+.block-head p { margin: 6px 0 0; color: var(--muted); }
+.toolbar { display: grid; gap: 22px; padding: 56px 0 0; }
+.toolbar-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; }
+.toolbar-head h2 { font-size: clamp(30px, 3.4vw, 42px); font-weight: 500; color: var(--brand); margin-top: 8px; }
+#search { flex: 1 1 320px; max-width: 440px; font: inherit; font-size: 16px; padding: 13px 18px 13px 46px; border: 1px solid var(--line-2); border-radius: 99px; background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23565f6b' stroke-width='1.6'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E") 18px center no-repeat; color: var(--ink); transition: border-color .3s, box-shadow .3s; }
+#search:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 4px rgba(20,48,79,.10); }
+.jump { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.jump button { position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--paper); border-radius: 18px; padding: 16px 16px 14px; text-align: left; display: grid; grid-template-columns: 40px 1fr; grid-template-rows: auto auto; column-gap: 12px; align-items: center; color: var(--ink); font-family: var(--display); align-content: center; row-gap: 2px; transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .3s; }
+.jump button:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--line-2); }
+.jump button i { grid-row: 1 / 3; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--tint, var(--brand-2)); color: var(--brand); }
+.jump button b { font-family: var(--serif); font-weight: 600; font-size: 18.5px; letter-spacing: -0.01em; line-height: 1.2; }
+.jump button small { font-size: 13px; color: var(--muted); font-weight: 600; }
+.jump button.big { grid-column: span 2; grid-template-columns: 52px 1fr; padding: 20px 22px; background: var(--brand); border-color: var(--brand); color: #fff; }
+.jump button.big i { width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,.1); color: #e9d3ad; }
+.jump button.big b { font-size: 23px; }
+.jump button.big small { color: #c8d3df; }
+.jump button.big span.d { grid-column: 2; font-family: var(--body); font-size: 14.5px; color: #dce4ed; font-weight: 400; margin-top: 4px; line-height: 1.45; }
+.jump button.big.alt { background: var(--gold-soft); border-color: #eadbc1; color: var(--ink); }
+.jump button.big.alt i { background: var(--paper); color: var(--gold-ink); }
+.jump button.big.alt small, .jump button.big.alt span.d { color: var(--muted); }
+.jump svg { width: 21px; height: 21px; stroke-width: 1.6; }
+.topic { padding-top: 64px; scroll-margin-top: 90px; counter-increment: topic; }
+#list { counter-reset: topic; }
+.topic-head { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: end; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line-2); }
+.topic-head i { font-style: normal; font-family: var(--serif); font-size: 15px; color: var(--gold-ink); width: auto; height: auto; background: none; display: block; align-self: start; padding-top: 6px; letter-spacing: .04em; }
+.topic-head i::before { content: counter(topic, decimal-leading-zero); }
+.topic-head i svg { display: none; }
+.topic-head h2 { font-size: clamp(28px, 3vw, 36px); font-weight: 500; color: var(--brand); }
+.topic-head p { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
+.topic-head .count { color: var(--muted); font-size: 13px; white-space: nowrap; font-family: var(--display); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 
 /* Karten */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; }
-.card { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s; }
-.card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(23,40,59,.06), 0 14px 30px rgba(23,40,59,.12); }
-.card .art { height: 124px; position: relative; }
-.card .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.card .doneb { position: absolute; top: 10px; right: 10px; background: var(--ok); color: #fff; border-radius: 8px; padding: 3px 9px; font-size: 13px; font-weight: 700; }
-.card .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
-.card .tp { font-size: 12.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-family: var(--display); }
-.card h3 { font-size: 18px; font-weight: 700; }
-.card p { margin: 0; color: var(--muted); font-size: 15px; }
-.foot { margin-top: auto; padding-top: 10px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; border-top: 1px solid var(--line); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .6s var(--ease), box-shadow .6s var(--ease), border-color .3s; }
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); border-color: var(--line-2); }
+.card .art { height: 150px; position: relative; overflow: hidden; }
+.card .art svg { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform 1s var(--ease); }
+.card:hover .art svg { transform: scale(1.045); }
+.card .doneb { position: absolute; top: 12px; right: 12px; background: var(--ok); color: #fff; border-radius: 99px; padding: 3px 11px; font-size: 12.5px; font-weight: 700; font-family: var(--display); }
+.card .body { padding: 18px 20px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card .tp { font-size: 11.5px; font-weight: 700; color: var(--gold-ink); text-transform: uppercase; letter-spacing: .14em; font-family: var(--display); }
+.card h3 { hyphenate-limit-chars: 12 5 5; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: -0.015em; line-height: 1.15; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.foot { margin-top: auto; padding-top: 14px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; border-top: 1px solid var(--line); }
 .min { margin-left: auto; font-size: 13.5px; color: var(--muted); display: flex; gap: 5px; align-items: center; }
 .empty { color: var(--muted); padding: 20px 0 40px; }
+@media (min-width: 1000px) {
+  .grid.g3 { grid-template-columns: repeat(4, 1fr); }
+  .grid.g3 .card:first-child { grid-column: span 2; flex-direction: row; }
+  .grid.g3 .card:first-child .art { height: auto; flex: 0 0 52%; }
+  .grid.g3 .card:first-child .art svg { inset: auto 0; top: 50%; height: auto; transform: translateY(-50%); }
+  .grid.g3 .card:first-child:hover .art svg { transform: translateY(-50%) scale(1.045); }
+  .grid.g3 .card:first-child .body { padding: 26px 26px 22px; }
+  .grid.g3 .card:first-child h3 { font-size: 28px; }
+  .grid.g3 .card:first-child p { font-size: 16px; }
+  .grid.g4 { grid-template-columns: repeat(4, 1fr); }
+}
 
 /* Über */
-.about { margin: 48px 0 56px; background: var(--brand); color: #fff; border-radius: 22px; padding: 34px clamp(22px, 4vw, 44px); display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; align-items: center; }
-.about h2 { font-size: 26px; color: #fff; }
-.about p { color: #d8e3ef; margin: 10px 0 0; max-width: 60ch; }
-.about ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-.about li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; color: #fff; }
-.about li::before { content: "✓"; font-weight: 800; color: #9ec5ee; }
+.about { position: relative; overflow: hidden; margin: 88px 0 72px; background: var(--night); color: #fff; border-radius: 28px; padding: clamp(32px, 5vw, 60px); display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+.about::before { content: ""; position: absolute; width: 520px; height: 520px; right: -160px; top: -220px; border-radius: 50%; background: radial-gradient(circle, rgba(180,138,76,.28), transparent 65%); pointer-events: none; }
+.about > * { position: relative; }
+.about h2 { font-size: clamp(30px, 3.4vw, 42px); font-weight: 500; color: #fff; }
+.about h2::before { content: "Das Projekt"; display: block; font-family: var(--display); font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #e2c597; margin-bottom: 12px; }
+.about p { color: #cfd9e4; margin: 14px 0 0; max-width: 60ch; }
+.about ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.about li { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: center; color: #fff; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.12); }
+.about li:last-child { border-bottom: 1px solid rgba(255,255,255,.12); }
+.about li::before { content: ""; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #e2c597; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e2c597' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 12.5 3 3 7-7'/%3E%3C/svg%3E") center / 15px no-repeat; }
+
+/* Bewegung */
+.js .rv { opacity: 0; transform: translateY(18px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }
+.js .rv.in { opacity: 1; transform: none; }
+@keyframes ppFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes ppDraw { from { stroke-dashoffset: var(--len, 300); } to { stroke-dashoffset: 0; } }
+@keyframes ppIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero h1, .hero p.intro, .stats, .hero-art { animation: ppIn 1s var(--ease) both; }
+.hero p.intro { animation-delay: .08s; } .stats { animation-delay: .16s; } .hero-art { animation-delay: .1s; }
+.hero-art .fl1 { animation: ppFloat 7s ease-in-out infinite; }
+.hero-art .fl2 { animation: ppFloat 8s ease-in-out -3s infinite; }
+.hero-art .pulse { stroke-dasharray: var(--len, 300); animation: ppDraw 2.4s var(--ease) .5s both; }
 
 /* Textseiten */
 .page { max-width: 760px; margin: 0 auto; padding: 40px 24px 70px; }
@@ -348,6 +424,112 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid #2c4058; padding-top:
   .tbl td:has(.nil) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } .card:hover { transform: none; } }
+/* Editorial: Textseiten, Nugget, Fuss */
+.page { max-width: 780px; padding: 56px 28px 90px; }
+.page h1 { font-size: clamp(34px, 6vw, 52px); font-weight: 500; letter-spacing: -0.025em; margin: 22px 0 22px; }
+.page h2 { font-size: 25px; font-weight: 500; color: var(--brand); margin: 36px 0 10px; }
+.reset { border: 1px solid var(--line-2); background: var(--paper); border-radius: 99px; padding: 9px 18px; font-weight: 700; font-family: var(--display); font-size: 14.5px; }
+.nhero { background: radial-gradient(55% 90% at 100% 0%, rgba(180,138,76,.09), transparent 60%), var(--bg); border-bottom: 1px solid var(--line); }
+.nhero .wrap { grid-template-columns: 1.15fr .85fr; gap: 48px; padding-top: 34px; padding-bottom: 44px; }
+.back { gap: 8px; font-family: var(--display); font-size: 14px; background: var(--paper); border-color: var(--line-2); padding: 7px 14px; border-radius: 99px; transition: background .3s, transform .45s var(--ease); }
+.back:hover { background: var(--soft); transform: translateX(-2px); }
+.nhero .kick { margin: 26px 0 14px; }
+.nhero .kick .tpk { color: var(--gold-ink); letter-spacing: .14em; font-size: 12px; }
+.nhero .kick svg { color: var(--gold-ink); }
+.nhero h1 { font-size: clamp(36px, 4.6vw, 60px); font-weight: 500; letter-spacing: -0.028em; line-height: 1.04; }
+.nhero .lead { font-size: 19px; margin: 18px 0 0; color: #36404c; }
+.nhero .art { aspect-ratio: 16/11; border-radius: 26px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.ncontent { grid-template-columns: minmax(0, 1fr) 310px; gap: 32px; padding: 40px 28px 90px; }
+.panel { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 32px 34px; box-shadow: var(--shadow); }
+.panel + .panel { margin-top: 24px; }
+.panel h2 { font-size: 28px; font-weight: 500; color: var(--brand); gap: 14px; margin-bottom: 20px; letter-spacing: -0.02em; }
+.panel h2 i { width: 38px; height: 38px; border-radius: 50%; background: var(--gold-soft); color: var(--gold-ink); flex: none; }
+.panel h2 i svg { width: 19px; height: 19px; stroke-width: 1.7; }
+.theory h3 { font-size: 23px; font-weight: 500; margin: 34px 0 10px; letter-spacing: -0.015em; }
+.theory li::marker { color: var(--gold); }
+.tbl { border-color: var(--line); border-radius: 16px; }
+.tbl th { background: var(--soft); font-family: var(--display); font-size: 13px; letter-spacing: .04em; color: #3b4450; }
+.tbl td { border-top-color: var(--line); }
+.fig { border-color: var(--line); border-radius: 18px; }
+.fig figcaption { background: var(--soft); border-top-color: var(--line); font-size: 14px; }
+.points li::before { background: var(--gold-soft); color: var(--gold-ink); font-family: var(--serif); font-size: 16px; font-weight: 600; }
+.merke { background: var(--gold-soft); border: 1px solid #e8d7b8; border-radius: 18px; padding: 18px 20px; }
+.merke svg { color: var(--gold-ink); }
+.merke b { color: var(--gold-ink); font-family: var(--display); letter-spacing: .1em; text-transform: uppercase; font-size: 13px; margin-bottom: 2px; }
+.facts-list li i { background: var(--gold-soft); color: var(--gold-ink); font-family: var(--serif); font-weight: 600; }
+.role { border-radius: 16px; border-top-width: 3px; }
+.qt { border-width: 1.5px; border-radius: 99px; padding: 7px 16px; background: var(--paper); }
+.opts button { border: 1px solid var(--line-2); border-radius: 14px; padding: 12px 14px; background: var(--paper); transition: border-color .25s, background .25s, transform .4s var(--ease); min-height: 48px; }
+.opts button:hover:not(:disabled) { border-color: var(--brand); background: var(--brand-2); transform: translateX(2px); }
+.opts .k { border-radius: 50%; background: var(--soft); font-family: var(--display); }
+.result { border-radius: 14px; }
+.transfer { background: var(--brand-2); border-radius: 16px; padding: 18px 20px; border-left: 3px solid var(--brand); border-radius: 0 16px 16px 0; }
+.aside { top: calc(var(--hh, 72px) + 70px); }
+.aside .panel { padding: 24px 24px; }
+.aside .panel h2 { font-size: 22px; }
+.facts dd { font-family: var(--display); font-size: 15px; }
+.mini { border-radius: 14px; transition: background .3s; }
+.mini .art { border-radius: 10px; border: 1px solid var(--line); }
+.mini span { font-family: var(--serif); font-weight: 600; font-size: 16.5px; }
+.mini small { font-family: var(--body); }
+.subnav { background: rgba(251,248,243,.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom-color: var(--line); top: var(--hh, 72px); }
+.subnav button { font-weight: 600; font-size: 14px; padding: 14px 14px; border-bottom-width: 2px; }
+.subnav button.on { color: var(--brand); border-color: var(--gold); }
+.report .btn, .dp-aside .btn { border-radius: 99px; padding: 11px 16px; transition: background .3s, transform .45s var(--ease); }
+.report .btn:hover { background: var(--night); transform: translateY(-1px); }
+.totop { background: var(--brand); box-shadow: var(--shadow-lift); }
+.showall { border: 1px solid var(--line-2); background: var(--paper); color: var(--brand); border-radius: 99px; padding: 11px 24px; margin-top: 26px; transition: background .3s, border-color .3s; }
+.mine .next { border-radius: 16px; border-color: var(--line); background: var(--bg); }
+.mine .next b { font-family: var(--serif); font-size: 18px; font-weight: 600; }
+footer { background: var(--night); color: #c6d1dd; font-size: 14.5px; }
+footer .wrap { padding-top: 56px; padding-bottom: 40px; gap: 36px; }
+footer .logo { color: #fff; }
+footer h3 { font-family: var(--display); font-size: 12.5px; color: #e2c597; letter-spacing: .14em; font-weight: 700; margin-bottom: 14px; }
+footer a { color: #c6d1dd; }
+footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding-top: 22px; }
+@media (max-width: 1000px) {
+  .jump { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-top: 44px; gap: 28px; }
+  .hero-art { max-width: 560px; width: 100%; margin: 0 auto; }
+  .choose { grid-template-columns: 1fr; }
+  .choose > * { grid-column: 1 !important; grid-row: auto !important; }
+  .choose .opts3 { margin-top: 14px; }
+  .nhero .wrap { grid-template-columns: 1fr; }
+  .ncontent { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  .wrap { padding: 0 20px; }
+  .hero .wrap { padding-top: 28px !important; padding-bottom: 28px !important; gap: 22px !important; }
+  .hero h1 { font-size: 42px; }
+  .hero p.intro { font-size: 16.5px; margin: 14px 0 0; }
+  .hero-art { order: -1; max-width: 340px; margin: 0 auto -6px; }
+  .choose { padding: 18px; gap: 12px; border-radius: 20px; }
+  .choose h2 { font-size: 22px; margin-bottom: 0; }
+  .choose .opts3 { grid-template-columns: 1fr; gap: 8px; }
+  .choose button { flex-direction: row; align-items: center; padding: 10px 12px; gap: 12px; }
+  .choose button .lv { min-width: 78px; text-align: center; }
+  .jump { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .jump button { grid-template-columns: 1fr; padding: 14px; border-radius: 16px; row-gap: 2px; }
+  .jump button i { grid-row: auto; width: 34px; height: 34px; border-radius: 10px; margin-bottom: 8px; }
+  .jump button b { font-size: 16.5px; }
+  .jump button.big { grid-column: span 2; grid-template-columns: 44px 1fr; padding: 16px; }
+  .jump button.big i { grid-row: 1 / 4; width: 44px; height: 44px; margin-bottom: 0; align-self: start; }
+  .jump button.big b, .jump button.big small, .jump button.big span.d { grid-column: 2; }
+  .jump button.big b { font-size: 20px; }
+  .toolbar { padding-top: 40px; }
+  .topic { padding-top: 48px; }
+  .topic-head { grid-template-columns: auto 1fr; gap: 12px; }
+  .card h3 { font-size: 21px; }
+  .panel { padding: 22px 20px; border-radius: 20px; }
+  .panel h2 { font-size: 24px; }
+  .nhero h1 { font-size: 36px; }
+  .nhero .art { aspect-ratio: auto; height: 140px; border-radius: 18px; }
+  .about { border-radius: 22px; margin: 64px 0 48px; }
+  .ncontent { padding: 24px 16px 64px; }
+}
 /* Vertiefung */
 .panel.deep { border-top: 5px solid var(--fage); }
 .panel.deep h2 .lv { margin-left: 4px; font-size: 13px; }
@@ -687,7 +869,7 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
     <div class="body"><span class="tp">Berufsrolle</span><h3>IPA-Vorbereitung: dein Weg zum Abschluss</h3><p>Was die individuelle praktische Arbeit ist, wie sie abläuft, wie sie bewertet wird und wie du dich gut vorbereitest.</p>
       <div class="foot"><span class="lv AGS">AGS</span><span class="lv FaGe">FaGe</span><span class="min"><svg width="15" height="15" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg> 10 Min.</span></div></div></a></div>
     <button class="showall" data-n="6">Alle 6 Nuggets anzeigen</button></section></div>
-    <section class="about" id="ueber">
+    <section class="about rv" id="ueber">
       <div><h2>Über Pflegepedia</h2>
         <p>Pflegepedia ist ein privates, nicht-kommerzielles Bildungsprojekt aus der Berufsbildung Pflege in der Schweiz. Die Nuggets begleiten Lernende AGS EBA, FaGe EFZ und Studierende Pflege HF im Alltag: kurz, verständlich und praxisnah.</p>
         <p>Die Inhalte stützen sich auf die Bildungsverordnungen, anerkannte Leitlinien und Fachliteratur. Sie ersetzen nicht die Richtlinien deines Betriebs.</p></div>
@@ -703,6 +885,74 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
 </div></footer>
 
 <script>
+document.documentElement.classList.add("js");
+const HERO_ART = `<svg viewBox="0 0 560 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ha-t ha-d"><title id="ha-t">Pflegefachperson begleitet eine ältere Patientin</title><desc id="ha-d">Eine Pflegefachperson kniet neben einer älteren Frau im Sessel und hält ihre Hand. Daneben schweben eine Karte mit Pulskurve und ein Häkchen.</desc>
+<defs>
+<linearGradient id="ha-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3eadc"/><stop offset="1" stop-color="#ebdfcc"/></linearGradient>
+<filter id="ha-sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#3a2a14" flood-opacity=".14"/></filter>
+</defs>
+<g id="buehne">
+<path d="M78 404C30 352 28 250 74 176 124 96 214 52 310 56c104 4 190 70 214 168 22 92-14 168-74 192-62 24-118 4-186 8-82 4-142 32-186-20z" fill="url(#ha-bg)"/>
+<circle cx="452" cy="104" r="58" fill="#dfe7e0"/>
+<circle cx="222" cy="58" r="5" fill="#b48a4c"/><circle cx="500" cy="300" r="4" fill="#b48a4c" opacity=".7"/><circle cx="64" cy="270" r="3.5" fill="#14304f" opacity=".35"/>
+<ellipse cx="290" cy="410" rx="210" ry="14" fill="#14304f" opacity=".08"/>
+</g>
+<g id="pflanze">
+<path d="M478 404h44l-6-48h-32z" fill="#c9a676"/>
+<path d="M500 358c-2-34-22-56-40-64 6 26 20 48 40 64zM500 358c6-36 26-58 46-62-6 28-22 50-46 62zM500 358c-1-40 6-72 4-92-12 22-14 60-4 92z" fill="#7f9c86"/>
+</g>
+<g id="sessel">
+<rect x="96" y="196" width="54" height="196" rx="26" fill="#9fb3a4"/>
+<rect x="104" y="300" width="186" height="58" rx="22" fill="#b7c8bb"/>
+<rect x="92" y="286" width="44" height="76" rx="20" fill="#8ea595"/>
+<rect x="256" y="286" width="40" height="76" rx="20" fill="#8ea595"/>
+<path d="M120 362v42M270 362v42" stroke="#6e8577" stroke-width="10" stroke-linecap="round"/>
+</g>
+<g id="patientin">
+<path d="M186 318h66c12 0 18 8 18 18v60" stroke="#3d4b5e" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<ellipse cx="284" cy="404" rx="20" ry="9" fill="#2a3442"/>
+<path d="M150 232c4-20 22-32 44-32s38 12 42 32l10 92H146z" fill="#d9a493"/>
+<path d="M194 204v34" stroke="#c48f7d" stroke-width="2" opacity=".6"/>
+<rect x="184" y="186" width="20" height="22" rx="8" fill="#e6bfa3"/>
+<circle cx="194" cy="166" r="27" fill="#e6bfa3"/>
+<path d="M167 162c0-20 14-31 28-31 16 0 28 10 28 26-6-6-14-9-22-9-12 0-22 6-34 14z" fill="#e4e3e0"/>
+<circle cx="171" cy="150" r="11" fill="#e4e3e0"/>
+<path d="M226 244c10 22 22 40 40 50" stroke="#d9a493" stroke-width="20" stroke-linecap="round" fill="none"/>
+<circle cx="270" cy="296" r="10" fill="#e6bfa3"/>
+</g>
+<g id="pflegende">
+<path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#22476e"/>
+<path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"/>
+<path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#22476e"/>
+<path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"/>
+<path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#14304f"/>
+<path d="M358 182l18 30 18-30" fill="none" stroke="#5f84ad" stroke-width="4" stroke-linejoin="round"/>
+<path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"/>
+<rect x="366" y="152" width="20" height="26" rx="8" fill="#b27b58"/>
+<circle cx="376" cy="128" r="29" fill="#b27b58"/>
+<path d="M346 126c0-22 14-34 32-34 18 0 30 12 30 30-10-4-20-14-26-22-6 14-20 22-36 26z" fill="#2a211d"/>
+<circle cx="404" cy="104" r="12" fill="#2a211d"/>
+<path d="M336 236c-14 30-30 52-54 62" stroke="#14304f" stroke-width="22" stroke-linecap="round" fill="none"/>
+<circle cx="280" cy="300" r="11" fill="#b27b58"/>
+<path d="M420 236c10 24 12 44 4 60" stroke="#14304f" stroke-width="20" stroke-linecap="round" fill="none"/>
+<rect x="398" y="276" width="46" height="60" rx="8" fill="#f8f4ec" stroke="#c9a676" stroke-width="3" transform="rotate(-8 421 306)"/>
+<path d="M410 296h22M410 308h16M410 320h20" stroke="#c9b48f" stroke-width="3" stroke-linecap="round" transform="rotate(-8 421 306)"/>
+<circle cx="424" cy="298" r="9" fill="#b27b58"/>
+</g>
+<g transform="translate(-16 -72)"><g class="fl1" filter="url(#ha-sh)">
+<rect x="52" y="104" width="150" height="80" rx="18" fill="#fff"/>
+<path class="pulse" style="--len:170" d="M68 152h26l8-20 12 36 10-26 6 10h40" fill="none" stroke="#14304f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="182" cy="152" r="5" fill="#b48a4c"/>
+<rect x="68" y="120" width="44" height="6" rx="3" fill="#e7dfd2"/>
+</g></g>
+<g class="fl2" filter="url(#ha-sh)">
+<rect x="432" y="176" width="96" height="52" rx="16" fill="#fff"/>
+<circle cx="458" cy="202" r="13" fill="#e5f2e9"/>
+<path d="m452 202 4.5 4.5 8-8.5" fill="none" stroke="#1e7547" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="478" y="194" width="34" height="6" rx="3" fill="#e7dfd2"/><rect x="478" y="206" width="22" height="6" rx="3" fill="#efe6d8"/>
+</g>
+</svg>`;
 const NUGGETS = [
   {
     id: "haendehygiene", topic: "Hygiene", levels: ["AGS","FaGe","HF"], min: 8,
@@ -3594,16 +3844,16 @@ NUGGETS.forEach(n => {
 
 
 const TOPIC = {
-  "Hygiene": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
-  "Beobachten": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
-  "Prophylaxen": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
-  "Pflegetechniken": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
-  "Medikamente": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
-  "Notfälle": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
-  "Kommunikation": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
-  "Teamarbeit": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
-  "Krankheitsbilder": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" },
-  "Berufsrolle": { c: "#2b5480", bg: "#eef3f8", d: "#d6e2ee" }
+  "Hygiene": { c: "#1e3a5c", bg: "#e8eef4", d: "#d3dfea" },
+  "Beobachten": { c: "#1e3a5c", bg: "#f3ebdf", d: "#e6d6c0" },
+  "Prophylaxen": { c: "#1e3a5c", bg: "#e7eee8", d: "#d0dfd3" },
+  "Pflegetechniken": { c: "#1e3a5c", bg: "#f6ebe5", d: "#eacfc4" },
+  "Medikamente": { c: "#1e3a5c", bg: "#e8eef4", d: "#d3dfea" },
+  "Notfälle": { c: "#1e3a5c", bg: "#f6ebe5", d: "#eacfc4" },
+  "Kommunikation": { c: "#1e3a5c", bg: "#f3ebdf", d: "#e6d6c0" },
+  "Teamarbeit": { c: "#1e3a5c", bg: "#e7eee8", d: "#d0dfd3" },
+  "Krankheitsbilder": { c: "#1e3a5c", bg: "#e8eef4", d: "#d3dfea" },
+  "Berufsrolle": { c: "#1e3a5c", bg: "#f3ebdf", d: "#e6d6c0" }
 };
 const ICON = {
   "Notfälle": '<path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
@@ -3617,7 +3867,7 @@ const ICON = {
   "Krankheitsbilder": '<path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-1"/><circle cx="20" cy="12" r="2"/>',
   "Medikamente": '<rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="m9.5 8 5 9"/>'
 };
-const ico = (t, color) => `<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="${color || "currentColor"}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[t]}</svg>`;
+const ico = (t, color) => `<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="${color || "currentColor"}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICON[t]}</svg>`;
 const UI = {
   src: '<path d="M7 4h10v16l-5-3-5 3z"/><path d="M10 9h4"/>',
   list: '<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
@@ -3629,7 +3879,7 @@ const UI = {
   star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
 };
-const ui = k => `<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${UI[k]}</svg>`;
+const ui = k => `<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${UI[k]}</svg>`;
 
 /* Illustrationen, 320 x 200 */
 /* Schemazeichnungen für Nuggets */
@@ -4762,7 +5012,152 @@ const GLYPH = {
   datenschutz: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4M12 15v2"/>',
   resilienz: '<path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15"/><path d="M5 19l8-8"/>'
 };
+/* Icons: Health Icons (healthicons.org), CC0 / MIT */
+const ILLU_ICONS = {"clean-hands-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M36.826 13.643L34.5 6.111l-2.326 7.532l-4.5 2.143l4.52 2.152l2.306 6.59l2.306-6.59l4.52-2.152zm-3 1.428l.674-2.182l.674 2.183l1.5.714l-1.48.705l-.694 1.982l-.694-1.982l-1.48-.705z\" clip-rule=\"evenodd\"/><path d=\"m19 16l1-4l1 4l3 1l-3 1l-1 4l-1-4l-3-1z\"/><path fill-rule=\"evenodd\" d=\"M13 39.75v.246a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V29.001a2 2 0 0 1 2-2h3a2 2 0 0 1 1.947 1.539c1.324-.477 2.871-1.045 3.344-1.261c.402-.183.866-.245 1.252-.268a9 9 0 0 1 1.195.021a15 15 0 0 1 1.328.168l.023.004l.007.001h.003l.018.004l6.69 1.5l.041.014l.011.004l.046.014l.189.054c.165.046.402.107.685.169c.575.125 1.3.242 1.975.242c.624 0 1.27.233 1.614.865c.296.542.227 1.138.117 1.55c-.139.514-.425 1.054-.788 1.513c.49-.185 1.027-.404 1.603-.64l.123-.05c1.623-.667 3.547-1.457 5.245-1.737c1.94-.321 3.351.383 3.991 1.632c.57 1.112.438 2.571-.42 3.45c-.215.221-.543.453-.872.666c-.352.229-.785.486-1.266.76a86 86 0 0 1-3.355 1.782c-2.372 1.203-4.858 2.373-5.648 2.662c-.916.335-1.9.367-2.845.318a38 38 0 0 1-1.709-.145a55 55 0 0 0-1.25-.115c-1.928-.146-3.408-.617-4.77-1.05l-.166-.053c-1.408-.446-2.718-.843-4.453-.913c-.396-.016-1.188.014-1.905.048m4.12-10.651c.065-.03.235-.073.538-.091c.284-.017.608-.006.925.018a13 13 0 0 1 1.132.143h.003l6.567 1.473l.045.014q.083.026.23.066c.194.054.468.125.793.196c.585.128 1.37.262 2.168.285a2.4 2.4 0 0 1-.284.543c-.16.232-.335.411-.479.514c-.416.298-.752.422-.956.475a1.3 1.3 0 0 1-.212.04h-.022l-5.362-.064l-.19 1.984l.178-.984l-.178.984l.053.01l.153.027l.556.098c.467.082 1.108.192 1.806.306c1.374.224 3.03.472 3.97.529c.65.04 1.406-.16 2.109-.395c.733-.245 1.562-.584 2.396-.926c1.717-.704 3.466-1.421 4.935-1.664c1.27-.21 1.723.254 1.885.571c.233.455.107.96-.072 1.142c-.043.045-.2.172-.528.385c-.306.197-.701.434-1.165.697a84 84 0 0 1-3.272 1.738c-2.392 1.213-4.772 2.326-5.432 2.568c-.534.196-1.195.243-2.054.199a29 29 0 0 1-1.515-.129a52 52 0 0 0-1.396-.128c-1.692-.128-2.978-.537-4.357-.975l-.125-.04c-1.428-.453-2.956-.924-4.977-1.005c-.455-.018-1.265.01-1.986.044v-7.101c1.406-.503 3.487-1.258 4.12-1.547m2.796-.91l.183-.983zM11 29H8v10.995h3z\" clip-rule=\"evenodd\"/></g>","ppe-sanitizer-outline":"<g fill=\"currentColor\"><path d=\"M25 29h5v2h-5v5h-2v-5h-5v-2h5v-5h2z\"/><path fill-rule=\"evenodd\" d=\"M13.927 9.048a8.8 8.8 0 0 0-1.559 1.948l-1.736-.992a10.7 10.7 0 0 1 1.94-2.427C13.43 6.787 14.625 6 16 6h17v2h-8v6h4a2 2 0 0 1 2 2v2h1a6 6 0 0 1 6 6v15a3 3 0 0 1-3 3H13a3 3 0 0 1-3-3V24a6 6 0 0 1 6-6h1v-2a2 2 0 0 1 2-2h4V8h-7c-.624 0-1.346.38-2.073 1.048M12 24a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v15a1 1 0 0 1-1 1H13a1 1 0 0 1-1-1zm17-8v2H19v-2z\" clip-rule=\"evenodd\"/></g>","heartbeat-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M23.581 11.867a2.5 2.5 0 0 1 4.756-.254l3.75 9.887h2.582a5 5 0 1 1 0 5h-4.307a2.5 2.5 0 0 1-2.337-1.613l-1.587-4.183l-4.036 15.429a2.5 2.5 0 0 1-4.765.23l-4.713-12.824l-.597 1.52A2.5 2.5 0 0 1 10 26.647H4v-2h6a.5.5 0 0 0 .466-.317l2.519-6.421l6.529 17.765a.5.5 0 0 0 .953-.046l5.62-21.486l3.808 10.036a.5.5 0 0 0 .467.323h5.68a3 3 0 1 0 0-1h-5.335l-4.24-11.177a.5.5 0 0 0-.95.05l-5.614 21.459l-6.434-17.504a.5.5 0 0 0-.934-.01l-2.876 7.328H4v-2h4.295l2.378-6.06a2.5 2.5 0 0 1 4.674.052l4.234 11.521z\" clip-rule=\"evenodd\"/>","thermometer-digital-outline":"<g fill=\"currentColor\"><path d=\"m35.972 39.531l-1.867 1.193l1.789 2.8a1.108 1.108 0 0 0 1.867-1.192zM24.057 20.107l-4.91-7.685l-2.561 1.636l4.909 7.685z\"/><path fill-rule=\"evenodd\" d=\"m33.032 39.036l.1.157L35 38l-.1-.157c-7.104-11.145-7.1-13.677-7.1-15.093c0-.343.001-.62-.1-.94a20 20 0 0 1-.363-1.317c-.207-.833-.364-1.466-.978-2.427l-8.482-13.28a2 2 0 0 0-2.762-.61L10.8 6.934a2 2 0 0 0-.609 2.762l8.484 13.281c.614.96 1.123 1.37 1.791 1.907c.306.246.645.519 1.043.883c.247.227.5.343.812.487c1.285.592 3.587 1.653 10.711 12.783M11.877 8.618l4.314-2.756l1.699 2.66l-4.32 2.748zm2.77 4.337l4.32-2.748l5.708 8.936c.434.68.53 1.057.722 1.832l.003.012c.094.38.211.852.394 1.427v.008l.002.014q.003.028.004.106c.002.055.001.116.001.206c-.001.89.032 2.066.9 4.32c-1.68-1.735-2.734-2.259-3.543-2.632l-.188-.087l-.094-.049l-.006-.004l-.013-.007a22 22 0 0 0-1.128-.957l-.01-.008c-.622-.5-.924-.745-1.358-1.425z\" clip-rule=\"evenodd\"/></g>","pulse-oximeter-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M6 14v1.574l.23.3a4 4 0 0 1 .82 2.427V19.7a4 4 0 0 1-.82 2.427l-.23.3V24h11.65c3.048 0 5.35-2.33 5.35-5s-2.302-5-5.35-5zm-.425-2C4.705 12 4 12.672 4 13.5v2.074a2 2 0 0 0 .41 1.214l.23.3a2 2 0 0 1 .41 1.213V19.7a2 2 0 0 1-.41 1.213l-.23.3A2 2 0 0 0 4 22.426V24.5c0 .828.705 1.5 1.575 1.5H17.65c4.06 0 7.35-3.134 7.35-7s-3.29-7-7.35-7z\" clip-rule=\"evenodd\"/><path d=\"M22 19a2 2 0 1 1-4 0a2 2 0 0 1 4 0\"/><path fill-rule=\"evenodd\" d=\"M15 17h-5v4h5zm-7-2v8h9v-8zm15 6.038v2h4.06a3.824 3.824 0 0 0 1.308 5.056a3.827 3.827 0 0 0 2.96 6.252h.676A3.827 3.827 0 0 0 35.368 40h8.617v-2h-8.617a1.827 1.827 0 1 1 0-3.654h4.045v-2h-8.084a1.827 1.827 0 0 1 0-3.654h5.352v-2h-6.258a1.827 1.827 0 1 1 0-3.654h6.259v-2zm.5-3.654h15.812c2.184 0 2.787-3.003.772-3.846l-4.756-1.989a1.628 1.628 0 0 1 1.206-3.024L44 11.25V9.226l-6.754-2.57a3.63 3.63 0 0 0-3.8.77c-1.887 1.809-1.301 4.96 1.11 5.968l4.756 1.99H23.5z\" clip-rule=\"evenodd\"/></g>","hospitalized-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M32 9a1 1 0 0 1-1-1V6h-2v2c0 1.306.835 2.418 2 2.83V12h-1a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1h-1v-1h5v12.066H20.11a.3.3 0 0 1-.218-.09l-.366-.37l.369-.367a3.77 3.77 0 0 0 .001-5.333l-1.8-1.8a3.77 3.77 0 0 0-5.333-.003l-.704.704a3.95 3.95 0 0 0-3.892 1.021a4.034 4.034 0 0 0 0 5.676l.833.839V34H6v2h3.05a3.5 3.5 0 1 0 4.899 0h20.102a3.5 3.5 0 1 0 4.899 0H42v-2h-4v-3h.066C40.24 31 42 29.224 42 27.033a3.97 3.97 0 0 0-2-3.455V11a2 2 0 0 0-2-2zm-18.174 7.868l4.29 4.32l.365-.364a1.77 1.77 0 0 0 0-2.504l-1.8-1.8a1.77 1.77 0 0 0-2.504-.002zm2.45 13.8c.21.212.497.332.796.332H36v3H11v-8.644zm2.198-6.283c.431.434 1.02.681 1.636.681h17.956c1.052 0 1.934.865 1.934 1.967S39.119 29 38.066 29H17.438l-7.852-7.905a2.034 2.034 0 0 1 0-2.857a1.953 1.953 0 0 1 2.782 0zM13 38.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0M36.5 40a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M31 18v-4h2v4z\" clip-rule=\"evenodd\"/>","warning-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M21 11.818C21 10.174 22.435 9 24 9s3 1.174 3 2.818v16.364C27 29.826 25.565 31 24 31s-3-1.174-3-2.818zM24 11c-.644 0-1 .454-1 .818v16.364c0 .364.356.818 1 .818s1-.454 1-.818V11.818c0-.364-.356-.818-1-.818m0 24a1 1 0 1 0 0 2a1 1 0 0 0 0-2m-3 1a3 3 0 1 1 6 0a3 3 0 0 1-6 0\" clip-rule=\"evenodd\"/>","book-outline":"<g fill=\"currentColor\"><path d=\"M30 19h-5v-5h-2v5h-5v2h5v5h2v-5h5z\"/><path fill-rule=\"evenodd\" d=\"M9 10a5 5 0 0 1 5-5h24a1 1 0 0 1 1 1v30a1 1 0 0 1-1 1H14a3 3 0 0 0-3 3v1h27v2H10a1 1 0 0 1-1-1zm5 25a4.98 4.98 0 0 0-3 1V10a3 3 0 0 1 3-3h23v28z\" clip-rule=\"evenodd\"/></g>","stethoscope-outline":"<g fill=\"currentColor\"><path d=\"M12 10a2 2 0 1 0-1.732-3H10a3 3 0 0 0-3 3v9h2v-9a1 1 0 0 1 1-1h.268A2 2 0 0 0 12 10\"/><path fill-rule=\"evenodd\" d=\"M10.16 19H7c-.552 0-1.005.449-.955.999A11 11 0 0 0 14 29.583V32c0 1.306.835 2.418 2 2.83a7.25 7.25 0 0 0 14.5-.08v-4a3.75 3.75 0 1 1 7.5 0v2.42a3.001 3.001 0 1 0 2 0v-2.42a5.75 5.75 0 0 0-11.5 0v4a5.25 5.25 0 0 1-10.5.08A3 3 0 0 0 20 32v-2.417a11 11 0 0 0 7.955-9.584c.05-.55-.403-.999-.955-.999v-9a3 3 0 0 0-3-3h-.268A2 2 0 0 0 20 8a2 2 0 0 0 3.732 1H24a1 1 0 0 1 1 1v9h-1.16c-.552 0-.991.45-1.085.995a5.84 5.84 0 0 1-11.51 0c-.094-.544-.533-.995-1.085-.995m14.42 2h1.195a9 9 0 0 1-17.55 0H9.42a7.84 7.84 0 0 0 15.16 0M39 35a1 1 0 1 1 0 2a1 1 0 0 1 0-2m-21-5v2a1 1 0 1 1-2 0v-2z\" clip-rule=\"evenodd\"/></g>","physical-therapy-outline":"<g fill=\"currentColor\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path d=\"M39 8H9a1 1 0 0 0-1 1v30a1 1 0 0 0 1 1h30a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1M9 6a3 3 0 0 0-3 3v30a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3z\"/><path d=\"M31.477 13.746a3.746 3.746 0 1 1-7.493 0a3.746 3.746 0 0 1 7.493 0M14 30h5.828l4.394 4.336l2.066 4.764a2 2 0 0 0 3.67-1.592l-2.22-5.12a2 2 0 0 0-.43-.627L25.522 30H34a2 2 0 0 1 2 2v8h2v-8a4 4 0 0 0-4-4h-3.128a2 2 0 0 0-.42-3.945c-1.754-.04-2.28-.332-2.657-.671c-.253-.229-.536-.576-.928-1.178c-.282-.432-.572-.919-.928-1.516l-.493-.823l-.043-.07a9 9 0 0 0-.446-.692c-.195-.263-.556-.69-1.162-.942c-.609-.254-1.174-.21-1.523-.155a9 9 0 0 0-.98.238c-.868.249-1.591.908-2.065 1.423a10 10 0 0 0-1.5 2.169c-.805 1.558-1.505 3.913-.513 6.11l.024.052H14a4 4 0 0 0-4 4v8h2v-8a2 2 0 0 1 2-2m15.33-2h-5.834l-.956-.943l1.513-1.891c.318.426.666.83 1.066 1.19c1.175 1.058 2.53 1.498 4.211 1.644m-12.458 2.087l3.276 3.142l-.829 2.797q-.076.257-.218.486l-1.766 2.846a2 2 0 0 1-3.399-2.109l1.625-2.617l1.103-3.723z\"/></g>","medicines-outline":"<g fill=\"currentColor\"><path d=\"M37.084 15.735a1 1 0 1 0 .448-1.949l-6.616-1.52a1 1 0 1 0-.448 1.948z\"/><path fill-rule=\"evenodd\" d=\"M34 22a8 8 0 1 0 0-16a8 8 0 0 0 0 16m0-2a6 6 0 1 0 0-12a6 6 0 0 0 0 12M16.778 9.245c-.647-1.532-2.813-1.686-3.682-.263L6.292 20.115c-.785 1.284.092 2.924 1.623 3.033l11.866.846c1.53.11 2.644-1.388 2.06-2.77zm-1.967.768l-.009.012L8.01 21.14l.002.002l.01.004a.1.1 0 0 0 .036.007l11.867.846h.038a.1.1 0 0 0 .029-.015l-5.056-11.96l-.004-.01a.1.1 0 0 0-.054-.014a.13.13 0 0 0-.062.009l-.003.001v.001zM35.385 36.36a6 6 0 0 0-5.071-10.876l-10.876 5.07a6 6 0 1 0 5.071 10.877zm-15.102-3.992a4 4 0 1 0 3.381 7.25l4.466-2.083l-3.38-7.25zm9.66 4.322l-3.381-7.25l4.597-2.144a4 4 0 1 1 3.38 7.25z\" clip-rule=\"evenodd\"/></g>","thermometer-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M23.995 44.077a7.96 7.96 0 0 0 3.963-1.053l.05.05l.198-.197a8 8 0 0 0 3.782-6.806a7.99 7.99 0 0 0-3.056-6.283a5 5 0 0 0 .05-.715l-.016-20a5 5 0 0 0-10 .008l.016 20q0 .365.051.715a8 8 0 0 0 4.961 14.282m-3.716-12.716l-.006.004q-.323.256-.609.552l8.49 8.477q.3-.289.557-.615zm-2.071 3.1q.125-.446.312-.86l7.952 7.94q-.413.188-.858.313zm-.122 2.704a6.01 6.01 0 0 0 4.824 4.816zm2.9-7.924l8.709 8.694q.15-.46.224-.947l-8.938-8.923l.001 1.015q0 .081.005.161m-.007-4.004l8.551 8.537a6 6 0 0 0-1.835-2.415a2 2 0 0 1-.749-1.336l-5.953-5.943h-.015zm2.842-1.16l3.16 3.155l-.001-1.172l-1.987-1.983zm-2.844-1.997l6-.005l-.002-2l-2 .002a1 1 0 1 1-.002-2l2-.002l-.002-2l-2 .002a1 1 0 0 1-.001-2l2-.002l-.002-2l-2 .002a1 1 0 0 1-.001-2l2-.002l-.001-1a3 3 0 0 0-6 .005z\" clip-rule=\"evenodd\"/>","medicine-bottle-outline":"<g fill=\"currentColor\"><path d=\"M23 23v5h-5v2h5v5h2v-5h5v-2h-5v-5z\"/><path fill-rule=\"evenodd\" d=\"M9 7a3 3 0 0 1 3-3h24a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3v23a3 3 0 0 1-3 3H15a3 3 0 0 1-3-3V18a3 3 0 0 1-3-3zm5 11h20v23a1 1 0 0 1-1 1H15a1 1 0 0 1-1-1zm22-2h-4V6h4a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1M30 6h-5v10h5zM12 6h4v10h-4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1m6 10V6h5v10z\" clip-rule=\"evenodd\"/></g>","neurology-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M29.584 22.873c1.16 0 2.292-.315 3.25-.904a6.25 6.25 0 0 0 3.29.884l3.72-1.22c1.047-.779 1.767-1.858 2.037-3.058s.076-2.446-.552-3.532c-.627-1.085-1.65-1.944-2.895-2.431c-.285-1.162-1.001-2.2-2.031-2.944l-3.63-1.145h-.41c-.807-1.062-2.019-1.82-3.406-2.129L21.174 6c-1.294.097-2.514.583-3.463 1.38a6.8 6.8 0 0 0-1.37-.147a6.25 6.25 0 0 0-3.144.845c-.935.549-1.675 1.33-2.128 2.25L8.11 12.216c-.736.899-1.132 1.987-1.13 3.103a4.3 4.3 0 0 0 .204 1.382c-.775.907-1.193 2.022-1.185 3.168c-.002 1.329.561 2.607 1.574 3.573c.081.951.45 1.864 1.066 2.64a5.73 5.73 0 0 0 2.428 1.762a8.5 8.5 0 0 1 2.777 2.492a7.5 7.5 0 0 1 1.31 3.329h7.637v-5.526a4.87 4.87 0 0 1 .876-2.776a5.66 5.66 0 0 1 2.373-1.94c.55-.188.684-.443.85-.756c.11-.208.234-.442.503-.698c.233.143.414.27.571.381c.487.343.743.523 1.62.523m4.448-2.528a4.25 4.25 0 0 0 1.79.496l3.056-1.002c.558-.485.912-1.087 1.052-1.71a2.88 2.88 0 0 0-.332-2.09c-.385-.666-1.04-1.236-1.893-1.57l-.967-.379l-.247-1.008a3.1 3.1 0 0 0-1.032-1.62l-2.994-.945h-1.093l-.6-.79c-.476-.625-1.21-1.119-2.1-1.35l-7.462-.378a4.1 4.1 0 0 0-2.213.908l-.748.627l-.954-.203a5 5 0 0 0-.957-.103c-.77.002-1.51.206-2.129.569s-1.076.862-1.347 1.41l-.247.5l-3.125 1.996c-.342.5-.51 1.057-.509 1.607v.035q-.006.375.11.744l.338 1.06l-.723.846c-.478.558-.71 1.212-.706 1.855v.016c0 .75.315 1.513.954 2.123l.548.523l.064.753c.047.545.26 1.088.64 1.568c.384.483.926.885 1.585 1.14l.135.053l.126.071q.22.124.432.258l-.006.004c2.719 1.659 3.872 4.073 4.264 5.307h.612v-7.293l-2.203-1.959l-1.496 1.496a1 1 0 0 1-1.414-1.414l1.792-1.792l-.538-2.957l-2.436-1.218a1 1 0 1 1 .895-1.789l2.377 1.188l2.911-1.852l-.905-2.415a1 1 0 0 1 1.872-.702l.973 2.595h1.077l.514-1.029l-.815-1.902a1 1 0 1 1 1.838-.788l.702 1.638l2.788.507l.011-.01l1.803-1.44a1 1 0 0 1 1.25 1.562l-1.205.963l1.335 1.717l.513-1.025a1 1 0 0 1 .895-.553h2.162a1 1 0 1 1 0 2h-1.544l-.269.536l1.67.371q.12.027.23.082l1.441.72a1 1 0 1 1-.894 1.79l-1.332-.666l-3.123-.694a1 1 0 0 1-.572-.363l-2.289-2.942l-2.773-.504q-.06.05-.13.09l-.587 1.177v.565h1.162a1 1 0 0 1 .447.106l2.883 1.441a1 1 0 1 1-.894 1.79l-2.672-1.337h-.926v1.523a1 1 0 0 1-2 0v-3.324h-1.232l-3.151 2.005l.539 2.963l2.985 2.654a1 1 0 0 1 .336.748v7.742h1.438V28.1c0-2.702 1.509-4.36 2.333-5.145c.66-.628 1.65-1.157 2.063-1.344c.082-.183.361-.66.824-1.097l1.125-1.067c1.238.708 2.199 1.418 2.199 1.418s1.281-.07 1.863-.304c.466-.188 1.278-.709 1.625-.946z\" clip-rule=\"evenodd\"/><path d=\"M15 38h8v-2h-8zm8 4h-8v-2h8z\"/></g>","eye-outline":"<g fill=\"currentColor\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path d=\"M26.393 18.466a6 6 0 1 0 3.627 4.752a3 3 0 0 0-3.626-4.752M24.07 28a4 4 0 1 1 1.055-7.86A3 3 0 1 0 28.07 24a4 4 0 0 1-4 4M29 21a1 1 0 1 1-2 0a1 1 0 0 1 2 0\"/><path d=\"M5.196 20.864c3.408-3.858 9.885-8.771 18.626-8.863L24 12h.07c8.866 0 15.433 4.97 18.873 8.864a4.71 4.71 0 0 1 0 6.272C39.503 31.03 32.936 36 24.07 36H24l-.178-.001c-8.74-.092-15.218-5.005-18.626-8.863a4.71 4.71 0 0 1 0-6.272m1.499 1.324a2.71 2.71 0 0 0 0 3.624c1.879 2.127 4.73 4.563 8.391 6.222A11.96 11.96 0 0 1 12 24c0-3.09 1.168-5.907 3.086-8.034c-3.66 1.659-6.512 4.095-8.391 6.222M24.028 14l-.181.001C18.394 14.083 14 18.528 14 24s4.395 9.917 9.847 9.999l.181.001C29.538 33.985 34 29.513 34 24s-4.462-9.985-9.972-10M36 24c0 3.14-1.207 6-3.182 8.139c3.774-1.66 6.707-4.155 8.626-6.327a2.71 2.71 0 0 0 0-3.624c-1.919-2.172-4.852-4.667-8.626-6.327A11.96 11.96 0 0 1 36 24\"/></g>","heart-organ-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M30.05 9.524V7a1 1 0 0 0-.296-.707A1 1 0 0 0 29.04 6h-4.343c-.558 0-1.01.448-1.01 1v2.433l-1.486.69l-1.934-2.404a1.015 1.015 0 0 0-1.333-.219L15.53 9.658a.993.993 0 0 0-.245 1.466l1.895 2.355a9 9 0 0 0-.295.373a6.6 6.6 0 0 0-.613.98c-.747-.671-1.632-1.227-2.468-1.67a21 21 0 0 0-2.479-1.103a37 37 0 0 0-1.098-.38a1.1 1.1 0 0 0-.84.103a1 1 0 0 0-.466.668l-.903 4.727a1 1 0 0 0 .165.76c.157.222.398.37.667.413c1.104.175 1.939.72 2.51 1.242a5.4 5.4 0 0 1 .694.768c-1.009 1.525-1.399 3.32-1.336 5.167c.085 2.501.995 5.147 2.36 7.541c1.37 2.4 3.23 4.608 5.292 6.227C20.417 40.903 22.756 42 25.066 42c2.304 0 4.703-1.092 6.826-2.707c2.14-1.629 4.1-3.862 5.536-6.32c2.823-4.83 3.853-11.04-.71-15.039a7 7 0 0 0-.532-.427c.73-.01 1.57.005 2.548.039l1.015.035l.251-6.75l-1.004-.034c-2.564-.087-4.92.024-7.057.511a8.8 8.8 0 0 0-1.89-1.784m2.171 8.619q.263-.12.552-.216c.5.282.898.475 1.217.63l.294.143c.38.19.678.364 1.097.732c3.441 3.016 2.974 7.964.3 12.539c-1.311 2.244-3.099 4.275-5.018 5.735C28.728 39.18 26.756 40 25.066 40c-1.684 0-3.59-.817-5.442-2.273c-1.84-1.444-3.535-3.447-4.788-5.643c-1.255-2.2-2.03-4.532-2.1-6.625c-.071-2.073.543-3.862 2.015-5.152c.752-.659 2.068-.927 3.759-.831c1.11.063 2.279.277 3.353.55l-.003.006l1.145.331c1.207.35 2.608.906 3.529 1.292l-1.458 3.125l-3.737 1.675l-4.042-.944l-.463 1.947l3.24.756l-1.063 2.662l1.877.736l1.342-3.362l2.189-.98a6.94 6.94 0 0 0 .551 3.418l.348.796l.27 3.932l2.014-.137l-.217-3.151l3.34-.384l-.233-1.987l-3.55.408l-.12-.271a4.96 4.96 0 0 1-.23-3.327l.193-.683l2.18-4.672a2 2 0 0 0 .279-.352c.921-1.451 1.895-2.22 2.977-2.717m-7.471.675c.663-1.147 1.375-2.06 2.183-2.81q.247-.224.507-.44a11.3 11.3 0 0 1 2.428-1.478c2.193-1.005 4.825-1.357 8.039-1.32l-.102 2.75c-2.846-.066-4.795.066-6.422.812c-1.456.668-2.726 1.709-3.848 3.476a.12.12 0 0 1-.061.049c-.02.007-.03.003-.034.002a45 45 0 0 0-2.69-1.041m-10.034-.812q-.25.105-.486.235l-.594.286q-.18.096-.331.182l-.576-.587a7 7 0 0 0-2.55-1.504l.509-2.66c.6.227 1.38.552 2.165.968c.824.437 1.616.952 2.216 1.53q.527.507.783 1.002zm3.282-.549a14 14 0 0 1 1.186.064c1.277.11 2.588.369 3.626.613c.724-1.642 2.067-3.06 3.42-4.17a22 22 0 0 1 3.351-2.25a7 7 0 0 0-.438-.368c-.184-.142-.59-.401-.59-.401s-.522-.51-.522-.876V8h-2.325v2.07a1 1 0 0 1-.581.905l-2.788 1.294c-.423.197-.926.08-1.217-.282l-1.864-2.316l-1.695 1.074l1.733 2.153a.993.993 0 0 1-.094 1.349l-.204.21s-.31.346-.487.582c-.387.52-.63 1.022-.641 1.369a3.5 3.5 0 0 0 .065.821q.036.113.065.228\" clip-rule=\"evenodd\"/>","leg-outline":"<path fill=\"currentColor\" d=\"M22.748 4H21.5a1 1 0 0 0-.975.78l-3.353 14.847A7 7 0 0 0 17 21.17v2.322a7 7 0 0 0 .385 2.29l3.854 11.133L15.814 39H13a1 1 0 0 0-1 1v1a3 3 0 0 0 3 3h3.32a3 3 0 0 0 .536-.048l4.011-.73a3 3 0 0 1 1.878.269l.061.03a3.934 3.934 0 0 0 4.747-6.08l-1.536-1.791l.369-8.115a9 9 0 0 0-1.359-5.178l-.779-1.247a54 54 0 0 0 3.699-4.727c2.143-3.09 4.511-7.254 5.044-11.25A1 1 0 0 0 34 4h-.667l-.529 2c-.717 3.181-2.62 6.531-4.5 9.242a52 52 0 0 1-3.704 4.712l-.31.34l-.014.017l-.004.003c-.311.331-.36.83-.12 1.216l1.18 1.886a7 7 0 0 1 1.056 4.028L26 35.954a1 1 0 0 0 .24.697l1.793 2.092a1.934 1.934 0 0 1-2.333 2.99l-.061-.031a5 5 0 0 0-3.13-.447l-4.012.729q-.088.015-.178.016H15a1 1 0 0 1-1-1h2a1 1 0 0 0 .359-.067l6.5-2.5a1 1 0 0 0 .586-1.26l-4.17-12.047A5 5 0 0 1 19 23.491v-2.322a5 5 0 0 1 .123-1.101z\"/>","i-schedule-school-date-time-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M10 23a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2zm4 0v2h-2v-2zm6-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm2 2h-2v2h2zm4 0a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2zm2 0h2v2h-2zm-16 6a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm0 2v2h2v-2zm6 0a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2zm2 0h2v2h-2z\" clip-rule=\"evenodd\"/><path d=\"M35 31.5a1 1 0 0 1 1 1v2.086l.707.707a1 1 0 0 1-1.414 1.414L34 35.414V32.5a1 1 0 0 1 1-1\"/><path fill-rule=\"evenodd\" d=\"M12 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0v-1H9a1 1 0 0 0-1 1v4h26v-4a1 1 0 0 0-1-1h-3V9h3a3 3 0 0 1 3 3v16.07A7.001 7.001 0 0 1 35 42a6.99 6.99 0 0 1-5.745-3H9a3 3 0 0 1-3-3V12a3 3 0 0 1 3-3h3zm16 28a7 7 0 0 1 6-6.93V18H8v18a1 1 0 0 0 1 1h19.29a7 7 0 0 1-.29-2m7 5a5 5 0 1 0 0-10a5 5 0 0 0 0 10\" clip-rule=\"evenodd\"/><path d=\"M27 13a1 1 0 0 1-1-1v-1H16V9h10V7a1 1 0 1 1 2 0v5a1 1 0 0 1-1 1\"/></g>","diabetes-measure-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"m14.956 8.211l18-.015l.014 18l-18 .015zm13.008 9.847c.002 2.133-1.757 3.81-3.997 3.812s-4.001-1.673-4.003-3.806s3.994-6.86 3.994-6.86s4.004 4.873 4.006 6.854\" clip-rule=\"evenodd\"/><path d=\"M16.984 27.986a1 1 0 0 0 .001 2l4-.003a1 1 0 1 0-.001-2zm9.001.993a1 1 0 0 1 .999-1.001l4-.003a1 1 0 1 1 .001 2l-4 .003a1 1 0 0 1-1-1m-2.003 11.226a2 2 0 1 0-.003-4a2 2 0 0 0 .003 4\"/><path fill-rule=\"evenodd\" d=\"m12.978 35.213l5-.005l.007 9l12-.01l-.007-9l5-.003a3 3 0 0 0 2.997-3.003l-.02-25a3 3 0 0 0-3.002-2.997l-22 .018a3 3 0 0 0-2.998 3.002l.02 25a3 3 0 0 0 3.003 2.998M34.954 6.195l-22 .018a1 1 0 0 0-.999 1l.02 25a1 1 0 0 0 1.001 1l5-.005l-.001-2l12-.01l.001 2l5-.003a1 1 0 0 0 1-1.001l-.02-25a1 1 0 0 0-1.002-1M27.976 33.2l-8 .007l.008 9l8-.007z\" clip-rule=\"evenodd\"/></g>","sugar-outline":"<g fill=\"currentColor\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path d=\"M34.458 10.048a1 1 0 0 1 .974.207l8.235 7.379a1 1 0 0 1 .31.958l-2.353 10.783a1 1 0 0 1-.718.753l-10.588 2.838a1 1 0 0 1-.962-.254l-4.559-4.5a1 1 0 1 1 1.405-1.424l4.151 4.098l9.447-2.532l2.099-9.62l-7.374-6.606l-9.557 3.073l-1.018 3.11a1 1 0 0 1-1.9-.622l1.176-3.595a1 1 0 0 1 .644-.64z\"/><path d=\"M32.721 20.025a1 1 0 0 1 .754 1.197l-2.5 11a1 1 0 0 1-1.95-.444l2.5-11a1 1 0 0 1 1.196-.753\"/><path d=\"M23.737 13.853a1 1 0 0 1 1.41-.116l7.264 6.16l6.826-1.862a1 1 0 1 1 .526 1.93l-7.334 2a1 1 0 0 1-.91-.202l-7.666-6.5a1 1 0 0 1-.116-1.41m-12.995 1.424a1 1 0 0 1 .965-.239l8.27 2.361a1 1 0 0 1 .694.714l2.297 8.972a1 1 0 0 1-.307.999l-6.433 5.666a1 1 0 0 1-.935.212L7.023 31.6a1 1 0 0 1-.691-.7l-2.298-8.5a1 1 0 0 1 .275-.984zm.966 1.842L6.12 22.452l1.995 7.38l7.201 2.056l5.563-4.9l-2.003-7.823z\"/><path d=\"M17.707 20.293a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-.975.256l-8-2.222a1 1 0 1 1 .535-1.927l7.438 2.066l3.588-3.587a1 1 0 0 1 1.414 0\"/><path d=\"M12.757 24.03a1 1 0 0 1 1.213.727l2 8a1 1 0 1 1-1.94.486l-2-8a1 1 0 0 1 .727-1.213\"/></g>","calendar-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M17 25h-2v2h2zm-2-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm10 2h-2v2h2zm-2-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm10 2h-2v2h2zm-2-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zM17 33h-2v2h2zm-2-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm10 2h-2v2h2zm-2-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm10 2h-2v2h2zm-2-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2z\" clip-rule=\"evenodd\"/><path fill-rule=\"evenodd\" d=\"M10 11a1 1 0 0 0-1 1v27a1 1 0 0 0 1 1h28c.55 0 1-.449 1-1.002V12.002c0-.554-.45-1.002-1-1.002h-3V9h3c1.658 0 3 1.347 3 3.002v26.996A3 3 0 0 1 38 42H10a3 3 0 0 1-3-3V12a3 3 0 0 1 3-3h5v2zm21 0H19V9h12z\" clip-rule=\"evenodd\"/><path fill-rule=\"evenodd\" d=\"M39 20H9v-2h30z\" clip-rule=\"evenodd\"/><path d=\"M15 7a1 1 0 1 1 2 0v7a1 1 0 1 1-2 0zm16 0a1 1 0 1 1 2 0v7a1 1 0 1 1-2 0z\"/></g>","ui-folder-family-outline":"<g fill=\"currentColor\"><path d=\"M18.5 24a3 3 0 1 1-6 0a3 3 0 0 1 6 0m14 3a3 3 0 1 0 0-6a3 3 0 0 0 0 6M31 29a3 3 0 0 0-3 3v2h9v-2a3 3 0 0 0-3-3zm-17 0a3 3 0 0 0-3 3v2h9v-2a3 3 0 0 0-3-3zm12-2.5a2 2 0 1 1-4 0a2 2 0 0 1 4 0M24 30a3 3 0 0 0-3 3v1h6v-1a3 3 0 0 0-3-3\"/><path fill-rule=\"evenodd\" d=\"M24.712 10.555L27.154 15H39a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V12a3 3 0 0 1 3-3h13.083a3 3 0 0 1 2.629 1.555M9 37a1 1 0 0 1-1-1V17h31a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1zm15.872-22l-1.913-3.482a1 1 0 0 0-.876-.518H9a1 1 0 0 0-1 1v3z\" clip-rule=\"evenodd\"/></g>","syringe-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M6.818 13.364A1.157 1.157 0 0 0 8.455 15l.818-.818l4.09 4.09l-3.272 3.273a1.157 1.157 0 1 0 1.636 1.636l1.636-1.636l13.91 13.91a5.79 5.79 0 0 0 6.204 1.296l1.16 1.159a2.31 2.31 0 0 0 2.235.599l2.673 2.673a1.157 1.157 0 1 0 1.637-1.636l-2.674-2.674a2.31 2.31 0 0 0-.6-2.235l-1.158-1.159a5.79 5.79 0 0 0-1.295-6.205l-13.91-13.91l1.637-1.636a1.157 1.157 0 1 0-1.637-1.637l-3.272 3.273l-4.09-4.09l.817-.818a1.157 1.157 0 1 0-1.636-1.637zm10.04 1.413l-4.09-4.09l-2.08 2.08l4.09 4.09zm3.273 0l-5.354 5.354l4.406 4.406l5.354-5.353zm.689 11.397l2.454 2.454l1.859-1.859a1.157 1.157 0 1 1 1.636 1.637l-1.858 1.859l1.636 1.636l1.858-1.86a1.157 1.157 0 1 1 1.637 1.637l-1.859 1.859l.504.504a3.79 3.79 0 0 0 4.062.847l2.139-2.139a3.79 3.79 0 0 0-.848-4.062l-7.867-7.867zm15.702 9.909l-.027-.032l-.824-.824a6 6 0 0 1-.445.444l.824.825q.015.015.032.027a1.16 1.16 0 0 1 .44-.44\" clip-rule=\"evenodd\"/>","nutrition-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.027 12.004c.15 2.691.916 4.357 2.038 5.384a1.9 1.9 0 0 0-.749 1.832c.572 3.635 2.003 11.323 4.937 19.989a1.827 1.827 0 0 0 3.494 0c2.933-8.666 4.365-16.354 4.937-19.989a1.9 1.9 0 0 0-.749-1.832c1.122-1.027 1.888-2.693 2.038-5.384a.954.954 0 0 0-.974-.998c-1.629.024-2.922.123-3.93.462c-.417-1.099-1.258-2.136-2.523-3.082a.91.91 0 0 0-1.092 0c-1.255.939-2.093 1.966-2.513 3.055c-.98-.289-2.262-.404-3.937-.433a.954.954 0 0 0-.977.996m9.854 1.973l-.683-1.8c-.189-.499-.558-1.06-1.198-1.65c-.634.584-1.002 1.14-1.193 1.634l-.663 1.72l-1.768-.522c-.522-.154-1.234-.256-2.235-.311c.297 1.928 1.012 2.743 1.663 3.164c.932.603 2.29.786 4.166.788h.06c1.877-.002 3.234-.185 4.165-.788c.652-.421 1.368-1.237 1.665-3.17c-.97.051-1.651.152-2.154.321zM8.306 19h9.388c-.287 1.807-.784 4.6-1.57 8H12v2h3.645c-.69 2.782-1.56 5.882-2.645 9.13a115 115 0 0 1-.995-3.13H13v-2h-1.582a126 126 0 0 1-2.197-9H12v-2H8.827a107 107 0 0 1-.521-3\" clip-rule=\"evenodd\"/><path d=\"M38.242 28.03a1 1 0 0 1 .728 1.212a6.43 6.43 0 0 1-4.728 4.728a1 1 0 0 1-.485-1.94a4.43 4.43 0 0 0 3.273-3.273a1 1 0 0 1 1.212-.727\"/><path fill-rule=\"evenodd\" d=\"M32.65 21.027c-1.108-2.593-.916-5.347 1.057-7.32l-1.414-1.414c-2.33 2.33-2.734 5.377-1.953 8.178C25.764 18.4 21 22.208 21 28c0 5.523 4.925 10 11 10s11-4.477 11-10c0-6.22-5.495-10.151-10.35-6.973M32 24.061l-1.25-1c-1.858-1.486-3.688-1.403-5.074-.547C24.21 23.419 23 25.357 23 28c0 4.243 3.846 8 9 8s9-3.757 9-8c0-2.642-1.21-4.58-2.676-5.486c-1.386-.856-3.217-.939-5.075.548z\" clip-rule=\"evenodd\"/><path d=\"M34 18c3 0 5-2 5-5c-3 0-5 2-5 5\"/></g>","orthopaedics-outline":"<g fill=\"currentColor\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path d=\"M39 8H9a1 1 0 0 0-1 1v30a1 1 0 0 0 1 1h30a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1M9 6a3 3 0 0 0-3 3v30a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3z\"/><path d=\"M18.417 10.98a.982.982 0 0 0-1.167.958a.97.97 0 0 1-.968.967H16a1 1 0 0 0-1 1v.874a1 1 0 0 0 1 1h.25a1 1 0 0 1 1 1v.378a.99.99 0 0 0 .756.965c4.67 1.121 7.533 1.122 11.998.006a.99.99 0 0 0 .746-.962v-.387a1 1 0 0 1 1-1H32a1 1 0 0 0 1-1v-.874a1 1 0 0 0-1-1h-.284a.966.966 0 0 1-.966-.966a.98.98 0 0 0-1.168-.956c-4.192.79-6.974.781-11.165-.003m2.083 2.758a1 1 0 1 0-2 0v2.24a1 1 0 1 0 2 0zm-2.083 6.242a.982.982 0 0 0-1.167.958a.97.97 0 0 1-.968.967H16a1 1 0 0 0-1 1v.874a1 1 0 0 0 1 1h.25a1 1 0 0 1 1 1v.378a.99.99 0 0 0 .756.965c4.67 1.121 7.533 1.122 11.998.006a.99.99 0 0 0 .746-.962v-.387a1 1 0 0 1 1-1H32a1 1 0 0 0 1-1v-.874a1 1 0 0 0-1-1h-.284a.966.966 0 0 1-.966-.966a.98.98 0 0 0-1.168-.956c-4.192.79-6.974.781-11.165-.003m2.083 2.758a1 1 0 1 0-2 0v2.24a1 1 0 1 0 2 0zm-2.083 6.242a.982.982 0 0 0-1.167.958a.97.97 0 0 1-.968.967H16a1 1 0 0 0-1 1v.874a1 1 0 0 0 1 1h.25a1 1 0 0 1 1 1v.378a.99.99 0 0 0 .756.965c4.67 1.121 7.533 1.122 11.998.005a.99.99 0 0 0 .746-.96v-.388a1 1 0 0 1 1-1H32a1 1 0 0 0 1-1v-.874a1 1 0 0 0-1-1h-.284a.966.966 0 0 1-.966-.966a.98.98 0 0 0-1.168-.956c-4.192.79-6.974.781-11.165-.003m2.083 2.758a1 1 0 1 0-2 0v2.24a1 1 0 1 0 2 0z\"/></g>","kidneys-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M12.548 30.754c-10.864-4.583-6.577-20.05.965-22.605c3.129-1.06 6.58 2.457 6.559 4.64c-.01.945-.497 1.865-1.005 2.825c-.666 1.259-1.368 2.584-1.07 4.117c.525 2.7 1.113 7.256-.402 9.419c-1.515 2.162-3.038 2.45-5.047 1.604m.777-1.843c.783.33 1.167.308 1.378.247c.217-.062.64-.278 1.254-1.156c.373-.532.627-1.655.604-3.333c-.02-1.577-.275-3.259-.527-4.556c-.404-2.08.426-3.818 1.019-4.965l.28-.535c.199-.374.358-.675.498-.997c.188-.43.24-.684.24-.847c.001-.052-.034-.316-.293-.751a4.8 4.8 0 0 0-1.068-1.215c-.963-.785-1.895-.984-2.555-.76c-2.81.952-5.452 4.619-6.045 8.922c-.57 4.127.84 8.1 5.215 9.946M34.347 8.149c7.542 2.555 11.83 18.022.965 22.605c-2.009.847-3.532.558-5.047-1.604s-.927-6.719-.402-9.419c.298-1.533-.404-2.858-1.07-4.118c-.508-.959-.995-1.88-1.004-2.823c-.022-2.184 3.43-5.701 6.558-4.641m-1.19 21.01c.211.06.596.082 1.378-.248c4.375-1.845 5.785-5.819 5.216-9.946c-.594-4.303-3.235-7.97-6.045-8.922c-.66-.224-1.593-.025-2.556.76c-.454.37-.824.806-1.067 1.214c-.26.436-.295.7-.294.752c.001.163.053.418.24.847c.14.322.3.623.498.997q.128.241.28.535c.593 1.147 1.424 2.884 1.02 4.965c-.253 1.297-.507 2.98-.528 4.556c-.022 1.678.232 2.801.604 3.333c.615.878 1.038 1.094 1.254 1.156\" clip-rule=\"evenodd\"/><path d=\"m28.618 22.78l.07.997h.016l-.025.003a1.55 1.55 0 0 0-.616.258c-.29.206-.716.664-.716 1.82v14.467h-2V25.857c0-1.766.71-2.847 1.555-3.45a3.55 3.55 0 0 1 1.46-.603a3 3 0 0 1 .16-.02l.016-.002h.01s.002 0 .07.997m-9.376.001c-.068.997-.07.997-.07.997h-.015l.024.003a1.55 1.55 0 0 1 .617.258c.29.206.716.664.716 1.82v14.467h2V25.857c0-1.766-.71-2.847-1.556-3.45a3.55 3.55 0 0 0-1.46-.603a3 3 0 0 0-.16-.02l-.015-.002h-.011z\"/></g>","walking-outline":"<g fill=\"currentColor\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path d=\"M18.574 31.453a1 1 0 0 1 .948.245l3.249 3.116a1 1 0 0 1 .266 1.005l-.709 2.394a3 3 0 0 1-1.026 1.51l-4.643 3.636a3 3 0 1 1-3.7-4.723l3.889-3.046l1.023-3.455a1 1 0 0 1 .703-.682m.749 2.824l-.649 2.187a1 1 0 0 1-.342.503l-4.14 3.244a1 1 0 0 0 1.233 1.574l4.643-3.637a1 1 0 0 0 .343-.503l.536-1.81zM28 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6m0 2a5 5 0 1 0 0-10a5 5 0 0 0 0 10\"/><path d=\"M21.737 14.364c1.428-.53 2.962-.5 4.339.213c1.31.677 2.197 1.823 2.755 3.021q.313.672.583 1.259c.44.954.8 1.737 1.145 2.42c.486.967.842 1.534 1.156 1.9c.27.313.501.472.799.588c.35.138.923.263 1.942.294a2.794 2.794 0 0 1-.167 5.586c-1.357-.041-2.634-.215-3.809-.674c-1.228-.48-2.197-1.213-3.005-2.155a9 9 0 0 1-.28-.342l-.403 2.104l4.367 4.309c.279.274.496.604.639.968l2.484 6.33a2.794 2.794 0 1 1-5.202 2.041l-2.268-5.777l-7.859-7.755a2.8 2.8 0 0 1-.814-2.303l.325-2.87c-.892 1.153-1.642 2.54-2.166 4.18a2.794 2.794 0 1 1-5.324-1.699c1.768-5.538 5.767-9.709 10.73-11.625l.006-.003zm.7 1.874l-.016.006c-4.382 1.693-7.954 5.391-9.541 10.366a.794.794 0 1 0 1.513.483c.994-3.113 2.725-5.468 4.76-7.13a1 1 0 0 1 1.626.886l-.652 5.767a.8.8 0 0 0 .231.654l8.01 7.904q.151.149.229.346l2.345 5.976a.794.794 0 1 0 1.478-.58l-2.484-6.33a.8.8 0 0 0-.181-.276l-4.748-4.684a1 1 0 0 1-.28-.9l.981-5.125a1 1 0 0 1 1.868-.277c.45.857.9 1.59 1.416 2.19c.616.717 1.321 1.244 2.216 1.594c.88.344 1.905.5 3.14.537a.794.794 0 1 0 .048-1.587c-1.14-.034-1.964-.177-2.61-.43c-.63-.246-1.126-.61-1.588-1.149c-.476-.553-.918-1.294-1.425-2.302a83 83 0 0 1-1.17-2.47l-.005-.012q-.269-.587-.58-1.253c-.43-.922-1.05-1.67-1.86-2.089c-.828-.428-1.77-.468-2.722-.115\"/></g>","liquid-medicine-outline":"<g fill=\"currentColor\"><path d=\"M19 29.5h3.5v3H19V36h-3v-3.5h-3.5v-3H16V26h3z\"/><path fill-rule=\"evenodd\" d=\"M23.5 6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1.85v2H24a5 5 0 0 1 5 5v20a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V19a5 5 0 0 1 5-5h2.35v-2H11.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zM8 39a1 1 0 0 0 1 1h17a1 1 0 0 0 1-1V22H8zm7.35-24a1 1 0 0 1-1 1H11a3 3 0 0 0-3 3v1h19v-1a3 3 0 0 0-3-3h-3.35a1 1 0 0 1-1-1v-3h-4.3zm-2.85-5h10V8h-10zM37 13c2.761 0 5 3.134 5 7c0 3.387-1.718 6.21-4 6.86V42h-2V26.86c-2.282-.65-4-3.473-4-6.86c0-3.866 2.239-7 5-7m0 2c-.567 0-1.27.319-1.908 1.213C34.456 17.103 34 18.436 34 20s.456 2.897 1.092 3.787C35.73 24.681 36.432 25 37 25s1.27-.319 1.908-1.213C39.544 22.897 40 21.564 40 20s-.456-2.897-1.092-3.787C38.27 15.319 37.568 15 37 15\" clip-rule=\"evenodd\"/></g>","blood-drop-outline":"<g fill=\"currentColor\"><path d=\"M15.465 31.398a1 1 0 1 0-1.902.62a11.53 11.53 0 0 0 4.178 5.767a11.48 11.48 0 0 0 6.759 2.203c.552 0 1-.449 1-1.003s-.448-1.003-1-1.003a9.5 9.5 0 0 1-5.584-1.82a9.53 9.53 0 0 1-3.451-4.764\"/><path fill-rule=\"evenodd\" d=\"m24 4l-.69.66l-.004.004l-.009.008l-.032.032l-.122.119q-.16.157-.456.455a72 72 0 0 0-6.492 7.621C12.681 17.68 9 24.082 9 30.08C9 37.845 15.796 44 24 44s15-6.155 15-13.92c0-6-3.681-12.401-7.195-17.18a72 72 0 0 0-6.492-7.622a42 42 0 0 0-.578-.574l-.032-.032l-.01-.008zm-1.451 4.334A64 64 0 0 1 24 6.8a70 70 0 0 1 6.195 7.29C33.681 18.832 37 24.777 37 30.08c0 6.503-5.74 11.914-13 11.914S11 36.583 11 30.08c0-5.303 3.319-11.248 6.805-15.99a70 70 0 0 1 4.744-5.756\" clip-rule=\"evenodd\"/></g>","test-tubes-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M8 11a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2v7h3v-7a1 1 0 1 1 0-2h8a1 1 0 1 1 0 2v7h3v-7a1 1 0 1 1 0-2h8a1 1 0 1 1 0 2v7h2v-3h2v3h1v2h-1v13h1v2h-1v2h-2v-2H7v2H5v-2H4v-2h1V21H4v-2h1v-3h2v3h2v-7a1 1 0 0 1-1-1M7 34h34V21h-2v8a4 4 0 0 1-8 0v-8h-3v8a4 4 0 0 1-8 0v-8h-3v8a4 4 0 0 1-8 0v-8H7zm8-22v7h-4v-7zm11 7h-4v-7h4zm11 0h-4v-7h4zM11 29v-8h4v8a2 2 0 1 1-4 0m11 0v-8h4v8a2 2 0 1 1-4 0m11 0v-8h4v8a2 2 0 1 1-4 0\" clip-rule=\"evenodd\"/>","defibrillator-outline":"<g fill=\"currentColor\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path d=\"M29.053 7.68a9.5 9.5 0 0 1 10.618 2.491c2.494 2.779 2.897 6.644 1.627 9.91c-1.541 3.964-4.488 7.593-7.589 10.952c-1.096 1.188-2.205 2.336-3.287 3.457c-2.035 2.107-3.98 4.121-5.586 6.134a1 1 0 0 1-1.484.088q-.562-.554-1.162-1.142c-2.485-2.438-5.394-5.292-8.065-8.326c-3.092-3.514-5.935-7.347-7.448-11.155A9.58 9.58 0 0 1 9.16 9.446c3.879-3.504 9.856-2.905 13.445.695l1.448 1.453l1.79-1.795a9.5 9.5 0 0 1 3.21-2.12m3.73 1.323a7.5 7.5 0 0 0-5.523 2.208l-2.498 2.505a1 1 0 0 1-1.416 0l-2.156-2.163c-2.941-2.95-7.706-3.317-10.69-.623v.002a7.55 7.55 0 0 0-2.497 5.418a7.6 7.6 0 0 0 .532 3c1.385 3.484 4.045 7.11 7.092 10.572c2.618 2.975 5.469 5.773 7.957 8.214l.391.384c1.523-1.81 3.307-3.658 5.103-5.52a203 203 0 0 0 3.162-3.323c3.077-3.335 5.798-6.73 7.194-10.32c1.036-2.665.67-5.709-1.252-7.85v-.001a7.53 7.53 0 0 0-5.398-2.503\"/><path d=\"m26.909 14.536l-7.94 10.266a.5.5 0 0 0 .395.806h4.527l-1.527 7.75l7.94-10.266a.5.5 0 0 0-.396-.806h-4.526z\"/></g>","phone-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M8.889 8A.894.894 0 0 0 8 8.889C8 26.073 21.927 40 39.111 40a.894.894 0 0 0 .889-.889V32.52a.894.894 0 0 0-.889-.889c-2.449 0-4.84-.395-7.057-1.127l-.01-.004a.88.88 0 0 0-.896.215l-4.67 4.67l-.648-.332c-5.531-2.834-10.067-7.348-12.883-12.884l-.33-.647l4.67-4.67a.9.9 0 0 0 .226-.913a22.5 22.5 0 0 1-1.124-7.05A.894.894 0 0 0 15.5 8zM6 8.889A2.894 2.894 0 0 1 8.889 6H15.5a2.894 2.894 0 0 1 2.889 2.889c0 2.254.36 4.415 1.026 6.43l.002.006l.002.007a2.9 2.9 0 0 1-.719 2.934l-3.634 3.635A27.6 27.6 0 0 0 26.1 32.933l3.633-3.633a2.88 2.88 0 0 1 2.953-.694a20.6 20.6 0 0 0 6.424 1.024A2.894 2.894 0 0 1 42 32.519v6.592A2.894 2.894 0 0 1 39.111 42C20.822 42 6 27.178 6 8.889\" clip-rule=\"evenodd\"/>","alert-triangle-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M24 6a1 1 0 0 1 .894.553l17 34A1 1 0 0 1 41 42H7a1 1 0 0 1-.894-1.447l17-34A1 1 0 0 1 24 6M8.618 40h30.764L24 9.236z\" clip-rule=\"evenodd\"/><path d=\"M22 20a2 2 0 1 1 4 0v10a2 2 0 1 1-4 0zm0 15.966C22 34.88 22.88 34 23.967 34h.067a1.966 1.966 0 1 1 0 3.933h-.067A1.966 1.966 0 0 1 22 35.966\"/></g>","lungs-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M23 6h2v14.5c0 1.398.564 1.942 1.004 2.199q.073.042.148.078l-.004-.375V22.4c-.038-3.528-.111-10.4 5.327-10.4c7.45 0 12.773 26.006 9.58 28.66s-9.58 1.061-12.773-2.123c-2.578-2.571-2.355-8.579-2.195-12.891v-.002q.016-.393.028-.767a4.3 4.3 0 0 1-1.119-.45a3.8 3.8 0 0 1-.996-.835c-.297.352-.64.626-.996.834c-.4.234-.794.37-1.12.451l.029.768c.16 4.313.383 10.321-2.195 12.892c-3.193 3.185-9.58 4.777-12.773 2.123S9.075 12 16.525 12c5.439 0 5.365 6.872 5.327 10.4l-.004.377q.076-.036.148-.078c.44-.257 1.004-.801 1.004-2.199zm8.475 8c-.954 0-1.49.3-1.866.687c-.434.446-.796 1.164-1.05 2.178c-.445 1.775-.426 3.817-.41 5.464q.004.428.004.816c0 .76-.033 1.67-.069 2.617l-.04 1.128c-.044 1.376-.07 2.816-.003 4.208c.066 1.4.223 2.685.516 3.762c.297 1.088.694 1.818 1.137 2.26c1.279 1.275 3.297 2.305 5.355 2.704c2.035.395 3.673.103 4.633-.627l.016-.04a3.7 3.7 0 0 0 .19-.789c.117-.775.147-1.856.068-3.188c-.157-2.65-.727-6.011-1.63-9.32c-.904-3.32-2.109-6.46-3.474-8.722c-.683-1.132-1.357-1.96-1.982-2.485c-.618-.52-1.076-.653-1.395-.653m-14.95 0c.954 0 1.49.3 1.866.687c.434.446.796 1.164 1.05 2.178c.445 1.775.426 3.817.41 5.465l-.004.816c0 .76.033 1.67.069 2.616l.04 1.129c.044 1.375.07 2.815.004 4.208c-.067 1.4-.224 2.685-.517 3.76c-.297 1.09-.694 1.82-1.137 2.262c-1.279 1.275-3.297 2.304-5.355 2.704c-2.035.394-3.673.102-4.633-.628l-.016-.04a3.7 3.7 0 0 1-.19-.788c-.117-.775-.147-1.856-.068-3.188c.157-2.65.727-6.012 1.63-9.32c.905-3.321 2.109-6.46 3.474-8.722c.683-1.133 1.357-1.96 1.982-2.485c.618-.52 1.076-.654 1.395-.654\" clip-rule=\"evenodd\"/>","oxygen-tank-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M17 6h2V4h-6v2h2v2h-2.17a3.001 3.001 0 1 0 0 2H15v2.083A6 6 0 0 0 10 18v25a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V18a6 6 0 0 0-5-5.917V10h5V8h-5zm-1 8a4 4 0 0 0-4 4v2h8v-2a4 4 0 0 0-4-4m-4 28V22h8v20zM9 9a1 1 0 1 1 2 0a1 1 0 0 1-2 0m17 12a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0zm4-2a2 2 0 0 0-2 2v6a2 2 0 1 0 4 0v-6a2 2 0 0 0-2-2m8 7h-3v-2h3a3 3 0 1 1 0 6a1 1 0 0 0-1 1v1h4v2h-5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3a1 1 0 1 0 0-2\" clip-rule=\"evenodd\"/>","bandage-adhesive-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M26.828 8.444a9 9 0 0 1 12.728 12.728L21.172 39.557A9 9 0 0 1 8.444 26.829zm11.314 1.414a7 7 0 0 0-9.9 0L9.859 28.243a7 7 0 1 0 9.9 9.9l18.384-18.385a7 7 0 0 0 0-9.9\" clip-rule=\"evenodd\"/><path fill-rule=\"evenodd\" d=\"M24 16.929a2 2 0 0 1 2.828 0l4.243 4.242a2 2 0 0 1 0 2.829L24 31.07a2 2 0 0 1-2.828 0l-4.243-4.242a2 2 0 0 1 0-2.828zm5.657 5.657l-4.243-4.243l-7.071 7.071l4.243 4.243z\" clip-rule=\"evenodd\"/><path d=\"M33.121 16.121a1 1 0 1 1-1.414-1.413a1 1 0 0 1 1.414 1.413m1-4a1 1 0 1 1-1.414-1.413a1 1 0 0 1 1.414 1.413m-4 1a1 1 0 1 1-1.414-1.413a1 1 0 0 1 1.414 1.413m6 6a1 1 0 1 1-1.414-1.413a1 1 0 0 1 1.414 1.413m1-4a1 1 0 1 1-1.414-1.413a1 1 0 0 1 1.414 1.413M14.707 31.707a1 1 0 1 1 1.414 1.415a1 1 0 0 1-1.414-1.415m-1 4a1 1 0 1 1 1.414 1.415a1 1 0 0 1-1.414-1.415m4-1a1 1 0 1 1 1.414 1.415a1 1 0 0 1-1.414-1.415m-6-6a1 1 0 1 1 1.414 1.415a1 1 0 0 1-1.414-1.415m-1 4a1 1 0 1 1 1.414 1.415a1 1 0 0 1-1.414-1.415\"/></g>","ppe-gloves-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M28 8.17A3 3 0 0 1 32 11v10.15l1.056-1.32a3.304 3.304 0 0 1 5.328 3.896l-3.458 5.188a11.4 11.4 0 0 1-4.759 4.054l.83 9.949A1 1 0 0 1 30 44H18a1 1 0 0 1-.997-1.083l.808-9.684A7 7 0 0 1 14 27V13a3 3 0 0 1 4-2.83V9a3 3 0 0 1 4.105-2.79A3.001 3.001 0 0 1 28 7zM25 6a1 1 0 0 0-1 1v13h-2V9a1 1 0 1 0-2 0v11h-2v-7a1 1 0 1 0-2 0v14a5 5 0 0 0 3.222 4.675a1 1 0 0 1 .64 1.017L19.087 42h9.826l-.8-9.591a1 1 0 0 1 .643-1.019a9.42 9.42 0 0 0 4.506-3.586l3.458-5.187a1.304 1.304 0 0 0-2.103-1.538l-2.836 3.546A1 1 0 0 1 30 24V11a1 1 0 1 0-2 0v9h-2V7a1 1 0 0 0-1-1\" clip-rule=\"evenodd\"/><path d=\"M10 14h2v2h-2zm0 2v13a7 7 0 0 0 3.81 6.233L13.247 42h2.008l.608-7.307a1 1 0 0 0-.64-1.018A5 5 0 0 1 12 29V16z\"/></g>","face-coughing-outline":"<g fill=\"currentColor\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path d=\"m40.272 31.501l.088.016l.013-.029zM24 40c1.882 0 3.688-.325 5.365-.922l2.094 1.309A17.9 17.9 0 0 1 24 42c-9.941 0-18-8.059-18-18S14.059 6 24 6s18 8.059 18 18q0 .624-.042 1.237l-2.027.259Q40 24.756 40 24c0-8.837-7.163-16-16-16S8 15.163 8 24s7.163 16 16 16\"/><path d=\"M17.241 18.349a1 1 0 0 1 1.314-.181l3 2a1 1 0 0 1 0 1.664l-3 2a1 1 0 0 1-1.267-1.534c.325-.33.757-.659 1.087-.91q.17-.13.292-.226q.1-.08.173-.144a6 6 0 0 0-.201-.167l-.236-.184c-.342-.265-.8-.618-1.141-.992a1 1 0 0 1-.02-1.326m17.517 0a1 1 0 0 0-1.314-.181l-3 2a1 1 0 0 0 0 1.664l3 2a1 1 0 0 0 1.267-1.534c-.325-.33-.757-.659-1.088-.91l-.291-.226a5 5 0 0 1-.173-.144q.083-.072.201-.167l.236-.184c.342-.265.8-.618 1.141-.992a1 1 0 0 0 .02-1.326M26 35a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0 2a6 6 0 1 0 0-12a6 6 0 0 0 0 12m15.99-6.475a.94.94 0 0 1-1.01.935l-1.55-.115a1.066 1.066 0 0 1-.969-1.08a.94.94 0 0 1 1.01-.935l1.55.114c.546.04.98.524.968 1.08m-4.745-.349a.94.94 0 0 1-1.01.935l-1.147-.085a1.066 1.066 0 0 1-.969-1.08a.94.94 0 0 1 1.01-.935l1.148.084c.546.04.98.524.968 1.08m-1.674 7.908c.388-.372 1.015-.337 1.4.079l1.859 2.009c.385.416.382 1.054-.006 1.426c-.388.373-1.014.337-1.399-.078l-1.86-2.01c-.385-.415-.382-1.054.006-1.426m-3.127-3.378c.388-.372 1.014-.337 1.4.079l.892.965c.385.416.383 1.054-.005 1.427c-.388.372-1.015.337-1.4-.08l-.893-.964c-.385-.416-.382-1.055.006-1.427m7.37.666c.197-.508.77-.736 1.28-.508l.173.077c.51.228.763.826.565 1.335c-.197.51-.77.737-1.28.51l-.173-.078c-.51-.228-.763-.826-.566-1.335m-6.134-2.745c.197-.51.77-.738 1.28-.51l3.272 1.464c.51.228.762.826.565 1.335a.94.94 0 0 1-1.28.51l-3.272-1.464c-.51-.228-.763-.826-.565-1.335\"/></g>","virus-outline":"<g fill=\"currentColor\"><path d=\"M20 25a2 2 0 1 1 0 4a2 2 0 0 1 0-4m5-6a2 2 0 1 0-4 0a2 2 0 0 0 4 0m4 5a2 2 0 1 1 0 4a2 2 0 0 1 0-4\"/><path fill-rule=\"evenodd\" d=\"M21 5a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-1v3.033a14.94 14.94 0 0 1 8.876 3.677l2.145-2.145l-.707-.707a1 1 0 1 1 1.414-1.414l2.828 2.828a1 1 0 0 1-1.414 1.414l-.707-.707l-2.145 2.145A14.94 14.94 0 0 1 38.967 23H42v-1a1 1 0 0 1 2 0v4a1 1 0 1 1-2 0v-1h-3.033a14.94 14.94 0 0 1-3.677 8.876l2.145 2.145l.707-.707a1 1 0 1 1 1.414 1.414l-2.828 2.828a1 1 0 0 1-1.414-1.414l.707-.707l-2.145-2.145A14.94 14.94 0 0 1 25 38.967V42h1a1 1 0 1 1 0 2h-4a1 1 0 1 1 0-2h1v-3.033a14.94 14.94 0 0 1-8.876-3.677l-2.145 2.145l.707.707a1 1 0 1 1-1.414 1.414l-2.828-2.828a1 1 0 1 1 1.414-1.414l.707.707l2.145-2.145A14.94 14.94 0 0 1 9.033 25H6v1a1 1 0 1 1-2 0v-4a1 1 0 0 1 2 0v1h3.033a14.94 14.94 0 0 1 3.677-8.876l-2.145-2.145l-.707.707a1 1 0 0 1-1.414-1.414l2.828-2.828a1 1 0 1 1 1.414 1.414l-.707.707l2.145 2.145A14.94 14.94 0 0 1 23 9.033V6h-1a1 1 0 0 1-1-1m12.872 10.542A12.94 12.94 0 0 1 36.962 23H36a1 1 0 0 0 0 2h.962a12.94 12.94 0 0 1-3.09 7.458l-.68-.68a1 1 0 0 0-1.414 1.415l.68.68A12.94 12.94 0 0 1 25 36.963V36a1 1 0 1 0-2 0v.962a12.94 12.94 0 0 1-7.458-3.09l.68-.68a1 1 0 0 0-1.414-1.414l-.68.68A12.94 12.94 0 0 1 11.038 25H12a1 1 0 1 0 0-2h-.962a12.94 12.94 0 0 1 3.09-7.458l.68.68a1 1 0 0 0 1.414-1.414l-.68-.68A12.94 12.94 0 0 1 23 11.038V12a1 1 0 1 0 2 0v-.962a12.94 12.94 0 0 1 7.458 3.09l-.68.68a1 1 0 0 0 1.414 1.414z\" clip-rule=\"evenodd\"/></g>","ppe-gown-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M12.66 8.526A5 5 0 0 1 17.637 4H21a3 3 0 1 0 6 0h3.363a5 5 0 0 1 4.977 4.526l1.447 15.19A3 3 0 0 1 35 26.75V30a1 1 0 0 1-1 1h-2v12a1 1 0 0 1-1 1H17a1 1 0 0 1-1-1V31h-2a1 1 0 0 1-1-1v-3.249a3 3 0 0 1-1.787-3.035zM30 30v-3H18v15h12zm2-3v2h1v-2zm0-2V11h-2v14H18V11h-2v14h-1.8a1 1 0 0 1-.996-1.095l1.447-15.19A3 3 0 0 1 17.637 6h1.779a5.001 5.001 0 0 0 9.168 0h1.779a3 3 0 0 1 2.986 2.716l1.447 15.19A1 1 0 0 1 33.801 25zm-16 2v2h-1v-2z\" clip-rule=\"evenodd\"/>","ppe-mask-outline":"<g fill=\"currentColor\"><path d=\"M30.242 20.03L24 18.47l-6.243 1.56a1 1 0 1 0 .485 1.94L24 20.53l5.757 1.44a1 1 0 0 0 .485-1.94\"/><path fill-rule=\"evenodd\" d=\"M9 16.868c0-4.226 11.16-4.226 11.16-4.226l.9-1.616A2 2 0 0 1 22.809 10h2.559a2 2 0 0 1 1.747 1.026l.9 1.616S39 12.642 39 16.868v.167l1.73.42a4 4 0 0 1 3.042 4.235l-.554 6.35a4 4 0 0 1-2.687 3.435l-7.092 2.431C29.344 38 24.484 38 24.484 38h-.968s-4.866 0-8.963-4.1L7.36 31.101a4 4 0 0 1-2.532-3.348l-.573-6.021a4 4 0 0 1 3.114-4.284L9 17.087zm.058 2.255l-1.254.278a2 2 0 0 0-1.557 2.142l.573 6.021a2 2 0 0 0 1.266 1.674l4.096 1.593c-1.627-2.73-2.85-6.501-3.124-11.708m26.648 11.892l4.176-1.431a2 2 0 0 0 1.344-1.719l.554-6.35a2 2 0 0 0-1.521-2.117l-1.315-.319c-.276 5.348-1.55 9.184-3.238 11.936M22.803 12.011q-.186.332-.35.638c-.633 1.176-1.076 1.998-2.275 1.998c-5.942 0-8.988 1.573-8.988 2.145c0 16.445 8.973 19.027 12.592 19.198a2 2 0 0 0 .308.01h.09q.112 0 .218-.01c3.619-.17 12.592-2.753 12.592-19.198c0-.572-3.046-2.145-8.988-2.145c-1.2 0-1.642-.822-2.275-1.998q-.164-.306-.35-.638z\" clip-rule=\"evenodd\"/></g>","ppe-face-shield-outline":"<g fill=\"currentColor\"><path d=\"m30.829 28.757l-7.072 7.071l-1.414-1.414l7.071-7.07zm-3.536 9.193l5.657-5.657l-1.414-1.414l-5.657 5.657z\"/><path fill-rule=\"evenodd\" d=\"M11 16.616c-1.05-.5-1.95-1.08-2.63-1.74C7.558 14.086 7 13.115 7 12c0-1.217.661-2.257 1.594-3.084c.934-.828 2.228-1.527 3.741-2.095C15.37 5.683 19.494 5 24 5s8.63.683 11.665 1.821c1.513.568 2.807 1.267 3.741 2.095C40.339 9.743 41 10.783 41 12c0 1.117-.559 2.087-1.37 2.875c-.68.661-1.58 1.241-2.63 1.74v20.92l-3.57 2.38a17 17 0 0 1-18.86 0L11 37.535zM9 12c0-.44.234-.978.92-1.587c.686-.608 1.735-1.201 3.117-1.72C15.794 7.66 19.67 7 24 7s8.206.66 10.963 1.694c1.382.518 2.43 1.111 3.116 1.719c.687.609.921 1.147.921 1.587c0 .405-.197.89-.764 1.441c-.316.308-.73.616-1.236.915V14a3 3 0 0 0-3-3H14a3 3 0 0 0-3 3v.356a6.5 6.5 0 0 1-1.236-.915C9.197 12.891 9 12.405 9 12m5 1a1 1 0 0 0-1 1v1h22v-1a1 1 0 0 0-1-1zm1.68 25.251L13 36.465V17h22v19.465l-2.68 1.786a15 15 0 0 1-16.64 0\" clip-rule=\"evenodd\"/></g>","speech-language-therapy-outline":"<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M10.524 8.018c-.781.01-2.021.019-4.024.019v-2c1.997 0 3.229-.01 4-.018A149 149 0 0 0 11.765 6c6.831 0 12.47 5.243 12.47 11.83v1.096l2.282 3.234c1.312 1.857-.174 4.165-2.283 4.167v.666c0 1.065-.898 1.833-1.882 1.833h-.681l1.036.7c.835.158 1.527.863 1.527 1.799v1.499c0 1.597-.9 2.967-2.192 3.712c-.877.505-1.793.555-2.53.463c-.716-.089-1.373-.325-1.861-.522l-2.24-.906v4.596c0 1.066-.897 1.833-1.882 1.833h-2.03v-2h1.912v-5.913a1 1 0 0 1 1.375-.927l3.615 1.463c.436.176.902.335 1.359.392c.459.057.898.01 1.283-.212c.733-.423 1.191-1.164 1.191-1.979v-1.34a1 1 0 0 1-.442-.163l-2.715-1.833a1 1 0 0 1-.44-.83c0-.385.091-.792.364-1.137c.27-.342.624-.506.92-.588c.286-.079.581-.1.822-.106c.166-.005.354-.003.524-.002h.967v-1.498a1 1 0 0 1 1-1h.998c.336 0 .57-.17.686-.373a.57.57 0 0 0-.034-.64l-2.467-3.494a1 1 0 0 1-.183-.577V17.83c0-5.375-4.632-9.829-10.47-9.829l-.302.004c-.192.004-.48.009-.938.014\" clip-rule=\"evenodd\"/><path d=\"M21 19.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0\"/><path fill-rule=\"evenodd\" d=\"M28.495 32.084a2.41 2.41 0 0 0 1.19-2.085c0-.892-.48-1.669-1.19-2.083l1.01-1.727a4.41 4.41 0 0 1 2.18 3.81a4.41 4.41 0 0 1-2.18 3.811zm3.287 2.579c1.213-.877 2.113-2.596 2.113-4.663s-.9-3.786-2.113-4.663l1.173-1.62c1.807 1.307 2.94 3.672 2.94 6.283c0 2.61-1.133 4.976-2.94 6.284z\" clip-rule=\"evenodd\"/><path fill-rule=\"evenodd\" d=\"M38.105 30c0-3.181-1.264-5.848-2.99-7.216l1.243-1.567c2.302 1.825 3.747 5.127 3.747 8.783s-1.445 6.958-3.747 8.783l-1.243-1.567c1.726-1.368 2.99-4.035 2.99-7.216\" clip-rule=\"evenodd\"/></g>","people-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M17 24c3.867 0 7-3.133 7-7s-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7m5-7c0 2.763-2.237 5-5 5s-5-2.237-5-5s2.237-5 5-5s5 2.237 5 5M4 38v-5.6c0-4.256 8.661-6.4 13-6.4c2.886 0 7.685.949 10.575 2.837C29.635 28.28 31.894 28 33.5 28c1.858 0 4.351.374 6.41 1.13c1.026.378 2.009.874 2.752 1.516c.749.647 1.338 1.522 1.338 2.62V38zm2-5.6c0-.317.146-.751.766-1.315c.633-.576 1.607-1.134 2.84-1.62C12.077 28.49 15.077 28 17 28s4.924.49 7.393 1.465c1.234.486 2.208 1.044 2.84 1.62c.621.564.767.998.767 1.315V36H6zm23.353-1.93c1.513-.313 3.03-.47 4.147-.47c1.647 0 3.903.34 5.72 1.008c.909.334 1.644.728 2.135 1.152c.485.419.645.787.645 1.107V36H30v-3.6c0-.7-.235-1.345-.647-1.93M39 20.5c0 3.039-2.461 5.5-5.5 5.5a5.5 5.5 0 0 1-5.5-5.5c0-3.039 2.461-5.5 5.5-5.5s5.5 2.461 5.5 5.5M33.5 24c1.934 0 3.5-1.566 3.5-3.5S35.434 17 33.5 17a3.5 3.5 0 0 0-3.5 3.5c0 1.934 1.566 3.5 3.5 3.5\" clip-rule=\"evenodd\"/>","world-care-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M23.952 26h.08c5.523 0 10-4.477 10-10s-4.477-10-10-10h-.08c-5.486.043-9.92 4.504-9.92 10s4.434 9.957 9.92 10m8.018-9h-2c-.054.913-.182 1.79-.374 2.615h1.574a8 8 0 0 0 .8-2.615m-2.24 4.615h-.765q-.222.544-.484 1.035c.451-.303.87-.65 1.249-1.035m-2.197-2c.218-.797.37-1.676.433-2.615h-2.934v2.615zm-2.501 2h1.734q-.115.222-.238.427c-.5.831-1.017 1.345-1.496 1.636zm-2-2V17h-2.998c.063.939.215 1.818.433 2.615zm-1.798 2h1.798v2.1c-.496-.283-1.038-.804-1.56-1.673a8 8 0 0 1-.238-.427m-2.83-2A15.7 15.7 0 0 1 18.03 17h-1.936c.116.93.392 1.812.8 2.615zm-.07 2h.7q.207.507.449.966a8 8 0 0 1-1.15-.966M29.97 15a15.7 15.7 0 0 0-.374-2.615h1.574a7.9 7.9 0 0 1 .8 2.615zm-.24-4.615h-.765q-.222-.544-.484-1.035c.451.303.87.65 1.249 1.035m-4.698 0h1.734a8 8 0 0 0-.238-.427c-.5-.832-1.017-1.345-1.496-1.636zm2.501 2h-2.501V15h2.934a13.4 13.4 0 0 0-.433-2.615m-4.501-4.1v2.1h-1.798q.116-.222.238-.427c.521-.869 1.064-1.39 1.56-1.674m0 4.1h-2.565c-.218.797-.37 1.676-.433 2.615h2.998zm-3.55-2.966q-.24.459-.447.966h-.701a8 8 0 0 1 1.149-.966m-1.078 2.966h-1.51a8 8 0 0 0-.8 2.615h1.936c.054-.914.182-1.79.374-2.615M8.73 17c-1.038-.024-2.08.613-2.417 1.605c-.084.248-.13.572-.163.867c-.035.322-.062.709-.083 1.13A67 67 0 0 0 6 23.496c-.008 2.018.043 4.118.116 4.769c.128 1.14.784 2.202 1.354 3.126l.064.103c.173.28.344.559.512.846c.754 1.291 1.574 2.161 2.317 2.95l.017.017c.418.443.805.855 1.17 1.314A2 2 0 0 0 11 38v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2a2 2 0 0 0-1.86-1.995c-.135-1.136-.31-2.67-.326-3.107c-.014-.376-.14-.743-.258-1.022a7 7 0 0 0-.426-.836a12 12 0 0 0-.528-.817l-.039-.054l-.01-.015l-.004-.005l-.002-.003l-.01-.014l-3.244-4.09l-.03-.03v-.002l-.004-.004l-.024-.026l-.095-.107a10 10 0 0 1-.334-.403a7.3 7.3 0 0 1-.797-1.23c-.228-.468-.66-.917-1.323-.95c-.565-.03-1.008.27-1.266.501a3 3 0 0 0-.387.422l-.045-.602l-.005-.066c-.098-1.318-.217-2.913-.604-4.19c-.454-1.494-1.463-2.326-2.65-2.354m10.012 13.74l.805-.594zm.383 5.26c-.13-1.1-.292-2.537-.31-3.029l-.019-.087a2 2 0 0 0-.083-.233a5 5 0 0 0-.309-.6a9 9 0 0 0-.433-.67l-.026-.037l-3.168-3.994l-.018-.02l-.124-.14a12 12 0 0 1-.403-.487a10 10 0 0 1-.741-1.072l-.007.011c-.09.167-.14.32-.155.42c-.055.354-.027.598.001.73a1 1 0 0 0 .035.124v.003l1.832 3.638l-1.701 1.039l-.025-.034l-.069-.095a123 123 0 0 1-1.06-1.485c-.607-.864-1.333-1.924-1.691-2.56c-.268-.475-.392-1.104-.471-1.673a33 33 0 0 1-.185-1.968l-.002-.022c-.104-1.398-.212-2.78-.528-3.823c-.138-.455-.316-.684-.444-.795a.52.52 0 0 0-.338-.14c-.273-.007-.454.182-.477.25c-.002.006-.011.04-.024.114a5 5 0 0 0-.044.323c-.029.268-.054.612-.074 1.014A65 65 0 0 0 8 23.505c-.009 2.039.046 4.022.104 4.538c.072.645.474 1.334 1.132 2.403l.003.004c.17.276.353.573.534.883c.633 1.084 1.315 1.811 2.062 2.603l.017.018c.556.59 1.16 1.23 1.73 2.047zM13.8 25.246l-.011.007zM21 40v-2h-8v2zm20.687-21.395c-.338-.992-1.379-1.629-2.417-1.604c-1.186.028-2.195.86-2.649 2.354c-.387 1.277-.506 2.872-.604 4.19l-.005.066l-.045.602q-.18-.237-.387-.422c-.258-.23-.7-.53-1.266-.502c-.663.034-1.095.483-1.323.95a7.3 7.3 0 0 1-.797 1.23a10 10 0 0 1-.43.511l-.023.026l-.004.005l-.03.031l-3.243 4.09l-.011.014l-.002.003l-.003.005l-.011.015q-.015.019-.039.054a11 11 0 0 0-.528.817a7 7 0 0 0-.427.836c-.117.279-.243.646-.257 1.022c-.016.437-.19 1.971-.326 3.107A2 2 0 0 0 25 38v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2a2 2 0 0 0-.551-1.38c.365-.458.752-.87 1.17-1.313l.017-.018c.743-.788 1.563-1.658 2.317-2.949c.168-.287.34-.565.512-.846l.064-.103c.57-.924 1.226-1.986 1.354-3.126c.073-.651.124-2.751.116-4.769a67 67 0 0 0-.066-2.894a20 20 0 0 0-.083-1.13c-.032-.295-.078-.62-.163-.867M29.258 30.74l-.805-.593zm5.16 5.26c.57-.817 1.173-1.457 1.73-2.047l.016-.018c.747-.792 1.43-1.52 2.062-2.603c.18-.31.363-.606.534-.883l.003-.005c.659-1.068 1.06-1.757 1.132-2.402c.058-.516.112-2.499.104-4.538c-.004-1.006-.023-2-.063-2.802c-.02-.402-.045-.746-.074-1.014a5 5 0 0 0-.044-.323a1 1 0 0 0-.024-.114c-.023-.068-.204-.257-.476-.25a.52.52 0 0 0-.339.14c-.128.11-.306.34-.444.795c-.316 1.042-.424 2.425-.528 3.823l-.002.022c-.05.684-.102 1.374-.185 1.968c-.078.569-.203 1.198-.47 1.674c-.359.635-1.085 1.695-1.692 2.56a124 124 0 0 1-1.06 1.484l-.07.095l-.024.034l-1.701-1.04l1.831-3.637l.001-.003a1 1 0 0 0 .035-.124c.028-.132.056-.376.001-.73a1.4 1.4 0 0 0-.155-.42l-.007-.011c-.246.415-.517.787-.74 1.072a12 12 0 0 1-.528.627l-.019.02l-3.167 3.994l-.026.037l-.107.153c-.09.133-.208.315-.326.517a5 5 0 0 0-.309.6q-.058.14-.083.232a1 1 0 0 0-.019.088c-.018.492-.18 1.93-.31 3.029zM34.2 25.246l.011.007zM27 40v-2h8v2z\" clip-rule=\"evenodd\"/>","communication-outline":"<g fill=\"currentColor\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path d=\"M26 33h3.5C36.404 33 42 27.404 42 20.5S36.404 8 29.5 8h-11C11.596 8 6 13.596 6 20.5c0 7.915 5.217 12.754 10.924 15.726c2.835 1.477 5.69 2.43 7.849 3.015q.665.18 1.227.313zm2 9s-.756-.11-2-.392C20.236 40.3 4 35.305 4 20.5C4 12.492 10.492 6 18.5 6h11C37.508 6 44 12.492 44 20.5S37.508 35 29.5 35H28z\"/><path d=\"M24 22a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 2a3 3 0 1 0 0-6a3 3 0 0 0 0 6m8-2a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 2a3 3 0 1 0 0-6a3 3 0 0 0 0 6m-16-2a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 2a3 3 0 1 0 0-6a3 3 0 0 0 0 6\"/></g>","medical-records-outline":"<g fill=\"currentColor\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path d=\"M21 10a2 2 0 0 0-2 2h-3a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V14a2 2 0 0 0-2-2h-3a2 2 0 0 0-2-2zm0 2h6v2h-6zm3.557 16l-2.493 6.649a1 1 0 1 0 1.872.702l1.259-3.355h2.61l1.259 3.355a1 1 0 1 0 1.872-.702L28.444 28h2.858a1 1 0 1 0 0-2h-10.3a1 1 0 0 0 0 2zM31 19.24H17v-2h14zM17 23.4h5v-2h-5zm11.5-.4a2 2 0 1 1-4 0a2 2 0 0 1 4 0\"/><path d=\"M39 8H9a1 1 0 0 0-1 1v30a1 1 0 0 0 1 1h30a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1M9 6a3 3 0 0 0-3 3v30a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3z\"/></g>","exercise-yoga-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M24 6a4 4 0 1 0 0 8a4 4 0 0 0 0-8m-6 4a6 6 0 1 1 12 0a6 6 0 0 1-12 0m-2.692 9.462A4 4 0 0 1 19 17h10a4 4 0 0 1 3.692 2.462l2.5 6c1.033 2.477-.618 5.193-3.192 5.508v.922a1 1 0 0 0 .47.848l5.548 3.467A4.217 4.217 0 0 1 35.783 44h-23.57a4.213 4.213 0 0 1-2.223-7.792l5.588-3.47a1 1 0 0 0 .472-.85v-.913c-2.603-.285-4.281-3.02-3.242-5.514zM18.05 31v.888a3 3 0 0 1-1.417 2.548l-5.587 3.47A2.213 2.213 0 0 0 12.213 42H30a1 1 0 0 0 1-1v-.13a1 1 0 0 0-.933-.997l-13.084-.875a1 1 0 0 1 .134-1.996l13.083.875a3 3 0 0 1 2.8 2.994V41c0 .35-.06.687-.17 1h2.953a2.217 2.217 0 0 0 1.175-4.097l-5.548-3.468A3 3 0 0 1 30 31.891V31h-2.757a4 4 0 0 1-2.829-1.172L24 29.414l-.414.414A4 4 0 0 1 20.757 31zM25 27.586l.828.828a2 2 0 0 0 1.415.586H31.5a2 2 0 0 0 1.846-2.77l-2.5-6A2 2 0 0 0 29 19H19a2 2 0 0 0-1.846 1.23l-2.5 6A2 2 0 0 0 16.5 29h4.257a2 2 0 0 0 1.415-.586l.828-.828v-2.32c-.226.13-.43.308-.6.534l-.6.8a1 1 0 0 1-.8.4h-3a1 1 0 0 1-.894-1.447l1-2a1 1 0 1 1 1.788.894l-.276.553h.882l.3-.4c1.6-2.133 4.8-2.133 6.4 0l.3.4h.882l-.276-.553a1 1 0 1 1 1.788-.894l1 2A1 1 0 0 1 30 27h-3a1 1 0 0 1-.8-.4l-.6-.8a2 2 0 0 0-.6-.534z\" clip-rule=\"evenodd\"/>","heart-outline":"<path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M10.345 11.988C8.885 13.846 8 16.384 8 19.035c0 5.94 3.965 10.927 8.15 14.516a43.8 43.8 0 0 0 7.837 5.32l.252-.14a47 47 0 0 0 7.603-5.371C36.044 29.691 40 24.705 40 19.034c0-2.65-.885-5.189-2.344-7.047C36.2 10.137 34.213 9 31.969 9c-3.103 0-5.51 2.02-7.071 5.202L24 16.03l-.898-1.828C21.541 11.02 19.134 9 16.032 9c-2.245 0-4.232 1.136-5.687 2.988M24 40l-.434.9l-.005-.002l-.011-.005l-.041-.02l-.152-.076c-.13-.066-.32-.164-.56-.292a46 46 0 0 1-7.949-5.436C10.535 31.371 6 25.875 6 19.035c0-3.076 1.021-6.055 2.772-8.283C10.528 8.518 13.056 7 16.032 7c3.503 0 6.167 1.963 7.968 4.734C25.8 8.964 28.465 7 31.969 7c2.975 0 5.504 1.518 7.26 3.753C40.978 12.98 42 15.96 42 19.035c0 6.582-4.544 12.079-8.842 15.831a49 49 0 0 1-8.494 5.914l-.151.08l-.04.022l-.012.005l-.003.002h-.001S24.456 40.89 24 40m0 0l.457.89l-.443.227l-.448-.216z\" clip-rule=\"evenodd\"/>"};
+/* Illustrationen im Stil der Startseite: flache Figuren, Palette Elfenbein, Nachtblau, Messing */
+const IL = (() => {
+  const NV = "#14304f", GD = "#b48a4c", GL = "#c9a676", IK = "#16202c";
+  const SK = { a: "#f1cdb0", b: "#e6bfa3", c: "#d9a07a", d: "#c68e6a", e: "#b27b58", f: "#8d5a3b", g: "#6b4430" };
+  const HR = { blk: "#2a211d", brn: "#5a3b28", aub: "#8a4b2c", bln: "#c99a5b", gry: "#e4e3e0", slv: "#c9ccd1" };
+  const shade = c => { const n = parseInt(c.slice(1), 16), f = .82; return "#" + [n >> 16, n >> 8 & 255, n & 255].map(v => Math.round(v * f).toString(16).padStart(2, "0")).join(""); };
+  /* Haare relativ zum Kopf: [hinten, vorne] */
+  function hair(st, x, y, r, c) {
+    const cap = `<path d="M${x - r - 1} ${y + 2}A${r + 1} ${r + 1} 0 0 1 ${x + r + 1} ${y + 2}Q${x + r * .4} ${y - r * .5} ${x - r * .1} ${y - r * .38}Q${x - r * .6} ${y - r * .25} ${x - r - 1} ${y + 2}z" fill="${c}"/>`;
+    switch (st) {
+      case "bun": return ["", cap + `<circle cx="${x + r * .85}" cy="${y - r * .85}" r="${r * .42}" fill="${c}"/>`];
+      case "pony": return [`<path d="M${x + r * .7} ${y - r * .5}c${r * .9} ${r * .2} ${r * 1.1} ${r * 1.4} ${r * .5} ${r * 2.2}" stroke="${c}" stroke-width="${r * .5}" stroke-linecap="round" fill="none"/>`, cap];
+      case "long": return [`<path d="M${x - r * 1.08} ${y - r * .2}v${r * 1.7}a${r * .26} ${r * .26} 0 0 0 ${r * .52} 0V${y - r * .2}zM${x + r * .56} ${y - r * .2}v${r * 1.7}a${r * .26} ${r * .26} 0 0 0 ${r * .52} 0V${y - r * .2}z" fill="${c}"/>`, cap];
+      case "curly": return ["", [[-.8, -.3], [-.5, -.75], [0, -.95], [.5, -.75], [.82, -.3], [-.95, .2], [.95, .15]].map(([a, b]) => `<circle cx="${x + a * r}" cy="${y + b * r}" r="${r * .42}" fill="${c}"/>`).join("")];
+      case "afro": return [`<circle cx="${x}" cy="${y - r * .25}" r="${r * 1.3}" fill="${c}"/>`, ""];
+      case "grey": return ["", `<circle cx="${x - r * .9}" cy="${y - r * .25}" r="${r * .4}" fill="${c}"/><circle cx="${x + r * .88}" cy="${y - r * .3}" r="${r * .36}" fill="${c}"/><path d="M${x - r * .8} ${y - r * .6}Q${x} ${y - r * 1.25} ${x + r * .8} ${y - r * .65}Q${x} ${y - r * .9} ${x - r * .8} ${y - r * .6}z" fill="${c}"/>`];
+      case "bald": return ["", `<path d="M${x - r * .98} ${y + r * .1}q0-${r * .45} ${r * .25}-${r * .7}M${x + r * .98} ${y + r * .1}q0-${r * .45}-${r * .25}-${r * .7}" stroke="${c}" stroke-width="${r * .3}" stroke-linecap="round" fill="none"/>`];
+      case "scarf": return [`<path d="M${x - r * 1.2} ${y + r * .2}C${x - r * 1.3} ${y - r * 1.4} ${x + r * 1.3} ${y - r * 1.4} ${x + r * 1.2} ${y + r * .2}L${x + r * 1.1} ${y + r * 1.6}H${x - r * 1.1}z" fill="${c}"/>`, `<path d="M${x - r * 1.08} ${y - r * .1}A${r * 1.08} ${r * 1.08} 0 0 1 ${x + r * 1.08} ${y - r * .1}Q${x} ${y - r * .55} ${x - r * 1.08} ${y - r * .1}z" fill="${c}"/>`];
+      default: return ["", cap];
+    }
+  }
+  const head = (x, y, r, o) => { const [b, f] = hair(o.hs, x, y, r, o.hair); return b + `<circle cx="${x}" cy="${y}" r="${r}" fill="${o.skin}"/>` + f; };
+  /* Stehende Person, Mitte x=376, Boden y=404. arm: reach | down | up. role: nurse | person | doctor | lernende */
+  function stand(o) {
+    const top = o.top || NV, pants = o.pants || "#22476e", shoe = o.shoe || "#1a2b3f", skin = o.skin;
+    const nurse = o.role !== "person";
+    let s = `<path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="${pants}"/><path d="M346 404h-38c0-16 10-22 24-22z" fill="${shoe}"/><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="${pants}"/><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="${shoe}"/>`;
+    s += `<path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="${top}"/>`;
+    if (o.role === "doctor") s += `<path d="M360 182l16 50 16-50" fill="${o.inner || "#8fa9c4"}"/><path d="M376 232v100" stroke="${shade(top)}" stroke-width="3"/>`;
+    else if (nurse) s += `<path d="M358 182l18 30 18-30" fill="none" stroke="${o.trim || "#5f84ad"}" stroke-width="4" stroke-linejoin="round"/>`;
+    else s += `<path d="M356 184c6 12 34 12 40 0" fill="none" stroke="${shade(top)}" stroke-width="4" stroke-linecap="round"/>`;
+    if (o.steth) s += `<path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="${GL}" stroke-width="3.5" stroke-linecap="round"/><circle cx="392" cy="250" r="7" fill="none" stroke="${GL}" stroke-width="3.5"/>`;
+    if (o.badge) s += `<rect x="398" y="214" width="18" height="10" rx="3" fill="${o.badge}"/>`;
+    s += `<rect x="366" y="152" width="20" height="26" rx="8" fill="${skin}"/>` + head(376, 128, 29, o);
+    if (o.mask) s += `<path d="M352 132h48v8c0 10-10 16-24 16s-24-6-24-16z" fill="#cfe1ee"/>`;
+    const arm = (d, hx, hy) => `<path d="${d}" stroke="${top}" stroke-width="21" stroke-linecap="round" fill="none"/><circle cx="${hx}" cy="${hy}" r="10.5" fill="${o.glove || skin}"/>`;
+    const L = { reach: ["M336 236c-14 30-30 52-54 62", 280, 300], down: ["M334 234c-8 28-10 52-6 76", 328, 314], up: ["M336 236c-14 18-22 36-24 54", 312, 294], wave: ["M334 232c-16 -10-26 -30-28 -52", 306, 176] }[o.arm || "reach"];
+    s += arm(...L);
+    if (o.tablet !== false && o.r !== "down" && o.r !== "up") s += arm("M420 236c10 24 12 44 4 60", 424, 298) + `<g transform="rotate(-8 421 306)"><rect x="398" y="276" width="46" height="60" rx="8" fill="#f8f4ec" stroke="${GL}" stroke-width="3"/><path d="M410 296h22M410 308h16M410 320h20" stroke="#c9b48f" stroke-width="3" stroke-linecap="round"/></g><circle cx="424" cy="298" r="9" fill="${o.glove || skin}"/>`;
+    else if (o.r === "up") s += arm("M420 236c12 -14 20 -30 22 -50", 442, 184);
+    else s += arm("M420 236c8 26 8 50 4 74", 424, 314);
+    if (o.x) s = `<g transform="translate(${o.x - 376} 0)">${s}</g>`;
+    if (o.flip) s = `<g transform="translate(${2 * o.x} 0) scale(-1 1)">${s}</g>`;
+    return s;
+  }
+  /* Sessel mit sitzender Person, Sessel links x=92 */
+  function seated(o) {
+    const ch = o.chair || "#9fb3a4", top = o.top || "#d9a493";
+    let s = `<rect x="96" y="196" width="54" height="196" rx="26" fill="${ch}"/><rect x="104" y="300" width="186" height="58" rx="22" fill="${shade(ch).replace(/^/, "")}" opacity=".0"/><rect x="104" y="300" width="186" height="58" rx="22" fill="${o.seat || "#b7c8bb"}"/><rect x="92" y="286" width="44" height="76" rx="20" fill="${shade(ch)}"/><rect x="256" y="286" width="40" height="76" rx="20" fill="${shade(ch)}"/><path d="M120 362v42M270 362v42" stroke="${shade(shade(ch))}" stroke-width="10" stroke-linecap="round"/>`;
+    s += `<path d="M186 318h66c12 0 18 8 18 18v60" stroke="${o.pants || "#3d4b5e"}" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/><ellipse cx="284" cy="404" rx="20" ry="9" fill="#2a3442"/>`;
+    s += `<path d="M150 232c4-20 22-32 44-32s38 12 42 32l10 92H146z" fill="${top}"/><rect x="184" y="186" width="20" height="22" rx="8" fill="${o.skin}"/>` + head(194, 166, 27, o);
+    s += o.arm === "lap" ? `<path d="M226 244c8 24 10 44 26 56" stroke="${top}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="254" cy="302" r="10" fill="${o.skin}"/>` : o.arm === "chest" ? `<path d="M226 244c6 22 0 36-14 38" stroke="${top}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="208" cy="282" r="10" fill="${o.skin}"/>` : `<path d="M226 244c10 22 22 40 40 50" stroke="${top}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="270" cy="296" r="10" fill="${o.skin}"/>`;
+    return s;
+  }
+  /* Bett mit liegender Person */
+  function bed(o) {
+    const fr = o.frame || "#8ea595";
+    let s = `<rect x="58" y="222" width="18" height="182" rx="9" fill="${fr}"/><rect x="316" y="262" width="16" height="142" rx="8" fill="${fr}"/><rect x="68" y="324" width="258" height="14" rx="7" fill="${shade(fr)}"/><rect x="72" y="296" width="250" height="32" rx="12" fill="#fbf8f3"/>`;
+    s += `<ellipse cx="116" cy="290" rx="38" ry="14" fill="#fff"/>` + head(120, o.raise ? 262 : 272, 24, o);
+    s += `<path d="M144 ${o.raise ? 270 : 276}c40-14 110-14 150-4 18 4 26 14 28 30H140z" fill="${o.blanket || "#8fa9c4"}"/><path d="M150 296c40-8 110-8 168 0" stroke="${shade(o.blanket || "#8fa9c4")}" stroke-width="3" fill="none" opacity=".6"/>`;
+    if (o.armOut !== false) s += `<path d="M158 284c26 4 52 6 82 6" stroke="${o.top || "#e3d9c6"}" stroke-width="16" stroke-linecap="round" fill="none"/><circle cx="244" cy="290" r="9" fill="${o.skin}"/>`;
+    return s;
+  }
+  function walker(x) { return `<path d="M${x} 404l8-120h56l8 120M${x + 6} 330h68" stroke="#7f8ea0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="${x}" cy="404" r="7" fill="#55606e"/><circle cx="${x + 72}" cy="404" r="7" fill="#55606e"/>`; }
+  function plant(x) { return `<path d="M${x} 404h44l-6-48h-32z" fill="${GL}"/><path d="M${x + 22} 358c-2-34-22-56-40-64 6 26 20 48 40 64zM${x + 22} 358c6-36 26-58 46-62-6 28-22 50-46 62zM${x + 22} 358c-1-40 6-72 4-92-12 22-14 60-4 92z" fill="#7f9c86"/>`; }
+  const ICO = (k, x, y, s, c = NV) => ILLU_ICONS[k] ? `<g transform="translate(${x} ${y}) scale(${s / 48})" color="${c}" fill="${c}">${ILLU_ICONS[k]}</g>` : "";
+  const chip = (k, x, y, s = 74) => `<rect x="${x}" y="${y + 6}" width="${s}" height="${s}" rx="${s * .28}" fill="#3a2a14" opacity=".07"/><rect x="${x}" y="${y}" width="${s}" height="${s}" rx="${s * .28}" fill="#fff"/>` + ICO(k, x + s * .2, y + s * .2, s * .6);
+  const card = (x, y, w, h, inner) => `<rect x="${x}" y="${y + 7}" width="${w}" height="${h}" rx="20" fill="#3a2a14" opacity=".07"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="20" fill="#fff"/>${inner || ""}`;
+  const lines = (x, y, n, w = 90) => Array.from({ length: n }, (_, i) => `<rect x="${x}" y="${y + i * 18}" width="${i === n - 1 ? w * .6 : w}" height="8" rx="4" fill="#e7dfd2"/>`).join("");
+  const checks = (x, y, n) => Array.from({ length: n }, (_, i) => `<circle cx="${x}" cy="${y + i * 28}" r="9" fill="#e5f2e9"/><path d="m${x - 4} ${y + i * 28}l3 3 6-6" stroke="#1e7547" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="${x + 18}" y="${y + i * 28 - 4}" width="64" height="8" rx="4" fill="#e7dfd2"/>`).join("");
+  const letters = (x, y, t, c = NV) => [...t].map((ch, i) => `<circle cx="${x + i * 40}" cy="${y}" r="16" fill="${c}"/><text x="${x + i * 40}" y="${y + 6}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="#fff">${ch}</text>`).join("");
+  const bubble = (x, y, w, h, inner, tail = "l") => `<path d="M${x + 16} ${y}h${w - 32}a16 16 0 0 1 16 16v${h - 32}a16 16 0 0 1-16 16H${tail === "l" ? x + 40 : x + w - 24}l-${tail === "l" ? 18 : -8} 16 2-16H${x + 16}a16 16 0 0 1-16-16V${y + 16}a16 16 0 0 1 16-16z" fill="#fff"/>${inner || ""}`;
+  const pulse = (x, y, c = GD) => `<path d="M${x} ${y}h24l8-20 12 36 10-26 6 10h34" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
+  function stage(t) { return `<rect x="-1000" y="-1000" width="3000" height="3000" fill="${t.bg}"/><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="${t.d}"/><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"/><ellipse cx="290" cy="408" rx="230" ry="12" fill="${NV}" opacity=".07"/>`; }
+  function svg(n, body, label) {
+    const t = TOPIC[n.topic] || { bg: "#f3ebdf", d: "#e6d6c0" };
+    return `<svg viewBox="28 86 528 330" preserveAspectRatio="xMidYMid meet" style="background:${t.bg}" aria-hidden="true" focusable="false">${stage(t)}${body}</svg>`;
+  }
+  return { NV, GD, GL, IK, SK, HR, stand, seated, bed, walker, plant, chip, card, lines, checks, letters, bubble, pulse, ICO, svg };
+})();
+
+/* Szenen pro Nugget. P = Patientin oder Patient, N = Pflegefachperson */
+const ILLU = (() => {
+  const { NV, GD, SK, HR, stand, seated, bed, walker, plant, chip, card, lines, checks, letters, bubble, pulse, ICO } = IL;
+  const sc = { navy: "#14304f", petrol: "#1f5a63", sage: "#5f7f6c", wine: "#6e2f44", sky: "#3f6f9a", plum: "#4b3a6b" };
+  const N = (o) => stand(Object.assign({ steth: true, top: sc.navy, trim: "#5f84ad", pants: "#22476e" }, o));
+  const care = (p, n, extra = "") => seated(p) + extra + N(n);
+  const inbed = (p, n, extra = "") => bed(p) + extra + N(n);
+  return {
+    haendehygiene: () => N({ x: 300, skin: SK.c, hair: HR.blk, hs: "pony", arm: "up", tablet: false, r: "up", top: sc.petrol, trim: "#7fb0b5", pants: "#2b6d77" }) + chip("clean-hands-outline", 70, 120, 96) + chip("ppe-sanitizer-outline", 70, 236, 74) + card(402, 126, 112, 66, `<text x="458" y="168" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="26" fill="${NV}">30 s</text>`),
+    vitalzeichen: () => care({ skin: SK.f, hair: HR.blk, hs: "short", top: "#d9a441", pants: "#3d4b5e" }, { skin: SK.a, hair: HR.bln, hs: "bun" }, `<g transform="rotate(58 236 262)"><rect x="220" y="248" width="34" height="28" rx="7" fill="${NV}"/></g><path d="M246 268c2-22 4-36 12-43" fill="none" stroke="#2f5684" stroke-width="3"/><circle cx="258" cy="210" r="17" fill="#fff"/><circle cx="258" cy="210" r="12" fill="none" stroke="${GD}" stroke-width="3"/><path d="M258 210l6-6" stroke="${NV}" stroke-width="3" stroke-linecap="round"/>`) + chip("heartbeat-outline", 470, 100, 64) + chip("thermometer-digital-outline", 478, 186, 64) + chip("pulse-oximeter-outline", 470, 272, 64),
+    dekubitus: () => inbed({ skin: SK.d, hair: HR.gry, hs: "grey", blanket: "#c9a7b8", top: "#efe4d6" }, { skin: SK.e, hair: HR.blk, hs: "curly", top: sc.sage, trim: "#a8c3b1", pants: "#4a6b58" }) + card(90, 110, 150, 96, checks(116, 136, 3)) + chip("hospitalized-outline", 470, 120, 64),
+    sturz: () => stand({ x: 222, role: "person", skin: SK.b, hair: HR.slv, hs: "bald", top: "#7f9c86", pants: "#55606e", arm: "down", tablet: false, r: "down" }) + walker(160) + N({ x: 400, skin: SK.f, hair: HR.blk, hs: "short", arm: "reach", tablet: false, r: "down", top: sc.wine, trim: "#c98a9c", pants: "#6e2f44" }) + chip("warning-outline", 70, 110, 70) + plant(486),
+    pflegeprozess: () => N({ x: 420, skin: SK.d, hair: HR.brn, hs: "long", arm: "up" }) + card(70, 104, 236, 236, (() => { let s = `<circle cx="188" cy="222" r="72" fill="none" stroke="#efe6d8" stroke-width="12"/>`; for (let i = 0; i < 6; i++) { const a = i / 6 * Math.PI * 2 - Math.PI / 2, x = 188 + 72 * Math.cos(a), y = 222 + 72 * Math.sin(a); s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="19" fill="${i === 0 ? GD : NV}"/><text x="${x.toFixed(1)}" y="${(y + 6).toFixed(1)}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="16" fill="#fff">${i + 1}</text>`; } return s; })()),
+    lernbegleitung: () => N({ x: 200, flip: true, skin: SK.c, hair: HR.aub, hs: "pony", top: sc.sage, trim: "#a8c3b1", pants: "#4a6b58", steth: false, tablet: false, r: "down", badge: "#1971c2" }) + N({ x: 400, skin: SK.e, hair: HR.blk, hs: "short", arm: "reach" }) + bubble(110, 90, 120, 70, lines(132, 112, 2, 76)) + chip("book-outline", 470, 104, 64),
+    rollen: () => N({ x: 150, flip: true, skin: SK.b, hair: HR.bln, hs: "bun", top: "#c2410c", trim: "#f3b48d", pants: "#8f3410", steth: false, arm: "down", tablet: false, r: "down" }) + N({ x: 290, skin: SK.f, hair: HR.blk, hs: "afro", top: "#1971c2", trim: "#a5c8ec", pants: "#145a9c", steth: false, arm: "down", tablet: false, r: "down" }) + N({ x: 430, skin: SK.c, hair: HR.brn, hs: "short", top: "#8a2fa8", trim: "#d7a6e6", pants: "#6c2384", arm: "down", tablet: false, r: "down" }),
+    delegation: () => N({ x: 190, flip: true, skin: SK.a, hair: HR.brn, hs: "short", top: sc.petrol, trim: "#7fb0b5", pants: "#2b6d77", steth: false, tablet: false, r: "down" }) + N({ x: 380, skin: SK.e, hair: HR.blk, hs: "bun" }) + card(214, 100, 86, 62, `<path d="M232 131h44M264 119l12 12-12 12" stroke="${GD}" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`),
+    konflikte: () => N({ x: 180, flip: true, skin: SK.f, hair: HR.blk, hs: "curly", top: sc.plum, trim: "#a99bc7", pants: "#3b2d55", steth: false, arm: "down", tablet: false, r: "down" }) + N({ x: 400, skin: SK.b, hair: HR.aub, hs: "long", arm: "down", tablet: false, r: "down" }) + bubble(70, 96, 112, 64, `<path d="M94 128l14-14 12 20 12-22 12 20 12-10" stroke="#c0604f" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`) + bubble(404, 84, 112, 64, `<path d="M428 116c12-10 24 10 36 0s24 10 36 0" stroke="${NV}" stroke-width="4" fill="none" stroke-linecap="round"/>`, "r"),
+    interprofessionell: () => stand({ x: 150, flip: true, role: "doctor", top: "#f4f1ea", inner: "#8fa9c4", skin: SK.c, hair: HR.blk, hs: "short", pants: "#55606e", arm: "down", tablet: false, r: "down" }) + N({ x: 290, skin: SK.e, hair: HR.blk, hs: "bun", arm: "down", tablet: false, r: "down" }) + stand({ x: 430, role: "person", top: "#7f9c86", skin: SK.a, hair: HR.bln, hs: "pony", pants: "#3d4b5e", arm: "down", tablet: false, r: "down" }) + chip("stethoscope-outline", 70, 100, 56) + chip("physical-therapy-outline", 480, 100, 56),
+    fehlerkultur: () => N({ x: 420, skin: SK.b, hair: HR.brn, hs: "bun", arm: "up", top: sc.sky, trim: "#a9c6df", pants: "#2f5684" }) + card(70, 110, 240, 210, `<g>${[0, 1, 2].map(i => `<rect x="${92 + i * 68}" y="140" width="58" height="150" rx="12" fill="#f2dc93" stroke="#d9b65a" stroke-width="3"/><circle cx="${116 + i * 68}" cy="${180 + i * 24}" r="9" fill="#fff"/><circle cx="${130 + i * 68}" cy="${240 - i * 14}" r="7" fill="#fff"/>`).join("")}</g>`),
+    sbar: () => N({ x: 190, flip: true, skin: SK.f, hair: HR.blk, hs: "short", top: sc.sage, trim: "#a8c3b1", pants: "#4a6b58", tablet: false, r: "down" }) + N({ x: 400, skin: SK.a, hair: HR.aub, hs: "pony" }) + card(186, 86, 186, 56, letters(218, 114, "SBAR")),
+    "6r": () => N({ x: 420, skin: SK.e, hair: HR.brn, hs: "pony", arm: "up", top: sc.petrol, trim: "#7fb0b5", pants: "#2b6d77" }) + card(70, 104, 230, 180, letters(108, 150, "RRR", GD) + letters(108, 214, "RRR", NV)) + chip("medicines-outline", 120, 300, 64),
+    lagerung: () => N({ x: 420, skin: SK.c, hair: HR.blk, hs: "bun", arm: "up" }) + card(70, 96, 170, 250, `<rect x="94" y="120" width="122" height="96" rx="10" fill="#e8eef4"/><rect x="94" y="226" width="122" height="96" rx="10" fill="#e8eef4"/><path d="M200 140v22M200 246v22" stroke="${NV}" stroke-width="5" stroke-linecap="round"/>`) + chip("thermometer-outline", 256, 150, 64) + chip("medicine-bottle-outline", 256, 236, 64),
+    feedback: () => N({ x: 190, flip: true, skin: SK.d, hair: HR.blk, hs: "long", top: sc.wine, trim: "#c98a9c", pants: "#6e2f44", steth: false, arm: "down", tablet: false, r: "down" }) + N({ x: 400, skin: SK.a, hair: HR.brn, hs: "short", arm: "down", tablet: false, r: "down" }) + bubble(196, 84, 168, 66, [0, 1, 2].map(i => `<path d="M${236 + i * 40} 102l5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z" fill="${i < 2 ? GD : "#efe6d8"}"/>`).join("")),
+    schlaganfall: () => care({ skin: SK.c, hair: HR.brn, hs: "short", top: "#8fa9c4", pants: "#3d4b5e", arm: "lap" }, { skin: SK.e, hair: HR.blk, hs: "bun", top: sc.petrol, trim: "#7fb0b5", pants: "#2b6d77" }) + chip("neurology-outline", 470, 104, 70) + card(60, 96, 110, 52, `<text x="115" y="130" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="20" fill="${NV}">BE FAST</text>`),
+    sht: () => inbed({ skin: SK.b, hair: HR.aub, hs: "short", blanket: "#8fa9c4", top: "#e3d9c6", raise: true }, { skin: SK.f, hair: HR.blk, hs: "curly" }) + chip("neurology-outline", 90, 120, 64) + chip("eye-outline", 176, 120, 64),
+    herzinsuffizienz: () => care({ skin: SK.e, hair: HR.gry, hs: "grey", top: "#c9a7b8", pants: "#55606e" }, { skin: SK.a, hair: HR.bln, hs: "pony", top: sc.sky, trim: "#a9c6df", pants: "#2f5684" }) + chip("heart-organ-outline", 470, 104, 70) + chip("leg-outline", 478, 196, 58),
+    epilepsie: () => inbed({ skin: SK.c, hair: HR.blk, hs: "long", blanket: "#a9c18a", top: "#efe4d6" }, { skin: SK.b, hair: HR.brn, hs: "bun", top: sc.plum, trim: "#a99bc7", pants: "#3b2d55" }) + chip("neurology-outline", 90, 116, 64) + chip("i-schedule-school-date-time-outline", 176, 116, 64),
+    diabetes: () => care({ skin: SK.d, hair: HR.blk, hs: "curly", top: "#e0765a", pants: "#3d4b5e" }, { skin: SK.a, hair: HR.brn, hs: "short", top: sc.sage, trim: "#a8c3b1", pants: "#4a6b58" }) + chip("diabetes-measure-outline", 470, 104, 70) + chip("sugar-outline", 478, 196, 58),
+    delir: () => inbed({ skin: SK.a, hair: HR.gry, hs: "grey", blanket: "#b9a7cf", top: "#efe4d6" }, { skin: SK.f, hair: HR.blk, hs: "short" }) + card(90, 104, 90, 90, `<circle cx="135" cy="149" r="30" fill="none" stroke="${NV}" stroke-width="5"/><path d="M135 149v-18M135 149l12 8" stroke="${GD}" stroke-width="5" stroke-linecap="round"/>`) + chip("calendar-outline", 196, 114, 64),
+    demenz: () => care({ skin: SK.b, hair: HR.gry, hs: "grey", top: "#a9c18a", pants: "#55606e", arm: "reach" }, { skin: SK.e, hair: HR.brn, hs: "long", top: sc.wine, trim: "#c98a9c", pants: "#6e2f44" }) + chip("ui-folder-family-outline", 470, 104, 70) + plant(486),
+    thrombose: () => inbed({ skin: SK.f, hair: HR.blk, hs: "short", blanket: "#8fa9c4", top: "#e3d9c6" }, { skin: SK.a, hair: HR.bln, hs: "bun", top: sc.petrol, trim: "#7fb0b5", pants: "#2b6d77" }) + chip("leg-outline", 90, 116, 64) + chip("syringe-outline", 176, 116, 64),
+    aspiration: () => care({ skin: SK.a, hair: HR.slv, hs: "bald", top: "#8fa9c4", pants: "#3d4b5e", arm: "chest" }, { skin: SK.f, hair: HR.blk, hs: "pony" }, `<path d="M300 250h30l-4 44h-22z" fill="#fff" stroke="${NV}" stroke-width="4"/><path d="M304 264h22l-3 30h-16z" fill="#cfe1ee"/>`) + chip("nutrition-outline", 470, 104, 70),
+    kontrakturen: () => inbed({ skin: SK.c, hair: HR.brn, hs: "short", blanket: "#d9a441", top: "#efe4d6" }, { skin: SK.b, hair: HR.blk, hs: "curly", top: sc.sage, trim: "#a8c3b1", pants: "#4a6b58" }) + chip("physical-therapy-outline", 90, 116, 64) + chip("orthopaedics-outline", 176, 116, 64),
+    schmerz: () => care({ skin: SK.d, hair: HR.aub, hs: "long", top: "#d9a493", pants: "#3d4b5e" }, { skin: SK.f, hair: HR.blk, hs: "short", top: sc.navy }, (() => { const c = ["#7fae8f", "#a9c18a", "#d8c77a", "#e5a96f", "#d98468", "#c0604f"]; return `<g transform="translate(-4 -50)">${card(228, 150, 120, 64, [0, 1, 2].map(i => { const x = 252 + i * 36, y = 172, m = ["M-6 3c3 4 9 4 12 0", "M-6 4h12", "M-6 6c3-4 9-4 12 0"][i]; return `<circle cx="${x}" cy="${y}" r="11" fill="none" stroke="${NV}" stroke-width="2.6"/><circle cx="${x - 4}" cy="${y - 3}" r="1.6" fill="${NV}"/><circle cx="${x + 4}" cy="${y - 3}" r="1.6" fill="${NV}"/><path d="${m.replace("M", "M" + x + " " + (y + 1) + " m")}" fill="none" stroke="${NV}" stroke-width="2.2" stroke-linecap="round"/>`; }).join("") + c.map((cc, i) => `<rect x="${240 + i * 16.5}" y="193" width="14" height="9" rx="3" fill="${cc}"/>`).join(""))}</g>`; })()),
+    ausscheidung: () => card(40, 96, 150, 112, `<text x="60" y="128" font-family="Plus Jakarta Sans,sans-serif" font-size="15" font-weight="800" fill="${NV}">Bilanz</text>` + [["Ein", "1800", "#1e7547"], ["Aus", "1300", NV]].map(([a, b, c], i) => `<text x="60" y="${156 + i * 22}" font-family="Atkinson Hyperlegible,sans-serif" font-size="14" fill="#565f6b">${a}</text><text x="172" y="${156 + i * 22}" text-anchor="end" font-family="Atkinson Hyperlegible,sans-serif" font-size="14" font-weight="700" fill="${c}">${b} ml</text>`).join("") + `<path d="M60 186h112" stroke="#e7dfd2" stroke-width="2"/><text x="172" y="202" text-anchor="end" font-family="Atkinson Hyperlegible,sans-serif" font-size="14" font-weight="700" fill="${GD}">+500 ml</text>`) + `<rect x="150" y="296" width="150" height="12" rx="6" fill="#c9a676"/><path d="M166 308v96M284 308v96" stroke="#b08f63" stroke-width="9" stroke-linecap="round"/><path d="M176 222h56l-6 74h-44z" fill="#fff" stroke="${NV}" stroke-width="5" stroke-linejoin="round"/><path d="M180 252h48l-3.5 44h-41z" fill="#f2dc93"/><path d="M232 232c16 0 18 30 0 34" fill="none" stroke="${NV}" stroke-width="5"/><path d="M252 246h34l-4 50h-26z" fill="#fff" stroke="${NV}" stroke-width="5" stroke-linejoin="round"/><path d="M256 264h26l-2.6 32h-21z" fill="#cfe1ee"/>` + N({ skin: SK.d, hair: HR.brn, hs: "bun", top: sc.plum, trim: "#a99bc7", pants: "#3b2d55" }) + chip("kidneys-outline", 470, 104, 64),
+    mobilisation: () => stand({ x: 230, role: "person", skin: SK.d, hair: HR.blk, hs: "short", top: "#e0765a", pants: "#3d4b5e", arm: "down", tablet: false, r: "down" }) + walker(168) + N({ x: 400, skin: SK.a, hair: HR.bln, hs: "pony", tablet: false, r: "down", top: sc.petrol, trim: "#7fb0b5", pants: "#2b6d77" }) + chip("walking-outline", 70, 110, 70),
+    "sc-injektion": () => care({ skin: SK.b, hair: HR.brn, hs: "pony", top: "#a9c18a", pants: "#3d4b5e" }, { skin: SK.f, hair: HR.blk, hs: "bun", glove: "#cfe1ee" }) + chip("syringe-outline", 470, 104, 70) + chip("diabetes-measure-outline", 478, 196, 58),
+    peg: () => inbed({ skin: SK.e, hair: HR.slv, hs: "bald", blanket: "#c9a7b8", top: "#e3d9c6", raise: true }, { skin: SK.a, hair: HR.aub, hs: "long", top: sc.sage, trim: "#a8c3b1", pants: "#4a6b58" }) + `<path d="M380 104v-0" />` + chip("nutrition-outline", 90, 116, 64) + chip("liquid-medicine-outline", 176, 116, 64),
+    "blut-kapillaer": () => care({ skin: SK.f, hair: HR.blk, hs: "afro", top: "#d9a441", pants: "#3d4b5e" }, { skin: SK.b, hair: HR.brn, hs: "short", glove: "#cfe1ee", top: sc.sky, trim: "#a9c6df", pants: "#2f5684" }) + chip("diabetes-measure-outline", 470, 104, 70) + chip("blood-drop-outline", 478, 196, 58),
+    "blut-venoes": () => care({ skin: SK.a, hair: HR.bln, hs: "long", top: "#8fa9c4", pants: "#3d4b5e" }, { skin: SK.e, hair: HR.blk, hs: "curly", glove: "#cfe1ee" }) + chip("test-tubes-outline", 470, 104, 70) + chip("syringe-outline", 478, 196, 58),
+    "bls-aed": () => N({ x: 420, skin: SK.c, hair: HR.blk, hs: "short", arm: "up", tablet: false, r: "up" }) + card(70, 110, 210, 200, `<path d="M175 268s-62-38-62-84a34 34 0 0 1 62-20 34 34 0 0 1 62 20c0 46-62 84-62 84z" fill="#fbebe7" stroke="#b23b2c" stroke-width="5"/><path d="M182 168l-20 34h28l-20 34" stroke="${GD}" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`) + chip("defibrillator-outline", 296, 120, 70) + chip("phone-outline", 296, 214, 70),
+    abcde: () => N({ x: 440, skin: SK.e, hair: HR.blk, hs: "bun", arm: "up", top: sc.wine, trim: "#c98a9c", pants: "#6e2f44" }) + card(56, 150, 300, 80, letters(92, 190, "ABCDE")),
+    "notfall-erkennen": () => inbed({ skin: SK.c, hair: HR.gry, hs: "grey", blanket: "#8fa9c4", top: "#efe4d6" }, { skin: SK.f, hair: HR.blk, hs: "pony", arm: "reach" }) + chip("alert-triangle-outline", 90, 112, 70, "#b23b2c") + chip("phone-outline", 180, 112, 64),
+    atemnot: () => care({ skin: SK.e, hair: HR.blk, hs: "short", top: "#c9a7b8", pants: "#3d4b5e", arm: "chest" }, { skin: SK.a, hair: HR.bln, hs: "bun", top: sc.petrol, trim: "#7fb0b5", pants: "#2b6d77" }) + chip("lungs-outline", 470, 104, 70) + chip("oxygen-tank-outline", 478, 196, 58),
+    blutung: () => care({ skin: SK.b, hair: HR.brn, hs: "short", top: "#7f9c86", pants: "#3d4b5e" }, { skin: SK.d, hair: HR.blk, hs: "long", glove: "#cfe1ee" }) + chip("bandage-adhesive-outline", 470, 104, 70) + chip("ppe-gloves-outline", 478, 196, 58),
+    verschlucken: () => care({ skin: SK.c, hair: HR.blk, hs: "curly", top: "#e0765a", pants: "#3d4b5e", arm: "chest" }, { skin: SK.b, hair: HR.aub, hs: "pony", top: sc.sky, trim: "#a9c6df", pants: "#2f5684" }) + chip("face-coughing-outline", 470, 104, 70),
+    bewusstlos: () => inbed({ skin: SK.b, hair: HR.brn, hs: "long", blanket: "#a9c18a", top: "#efe4d6", armOut: false }, { skin: SK.e, hair: HR.blk, hs: "short", top: sc.plum, trim: "#a99bc7", pants: "#3b2d55" }) + chip("heartbeat-outline", 90, 116, 64) + chip("lungs-outline", 176, 116, 64),
+    isolation: () => `<rect x="90" y="110" width="150" height="294" rx="8" fill="#fff"/><rect x="90" y="110" width="150" height="294" rx="8" fill="none" stroke="${NV}" stroke-width="5"/><circle cx="220" cy="270" r="7" fill="${NV}"/><rect x="112" y="140" width="106" height="64" rx="10" fill="#f2b33d"/>` + IL.ICO("virus-outline", 146, 148, 46, NV) + N({ x: 400, skin: SK.c, hair: HR.blk, hs: "bun", mask: true, glove: "#cfe1ee", tablet: false, r: "down", top: "#e9d9a6", trim: "#c9a676", pants: "#22476e" }),
+    psa: () => N({ x: 300, skin: SK.f, hair: HR.blk, hs: "short", mask: true, glove: "#cfe1ee", tablet: false, r: "down", arm: "down", top: "#e9d9a6", trim: "#c9a676" }) + chip("ppe-gown-outline", 70, 110, 70) + chip("ppe-mask-outline", 70, 200, 70) + chip("ppe-gloves-outline", 440, 110, 70) + chip("ppe-face-shield-outline", 440, 200, 70),
+    aphasie: () => care({ skin: SK.b, hair: HR.slv, hs: "bald", top: "#a9c18a", pants: "#3d4b5e" }, { skin: SK.e, hair: HR.blk, hs: "pony" }) + bubble(230, 96, 120, 64, [0, 1, 2].map(i => `<circle cx="${262 + i * 28}" cy="128" r="7" fill="${i === 1 ? GD : NV}"/>`).join("")) + chip("speech-language-therapy-outline", 470, 112, 64),
+    angehoerige: () => stand({ x: 84, flip: true, role: "person", skin: SK.c, hair: HR.blk, hs: "long", top: "#d9a441", pants: "#3d4b5e", arm: "down", tablet: false, r: "down" }) + seated({ skin: SK.c, hair: HR.gry, hs: "grey", top: "#c9a7b8", pants: "#55606e", arm: "lap" }) + N({ x: 410, skin: SK.a, hair: HR.brn, hs: "bun", arm: "reach" }) + chip("people-outline", 470, 104, 60),
+    deeskalation: () => N({ x: 190, flip: true, role: "person", skin: SK.b, hair: HR.brn, hs: "short", top: "#e0765a", pants: "#3d4b5e", steth: false, arm: "down", tablet: false, r: "down" }) + N({ x: 400, skin: SK.f, hair: HR.blk, hs: "bun", arm: "down", tablet: false, r: "down" }) + bubble(230, 90, 120, 60, `<path d="M254 120c12-10 24 10 36 0s24 10 36 0" stroke="#7f9c86" stroke-width="5" fill="none" stroke-linecap="round"/>`),
+    transkulturell: () => care({ skin: SK.d, hair: "#6f8f7c", hs: "scarf", top: "#c9a7b8", pants: "#3d4b5e" }, { skin: SK.a, hair: HR.aub, hs: "short", top: sc.petrol, trim: "#7fb0b5", pants: "#2b6d77" }) + chip("world-care-outline", 470, 104, 70) + chip("communication-outline", 478, 196, 58),
+    lernen: () => N({ x: 420, skin: SK.c, hair: HR.blk, hs: "curly", arm: "up", top: sc.sage, trim: "#a8c3b1", pants: "#4a6b58", steth: false, badge: "#c2410c" }) + card(70, 110, 230, 180, `<path d="M185 150c-24-14-60-16-90-8v110c30-8 66-6 90 8zM185 150c24-14 60-16 90-8v110c-30-8-66-6-90 8z" fill="#fbf8f3" stroke="${NV}" stroke-width="4" stroke-linejoin="round"/>` + lines(110, 176, 3, 58) + lines(200, 176, 3, 58)) + chip("book-outline", 470, 104, 60),
+    dokumentation: () => N({ x: 420, skin: SK.a, hair: HR.bln, hs: "bun", arm: "up" }) + card(80, 96, 190, 240, checks(112, 140, 6)) + chip("medical-records-outline", 286, 120, 64),
+    datenschutz: () => N({ x: 420, skin: SK.f, hair: HR.blk, hs: "long", arm: "up", top: sc.plum, trim: "#a99bc7", pants: "#3b2d55" }) + card(80, 110, 200, 200, `<path d="M180 136l62 22v46c0 40-28 64-62 78-34-14-62-38-62-78v-46z" fill="#e8eef4" stroke="${NV}" stroke-width="5" stroke-linejoin="round"/><rect x="160" y="202" width="40" height="34" rx="6" fill="${NV}"/><path d="M168 202v-10a12 12 0 0 1 24 0v10" stroke="${NV}" stroke-width="5" fill="none"/><circle cx="180" cy="218" r="5" fill="${GD}"/>`),
+    resilienz: () => N({ x: 330, skin: SK.d, hair: HR.blk, hs: "pony", arm: "down", tablet: false, r: "down", top: sc.sage, trim: "#a8c3b1", pants: "#4a6b58", steth: false }) + plant(470) + plant(70) + chip("exercise-yoga-outline", 140, 120, 70) + chip("heart-outline", 470, 120, 60),
+    ipa: () => N({ x: 420, skin: SK.e, hair: HR.blk, hs: "short", arm: "up", top: sc.navy, badge: "#8a2fa8" }) + card(70, 110, 230, 200, checks(104, 150, 4) + `<path d="M246 128l26 12-26 12-26-12z" fill="${GD}"/><path d="M232 146v12c8 6 20 6 28 0v-12" fill="none" stroke="${GD}" stroke-width="4"/>`)
+  };
+})();
+
 function art(n) {
+  if (ILLU[n.id]) return IL.svg(n, ILLU[n.id]());
   const t = TOPIC[n.topic], c = t.c, d = t.d, bg = t.bg;
   const base = `<rect width="320" height="200" fill="${bg}"/><circle cx="280" cy="30" r="70" fill="${d}" opacity=".55"/><circle cx="30" cy="190" r="50" fill="${d}" opacity=".45"/>`;
   const A = {
@@ -4963,7 +5358,7 @@ const matches = n => { const q = state.q.toLowerCase().trim(); return !q || (n.t
 
 function card(n) {
   return `<a class="card" href="#${n.id}">
-    <div class="art">${art(n)}${isDone(n, state.level) ? '<span class="doneb">✓ Erledigt</span>' : ""}</div>
+    <div class="art" style="background:${(TOPIC[n.topic] || {}).bg || "var(--soft)"}">${art(n)}${isDone(n, state.level) ? '<span class="doneb">✓ Erledigt</span>' : ""}</div>
     <div class="body"><span class="tp">${n.topic}</span><h3>${esc(n.title)}</h3><p>${esc(n.teaser)}</p>
       <div class="foot">${lvsCard(n.levels)}${DEEP[n.id] && (state.level === "Alle" || state.level === DEEP[n.id].level) ? `<span class="deepb">+ Vertiefung ${DEEP[n.id].min} Min.</span>` : ""}<span class="min">${ui("clock").replace("<svg", '<svg width="15" height="15"')} ${n.min} Min.</span></div></div></a>`;
 }
@@ -5003,30 +5398,32 @@ function renderList() {
   }
   $("#jump").style.display = "";
   const groups = TOPICS.map(t => [t, list.filter(n => n.topic === t)]).filter(([, ns]) => ns.length);
-  $("#jump").innerHTML = groups.map(([t]) => `<button data-t="${t}">${ico(t)}${t}</button>`).join("");
+  $("#jump").innerHTML = groups.map(([t, ns], i) => { const big = i === 0 ? " big" : i === groups.length - 1 && groups.length > 2 ? " big alt" : ""; return `<button class="rv${big}" style="--d:${(i % 4) * 0.05}s;--tint:${TOPIC[t].bg}" data-t="${t}"><i>${ico(t)}</i><b>${t}</b><small>${ns.length} Nuggets</small>${big ? `<span class="d">${TOPIC_DESC[t] || ""}</span>` : ""}</button>`; }).join("");
   $("#jump").querySelectorAll("button").forEach(b => b.addEventListener("click", () => document.getElementById("t-" + b.dataset.t).scrollIntoView({ behavior: "smooth" })));
   box.innerHTML = groups.map(([t, ns]) => `<section class="topic" id="t-${t}">
-    <div class="topic-head"><i>${ico(t)}</i><div><h2>${t}</h2><p>${TOPIC_DESC[t] || ""}</p></div><span class="count">${ns.length} Nuggets</span></div>
-    <div class="grid">${ns.map((n, i) => i < 4 ? card(n) : card(n).replace('<a class="card"', '<a class="card extra"')).join("")}</div>
+    <div class="topic-head rv"><i>${ico(t)}</i><div><h2>${t}</h2><p>${TOPIC_DESC[t] || ""}</p></div><span class="count">${ns.length} Nuggets</span></div>
+    <div class="grid ${ns.length === 3 ? "g3" : "g4"}">${ns.map((n, i) => (i < 4 ? card(n) : card(n).replace('<a class="card"', '<a class="card extra"')).replace('<a class="card', `<a style="--d:${(i % 4) * 0.07}s" class="rv card`)).join("")}</div>
     ${ns.length > 4 ? `<button class="showall" data-n="${ns.length}">Alle ${ns.length} Nuggets anzeigen</button>` : ""}</section>`).join("");
   box.querySelectorAll(".showall").forEach(b => b.addEventListener("click", () => { const sec = b.closest(".topic"); const open = sec.classList.toggle("open"); b.textContent = open ? "Weniger anzeigen" : `Alle ${b.dataset.n} Nuggets anzeigen`; if (!open) sec.scrollIntoView({ block: "start" }); }));
   fixLinks();
 }
 
-function refreshHome() { renderHeroBox(); renderList(); fixLinks(); }
+function refreshHome() { renderHeroBox(); renderList(); fixLinks(); reveal(); }
 
 function renderHome(scrollTo) {
   $("#app").innerHTML = `
   <section class="hero"><div class="wrap">
     <div>
-      <h1>Pflegewissen in kleinen Einheiten</h1>
+      <span class="eyebrow">AGS · FaGe · Pflege HF</span>
+      <h1>Pflegewissen in <em>kleinen Einheiten</em></h1>
       <p class="intro">Kurze Lernnuggets für die Pflegeausbildung in der Schweiz.<span class="long"> Lies die Theorie, prüfe dein Wissen im Quiz für deine Stufe und übertrage es auf deine Station.</span></p>
       <div class="stats"><div><b>${NUGGETS.length}</b>Nuggets</div><div><b>${TOPICS.length}</b>Themen</div><div><b>5</b>Quizfragen pro Stufe</div><div><b>0</b>Anmeldung nötig</div></div>
     </div>
+    <div class="hero-art">${HERO_ART}</div>
     <div id="herobox"></div>
   </div></section>
   <div class="wrap">
-    <div class="toolbar"><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Insulin" value="${esc(state.q)}"><div class="jump" id="jump"></div></div>
+    <div class="toolbar"><div class="toolbar-head"><div><span class="eyebrow">Bibliothek</span><h2>Alle Themen</h2></div><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Insulin" value="${esc(state.q)}"></div><div class="jump" id="jump"></div></div>
     <div id="list"></div>
     <section class="about" id="ueber">
       <div><h2>Über Pflegepedia</h2>
@@ -5035,7 +5432,7 @@ function renderHome(scrollTo) {
       <ul><li>Kostenlos und ohne Anmeldung</li><li>Kompetenzen klar nach Stufe getrennt</li><li>Keine Werbung, kein Tracking</li><li>Lernstand bleibt auf deinem Gerät</li></ul>
     </section>
   </div>`;
-  $("#search").addEventListener("input", e => { state.q = e.target.value; renderList(); });
+  $("#search").addEventListener("input", e => { state.q = e.target.value; renderList(); reveal(); });
   refreshHome();
   if (scrollTo) setTimeout(() => { const el = document.getElementById(scrollTo); if (el) el.scrollIntoView(); }, 30);
 }
@@ -5155,6 +5552,12 @@ document.addEventListener("click", e => {
 });
 window.addEventListener("popstate", () => route());
 let firstRoute = true;
+function reveal() {
+  const els = document.querySelectorAll(".rv:not(.in)");
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) { els.forEach(e => e.classList.add("in")); return; }
+  if (!reveal.io) reveal.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); reveal.io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+  els.forEach(e => reveal.io.observe(e));
+}
 function route() {
   if (dpRun) dpStop();
   const h = curRoute(), [hid, sub] = h.split("/");
@@ -5169,6 +5572,7 @@ function route() {
   fixLinks();
   if (!firstRoute && h !== "ueber") { const t = $("#app h1"); if (t) { t.setAttribute("tabindex", "-1"); t.focus({ preventScroll: true }); } }
   firstRoute = false;
+  reveal();
 }
 document.querySelector(".levels").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
