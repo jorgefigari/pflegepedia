@@ -2,6 +2,8 @@ name: TTS Hörproben
 on:
   push:
     branches: [tts-muster]
+permissions:
+  contents: write
 jobs:
   piper:
     runs-on: ubuntu-latest
@@ -26,7 +28,8 @@ jobs:
             ffmpeg -loglevel error -y -i out/$n.wav -ac 1 -b:a 64k out/$n.mp3
           done
           ls -la out
-      - uses: actions/upload-artifact@v4
-        with:
-          name: hoerproben
-          path: out/*.mp3
+      - name: Hörproben speichern
+        run: |
+          mkdir -p tools/hoerproben && cp out/*.mp3 tools/hoerproben/
+          git config user.name "Pflegepedia"; git config user.email "pflegepedia@users.noreply.github.com"
+          git add tools/hoerproben && git commit -m "Hörproben [skip ci]" && git push
