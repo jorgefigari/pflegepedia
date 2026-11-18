@@ -4181,13 +4181,20 @@ const IL = (() => {
     s += o.arm === "lap" ? `<path d="M226 244c8 24 10 44 26 56" stroke="${top}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="254" cy="302" r="10" fill="${o.skin}"/>` : o.arm === "chest" ? `<path d="M226 244c6 22 0 36-14 38" stroke="${top}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="208" cy="282" r="10" fill="${o.skin}"/>` : `<path d="M226 244c10 22 22 40 40 50" stroke="${top}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="270" cy="296" r="10" fill="${o.skin}"/>`;
     return s;
   }
-  /* Bett mit liegender Person */
+  /* Bett mit liegender Person: Kopf auf dem Kissen, Gesicht nach oben, Haare zum Kopfteil */
   function bed(o) {
-    const fr = o.frame || "#8ea595";
+    const fr = o.frame || "#8ea595", bl = o.blanket || "#8fa9c4", top = o.top || "#e3d9c6";
+    const hy = o.raise ? 262 : 274, hx = 118;
     let s = `<rect x="58" y="222" width="18" height="182" rx="9" fill="${fr}"/><rect x="316" y="262" width="16" height="142" rx="8" fill="${fr}"/><rect x="68" y="324" width="258" height="14" rx="7" fill="${shade(fr)}"/><rect x="72" y="296" width="250" height="32" rx="12" fill="#fbf8f3"/>`;
-    s += `<ellipse cx="116" cy="290" rx="38" ry="14" fill="#fff"/>` + head(120, o.raise ? 262 : 272, 24, o);
-    s += `<path d="M144 ${o.raise ? 270 : 276}c40-14 110-14 150-4 18 4 26 14 28 30H140z" fill="${o.blanket || "#8fa9c4"}"/><path d="M150 296c40-8 110-8 168 0" stroke="${shade(o.blanket || "#8fa9c4")}" stroke-width="3" fill="none" opacity=".6"/>`;
-    if (o.armOut !== false) s += `<path d="M158 284c26 4 52 6 82 6" stroke="${o.top || "#e3d9c6"}" stroke-width="16" stroke-linecap="round" fill="none"/><circle cx="244" cy="290" r="9" fill="${o.skin}"/>`;
+    s += o.raise ? `<path d="M80 300l12-46c2-8 10-12 18-10l46 12-8 44z" fill="#fff"/>` : `<rect x="78" y="280" width="78" height="22" rx="11" fill="#fff"/>`;
+    const st = o.hs, long = st === "long" || st === "pony";
+    if (long) s += `<path d="M${hx - 8} ${hy - 22}c-22-2-34 10-36 26-1 10 6 18 16 20 8 2 14-2 20-6z" fill="${o.hair}"/>`;
+    const hs = long ? "short" : st === "grey" ? "short" : st === "bald" ? "short" : st;
+    s += `<rect x="${hx + 16}" y="${hy + 6}" width="18" height="16" rx="6" fill="${o.skin}"/>`;
+    s += `<g transform="rotate(-90 ${hx} ${hy})">` + head(hx, hy, 23, Object.assign({}, o, { hs })) + `</g>`;
+    s += `<path d="M136 ${hy + 4}c6-10 20-14 34-12l10 2v${300 - hy}H136z" fill="${top}"/>`;
+    s += `<path d="M158 ${hy + 2}c34-14 96-16 134-8 16 3 26 10 28 18v14H156z" fill="${bl}"/><path d="M286 ${hy - 6}c14 0 26 8 30 22" stroke="${shade(bl)}" stroke-width="3" fill="none" opacity=".55"/><path d="M162 ${hy + 12}c40-6 100-6 150 2" stroke="${shade(bl)}" stroke-width="3" fill="none" opacity=".5"/>`;
+    if (o.armOut !== false) s += `<path d="M168 ${hy + 10}c24 6 48 8 72 8" stroke="${top}" stroke-width="15" stroke-linecap="round" fill="none"/><circle cx="244" cy="${hy + 18}" r="8.5" fill="${o.skin}"/>`;
     return s;
   }
   function walker(x) { return `<path d="M${x} 404l8-120h56l8 120M${x + 6} 330h68" stroke="#7f8ea0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="${x}" cy="404" r="7" fill="#55606e"/><circle cx="${x + 72}" cy="404" r="7" fill="#55606e"/>`; }
