@@ -1,0 +1,67 @@
+<svg viewBox="0 0 560 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ha-t ha-d"><title id="ha-t">Pflegefachperson begleitet eine ältere Patientin</title><desc id="ha-d">Eine Pflegefachperson kniet neben einer älteren Frau im Sessel und hält ihre Hand. Daneben schweben eine Karte mit Pulskurve und ein Häkchen.</desc>
+<defs>
+<linearGradient id="ha-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3eadc"/><stop offset="1" stop-color="#ebdfcc"/></linearGradient>
+<filter id="ha-sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#3a2a14" flood-opacity=".14"/></filter>
+</defs>
+<g id="buehne">
+<path d="M78 404C30 352 28 250 74 176 124 96 214 52 310 56c104 4 190 70 214 168 22 92-14 168-74 192-62 24-118 4-186 8-82 4-142 32-186-20z" fill="url(#ha-bg)"/>
+<circle cx="452" cy="104" r="58" fill="#dfe7e0"/>
+<circle cx="222" cy="58" r="5" fill="#b48a4c"/><circle cx="500" cy="300" r="4" fill="#b48a4c" opacity=".7"/><circle cx="64" cy="270" r="3.5" fill="#14304f" opacity=".35"/>
+<ellipse cx="290" cy="410" rx="210" ry="14" fill="#14304f" opacity=".08"/>
+</g>
+<g id="pflanze">
+<path d="M478 404h44l-6-48h-32z" fill="#c9a676"/>
+<path d="M500 358c-2-34-22-56-40-64 6 26 20 48 40 64zM500 358c6-36 26-58 46-62-6 28-22 50-46 62zM500 358c-1-40 6-72 4-92-12 22-14 60-4 92z" fill="#7f9c86"/>
+</g>
+<g id="sessel">
+<rect x="96" y="196" width="54" height="196" rx="26" fill="#9fb3a4"/>
+<rect x="104" y="300" width="186" height="58" rx="22" fill="#b7c8bb"/>
+<rect x="92" y="286" width="44" height="76" rx="20" fill="#8ea595"/>
+<rect x="256" y="286" width="40" height="76" rx="20" fill="#8ea595"/>
+<path d="M120 362v42M270 362v42" stroke="#6e8577" stroke-width="10" stroke-linecap="round"/>
+</g>
+<g id="patientin">
+<path d="M186 318h66c12 0 18 8 18 18v60" stroke="#3d4b5e" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<ellipse cx="284" cy="404" rx="20" ry="9" fill="#2a3442"/>
+<path d="M150 232c4-20 22-32 44-32s38 12 42 32l10 92H146z" fill="#d9a493"/>
+<path d="M194 204v34" stroke="#c48f7d" stroke-width="2" opacity=".6"/>
+<rect x="184" y="186" width="20" height="22" rx="8" fill="#e6bfa3"/>
+<circle cx="194" cy="166" r="27" fill="#e6bfa3"/>
+<path d="M167 162c0-20 14-31 28-31 16 0 28 10 28 26-6-6-14-9-22-9-12 0-22 6-34 14z" fill="#e4e3e0"/>
+<circle cx="171" cy="150" r="11" fill="#e4e3e0"/>
+<path d="M226 244c10 22 22 40 40 50" stroke="#d9a493" stroke-width="20" stroke-linecap="round" fill="none"/>
+<circle cx="270" cy="296" r="10" fill="#e6bfa3"/>
+</g>
+<g id="pflegende">
+<path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#22476e"/>
+<path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"/>
+<path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#22476e"/>
+<path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"/>
+<path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#14304f"/>
+<path d="M358 182l18 30 18-30" fill="none" stroke="#5f84ad" stroke-width="4" stroke-linejoin="round"/>
+<path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"/>
+<rect x="366" y="152" width="20" height="26" rx="8" fill="#b27b58"/>
+<circle cx="376" cy="128" r="29" fill="#b27b58"/>
+<path d="M346 126c0-22 14-34 32-34 18 0 30 12 30 30-10-4-20-14-26-22-6 14-20 22-36 26z" fill="#2a211d"/>
+<circle cx="404" cy="104" r="12" fill="#2a211d"/>
+<path d="M336 236c-14 30-30 52-54 62" stroke="#14304f" stroke-width="22" stroke-linecap="round" fill="none"/>
+<circle cx="280" cy="300" r="11" fill="#b27b58"/>
+<path d="M420 236c10 24 12 44 4 60" stroke="#14304f" stroke-width="20" stroke-linecap="round" fill="none"/>
+<rect x="398" y="276" width="46" height="60" rx="8" fill="#f8f4ec" stroke="#c9a676" stroke-width="3" transform="rotate(-8 421 306)"/>
+<path d="M410 296h22M410 308h16M410 320h20" stroke="#c9b48f" stroke-width="3" stroke-linecap="round" transform="rotate(-8 421 306)"/>
+<circle cx="424" cy="298" r="9" fill="#b27b58"/>
+</g>
+<g transform="translate(-16 -72)"><g class="fl1" filter="url(#ha-sh)">
+<rect x="52" y="104" width="150" height="80" rx="18" fill="#fff"/>
+<path class="pulse" style="--len:170" d="M68 152h26l8-20 12 36 10-26 6 10h40" fill="none" stroke="#14304f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="182" cy="152" r="5" fill="#b48a4c"/>
+<rect x="68" y="120" width="44" height="6" rx="3" fill="#e7dfd2"/>
+</g></g>
+<g class="fl2" filter="url(#ha-sh)">
+<rect x="432" y="176" width="96" height="52" rx="16" fill="#fff"/>
+<circle cx="458" cy="202" r="13" fill="#e5f2e9"/>
+<path d="m452 202 4.5 4.5 8-8.5" fill="none" stroke="#1e7547" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="478" y="194" width="34" height="6" rx="3" fill="#e7dfd2"/><rect x="478" y="206" width="22" height="6" rx="3" fill="#efe6d8"/>
+</g>
+</svg>
