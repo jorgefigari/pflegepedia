@@ -9,6 +9,9 @@ Health Icons, https://healthicons.org, Lizenz CC0 1.0 (gemeinfrei). Eingebunden 
 ## QR-Codes
 qrcode-generator von Kazuhiko Arase, MIT-Lizenz. «QR Code» ist eine eingetragene Marke der DENSO WAVE INCORPORATED.
 
+## Vorlesen
+Genutzt wird die Sprachausgabe des jeweiligen Geräts (Web Speech API). Es werden keine Texte an Pflegepedia übertragen.
+
 ## Schriften
 - Newsreader, Production Type, SIL Open Font License 1.1 (über Fontsource)
 - Plus Jakarta Sans, Tokotype, SIL Open Font License 1.1
