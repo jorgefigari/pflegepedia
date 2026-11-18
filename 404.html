@@ -606,29 +606,50 @@ footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding
 @keyframes aPush { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(12px); } }
 @media (prefers-reduced-motion: reduce) { .anim .a-step { opacity: 1; } .a-5m .a-dot { fill: #1e7547; } .a-abc .a-dot { fill: #14304f; } .a-line { stroke-dashoffset: 0; } }
 @media (max-width: 640px) { .lp { padding: 16px; } .lp-head { flex-direction: column; } .lp-stat { text-align: left; width: 100%; } .lp-steps a { grid-template-columns: 30px 56px minmax(0, 1fr); gap: 10px; } .lp-art { width: 56px; height: 36px; } .pathcard b { font-size: 21px; } .nav a:first-child { display: none; } }
-/* Merkblatt */
-#print-sheet { display: none; }
-@media print {
-  @page { size: A4; margin: 13mm 14mm; }
-  body { background: #fff; }
-  body > *:not(#print-sheet) { display: none !important; }
-  #print-sheet { display: block; font: 10.5pt/1.45 var(--body); color: #16202c; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .ps-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1.5pt solid #b48a4c; padding-bottom: 5pt; margin-bottom: 12pt; font: 700 8.5pt var(--display); letter-spacing: .12em; text-transform: uppercase; color: #85601f; }
-  .ps-logo { font: 600 15pt var(--serif); letter-spacing: -.01em; text-transform: none; color: #14304f; }
-  .ps-top { display: grid; grid-template-columns: 1.25fr .75fr; gap: 16pt; align-items: center; }
-  #print-sheet h1 { font: 500 23pt/1.08 var(--serif); color: #14304f; letter-spacing: -.02em; }
-  .ps-lv { margin: 7pt 0; } .ps-lv .lv { font-size: 8pt; padding: 1.5pt 7pt; }
-  .ps-lead { margin: 0; color: #36404c; }
-  .ps-art { border-radius: 10pt; overflow: hidden; border: .75pt solid #e7dfd2; }
-  .ps-art svg { display: block; width: 100%; height: auto; }
-  #print-sheet h2 { font: 500 14pt var(--serif); color: #14304f; margin: 14pt 0 6pt; }
-  .ps-points { margin: 0; padding-left: 16pt; } .ps-points li { margin: 3pt 0; } .ps-points li::marker { color: #b48a4c; font-weight: 700; }
-  .ps-merke { margin-top: 10pt; background: #f5ecdc; border: .75pt solid #e8d7b8; border-radius: 8pt; padding: 8pt 11pt; break-inside: avoid; }
-  .ps-merke b { font: 700 8.5pt var(--display); letter-spacing: .12em; text-transform: uppercase; color: #85601f; }
-  .ps-merke p { margin: 2pt 0 0; }
-  .ps-facts { margin: 0; padding-left: 14pt; } .ps-facts li { margin: 3pt 0; }
-  .ps-foot { margin-top: 16pt; padding-top: 6pt; border-top: .75pt solid #e7dfd2; display: grid; gap: 2pt; font-size: 8pt; color: #565f6b; }
-}
+/* QR, Berufsbildner, So funktioniert es */
+.qrpanel h2 { font-size: 20px !important; margin-bottom: 12px !important; }
+.qrbox { width: 150px; margin: 0 auto 12px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.qrbox svg { display: block; width: 100%; height: auto; }
+.qrpanel p { margin: 0 0 14px; font-size: 14.5px; color: var(--muted); }
+.qrpanel .tool { width: 100%; justify-content: center; }
+.tool:disabled { opacity: .6; cursor: progress; }
+.page.wide { max-width: 900px; }
+.lp-why { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0 8px; }
+.lp-why > div { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+.lp-why b { font-family: var(--serif); font-weight: 600; font-size: 19px; color: var(--brand); }
+.lp-why p { margin: 6px 0 0; font-size: 15.5px; color: #36404c; }
+.lp-why a { color: var(--brand); font-weight: 700; }
+.lp-jump { display: flex; gap: 8px; margin: 18px 0 0; flex-wrap: wrap; }
+.lp-jump button { border: 1px solid var(--line-2); background: var(--paper); border-radius: 99px; padding: 6px 10px; }
+.lp-jump .lv { font-size: 13px; }
+.lp.flash { animation: lpFlash 1.8s var(--ease); }
+@keyframes lpFlash { 0% { box-shadow: 0 0 0 0 rgba(180,138,76,.0); } 25% { box-shadow: 0 0 0 6px rgba(180,138,76,.35); } 100% { box-shadow: var(--shadow); } }
+.bbgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin: 22px 0 10px; }
+.bbtip { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 20px; position: relative; }
+.bbn { position: absolute; top: 16px; right: 18px; font-family: var(--serif); font-size: 15px; color: var(--gold-ink); }
+.bbtip b { display: block; font-family: var(--serif); font-weight: 600; font-size: 19px; line-height: 1.25; color: var(--brand); padding-right: 24px; }
+.bbtip p { margin: 8px 0 0; font-size: 15px; color: #36404c; }
+.bbtopic { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; margin: 10px 0; }
+.bbtopic summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; font-family: var(--serif); font-weight: 600; font-size: 19px; color: var(--brand); }
+.bbtopic summary::-webkit-details-marker { display: none; }
+.bbtopic summary small { font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.bbtopic[open] summary { border-bottom: 1px solid var(--line); }
+.bbtopic ol { margin: 0; padding: 8px 18px 14px 40px; }
+.bbtopic li { margin: 12px 0; }
+.bbtopic li a { font-weight: 700; color: var(--ink); margin-right: 6px; }
+.bbtopic li .lv { font-size: 11px; padding: 2px 8px; margin-left: 3px; }
+.bbtopic li p { margin: 4px 0 0; color: #36404c; font-size: 15.5px; }
+.how { margin-top: 88px; }
+.how .toolbar-head { margin-bottom: 22px; }
+.howgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.howtile { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+.howtile i { width: 42px; height: 42px; border-radius: 50%; background: var(--gold-soft); color: var(--gold-ink); display: grid; place-items: center; }
+.howtile i svg { width: 20px; height: 20px; }
+.howtile b { font-family: var(--serif); font-weight: 600; font-size: 20px; color: var(--brand); margin-top: 4px; }
+.howtile p { margin: 0; font-size: 15px; color: #36404c; line-height: 1.55; }
+.howtile a { margin-top: auto; padding-top: 6px; font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--brand); text-decoration: none; }
+@media (max-width: 900px) { .howgrid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .howgrid, .lp-why { grid-template-columns: 1fr; } .how { margin-top: 64px; } }
 /* Vertiefung */
 .panel.deep { border-top: 5px solid var(--fage); }
 .panel.deep h2 .lv { margin-left: 4px; font-size: 13px; }
@@ -1050,7 +1071,9 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
     <div class="body"><span class="tp">Berufsrolle</span><h3>IPA-Vorbereitung: dein Weg zum Abschluss</h3><p>Was die individuelle praktische Arbeit ist, wie sie abläuft, wie sie bewertet wird und wie du dich gut vorbereitest.</p>
       <div class="foot"><span class="lv AGS">AGS</span><span class="lv FaGe">FaGe</span><span class="min"><svg width="15" height="15" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg> 10 Min.</span></div></div></a></div>
     <button class="showall" data-n="6">Alle 6 Nuggets anzeigen</button></section></div>
-    <section class="about" id="ueber">
+    <section class="how rv"><div class="toolbar-head"><div><span class="eyebrow">So funktioniert es</span><h2>So lernst du mit Pflegepedia</h2></div><a class="more" href="/berufsbildner/">Für Berufsbildner →</a></div>
+    <div class="howgrid"><div class="howtile"><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"></circle><circle cx="18" cy="5" r="2"></circle><path d="M8 19h8a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h8"></path></svg></i><b>Lernpfade</b><p>Damit du nicht suchen musst: Lernpfade zeigen dir eine sinnvolle Reihenfolge, passend zu deiner Stufe. Du siehst jederzeit, was du schon geschafft hast.</p><a href="/lernpfade/">Zu den Lernpfaden →</a></div><div class="howtile"><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5.5v13l11-6.5z"></path></svg></i><b>Vorlesen</b><p>Für alle, die lieber zuhören, beim Lesen Mühe haben oder Deutsch nicht als Erstsprache sprechen. Dein Gerät liest Theorie und Merke vor, auch unterwegs.</p></div><div class="howtile"><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"></path><path d="M4 21V5"></path></svg></i><b>Glossar</b><p>Fachbegriffe sind golden unterstrichen. Tippe darauf, und du bekommst eine kurze Erklärung, ohne die Seite zu verlassen.</p></div><div class="howtile"><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg></i><b>Merkblatt und QR-Code</b><p>Lade die wichtigsten Punkte eines Nuggets als PDF herunter oder hänge den QR-Code auf der Station auf.</p></div><div class="howtile"><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"></path></svg></i><b>Quiz pro Stufe</b><p>Jede Stufe hat eigene Fragen. So prüfst du genau das, was zu deinen Kompetenzen gehört.</p></div><div class="howtile"><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></i><b>Dein Lernstand gehört dir</b><p>Dein Fortschritt wird nur auf deinem Gerät gespeichert. Du kannst ihn jederzeit unter Datenschutz löschen.</p><a href="/datenschutzerklaerung/">Lernstand löschen →</a></div></div></section>
+    <section class="about rv" id="ueber">
       <div><h2>Über Pflegepedia</h2>
         <p>Pflegepedia ist ein privates, nicht-kommerzielles Bildungsprojekt aus der Berufsbildung Pflege in der Schweiz. Die Nuggets begleiten Lernende AGS EBA, FaGe EFZ und Studierende Pflege HF im Alltag: kurz, verständlich und praxisnah.</p>
         <p>Die Inhalte stützen sich auf die Bildungsverordnungen, anerkannte Leitlinien und Fachliteratur. Sie ersetzen nicht die Richtlinien deines Betriebs.</p></div>
@@ -1060,11 +1083,11 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
 
 <footer><div class="wrap">
   <div><a class="logo" href="#"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -1 115 115"><path d="M22 36V102" stroke="#ffffff" stroke-width="16" stroke-linecap="round" fill="none"/><path d="M22 36C22 20 35 12 51 12C70 12 83 27 83 46C83 65 70 80 51 80H49" stroke="#ffffff" stroke-width="16" stroke-linecap="round" fill="none"/><rect x="39" y="33" width="23" height="23" rx="7" fill="#d6b47e"/></svg><span>Pflegepedia</span></a><p>Kurze Lerneinheiten für AGS, FaGe und Pflege HF. Ein privates, nicht-kommerzielles Bildungsprojekt aus der Schweiz.</p></div>
-  <div><h3>Lernen</h3><ul><li><a href="#" data-lv="AGS">Für AGS</a></li><li><a href="#" data-lv="FaGe">Für FaGe</a></li><li><a href="#" data-lv="HF">Für Pflege HF</a></li><li><a href="#" data-lv="Alle">Alle Nuggets</a></li><li><a href="#lernpfade">Lernpfade</a></li></ul></div>
+  <div><h3>Lernen</h3><ul><li><a href="#" data-lv="AGS">Für AGS</a></li><li><a href="#" data-lv="FaGe">Für FaGe</a></li><li><a href="#" data-lv="HF">Für Pflege HF</a></li><li><a href="#" data-lv="Alle">Alle Nuggets</a></li><li><a href="#lernpfade">Lernpfade</a></li><li><a href="#berufsbildner">Für Berufsbildner</a></li></ul></div>
   <div><h3>Pflegepedia</h3><ul><li><a href="#ueber">Über Pflegepedia</a></li><li><a href="#quellen">Quellen und Qualität</a></li><li><a href="#impressum">Impressum</a></li><li><a href="#datenschutzerklaerung">Datenschutz</a></li><li>info@pflegepedia.ch</li></ul></div>
   <div class="legal">© 2026 Pflegepedia. Die Inhalte ersetzen keine betrieblichen Richtlinien, keine ärztlichen Verordnungen und keine Anleitung durch Fachpersonen.</div>
 </div></footer>
 
-<script src="/app.7b6df51553.js"></script>
+<script src="/app.0987d47407.js"></script>
 </body>
 </html>
