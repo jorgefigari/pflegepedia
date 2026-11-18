@@ -1,0 +1,62 @@
+name: Vorlese-Audios erzeugen
+# Erzeugt pro Nugget eine MP3 mit der Piper-Stimme Thorsten (mittel).
+# Neu erzeugt wird nur, wenn sich der Vorlesetext eines Nuggets geändert hat.
+on:
+  push:
+    branches: [main]
+    paths: [index.html, tools/tts-text.js, .github/workflows/audio.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: audio
+  cancel-in-progress: false
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci --no-audit --no-fund
+      - run: node tools/tts-text.js
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: pip install piper-tts
+      - uses: actions/cache@v4
+        with:
+          path: voices
+          key: piper-de_DE-thorsten-medium
+      - name: Stimme laden
+        run: |
+          mkdir -p voices
+          B=https://huggingface.co/rhasspy/piper-voices/resolve/main/de/de_DE/thorsten/medium/de_DE-thorsten-medium
+          [ -s voices/thorsten.onnx ] || curl -sSL -o voices/thorsten.onnx "$B.onnx"
+          [ -s voices/thorsten.onnx.json ] || curl -sSL -o voices/thorsten.onnx.json "$B.onnx.json"
+      - name: Audios erzeugen
+        run: |
+          mkdir -p audio
+          [ -f audio/manifest.json ] || echo '{}' > audio/manifest.json
+          node -e '
+            const fs=require("fs"),{execSync}=require("child_process");
+            const want=JSON.parse(fs.readFileSync("tools/tts/hashes.json")), have=JSON.parse(fs.readFileSync("audio/manifest.json"));
+            let n=0;
+            for (const [id,h] of Object.entries(want)) {
+              if (have[id]===h && fs.existsSync(`audio/${id}.mp3`)) continue;
+              execSync(`piper -m voices/thorsten.onnx --sentence_silence 0.35 -f /tmp/a.wav < tools/tts/${id}.txt`,{stdio:"inherit"});
+              execSync(`ffmpeg -loglevel error -y -i /tmp/a.wav -ac 1 -ar 22050 -b:a 40k audio/${id}.mp3`);
+              have[id]=h; n++;
+            }
+            for (const id of Object.keys(have)) if (!want[id]) { fs.rmSync(`audio/${id}.mp3`,{force:true}); delete have[id]; }
+            fs.writeFileSync("audio/manifest.json", JSON.stringify(have,null,1)+"\n");
+            console.log(n+" Audios neu erzeugt.");
+          '
+      - name: Commit
+        run: |
+          git config user.name "Pflegepedia"
+          git config user.email "pflegepedia@users.noreply.github.com"
+          git add audio
+          if git diff --cached --quiet; then echo "Keine Änderungen"; exit 0; fi
+          git commit -m "Vorlese-Audios aktualisiert"
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && exit 0; sleep 5; done
+          exit 1
