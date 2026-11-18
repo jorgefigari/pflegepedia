@@ -649,6 +649,12 @@ footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding
 .howtile a { margin-top: auto; padding-top: 6px; font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--brand); text-decoration: none; }
 @media (max-width: 900px) { .howgrid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .howgrid, .lp-why { grid-template-columns: 1fr; } .how { margin-top: 64px; } }
+.tts-bar { display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.tts-bar[hidden] { display: none; }
+.tts-voice { display: inline-flex; align-items: center; gap: 6px; font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--muted); }
+.tts-voice[hidden] { display: none; }
+.tts-voice select { font: inherit; font-weight: 600; color: var(--ink); border: 1px solid var(--line-2); border-radius: 99px; padding: 8px 12px; background: var(--paper); max-width: 220px; min-height: 42px; }
+.tts-now { background: var(--gold-soft); box-shadow: 0 0 0 6px var(--gold-soft); border-radius: 6px; transition: background .4s, box-shadow .4s; }
 /* Vertiefung */
 .panel.deep { border-top: 5px solid var(--fage); }
 .panel.deep h2 .lv { margin-left: 4px; font-size: 13px; }
@@ -5618,29 +5624,153 @@ function bindGlossar() {
   if (!bindGlossar.once) { bindGlossar.once = 1; document.addEventListener("click", hide); addEventListener("scroll", hide, { passive: true }); }
 }
 
-/* Vorlesen mit der Sprachausgabe des Geräts */
-const TTS = { on: false, q: [], i: 0 };
+/* Liste der vorgefertigten Audiodateien (audio/<id>.mp3). Leer: es wird die Gerätestimme genutzt. */
+const AUDIO_FILES = [];
+/* ============================================================
+   Vorlesen
+   Ebene 1: Sprachausgabe des Geräts (immer verfügbar, Rückfall).
+   Ebene 2: vorgefertigte Audiodatei pro Nugget (audio/<id>.mp3), falls vorhanden.
+   Gelesen wird nur der Inhalt: Titel, Einleitung, Theorie, Auf einen Blick, Merke.
+   ============================================================ */
+const TTS = { on: false, paused: false, items: [], i: 0, rate: 1, voice: null, audio: null, timer: null };
 const canSpeak = () => typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
-function ttsText(n) {
-  const parts = [n.title, n.lead];
-  n.theory.forEach(s => { parts.push(s.h); (s.p || []).forEach(p => parts.push(p)); if (s.list) parts.push(s.list.join(". ")); if (s.after) parts.push(s.after); });
-  parts.push("Auf einen Blick.", ...n.points.map(p => p.replace(/^\d+\.\s*/, "")), "Merke: " + n.merke);
-  return parts.filter(Boolean);
+try { const r = parseFloat(localStorage.getItem("pp-tts-rate")); if (r) TTS.rate = r; } catch (e) {}
+
+/* Abkürzungen und Zeichen so umschreiben, wie man sie spricht */
+const TTS_SAY = [
+  [/\/min\b/g, " pro Minute"],
+  [/\bz\.\s?B\./g, "zum Beispiel"], [/\bbzw\./g, "beziehungsweise"], [/\bca\./g, "circa"], [/\bd\.\s?h\./g, "das heisst"],
+  [/\bu\.\s?a\./g, "unter anderem"], [/\bevtl\./g, "eventuell"], [/\binkl\./g, "inklusive"], [/\bggf\./g, "gegebenenfalls"],
+  [/\bmind\./g, "mindestens"], [/\bmax\./g, "maximal"], [/\bmin\b\.?/g, "Minuten"], [/\bNr\./g, "Nummer"], [/\busw\./g, "und so weiter"],
+  [/(\d+)\s?\/\s?(\d+)\s?mmHg/g, "$1 zu $2 Millimeter Quecksilbersäule"], [/(\d+)\/(\d+)/g, "$1 zu $2"], [/mmHg/g, "Millimeter Quecksilbersäule"],
+  [/(\d),(\d)/g, "$1 Komma $2"], [/\s?°C/g, " Grad"], [/\bSpO2\b/g, "Sauerstoffsättigung"], [/\bBZ\b/g, "Blutzucker"], [/\bBD\b/g, "Blutdruck"],
+  [/\bAGS\b/g, "A G S"], [/\bPflege HF\b/g, "Pflege H F"], [/\bHF\b/g, "H F"], [/\bEBA\b/g, "E B A"], [/\bEFZ\b/g, "E F Z"], [/\bBLS-AED\b/g, "B L S, A E D"], [/\bAED\b/g, "A E D"],
+  [/\bPEG\b/g, "P E G"], [/\bSBAR\b/g, "S Bar"], [/\bCIRS\b/g, "Zirs"], [/\bPSA\b/g, "P S A"], [/\bIPA\b/g, "I P A"], [/\bNRS\b/g, "N R S"], [/\bSHT\b/g, "Schädel-Hirn-Trauma"],
+  [/\s[–-]\s/g, ", "], [/«|»|"/g, ""], [/\s+/g, " "]
+];
+const ttsClean = t => TTS_SAY.reduce((s, [a, b]) => s.replace(a, b), " " + t + " ").trim();
+/* In Sätze zerlegen, damit nichts abbricht und Pausen natürlich wirken */
+function ttsSentences(t) {
+  if (typeof Intl !== "undefined" && Intl.Segmenter) return [...new Intl.Segmenter("de", { granularity: "sentence" }).segment(t)].map(s => s.segment.trim()).filter(Boolean);
+  return t.match(/[^.!?]+[.!?]*/g) || [t];
 }
-function ttsVoice() { const v = speechSynthesis.getVoices(); return v.find(x => /de-CH/i.test(x.lang)) || v.find(x => /^de/i.test(x.lang)); }
-function ttsSet(label, playing) { const b = $("#tts"); if (!b) return; b.querySelector("span").textContent = label; b.setAttribute("aria-pressed", playing ? "true" : "false"); const s = $("#tts-stop"); if (s) s.hidden = !TTS.on; }
-function ttsNext() {
-  if (!TTS.on || TTS.i >= TTS.q.length) { ttsStop(); return; }
-  const u = new SpeechSynthesisUtterance(TTS.q[TTS.i++]); const v = ttsVoice(); if (v) u.voice = v; u.lang = v ? v.lang : "de-CH"; u.rate = 0.95;
-  u.onend = () => ttsNext(); u.onerror = () => ttsStop();
+/* Was gelesen wird, direkt aus der Seite, damit der passende Abschnitt markiert werden kann */
+function ttsCollect() {
+  const sel = ".nhero h1, .nhero .lead, #s-theorie h3, #s-theorie > p, #s-theorie .warnsec p, #s-theorie li, #s-blick .points li, #s-blick .merke div";
+  const out = [];
+  document.querySelectorAll(sel).forEach(el => {
+    if (el.closest("figure, .tbl")) return;
+    const head = /^H[1-4]$/.test(el.tagName), raw = el.matches(".merke div") ? "Merke. " + el.textContent.replace(/^Merke/, "") : el.textContent;
+    if (el.matches("#s-blick .points li") && !out.some(o => o.mark === "blick")) out.push({ el: el.closest(".panel").querySelector("h2"), text: "Auf einen Blick.", pause: 500, mark: "blick" });
+    const sents = ttsSentences(ttsClean(raw));
+    sents.forEach((s, k) => out.push({ el, text: s, pause: k === sents.length - 1 ? (head ? 550 : 380) : 120 }));
+  });
+  return out;
+}
+/* Beste deutsche Stimme wählen: Schweiz zuerst, natürliche Stimmen bevorzugen */
+function ttsVoices() { return canSpeak() ? speechSynthesis.getVoices().filter(v => /^de(-|_|$)/i.test(v.lang)) : []; }
+function ttsScore(v) {
+  let s = 0; const n = v.name;
+  if (/de[-_]CH/i.test(v.lang)) s += 30; else if (/de[-_]DE/i.test(v.lang)) s += 20; else if (/de[-_]AT/i.test(v.lang)) s += 15;
+  if (/natural|neural|online/i.test(n)) s += 50; if (/premium|enhanced|verbessert/i.test(n)) s += 40; if (/google/i.test(n)) s += 25;
+  if (/compact|espeak|mbrola/i.test(n)) s -= 40; if (v.localService === false) s += 5;
+  return s;
+}
+function ttsPickVoice() {
+  const vs = ttsVoices(); if (!vs.length) return null;
+  let saved = null; try { saved = localStorage.getItem("pp-tts-voice"); } catch (e) {}
+  return vs.find(v => v.name === saved) || vs.slice().sort((a, b) => ttsScore(b) - ttsScore(a))[0];
+}
+function ttsFillVoices() {
+  const s = $("#tts-voice"); if (!s) return;
+  const vs = ttsVoices().sort((a, b) => ttsScore(b) - ttsScore(a)); TTS.voice = ttsPickVoice();
+  s.innerHTML = vs.map(v => `<option value="${esc(v.name)}"${TTS.voice && v.name === TTS.voice.name ? " selected" : ""}>${esc(v.name.replace(/^(Microsoft|Google|Apple)\s*/, "").replace(/\s*-\s*(German|Deutsch).*$/i, "").replace(/\s*\(.*?\)/g, "").replace(/\s*Online/i, "").trim() || v.name)} · ${({ "de-CH": "Schweiz", "de-DE": "Deutschland", "de-AT": "Österreich" })[v.lang.replace("_", "-")] || v.lang}</option>`).join("");
+  s.closest("label").hidden = vs.length < 2 || !!TTS.audio;
+}
+if (canSpeak()) { speechSynthesis.addEventListener ? speechSynthesis.addEventListener("voiceschanged", ttsFillVoices) : (speechSynthesis.onvoiceschanged = ttsFillVoices); }
+
+/* Anzeige */
+function ttsUi() {
+  const b = $("#tts"); if (!b) return;
+  b.querySelector("span").textContent = !TTS.on ? "Vorlesen" : TTS.paused ? "Weiter" : "Pause";
+  b.setAttribute("aria-pressed", TTS.on && !TTS.paused ? "true" : "false");
+  b.setAttribute("aria-label", !TTS.on ? "Nugget vorlesen" : TTS.paused ? "Vorlesen fortsetzen" : "Vorlesen pausieren");
+  const bar = $("#tts-bar"); if (bar) bar.hidden = !TTS.on;
+  const r = $("#tts-rate"); if (r) r.textContent = String(TTS.rate).replace(".", ",") + "×";
+}
+function ttsMark(el) {
+  document.querySelectorAll(".tts-now").forEach(x => x.classList.remove("tts-now"));
+  if (!el) return; el.classList.add("tts-now");
+  const r = el.getBoundingClientRect(); if (r.top < 140 || r.bottom > innerHeight - 60) el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+}
+
+/* Ebene 1: Satz für Satz mit der Gerätestimme */
+function ttsSpeak() {
+  clearTimeout(TTS.timer);
+  if (!TTS.on || TTS.paused) return;
+  if (TTS.i >= TTS.items.length) { ttsStop(); return; }
+  const it = TTS.items[TTS.i]; ttsMark(it.el);
+  const u = new SpeechSynthesisUtterance(it.text);
+  if (TTS.voice) { u.voice = TTS.voice; u.lang = TTS.voice.lang; } else u.lang = "de-CH";
+  u.rate = 0.97 * TTS.rate; u.pitch = 1;
+  u.onend = () => { if (!TTS.on || TTS.paused) return; TTS.i++; TTS.timer = setTimeout(ttsSpeak, it.pause / TTS.rate); };
+  u.onerror = e => { if (e.error !== "interrupted" && e.error !== "canceled") ttsStop(); };
   speechSynthesis.speak(u);
 }
-function ttsToggle(n) {
-  if (!TTS.on) { speechSynthesis.cancel(); TTS.on = true; TTS.q = ttsText(n); TTS.i = 0; ttsSet("Pause", true); ttsNext(); }
-  else if (speechSynthesis.paused) { speechSynthesis.resume(); ttsSet("Pause", true); }
-  else { speechSynthesis.pause(); ttsSet("Weiter vorlesen", false); }
+/* Ebene 2: vorgefertigte Audiodatei, falls es sie gibt */
+function ttsAudioFor(n) { return typeof AUDIO_FILES !== "undefined" && AUDIO_FILES.includes(n.id) ? "/audio/" + n.id + ".mp3" : null; }
+
+function ttsStart(n) {
+  ttsStop(true);
+  TTS.on = true; TTS.paused = false;
+  const src = ttsAudioFor(n);
+  if (src) {
+    TTS.audio = new Audio(src); TTS.audio.playbackRate = TTS.rate;
+    TTS.audio.addEventListener("ended", () => ttsStop());
+    TTS.audio.addEventListener("error", () => { TTS.audio = null; ttsStartSpeech(); });
+    TTS.audio.play().catch(() => { TTS.audio = null; ttsStartSpeech(); });
+    ttsUi(); return;
+  }
+  ttsStartSpeech();
 }
-function ttsStop() { TTS.on = false; if (canSpeak()) speechSynthesis.cancel(); ttsSet("Vorlesen", false); }
+function ttsStartSpeech() {
+  if (!canSpeak()) { ttsStop(); return; }
+  speechSynthesis.cancel(); TTS.voice = ttsPickVoice(); TTS.items = ttsCollect(); TTS.i = 0; ttsUi(); ttsSpeak();
+}
+function ttsToggle(n) {
+  if (!TTS.on) return ttsStart(n);
+  TTS.paused = !TTS.paused;
+  if (TTS.audio) TTS.paused ? TTS.audio.pause() : TTS.audio.play();
+  /* Pause als Abbruch mit Merken der Stelle: funktioniert zuverlässiger als speechSynthesis.pause, besonders auf Android */
+  else if (TTS.paused) { clearTimeout(TTS.timer); speechSynthesis.cancel(); } else ttsSpeak();
+  ttsUi();
+}
+function ttsStop(silent) {
+  clearTimeout(TTS.timer); TTS.on = false; TTS.paused = false;
+  if (TTS.audio) { TTS.audio.pause(); TTS.audio = null; }
+  if (canSpeak()) speechSynthesis.cancel();
+  ttsMark(null); if (!silent) ttsUi();
+}
+function ttsSetRate() {
+  const steps = [0.9, 1, 1.15, 1.3]; TTS.rate = steps[(steps.indexOf(TTS.rate) + 1) % steps.length] || 1;
+  try { localStorage.setItem("pp-tts-rate", TTS.rate); } catch (e) {}
+  if (TTS.audio) TTS.audio.playbackRate = TTS.rate;
+  else if (TTS.on && !TTS.paused) { speechSynthesis.cancel(); ttsSpeak(); }
+  ttsUi();
+}
+function ttsToolsHtml() {
+  if (!canSpeak()) return "";
+  return `<button type="button" class="tool" id="tts" aria-pressed="false" aria-label="Nugget vorlesen" title="Lässt dir Theorie und Merke vorlesen, ideal wenn du lieber zuhörst oder Deutsch nicht deine Erstsprache ist">${ui("play")}<span>Vorlesen</span></button>
+    <div class="tts-bar" id="tts-bar" hidden><button type="button" class="tool ghost" id="tts-stop" aria-label="Vorlesen beenden">Stopp</button><button type="button" class="tool ghost" id="tts-rate" aria-label="Lesetempo ändern" title="Lesetempo">1×</button><label class="tts-voice">Stimme <select id="tts-voice" aria-label="Stimme wählen"></select></label></div>`;
+}
+function ttsBind(n) {
+  const t = $("#tts"); if (!t) return;
+  t.addEventListener("click", () => ttsToggle(n));
+  $("#tts-stop").addEventListener("click", () => ttsStop());
+  $("#tts-rate").addEventListener("click", ttsSetRate);
+  $("#tts-voice").addEventListener("change", e => { const v = ttsVoices().find(x => x.name === e.target.value); if (!v) return; TTS.voice = v; try { localStorage.setItem("pp-tts-voice", v.name); } catch (er) {} if (TTS.on && !TTS.paused && !TTS.audio) { speechSynthesis.cancel(); ttsSpeak(); } });
+  ttsFillVoices(); ttsUi();
+}
 
 /* Animationen: kurze Abläufe, die sich selbst erklären */
 const ANIM = {
@@ -5682,13 +5812,13 @@ function bindAnim(n) {
 
 /* Werkzeuge im Nugget-Kopf */
 function toolsHtml(n) {
-  return `<div class="ntools">${canSpeak() ? `<button type="button" class="tool" id="tts" aria-pressed="false" title="Lässt dir Theorie und Merke vorlesen, ideal wenn du lieber zuhörst oder Deutsch nicht deine Erstsprache ist">${ui("play")}<span>Vorlesen</span></button><button type="button" class="tool ghost" id="tts-stop" hidden>Stopp</button>` : ""}<button type="button" class="tool" id="merkblatt">${ui("down")}<span>Merkblatt herunterladen</span></button></div>`;
+  return `<div class="ntools">${ttsToolsHtml()}<button type="button" class="tool" id="merkblatt">${ui("down")}<span>Merkblatt herunterladen</span></button></div>`;
 }
 function enhanceNugget(n) {
   applyGlossar($(".ncontent")); bindGlossar(); bindAnim(n);
   const p = $("#merkblatt"); if (p) p.addEventListener("click", async () => { const l = p.querySelector("span"); l.textContent = "PDF wird erstellt …"; p.disabled = true; try { await merkblattPdf(n); } finally { l.textContent = "Merkblatt herunterladen"; p.disabled = false; } });
   const q = $("#qrdl"); if (q) q.addEventListener("click", () => qrPng(n));
-  const t = $("#tts"); if (t) { t.addEventListener("click", () => ttsToggle(n)); $("#tts-stop").addEventListener("click", ttsStop); }
+  ttsBind(n);
 }
 
 /* QR-Codes: Bibliothek qrcode-generator von Kazuhiko Arase, MIT-Lizenz */
