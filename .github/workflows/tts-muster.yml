@@ -1,0 +1,32 @@
+name: TTS Hörproben
+on:
+  push:
+    branches: [tts-muster]
+jobs:
+  piper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: pip install piper-tts
+      - name: Stimmen laden
+        run: |
+          mkdir -p voices out
+          for v in de_DE/thorsten/high/de_DE-thorsten-high de_DE/thorsten/medium/de_DE-thorsten-medium de_DE/kerstin/low/de_DE-kerstin-low de_DE/ramona/low/de_DE-ramona-low; do
+            n=$(basename $v)
+            curl -sSL -o voices/$n.onnx "https://huggingface.co/rhasspy/piper-voices/resolve/main/de/$v.onnx"
+            curl -sSL -o voices/$n.onnx.json "https://huggingface.co/rhasspy/piper-voices/resolve/main/de/$v.onnx.json"
+          done
+          ls -la voices
+      - name: Hörproben erzeugen
+        run: |
+          for m in voices/*.onnx; do
+            n=$(basename $m .onnx)
+            piper -m $m -f out/$n.wav --sentence_silence 0.35 < tools/tts-muster.txt
+            ffmpeg -loglevel error -y -i out/$n.wav -ac 1 -b:a 64k out/$n.mp3
+          done
+          ls -la out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hoerproben
+          path: out/*.mp3
