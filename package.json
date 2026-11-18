@@ -1,0 +1,7 @@
+{
+  "name": "pflegepedia",
+  "private": true,
+  "description": "Build für www.pflegepedia.ch",
+  "scripts": { "build": "node tools/build-pages.js" },
+  "devDependencies": { "jsdom": "^26.1.0" }
+}
