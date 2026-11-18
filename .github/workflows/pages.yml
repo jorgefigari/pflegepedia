@@ -2,7 +2,7 @@ name: Seiten pro Nugget erzeugen
 on:
   push:
     branches: [main]
-    paths: [index.html, tools/build-pages.js]
+    paths: [index.html, tools/build-pages.js, package.json, package-lock.json]
   workflow_dispatch:
 permissions:
   contents: write
@@ -17,6 +17,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: npm ci --no-audit --no-fund
       - run: node tools/build-pages.js
       - name: Commit
         run: |
