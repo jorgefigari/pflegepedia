@@ -574,6 +574,8 @@ footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding
 .tool svg { width: 17px; height: 17px; }
 .tool[aria-pressed="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
 .tool.ghost { color: var(--muted); }
+@media (max-width: 1000px) { .nav .nfull { display: none; } .picker > span { display: none; } }
+@media (max-width: 380px) { .nav { gap: 10px !important; } .nav a { font-size: 13.5px !important; } .logo { font-size: 20px !important; } }
 .gl { border-bottom: 1.5px dotted var(--gold); cursor: help; text-decoration: none; }
 .gl:hover, .gl:focus-visible { background: var(--gold-soft); border-radius: 3px; outline: none; }
 #gltip { position: fixed; z-index: 70; background: var(--night); color: #e7edf4; border-radius: 14px; padding: 12px 15px; font-size: 14.5px; line-height: 1.5; box-shadow: var(--shadow-lift); opacity: 0; transform: translateY(4px); pointer-events: none; transition: opacity .2s, transform .3s var(--ease); }
@@ -605,7 +607,7 @@ footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding
 @keyframes aLine { to { stroke-dashoffset: 0; } }
 @keyframes aPush { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(12px); } }
 @media (prefers-reduced-motion: reduce) { .anim .a-step { opacity: 1; } .a-5m .a-dot { fill: #1e7547; } .a-abc .a-dot { fill: #14304f; } .a-line { stroke-dashoffset: 0; } }
-@media (max-width: 640px) { .lp { padding: 16px; } .lp-head { flex-direction: column; } .lp-stat { text-align: left; width: 100%; } .lp-steps a { grid-template-columns: 30px 56px minmax(0, 1fr); gap: 10px; } .lp-art { width: 56px; height: 36px; } .pathcard b { font-size: 21px; } .nav a:first-child { display: none; } }
+@media (max-width: 640px) { .lp { padding: 16px; } .lp-head { flex-direction: column; } .lp-stat { text-align: left; width: 100%; } .lp-steps a { grid-template-columns: 30px 56px minmax(0, 1fr); gap: 10px; } .lp-art { width: 56px; height: 36px; } .pathcard b { font-size: 21px; } .nav a:first-child, .nav a[href$="ueber"], .nav a[href$="ueber/"] { display: none; } .nav .nfull { display: none; } .nav { gap: 14px; } .logo { font-size: 22px; } .logo svg { width: 32px; height: 32px; } }
 /* QR, Berufsbildner, So funktioniert es */
 .qrpanel h2 { font-size: 20px !important; margin-bottom: 12px !important; }
 .qrbox { width: 150px; margin: 0 auto 12px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
@@ -639,7 +641,7 @@ footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding
 .bbtopic li a { font-weight: 700; color: var(--ink); margin-right: 6px; }
 .bbtopic li .lv { font-size: 11px; padding: 2px 8px; margin-left: 3px; }
 .bbtopic li p { margin: 4px 0 0; color: #36404c; font-size: 15.5px; }
-.how { margin-top: 88px; }
+.how { margin-top: 64px; }
 .how .toolbar-head { margin-bottom: 22px; }
 .howgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .howtile { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: flex; flex-direction: column; gap: 8px; }
@@ -795,7 +797,7 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
 <a class="skip" href="#app">Zum Inhalt springen</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="#" aria-label="Pflegepedia Startseite"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -1 115 115"><path d="M22 36V102" stroke="#14304f" stroke-width="16" stroke-linecap="round" fill="none"/><path d="M22 36C22 20 35 12 51 12C70 12 83 27 83 46C83 65 70 80 51 80H49" stroke="#14304f" stroke-width="16" stroke-linecap="round" fill="none"/><rect x="39" y="33" width="23" height="23" rx="7" fill="#b48a4c"/></svg><span>Pflegepedia</span></a>
-  <nav class="nav" aria-label="Hauptnavigation"><a href="#">Nuggets</a><a href="#lernpfade">Lernpfade</a><a href="#ueber">Über</a></nav>
+  <nav class="nav" aria-label="Hauptnavigation"><a href="#">Nuggets</a><a href="#lernpfade">Lernpfade</a><a href="#berufsbildner"><span class="nfull">Für </span>Berufsbildner</a><a href="#ueber">Über</a></nav>
   <div class="picker"><span>Ich bin</span>
   <div class="levels" role="group" aria-label="Ausbildungsstufe">
     <button data-level="AGS">AGS</button><button data-level="FaGe">FaGe</button><button data-level="HF">Pflege HF</button><button data-level="Alle">Alle</button>
@@ -891,6 +893,6 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
   <div class="legal">© 2026 Pflegepedia. Die Inhalte ersetzen keine betrieblichen Richtlinien, keine ärztlichen Verordnungen und keine Anleitung durch Fachpersonen.</div>
 </div></footer>
 
-<script src="/app.e790225d22.js"></script>
+<script src="/app.f84c1fd9f7.js"></script>
 </body>
 </html>

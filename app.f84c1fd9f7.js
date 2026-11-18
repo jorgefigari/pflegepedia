@@ -4528,8 +4528,9 @@ function bindGlossar() {
   if (!bindGlossar.once) { bindGlossar.once = 1; document.addEventListener("click", hide); addEventListener("scroll", hide, { passive: true }); }
 }
 
-/* Liste der vorgefertigten Audiodateien (audio/<id>.mp3). Leer: es wird die Gerätestimme genutzt. */
-const AUDIO_FILES = [];
+/* Vorgefertigte Audiodateien (audio/<id>.mp3, Stimme Thorsten von Piper). Liste in audio/manifest.json. */
+let AUDIO_MANIFEST = null;
+async function audioManifest() { if (AUDIO_MANIFEST) return AUDIO_MANIFEST; try { const r = await fetch("/audio/manifest.json", { cache: "no-cache" }); AUDIO_MANIFEST = r.ok ? await r.json() : {}; } catch (e) { AUDIO_MANIFEST = {}; } return AUDIO_MANIFEST; }
 /* ============================================================
    Vorlesen
    Ebene 1: Sprachausgabe des Geräts (immer verfügbar, Rückfall).
@@ -4622,17 +4623,19 @@ function ttsSpeak() {
   speechSynthesis.speak(u);
 }
 /* Ebene 2: vorgefertigte Audiodatei, falls es sie gibt */
-function ttsAudioFor(n) { return typeof AUDIO_FILES !== "undefined" && AUDIO_FILES.includes(n.id) ? "/audio/" + n.id + ".mp3" : null; }
+async function ttsAudioFor(n) { const m = await audioManifest(); return m[n.id] ? `/audio/${n.id}.mp3?v=${m[n.id]}` : null; }
 
-function ttsStart(n) {
+async function ttsStart(n) {
   ttsStop(true);
-  TTS.on = true; TTS.paused = false;
-  const src = ttsAudioFor(n);
+  TTS.on = true; TTS.paused = false; ttsUi();
+  const src = await ttsAudioFor(n);
+  if (!TTS.on) return;
   if (src) {
     TTS.audio = new Audio(src); TTS.audio.playbackRate = TTS.rate;
     TTS.audio.addEventListener("ended", () => ttsStop());
     TTS.audio.addEventListener("error", () => { TTS.audio = null; ttsStartSpeech(); });
     TTS.audio.play().catch(() => { TTS.audio = null; ttsStartSpeech(); });
+    const vl = $("#tts-voice"); if (vl) vl.closest("label").hidden = true;
     ttsUi(); return;
   }
   ttsStartSpeech();
@@ -4853,7 +4856,7 @@ function howHtml() {
     ["quiz", "Quiz pro Stufe", "Jede Stufe hat eigene Fragen. So prüfst du genau das, was zu deinen Kompetenzen gehört."],
     ["lock", "Dein Lernstand gehört dir", "Dein Fortschritt wird nur auf deinem Gerät gespeichert. Du kannst ihn jederzeit unter Datenschutz löschen.", "#datenschutzerklaerung", "Lernstand löschen"]
   ];
-  return `<section class="how rv"><div class="toolbar-head"><div><span class="eyebrow">So funktioniert es</span><h2>So lernst du mit Pflegepedia</h2></div><a class="more" href="#berufsbildner">Für Berufsbildner →</a></div>
+  return `<section class="how rv"><div class="toolbar-head"><div><span class="eyebrow">So funktioniert es</span><h2>So lernst du mit Pflegepedia</h2></div></div>
     <div class="howgrid">${it.map(([ic, t, d, h, l]) => `<div class="howtile"><i>${ui(ic)}</i><b>${t}</b><p>${d}</p>${h ? `<a href="${h}">${l} →</a>` : ""}</div>`).join("")}</div></section>`;
 }
 
@@ -5002,10 +5005,10 @@ function renderHome(scrollTo) {
     <div id="herobox"></div>
   </div></section>
   <div class="wrap">
+    ${howHtml()}
     <div id="paths"></div>
     <div class="toolbar"><div class="toolbar-head"><div><span class="eyebrow">Bibliothek</span><h2>Alle Themen</h2></div><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Insulin" value="${esc(state.q)}"></div><div class="jump" id="jump"></div></div>
     <div id="list"></div>
-    ${howHtml()}
     <section class="about rv" id="ueber">
       <div><h2>Über Pflegepedia</h2>
         <p>Pflegepedia ist ein privates, nicht-kommerzielles Bildungsprojekt aus der Berufsbildung Pflege in der Schweiz. Die Nuggets begleiten Lernende AGS EBA, FaGe EFZ und Studierende Pflege HF im Alltag: kurz, verständlich und praxisnah.</p>
