@@ -13,7 +13,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="google-site-verification" content="KkVOtLr0xJMq_KlIB6lryJJY6S548nZ2_Ipe-nEA7QE">
 <link rel="canonical" href="https://www.pflegepedia.ch/abcde/">
-<meta name="theme-color" content="#1d3f66">
+<meta name="theme-color" content="#fbf8f3">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Pflegepedia">
@@ -33,122 +33,198 @@
 @font-face { font-family: "Plus Jakarta Sans"; font-weight: 800; font-display: swap; src: url("fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2"); }
 @font-face { font-family: "Atkinson Hyperlegible"; font-weight: 400; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Atkinson Hyperlegible"; font-weight: 700; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-weight: 500; font-display: swap; src: url("fonts/newsreader-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-weight: 600; font-display: swap; src: url("fonts/newsreader-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-weight: 500; font-style: italic; font-display: swap; src: url("fonts/newsreader-latin-500-italic.woff2") format("woff2"); }
 :root {
-  /* Farbe bedeutet Stufe: AGS orange, FaGe blau, HF violett. Alles andere ruhig in Navy und Grau. */
-  --bg: #ffffff;
-  --soft: #f4f6f9;
-  --ink: #17283b;
-  --muted: #5b6878;
-  --line: #e2e7ee;
-  --brand: #1d3f66;
-  --brand-2: #edf2f8;
-  --brand-3: #d3dfeb;
+  /* Editorial Wissen: Elfenbein, Nachtblau, Messing. Farbe bedeutet Stufe: AGS orange, FaGe blau, HF violett. */
+  --bg: #fbf8f3;
+  --paper: #ffffff;
+  --soft: #f4efe7;
+  --sand: #efe6d8;
+  --ink: #16202c;
+  --muted: #565f6b;
+  --line: #e7dfd2;
+  --line-2: #d9cfbf;
+  --brand: #14304f;
+  --brand-2: #eef1f4;
+  --brand-3: #d5dde6;
+  --gold: #b48a4c;
+  --gold-ink: #85601f;
+  --gold-soft: #f5ecdc;
+  --night: #0f2238;
   --ags: #c2410c; --ags-bg: #fff1e8;
   --fage: #1971c2; --fage-bg: #e8f2fc;
   --hf: #8a2fa8; --hf-bg: #f6eafa;
-  --ok: #1e7f4a; --ok-bg: #e4f4ea;
-  --bad: #b23b2c; --bad-bg: #fcebe8;
+  --ok: #1e7547; --ok-bg: #e5f2e9;
+  --bad: #b23b2c; --bad-bg: #fbebe7;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
   --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
-  --shadow: 0 1px 2px rgba(23,40,59,.05), 0 6px 18px rgba(23,40,59,.06);
+  --shadow: 0 1px 1px rgba(44,32,18,.03), 0 2px 6px rgba(44,32,18,.04), 0 12px 32px -14px rgba(44,32,18,.14);
+  --shadow-lift: 0 1px 1px rgba(44,32,18,.04), 0 6px 14px rgba(44,32,18,.06), 0 28px 56px -20px rgba(20,48,79,.26);
+  --r: 20px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
   color-scheme: light;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-body { background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); }
-h1, h2, h3 { font-family: var(--display); line-height: 1.2; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font: 17.5px/1.65 var(--body); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.12; text-wrap: balance; margin: 0; letter-spacing: -0.015em; hyphens: auto; }
 a { color: inherit; }
 button { font: inherit; color: inherit; cursor: pointer; }
-:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+::selection { background: var(--gold-soft); color: var(--ink); }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
 .skip { position: absolute; left: 12px; top: -60px; z-index: 60; background: var(--brand); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-family: var(--display); text-decoration: none; }
 .skip:focus { top: 10px; }
 #app:focus, #app h1:focus, .fb:focus { outline: none; }
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.eyebrow { font-family: var(--display); font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-ink); }
 
 /* Kopf */
-.top { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; gap: 20px; min-height: 68px; flex-wrap: wrap; }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 21px; color: var(--brand); letter-spacing: -0.02em; }
-.logo svg { width: 38px; height: 38px; flex: none; margin: -2px -4px -2px -4px; }
-.nav { display: flex; gap: 18px; margin-left: 8px; }
-.nav a { text-decoration: none; color: var(--muted); font-weight: 700; font-size: 15px; font-family: var(--display); }
+.top { position: sticky; top: 0; z-index: 5; background: rgba(251,248,243,.86); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 24px; min-height: 72px; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-weight: 600; font-size: 25px; color: var(--brand); letter-spacing: -0.02em; }
+.logo svg { width: 36px; height: 36px; flex: none; margin: -2px -2px -2px -4px; }
+.nav { display: flex; gap: 22px; margin-left: 10px; }
+.nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 15px; font-family: var(--display); position: relative; padding: 4px 0; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1.5px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
 .nav a:hover { color: var(--brand); }
-.picker { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-.picker > span { font-size: 14px; color: var(--muted); font-weight: 700; }
-.levels { display: flex; gap: 4px; background: var(--soft); padding: 4px; border-radius: 12px; }
-.levels button { border: 0; background: transparent; padding: 7px 13px; border-radius: 9px; font-weight: 700; font-size: 14.5px; color: var(--muted); font-family: var(--display); }
-.levels button:hover { color: var(--ink); }
-.levels button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: var(--shadow); }
+.nav a:hover::after { transform: scaleX(1); }
+.picker { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.picker > span { font-size: 13px; color: var(--muted); font-weight: 700; font-family: var(--display); letter-spacing: .08em; text-transform: uppercase; }
+.levels { display: flex; gap: 3px; background: var(--paper); padding: 4px; border-radius: 99px; border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(44,32,18,.04); }
+.levels button { border: 0; background: transparent; padding: 7px 15px; border-radius: 99px; font-weight: 700; font-size: 14px; color: var(--muted); font-family: var(--display); transition: background .3s var(--ease), color .3s var(--ease); min-height: 36px; }
+.levels button:hover { color: var(--ink); background: var(--soft); }
+.levels button[aria-pressed="true"] { background: var(--brand); color: #fff; }
 .levels button[data-level="AGS"][aria-pressed="true"] { background: var(--ags); color: #fff; }
 .levels button[data-level="FaGe"][aria-pressed="true"] { background: var(--fage); color: #fff; }
 .levels button[data-level="HF"][aria-pressed="true"] { background: var(--hf); color: #fff; }
 
 /* Stufen-Badges: einzige farbige Elemente */
-.lv { font-size: 12.5px; font-weight: 700; padding: 2px 9px; border-radius: 6px; color: #fff; font-family: var(--display); white-space: nowrap; }
+.lv { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; color: #fff; font-family: var(--display); white-space: nowrap; letter-spacing: .01em; }
 .lv.AGS { background: var(--ags); } .lv.FaGe { background: var(--fage); } .lv.HF { background: var(--hf); }
 .lv.dim { opacity: .28; }
 
 /* Hero */
-.hero { border-bottom: 1px solid var(--line); background: var(--soft); }
-.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; padding-top: 40px; padding-bottom: 40px; }
-.hero h1 { font-size: clamp(30px, 4.2vw, 44px); font-weight: 800; color: var(--brand); }
-.hero p { color: var(--muted); font-size: 18px; max-width: 52ch; margin: 12px 0 18px; }
-.stats { display: flex; gap: 22px; flex-wrap: wrap; font-size: 15px; color: var(--muted); }
-.stats b { display: block; font-family: var(--display); font-size: 22px; color: var(--ink); font-variant-numeric: tabular-nums; }
-.choose { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: var(--shadow); }
-.choose h2 { font-size: 19px; margin-bottom: 4px; }
-.choose p { margin: 0 0 14px; font-size: 15px; }
-.choose .opts3 { display: grid; gap: 10px; }
-.choose button { text-align: left; display: grid; grid-template-columns: 88px 1fr; align-items: center; gap: 12px; border: 2px solid var(--line); background: #fff; border-radius: 12px; padding: 10px 12px; }
-.choose button:hover { border-color: var(--brand); }
-.choose button .lv { font-size: 14px; padding: 5px 0; text-align: center; }
-.choose button span:last-child { font-size: 15px; color: var(--ink); font-weight: 700; }
-.mine .bar { height: 10px; background: var(--soft); border-radius: 99px; overflow: hidden; margin: 10px 0 8px; }
+.hero { position: relative; overflow: hidden; background:
+  radial-gradient(60% 80% at 88% 10%, rgba(180,138,76,.10), transparent 60%),
+  radial-gradient(50% 70% at 5% 100%, rgba(20,48,79,.06), transparent 60%), var(--bg); }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2) 20%, var(--line-2) 80%, transparent); }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; padding-top: 72px; padding-bottom: 40px; }
+.hero h1 { font-size: clamp(40px, 5.6vw, 76px); font-weight: 500; color: var(--brand); letter-spacing: -0.03em; line-height: 1.02; margin-top: 16px; }
+.hero h1 em { font-style: italic; color: var(--gold-ink); font-weight: 500; }
+.hero p { color: var(--muted); font-size: 19px; max-width: 50ch; margin: 22px 0 30px; }
+.hero-art { position: relative; aspect-ratio: 560 / 460; }
+.hero-art svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.stats { display: flex; gap: 0; flex-wrap: wrap; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line-2); padding-top: 18px; }
+.stats div { padding: 0 26px; border-left: 1px solid var(--line); line-height: 1.35; }
+.stats div:first-child { padding-left: 0; border-left: 0; }
+.stats b { display: block; font-family: var(--serif); font-weight: 500; font-size: 34px; color: var(--ink); font-variant-numeric: lining-nums tabular-nums; letter-spacing: -0.02em; margin-bottom: 2px; }
+#herobox { grid-column: 1 / -1; }
+.choose { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 24px 26px; box-shadow: var(--shadow); display: grid; grid-template-columns: minmax(220px, .9fr) 2.1fr; grid-template-rows: auto 1fr; column-gap: 32px; row-gap: 4px; align-items: start; }
+.choose > h2, .choose > p { grid-column: 1; }
+.choose > h2 { align-self: end; }
+.choose > :not(h2):not(p) { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+.choose h2 { font-size: 24px; font-weight: 500; color: var(--brand); }
+.choose p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+.choose .opts3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.choose button { text-align: left; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; border: 1px solid var(--line); background: var(--bg); border-radius: 16px; padding: 14px 16px; transition: transform .45s var(--ease), border-color .3s var(--ease), box-shadow .45s var(--ease), background .3s; }
+.choose button:hover { border-color: var(--line-2); background: var(--paper); transform: translateY(-2px); box-shadow: var(--shadow); }
+.choose button .lv { font-size: 13px; padding: 4px 12px; }
+.choose button span:last-child { font-size: 14.5px; color: var(--ink); font-weight: 700; line-height: 1.35; }
+.mine { display: block; }
+.mine .bar { height: 8px; background: var(--soft); border-radius: 99px; overflow: hidden; margin: 12px 0 8px; }
 .mine .bar i { display: block; height: 100%; border-radius: 99px; }
-.mine .big { font-family: var(--display); font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.mine .big { font-family: var(--serif); font-size: 40px; font-weight: 500; font-variant-numeric: lining-nums tabular-nums; }
 .mine small { color: var(--muted); font-size: 14px; }
 
 /* Abschnitte */
-section.block { padding: 40px 0 8px; }
-.block-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
-.block-head h2 { font-size: 25px; }
-.block-head p { margin: 4px 0 0; color: var(--muted); }
-.toolbar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 26px 0 0; }
-#search { flex: 1 1 280px; max-width: 440px; font: inherit; padding: 11px 14px 11px 42px; border: 1px solid var(--line); border-radius: 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%235b6878' stroke-width='2'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E") 14px center no-repeat; color: var(--ink); }
-.jump { display: flex; gap: 6px; flex-wrap: wrap; }
-.jump button { border: 1px solid var(--line); background: #fff; border-radius: 99px; padding: 6px 12px 6px 8px; font-size: 14px; font-weight: 700; display: flex; gap: 6px; align-items: center; color: var(--ink); font-family: var(--display); }
-.jump button:hover { border-color: var(--brand); color: var(--brand); }
-.jump svg { width: 16px; height: 16px; color: var(--brand); }
-.topic { padding-top: 34px; scroll-margin-top: 80px; }
-.topic-head { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-.topic-head i { width: 42px; height: 42px; border-radius: 12px; background: var(--brand-2); color: var(--brand); display: grid; place-items: center; flex: none; }
-.topic-head i svg { width: 22px; height: 22px; }
-.topic-head h2 { font-size: 22px; }
-.topic-head p { margin: 2px 0 0; color: var(--muted); font-size: 15.5px; }
-.topic-head .count { margin-left: auto; color: var(--muted); font-size: 14px; white-space: nowrap; }
+section.block { padding: 56px 0 8px; }
+.block-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+.block-head h2 { font-size: 34px; font-weight: 500; color: var(--brand); }
+.block-head p { margin: 6px 0 0; color: var(--muted); }
+.toolbar { display: grid; gap: 22px; padding: 56px 0 0; }
+.toolbar-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; }
+.toolbar-head h2 { font-size: clamp(30px, 3.4vw, 42px); font-weight: 500; color: var(--brand); margin-top: 8px; }
+#search { flex: 1 1 320px; max-width: 440px; font: inherit; font-size: 16px; padding: 13px 18px 13px 46px; border: 1px solid var(--line-2); border-radius: 99px; background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23565f6b' stroke-width='1.6'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E") 18px center no-repeat; color: var(--ink); transition: border-color .3s, box-shadow .3s; }
+#search:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 4px rgba(20,48,79,.10); }
+.jump { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.jump button { position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--paper); border-radius: 18px; padding: 16px 16px 14px; text-align: left; display: grid; grid-template-columns: 40px 1fr; grid-template-rows: auto auto; column-gap: 12px; align-items: center; color: var(--ink); font-family: var(--display); align-content: center; row-gap: 2px; transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .3s; }
+.jump button:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--line-2); }
+.jump button i { grid-row: 1 / 3; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--tint, var(--brand-2)); color: var(--brand); }
+.jump button b { font-family: var(--serif); font-weight: 600; font-size: 18.5px; letter-spacing: -0.01em; line-height: 1.2; }
+.jump button small { font-size: 13px; color: var(--muted); font-weight: 600; }
+.jump button.big { grid-column: span 2; grid-template-columns: 52px 1fr; padding: 20px 22px; background: var(--brand); border-color: var(--brand); color: #fff; }
+.jump button.big i { width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,.1); color: #e9d3ad; }
+.jump button.big b { font-size: 23px; }
+.jump button.big small { color: #c8d3df; }
+.jump button.big span.d { grid-column: 2; font-family: var(--body); font-size: 14.5px; color: #dce4ed; font-weight: 400; margin-top: 4px; line-height: 1.45; }
+.jump button.big.alt { background: var(--gold-soft); border-color: #eadbc1; color: var(--ink); }
+.jump button.big.alt i { background: var(--paper); color: var(--gold-ink); }
+.jump button.big.alt small, .jump button.big.alt span.d { color: var(--muted); }
+.jump svg { width: 21px; height: 21px; stroke-width: 1.6; }
+.topic { padding-top: 64px; scroll-margin-top: 90px; counter-increment: topic; }
+#list { counter-reset: topic; }
+.topic-head { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: end; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line-2); }
+.topic-head i { font-style: normal; font-family: var(--serif); font-size: 15px; color: var(--gold-ink); width: auto; height: auto; background: none; display: block; align-self: start; padding-top: 6px; letter-spacing: .04em; }
+.topic-head i::before { content: counter(topic, decimal-leading-zero); }
+.topic-head i svg { display: none; }
+.topic-head h2 { font-size: clamp(28px, 3vw, 36px); font-weight: 500; color: var(--brand); }
+.topic-head p { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
+.topic-head .count { color: var(--muted); font-size: 13px; white-space: nowrap; font-family: var(--display); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 
 /* Karten */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; }
-.card { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s; }
-.card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(23,40,59,.06), 0 14px 30px rgba(23,40,59,.12); }
-.card .art { height: 124px; position: relative; }
-.card .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.card .doneb { position: absolute; top: 10px; right: 10px; background: var(--ok); color: #fff; border-radius: 8px; padding: 3px 9px; font-size: 13px; font-weight: 700; }
-.card .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
-.card .tp { font-size: 12.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-family: var(--display); }
-.card h3 { font-size: 18px; font-weight: 700; }
-.card p { margin: 0; color: var(--muted); font-size: 15px; }
-.foot { margin-top: auto; padding-top: 10px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; border-top: 1px solid var(--line); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .6s var(--ease), box-shadow .6s var(--ease), border-color .3s; }
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); border-color: var(--line-2); }
+.card .art { height: 150px; position: relative; overflow: hidden; }
+.card .art svg { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform 1s var(--ease); }
+.card:hover .art svg { transform: scale(1.045); }
+.card .doneb { position: absolute; top: 12px; right: 12px; background: var(--ok); color: #fff; border-radius: 99px; padding: 3px 11px; font-size: 12.5px; font-weight: 700; font-family: var(--display); }
+.card .body { padding: 18px 20px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card .tp { font-size: 11.5px; font-weight: 700; color: var(--gold-ink); text-transform: uppercase; letter-spacing: .14em; font-family: var(--display); }
+.card h3 { hyphenate-limit-chars: 12 5 5; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: -0.015em; line-height: 1.15; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.foot { margin-top: auto; padding-top: 14px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; border-top: 1px solid var(--line); }
 .min { margin-left: auto; font-size: 13.5px; color: var(--muted); display: flex; gap: 5px; align-items: center; }
 .empty { color: var(--muted); padding: 20px 0 40px; }
+@media (min-width: 1000px) {
+  .grid.g3 { grid-template-columns: repeat(4, 1fr); }
+  .grid.g3 .card:first-child { grid-column: span 2; flex-direction: row; }
+  .grid.g3 .card:first-child .art { height: auto; flex: 0 0 52%; }
+  .grid.g3 .card:first-child .art svg { inset: auto 0; top: 50%; height: auto; transform: translateY(-50%); }
+  .grid.g3 .card:first-child:hover .art svg { transform: translateY(-50%) scale(1.045); }
+  .grid.g3 .card:first-child .body { padding: 26px 26px 22px; }
+  .grid.g3 .card:first-child h3 { font-size: 28px; }
+  .grid.g3 .card:first-child p { font-size: 16px; }
+  .grid.g4 { grid-template-columns: repeat(4, 1fr); }
+}
 
 /* Über */
-.about { margin: 48px 0 56px; background: var(--brand); color: #fff; border-radius: 22px; padding: 34px clamp(22px, 4vw, 44px); display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; align-items: center; }
-.about h2 { font-size: 26px; color: #fff; }
-.about p { color: #d8e3ef; margin: 10px 0 0; max-width: 60ch; }
-.about ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-.about li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; color: #fff; }
-.about li::before { content: "✓"; font-weight: 800; color: #9ec5ee; }
+.about { position: relative; overflow: hidden; margin: 88px 0 72px; background: var(--night); color: #fff; border-radius: 28px; padding: clamp(32px, 5vw, 60px); display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+.about::before { content: ""; position: absolute; width: 520px; height: 520px; right: -160px; top: -220px; border-radius: 50%; background: radial-gradient(circle, rgba(180,138,76,.28), transparent 65%); pointer-events: none; }
+.about > * { position: relative; }
+.about h2 { font-size: clamp(30px, 3.4vw, 42px); font-weight: 500; color: #fff; }
+.about h2::before { content: "Das Projekt"; display: block; font-family: var(--display); font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #e2c597; margin-bottom: 12px; }
+.about p { color: #cfd9e4; margin: 14px 0 0; max-width: 60ch; }
+.about ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.about li { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: center; color: #fff; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.12); }
+.about li:last-child { border-bottom: 1px solid rgba(255,255,255,.12); }
+.about li::before { content: ""; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #e2c597; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e2c597' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 12.5 3 3 7-7'/%3E%3C/svg%3E") center / 15px no-repeat; }
+
+/* Bewegung */
+.js .rv { opacity: 0; transform: translateY(18px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }
+.js .rv.in { opacity: 1; transform: none; }
+@keyframes ppFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes ppDraw { from { stroke-dashoffset: var(--len, 300); } to { stroke-dashoffset: 0; } }
+@keyframes ppIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero h1, .hero p.intro, .stats, .hero-art { animation: ppIn 1s var(--ease) both; }
+.hero p.intro { animation-delay: .08s; } .stats { animation-delay: .16s; } .hero-art { animation-delay: .1s; }
+.hero-art .fl1 { animation: ppFloat 7s ease-in-out infinite; }
+.hero-art .fl2 { animation: ppFloat 8s ease-in-out -3s infinite; }
+.hero-art .pulse { stroke-dasharray: var(--len, 300); animation: ppDraw 2.4s var(--ease) .5s both; }
 
 /* Textseiten */
 .page { max-width: 760px; margin: 0 auto; padding: 40px 24px 70px; }
@@ -349,6 +425,112 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid #2c4058; padding-top:
   .tbl td:has(.nil) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } .card:hover { transform: none; } }
+/* Editorial: Textseiten, Nugget, Fuss */
+.page { max-width: 780px; padding: 56px 28px 90px; }
+.page h1 { font-size: clamp(34px, 6vw, 52px); font-weight: 500; letter-spacing: -0.025em; margin: 22px 0 22px; }
+.page h2 { font-size: 25px; font-weight: 500; color: var(--brand); margin: 36px 0 10px; }
+.reset { border: 1px solid var(--line-2); background: var(--paper); border-radius: 99px; padding: 9px 18px; font-weight: 700; font-family: var(--display); font-size: 14.5px; }
+.nhero { background: radial-gradient(55% 90% at 100% 0%, rgba(180,138,76,.09), transparent 60%), var(--bg); border-bottom: 1px solid var(--line); }
+.nhero .wrap { grid-template-columns: 1.15fr .85fr; gap: 48px; padding-top: 34px; padding-bottom: 44px; }
+.back { gap: 8px; font-family: var(--display); font-size: 14px; background: var(--paper); border-color: var(--line-2); padding: 7px 14px; border-radius: 99px; transition: background .3s, transform .45s var(--ease); }
+.back:hover { background: var(--soft); transform: translateX(-2px); }
+.nhero .kick { margin: 26px 0 14px; }
+.nhero .kick .tpk { color: var(--gold-ink); letter-spacing: .14em; font-size: 12px; }
+.nhero .kick svg { color: var(--gold-ink); }
+.nhero h1 { font-size: clamp(36px, 4.6vw, 60px); font-weight: 500; letter-spacing: -0.028em; line-height: 1.04; }
+.nhero .lead { font-size: 19px; margin: 18px 0 0; color: #36404c; }
+.nhero .art { aspect-ratio: 16/11; border-radius: 26px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.ncontent { grid-template-columns: minmax(0, 1fr) 310px; gap: 32px; padding: 40px 28px 90px; }
+.panel { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 32px 34px; box-shadow: var(--shadow); }
+.panel + .panel { margin-top: 24px; }
+.panel h2 { font-size: 28px; font-weight: 500; color: var(--brand); gap: 14px; margin-bottom: 20px; letter-spacing: -0.02em; }
+.panel h2 i { width: 38px; height: 38px; border-radius: 50%; background: var(--gold-soft); color: var(--gold-ink); flex: none; }
+.panel h2 i svg { width: 19px; height: 19px; stroke-width: 1.7; }
+.theory h3 { font-size: 23px; font-weight: 500; margin: 34px 0 10px; letter-spacing: -0.015em; }
+.theory li::marker { color: var(--gold); }
+.tbl { border-color: var(--line); border-radius: 16px; }
+.tbl th { background: var(--soft); font-family: var(--display); font-size: 13px; letter-spacing: .04em; color: #3b4450; }
+.tbl td { border-top-color: var(--line); }
+.fig { border-color: var(--line); border-radius: 18px; }
+.fig figcaption { background: var(--soft); border-top-color: var(--line); font-size: 14px; }
+.points li::before { background: var(--gold-soft); color: var(--gold-ink); font-family: var(--serif); font-size: 16px; font-weight: 600; }
+.merke { background: var(--gold-soft); border: 1px solid #e8d7b8; border-radius: 18px; padding: 18px 20px; }
+.merke svg { color: var(--gold-ink); }
+.merke b { color: var(--gold-ink); font-family: var(--display); letter-spacing: .1em; text-transform: uppercase; font-size: 13px; margin-bottom: 2px; }
+.facts-list li i { background: var(--gold-soft); color: var(--gold-ink); font-family: var(--serif); font-weight: 600; }
+.role { border-radius: 16px; border-top-width: 3px; }
+.qt { border-width: 1.5px; border-radius: 99px; padding: 7px 16px; background: var(--paper); }
+.opts button { border: 1px solid var(--line-2); border-radius: 14px; padding: 12px 14px; background: var(--paper); transition: border-color .25s, background .25s, transform .4s var(--ease); min-height: 48px; }
+.opts button:hover:not(:disabled) { border-color: var(--brand); background: var(--brand-2); transform: translateX(2px); }
+.opts .k { border-radius: 50%; background: var(--soft); font-family: var(--display); }
+.result { border-radius: 14px; }
+.transfer { background: var(--brand-2); border-radius: 16px; padding: 18px 20px; border-left: 3px solid var(--brand); border-radius: 0 16px 16px 0; }
+.aside { top: calc(var(--hh, 72px) + 70px); }
+.aside .panel { padding: 24px 24px; }
+.aside .panel h2 { font-size: 22px; }
+.facts dd { font-family: var(--display); font-size: 15px; }
+.mini { border-radius: 14px; transition: background .3s; }
+.mini .art { border-radius: 10px; border: 1px solid var(--line); }
+.mini span { font-family: var(--serif); font-weight: 600; font-size: 16.5px; }
+.mini small { font-family: var(--body); }
+.subnav { background: rgba(251,248,243,.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom-color: var(--line); top: var(--hh, 72px); }
+.subnav button { font-weight: 600; font-size: 14px; padding: 14px 14px; border-bottom-width: 2px; }
+.subnav button.on { color: var(--brand); border-color: var(--gold); }
+.report .btn, .dp-aside .btn { border-radius: 99px; padding: 11px 16px; transition: background .3s, transform .45s var(--ease); }
+.report .btn:hover { background: var(--night); transform: translateY(-1px); }
+.totop { background: var(--brand); box-shadow: var(--shadow-lift); }
+.showall { border: 1px solid var(--line-2); background: var(--paper); color: var(--brand); border-radius: 99px; padding: 11px 24px; margin-top: 26px; transition: background .3s, border-color .3s; }
+.mine .next { border-radius: 16px; border-color: var(--line); background: var(--bg); }
+.mine .next b { font-family: var(--serif); font-size: 18px; font-weight: 600; }
+footer { background: var(--night); color: #c6d1dd; font-size: 14.5px; }
+footer .wrap { padding-top: 56px; padding-bottom: 40px; gap: 36px; }
+footer .logo { color: #fff; }
+footer h3 { font-family: var(--display); font-size: 12.5px; color: #e2c597; letter-spacing: .14em; font-weight: 700; margin-bottom: 14px; }
+footer a { color: #c6d1dd; }
+footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding-top: 22px; }
+@media (max-width: 1000px) {
+  .jump { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-top: 44px; gap: 28px; }
+  .hero-art { max-width: 560px; width: 100%; margin: 0 auto; }
+  .choose { grid-template-columns: 1fr; }
+  .choose > * { grid-column: 1 !important; grid-row: auto !important; }
+  .choose .opts3 { margin-top: 14px; }
+  .nhero .wrap { grid-template-columns: 1fr; }
+  .ncontent { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  .wrap { padding: 0 20px; }
+  .hero .wrap { padding-top: 28px !important; padding-bottom: 28px !important; gap: 22px !important; }
+  .hero h1 { font-size: 42px; }
+  .hero p.intro { font-size: 16.5px; margin: 14px 0 0; }
+  .hero-art { order: -1; max-width: 340px; margin: 0 auto -6px; }
+  .choose { padding: 18px; gap: 12px; border-radius: 20px; }
+  .choose h2 { font-size: 22px; margin-bottom: 0; }
+  .choose .opts3 { grid-template-columns: 1fr; gap: 8px; }
+  .choose button { flex-direction: row; align-items: center; padding: 10px 12px; gap: 12px; }
+  .choose button .lv { min-width: 78px; text-align: center; }
+  .jump { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .jump button { grid-template-columns: 1fr; padding: 14px; border-radius: 16px; row-gap: 2px; }
+  .jump button i { grid-row: auto; width: 34px; height: 34px; border-radius: 10px; margin-bottom: 8px; }
+  .jump button b { font-size: 16.5px; }
+  .jump button.big { grid-column: span 2; grid-template-columns: 44px 1fr; padding: 16px; }
+  .jump button.big i { grid-row: 1 / 4; width: 44px; height: 44px; margin-bottom: 0; align-self: start; }
+  .jump button.big b, .jump button.big small, .jump button.big span.d { grid-column: 2; }
+  .jump button.big b { font-size: 20px; }
+  .toolbar { padding-top: 40px; }
+  .topic { padding-top: 48px; }
+  .topic-head { grid-template-columns: auto 1fr; gap: 12px; }
+  .card h3 { font-size: 21px; }
+  .panel { padding: 22px 20px; border-radius: 20px; }
+  .panel h2 { font-size: 24px; }
+  .nhero h1 { font-size: 36px; }
+  .nhero .art { aspect-ratio: auto; height: 140px; border-radius: 18px; }
+  .about { border-radius: 22px; margin: 64px 0 48px; }
+  .ncontent { padding: 24px 16px 64px; }
+}
 /* Vertiefung */
 .panel.deep { border-top: 5px solid var(--fage); }
 .panel.deep h2 .lv { margin-left: 4px; font-size: 13px; }
@@ -499,28 +681,28 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
   <section class="nhero"><div class="wrap">
     <div>
       <a class="back" href="/">← Alle Nuggets</a>
-      <div class="kick"><span class="tpk"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>Notfälle</span><span class="lv FaGe">FaGe</span><span class="lv HF">Pflege HF</span></div>
+      <div class="kick"><span class="tpk"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>Notfälle</span><span class="lv FaGe">FaGe</span><span class="lv HF">Pflege HF</span></div>
       <h1>ABCDE: Notfälle systematisch einschätzen</h1>
       <p class="lead">Im Notfall ist nicht die Diagnose das Wichtigste, sondern die Frage: Was bringt die Person zuerst in Lebensgefahr? Das ABCDE-Schema gibt dir eine feste Reihenfolge. Du prüfst Schritt für Schritt, behandelst sofort, was du findest, und beginnst dann wieder von vorne.</p>
       
     </div>
-    <div class="art"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:#eef3f8" aria-hidden="true"><rect width="320" height="200" fill="#eef3f8"></rect><circle cx="280" cy="30" r="70" fill="#d6e2ee" opacity=".55"></circle><circle cx="30" cy="190" r="50" fill="#d6e2ee" opacity=".45"></circle><circle cx="52" cy="104" r="24" fill="#2b5480"></circle><text x="52" y="113" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="24" fill="#fff">A</text><circle cx="106" cy="104" r="24" fill="#2b5480"></circle><text x="106" y="113" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="24" fill="#fff">B</text><circle cx="160" cy="104" r="24" fill="#2b5480"></circle><text x="160" y="113" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="24" fill="#fff">C</text><circle cx="214" cy="104" r="24" fill="#2b5480"></circle><text x="214" y="113" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="24" fill="#fff">D</text><circle cx="268" cy="104" r="24" fill="#2b5480"></circle><text x="268" y="113" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="24" fill="#fff">E</text><path d="M40 150h232" stroke="#2b5480" stroke-width="4" stroke-linecap="round"></path><path d="M262 140l12 10-12 10" fill="none" stroke="#2b5480" stroke-width="4" stroke-linecap="round"></path></svg></div>
+    <div class="art"><svg viewBox="28 86 528 330" preserveAspectRatio="xMidYMid meet" style="background:#f6ebe5" aria-hidden="true" focusable="false"><rect x="-1000" y="-1000" width="3000" height="3000" fill="#f6ebe5"></rect><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="#eacfc4"></path><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"></circle><ellipse cx="290" cy="408" rx="230" ry="12" fill="#14304f" opacity=".07"></ellipse><g transform="translate(64 0)"><path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#6e2f44"></path><path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"></path><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#6e2f44"></path><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"></path><path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#6e2f44"></path><path d="M358 182l18 30 18-30" fill="none" stroke="#c98a9c" stroke-width="4" stroke-linejoin="round"></path><path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"></path><circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"></circle><rect x="366" y="152" width="20" height="26" rx="8" fill="#b27b58"></rect><circle cx="376" cy="128" r="29" fill="#b27b58"></circle><path d="M346 130A30 30 0 0 1 406 130Q387.6 113.5 373.1 116.98Q358.6 120.75 346 130z" fill="#2a211d"></path><circle cx="400.65" cy="103.35" r="12.18" fill="#2a211d"></circle><path d="M336 236c-14 18-22 36-24 54" stroke="#6e2f44" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="312" cy="294" r="10.5" fill="#b27b58"></circle><path d="M420 236c10 24 12 44 4 60" stroke="#6e2f44" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="424" cy="298" r="10.5" fill="#b27b58"></circle><g transform="rotate(-8 421 306)"><rect x="398" y="276" width="46" height="60" rx="8" fill="#f8f4ec" stroke="#c9a676" stroke-width="3"></rect><path d="M410 296h22M410 308h16M410 320h20" stroke="#c9b48f" stroke-width="3" stroke-linecap="round"></path></g><circle cx="424" cy="298" r="9" fill="#b27b58"></circle></g><rect x="56" y="157" width="300" height="80" rx="20" fill="#3a2a14" opacity=".07"></rect><rect x="56" y="150" width="300" height="80" rx="20" fill="#fff"></rect><circle cx="92" cy="190" r="16" fill="#14304f"></circle><text x="92" y="196" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="#fff">A</text><circle cx="132" cy="190" r="16" fill="#14304f"></circle><text x="132" y="196" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="#fff">B</text><circle cx="172" cy="190" r="16" fill="#14304f"></circle><text x="172" y="196" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="#fff">C</text><circle cx="212" cy="190" r="16" fill="#14304f"></circle><text x="212" y="196" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="#fff">D</text><circle cx="252" cy="190" r="16" fill="#14304f"></circle><text x="252" y="196" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="#fff">E</text></svg></div>
   </div></section>
   <nav class="subnav" aria-label="Abschnitte"><div class="wrap"><button data-s="s-theorie">Theorie</button><button data-s="s-blick">Auf einen Blick</button><button data-s="s-wissen">Gut zu wissen</button><button data-s="s-komp">Kompetenzen</button><button data-s="s-quiz">Quiz</button><button data-s="s-transfer">Praxistransfer</button><button data-s="s-quellen">Quellen</button></div></nav>
-  <div class="wrap ncontent" style="--tc:#2b5480;--tc-bg:#eef3f8">
+  <div class="wrap ncontent" style="--tc:#1e3a5c;--tc-bg:#f6ebe5">
     <div>
-      <div class="panel theory" id="s-theorie"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"></path><path d="M4 21V5"></path></svg></i>Theorie</h2><h3>Das Prinzip</h3><ul><li>Ersteindruck in wenigen Sekunden: Reagiert die Person? Atmet sie? Wie sieht sie aus?</li><li>Früh Hilfe holen: Fachperson, Ärztin oder Arzt, internes Notfallteam nach Betriebsregel</li><li>Von A nach E vorgehen. Ein Problem sofort behandeln, bevor du zum nächsten Buchstaben gehst</li><li>Nach jeder Massnahme und bei jeder Veränderung wieder bei A beginnen</li><li>Ergebnisse strukturiert weitergeben, zum Beispiel mit SBAR</li></ul><figure class="fig"><div class="fig-scroll"><svg viewBox="0 0 720 256" role="img" aria-label="ABCDE-Schema"><rect width="720" height="256" fill="#fff"></rect><rect x="20" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="82" cy="84" r="28" fill="#1d3f66"></circle><text x="82" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">A</text><text x="82" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Atemweg</text><text x="82" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">frei?</text><path d="M146 115h12" stroke="#1d3f66" stroke-width="2.5"></path><rect x="160" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="222" cy="84" r="28" fill="#1d3f66"></circle><text x="222" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">B</text><text x="222" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Atmung</text><text x="222" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Frequenz, SpO2</text><path d="M286 115h12" stroke="#1d3f66" stroke-width="2.5"></path><rect x="300" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="362" cy="84" r="28" fill="#1d3f66"></circle><text x="362" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">C</text><text x="362" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Kreislauf</text><text x="362" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Puls, BD, Blutung</text><path d="M426 115h12" stroke="#1d3f66" stroke-width="2.5"></path><rect x="440" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="502" cy="84" r="28" fill="#1d3f66"></circle><text x="502" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">D</text><text x="502" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Neurologie</text><text x="502" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">AVPU, BZ, Pupillen</text><path d="M566 115h12" stroke="#1d3f66" stroke-width="2.5"></path><rect x="580" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="642" cy="84" r="28" fill="#1d3f66"></circle><text x="642" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">E</text><text x="642" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Ganzkörper</text><text x="642" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Haut, Wunden, Temp.</text><path d="M690 196v24H82v-24" fill="none" stroke="#1d3f66" stroke-width="2" stroke-dasharray="5 4"></path><path d="M76 202l6-8 6 8" fill="none" stroke="#1d3f66" stroke-width="2"></path><text x="386" y="240" text-anchor="middle" font-size="13" font-weight="700" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Problem gefunden: sofort behandeln. Danach und bei jeder Veränderung wieder bei A beginnen.</text><text x="360" y="24" text-anchor="middle" font-size="12.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Gefahr nimmt von links nach rechts ab</text></svg></div><figcaption>Die Reihenfolge folgt der Gefahr: Ein verlegter Atemweg tötet schneller als ein Kreislaufproblem, dieses schneller als ein Bewusstseinsproblem.</figcaption></figure><h3>A bis E im Detail</h3><div class="tbl"><table><thead><tr><th>Schritt</th><th>Du prüfst</th><th>Mögliche Sofortmassnahmen</th></tr></thead><tbody><tr><td data-label="Schritt">A: Atemweg (Airway)</td><td data-label="Du prüfst">Spricht die Person? Geräusche wie Gurgeln, Schnarchen, Pfeifen? Fremdkörper, Erbrochenes?</td><td data-label="Mögliche Sofortmassnahmen">Kopf überstrecken, Seitenlage, Absaugen nach Kompetenz, Fremdkörpermanöver</td></tr><tr><td data-label="Schritt">B: Atmung (Breathing)</td><td data-label="Du prüfst">Atemfrequenz, Atemtiefe, Atemhilfsmuskulatur, Sauerstoffsättigung, Hautfarbe</td><td data-label="Mögliche Sofortmassnahmen">Oberkörper hoch, Sauerstoff nach Verordnung oder Notfallstandard, Lippenbremse</td></tr><tr><td data-label="Schritt">C: Kreislauf (Circulation)</td><td data-label="Du prüfst">Puls, Blutdruck, Rekapillarisierungszeit, Hautfarbe und Temperatur, Blutung, Ausscheidung</td><td data-label="Mögliche Sofortmassnahmen">Blutung stoppen, flach lagern, Beine hoch bei Schockzeichen, Zugang vorbereiten</td></tr><tr><td data-label="Schritt">D: Neurologie (Disability)</td><td data-label="Du prüfst">Bewusstsein nach AVPU, Pupillen, Blutzucker, Zeichen eines Schlaganfalls (BE FAST)</td><td data-label="Mögliche Sofortmassnahmen">Blutzucker messen, bei Hypoglykämie handeln nach Standard, Seitenlage</td></tr><tr><td data-label="Schritt">E: Ganzkörper (Exposure)</td><td data-label="Du prüfst">Haut, Wunden, Schwellungen, Ödeme, Temperatur, Schmerz, Drainagen, Ausscheidungen</td><td data-label="Mögliche Sofortmassnahmen">Wärmeerhalt, Schmerz einschätzen, Befunde dokumentieren</td></tr></tbody></table></div><h3>Hilfsmittel für die Einschätzung</h3><div class="tbl"><table><thead><tr><th>Instrument</th><th>So geht es</th></tr></thead><tbody><tr><td data-label="Instrument">AVPU</td><td data-label="So geht es">A = wach (alert), V = reagiert auf Ansprache (voice), P = reagiert nur auf Schmerz (pain), U = reagiert nicht (unresponsive). Ab P ist es ein Notfall</td></tr><tr><td data-label="Instrument">Rekapillarisierungszeit</td><td data-label="So geht es">Fingernagel 5 Sekunden drücken, loslassen: Die Farbe kehrt normalerweise in weniger als 2 Sekunden zurück</td></tr><tr><td data-label="Instrument">Schockindex</td><td data-label="So geht es">Puls geteilt durch den systolischen Blutdruck. Über 1 ist ein Warnzeichen für einen Schock, zum Beispiel Puls 120 bei 100 mmHg</td></tr><tr><td data-label="Instrument">BE FAST</td><td data-label="So geht es">Balance, Eyes (Sehen), Face (Gesicht), Arms (Arme), Speech (Sprache), Time (Zeit notieren). Siehe Nugget Schlaganfall</td></tr></tbody></table></div><h3>Typische Situationen</h3><ul><li>Atemnot: B steht im Vordergrund. Denk aber auch an A (Verschlucken) und C (Herzinsuffizienz, Lungenembolie)</li><li>Akute Blutung: C. Achte auf Schockzeichen wie schnellen Puls, blasse kalte Haut und Unruhe, bevor der Blutdruck fällt</li><li>Plötzliche Verwirrtheit: D. Immer Blutzucker messen. Bedenke auch B (zu wenig Sauerstoff) und E (Fieber, Infekt)</li><li>Sturz: E zeigt dir Verletzungen. Bei Blutverdünnern und Kopfverletzung gilt: engmaschig D überwachen</li></ul><div class="warnsec"><h3>Achtung: Der Blutdruck fällt spät</h3><p>Der Körper hält den Blutdruck lange stabil, indem das Herz schneller schlägt und sich die Gefässe verengen. Ein normaler Blutdruck schliesst einen Schock deshalb nicht aus. Ein steigender Puls, eine schnelle Atmung, kalte Haut und Unruhe sind frühe Warnzeichen. Ältere Menschen und Personen mit Betablockern zeigen oft keinen schnellen Puls.</p></div></div>
-      <div class="panel" id="s-blick"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"></path></svg></i>Auf einen Blick</h2>
+      <div class="panel theory" id="s-theorie"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"></path><path d="M4 21V5"></path></svg></i>Theorie</h2><h3>Das Prinzip</h3><ul><li>Ersteindruck in wenigen Sekunden: Reagiert die Person? Atmet sie? Wie sieht sie aus?</li><li>Früh Hilfe holen: Fachperson, Ärztin oder Arzt, internes Notfallteam nach Betriebsregel</li><li>Von A nach E vorgehen. Ein Problem sofort behandeln, bevor du zum nächsten Buchstaben gehst</li><li>Nach jeder Massnahme und bei jeder Veränderung wieder bei A beginnen</li><li>Ergebnisse strukturiert weitergeben, zum Beispiel mit SBAR</li></ul><figure class="fig"><div class="fig-scroll"><svg viewBox="0 0 720 256" role="img" aria-label="ABCDE-Schema"><rect width="720" height="256" fill="#fff"></rect><rect x="20" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="82" cy="84" r="28" fill="#1d3f66"></circle><text x="82" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">A</text><text x="82" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Atemweg</text><text x="82" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">frei?</text><path d="M146 115h12" stroke="#1d3f66" stroke-width="2.5"></path><rect x="160" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="222" cy="84" r="28" fill="#1d3f66"></circle><text x="222" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">B</text><text x="222" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Atmung</text><text x="222" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Frequenz, SpO2</text><path d="M286 115h12" stroke="#1d3f66" stroke-width="2.5"></path><rect x="300" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="362" cy="84" r="28" fill="#1d3f66"></circle><text x="362" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">C</text><text x="362" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Kreislauf</text><text x="362" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Puls, BD, Blutung</text><path d="M426 115h12" stroke="#1d3f66" stroke-width="2.5"></path><rect x="440" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="502" cy="84" r="28" fill="#1d3f66"></circle><text x="502" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">D</text><text x="502" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Neurologie</text><text x="502" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">AVPU, BZ, Pupillen</text><path d="M566 115h12" stroke="#1d3f66" stroke-width="2.5"></path><rect x="580" y="40" width="124" height="150" rx="16" fill="#fff" stroke="#1d3f66" stroke-width="3"></rect><circle cx="642" cy="84" r="28" fill="#1d3f66"></circle><text x="642" y="95" text-anchor="middle" font-size="30" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans,sans-serif">E</text><text x="642" y="140" text-anchor="middle" font-size="15" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Ganzkörper</text><text x="642" y="162" text-anchor="middle" font-size="11.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Haut, Wunden, Temp.</text><path d="M690 196v24H82v-24" fill="none" stroke="#1d3f66" stroke-width="2" stroke-dasharray="5 4"></path><path d="M76 202l6-8 6 8" fill="none" stroke="#1d3f66" stroke-width="2"></path><text x="386" y="240" text-anchor="middle" font-size="13" font-weight="700" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Problem gefunden: sofort behandeln. Danach und bei jeder Veränderung wieder bei A beginnen.</text><text x="360" y="24" text-anchor="middle" font-size="12.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Gefahr nimmt von links nach rechts ab</text></svg></div><figcaption>Die Reihenfolge folgt der Gefahr: Ein verlegter Atemweg tötet schneller als ein Kreislaufproblem, dieses schneller als ein Bewusstseinsproblem.</figcaption></figure><h3>A bis E im Detail</h3><div class="tbl"><table><thead><tr><th>Schritt</th><th>Du prüfst</th><th>Mögliche Sofortmassnahmen</th></tr></thead><tbody><tr><td data-label="Schritt">A: Atemweg (Airway)</td><td data-label="Du prüfst">Spricht die Person? Geräusche wie Gurgeln, Schnarchen, Pfeifen? Fremdkörper, Erbrochenes?</td><td data-label="Mögliche Sofortmassnahmen">Kopf überstrecken, Seitenlage, Absaugen nach Kompetenz, Fremdkörpermanöver</td></tr><tr><td data-label="Schritt">B: Atmung (Breathing)</td><td data-label="Du prüfst">Atemfrequenz, Atemtiefe, Atemhilfsmuskulatur, Sauerstoffsättigung, Hautfarbe</td><td data-label="Mögliche Sofortmassnahmen">Oberkörper hoch, Sauerstoff nach Verordnung oder Notfallstandard, Lippenbremse</td></tr><tr><td data-label="Schritt">C: Kreislauf (Circulation)</td><td data-label="Du prüfst">Puls, Blutdruck, Rekapillarisierungszeit, Hautfarbe und Temperatur, Blutung, Ausscheidung</td><td data-label="Mögliche Sofortmassnahmen">Blutung stoppen, flach lagern, Beine hoch bei Schockzeichen, Zugang vorbereiten</td></tr><tr><td data-label="Schritt">D: Neurologie (Disability)</td><td data-label="Du prüfst">Bewusstsein nach AVPU, Pupillen, Blutzucker, Zeichen eines Schlaganfalls (BE FAST)</td><td data-label="Mögliche Sofortmassnahmen">Blutzucker messen, bei Hypoglykämie handeln nach Standard, Seitenlage</td></tr><tr><td data-label="Schritt">E: Ganzkörper (Exposure)</td><td data-label="Du prüfst">Haut, Wunden, Schwellungen, Ödeme, Temperatur, Schmerz, Drainagen, Ausscheidungen</td><td data-label="Mögliche Sofortmassnahmen">Wärmeerhalt, Schmerz einschätzen, Befunde dokumentieren</td></tr></tbody></table></div><h3>Hilfsmittel für die Einschätzung</h3><div class="tbl"><table><thead><tr><th>Instrument</th><th>So geht es</th></tr></thead><tbody><tr><td data-label="Instrument">AVPU</td><td data-label="So geht es">A = wach (alert), V = reagiert auf Ansprache (voice), P = reagiert nur auf Schmerz (pain), U = reagiert nicht (unresponsive). Ab P ist es ein Notfall</td></tr><tr><td data-label="Instrument">Rekapillarisierungszeit</td><td data-label="So geht es">Fingernagel 5 Sekunden drücken, loslassen: Die Farbe kehrt normalerweise in weniger als 2 Sekunden zurück</td></tr><tr><td data-label="Instrument">Schockindex</td><td data-label="So geht es">Puls geteilt durch den systolischen Blutdruck. Über 1 ist ein Warnzeichen für einen Schock, zum Beispiel Puls 120 bei 100 mmHg</td></tr><tr><td data-label="Instrument">BE FAST</td><td data-label="So geht es">Balance, Eyes (Sehen), Face (Gesicht), Arms (Arme), Speech (Sprache), Time (Zeit notieren). Siehe Nugget Schlaganfall</td></tr></tbody></table></div><h3>Typische Situationen</h3><ul><li>Atemnot: B steht im Vordergrund. Denk aber auch an A (Verschlucken) und C (Herzinsuffizienz, Lungenembolie)</li><li>Akute Blutung: C. Achte auf Schockzeichen wie schnellen Puls, blasse kalte Haut und Unruhe, bevor der Blutdruck fällt</li><li>Plötzliche Verwirrtheit: D. Immer Blutzucker messen. Bedenke auch B (zu wenig Sauerstoff) und E (Fieber, Infekt)</li><li>Sturz: E zeigt dir Verletzungen. Bei Blutverdünnern und Kopfverletzung gilt: engmaschig D überwachen</li></ul><div class="warnsec"><h3>Achtung: Der Blutdruck fällt spät</h3><p>Der Körper hält den Blutdruck lange stabil, indem das Herz schneller schlägt und sich die Gefässe verengen. Ein normaler Blutdruck schliesst einen Schock deshalb nicht aus. Ein steigender Puls, eine schnelle Atmung, kalte Haut und Unruhe sind frühe Warnzeichen. Ältere Menschen und Personen mit Betablockern zeigen oft keinen schnellen Puls.</p></div></div>
+      <div class="panel" id="s-blick"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"></path></svg></i>Auf einen Blick</h2>
         <ol class="points"><li>Früh Hilfe holen</li><li>A Atemweg, B Atmung, C Kreislauf, D Neurologie, E Ganzkörper</li><li>Probleme sofort behandeln, dann weiter</li><li>Nach jeder Massnahme wieder bei A beginnen</li><li>Schockindex über 1 und steigender Puls sind Warnzeichen</li></ol>
-        <div class="merke"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"></path></svg><div><b>Merke</b>Treat first what kills first: Behandle zuerst, was zuerst gefährlich wird.</div></div>
+        <div class="merke"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"></path></svg><div><b>Merke</b>Treat first what kills first: Behandle zuerst, was zuerst gefährlich wird.</div></div>
       </div>
-      <div class="panel" id="s-wissen"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg></i>Gut zu wissen</h2><ul class="facts-list"><li><i>!</i><span>Das ABCDE-Schema wird weltweit in der Notfallmedizin genutzt, von Rettungsdiensten bis zu Intensivstationen.</span></li><li><i>!</i><span>Eine erhöhte Atemfrequenz ist eines der frühesten Warnzeichen für eine Verschlechterung und wird trotzdem oft nicht gemessen.</span></li><li><i>!</i><span>Viele Notfälle im Spital kündigen sich Stunden vorher durch veränderte Vitalzeichen an.</span></li></ul></div>
-      <div class="panel" id="s-komp"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></i>Kompetenzen nach Stufe</h2><div class="comp multi"><div class="role FaGe"><b>FaGe</b>
+      <div class="panel" id="s-wissen"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg></i>Gut zu wissen</h2><ul class="facts-list"><li><i>!</i><span>Das ABCDE-Schema wird weltweit in der Notfallmedizin genutzt, von Rettungsdiensten bis zu Intensivstationen.</span></li><li><i>!</i><span>Eine erhöhte Atemfrequenz ist eines der frühesten Warnzeichen für eine Verschlechterung und wird trotzdem oft nicht gemessen.</span></li><li><i>!</i><span>Viele Notfälle im Spital kündigen sich Stunden vorher durch veränderte Vitalzeichen an.</span></li></ul></div>
+      <div class="panel" id="s-komp"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></i>Kompetenzen nach Stufe</h2><div class="comp multi"><div class="role FaGe"><b>FaGe</b>
     <p class="ch">Deine Aufgaben</p><ul class="do"><li>Eine Notfallsituation nach ABCDE strukturiert einschätzen</li><li>Vitalzeichen inklusive Sauerstoffsättigung und Blutzucker erheben</li><li>Sofortmassnahmen einleiten: Lagerung, Blutung stoppen, Absaugen nach Betriebsregel</li><li>Sauerstoff nach ärztlicher Verordnung oder Notfallstandard verabreichen</li><li>Die Fachperson und das Notfallteam früh beiziehen und mit SBAR informieren</li></ul>
     <p class="ch">Grenze: nicht deine Aufgabe</p><ul class="no"><li>Eine medizinische Diagnose stellen</li><li>Medikamente ohne Verordnung geben</li><li>Notfallmedikamente intravenös verabreichen</li></ul></div><div class="role HF"><b>Pflege HF</b>
     <p class="ch">Deine Aufgaben</p><ul class="do"><li>Befunde nach ABCDE interpretieren und priorisieren</li><li>Notfallteam oder ärztlichen Dienst aufbieten und Massnahmen nach Notfallstandard einleiten</li><li>Verschlechterungen früh erkennen und Überwachung festlegen</li><li>Das Team bis zum Eintreffen des Notfallteams koordinieren</li><li>Nachbesprechung anregen</li></ul>
     <p class="ch">Grenze: nicht deine Aufgabe</p><ul class="no"><li>Als Studierende HF: Aufgaben nach Ausbildungsstand und unter Aufsicht</li></ul></div></div><p class="note">Grundlage sind die Bildungsverordnungen. Im Betrieb gilt zusätzlich die betriebliche Kompetenzregelung.</p></div>
-      <div class="panel" id="s-quiz"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"></path></svg></i>Quiz</h2><div id="quizbox">
+      <div class="panel" id="s-quiz"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"></path></svg></i>Quiz</h2><div id="quizbox">
     <div class="qtabs" role="group" aria-label="Quiz für Stufe"><button class="qt FaGe" data-l="FaGe" aria-pressed="true">Quiz FaGe</button><button class="qt HF" data-l="HF" aria-pressed="false">Quiz Pflege HF</button></div>
     <p class="qintro">Diese 5 Fragen prüfen die Kompetenzen der Stufe <b class="lvtext FaGe">FaGe</b>.</p>
     <div class="q"><p><small>Frage 1 von 5</small>Wofür steht das C im ABCDE-Schema?</p>
@@ -535,9 +717,9 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
       <div class="opts"><button data-q="4" data-o="0"><span class="k">A</span><span>Ist wach und orientiert</span></button><button data-q="4" data-o="1"><span class="k">B</span><span>Reagiert nur auf Schmerzreiz</span></button><button data-q="4" data-o="2"><span class="k">C</span><span>Puls ist tastbar</span></button></div>
       <p class="fb" id="fb4" tabindex="-1" aria-live="polite"></p></div>
     <div class="result" id="result" role="status"></div></div></div>
-      <div class="panel" id="s-transfer"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></i>Praxistransfer</h2><p class="transfer">Geh bei der nächsten Person, die dir «nicht gut» vorkommt, das ABCDE-Schema innerlich durch und notiere deine Befunde. Besprich sie danach mit deiner Berufsbildnerin oder deinem Berufsbildner.</p></div>
+      <div class="panel" id="s-transfer"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></i>Praxistransfer</h2><p class="transfer">Geh bei der nächsten Person, die dir «nicht gut» vorkommt, das ABCDE-Schema innerlich durch und notiere deine Befunde. Besprich sie danach mit deiner Berufsbildnerin oder deinem Berufsbildner.</p></div>
       
-      <div class="panel srcpanel" id="s-quellen"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v16l-5-3-5 3z"></path><path d="M10 9h4"></path></svg></i>Quellen</h2>
+      <div class="panel srcpanel" id="s-quellen"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v16l-5-3-5 3z"></path><path d="M10 9h4"></path></svg></i>Quellen</h2>
     <ul class="srclist"><li>Resuscitation Council UK, The ABCDE Approach</li><li>European Resuscitation Council Guidelines 2025 <a href="https://www.erc.edu/" target="_blank" rel="noopener" class="ext">erc.edu</a></li><li>Thim T. et al.: Initial assessment and treatment with the ABCDE approach, International Journal of General Medicine (2012)</li><li>Stiftung Patientensicherheit Schweiz <a href="https://patientensicherheit.ch/" target="_blank" rel="noopener" class="ext">patientensicherheit.ch</a></li></ul>
     <p class="note">Stand: November 2026. Massgebend sind immer die aktuellen Vorgaben, Leitlinien und die Standards deines Betriebs. <a href="/quellen/">Wie wir Quellen auswählen</a></p></div>
     </div>
@@ -550,7 +732,7 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
       </dl></div>
       
       <div class="panel"><h2 style="font-size:17px;margin-bottom:10px">Weitere Nuggets</h2>
-        <a class="mini" href="/bls-aed/"><span class="art"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:#eef3f8" aria-hidden="true"><rect width="320" height="200" fill="#eef3f8"></rect><circle cx="280" cy="30" r="70" fill="#d6e2ee" opacity=".55"></circle><circle cx="30" cy="190" r="50" fill="#d6e2ee" opacity=".45"></circle><rect x="30" y="148" width="210" height="12" rx="6" fill="#2b5480" opacity=".35"></rect><circle cx="56" cy="128" r="18" fill="#fff" stroke="#2b5480" stroke-width="4"></circle><path d="M78 118h120a20 20 0 0 1 20 20v10H78z" fill="#d6e2ee" stroke="#2b5480" stroke-width="4" stroke-linejoin="round"></path><path d="M104 14l20 52M156 14l-20 52" stroke="#2b5480" stroke-width="12" stroke-linecap="round"></path><path d="M104 14l20 52M156 14l-20 52" stroke="#fff" stroke-width="5" stroke-linecap="round"></path><ellipse cx="130" cy="78" rx="26" ry="11" fill="#fff" stroke="#2b5480" stroke-width="4"></ellipse><ellipse cx="130" cy="92" rx="24" ry="9" fill="#fff" stroke="#2b5480" stroke-width="4"></ellipse><path d="M120 104v8M140 104v8" stroke="#2b5480" stroke-width="0"></path><path d="M114 104l6 8 6-8M134 104l6 8 6-8" fill="none" stroke="#c0463b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path><rect x="230" y="62" width="66" height="82" rx="12" fill="#fff" stroke="#2b5480" stroke-width="4"></rect><path d="M242 76h42" stroke="#2f9e5b" stroke-width="8"></path><path d="M266 90l-9 16h11l-9 16" fill="none" stroke="#c0463b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"></path><text x="263" y="138" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="12" fill="#2b5480">AED</text><path d="M230 120c-30 0-40 4-60 6M230 128c-30 2-44 6-60 8" stroke="#2b5480" stroke-width="2.5" fill="none"></path></svg></span><span>BLS-AED: Reanimation nach SRC<small>Notfälle · 10 Min.</small></span></a><a class="mini" href="/notfall-erkennen/"><span class="art"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:#eef3f8" aria-hidden="true"><rect width="320" height="200" fill="#eef3f8"></rect><circle cx="280" cy="30" r="70" fill="#d6e2ee" opacity=".55"></circle><circle cx="30" cy="190" r="50" fill="#d6e2ee" opacity=".45"></circle><path d="M160 30l80 138H80z" fill="#fff" stroke="#2b5480" stroke-width="5" stroke-linejoin="round"></path><path d="M160 80v44" stroke="#c0463b" stroke-width="10" stroke-linecap="round"></path><circle cx="160" cy="146" r="7" fill="#c0463b"></circle><rect x="232" y="96" width="44" height="72" rx="10" fill="#fff" stroke="#2b5480" stroke-width="4"></rect><text x="254" y="140" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" fill="#2b5480">144</text></svg></span><span>Notfall erkennen und Hilfe holen<small>Notfälle · 7 Min.</small></span></a><a class="mini" href="/atemnot/"><span class="art"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:#eef3f8" aria-hidden="true"><rect width="320" height="200" fill="#eef3f8"></rect><circle cx="280" cy="30" r="70" fill="#d6e2ee" opacity=".55"></circle><circle cx="30" cy="190" r="50" fill="#d6e2ee" opacity=".45"></circle><circle cx="96" cy="78" r="26" fill="#fff" stroke="#2b5480" stroke-width="4"></circle><path d="M50 182c0-40 20-64 46-64s46 24 46 64z" fill="#d6e2ee" stroke="#2b5480" stroke-width="4" stroke-linejoin="round"></path><path d="M132 78c30-4 50-14 60-26M134 92c34 0 62 0 84-10M132 106c30 6 56 14 70 28" stroke="#2b5480" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="2 9"></path><path d="M230 60c20 20 20 60 0 80M252 46c28 28 28 80 0 108" stroke="#9ec5ee" stroke-width="6" fill="none" stroke-linecap="round"></path></svg></span><span>Atemnot (Dyspnoe)<small>Notfälle · 7 Min.</small></span></a>
+        <a class="mini" href="/bls-aed/"><span class="art"><svg viewBox="28 86 528 330" preserveAspectRatio="xMidYMid meet" style="background:#f6ebe5" aria-hidden="true" focusable="false"><rect x="-1000" y="-1000" width="3000" height="3000" fill="#f6ebe5"></rect><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="#eacfc4"></path><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"></circle><ellipse cx="290" cy="408" rx="230" ry="12" fill="#14304f" opacity=".07"></ellipse><g transform="translate(44 0)"><path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#22476e"></path><path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"></path><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#22476e"></path><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"></path><path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#14304f"></path><path d="M358 182l18 30 18-30" fill="none" stroke="#5f84ad" stroke-width="4" stroke-linejoin="round"></path><path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"></path><circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"></circle><rect x="366" y="152" width="20" height="26" rx="8" fill="#d9a07a"></rect><circle cx="376" cy="128" r="29" fill="#d9a07a"></circle><path d="M346 130A30 30 0 0 1 406 130Q387.6 113.5 373.1 116.98Q358.6 120.75 346 130z" fill="#2a211d"></path><path d="M336 236c-14 18-22 36-24 54" stroke="#14304f" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="312" cy="294" r="10.5" fill="#d9a07a"></circle><path d="M420 236c12 -14 20 -30 22 -50" stroke="#14304f" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="442" cy="184" r="10.5" fill="#d9a07a"></circle></g><rect x="70" y="117" width="210" height="200" rx="20" fill="#3a2a14" opacity=".07"></rect><rect x="70" y="110" width="210" height="200" rx="20" fill="#fff"></rect><path d="M175 268s-62-38-62-84a34 34 0 0 1 62-20 34 34 0 0 1 62 20c0 46-62 84-62 84z" fill="#fbebe7" stroke="#b23b2c" stroke-width="5"></path><path d="M182 168l-20 34h28l-20 34" stroke="#b48a4c" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><rect x="296" y="126" width="70" height="70" rx="19.6" fill="#3a2a14" opacity=".07"></rect><rect x="296" y="120" width="70" height="70" rx="19.6" fill="#fff"></rect><g transform="translate(310 134) scale(0.875)" color="#14304f" fill="#14304f"><g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"><path d="M29.053 7.68a9.5 9.5 0 0 1 10.618 2.491c2.494 2.779 2.897 6.644 1.627 9.91c-1.541 3.964-4.488 7.593-7.589 10.952c-1.096 1.188-2.205 2.336-3.287 3.457c-2.035 2.107-3.98 4.121-5.586 6.134a1 1 0 0 1-1.484.088q-.562-.554-1.162-1.142c-2.485-2.438-5.394-5.292-8.065-8.326c-3.092-3.514-5.935-7.347-7.448-11.155A9.58 9.58 0 0 1 9.16 9.446c3.879-3.504 9.856-2.905 13.445.695l1.448 1.453l1.79-1.795a9.5 9.5 0 0 1 3.21-2.12m3.73 1.323a7.5 7.5 0 0 0-5.523 2.208l-2.498 2.505a1 1 0 0 1-1.416 0l-2.156-2.163c-2.941-2.95-7.706-3.317-10.69-.623v.002a7.55 7.55 0 0 0-2.497 5.418a7.6 7.6 0 0 0 .532 3c1.385 3.484 4.045 7.11 7.092 10.572c2.618 2.975 5.469 5.773 7.957 8.214l.391.384c1.523-1.81 3.307-3.658 5.103-5.52a203 203 0 0 0 3.162-3.323c3.077-3.335 5.798-6.73 7.194-10.32c1.036-2.665.67-5.709-1.252-7.85v-.001a7.53 7.53 0 0 0-5.398-2.503"></path><path d="m26.909 14.536l-7.94 10.266a.5.5 0 0 0 .395.806h4.527l-1.527 7.75l7.94-10.266a.5.5 0 0 0-.396-.806h-4.526z"></path></g></g><rect x="296" y="220" width="70" height="70" rx="19.6" fill="#3a2a14" opacity=".07"></rect><rect x="296" y="214" width="70" height="70" rx="19.6" fill="#fff"></rect><g transform="translate(310 228) scale(0.875)" color="#14304f" fill="#14304f"><path fill="currentColor" fill-rule="evenodd" d="M8.889 8A.894.894 0 0 0 8 8.889C8 26.073 21.927 40 39.111 40a.894.894 0 0 0 .889-.889V32.52a.894.894 0 0 0-.889-.889c-2.449 0-4.84-.395-7.057-1.127l-.01-.004a.88.88 0 0 0-.896.215l-4.67 4.67l-.648-.332c-5.531-2.834-10.067-7.348-12.883-12.884l-.33-.647l4.67-4.67a.9.9 0 0 0 .226-.913a22.5 22.5 0 0 1-1.124-7.05A.894.894 0 0 0 15.5 8zM6 8.889A2.894 2.894 0 0 1 8.889 6H15.5a2.894 2.894 0 0 1 2.889 2.889c0 2.254.36 4.415 1.026 6.43l.002.006l.002.007a2.9 2.9 0 0 1-.719 2.934l-3.634 3.635A27.6 27.6 0 0 0 26.1 32.933l3.633-3.633a2.88 2.88 0 0 1 2.953-.694a20.6 20.6 0 0 0 6.424 1.024A2.894 2.894 0 0 1 42 32.519v6.592A2.894 2.894 0 0 1 39.111 42C20.822 42 6 27.178 6 8.889" clip-rule="evenodd"></path></g></svg></span><span>BLS-AED: Reanimation nach SRC<small>Notfälle · 10 Min.</small></span></a><a class="mini" href="/notfall-erkennen/"><span class="art"><svg viewBox="28 86 528 330" preserveAspectRatio="xMidYMid meet" style="background:#f6ebe5" aria-hidden="true" focusable="false"><rect x="-1000" y="-1000" width="3000" height="3000" fill="#f6ebe5"></rect><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="#eacfc4"></path><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"></circle><ellipse cx="290" cy="408" rx="230" ry="12" fill="#14304f" opacity=".07"></ellipse><rect x="58" y="222" width="18" height="182" rx="9" fill="#8ea595"></rect><rect x="316" y="262" width="16" height="142" rx="8" fill="#8ea595"></rect><rect x="68" y="324" width="258" height="14" rx="7" fill="#74877a"></rect><rect x="72" y="296" width="250" height="32" rx="12" fill="#fbf8f3"></rect><ellipse cx="116" cy="290" rx="38" ry="14" fill="#fff"></ellipse><circle cx="120" cy="272" r="24" fill="#d9a07a"></circle><circle cx="98.4" cy="266" r="9.600000000000001" fill="#e4e3e0"></circle><circle cx="141.12" cy="264.8" r="8.64" fill="#e4e3e0"></circle><path d="M100.8 257.6Q120 242 139.2 256.4Q120 250.4 100.8 257.6z" fill="#e4e3e0"></path><path d="M144 276c40-14 110-14 150-4 18 4 26 14 28 30H140z" fill="#8fa9c4"></path><path d="M150 296c40-8 110-8 168 0" stroke="#758ba1" stroke-width="3" fill="none" opacity=".6"></path><path d="M158 284c26 4 52 6 82 6" stroke="#efe4d6" stroke-width="16" stroke-linecap="round" fill="none"></path><circle cx="244" cy="290" r="9" fill="#d9a07a"></circle><path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#22476e"></path><path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"></path><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#22476e"></path><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"></path><path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#14304f"></path><path d="M358 182l18 30 18-30" fill="none" stroke="#5f84ad" stroke-width="4" stroke-linejoin="round"></path><path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"></path><circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"></circle><rect x="366" y="152" width="20" height="26" rx="8" fill="#8d5a3b"></rect><path d="M396.3 113.5c26.1 5.800000000000001 31.900000000000002 40.599999999999994 14.5 63.800000000000004" stroke="#2a211d" stroke-width="14.5" stroke-linecap="round" fill="none"></path><circle cx="376" cy="128" r="29" fill="#8d5a3b"></circle><path d="M346 130A30 30 0 0 1 406 130Q387.6 113.5 373.1 116.98Q358.6 120.75 346 130z" fill="#2a211d"></path><path d="M336 236c-14 30-30 52-54 62" stroke="#14304f" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="280" cy="300" r="10.5" fill="#8d5a3b"></circle><path d="M420 236c10 24 12 44 4 60" stroke="#14304f" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="424" cy="298" r="10.5" fill="#8d5a3b"></circle><g transform="rotate(-8 421 306)"><rect x="398" y="276" width="46" height="60" rx="8" fill="#f8f4ec" stroke="#c9a676" stroke-width="3"></rect><path d="M410 296h22M410 308h16M410 320h20" stroke="#c9b48f" stroke-width="3" stroke-linecap="round"></path></g><circle cx="424" cy="298" r="9" fill="#8d5a3b"></circle><rect x="90" y="118" width="70" height="70" rx="19.6" fill="#3a2a14" opacity=".07"></rect><rect x="90" y="112" width="70" height="70" rx="19.6" fill="#fff"></rect><g transform="translate(104 126) scale(0.875)" color="#14304f" fill="#14304f"><g fill="currentColor"><path fill-rule="evenodd" d="M24 6a1 1 0 0 1 .894.553l17 34A1 1 0 0 1 41 42H7a1 1 0 0 1-.894-1.447l17-34A1 1 0 0 1 24 6M8.618 40h30.764L24 9.236z" clip-rule="evenodd"></path><path d="M22 20a2 2 0 1 1 4 0v10a2 2 0 1 1-4 0zm0 15.966C22 34.88 22.88 34 23.967 34h.067a1.966 1.966 0 1 1 0 3.933h-.067A1.966 1.966 0 0 1 22 35.966"></path></g></g><rect x="180" y="118" width="64" height="64" rx="17.92" fill="#3a2a14" opacity=".07"></rect><rect x="180" y="112" width="64" height="64" rx="17.92" fill="#fff"></rect><g transform="translate(192.8 124.8) scale(0.7999999999999999)" color="#14304f" fill="#14304f"><path fill="currentColor" fill-rule="evenodd" d="M8.889 8A.894.894 0 0 0 8 8.889C8 26.073 21.927 40 39.111 40a.894.894 0 0 0 .889-.889V32.52a.894.894 0 0 0-.889-.889c-2.449 0-4.84-.395-7.057-1.127l-.01-.004a.88.88 0 0 0-.896.215l-4.67 4.67l-.648-.332c-5.531-2.834-10.067-7.348-12.883-12.884l-.33-.647l4.67-4.67a.9.9 0 0 0 .226-.913a22.5 22.5 0 0 1-1.124-7.05A.894.894 0 0 0 15.5 8zM6 8.889A2.894 2.894 0 0 1 8.889 6H15.5a2.894 2.894 0 0 1 2.889 2.889c0 2.254.36 4.415 1.026 6.43l.002.006l.002.007a2.9 2.9 0 0 1-.719 2.934l-3.634 3.635A27.6 27.6 0 0 0 26.1 32.933l3.633-3.633a2.88 2.88 0 0 1 2.953-.694a20.6 20.6 0 0 0 6.424 1.024A2.894 2.894 0 0 1 42 32.519v6.592A2.894 2.894 0 0 1 39.111 42C20.822 42 6 27.178 6 8.889" clip-rule="evenodd"></path></g></svg></span><span>Notfall erkennen und Hilfe holen<small>Notfälle · 7 Min.</small></span></a><a class="mini" href="/atemnot/"><span class="art"><svg viewBox="28 86 528 330" preserveAspectRatio="xMidYMid meet" style="background:#f6ebe5" aria-hidden="true" focusable="false"><rect x="-1000" y="-1000" width="3000" height="3000" fill="#f6ebe5"></rect><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="#eacfc4"></path><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"></circle><ellipse cx="290" cy="408" rx="230" ry="12" fill="#14304f" opacity=".07"></ellipse><rect x="96" y="196" width="54" height="196" rx="26" fill="#9fb3a4"></rect><rect x="104" y="300" width="186" height="58" rx="22" fill="#829386" opacity=".0"></rect><rect x="104" y="300" width="186" height="58" rx="22" fill="#b7c8bb"></rect><rect x="92" y="286" width="44" height="76" rx="20" fill="#829386"></rect><rect x="256" y="286" width="40" height="76" rx="20" fill="#829386"></rect><path d="M120 362v42M270 362v42" stroke="#6b796e" stroke-width="10" stroke-linecap="round"></path><path d="M186 318h66c12 0 18 8 18 18v60" stroke="#3d4b5e" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="284" cy="404" rx="20" ry="9" fill="#2a3442"></ellipse><path d="M150 232c4-20 22-32 44-32s38 12 42 32l10 92H146z" fill="#c9a7b8"></path><rect x="184" y="186" width="20" height="22" rx="8" fill="#b27b58"></rect><circle cx="194" cy="166" r="27" fill="#b27b58"></circle><path d="M166 168A28 28 0 0 1 222 168Q204.8 152.5 191.3 155.74Q177.8 159.25 166 168z" fill="#2a211d"></path><path d="M226 244c6 22 0 36-14 38" stroke="#c9a7b8" stroke-width="20" stroke-linecap="round" fill="none"></path><circle cx="208" cy="282" r="10" fill="#b27b58"></circle><path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#2b6d77"></path><path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"></path><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#2b6d77"></path><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"></path><path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#1f5a63"></path><path d="M358 182l18 30 18-30" fill="none" stroke="#7fb0b5" stroke-width="4" stroke-linejoin="round"></path><path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"></path><circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"></circle><rect x="366" y="152" width="20" height="26" rx="8" fill="#f1cdb0"></rect><circle cx="376" cy="128" r="29" fill="#f1cdb0"></circle><path d="M346 130A30 30 0 0 1 406 130Q387.6 113.5 373.1 116.98Q358.6 120.75 346 130z" fill="#c99a5b"></path><circle cx="400.65" cy="103.35" r="12.18" fill="#c99a5b"></circle><path d="M336 236c-14 30-30 52-54 62" stroke="#1f5a63" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="280" cy="300" r="10.5" fill="#f1cdb0"></circle><path d="M420 236c10 24 12 44 4 60" stroke="#1f5a63" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="424" cy="298" r="10.5" fill="#f1cdb0"></circle><g transform="rotate(-8 421 306)"><rect x="398" y="276" width="46" height="60" rx="8" fill="#f8f4ec" stroke="#c9a676" stroke-width="3"></rect><path d="M410 296h22M410 308h16M410 320h20" stroke="#c9b48f" stroke-width="3" stroke-linecap="round"></path></g><circle cx="424" cy="298" r="9" fill="#f1cdb0"></circle><rect x="470" y="110" width="70" height="70" rx="19.6" fill="#3a2a14" opacity=".07"></rect><rect x="470" y="104" width="70" height="70" rx="19.6" fill="#fff"></rect><g transform="translate(484 118) scale(0.875)" color="#14304f" fill="#14304f"><path fill="currentColor" fill-rule="evenodd" d="M23 6h2v14.5c0 1.398.564 1.942 1.004 2.199q.073.042.148.078l-.004-.375V22.4c-.038-3.528-.111-10.4 5.327-10.4c7.45 0 12.773 26.006 9.58 28.66s-9.58 1.061-12.773-2.123c-2.578-2.571-2.355-8.579-2.195-12.891v-.002q.016-.393.028-.767a4.3 4.3 0 0 1-1.119-.45a3.8 3.8 0 0 1-.996-.835c-.297.352-.64.626-.996.834c-.4.234-.794.37-1.12.451l.029.768c.16 4.313.383 10.321-2.195 12.892c-3.193 3.185-9.58 4.777-12.773 2.123S9.075 12 16.525 12c5.439 0 5.365 6.872 5.327 10.4l-.004.377q.076-.036.148-.078c.44-.257 1.004-.801 1.004-2.199zm8.475 8c-.954 0-1.49.3-1.866.687c-.434.446-.796 1.164-1.05 2.178c-.445 1.775-.426 3.817-.41 5.464q.004.428.004.816c0 .76-.033 1.67-.069 2.617l-.04 1.128c-.044 1.376-.07 2.816-.003 4.208c.066 1.4.223 2.685.516 3.762c.297 1.088.694 1.818 1.137 2.26c1.279 1.275 3.297 2.305 5.355 2.704c2.035.395 3.673.103 4.633-.627l.016-.04a3.7 3.7 0 0 0 .19-.789c.117-.775.147-1.856.068-3.188c-.157-2.65-.727-6.011-1.63-9.32c-.904-3.32-2.109-6.46-3.474-8.722c-.683-1.132-1.357-1.96-1.982-2.485c-.618-.52-1.076-.653-1.395-.653m-14.95 0c.954 0 1.49.3 1.866.687c.434.446.796 1.164 1.05 2.178c.445 1.775.426 3.817.41 5.465l-.004.816c0 .76.033 1.67.069 2.616l.04 1.129c.044 1.375.07 2.815.004 4.208c-.067 1.4-.224 2.685-.517 3.76c-.297 1.09-.694 1.82-1.137 2.262c-1.279 1.275-3.297 2.304-5.355 2.704c-2.035.394-3.673.102-4.633-.628l-.016-.04a3.7 3.7 0 0 1-.19-.788c-.117-.775-.147-1.856-.068-3.188c.157-2.65.727-6.012 1.63-9.32c.905-3.321 2.109-6.46 3.474-8.722c.683-1.133 1.357-1.96 1.982-2.485c.618-.52 1.076-.654 1.395-.654" clip-rule="evenodd"></path></g><rect x="478" y="202" width="58" height="58" rx="16.240000000000002" fill="#3a2a14" opacity=".07"></rect><rect x="478" y="196" width="58" height="58" rx="16.240000000000002" fill="#fff"></rect><g transform="translate(489.6 207.6) scale(0.725)" color="#14304f" fill="#14304f"><path fill="currentColor" fill-rule="evenodd" d="M17 6h2V4h-6v2h2v2h-2.17a3.001 3.001 0 1 0 0 2H15v2.083A6 6 0 0 0 10 18v25a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V18a6 6 0 0 0-5-5.917V10h5V8h-5zm-1 8a4 4 0 0 0-4 4v2h8v-2a4 4 0 0 0-4-4m-4 28V22h8v20zM9 9a1 1 0 1 1 2 0a1 1 0 0 1-2 0m17 12a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0zm4-2a2 2 0 0 0-2 2v6a2 2 0 1 0 4 0v-6a2 2 0 0 0-2-2m8 7h-3v-2h3a3 3 0 1 1 0 6a1 1 0 0 0-1 1v1h4v2h-5a1 1 0 0 1-1-1v-2a3 3 0 0 1 3-3a1 1 0 1 0 0-2" clip-rule="evenodd"></path></g></svg></span><span>Atemnot (Dyspnoe)<small>Notfälle · 7 Min.</small></span></a>
       </div>
       <div class="panel report"><h2>Fehler entdeckt?</h2><p>Hast du einen Fehler gefunden oder ist etwas unklar? Schreib uns!</p>
         <a class="btn" href="mailto:info@pflegepedia.ch?subject=Fehler%20melden%3A%20ABCDE%3A%20Notf%C3%A4lle%20systematisch%20einsch%C3%A4tzen&amp;body=Nugget%3A%20ABCDE%3A%20Notf%C3%A4lle%20systematisch%20einsch%C3%A4tzen%0AAbschnitt%20(z.%20B.%20Theorie%2C%20Quiz%20FaGe)%3A%20%0AWas%20ist%20falsch%20oder%20unklar%3A%20%0A%0ABitte%20keine%20Patientendaten%20senden.">Fehler melden</a>
@@ -565,6 +747,6 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
   <div class="legal">© 2026 Pflegepedia. Die Inhalte ersetzen keine betrieblichen Richtlinien, keine ärztlichen Verordnungen und keine Anleitung durch Fachpersonen.</div>
 </div></footer>
 
-<script src="/app.5a5cbe10e0.js"></script>
+<script src="/app.8f1a99d3c2.js"></script>
 </body>
 </html>

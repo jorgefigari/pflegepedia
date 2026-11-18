@@ -1,210 +1,210 @@
 {
  "": {
-  "hash": "7a179efa67",
+  "hash": "f850fab98a",
   "lastmod": "2026-11-18"
  },
  "haendehygiene": {
-  "hash": "eab1fcd9b9",
+  "hash": "399c9f4943",
   "lastmod": "2026-11-18"
  },
  "vitalzeichen": {
-  "hash": "e1b604e372",
+  "hash": "6c6950190c",
   "lastmod": "2026-11-18"
  },
  "dekubitus": {
-  "hash": "f320924173",
+  "hash": "2d03072aff",
   "lastmod": "2026-11-18"
  },
  "sturz": {
-  "hash": "193b3ee376",
+  "hash": "d5f6e2c120",
   "lastmod": "2026-11-18"
  },
  "pflegeprozess": {
-  "hash": "c4ca679fdd",
+  "hash": "b4a718a3ca",
   "lastmod": "2026-11-18"
  },
  "lernbegleitung": {
-  "hash": "a9c0a46a48",
+  "hash": "4e970cfbae",
   "lastmod": "2026-11-18"
  },
  "rollen": {
-  "hash": "2a89c49807",
+  "hash": "12097eed41",
   "lastmod": "2026-11-18"
  },
  "delegation": {
-  "hash": "9ce3ed2ad7",
+  "hash": "4955823d6b",
   "lastmod": "2026-11-18"
  },
  "konflikte": {
-  "hash": "958178aade",
+  "hash": "645b498a3f",
   "lastmod": "2026-11-18"
  },
  "interprofessionell": {
-  "hash": "e71f52dedd",
+  "hash": "5c4b0c7f00",
   "lastmod": "2026-11-18"
  },
  "fehlerkultur": {
-  "hash": "a04d1662b5",
+  "hash": "754515acff",
   "lastmod": "2026-11-18"
  },
  "sbar": {
-  "hash": "906f12c480",
+  "hash": "5aea0b1be2",
   "lastmod": "2026-11-18"
  },
  "6r": {
-  "hash": "e7e0b0a793",
+  "hash": "ff9d3edbf5",
   "lastmod": "2026-11-18"
  },
  "lagerung": {
-  "hash": "9137d094b7",
+  "hash": "40abf7538c",
   "lastmod": "2026-11-18"
  },
  "feedback": {
-  "hash": "56ea49a857",
+  "hash": "c90673a384",
   "lastmod": "2026-11-18"
  },
  "schlaganfall": {
-  "hash": "5412c630cc",
+  "hash": "f5006d50a9",
   "lastmod": "2026-11-18"
  },
  "sht": {
-  "hash": "3c3c943dbc",
+  "hash": "637400f089",
   "lastmod": "2026-11-18"
  },
  "herzinsuffizienz": {
-  "hash": "4ba154a48a",
+  "hash": "b728f52b5c",
   "lastmod": "2026-11-18"
  },
  "epilepsie": {
-  "hash": "ac05e677fc",
+  "hash": "d602974477",
   "lastmod": "2026-11-18"
  },
  "diabetes": {
-  "hash": "7547c2746b",
+  "hash": "c50343353f",
   "lastmod": "2026-11-18"
  },
  "delir": {
-  "hash": "949e570c90",
+  "hash": "ebe1cb6db0",
   "lastmod": "2026-11-18"
  },
  "demenz": {
-  "hash": "7d735a170c",
+  "hash": "1147c192f3",
   "lastmod": "2026-11-18"
  },
  "thrombose": {
-  "hash": "112c2fe2bf",
+  "hash": "2e8f831ff3",
   "lastmod": "2026-11-18"
  },
  "aspiration": {
-  "hash": "aa83f76f61",
+  "hash": "b37a07ebcc",
   "lastmod": "2026-11-18"
  },
  "kontrakturen": {
-  "hash": "179e844b60",
+  "hash": "ea91a947a9",
   "lastmod": "2026-11-18"
  },
  "schmerz": {
-  "hash": "159f869ba3",
+  "hash": "884bc78a7b",
   "lastmod": "2026-11-18"
  },
  "ausscheidung": {
-  "hash": "f366d57d35",
+  "hash": "04c5802813",
   "lastmod": "2026-11-18"
  },
  "mobilisation": {
-  "hash": "8a1e291478",
+  "hash": "9c19cac590",
   "lastmod": "2026-11-18"
  },
  "sc-injektion": {
-  "hash": "bca3933e8e",
+  "hash": "3060690670",
   "lastmod": "2026-11-18"
  },
  "peg": {
-  "hash": "6d9ad98fb1",
+  "hash": "c1263b02fb",
   "lastmod": "2026-11-18"
  },
  "blut-kapillaer": {
-  "hash": "6e265ed117",
+  "hash": "666180f91e",
   "lastmod": "2026-11-18"
  },
  "blut-venoes": {
-  "hash": "12556548a6",
+  "hash": "8d536fff4d",
   "lastmod": "2026-11-18"
  },
  "bls-aed": {
-  "hash": "f8f4089f1e",
+  "hash": "2f6aa9c313",
   "lastmod": "2026-11-18"
  },
  "abcde": {
-  "hash": "7407cbe191",
+  "hash": "0803cd79ec",
   "lastmod": "2026-11-18"
  },
  "notfall-erkennen": {
-  "hash": "b652f6a1a5",
+  "hash": "fed3960530",
   "lastmod": "2026-11-18"
  },
  "atemnot": {
-  "hash": "8d575fcf7a",
+  "hash": "e55d23358c",
   "lastmod": "2026-11-18"
  },
  "blutung": {
-  "hash": "8e8e9ccb13",
+  "hash": "17e474200f",
   "lastmod": "2026-11-18"
  },
  "verschlucken": {
-  "hash": "3a8f35f617",
+  "hash": "4573e8aba2",
   "lastmod": "2026-11-18"
  },
  "bewusstlos": {
-  "hash": "31378fcbb2",
+  "hash": "fc4344b7e1",
   "lastmod": "2026-11-18"
  },
  "isolation": {
-  "hash": "267ae57c77",
+  "hash": "7552b89d8c",
   "lastmod": "2026-11-18"
  },
  "psa": {
-  "hash": "83876f2d30",
+  "hash": "25669c8076",
   "lastmod": "2026-11-18"
  },
  "aphasie": {
-  "hash": "6f2d1ba260",
+  "hash": "f75c533a92",
   "lastmod": "2026-11-18"
  },
  "angehoerige": {
-  "hash": "7eeed9396e",
+  "hash": "f2fb0554a8",
   "lastmod": "2026-11-18"
  },
  "deeskalation": {
-  "hash": "96fbd13ffc",
+  "hash": "dec62d4a5a",
   "lastmod": "2026-11-18"
  },
  "transkulturell": {
-  "hash": "73e860ca6a",
+  "hash": "f9e1e26bdb",
   "lastmod": "2026-11-18"
  },
  "lernen": {
-  "hash": "625351ee0f",
+  "hash": "a751c0d003",
   "lastmod": "2026-11-18"
  },
  "dokumentation": {
-  "hash": "87ac02b052",
+  "hash": "6d404c6d0f",
   "lastmod": "2026-11-18"
  },
  "datenschutz": {
-  "hash": "96394d63e4",
+  "hash": "08311e727f",
   "lastmod": "2026-11-18"
  },
  "resilienz": {
-  "hash": "a2fddeea0f",
+  "hash": "27acd42143",
   "lastmod": "2026-11-18"
  },
  "ipa": {
-  "hash": "e287ec3726",
+  "hash": "a8e70fd093",
   "lastmod": "2026-11-18"
  },
  "ueber": {
-  "hash": "e887a90c2f",
+  "hash": "7bb91e1821",
   "lastmod": "2026-11-18"
  },
  "quellen": {

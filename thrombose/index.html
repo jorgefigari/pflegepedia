@@ -13,7 +13,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="google-site-verification" content="KkVOtLr0xJMq_KlIB6lryJJY6S548nZ2_Ipe-nEA7QE">
 <link rel="canonical" href="https://www.pflegepedia.ch/thrombose/">
-<meta name="theme-color" content="#1d3f66">
+<meta name="theme-color" content="#fbf8f3">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Pflegepedia">
@@ -33,122 +33,198 @@
 @font-face { font-family: "Plus Jakarta Sans"; font-weight: 800; font-display: swap; src: url("fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2"); }
 @font-face { font-family: "Atkinson Hyperlegible"; font-weight: 400; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Atkinson Hyperlegible"; font-weight: 700; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-weight: 500; font-display: swap; src: url("fonts/newsreader-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-weight: 600; font-display: swap; src: url("fonts/newsreader-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-weight: 500; font-style: italic; font-display: swap; src: url("fonts/newsreader-latin-500-italic.woff2") format("woff2"); }
 :root {
-  /* Farbe bedeutet Stufe: AGS orange, FaGe blau, HF violett. Alles andere ruhig in Navy und Grau. */
-  --bg: #ffffff;
-  --soft: #f4f6f9;
-  --ink: #17283b;
-  --muted: #5b6878;
-  --line: #e2e7ee;
-  --brand: #1d3f66;
-  --brand-2: #edf2f8;
-  --brand-3: #d3dfeb;
+  /* Editorial Wissen: Elfenbein, Nachtblau, Messing. Farbe bedeutet Stufe: AGS orange, FaGe blau, HF violett. */
+  --bg: #fbf8f3;
+  --paper: #ffffff;
+  --soft: #f4efe7;
+  --sand: #efe6d8;
+  --ink: #16202c;
+  --muted: #565f6b;
+  --line: #e7dfd2;
+  --line-2: #d9cfbf;
+  --brand: #14304f;
+  --brand-2: #eef1f4;
+  --brand-3: #d5dde6;
+  --gold: #b48a4c;
+  --gold-ink: #85601f;
+  --gold-soft: #f5ecdc;
+  --night: #0f2238;
   --ags: #c2410c; --ags-bg: #fff1e8;
   --fage: #1971c2; --fage-bg: #e8f2fc;
   --hf: #8a2fa8; --hf-bg: #f6eafa;
-  --ok: #1e7f4a; --ok-bg: #e4f4ea;
-  --bad: #b23b2c; --bad-bg: #fcebe8;
+  --ok: #1e7547; --ok-bg: #e5f2e9;
+  --bad: #b23b2c; --bad-bg: #fbebe7;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
   --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
-  --shadow: 0 1px 2px rgba(23,40,59,.05), 0 6px 18px rgba(23,40,59,.06);
+  --shadow: 0 1px 1px rgba(44,32,18,.03), 0 2px 6px rgba(44,32,18,.04), 0 12px 32px -14px rgba(44,32,18,.14);
+  --shadow-lift: 0 1px 1px rgba(44,32,18,.04), 0 6px 14px rgba(44,32,18,.06), 0 28px 56px -20px rgba(20,48,79,.26);
+  --r: 20px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
   color-scheme: light;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-body { background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); }
-h1, h2, h3 { font-family: var(--display); line-height: 1.2; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font: 17.5px/1.65 var(--body); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.12; text-wrap: balance; margin: 0; letter-spacing: -0.015em; hyphens: auto; }
 a { color: inherit; }
 button { font: inherit; color: inherit; cursor: pointer; }
-:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+::selection { background: var(--gold-soft); color: var(--ink); }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
 .skip { position: absolute; left: 12px; top: -60px; z-index: 60; background: var(--brand); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-family: var(--display); text-decoration: none; }
 .skip:focus { top: 10px; }
 #app:focus, #app h1:focus, .fb:focus { outline: none; }
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.eyebrow { font-family: var(--display); font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-ink); }
 
 /* Kopf */
-.top { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; gap: 20px; min-height: 68px; flex-wrap: wrap; }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 21px; color: var(--brand); letter-spacing: -0.02em; }
-.logo svg { width: 38px; height: 38px; flex: none; margin: -2px -4px -2px -4px; }
-.nav { display: flex; gap: 18px; margin-left: 8px; }
-.nav a { text-decoration: none; color: var(--muted); font-weight: 700; font-size: 15px; font-family: var(--display); }
+.top { position: sticky; top: 0; z-index: 5; background: rgba(251,248,243,.86); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 24px; min-height: 72px; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-weight: 600; font-size: 25px; color: var(--brand); letter-spacing: -0.02em; }
+.logo svg { width: 36px; height: 36px; flex: none; margin: -2px -2px -2px -4px; }
+.nav { display: flex; gap: 22px; margin-left: 10px; }
+.nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 15px; font-family: var(--display); position: relative; padding: 4px 0; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1.5px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
 .nav a:hover { color: var(--brand); }
-.picker { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-.picker > span { font-size: 14px; color: var(--muted); font-weight: 700; }
-.levels { display: flex; gap: 4px; background: var(--soft); padding: 4px; border-radius: 12px; }
-.levels button { border: 0; background: transparent; padding: 7px 13px; border-radius: 9px; font-weight: 700; font-size: 14.5px; color: var(--muted); font-family: var(--display); }
-.levels button:hover { color: var(--ink); }
-.levels button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: var(--shadow); }
+.nav a:hover::after { transform: scaleX(1); }
+.picker { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.picker > span { font-size: 13px; color: var(--muted); font-weight: 700; font-family: var(--display); letter-spacing: .08em; text-transform: uppercase; }
+.levels { display: flex; gap: 3px; background: var(--paper); padding: 4px; border-radius: 99px; border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(44,32,18,.04); }
+.levels button { border: 0; background: transparent; padding: 7px 15px; border-radius: 99px; font-weight: 700; font-size: 14px; color: var(--muted); font-family: var(--display); transition: background .3s var(--ease), color .3s var(--ease); min-height: 36px; }
+.levels button:hover { color: var(--ink); background: var(--soft); }
+.levels button[aria-pressed="true"] { background: var(--brand); color: #fff; }
 .levels button[data-level="AGS"][aria-pressed="true"] { background: var(--ags); color: #fff; }
 .levels button[data-level="FaGe"][aria-pressed="true"] { background: var(--fage); color: #fff; }
 .levels button[data-level="HF"][aria-pressed="true"] { background: var(--hf); color: #fff; }
 
 /* Stufen-Badges: einzige farbige Elemente */
-.lv { font-size: 12.5px; font-weight: 700; padding: 2px 9px; border-radius: 6px; color: #fff; font-family: var(--display); white-space: nowrap; }
+.lv { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; color: #fff; font-family: var(--display); white-space: nowrap; letter-spacing: .01em; }
 .lv.AGS { background: var(--ags); } .lv.FaGe { background: var(--fage); } .lv.HF { background: var(--hf); }
 .lv.dim { opacity: .28; }
 
 /* Hero */
-.hero { border-bottom: 1px solid var(--line); background: var(--soft); }
-.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; padding-top: 40px; padding-bottom: 40px; }
-.hero h1 { font-size: clamp(30px, 4.2vw, 44px); font-weight: 800; color: var(--brand); }
-.hero p { color: var(--muted); font-size: 18px; max-width: 52ch; margin: 12px 0 18px; }
-.stats { display: flex; gap: 22px; flex-wrap: wrap; font-size: 15px; color: var(--muted); }
-.stats b { display: block; font-family: var(--display); font-size: 22px; color: var(--ink); font-variant-numeric: tabular-nums; }
-.choose { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: var(--shadow); }
-.choose h2 { font-size: 19px; margin-bottom: 4px; }
-.choose p { margin: 0 0 14px; font-size: 15px; }
-.choose .opts3 { display: grid; gap: 10px; }
-.choose button { text-align: left; display: grid; grid-template-columns: 88px 1fr; align-items: center; gap: 12px; border: 2px solid var(--line); background: #fff; border-radius: 12px; padding: 10px 12px; }
-.choose button:hover { border-color: var(--brand); }
-.choose button .lv { font-size: 14px; padding: 5px 0; text-align: center; }
-.choose button span:last-child { font-size: 15px; color: var(--ink); font-weight: 700; }
-.mine .bar { height: 10px; background: var(--soft); border-radius: 99px; overflow: hidden; margin: 10px 0 8px; }
+.hero { position: relative; overflow: hidden; background:
+  radial-gradient(60% 80% at 88% 10%, rgba(180,138,76,.10), transparent 60%),
+  radial-gradient(50% 70% at 5% 100%, rgba(20,48,79,.06), transparent 60%), var(--bg); }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2) 20%, var(--line-2) 80%, transparent); }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; padding-top: 72px; padding-bottom: 40px; }
+.hero h1 { font-size: clamp(40px, 5.6vw, 76px); font-weight: 500; color: var(--brand); letter-spacing: -0.03em; line-height: 1.02; margin-top: 16px; }
+.hero h1 em { font-style: italic; color: var(--gold-ink); font-weight: 500; }
+.hero p { color: var(--muted); font-size: 19px; max-width: 50ch; margin: 22px 0 30px; }
+.hero-art { position: relative; aspect-ratio: 560 / 460; }
+.hero-art svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.stats { display: flex; gap: 0; flex-wrap: wrap; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line-2); padding-top: 18px; }
+.stats div { padding: 0 26px; border-left: 1px solid var(--line); line-height: 1.35; }
+.stats div:first-child { padding-left: 0; border-left: 0; }
+.stats b { display: block; font-family: var(--serif); font-weight: 500; font-size: 34px; color: var(--ink); font-variant-numeric: lining-nums tabular-nums; letter-spacing: -0.02em; margin-bottom: 2px; }
+#herobox { grid-column: 1 / -1; }
+.choose { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 24px 26px; box-shadow: var(--shadow); display: grid; grid-template-columns: minmax(220px, .9fr) 2.1fr; grid-template-rows: auto 1fr; column-gap: 32px; row-gap: 4px; align-items: start; }
+.choose > h2, .choose > p { grid-column: 1; }
+.choose > h2 { align-self: end; }
+.choose > :not(h2):not(p) { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+.choose h2 { font-size: 24px; font-weight: 500; color: var(--brand); }
+.choose p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+.choose .opts3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.choose button { text-align: left; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; border: 1px solid var(--line); background: var(--bg); border-radius: 16px; padding: 14px 16px; transition: transform .45s var(--ease), border-color .3s var(--ease), box-shadow .45s var(--ease), background .3s; }
+.choose button:hover { border-color: var(--line-2); background: var(--paper); transform: translateY(-2px); box-shadow: var(--shadow); }
+.choose button .lv { font-size: 13px; padding: 4px 12px; }
+.choose button span:last-child { font-size: 14.5px; color: var(--ink); font-weight: 700; line-height: 1.35; }
+.mine { display: block; }
+.mine .bar { height: 8px; background: var(--soft); border-radius: 99px; overflow: hidden; margin: 12px 0 8px; }
 .mine .bar i { display: block; height: 100%; border-radius: 99px; }
-.mine .big { font-family: var(--display); font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.mine .big { font-family: var(--serif); font-size: 40px; font-weight: 500; font-variant-numeric: lining-nums tabular-nums; }
 .mine small { color: var(--muted); font-size: 14px; }
 
 /* Abschnitte */
-section.block { padding: 40px 0 8px; }
-.block-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
-.block-head h2 { font-size: 25px; }
-.block-head p { margin: 4px 0 0; color: var(--muted); }
-.toolbar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 26px 0 0; }
-#search { flex: 1 1 280px; max-width: 440px; font: inherit; padding: 11px 14px 11px 42px; border: 1px solid var(--line); border-radius: 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%235b6878' stroke-width='2'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E") 14px center no-repeat; color: var(--ink); }
-.jump { display: flex; gap: 6px; flex-wrap: wrap; }
-.jump button { border: 1px solid var(--line); background: #fff; border-radius: 99px; padding: 6px 12px 6px 8px; font-size: 14px; font-weight: 700; display: flex; gap: 6px; align-items: center; color: var(--ink); font-family: var(--display); }
-.jump button:hover { border-color: var(--brand); color: var(--brand); }
-.jump svg { width: 16px; height: 16px; color: var(--brand); }
-.topic { padding-top: 34px; scroll-margin-top: 80px; }
-.topic-head { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-.topic-head i { width: 42px; height: 42px; border-radius: 12px; background: var(--brand-2); color: var(--brand); display: grid; place-items: center; flex: none; }
-.topic-head i svg { width: 22px; height: 22px; }
-.topic-head h2 { font-size: 22px; }
-.topic-head p { margin: 2px 0 0; color: var(--muted); font-size: 15.5px; }
-.topic-head .count { margin-left: auto; color: var(--muted); font-size: 14px; white-space: nowrap; }
+section.block { padding: 56px 0 8px; }
+.block-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+.block-head h2 { font-size: 34px; font-weight: 500; color: var(--brand); }
+.block-head p { margin: 6px 0 0; color: var(--muted); }
+.toolbar { display: grid; gap: 22px; padding: 56px 0 0; }
+.toolbar-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; }
+.toolbar-head h2 { font-size: clamp(30px, 3.4vw, 42px); font-weight: 500; color: var(--brand); margin-top: 8px; }
+#search { flex: 1 1 320px; max-width: 440px; font: inherit; font-size: 16px; padding: 13px 18px 13px 46px; border: 1px solid var(--line-2); border-radius: 99px; background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23565f6b' stroke-width='1.6'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E") 18px center no-repeat; color: var(--ink); transition: border-color .3s, box-shadow .3s; }
+#search:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 4px rgba(20,48,79,.10); }
+.jump { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.jump button { position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--paper); border-radius: 18px; padding: 16px 16px 14px; text-align: left; display: grid; grid-template-columns: 40px 1fr; grid-template-rows: auto auto; column-gap: 12px; align-items: center; color: var(--ink); font-family: var(--display); align-content: center; row-gap: 2px; transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .3s; }
+.jump button:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--line-2); }
+.jump button i { grid-row: 1 / 3; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--tint, var(--brand-2)); color: var(--brand); }
+.jump button b { font-family: var(--serif); font-weight: 600; font-size: 18.5px; letter-spacing: -0.01em; line-height: 1.2; }
+.jump button small { font-size: 13px; color: var(--muted); font-weight: 600; }
+.jump button.big { grid-column: span 2; grid-template-columns: 52px 1fr; padding: 20px 22px; background: var(--brand); border-color: var(--brand); color: #fff; }
+.jump button.big i { width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,.1); color: #e9d3ad; }
+.jump button.big b { font-size: 23px; }
+.jump button.big small { color: #c8d3df; }
+.jump button.big span.d { grid-column: 2; font-family: var(--body); font-size: 14.5px; color: #dce4ed; font-weight: 400; margin-top: 4px; line-height: 1.45; }
+.jump button.big.alt { background: var(--gold-soft); border-color: #eadbc1; color: var(--ink); }
+.jump button.big.alt i { background: var(--paper); color: var(--gold-ink); }
+.jump button.big.alt small, .jump button.big.alt span.d { color: var(--muted); }
+.jump svg { width: 21px; height: 21px; stroke-width: 1.6; }
+.topic { padding-top: 64px; scroll-margin-top: 90px; counter-increment: topic; }
+#list { counter-reset: topic; }
+.topic-head { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: end; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line-2); }
+.topic-head i { font-style: normal; font-family: var(--serif); font-size: 15px; color: var(--gold-ink); width: auto; height: auto; background: none; display: block; align-self: start; padding-top: 6px; letter-spacing: .04em; }
+.topic-head i::before { content: counter(topic, decimal-leading-zero); }
+.topic-head i svg { display: none; }
+.topic-head h2 { font-size: clamp(28px, 3vw, 36px); font-weight: 500; color: var(--brand); }
+.topic-head p { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
+.topic-head .count { color: var(--muted); font-size: 13px; white-space: nowrap; font-family: var(--display); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 
 /* Karten */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; }
-.card { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s; }
-.card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(23,40,59,.06), 0 14px 30px rgba(23,40,59,.12); }
-.card .art { height: 124px; position: relative; }
-.card .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.card .doneb { position: absolute; top: 10px; right: 10px; background: var(--ok); color: #fff; border-radius: 8px; padding: 3px 9px; font-size: 13px; font-weight: 700; }
-.card .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
-.card .tp { font-size: 12.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-family: var(--display); }
-.card h3 { font-size: 18px; font-weight: 700; }
-.card p { margin: 0; color: var(--muted); font-size: 15px; }
-.foot { margin-top: auto; padding-top: 10px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; border-top: 1px solid var(--line); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .6s var(--ease), box-shadow .6s var(--ease), border-color .3s; }
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); border-color: var(--line-2); }
+.card .art { height: 150px; position: relative; overflow: hidden; }
+.card .art svg { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform 1s var(--ease); }
+.card:hover .art svg { transform: scale(1.045); }
+.card .doneb { position: absolute; top: 12px; right: 12px; background: var(--ok); color: #fff; border-radius: 99px; padding: 3px 11px; font-size: 12.5px; font-weight: 700; font-family: var(--display); }
+.card .body { padding: 18px 20px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card .tp { font-size: 11.5px; font-weight: 700; color: var(--gold-ink); text-transform: uppercase; letter-spacing: .14em; font-family: var(--display); }
+.card h3 { hyphenate-limit-chars: 12 5 5; font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: -0.015em; line-height: 1.15; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.foot { margin-top: auto; padding-top: 14px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; border-top: 1px solid var(--line); }
 .min { margin-left: auto; font-size: 13.5px; color: var(--muted); display: flex; gap: 5px; align-items: center; }
 .empty { color: var(--muted); padding: 20px 0 40px; }
+@media (min-width: 1000px) {
+  .grid.g3 { grid-template-columns: repeat(4, 1fr); }
+  .grid.g3 .card:first-child { grid-column: span 2; flex-direction: row; }
+  .grid.g3 .card:first-child .art { height: auto; flex: 0 0 52%; }
+  .grid.g3 .card:first-child .art svg { inset: auto 0; top: 50%; height: auto; transform: translateY(-50%); }
+  .grid.g3 .card:first-child:hover .art svg { transform: translateY(-50%) scale(1.045); }
+  .grid.g3 .card:first-child .body { padding: 26px 26px 22px; }
+  .grid.g3 .card:first-child h3 { font-size: 28px; }
+  .grid.g3 .card:first-child p { font-size: 16px; }
+  .grid.g4 { grid-template-columns: repeat(4, 1fr); }
+}
 
 /* Über */
-.about { margin: 48px 0 56px; background: var(--brand); color: #fff; border-radius: 22px; padding: 34px clamp(22px, 4vw, 44px); display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; align-items: center; }
-.about h2 { font-size: 26px; color: #fff; }
-.about p { color: #d8e3ef; margin: 10px 0 0; max-width: 60ch; }
-.about ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-.about li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; color: #fff; }
-.about li::before { content: "✓"; font-weight: 800; color: #9ec5ee; }
+.about { position: relative; overflow: hidden; margin: 88px 0 72px; background: var(--night); color: #fff; border-radius: 28px; padding: clamp(32px, 5vw, 60px); display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+.about::before { content: ""; position: absolute; width: 520px; height: 520px; right: -160px; top: -220px; border-radius: 50%; background: radial-gradient(circle, rgba(180,138,76,.28), transparent 65%); pointer-events: none; }
+.about > * { position: relative; }
+.about h2 { font-size: clamp(30px, 3.4vw, 42px); font-weight: 500; color: #fff; }
+.about h2::before { content: "Das Projekt"; display: block; font-family: var(--display); font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #e2c597; margin-bottom: 12px; }
+.about p { color: #cfd9e4; margin: 14px 0 0; max-width: 60ch; }
+.about ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.about li { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: center; color: #fff; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.12); }
+.about li:last-child { border-bottom: 1px solid rgba(255,255,255,.12); }
+.about li::before { content: ""; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #e2c597; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e2c597' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 12.5 3 3 7-7'/%3E%3C/svg%3E") center / 15px no-repeat; }
+
+/* Bewegung */
+.js .rv { opacity: 0; transform: translateY(18px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }
+.js .rv.in { opacity: 1; transform: none; }
+@keyframes ppFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes ppDraw { from { stroke-dashoffset: var(--len, 300); } to { stroke-dashoffset: 0; } }
+@keyframes ppIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero h1, .hero p.intro, .stats, .hero-art { animation: ppIn 1s var(--ease) both; }
+.hero p.intro { animation-delay: .08s; } .stats { animation-delay: .16s; } .hero-art { animation-delay: .1s; }
+.hero-art .fl1 { animation: ppFloat 7s ease-in-out infinite; }
+.hero-art .fl2 { animation: ppFloat 8s ease-in-out -3s infinite; }
+.hero-art .pulse { stroke-dasharray: var(--len, 300); animation: ppDraw 2.4s var(--ease) .5s both; }
 
 /* Textseiten */
 .page { max-width: 760px; margin: 0 auto; padding: 40px 24px 70px; }
@@ -349,6 +425,112 @@ footer .legal { grid-column: 1 / -1; border-top: 1px solid #2c4058; padding-top:
   .tbl td:has(.nil) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } .card:hover { transform: none; } }
+/* Editorial: Textseiten, Nugget, Fuss */
+.page { max-width: 780px; padding: 56px 28px 90px; }
+.page h1 { font-size: clamp(34px, 6vw, 52px); font-weight: 500; letter-spacing: -0.025em; margin: 22px 0 22px; }
+.page h2 { font-size: 25px; font-weight: 500; color: var(--brand); margin: 36px 0 10px; }
+.reset { border: 1px solid var(--line-2); background: var(--paper); border-radius: 99px; padding: 9px 18px; font-weight: 700; font-family: var(--display); font-size: 14.5px; }
+.nhero { background: radial-gradient(55% 90% at 100% 0%, rgba(180,138,76,.09), transparent 60%), var(--bg); border-bottom: 1px solid var(--line); }
+.nhero .wrap { grid-template-columns: 1.15fr .85fr; gap: 48px; padding-top: 34px; padding-bottom: 44px; }
+.back { gap: 8px; font-family: var(--display); font-size: 14px; background: var(--paper); border-color: var(--line-2); padding: 7px 14px; border-radius: 99px; transition: background .3s, transform .45s var(--ease); }
+.back:hover { background: var(--soft); transform: translateX(-2px); }
+.nhero .kick { margin: 26px 0 14px; }
+.nhero .kick .tpk { color: var(--gold-ink); letter-spacing: .14em; font-size: 12px; }
+.nhero .kick svg { color: var(--gold-ink); }
+.nhero h1 { font-size: clamp(36px, 4.6vw, 60px); font-weight: 500; letter-spacing: -0.028em; line-height: 1.04; }
+.nhero .lead { font-size: 19px; margin: 18px 0 0; color: #36404c; }
+.nhero .art { aspect-ratio: 16/11; border-radius: 26px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.ncontent { grid-template-columns: minmax(0, 1fr) 310px; gap: 32px; padding: 40px 28px 90px; }
+.panel { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 32px 34px; box-shadow: var(--shadow); }
+.panel + .panel { margin-top: 24px; }
+.panel h2 { font-size: 28px; font-weight: 500; color: var(--brand); gap: 14px; margin-bottom: 20px; letter-spacing: -0.02em; }
+.panel h2 i { width: 38px; height: 38px; border-radius: 50%; background: var(--gold-soft); color: var(--gold-ink); flex: none; }
+.panel h2 i svg { width: 19px; height: 19px; stroke-width: 1.7; }
+.theory h3 { font-size: 23px; font-weight: 500; margin: 34px 0 10px; letter-spacing: -0.015em; }
+.theory li::marker { color: var(--gold); }
+.tbl { border-color: var(--line); border-radius: 16px; }
+.tbl th { background: var(--soft); font-family: var(--display); font-size: 13px; letter-spacing: .04em; color: #3b4450; }
+.tbl td { border-top-color: var(--line); }
+.fig { border-color: var(--line); border-radius: 18px; }
+.fig figcaption { background: var(--soft); border-top-color: var(--line); font-size: 14px; }
+.points li::before { background: var(--gold-soft); color: var(--gold-ink); font-family: var(--serif); font-size: 16px; font-weight: 600; }
+.merke { background: var(--gold-soft); border: 1px solid #e8d7b8; border-radius: 18px; padding: 18px 20px; }
+.merke svg { color: var(--gold-ink); }
+.merke b { color: var(--gold-ink); font-family: var(--display); letter-spacing: .1em; text-transform: uppercase; font-size: 13px; margin-bottom: 2px; }
+.facts-list li i { background: var(--gold-soft); color: var(--gold-ink); font-family: var(--serif); font-weight: 600; }
+.role { border-radius: 16px; border-top-width: 3px; }
+.qt { border-width: 1.5px; border-radius: 99px; padding: 7px 16px; background: var(--paper); }
+.opts button { border: 1px solid var(--line-2); border-radius: 14px; padding: 12px 14px; background: var(--paper); transition: border-color .25s, background .25s, transform .4s var(--ease); min-height: 48px; }
+.opts button:hover:not(:disabled) { border-color: var(--brand); background: var(--brand-2); transform: translateX(2px); }
+.opts .k { border-radius: 50%; background: var(--soft); font-family: var(--display); }
+.result { border-radius: 14px; }
+.transfer { background: var(--brand-2); border-radius: 16px; padding: 18px 20px; border-left: 3px solid var(--brand); border-radius: 0 16px 16px 0; }
+.aside { top: calc(var(--hh, 72px) + 70px); }
+.aside .panel { padding: 24px 24px; }
+.aside .panel h2 { font-size: 22px; }
+.facts dd { font-family: var(--display); font-size: 15px; }
+.mini { border-radius: 14px; transition: background .3s; }
+.mini .art { border-radius: 10px; border: 1px solid var(--line); }
+.mini span { font-family: var(--serif); font-weight: 600; font-size: 16.5px; }
+.mini small { font-family: var(--body); }
+.subnav { background: rgba(251,248,243,.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom-color: var(--line); top: var(--hh, 72px); }
+.subnav button { font-weight: 600; font-size: 14px; padding: 14px 14px; border-bottom-width: 2px; }
+.subnav button.on { color: var(--brand); border-color: var(--gold); }
+.report .btn, .dp-aside .btn { border-radius: 99px; padding: 11px 16px; transition: background .3s, transform .45s var(--ease); }
+.report .btn:hover { background: var(--night); transform: translateY(-1px); }
+.totop { background: var(--brand); box-shadow: var(--shadow-lift); }
+.showall { border: 1px solid var(--line-2); background: var(--paper); color: var(--brand); border-radius: 99px; padding: 11px 24px; margin-top: 26px; transition: background .3s, border-color .3s; }
+.mine .next { border-radius: 16px; border-color: var(--line); background: var(--bg); }
+.mine .next b { font-family: var(--serif); font-size: 18px; font-weight: 600; }
+footer { background: var(--night); color: #c6d1dd; font-size: 14.5px; }
+footer .wrap { padding-top: 56px; padding-bottom: 40px; gap: 36px; }
+footer .logo { color: #fff; }
+footer h3 { font-family: var(--display); font-size: 12.5px; color: #e2c597; letter-spacing: .14em; font-weight: 700; margin-bottom: 14px; }
+footer a { color: #c6d1dd; }
+footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding-top: 22px; }
+@media (max-width: 1000px) {
+  .jump { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-top: 44px; gap: 28px; }
+  .hero-art { max-width: 560px; width: 100%; margin: 0 auto; }
+  .choose { grid-template-columns: 1fr; }
+  .choose > * { grid-column: 1 !important; grid-row: auto !important; }
+  .choose .opts3 { margin-top: 14px; }
+  .nhero .wrap { grid-template-columns: 1fr; }
+  .ncontent { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  .wrap { padding: 0 20px; }
+  .hero .wrap { padding-top: 28px !important; padding-bottom: 28px !important; gap: 22px !important; }
+  .hero h1 { font-size: 42px; }
+  .hero p.intro { font-size: 16.5px; margin: 14px 0 0; }
+  .hero-art { order: -1; max-width: 340px; margin: 0 auto -6px; }
+  .choose { padding: 18px; gap: 12px; border-radius: 20px; }
+  .choose h2 { font-size: 22px; margin-bottom: 0; }
+  .choose .opts3 { grid-template-columns: 1fr; gap: 8px; }
+  .choose button { flex-direction: row; align-items: center; padding: 10px 12px; gap: 12px; }
+  .choose button .lv { min-width: 78px; text-align: center; }
+  .jump { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .jump button { grid-template-columns: 1fr; padding: 14px; border-radius: 16px; row-gap: 2px; }
+  .jump button i { grid-row: auto; width: 34px; height: 34px; border-radius: 10px; margin-bottom: 8px; }
+  .jump button b { font-size: 16.5px; }
+  .jump button.big { grid-column: span 2; grid-template-columns: 44px 1fr; padding: 16px; }
+  .jump button.big i { grid-row: 1 / 4; width: 44px; height: 44px; margin-bottom: 0; align-self: start; }
+  .jump button.big b, .jump button.big small, .jump button.big span.d { grid-column: 2; }
+  .jump button.big b { font-size: 20px; }
+  .toolbar { padding-top: 40px; }
+  .topic { padding-top: 48px; }
+  .topic-head { grid-template-columns: auto 1fr; gap: 12px; }
+  .card h3 { font-size: 21px; }
+  .panel { padding: 22px 20px; border-radius: 20px; }
+  .panel h2 { font-size: 24px; }
+  .nhero h1 { font-size: 36px; }
+  .nhero .art { aspect-ratio: auto; height: 140px; border-radius: 18px; }
+  .about { border-radius: 22px; margin: 64px 0 48px; }
+  .ncontent { padding: 24px 16px 64px; }
+}
 /* Vertiefung */
 .panel.deep { border-top: 5px solid var(--fage); }
 .panel.deep h2 .lv { margin-left: 4px; font-size: 13px; }
@@ -499,17 +681,17 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
   <section class="nhero"><div class="wrap">
     <div>
       <a class="back" href="/">← Alle Nuggets</a>
-      <div class="kick"><span class="tpk"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg>Prophylaxen</span><span class="lv AGS">AGS</span><span class="lv FaGe">FaGe</span><span class="lv HF">Pflege HF</span></div>
+      <div class="kick"><span class="tpk"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg>Prophylaxen</span><span class="lv AGS">AGS</span><span class="lv FaGe">FaGe</span><span class="lv HF">Pflege HF</span></div>
       <h1>Thromboseprophylaxe</h1>
       <p class="lead">Eine Thrombose ist ein Blutgerinnsel in einer Vene, meist im Bein. Löst es sich, kann es eine lebensgefährliche Lungenembolie verursachen. Nach Operationen und bei Bewegungsmangel steigt das Risiko deutlich, darum ist die Prophylaxe in der Reha so wichtig.</p>
       
     </div>
-    <div class="art"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:#eef3f8" aria-hidden="true"><rect width="320" height="200" fill="#eef3f8"></rect><circle cx="280" cy="30" r="70" fill="#d6e2ee" opacity=".55"></circle><circle cx="30" cy="190" r="50" fill="#d6e2ee" opacity=".45"></circle><path d="M110 22h52v86l12 46c3 12-4 20-16 20H96c-12 0-14-14-2-18l16-8z" fill="#fff" stroke="#2b5480" stroke-width="4" stroke-linejoin="round"></path><path d="M110 92h52v16l12 46c3 12-4 20-16 20H96c-12 0-14-14-2-18l16-8z" fill="#d6e2ee" stroke="#2b5480" stroke-width="4" stroke-linejoin="round"></path><path d="M118 104h38M118 116h40M118 128h44" stroke="#2b5480" stroke-width="2" opacity=".5"></path><circle cx="148" cy="62" r="7" fill="#c0463b"></circle><path d="M155 60l50-16" stroke="#2b5480" stroke-width="3" stroke-dasharray="3 6" stroke-linecap="round"></path><circle cx="242" cy="62" r="40" fill="#fff" stroke="#2b5480" stroke-width="4"></circle><path d="M206 52h72M206 74h72" stroke="#2b5480" stroke-width="4"></path><rect x="206" y="52" width="72" height="22" fill="#f6d0cb"></rect><path d="M206 52h72M206 74h72" stroke="#2b5480" stroke-width="4"></path><ellipse cx="244" cy="63" rx="14" ry="9" fill="#c0463b"></ellipse><path d="M216 150c10-14 30-14 40 0" fill="none" stroke="#f2b33d" stroke-width="5" stroke-linecap="round"></path><path d="M252 142l4 8-9 1" fill="none" stroke="#f2b33d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+    <div class="art"><svg viewBox="28 86 528 330" preserveAspectRatio="xMidYMid meet" style="background:#e7eee8" aria-hidden="true" focusable="false"><rect x="-1000" y="-1000" width="3000" height="3000" fill="#e7eee8"></rect><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="#d0dfd3"></path><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"></circle><ellipse cx="290" cy="408" rx="230" ry="12" fill="#14304f" opacity=".07"></ellipse><rect x="58" y="222" width="18" height="182" rx="9" fill="#8ea595"></rect><rect x="316" y="262" width="16" height="142" rx="8" fill="#8ea595"></rect><rect x="68" y="324" width="258" height="14" rx="7" fill="#74877a"></rect><rect x="72" y="296" width="250" height="32" rx="12" fill="#fbf8f3"></rect><ellipse cx="116" cy="290" rx="38" ry="14" fill="#fff"></ellipse><circle cx="120" cy="272" r="24" fill="#8d5a3b"></circle><path d="M95 274A25 25 0 0 1 145 274Q129.6 260 117.6 262.88Q105.6 266 95 274z" fill="#2a211d"></path><path d="M144 276c40-14 110-14 150-4 18 4 26 14 28 30H140z" fill="#8fa9c4"></path><path d="M150 296c40-8 110-8 168 0" stroke="#758ba1" stroke-width="3" fill="none" opacity=".6"></path><path d="M158 284c26 4 52 6 82 6" stroke="#e3d9c6" stroke-width="16" stroke-linecap="round" fill="none"></path><circle cx="244" cy="290" r="9" fill="#8d5a3b"></circle><path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#2b6d77"></path><path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"></path><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#2b6d77"></path><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"></path><path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#1f5a63"></path><path d="M358 182l18 30 18-30" fill="none" stroke="#7fb0b5" stroke-width="4" stroke-linejoin="round"></path><path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"></path><circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"></circle><rect x="366" y="152" width="20" height="26" rx="8" fill="#f1cdb0"></rect><circle cx="376" cy="128" r="29" fill="#f1cdb0"></circle><path d="M346 130A30 30 0 0 1 406 130Q387.6 113.5 373.1 116.98Q358.6 120.75 346 130z" fill="#c99a5b"></path><circle cx="400.65" cy="103.35" r="12.18" fill="#c99a5b"></circle><path d="M336 236c-14 30-30 52-54 62" stroke="#1f5a63" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="280" cy="300" r="10.5" fill="#f1cdb0"></circle><path d="M420 236c10 24 12 44 4 60" stroke="#1f5a63" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="424" cy="298" r="10.5" fill="#f1cdb0"></circle><g transform="rotate(-8 421 306)"><rect x="398" y="276" width="46" height="60" rx="8" fill="#f8f4ec" stroke="#c9a676" stroke-width="3"></rect><path d="M410 296h22M410 308h16M410 320h20" stroke="#c9b48f" stroke-width="3" stroke-linecap="round"></path></g><circle cx="424" cy="298" r="9" fill="#f1cdb0"></circle><rect x="90" y="122" width="64" height="64" rx="17.92" fill="#3a2a14" opacity=".07"></rect><rect x="90" y="116" width="64" height="64" rx="17.92" fill="#fff"></rect><g transform="translate(102.8 128.8) scale(0.7999999999999999)" color="#14304f" fill="#14304f"><path fill="currentColor" d="M22.748 4H21.5a1 1 0 0 0-.975.78l-3.353 14.847A7 7 0 0 0 17 21.17v2.322a7 7 0 0 0 .385 2.29l3.854 11.133L15.814 39H13a1 1 0 0 0-1 1v1a3 3 0 0 0 3 3h3.32a3 3 0 0 0 .536-.048l4.011-.73a3 3 0 0 1 1.878.269l.061.03a3.934 3.934 0 0 0 4.747-6.08l-1.536-1.791l.369-8.115a9 9 0 0 0-1.359-5.178l-.779-1.247a54 54 0 0 0 3.699-4.727c2.143-3.09 4.511-7.254 5.044-11.25A1 1 0 0 0 34 4h-.667l-.529 2c-.717 3.181-2.62 6.531-4.5 9.242a52 52 0 0 1-3.704 4.712l-.31.34l-.014.017l-.004.003c-.311.331-.36.83-.12 1.216l1.18 1.886a7 7 0 0 1 1.056 4.028L26 35.954a1 1 0 0 0 .24.697l1.793 2.092a1.934 1.934 0 0 1-2.333 2.99l-.061-.031a5 5 0 0 0-3.13-.447l-4.012.729q-.088.015-.178.016H15a1 1 0 0 1-1-1h2a1 1 0 0 0 .359-.067l6.5-2.5a1 1 0 0 0 .586-1.26l-4.17-12.047A5 5 0 0 1 19 23.491v-2.322a5 5 0 0 1 .123-1.101z"></path></g><rect x="176" y="122" width="64" height="64" rx="17.92" fill="#3a2a14" opacity=".07"></rect><rect x="176" y="116" width="64" height="64" rx="17.92" fill="#fff"></rect><g transform="translate(188.8 128.8) scale(0.7999999999999999)" color="#14304f" fill="#14304f"><path fill="currentColor" fill-rule="evenodd" d="M6.818 13.364A1.157 1.157 0 0 0 8.455 15l.818-.818l4.09 4.09l-3.272 3.273a1.157 1.157 0 1 0 1.636 1.636l1.636-1.636l13.91 13.91a5.79 5.79 0 0 0 6.204 1.296l1.16 1.159a2.31 2.31 0 0 0 2.235.599l2.673 2.673a1.157 1.157 0 1 0 1.637-1.636l-2.674-2.674a2.31 2.31 0 0 0-.6-2.235l-1.158-1.159a5.79 5.79 0 0 0-1.295-6.205l-13.91-13.91l1.637-1.636a1.157 1.157 0 1 0-1.637-1.637l-3.272 3.273l-4.09-4.09l.817-.818a1.157 1.157 0 1 0-1.636-1.637zm10.04 1.413l-4.09-4.09l-2.08 2.08l4.09 4.09zm3.273 0l-5.354 5.354l4.406 4.406l5.354-5.353zm.689 11.397l2.454 2.454l1.859-1.859a1.157 1.157 0 1 1 1.636 1.637l-1.858 1.859l1.636 1.636l1.858-1.86a1.157 1.157 0 1 1 1.637 1.637l-1.859 1.859l.504.504a3.79 3.79 0 0 0 4.062.847l2.139-2.139a3.79 3.79 0 0 0-.848-4.062l-7.867-7.867zm15.702 9.909l-.027-.032l-.824-.824a6 6 0 0 1-.445.444l.824.825q.015.015.032.027a1.16 1.16 0 0 1 .44-.44" clip-rule="evenodd"></path></g></svg></div>
   </div></section>
   <nav class="subnav" aria-label="Abschnitte"><div class="wrap"><button data-s="s-theorie">Theorie</button><button data-s="s-blick">Auf einen Blick</button><button data-s="s-wissen">Gut zu wissen</button><button data-s="s-komp">Kompetenzen</button><button data-s="s-quiz">Quiz</button><button data-s="s-transfer">Praxistransfer</button><button data-s="s-quellen">Quellen</button></div></nav>
-  <div class="wrap ncontent" style="--tc:#2b5480;--tc-bg:#eef3f8">
+  <div class="wrap ncontent" style="--tc:#1e3a5c;--tc-bg:#e7eee8">
     <div>
-      <div class="panel theory" id="s-theorie"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"></path><path d="M4 21V5"></path></svg></i>Theorie</h2><h3>Wie eine Thrombose entsteht: die Virchow-Trias</h3><ul><li>Verlangsamter Blutfluss, z. B. durch Bettruhe, Lähmung oder lange Sitzen</li><li>Schaden an der Gefässwand, z. B. durch Operation oder Verletzung</li><li>Erhöhte Gerinnbarkeit des Blutes, z. B. bei Flüssigkeitsmangel, Tumor oder Hormonen</li></ul><figure class="fig"><div class="fig-scroll"><svg viewBox="0 0 720 350" role="img" aria-label="Virchow-Trias und Muskelpumpe"><rect width="720" height="350" fill="#fff"></rect><g transform="translate(0 22)">
+      <div class="panel theory" id="s-theorie"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"></path><path d="M4 21V5"></path></svg></i>Theorie</h2><h3>Wie eine Thrombose entsteht: die Virchow-Trias</h3><ul><li>Verlangsamter Blutfluss, z. B. durch Bettruhe, Lähmung oder lange Sitzen</li><li>Schaden an der Gefässwand, z. B. durch Operation oder Verletzung</li><li>Erhöhte Gerinnbarkeit des Blutes, z. B. bei Flüssigkeitsmangel, Tumor oder Hormonen</li></ul><figure class="fig"><div class="fig-scroll"><svg viewBox="0 0 720 350" role="img" aria-label="Virchow-Trias und Muskelpumpe"><rect width="720" height="350" fill="#fff"></rect><g transform="translate(0 22)">
       <path d="M200 58L80 222H320Z" fill="#eef3f8" stroke="#d6e2ee" stroke-width="4" stroke-linejoin="round"></path><text x="200" y="168" text-anchor="middle" font-size="15" font-weight="800" fill="#c0463b" font-family="Plus Jakarta Sans,sans-serif">Thrombose</text><circle cx="200" cy="186" r="7" fill="#c0463b"></circle>
       <circle cx="200" cy="58" r="42" fill="#fff" stroke="#1d3f66" stroke-width="3"></circle><text x="200" y="122" text-anchor="middle" font-size="14" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif"></text><text x="200" y="140" text-anchor="middle" font-size="12" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif"></text><text x="200" y="156" text-anchor="middle" font-size="12" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif"></text><path d="M180 52h40M180 64h40" stroke="#1d3f66" stroke-width="3"></path><path d="M186 58h28" stroke="#1d3f66" stroke-width="2" stroke-dasharray="2 5"></path><text x="200" y="4" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Langsamer Blutfluss</text>
       <circle cx="80" cy="222" r="42" fill="#fff" stroke="#1d3f66" stroke-width="3"></circle><text x="80" y="286" text-anchor="middle" font-size="14" font-weight="800" fill="#1d3f66" font-family="Plus Jakarta Sans,sans-serif">Gefässwand</text><text x="80" y="304" text-anchor="middle" font-size="12" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">geschädigt, z. B.</text><text x="80" y="320" text-anchor="middle" font-size="12" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">nach Operation</text><path d="M60 216c10-4 14 6 22 2s12-8 20-2" fill="none" stroke="#1d3f66" stroke-width="3"></path><path d="M78 226l6 8" stroke="#c0463b" stroke-width="3"></path>
@@ -523,19 +705,19 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
       <path d="M560 74V44" stroke="#1e7f4a" stroke-width="4"></path><path d="M552 52l8-10 8 10" fill="none" stroke="#1e7f4a" stroke-width="4" stroke-linejoin="round"></path><text x="600" y="56" text-anchor="start" font-size="12.5" font-weight="700" fill="#1e7f4a" font-family="Atkinson Hyperlegible,sans-serif">zum Herzen</text>
       <text x="644" y="196" text-anchor="start" font-size="12.5" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Wade</text><text x="590" y="330" text-anchor="middle" font-size="12" font-weight="400" fill="#5b6878" font-family="Atkinson Hyperlegible,sans-serif">Venenklappen verhindern den Rückfluss</text></g>
     </svg></div><figcaption>Links: die drei Entstehungsfaktoren. Rechts: Die Wadenmuskulatur pumpt das Blut zurück zum Herzen.</figcaption></figure><p>Weitere Risikofaktoren: frühere Thrombose, Hüft- oder Knieoperation, Übergewicht, höheres Alter, Herzinsuffizienz.</p><h3>Warnzeichen</h3><div class="tbl"><table><thead><tr><th></th><th>Zeichen</th><th>Handeln</th></tr></thead><tbody><tr><td data-label="">Tiefe Venenthrombose</td><td data-label="Zeichen">Einseitige Schwellung, Schmerz oder Spannungsgefühl in der Wade, Überwärmung, bläuliche Haut</td><td data-label="Handeln">Sofort melden, nicht massieren</td></tr><tr><td data-label="">Lungenembolie</td><td data-label="Zeichen">Plötzliche Atemnot, Brustschmerz, schneller Puls, Angst</td><td data-label="Handeln">Notfall: alarmieren, Oberkörper hoch, bei der Person bleiben</td></tr></tbody></table></div><h3>Massnahmen</h3><ul><li>Frühe Mobilisation und Bewegung im Alltag</li><li>Bewegungsübungen im Bett: Fussgelenke kreisen, Zehen anziehen (Muskelpumpe)</li><li>Genug trinken</li><li>Medizinische Thromboseprophylaxestrümpfe nach Verordnung, korrekt angemessen und faltenfrei</li><li>Medikamente nach Verordnung, z. B. niedermolekulares Heparin subkutan oder Tabletten</li></ul></div>
-      <div class="panel" id="s-blick"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"></path></svg></i>Auf einen Blick</h2>
+      <div class="panel" id="s-blick"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"></path></svg></i>Auf einen Blick</h2>
         <ol class="points"><li>Virchow-Trias: Blutfluss, Gefässwand, Gerinnbarkeit</li><li>Thrombose: einseitige Schwellung, Wadenschmerz, Überwärmung</li><li>Lungenembolie: plötzliche Atemnot, Brustschmerz, Notfall</li><li>Bewegung, Muskelpumpe, Trinken, Strümpfe, Medikamente</li><li>Bei Verdacht nicht massieren</li></ol>
-        <div class="merke"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"></path></svg><div><b>Merke</b>Die beste Thromboseprophylaxe ist Bewegung. Jeder Gang zur Toilette zählt.</div></div>
+        <div class="merke"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"></path></svg><div><b>Merke</b>Die beste Thromboseprophylaxe ist Bewegung. Jeder Gang zur Toilette zählt.</div></div>
       </div>
-      <div class="panel" id="s-wissen"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg></i>Gut zu wissen</h2><ul class="facts-list"><li><i>!</i><span>Die Wadenmuskulatur wirkt wie eine Pumpe: Bei jeder Bewegung presst sie das Blut zum Herzen zurück.</span></li><li><i>!</i><span>Rudolf Virchow beschrieb die drei Entstehungsfaktoren bereits im 19. Jahrhundert.</span></li><li><i>!</i><span>Thromboseprophylaxestrümpfe müssen genau passen: Zu enge Strümpfe schnüren ein, zu weite wirken nicht.</span></li></ul></div>
-      <div class="panel" id="s-komp"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></i>Kompetenzen nach Stufe</h2><div class="comp multi"><div class="role AGS"><b>AGS</b>
+      <div class="panel" id="s-wissen"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg></i>Gut zu wissen</h2><ul class="facts-list"><li><i>!</i><span>Die Wadenmuskulatur wirkt wie eine Pumpe: Bei jeder Bewegung presst sie das Blut zum Herzen zurück.</span></li><li><i>!</i><span>Rudolf Virchow beschrieb die drei Entstehungsfaktoren bereits im 19. Jahrhundert.</span></li><li><i>!</i><span>Thromboseprophylaxestrümpfe müssen genau passen: Zu enge Strümpfe schnüren ein, zu weite wirken nicht.</span></li></ul></div>
+      <div class="panel" id="s-komp"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></i>Kompetenzen nach Stufe</h2><div class="comp multi"><div class="role AGS"><b>AGS</b>
     <p class="ch">Deine Aufgaben</p><ul class="do"><li>Bewegung fördern und zu Fussübungen motivieren</li><li>Prophylaxestrümpfe nach Anleitung anziehen und auf Falten achten</li><li>Einseitige Beinschwellung oder Atemnot sofort melden</li></ul>
     <p class="ch">Grenze: nicht deine Aufgabe</p><ul class="no"><li>Heparin spritzen</li><li>Bei Thromboseverdacht mobilisieren, bevor die Fachperson entschieden hat</li></ul></div><div class="role FaGe"><b>FaGe</b>
     <p class="ch">Deine Aufgaben</p><ul class="do"><li>Thromboserisiko beobachten, Strümpfe anmessen</li><li>Heparin subkutan nach Verordnung verabreichen</li><li>Warnzeichen erkennen und melden</li></ul>
     <p class="ch">Grenze: nicht deine Aufgabe</p><ul class="no"><li>Über Antikoagulation entscheiden</li></ul></div><div class="role HF"><b>Pflege HF</b>
     <p class="ch">Deine Aufgaben</p><ul class="do"><li>Risiko einschätzen und Prophylaxe planen</li><li>Bei Verdacht Abklärung einleiten, Lungenembolie erkennen und eskalieren</li><li>Person zur Prophylaxe nach Austritt schulen</li></ul>
     <p class="ch">Grenze: nicht deine Aufgabe</p><ul class="no"><li>Als Studierende HF: unter Anleitung</li></ul></div></div><p class="note">Grundlage sind die Bildungsverordnungen. Im Betrieb gilt zusätzlich die betriebliche Kompetenzregelung.</p></div>
-      <div class="panel" id="s-quiz"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"></path></svg></i>Quiz</h2><div id="quizbox">
+      <div class="panel" id="s-quiz"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"></path></svg></i>Quiz</h2><div id="quizbox">
     <div class="qtabs" role="group" aria-label="Quiz für Stufe"><button class="qt AGS" data-l="AGS" aria-pressed="true">Quiz AGS</button><button class="qt FaGe" data-l="FaGe" aria-pressed="false">Quiz FaGe</button><button class="qt HF" data-l="HF" aria-pressed="false">Quiz Pflege HF</button></div>
     <p class="qintro">Diese 5 Fragen prüfen die Kompetenzen der Stufe <b class="lvtext AGS">AGS</b>.</p>
     <div class="q"><p><small>Frage 1 von 5</small>Was ist die beste Thromboseprophylaxe?</p>
@@ -550,9 +732,9 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
       <div class="opts"><button data-q="4" data-o="0"><span class="k">A</span><span>Nein, das gehört nicht zu deinen Kompetenzen</span></button><button data-q="4" data-o="1"><span class="k">B</span><span>Ja</span></button><button data-q="4" data-o="2"><span class="k">C</span><span>Ja, wenn die Spritze schon vorbereitet ist</span></button></div>
       <p class="fb" id="fb4" tabindex="-1" aria-live="polite"></p></div>
     <div class="result" id="result" role="status"></div></div></div>
-      <div class="panel" id="s-transfer"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></i>Praxistransfer</h2><p class="transfer">Prüfe bei einer Person mit Thromboseprophylaxe: Welche Massnahmen sind verordnet? Sitzen die Strümpfe korrekt? Wie viel bewegt sie sich am Tag?</p></div>
+      <div class="panel" id="s-transfer"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></i>Praxistransfer</h2><p class="transfer">Prüfe bei einer Person mit Thromboseprophylaxe: Welche Massnahmen sind verordnet? Sitzen die Strümpfe korrekt? Wie viel bewegt sie sich am Tag?</p></div>
       
-      <div class="panel srcpanel" id="s-quellen"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v16l-5-3-5 3z"></path><path d="M10 9h4"></path></svg></i>Quellen</h2>
+      <div class="panel srcpanel" id="s-quellen"><h2><i><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v16l-5-3-5 3z"></path><path d="M10 9h4"></path></svg></i>Quellen</h2>
     <ul class="srclist"><li>AWMF S3-Leitlinie Prophylaxe der venösen Thromboembolie <a href="https://www.awmf.org/" target="_blank" rel="noopener" class="ext">awmf.org</a></li><li>Thiemes Pflege (Thieme Verlag) <a href="https://www.thieme.de/" target="_blank" rel="noopener" class="ext">thieme.de</a></li></ul>
     <p class="note">Stand: November 2026. Massgebend sind immer die aktuellen Vorgaben, Leitlinien und die Standards deines Betriebs. <a href="/quellen/">Wie wir Quellen auswählen</a></p></div>
     </div>
@@ -565,7 +747,7 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
       </dl></div>
       
       <div class="panel"><h2 style="font-size:17px;margin-bottom:10px">Weitere Nuggets</h2>
-        <a class="mini" href="/dekubitus/"><span class="art"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:#eef3f8" aria-hidden="true"><rect width="320" height="200" fill="#eef3f8"></rect><circle cx="280" cy="30" r="70" fill="#d6e2ee" opacity=".55"></circle><circle cx="30" cy="190" r="50" fill="#d6e2ee" opacity=".45"></circle><rect x="50" y="110" width="220" height="16" rx="6" fill="#2b5480"></rect><rect x="58" y="126" width="10" height="34" rx="4" fill="#2b5480"></rect><rect x="252" y="126" width="10" height="34" rx="4" fill="#2b5480"></rect><rect x="40" y="74" width="16" height="70" rx="6" fill="#2b5480"></rect><rect x="62" y="88" width="64" height="24" rx="12" fill="#fff" stroke="#2b5480" stroke-width="3"></rect><path d="M118 110c20-26 140-26 148 0z" fill="#fff" stroke="#2b5480" stroke-width="3"></path><circle cx="210" cy="56" r="26" fill="#fff" stroke="#2b5480" stroke-width="3"></circle><path d="M200 56h20M210 46v20" stroke="#2b5480" stroke-width="0"></path><path d="M196 58l9 9 17-19" fill="none" stroke="#2b5480" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M80 60c0-10 10-10 10-20M96 62c0-10 10-10 10-20" fill="none" stroke="#2b5480" stroke-width="3" stroke-linecap="round" opacity=".6"></path></svg></span><span>Dekubitusprophylaxe und Braden-Skala<small>Prophylaxen · 10 Min.</small></span></a><a class="mini" href="/sturz/"><span class="art"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:#eef3f8" aria-hidden="true"><rect width="320" height="200" fill="#eef3f8"></rect><circle cx="280" cy="30" r="70" fill="#d6e2ee" opacity=".55"></circle><circle cx="30" cy="190" r="50" fill="#d6e2ee" opacity=".45"></circle><path d="M110 54h80l14 106M110 54l-10 106" fill="none" stroke="#2b5480" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path><path d="M103 112h94" stroke="#2b5480" stroke-width="6" stroke-linecap="round"></path><rect x="100" y="48" width="28" height="12" rx="6" fill="#2b5480"></rect><rect x="172" y="48" width="28" height="12" rx="6" fill="#2b5480"></rect><circle cx="100" cy="162" r="7" fill="#fff" stroke="#2b5480" stroke-width="4"></circle><circle cx="204" cy="162" r="7" fill="#fff" stroke="#2b5480" stroke-width="4"></circle><path d="M40 170h240" stroke="#d6e2ee" stroke-width="5" stroke-linecap="round"></path><path d="M236 70l22 0-11-20z" fill="#f2b33d" stroke="#b26a00" stroke-width="2" stroke-linejoin="round"></path><path d="M247 58v6M247 68v.5" stroke="#1b2a3a" stroke-width="2.5" stroke-linecap="round"></path><path d="M226 120c10 0 10 8 20 8s10-8 20-8" fill="none" stroke="#2b5480" stroke-width="4" stroke-linecap="round"></path></svg></span><span>Sturzprophylaxe in der Reha<small>Prophylaxen · 8 Min.</small></span></a><a class="mini" href="/aspiration/"><span class="art"><svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" style="background:#eef3f8" aria-hidden="true"><rect width="320" height="200" fill="#eef3f8"></rect><circle cx="280" cy="30" r="70" fill="#d6e2ee" opacity=".55"></circle><circle cx="30" cy="190" r="50" fill="#d6e2ee" opacity=".45"></circle><path d="M84 176v-22c-18-10-30-30-30-52 0-34 28-58 62-58 32 0 58 22 60 52l14 26-12 4v14c0 8-6 12-14 12h-14v24" fill="#fff" stroke="#2b5480" stroke-width="4" stroke-linejoin="round"></path><path d="M166 112h-18" stroke="#2b5480" stroke-width="3" stroke-linecap="round"></path><path d="M206 74h50l-7 84h-36z" fill="#fff" stroke="#2b5480" stroke-width="4" stroke-linejoin="round"></path><path d="M210 102h42l-5 56h-32z" fill="#9ec5ee"></path><path d="M206 74h50l-7 84h-36z" fill="none" stroke="#2b5480" stroke-width="4" stroke-linejoin="round"></path><path d="M200 96c-12 2-20 8-26 14" fill="none" stroke="#2b5480" stroke-width="3" stroke-dasharray="3 6" stroke-linecap="round"></path><path d="M266 30v30M266 60h30" stroke="#f2b33d" stroke-width="5" stroke-linecap="round"></path><text x="272" y="52" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="13" fill="#b26a00">90°</text></svg></span><span>Aspirationsprophylaxe und Dysphagie<small>Prophylaxen · 8 Min.</small></span></a>
+        <a class="mini" href="/dekubitus/"><span class="art"><svg viewBox="28 86 528 330" preserveAspectRatio="xMidYMid meet" style="background:#e7eee8" aria-hidden="true" focusable="false"><rect x="-1000" y="-1000" width="3000" height="3000" fill="#e7eee8"></rect><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="#d0dfd3"></path><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"></circle><ellipse cx="290" cy="408" rx="230" ry="12" fill="#14304f" opacity=".07"></ellipse><rect x="58" y="222" width="18" height="182" rx="9" fill="#8ea595"></rect><rect x="316" y="262" width="16" height="142" rx="8" fill="#8ea595"></rect><rect x="68" y="324" width="258" height="14" rx="7" fill="#74877a"></rect><rect x="72" y="296" width="250" height="32" rx="12" fill="#fbf8f3"></rect><ellipse cx="116" cy="290" rx="38" ry="14" fill="#fff"></ellipse><circle cx="120" cy="272" r="24" fill="#c68e6a"></circle><circle cx="98.4" cy="266" r="9.600000000000001" fill="#e4e3e0"></circle><circle cx="141.12" cy="264.8" r="8.64" fill="#e4e3e0"></circle><path d="M100.8 257.6Q120 242 139.2 256.4Q120 250.4 100.8 257.6z" fill="#e4e3e0"></path><path d="M144 276c40-14 110-14 150-4 18 4 26 14 28 30H140z" fill="#c9a7b8"></path><path d="M150 296c40-8 110-8 168 0" stroke="#a58997" stroke-width="3" fill="none" opacity=".6"></path><path d="M158 284c26 4 52 6 82 6" stroke="#efe4d6" stroke-width="16" stroke-linecap="round" fill="none"></path><circle cx="244" cy="290" r="9" fill="#c68e6a"></circle><path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#4a6b58"></path><path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"></path><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#4a6b58"></path><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"></path><path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#5f7f6c"></path><path d="M358 182l18 30 18-30" fill="none" stroke="#a8c3b1" stroke-width="4" stroke-linejoin="round"></path><path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"></path><circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"></circle><rect x="366" y="152" width="20" height="26" rx="8" fill="#b27b58"></rect><circle cx="376" cy="128" r="29" fill="#b27b58"></circle><circle cx="352.8" cy="119.3" r="12.18" fill="#2a211d"></circle><circle cx="361.5" cy="106.25" r="12.18" fill="#2a211d"></circle><circle cx="376" cy="100.45" r="12.18" fill="#2a211d"></circle><circle cx="390.5" cy="106.25" r="12.18" fill="#2a211d"></circle><circle cx="399.78" cy="119.3" r="12.18" fill="#2a211d"></circle><circle cx="348.45" cy="133.8" r="12.18" fill="#2a211d"></circle><circle cx="403.55" cy="132.35" r="12.18" fill="#2a211d"></circle><path d="M336 236c-14 30-30 52-54 62" stroke="#5f7f6c" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="280" cy="300" r="10.5" fill="#b27b58"></circle><path d="M420 236c10 24 12 44 4 60" stroke="#5f7f6c" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="424" cy="298" r="10.5" fill="#b27b58"></circle><g transform="rotate(-8 421 306)"><rect x="398" y="276" width="46" height="60" rx="8" fill="#f8f4ec" stroke="#c9a676" stroke-width="3"></rect><path d="M410 296h22M410 308h16M410 320h20" stroke="#c9b48f" stroke-width="3" stroke-linecap="round"></path></g><circle cx="424" cy="298" r="9" fill="#b27b58"></circle><rect x="90" y="117" width="150" height="96" rx="20" fill="#3a2a14" opacity=".07"></rect><rect x="90" y="110" width="150" height="96" rx="20" fill="#fff"></rect><circle cx="116" cy="136" r="9" fill="#e5f2e9"></circle><path d="m112 136l3 3 6-6" stroke="#1e7547" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><rect x="134" y="132" width="64" height="8" rx="4" fill="#e7dfd2"></rect><circle cx="116" cy="164" r="9" fill="#e5f2e9"></circle><path d="m112 164l3 3 6-6" stroke="#1e7547" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><rect x="134" y="160" width="64" height="8" rx="4" fill="#e7dfd2"></rect><circle cx="116" cy="192" r="9" fill="#e5f2e9"></circle><path d="m112 192l3 3 6-6" stroke="#1e7547" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path><rect x="134" y="188" width="64" height="8" rx="4" fill="#e7dfd2"></rect><rect x="470" y="126" width="64" height="64" rx="17.92" fill="#3a2a14" opacity=".07"></rect><rect x="470" y="120" width="64" height="64" rx="17.92" fill="#fff"></rect><g transform="translate(482.8 132.8) scale(0.7999999999999999)" color="#14304f" fill="#14304f"><path fill="currentColor" fill-rule="evenodd" d="M32 9a1 1 0 0 1-1-1V6h-2v2c0 1.306.835 2.418 2 2.83V12h-1a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1h-1v-1h5v12.066H20.11a.3.3 0 0 1-.218-.09l-.366-.37l.369-.367a3.77 3.77 0 0 0 .001-5.333l-1.8-1.8a3.77 3.77 0 0 0-5.333-.003l-.704.704a3.95 3.95 0 0 0-3.892 1.021a4.034 4.034 0 0 0 0 5.676l.833.839V34H6v2h3.05a3.5 3.5 0 1 0 4.899 0h20.102a3.5 3.5 0 1 0 4.899 0H42v-2h-4v-3h.066C40.24 31 42 29.224 42 27.033a3.97 3.97 0 0 0-2-3.455V11a2 2 0 0 0-2-2zm-18.174 7.868l4.29 4.32l.365-.364a1.77 1.77 0 0 0 0-2.504l-1.8-1.8a1.77 1.77 0 0 0-2.504-.002zm2.45 13.8c.21.212.497.332.796.332H36v3H11v-8.644zm2.198-6.283c.431.434 1.02.681 1.636.681h17.956c1.052 0 1.934.865 1.934 1.967S39.119 29 38.066 29H17.438l-7.852-7.905a2.034 2.034 0 0 1 0-2.857a1.953 1.953 0 0 1 2.782 0zM13 38.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0M36.5 40a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M31 18v-4h2v4z" clip-rule="evenodd"></path></g></svg></span><span>Dekubitusprophylaxe und Braden-Skala<small>Prophylaxen · 10 Min.</small></span></a><a class="mini" href="/sturz/"><span class="art"><svg viewBox="28 86 528 330" preserveAspectRatio="xMidYMid meet" style="background:#e7eee8" aria-hidden="true" focusable="false"><rect x="-1000" y="-1000" width="3000" height="3000" fill="#e7eee8"></rect><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="#d0dfd3"></path><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"></circle><ellipse cx="290" cy="408" rx="230" ry="12" fill="#14304f" opacity=".07"></ellipse><g transform="translate(-154 0)"><path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#55606e"></path><path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"></path><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#55606e"></path><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"></path><path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#7f9c86"></path><path d="M356 184c6 12 34 12 40 0" fill="none" stroke="#68806e" stroke-width="4" stroke-linecap="round"></path><rect x="366" y="152" width="20" height="26" rx="8" fill="#e6bfa3"></rect><circle cx="376" cy="128" r="29" fill="#e6bfa3"></circle><path d="M347.58 130.9q0-13.05 7.25-20.299999999999997M404.42 130.9q0-13.05-7.25-20.299999999999997" stroke="#c9ccd1" stroke-width="8.7" stroke-linecap="round" fill="none"></path><path d="M334 234c-8 28-10 52-6 76" stroke="#7f9c86" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="328" cy="314" r="10.5" fill="#e6bfa3"></circle><path d="M420 236c8 26 8 50 4 74" stroke="#7f9c86" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="424" cy="314" r="10.5" fill="#e6bfa3"></circle></g><path d="M160 404l8-120h56l8 120M166 330h68" stroke="#7f8ea0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><circle cx="160" cy="404" r="7" fill="#55606e"></circle><circle cx="232" cy="404" r="7" fill="#55606e"></circle><g transform="translate(24 0)"><path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#6e2f44"></path><path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"></path><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#6e2f44"></path><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"></path><path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#6e2f44"></path><path d="M358 182l18 30 18-30" fill="none" stroke="#c98a9c" stroke-width="4" stroke-linejoin="round"></path><path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"></path><circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"></circle><rect x="366" y="152" width="20" height="26" rx="8" fill="#8d5a3b"></rect><circle cx="376" cy="128" r="29" fill="#8d5a3b"></circle><path d="M346 130A30 30 0 0 1 406 130Q387.6 113.5 373.1 116.98Q358.6 120.75 346 130z" fill="#2a211d"></path><path d="M336 236c-14 30-30 52-54 62" stroke="#6e2f44" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="280" cy="300" r="10.5" fill="#8d5a3b"></circle><path d="M420 236c8 26 8 50 4 74" stroke="#6e2f44" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="424" cy="314" r="10.5" fill="#8d5a3b"></circle></g><rect x="70" y="116" width="70" height="70" rx="19.6" fill="#3a2a14" opacity=".07"></rect><rect x="70" y="110" width="70" height="70" rx="19.6" fill="#fff"></rect><g transform="translate(84 124) scale(0.875)" color="#14304f" fill="#14304f"><path fill="currentColor" fill-rule="evenodd" d="M21 11.818C21 10.174 22.435 9 24 9s3 1.174 3 2.818v16.364C27 29.826 25.565 31 24 31s-3-1.174-3-2.818zM24 11c-.644 0-1 .454-1 .818v16.364c0 .364.356.818 1 .818s1-.454 1-.818V11.818c0-.364-.356-.818-1-.818m0 24a1 1 0 1 0 0 2a1 1 0 0 0 0-2m-3 1a3 3 0 1 1 6 0a3 3 0 0 1-6 0" clip-rule="evenodd"></path></g><path d="M486 404h44l-6-48h-32z" fill="#c9a676"></path><path d="M508 358c-2-34-22-56-40-64 6 26 20 48 40 64zM508 358c6-36 26-58 46-62-6 28-22 50-46 62zM508 358c-1-40 6-72 4-92-12 22-14 60-4 92z" fill="#7f9c86"></path></svg></span><span>Sturzprophylaxe in der Reha<small>Prophylaxen · 8 Min.</small></span></a><a class="mini" href="/aspiration/"><span class="art"><svg viewBox="28 86 528 330" preserveAspectRatio="xMidYMid meet" style="background:#e7eee8" aria-hidden="true" focusable="false"><rect x="-1000" y="-1000" width="3000" height="3000" fill="#e7eee8"></rect><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="#d0dfd3"></path><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"></circle><ellipse cx="290" cy="408" rx="230" ry="12" fill="#14304f" opacity=".07"></ellipse><rect x="96" y="196" width="54" height="196" rx="26" fill="#9fb3a4"></rect><rect x="104" y="300" width="186" height="58" rx="22" fill="#829386" opacity=".0"></rect><rect x="104" y="300" width="186" height="58" rx="22" fill="#b7c8bb"></rect><rect x="92" y="286" width="44" height="76" rx="20" fill="#829386"></rect><rect x="256" y="286" width="40" height="76" rx="20" fill="#829386"></rect><path d="M120 362v42M270 362v42" stroke="#6b796e" stroke-width="10" stroke-linecap="round"></path><path d="M186 318h66c12 0 18 8 18 18v60" stroke="#3d4b5e" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><ellipse cx="284" cy="404" rx="20" ry="9" fill="#2a3442"></ellipse><path d="M150 232c4-20 22-32 44-32s38 12 42 32l10 92H146z" fill="#8fa9c4"></path><rect x="184" y="186" width="20" height="22" rx="8" fill="#f1cdb0"></rect><circle cx="194" cy="166" r="27" fill="#f1cdb0"></circle><path d="M167.54 168.7q0-12.15 6.75-18.9M220.46 168.7q0-12.15-6.75-18.9" stroke="#c9ccd1" stroke-width="8.1" stroke-linecap="round" fill="none"></path><path d="M226 244c6 22 0 36-14 38" stroke="#8fa9c4" stroke-width="20" stroke-linecap="round" fill="none"></path><circle cx="208" cy="282" r="10" fill="#f1cdb0"></circle><path d="M300 250h30l-4 44h-22z" fill="#fff" stroke="#14304f" stroke-width="4"></path><path d="M304 264h22l-3 30h-16z" fill="#cfe1ee"></path><path d="M372 404c0-30-2-54-6-74l-32 4c-6 26-8 48-8 70z" fill="#22476e"></path><path d="M346 404h-38c0-16 10-22 24-22z" fill="#1a2b3f"></path><path d="M378 330c22 0 36 12 40 40l6 34h-44" fill="#22476e"></path><path d="M424 404h-48c0-14 10-20 24-20 14 0 24 6 24 20z" fill="#1a2b3f"></path><path d="M330 212c6-22 24-34 46-34s40 12 46 34l8 128H322z" fill="#14304f"></path><path d="M358 182l18 30 18-30" fill="none" stroke="#5f84ad" stroke-width="4" stroke-linejoin="round"></path><path d="M352 186c-8 30-2 56 12 62M402 186c6 28 2 50-10 60" fill="none" stroke="#c9a676" stroke-width="3.5" stroke-linecap="round"></path><circle cx="392" cy="250" r="7" fill="none" stroke="#c9a676" stroke-width="3.5"></circle><rect x="366" y="152" width="20" height="26" rx="8" fill="#8d5a3b"></rect><path d="M396.3 113.5c26.1 5.800000000000001 31.900000000000002 40.599999999999994 14.5 63.800000000000004" stroke="#2a211d" stroke-width="14.5" stroke-linecap="round" fill="none"></path><circle cx="376" cy="128" r="29" fill="#8d5a3b"></circle><path d="M346 130A30 30 0 0 1 406 130Q387.6 113.5 373.1 116.98Q358.6 120.75 346 130z" fill="#2a211d"></path><path d="M336 236c-14 30-30 52-54 62" stroke="#14304f" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="280" cy="300" r="10.5" fill="#8d5a3b"></circle><path d="M420 236c10 24 12 44 4 60" stroke="#14304f" stroke-width="21" stroke-linecap="round" fill="none"></path><circle cx="424" cy="298" r="10.5" fill="#8d5a3b"></circle><g transform="rotate(-8 421 306)"><rect x="398" y="276" width="46" height="60" rx="8" fill="#f8f4ec" stroke="#c9a676" stroke-width="3"></rect><path d="M410 296h22M410 308h16M410 320h20" stroke="#c9b48f" stroke-width="3" stroke-linecap="round"></path></g><circle cx="424" cy="298" r="9" fill="#8d5a3b"></circle><rect x="470" y="110" width="70" height="70" rx="19.6" fill="#3a2a14" opacity=".07"></rect><rect x="470" y="104" width="70" height="70" rx="19.6" fill="#fff"></rect><g transform="translate(484 118) scale(0.875)" color="#14304f" fill="#14304f"><g fill="currentColor"><path fill-rule="evenodd" d="M5.027 12.004c.15 2.691.916 4.357 2.038 5.384a1.9 1.9 0 0 0-.749 1.832c.572 3.635 2.003 11.323 4.937 19.989a1.827 1.827 0 0 0 3.494 0c2.933-8.666 4.365-16.354 4.937-19.989a1.9 1.9 0 0 0-.749-1.832c1.122-1.027 1.888-2.693 2.038-5.384a.954.954 0 0 0-.974-.998c-1.629.024-2.922.123-3.93.462c-.417-1.099-1.258-2.136-2.523-3.082a.91.91 0 0 0-1.092 0c-1.255.939-2.093 1.966-2.513 3.055c-.98-.289-2.262-.404-3.937-.433a.954.954 0 0 0-.977.996m9.854 1.973l-.683-1.8c-.189-.499-.558-1.06-1.198-1.65c-.634.584-1.002 1.14-1.193 1.634l-.663 1.72l-1.768-.522c-.522-.154-1.234-.256-2.235-.311c.297 1.928 1.012 2.743 1.663 3.164c.932.603 2.29.786 4.166.788h.06c1.877-.002 3.234-.185 4.165-.788c.652-.421 1.368-1.237 1.665-3.17c-.97.051-1.651.152-2.154.321zM8.306 19h9.388c-.287 1.807-.784 4.6-1.57 8H12v2h3.645c-.69 2.782-1.56 5.882-2.645 9.13a115 115 0 0 1-.995-3.13H13v-2h-1.582a126 126 0 0 1-2.197-9H12v-2H8.827a107 107 0 0 1-.521-3" clip-rule="evenodd"></path><path d="M38.242 28.03a1 1 0 0 1 .728 1.212a6.43 6.43 0 0 1-4.728 4.728a1 1 0 0 1-.485-1.94a4.43 4.43 0 0 0 3.273-3.273a1 1 0 0 1 1.212-.727"></path><path fill-rule="evenodd" d="M32.65 21.027c-1.108-2.593-.916-5.347 1.057-7.32l-1.414-1.414c-2.33 2.33-2.734 5.377-1.953 8.178C25.764 18.4 21 22.208 21 28c0 5.523 4.925 10 11 10s11-4.477 11-10c0-6.22-5.495-10.151-10.35-6.973M32 24.061l-1.25-1c-1.858-1.486-3.688-1.403-5.074-.547C24.21 23.419 23 25.357 23 28c0 4.243 3.846 8 9 8s9-3.757 9-8c0-2.642-1.21-4.58-2.676-5.486c-1.386-.856-3.217-.939-5.075.548z" clip-rule="evenodd"></path><path d="M34 18c3 0 5-2 5-5c-3 0-5 2-5 5"></path></g></g></svg></span><span>Aspirationsprophylaxe und Dysphagie<small>Prophylaxen · 8 Min.</small></span></a>
       </div>
       <div class="panel report"><h2>Fehler entdeckt?</h2><p>Hast du einen Fehler gefunden oder ist etwas unklar? Schreib uns!</p>
         <a class="btn" href="mailto:info@pflegepedia.ch?subject=Fehler%20melden%3A%20Thromboseprophylaxe&amp;body=Nugget%3A%20Thromboseprophylaxe%0AAbschnitt%20(z.%20B.%20Theorie%2C%20Quiz%20FaGe)%3A%20%0AWas%20ist%20falsch%20oder%20unklar%3A%20%0A%0ABitte%20keine%20Patientendaten%20senden.">Fehler melden</a>
@@ -580,6 +762,6 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
   <div class="legal">© 2026 Pflegepedia. Die Inhalte ersetzen keine betrieblichen Richtlinien, keine ärztlichen Verordnungen und keine Anleitung durch Fachpersonen.</div>
 </div></footer>
 
-<script src="/app.5a5cbe10e0.js"></script>
+<script src="/app.8f1a99d3c2.js"></script>
 </body>
 </html>
