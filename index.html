@@ -573,6 +573,8 @@ footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding
 .tool svg { width: 17px; height: 17px; }
 .tool[aria-pressed="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
 .tool.ghost { color: var(--muted); }
+@media (max-width: 1000px) { .nav .nfull { display: none; } .picker > span { display: none; } }
+@media (max-width: 380px) { .nav { gap: 10px !important; } .nav a { font-size: 13.5px !important; } .logo { font-size: 20px !important; } }
 .gl { border-bottom: 1.5px dotted var(--gold); cursor: help; text-decoration: none; }
 .gl:hover, .gl:focus-visible { background: var(--gold-soft); border-radius: 3px; outline: none; }
 #gltip { position: fixed; z-index: 70; background: var(--night); color: #e7edf4; border-radius: 14px; padding: 12px 15px; font-size: 14.5px; line-height: 1.5; box-shadow: var(--shadow-lift); opacity: 0; transform: translateY(4px); pointer-events: none; transition: opacity .2s, transform .3s var(--ease); }
@@ -604,7 +606,7 @@ footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding
 @keyframes aLine { to { stroke-dashoffset: 0; } }
 @keyframes aPush { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(12px); } }
 @media (prefers-reduced-motion: reduce) { .anim .a-step { opacity: 1; } .a-5m .a-dot { fill: #1e7547; } .a-abc .a-dot { fill: #14304f; } .a-line { stroke-dashoffset: 0; } }
-@media (max-width: 640px) { .lp { padding: 16px; } .lp-head { flex-direction: column; } .lp-stat { text-align: left; width: 100%; } .lp-steps a { grid-template-columns: 30px 56px minmax(0, 1fr); gap: 10px; } .lp-art { width: 56px; height: 36px; } .pathcard b { font-size: 21px; } .nav a:first-child { display: none; } }
+@media (max-width: 640px) { .lp { padding: 16px; } .lp-head { flex-direction: column; } .lp-stat { text-align: left; width: 100%; } .lp-steps a { grid-template-columns: 30px 56px minmax(0, 1fr); gap: 10px; } .lp-art { width: 56px; height: 36px; } .pathcard b { font-size: 21px; } .nav a:first-child, .nav a[href$="ueber"], .nav a[href$="ueber/"] { display: none; } .nav .nfull { display: none; } .nav { gap: 14px; } .logo { font-size: 22px; } .logo svg { width: 32px; height: 32px; } }
 /* QR, Berufsbildner, So funktioniert es */
 .qrpanel h2 { font-size: 20px !important; margin-bottom: 12px !important; }
 .qrbox { width: 150px; margin: 0 auto 12px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
@@ -638,7 +640,7 @@ footer .legal { border-top-color: rgba(255,255,255,.12); color: #97a6b7; padding
 .bbtopic li a { font-weight: 700; color: var(--ink); margin-right: 6px; }
 .bbtopic li .lv { font-size: 11px; padding: 2px 8px; margin-left: 3px; }
 .bbtopic li p { margin: 4px 0 0; color: #36404c; font-size: 15.5px; }
-.how { margin-top: 88px; }
+.how { margin-top: 64px; }
 .how .toolbar-head { margin-bottom: 22px; }
 .howgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .howtile { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: flex; flex-direction: column; gap: 8px; }
@@ -794,7 +796,7 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
 <a class="skip" href="#app">Zum Inhalt springen</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="#" aria-label="Pflegepedia Startseite"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -1 115 115"><path d="M22 36V102" stroke="#14304f" stroke-width="16" stroke-linecap="round" fill="none"/><path d="M22 36C22 20 35 12 51 12C70 12 83 27 83 46C83 65 70 80 51 80H49" stroke="#14304f" stroke-width="16" stroke-linecap="round" fill="none"/><rect x="39" y="33" width="23" height="23" rx="7" fill="#b48a4c"/></svg><span>Pflegepedia</span></a>
-  <nav class="nav" aria-label="Hauptnavigation"><a href="#">Nuggets</a><a href="#lernpfade">Lernpfade</a><a href="#ueber">Über</a></nav>
+  <nav class="nav" aria-label="Hauptnavigation"><a href="#">Nuggets</a><a href="#lernpfade">Lernpfade</a><a href="#berufsbildner"><span class="nfull">Für </span>Berufsbildner</a><a href="#ueber">Über</a></nav>
   <div class="picker"><span>Ich bin</span>
   <div class="levels" role="group" aria-label="Ausbildungsstufe">
     <button data-level="AGS">AGS</button><button data-level="FaGe">FaGe</button><button data-level="HF">Pflege HF</button><button data-level="Alle">Alle</button>
@@ -5624,8 +5626,9 @@ function bindGlossar() {
   if (!bindGlossar.once) { bindGlossar.once = 1; document.addEventListener("click", hide); addEventListener("scroll", hide, { passive: true }); }
 }
 
-/* Liste der vorgefertigten Audiodateien (audio/<id>.mp3). Leer: es wird die Gerätestimme genutzt. */
-const AUDIO_FILES = [];
+/* Vorgefertigte Audiodateien (audio/<id>.mp3, Stimme Thorsten von Piper). Liste in audio/manifest.json. */
+let AUDIO_MANIFEST = null;
+async function audioManifest() { if (AUDIO_MANIFEST) return AUDIO_MANIFEST; try { const r = await fetch("/audio/manifest.json", { cache: "no-cache" }); AUDIO_MANIFEST = r.ok ? await r.json() : {}; } catch (e) { AUDIO_MANIFEST = {}; } return AUDIO_MANIFEST; }
 /* ============================================================
    Vorlesen
    Ebene 1: Sprachausgabe des Geräts (immer verfügbar, Rückfall).
@@ -5718,17 +5721,19 @@ function ttsSpeak() {
   speechSynthesis.speak(u);
 }
 /* Ebene 2: vorgefertigte Audiodatei, falls es sie gibt */
-function ttsAudioFor(n) { return typeof AUDIO_FILES !== "undefined" && AUDIO_FILES.includes(n.id) ? "/audio/" + n.id + ".mp3" : null; }
+async function ttsAudioFor(n) { const m = await audioManifest(); return m[n.id] ? `/audio/${n.id}.mp3?v=${m[n.id]}` : null; }
 
-function ttsStart(n) {
+async function ttsStart(n) {
   ttsStop(true);
-  TTS.on = true; TTS.paused = false;
-  const src = ttsAudioFor(n);
+  TTS.on = true; TTS.paused = false; ttsUi();
+  const src = await ttsAudioFor(n);
+  if (!TTS.on) return;
   if (src) {
     TTS.audio = new Audio(src); TTS.audio.playbackRate = TTS.rate;
     TTS.audio.addEventListener("ended", () => ttsStop());
     TTS.audio.addEventListener("error", () => { TTS.audio = null; ttsStartSpeech(); });
     TTS.audio.play().catch(() => { TTS.audio = null; ttsStartSpeech(); });
+    const vl = $("#tts-voice"); if (vl) vl.closest("label").hidden = true;
     ttsUi(); return;
   }
   ttsStartSpeech();
@@ -5949,7 +5954,7 @@ function howHtml() {
     ["quiz", "Quiz pro Stufe", "Jede Stufe hat eigene Fragen. So prüfst du genau das, was zu deinen Kompetenzen gehört."],
     ["lock", "Dein Lernstand gehört dir", "Dein Fortschritt wird nur auf deinem Gerät gespeichert. Du kannst ihn jederzeit unter Datenschutz löschen.", "#datenschutzerklaerung", "Lernstand löschen"]
   ];
-  return `<section class="how rv"><div class="toolbar-head"><div><span class="eyebrow">So funktioniert es</span><h2>So lernst du mit Pflegepedia</h2></div><a class="more" href="#berufsbildner">Für Berufsbildner →</a></div>
+  return `<section class="how rv"><div class="toolbar-head"><div><span class="eyebrow">So funktioniert es</span><h2>So lernst du mit Pflegepedia</h2></div></div>
     <div class="howgrid">${it.map(([ic, t, d, h, l]) => `<div class="howtile"><i>${ui(ic)}</i><b>${t}</b><p>${d}</p>${h ? `<a href="${h}">${l} →</a>` : ""}</div>`).join("")}</div></section>`;
 }
 
@@ -6098,10 +6103,10 @@ function renderHome(scrollTo) {
     <div id="herobox"></div>
   </div></section>
   <div class="wrap">
+    ${howHtml()}
     <div id="paths"></div>
     <div class="toolbar"><div class="toolbar-head"><div><span class="eyebrow">Bibliothek</span><h2>Alle Themen</h2></div><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Insulin" value="${esc(state.q)}"></div><div class="jump" id="jump"></div></div>
     <div id="list"></div>
-    ${howHtml()}
     <section class="about rv" id="ueber">
       <div><h2>Über Pflegepedia</h2>
         <p>Pflegepedia ist ein privates, nicht-kommerzielles Bildungsprojekt aus der Berufsbildung Pflege in der Schweiz. Die Nuggets begleiten Lernende AGS EBA, FaGe EFZ und Studierende Pflege HF im Alltag: kurz, verständlich und praxisnah.</p>
