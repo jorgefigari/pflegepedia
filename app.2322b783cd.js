@@ -22,7 +22,7 @@ const HERO_ART = `<svg viewBox="0 0 560 460" xmlns="http://www.w3.org/2000/svg" 
 <path d="M120 362v42M270 362v42" stroke="#6e8577" stroke-width="10" stroke-linecap="round"/>
 </g>
 <g id="patientin">
-<path d="M186 318h66c12 0 18 8 18 18v60" stroke="#3d4b5e" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M176 312h60c12 0 18 8 18 18v62" stroke="#2c3644" stroke-width="27" stroke-linecap="round" stroke-linejoin="round" fill="none"/><ellipse cx="262" cy="402" rx="18" ry="8" fill="#1f2731"/><path d="M186 318h66c12 0 18 8 18 18v60" stroke="#3d4b5e" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 <ellipse cx="284" cy="404" rx="20" ry="9" fill="#2a3442"/>
 <path d="M150 232c4-20 22-32 44-32s38 12 42 32l10 92H146z" fill="#d9a493"/>
 <path d="M194 204v34" stroke="#c48f7d" stroke-width="2" opacity=".6"/>
@@ -4181,6 +4181,7 @@ const IL = (() => {
   function seated(o) {
     const ch = o.chair || "#9fb3a4", top = o.top || "#d9a493";
     let s = `<rect x="96" y="196" width="54" height="196" rx="26" fill="${ch}"/><rect x="104" y="300" width="186" height="58" rx="22" fill="${shade(ch).replace(/^/, "")}" opacity=".0"/><rect x="104" y="300" width="186" height="58" rx="22" fill="${o.seat || "#b7c8bb"}"/><rect x="92" y="286" width="44" height="76" rx="20" fill="${shade(ch)}"/><rect x="256" y="286" width="40" height="76" rx="20" fill="${shade(ch)}"/><path d="M120 362v42M270 362v42" stroke="${shade(shade(ch))}" stroke-width="10" stroke-linecap="round"/>`;
+    s += `<path d="M176 312h60c12 0 18 8 18 18v62" stroke="${shade(o.pants || "#3d4b5e")}" stroke-width="27" stroke-linecap="round" stroke-linejoin="round" fill="none"/><ellipse cx="262" cy="402" rx="18" ry="8" fill="#1f2731"/>`;
     s += `<path d="M186 318h66c12 0 18 8 18 18v60" stroke="${o.pants || "#3d4b5e"}" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/><ellipse cx="284" cy="404" rx="20" ry="9" fill="#2a3442"/>`;
     s += `<path d="M150 232c4-20 22-32 44-32s38 12 42 32l10 92H146z" fill="${top}"/><rect x="184" y="186" width="20" height="22" rx="8" fill="${o.skin}"/>` + head(194, 166, 27, o);
     s += o.arm === "lap" ? `<path d="M226 244c8 24 10 44 26 56" stroke="${top}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="254" cy="302" r="10" fill="${o.skin}"/>` : o.arm === "chest" ? `<path d="M226 244c6 22 0 36-14 38" stroke="${top}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="208" cy="282" r="10" fill="${o.skin}"/>` : `<path d="M226 244c10 22 22 40 40 50" stroke="${top}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="270" cy="296" r="10" fill="${o.skin}"/>`;
@@ -4410,55 +4411,78 @@ const statusHtml = n => quizLevels(n).filter(l => state.level === "Alle" || l ==
 let LP_FOCUS = null;
 const PATHS = {
   AGS: [
-    { id: "start", t: "Gut starten im Praktikum", d: "Die Grundlagen für deine ersten Wochen: lernen, Rollen kennen, sauber und sicher arbeiten.", s: ["lernen", "lernbegleitung", "rollen", "haendehygiene", "psa", "dokumentation", "datenschutz", "resilienz"] },
-    { id: "beobachten", t: "Beobachten und vorbeugen", d: "Veränderungen früh erkennen und Komplikationen verhindern.", s: ["vitalzeichen", "schmerz", "ausscheidung", "sturz", "mobilisation", "thrombose", "aspiration", "kontrakturen"] },
-    { id: "notfall", t: "Sicher im Notfall", d: "Notfälle erkennen, Hilfe holen und die ersten Minuten richtig handeln.", s: ["notfall-erkennen", "bls-aed", "atemnot", "verschlucken", "blutung", "bewusstlos"] }
+    { id: "start", t: "Gut starten", d: "Lernen in der Praxis, Rollen im Team, Hygiene und Datenschutz.", s: ["lernen", "lernbegleitung", "rollen", "haendehygiene", "psa", "isolation", "dokumentation", "datenschutz"] },
+    { id: "beobachten", t: "Beobachten", d: "Vitalzeichen, Schmerz und Ausscheidung richtig erfassen.", s: ["vitalzeichen", "schmerz", "ausscheidung"] },
+    { id: "prophylaxen", t: "Prophylaxen und Mobilisation", d: "Stürze, Thrombosen, Aspiration und Kontrakturen verhindern.", s: ["mobilisation", "sturz", "thrombose", "aspiration", "kontrakturen"] },
+    { id: "notfall", t: "Notfälle", d: "Notfälle erkennen, Hilfe holen und die ersten Minuten richtig handeln.", s: ["notfall-erkennen", "bls-aed", "atemnot", "verschlucken", "blutung", "bewusstlos"] },
+    { id: "team", t: "Zusammenarbeit im Team", d: "Delegation, Feedback, Konflikte und Fehlerkultur.", s: ["delegation", "feedback", "konflikte", "interprofessionell", "fehlerkultur"] },
+    { id: "gespraeche", t: "Gespräche führen", d: "Mit Angehörigen, bei Aphasie, in angespannten und kulturell vielfältigen Situationen.", s: ["angehoerige", "aphasie", "deeskalation", "transkulturell"] },
+    { id: "krankheiten", t: "Krankheitsbilder", d: "Häufige Krankheitsbilder in der Reha verstehen und begleiten.", s: ["schlaganfall", "demenz", "delir", "diabetes", "herzinsuffizienz", "epilepsie", "sht"] },
+    { id: "abschluss", t: "Gesund bleiben und Abschluss", d: "Selbstpflege und Vorbereitung auf die IPA.", s: ["resilienz", "ipa"] }
   ],
   FaGe: [
-    { id: "start", t: "Gut starten im Praktikum", d: "Die Grundlagen für deine ersten Wochen: lernen, Rollen kennen, sauber und sicher arbeiten.", s: ["lernen", "lernbegleitung", "rollen", "haendehygiene", "psa", "isolation", "dokumentation", "datenschutz"] },
-    { id: "medi", t: "Medikamente sicher", d: "Richten, verabreichen, lagern und injizieren nach den Regeln der Sicherheit.", s: ["6r", "lagerung", "sc-injektion", "blut-kapillaer", "blut-venoes", "diabetes", "peg"] },
-    { id: "beobachten", t: "Beobachten und vorbeugen", d: "Veränderungen früh erkennen und Komplikationen verhindern.", s: ["vitalzeichen", "schmerz", "ausscheidung", "dekubitus", "sturz", "thrombose", "aspiration", "kontrakturen"] },
-    { id: "ipa", t: "Auf dem Weg zur IPA", d: "Strukturiert arbeiten, übergeben und reflektieren bis zum Abschluss.", s: ["pflegeprozess", "sbar", "delegation", "feedback", "fehlerkultur", "ipa"] }
+    { id: "start", t: "Gut starten", d: "Lernen in der Praxis, Rollen im Team, Hygiene und Datenschutz.", s: ["lernen", "lernbegleitung", "rollen", "haendehygiene", "psa", "isolation", "dokumentation", "datenschutz"] },
+    { id: "beobachten", t: "Beobachten und Pflegeprozess", d: "Erfassen, einschätzen und planen.", s: ["vitalzeichen", "schmerz", "ausscheidung", "pflegeprozess"] },
+    { id: "prophylaxen", t: "Prophylaxen und Mobilisation", d: "Dekubitus, Stürze, Thrombosen, Aspiration und Kontrakturen verhindern.", s: ["mobilisation", "dekubitus", "sturz", "thrombose", "aspiration", "kontrakturen"] },
+    { id: "medi", t: "Medikamente", d: "Richten, verabreichen, lagern und subkutan injizieren.", s: ["6r", "lagerung", "sc-injektion"] },
+    { id: "technik", t: "Pflegetechniken", d: "Blutentnahme und PEG-Sonde sicher durchführen.", s: ["blut-kapillaer", "blut-venoes", "peg"] },
+    { id: "notfall", t: "Notfälle", d: "Systematisch einschätzen und reanimieren.", s: ["abcde", "bls-aed"] },
+    { id: "team", t: "Zusammenarbeit im Team", d: "Übergeben, delegieren, Feedback und Fehlerkultur.", s: ["sbar", "delegation", "feedback", "konflikte", "interprofessionell", "fehlerkultur"] },
+    { id: "gespraeche", t: "Gespräche führen", d: "Mit Angehörigen, bei Aphasie, in angespannten und kulturell vielfältigen Situationen.", s: ["angehoerige", "aphasie", "deeskalation", "transkulturell"] },
+    { id: "krankheiten", t: "Krankheitsbilder", d: "Häufige Krankheitsbilder in der Reha verstehen und pflegen.", s: ["schlaganfall", "diabetes", "herzinsuffizienz", "demenz", "delir", "epilepsie", "sht"] },
+    { id: "abschluss", t: "Gesund bleiben und Abschluss", d: "Selbstpflege und Vorbereitung auf die IPA.", s: ["resilienz", "ipa"] }
   ],
   HF: [
-    { id: "steuern", t: "Pflegeprozess und Verantwortung", d: "Pflege planen, delegieren, übergeben und im Team Verantwortung tragen.", s: ["pflegeprozess", "sbar", "delegation", "rollen", "interprofessionell", "fehlerkultur", "feedback", "lernbegleitung"] },
-    { id: "komplex", t: "Komplexe Situationen einschätzen", d: "Systematisch einschätzen und häufige Krankheitsbilder in der Reha pflegen.", s: ["abcde", "schlaganfall", "sht", "herzinsuffizienz", "delir", "demenz", "epilepsie", "diabetes"] },
-    { id: "prophylaxen", t: "Prophylaxen steuern", d: "Risiken einschätzen und Massnahmen gezielt planen.", s: ["dekubitus", "sturz", "thrombose", "aspiration", "kontrakturen", "schmerz"] },
-    { id: "kommunikation", t: "Gespräche führen", d: "Kommunikation in schwierigen, vielfältigen und emotionalen Situationen.", s: ["aphasie", "angehoerige", "deeskalation", "transkulturell", "konflikte"] }
+    { id: "start", t: "Gut starten", d: "Lernen in der Praxis, Rollen im Team, Hygiene und Datenschutz.", s: ["lernen", "lernbegleitung", "rollen", "haendehygiene", "psa", "isolation", "dokumentation", "datenschutz"] },
+    { id: "prozess", t: "Pflegeprozess und Einschätzung", d: "Pflege planen und Situationen systematisch einschätzen.", s: ["pflegeprozess", "schmerz", "ausscheidung"] },
+    { id: "prophylaxen", t: "Prophylaxen steuern", d: "Risiken einschätzen und Massnahmen gezielt planen.", s: ["mobilisation", "dekubitus", "sturz", "thrombose", "aspiration", "kontrakturen"] },
+    { id: "medi", t: "Medikamente", d: "Richten, kontrollieren, lagern und subkutan injizieren.", s: ["6r", "lagerung", "sc-injektion"] },
+    { id: "technik", t: "Pflegetechniken", d: "Blutentnahme und PEG-Sonde.", s: ["blut-kapillaer", "blut-venoes", "peg"] },
+    { id: "notfall", t: "Notfälle", d: "Systematisch einschätzen und reanimieren.", s: ["abcde", "bls-aed"] },
+    { id: "team", t: "Verantwortung im Team", d: "Übergeben, delegieren, interprofessionell zusammenarbeiten und aus Fehlern lernen.", s: ["sbar", "delegation", "interprofessionell", "fehlerkultur", "feedback", "konflikte"] },
+    { id: "gespraeche", t: "Gespräche führen", d: "Mit Angehörigen, bei Aphasie, in angespannten und kulturell vielfältigen Situationen.", s: ["angehoerige", "aphasie", "deeskalation", "transkulturell"] },
+    { id: "krankheiten", t: "Komplexe Krankheitsbilder", d: "Häufige Krankheitsbilder in der Reha einschätzen und pflegen.", s: ["schlaganfall", "sht", "herzinsuffizienz", "delir", "demenz", "epilepsie", "diabetes"] },
+    { id: "abschluss", t: "Gesund bleiben", d: "Selbstpflege und Resilienz im Pflegealltag.", s: ["resilienz"] }
   ]
 };
+let LP_LEVEL = null;
 const pathSteps = (p, l) => p.s.map(id => NUGGETS.find(n => n.id === id)).filter(n => n && n.levels.includes(l));
 const pathProgress = (p, l) => { const st = pathSteps(p, l); const d = st.filter(n => isDone(n, l)).length; return { st, d, pct: st.length ? Math.round(d / st.length * 100) : 0, next: st.find(n => !isDone(n, l)) }; };
+const firstOpen = l => PATHS[l].findIndex(p => pathProgress(p, l).next);
 function pathCard(p, l, i) {
-  const { st, d, pct, next } = pathProgress(p, l);
+  const { st, d, pct } = pathProgress(p, l), k = PATHS[l].indexOf(p) + 1;
   return `<a class="pathcard rv" style="--d:${(i % 4) * 0.06}s" href="#lernpfade" data-path="${l}-${p.id}">
-    <span class="pc-top"><span class="lv ${l}">${LEVEL_LABEL[l]}</span><small>${st.length} Nuggets</small></span>
+    <span class="pc-top"><span class="lv ${l}">${LEVEL_LABEL[l]}</span><small>Etappe ${k} von ${PATHS[l].length}</small></span>
     <b>${esc(p.t)}</b><span class="pc-d">${esc(p.d)}</span>
     <span class="pc-bar"><i style="width:${pct}%;background:${LEVEL_COLOR[l]}"></i></span>
-    <span class="pc-foot">${d === st.length ? "Abgeschlossen" : d ? `${d} von ${st.length} erledigt` : "Noch nicht begonnen"}<span aria-hidden="true">→</span></span></a>`;
+    <span class="pc-foot">${d === st.length ? "Abgeschlossen" : d ? `${d} von ${st.length} erledigt` : `${st.length} Nuggets`}<span aria-hidden="true">→</span></span></a>`;
 }
 function renderPaths() {
   const box = $("#paths"); if (!box) return;
   if (state.q) { box.innerHTML = ""; return; }
-  const ls = state.level === "Alle" ? ["AGS", "FaGe", "HF"] : [state.level];
-  const cards = state.level === "Alle" ? ls.map(l => [PATHS[l][0], l]) : PATHS[state.level].map(p => [p, state.level]);
-  box.innerHTML = `<section class="paths"><div class="toolbar-head"><div><span class="eyebrow">Lernpfade</span><h2>${state.level === "Alle" ? "Schritt für Schritt lernen" : "Deine Lernpfade als " + LEVEL_LABEL[state.level]}</h2></div><a class="more" href="#lernpfade">Alle Lernpfade →</a></div>
+  let cards;
+  if (state.level === "Alle") cards = ["AGS", "FaGe", "HF"].map(l => [PATHS[l][Math.max(0, firstOpen(l))], l]);
+  else { const l = state.level, f = Math.max(0, Math.min(firstOpen(l), PATHS[l].length - 3)); cards = PATHS[l].slice(f, f + 3).map(p => [p, l]); }
+  box.innerHTML = `<section class="paths"><div class="toolbar-head"><div><span class="eyebrow">Lernpfade</span><h2>${state.level === "Alle" ? "Schritt für Schritt lernen" : "Deine nächsten Etappen als " + LEVEL_LABEL[state.level]}</h2></div><a class="more" href="#lernpfade">Alle Lernpfade →</a></div>
     <div class="pathgrid">${cards.map(([p, l], i) => pathCard(p, l, i)).join("")}</div></section>`;
   box.querySelectorAll(".pathcard").forEach(a => a.addEventListener("click", () => { LP_FOCUS = a.dataset.path; }));
 }
 function lernpfadePage() {
-  const fl = LP_FOCUS ? LP_FOCUS.split("-")[0] : null;
-  const ls = state.level === "Alle" ? ["AGS", "FaGe", "HF"].sort((a, b) => (b === fl) - (a === fl)) : [state.level];
+  if (LP_FOCUS) LP_LEVEL = LP_FOCUS.split("-")[0];
+  const l = LP_LEVEL || (state.level !== "Alle" ? state.level : "AGS"); LP_LEVEL = l;
+  const all = [...new Set(PATHS[l].flatMap(p => pathSteps(p, l)))], doneAll = all.filter(n => isDone(n, l)).length;
+  const fo = firstOpen(l), focus = LP_FOCUS && LP_FOCUS.startsWith(l + "-") ? LP_FOCUS.slice(l.length + 1) : null;
   return `<span class="eyebrow">Lernpfade</span><h1>Schritt für Schritt lernen</h1>
-    <p class="lead">Lernpfade führen dich in einer sinnvollen Reihenfolge durch die Nuggets, passend zu deiner Stufe.</p>
-    <div class="lp-why"><div><b>Warum Lernpfade?</b><p>50 Nuggets sind viel. Damit du nicht suchen musst, bauen die Lernpfade aufeinander auf: zuerst die Grundlagen, dann Beobachtung und Prophylaxen, später komplexere Situationen. So lernst du Schritt für Schritt und siehst, was du schon geschafft hast.</p></div>
+    <p class="lead">Für jede Stufe gibt es einen eigenen Lernpfad. Er ist in Etappen eingeteilt, die nach Themen geordnet sind und aufeinander aufbauen. Jedes Nugget deiner Stufe kommt genau einmal vor.</p>
+    <div class="lp-why"><div><b>Warum Lernpfade?</b><p>50 Nuggets sind viel. Damit du nicht suchen musst, beginnst du mit den Grundlagen und gehst dann Etappe für Etappe weiter. So siehst du jederzeit, was du schon geschafft hast.</p></div>
       <div><b>Dein Fortschritt</b><p>Ein Nugget gilt als erledigt, wenn du das Quiz deiner Stufe bestanden hast. Der Fortschritt bleibt nur auf deinem Gerät. Du kannst ihn jederzeit <a href="#datenschutzerklaerung">unter Datenschutz löschen</a>.</p></div></div>
-    ${state.level === "Alle" ? `<div class="lp-jump">${ls.map(l => `<button type="button" data-l="${l}"><span class="lv ${l}">${LEVEL_LABEL[l]}</span></button>`).join("")}</div>` : ""}
-    ${ls.map(l => `<h2 class="lp-level" id="lp-${l}"><span class="lv ${l}">${LEVEL_LABEL[l]}</span> ${LEVEL_DESC[l]}</h2>` + PATHS[l].map(p => {
-      const { st, d, pct, next } = pathProgress(p, l);
-      return `<section class="lp" id="${l}-${p.id}"><div class="lp-head"><div><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p></div><div class="lp-stat"><b>${d}/${st.length}</b><span class="pc-bar"><i style="width:${pct}%;background:${LEVEL_COLOR[l]}"></i></span></div></div>
-        <ol class="lp-steps">${st.map((n, i) => `<li class="${isDone(n, l) ? "done" : n === next ? "next" : ""}"><a href="#${n.id}"><span class="lp-n">${isDone(n, l) ? "✓" : i + 1}</span><span class="lp-art">${art(n)}</span><span class="lp-t"><b>${esc(n.title)}</b><small>${n.topic} · ${n.min} Min.${n === next ? " · Als Nächstes" : ""}</small></span></a></li>`).join("")}</ol></section>`;
-    }).join("")).join("")}`;
+    <div class="lp-tabs" role="group" aria-label="Stufe wählen">${["AGS", "FaGe", "HF"].map(x => `<button type="button" data-l="${x}" aria-pressed="${x === l}" class="${x}"><b>${LEVEL_LABEL[x]}</b><small>${LEVEL_DESC[x]}</small></button>`).join("")}</div>
+    <div class="lp-sum"><span class="lv ${l}">${LEVEL_LABEL[l]}</span><span>${PATHS[l].length} Etappen · ${all.length} Nuggets · <b>${doneAll}</b> erledigt</span><span class="pc-bar"><i style="width:${all.length ? Math.round(doneAll / all.length * 100) : 0}%;background:${LEVEL_COLOR[l]}"></i></span></div>
+    ${PATHS[l].map((p, k) => {
+      const { st, d, pct, next } = pathProgress(p, l), open = focus ? focus === p.id : k === fo;
+      return `<details class="lp" id="${l}-${p.id}"${open ? " open" : ""}><summary><span class="lp-k${d === st.length ? " ok" : ""}">${d === st.length ? "✓" : k + 1}</span><span class="lp-h"><b>${esc(p.t)}</b><small>${esc(p.d)}</small></span><span class="lp-stat"><b>${d}/${st.length}</b><span class="pc-bar"><i style="width:${pct}%;background:${LEVEL_COLOR[l]}"></i></span></span><span class="lp-chev" aria-hidden="true">⌄</span></summary>
+        <ol class="lp-steps">${st.map((n, i) => `<li class="${isDone(n, l) ? "done" : n === next ? "next" : ""}"><a href="#${n.id}"><span class="lp-n">${isDone(n, l) ? "✓" : i + 1}</span><span class="lp-art">${art(n)}</span><span class="lp-t"><b>${esc(n.title)}</b><small>${n.topic} · ${n.min} Min.${n === next ? " · Als Nächstes" : ""}</small></span></a></li>`).join("")}</ol></details>`;
+    }).join("")}`;
 }
 
 /* Glossar: Fachbegriffe mit kurzer Erklärung, beim ersten Vorkommen pro Seite markiert */
@@ -5099,7 +5123,7 @@ const PAGES = {
 };
 function renderPage(k) {
   $("#app").innerHTML = `<article class="page${k === "lernpfade" || k === "berufsbildner" ? " wide" : ""}"><a class="back" href="#">← Startseite</a>${PAGES[k]()}</article>`;
-  document.querySelectorAll(".lp-jump button").forEach(b => b.addEventListener("click", () => document.getElementById("lp-" + b.dataset.l).scrollIntoView({ behavior: "smooth" })));
+  document.querySelectorAll(".lp-tabs button").forEach(b => b.addEventListener("click", () => { LP_LEVEL = b.dataset.l; renderPage("lernpfade"); fixLinks(); }));
   if (k === "lernpfade" && LP_FOCUS) { const f = LP_FOCUS; LP_FOCUS = null; setTimeout(() => { const el = document.getElementById(f); if (el) { el.scrollIntoView({ block: "start" }); el.classList.add("flash"); } }, 60); }
   const r = $("#reset");
   if (r) r.addEventListener("click", () => { done = {}; try { localStorage.removeItem("pp-done"); localStorage.removeItem("pp-level"); } catch (e) {} state.level = "Alle"; syncLevels(); $("#resetmsg").textContent = "Gelöscht."; });
