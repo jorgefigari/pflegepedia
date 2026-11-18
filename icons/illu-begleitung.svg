@@ -21,7 +21,7 @@
 <path d="M120 362v42M270 362v42" stroke="#6e8577" stroke-width="10" stroke-linecap="round"/>
 </g>
 <g id="patientin">
-<path d="M186 318h66c12 0 18 8 18 18v60" stroke="#3d4b5e" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M176 312h60c12 0 18 8 18 18v62" stroke="#2c3644" stroke-width="27" stroke-linecap="round" stroke-linejoin="round" fill="none"/><ellipse cx="262" cy="402" rx="18" ry="8" fill="#1f2731"/><path d="M186 318h66c12 0 18 8 18 18v60" stroke="#3d4b5e" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 <ellipse cx="284" cy="404" rx="20" ry="9" fill="#2a3442"/>
 <path d="M150 232c4-20 22-32 44-32s38 12 42 32l10 92H146z" fill="#d9a493"/>
 <path d="M194 204v34" stroke="#c48f7d" stroke-width="2" opacity=".6"/>
