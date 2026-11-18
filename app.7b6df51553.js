@@ -2990,7 +2990,9 @@ const UI = {
   go: '<path d="M5 12h14M13 6l6 6-6 6"/>',
   book: '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/>',
   star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
-  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  play: '<path d="M8 5.5v13l11-6.5z"/>',
+  print: '<path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/>'
 };
 const ui = k => `<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${UI[k]}</svg>`;
 
@@ -4205,7 +4207,7 @@ const IL = (() => {
   const lines = (x, y, n, w = 90) => Array.from({ length: n }, (_, i) => `<rect x="${x}" y="${y + i * 18}" width="${i === n - 1 ? w * .6 : w}" height="8" rx="4" fill="#e7dfd2"/>`).join("");
   const checks = (x, y, n) => Array.from({ length: n }, (_, i) => `<circle cx="${x}" cy="${y + i * 28}" r="9" fill="#e5f2e9"/><path d="m${x - 4} ${y + i * 28}l3 3 6-6" stroke="#1e7547" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="${x + 18}" y="${y + i * 28 - 4}" width="64" height="8" rx="4" fill="#e7dfd2"/>`).join("");
   const letters = (x, y, t, c = NV) => [...t].map((ch, i) => `<circle cx="${x + i * 40}" cy="${y}" r="16" fill="${c}"/><text x="${x + i * 40}" y="${y + 6}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="17" fill="#fff">${ch}</text>`).join("");
-  const bubble = (x, y, w, h, inner, tail = "l") => `<path d="M${x + 16} ${y}h${w - 32}a16 16 0 0 1 16 16v${h - 32}a16 16 0 0 1-16 16H${tail === "l" ? x + 40 : x + w - 24}l-${tail === "l" ? 18 : -8} 16 2-16H${x + 16}a16 16 0 0 1-16-16V${y + 16}a16 16 0 0 1 16-16z" fill="#fff"/>${inner || ""}`;
+  const bubble = (x, y, w, h, inner, tail = "l") => `<path d="M${x + 16} ${y}h${w - 32}a16 16 0 0 1 16 16v${h - 32}a16 16 0 0 1-16 16H${tail === "l" ? x + 40 : x + w - 24}l${tail === "l" ? -18 : 8} 16 2-16H${x + 16}a16 16 0 0 1-16-16V${y + 16}a16 16 0 0 1 16-16z" fill="#fff"/>${inner || ""}`;
   const pulse = (x, y, c = GD) => `<path d="M${x} ${y}h24l8-20 12 36 10-26 6 10h34" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
   function stage(t) { return `<rect x="-1000" y="-1000" width="3000" height="3000" fill="${t.bg}"/><path d="M58 430C16 360 26 230 88 160 150 92 250 70 340 78c96 8 168 70 182 160 16 96-20 168-76 192z" fill="${t.d}"/><circle cx="470" cy="118" r="54" fill="#fff" opacity=".45"/><ellipse cx="290" cy="408" rx="230" ry="12" fill="${NV}" opacity=".07"/>`; }
   function svg(n, body, label) {
@@ -4401,6 +4403,208 @@ function renderQuiz(n, ql) {
   }));
 }
 const statusHtml = n => quizLevels(n).filter(l => state.level === "Alle" || l === state.level || !n.levels.includes(state.level)).map(l => `<span class="lv ${l}">${LEVEL_LABEL[l]} ${isDone(n, l) ? "✓" : "offen"}</span>`).join(" ");
+/* Lernpfade: geführte Reihenfolgen pro Stufe. Nuggets ausserhalb der Stufe werden automatisch weggelassen. */
+const PATHS = {
+  AGS: [
+    { id: "start", t: "Gut starten im Praktikum", d: "Die Grundlagen für deine ersten Wochen: lernen, Rollen kennen, sauber und sicher arbeiten.", s: ["lernen", "lernbegleitung", "rollen", "haendehygiene", "psa", "dokumentation", "datenschutz", "resilienz"] },
+    { id: "beobachten", t: "Beobachten und vorbeugen", d: "Veränderungen früh erkennen und Komplikationen verhindern.", s: ["vitalzeichen", "schmerz", "ausscheidung", "sturz", "mobilisation", "thrombose", "aspiration", "kontrakturen"] },
+    { id: "notfall", t: "Sicher im Notfall", d: "Notfälle erkennen, Hilfe holen und die ersten Minuten richtig handeln.", s: ["notfall-erkennen", "bls-aed", "atemnot", "verschlucken", "blutung", "bewusstlos"] }
+  ],
+  FaGe: [
+    { id: "start", t: "Gut starten im Praktikum", d: "Die Grundlagen für deine ersten Wochen: lernen, Rollen kennen, sauber und sicher arbeiten.", s: ["lernen", "lernbegleitung", "rollen", "haendehygiene", "psa", "isolation", "dokumentation", "datenschutz"] },
+    { id: "medi", t: "Medikamente sicher", d: "Richten, verabreichen, lagern und injizieren nach den Regeln der Sicherheit.", s: ["6r", "lagerung", "sc-injektion", "blut-kapillaer", "blut-venoes", "diabetes", "peg"] },
+    { id: "beobachten", t: "Beobachten und vorbeugen", d: "Veränderungen früh erkennen und Komplikationen verhindern.", s: ["vitalzeichen", "schmerz", "ausscheidung", "dekubitus", "sturz", "thrombose", "aspiration", "kontrakturen"] },
+    { id: "ipa", t: "Auf dem Weg zur IPA", d: "Strukturiert arbeiten, übergeben und reflektieren bis zum Abschluss.", s: ["pflegeprozess", "sbar", "delegation", "feedback", "fehlerkultur", "ipa"] }
+  ],
+  HF: [
+    { id: "steuern", t: "Pflegeprozess und Verantwortung", d: "Pflege planen, delegieren, übergeben und im Team Verantwortung tragen.", s: ["pflegeprozess", "sbar", "delegation", "rollen", "interprofessionell", "fehlerkultur", "feedback", "lernbegleitung"] },
+    { id: "komplex", t: "Komplexe Situationen einschätzen", d: "Systematisch einschätzen und häufige Krankheitsbilder in der Reha pflegen.", s: ["abcde", "schlaganfall", "sht", "herzinsuffizienz", "delir", "demenz", "epilepsie", "diabetes"] },
+    { id: "prophylaxen", t: "Prophylaxen steuern", d: "Risiken einschätzen und Massnahmen gezielt planen.", s: ["dekubitus", "sturz", "thrombose", "aspiration", "kontrakturen", "schmerz"] },
+    { id: "kommunikation", t: "Gespräche führen", d: "Kommunikation in schwierigen, vielfältigen und emotionalen Situationen.", s: ["aphasie", "angehoerige", "deeskalation", "transkulturell", "konflikte"] }
+  ]
+};
+const pathSteps = (p, l) => p.s.map(id => NUGGETS.find(n => n.id === id)).filter(n => n && n.levels.includes(l));
+const pathProgress = (p, l) => { const st = pathSteps(p, l); const d = st.filter(n => isDone(n, l)).length; return { st, d, pct: st.length ? Math.round(d / st.length * 100) : 0, next: st.find(n => !isDone(n, l)) }; };
+function pathCard(p, l, i) {
+  const { st, d, pct, next } = pathProgress(p, l);
+  return `<a class="pathcard rv" style="--d:${(i % 4) * 0.06}s" href="#lernpfade" data-path="${l}-${p.id}">
+    <span class="pc-top"><span class="lv ${l}">${LEVEL_LABEL[l]}</span><small>${st.length} Nuggets</small></span>
+    <b>${esc(p.t)}</b><span class="pc-d">${esc(p.d)}</span>
+    <span class="pc-bar"><i style="width:${pct}%;background:${LEVEL_COLOR[l]}"></i></span>
+    <span class="pc-foot">${d === st.length ? "Abgeschlossen" : d ? `${d} von ${st.length} erledigt` : "Noch nicht begonnen"}<span aria-hidden="true">→</span></span></a>`;
+}
+function renderPaths() {
+  const box = $("#paths"); if (!box) return;
+  if (state.q) { box.innerHTML = ""; return; }
+  const ls = state.level === "Alle" ? ["AGS", "FaGe", "HF"] : [state.level];
+  const cards = state.level === "Alle" ? ls.map(l => [PATHS[l][0], l]) : PATHS[state.level].map(p => [p, state.level]);
+  box.innerHTML = `<section class="paths"><div class="toolbar-head"><div><span class="eyebrow">Lernpfade</span><h2>${state.level === "Alle" ? "Schritt für Schritt lernen" : "Deine Lernpfade als " + LEVEL_LABEL[state.level]}</h2></div><a class="more" href="#lernpfade">Alle Lernpfade →</a></div>
+    <div class="pathgrid">${cards.map(([p, l], i) => pathCard(p, l, i)).join("")}</div></section>`;
+}
+function lernpfadePage() {
+  const ls = state.level === "Alle" ? ["AGS", "FaGe", "HF"] : [state.level];
+  return `<span class="eyebrow">Lernpfade</span><h1>Schritt für Schritt lernen</h1>
+    <p class="lead">Lernpfade führen dich in einer sinnvollen Reihenfolge durch die Nuggets. Dein Fortschritt wird nur auf deinem Gerät gespeichert. Ein Nugget gilt als erledigt, wenn du das Quiz deiner Stufe bestanden hast.</p>
+    ${ls.map(l => `<h2 class="lp-level"><span class="lv ${l}">${LEVEL_LABEL[l]}</span> ${LEVEL_DESC[l]}</h2>` + PATHS[l].map(p => {
+      const { st, d, pct, next } = pathProgress(p, l);
+      return `<section class="lp" id="${l}-${p.id}"><div class="lp-head"><div><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p></div><div class="lp-stat"><b>${d}/${st.length}</b><span class="pc-bar"><i style="width:${pct}%;background:${LEVEL_COLOR[l]}"></i></span></div></div>
+        <ol class="lp-steps">${st.map((n, i) => `<li class="${isDone(n, l) ? "done" : n === next ? "next" : ""}"><a href="#${n.id}"><span class="lp-n">${isDone(n, l) ? "✓" : i + 1}</span><span class="lp-art">${art(n)}</span><span class="lp-t"><b>${esc(n.title)}</b><small>${n.topic} · ${n.min} Min.${n === next ? " · Als Nächstes" : ""}</small></span></a></li>`).join("")}</ol></section>`;
+    }).join("")).join("")}`;
+}
+
+/* Merkblatt: druckbare Zusammenfassung auf einer A4-Seite */
+function printSheet(n) {
+  let el = document.getElementById("print-sheet");
+  if (!el) { el = document.createElement("div"); el.id = "print-sheet"; document.body.appendChild(el); }
+  const url = "www.pflegepedia.ch/" + n.id + "/";
+  el.innerHTML = `<div class="ps-head"><span class="ps-logo">Pflegepedia</span><span>Merkblatt · ${n.topic}</span></div>
+    <div class="ps-top"><div><h1>${esc(n.title)}</h1><p class="ps-lv">${n.levels.map(l => `<span class="lv ${l}">${LEVEL_LABEL[l]}</span>`).join(" ")}</p><p class="ps-lead">${esc(n.lead)}</p></div><div class="ps-art">${art(n)}</div></div>
+    <h2>Auf einen Blick</h2><ol class="ps-points">${n.points.map(p => `<li>${esc(p.replace(/^\d+\.\s*/, ""))}</li>`).join("")}</ol>
+    <div class="ps-merke"><b>Merke</b><p>${esc(n.merke)}</p></div>
+    <h2>Gut zu wissen</h2><ul class="ps-facts">${n.facts.map(f => `<li>${esc(f)}</li>`).join("")}</ul>
+    <div class="ps-foot"><span>Quellen: ${esc(n.src || "")}</span><span>Ganzes Nugget mit Quiz: ${url}</span><span>Ersetzt keine betrieblichen Richtlinien.</span></div>`;
+  window.print();
+}
+
+/* Glossar: Fachbegriffe mit kurzer Erklärung, beim ersten Vorkommen pro Seite markiert */
+const GLOSSAR = {
+  "Dysphagie": "Schluckstörung: Probleme beim Kauen oder Schlucken von Nahrung, Flüssigkeit oder Speichel.",
+  "Aspiration": "Nahrung, Flüssigkeit oder Speichel gelangt in die Atemwege unterhalb der Stimmbänder.",
+  "Kontraktur": "Bleibende Bewegungseinschränkung eines Gelenks, weil sich Muskeln, Sehnen oder Gelenkkapsel verkürzt haben.",
+  "Braden": "Braden-Skala: Instrument, mit dem das Dekubitusrisiko anhand von sechs Bereichen eingeschätzt wird.",
+  "Hypoglykämie": "Unterzuckerung: zu tiefer Blutzucker. Typische Zeichen sind Zittern, Schwitzen, Unruhe und Verwirrtheit.",
+  "Tachykardie": "Zu schneller Puls, beim Erwachsenen über 100 pro Minute.",
+  "Bradykardie": "Zu langsamer Puls, beim Erwachsenen unter 60 pro Minute.",
+  "Tachypnoe": "Zu schnelle Atmung, beim Erwachsenen über 20 Atemzüge pro Minute.",
+  "Dyspnoe": "Atemnot: Die Atmung ist erschwert und wird als anstrengend erlebt.",
+  "Ödem": "Wassereinlagerung im Gewebe, sichtbar als Schwellung.",
+  "Aphasie": "Störung der Sprache nach einer Hirnschädigung, zum Beispiel nach einem Schlaganfall. Betroffen sein können Sprechen, Verstehen, Lesen und Schreiben.",
+  "Delir": "Akute Störung von Aufmerksamkeit und Bewusstsein, die sich innert Stunden bis Tagen entwickelt und meist vorübergeht.",
+  "Hemiparese": "Halbseitige Lähmung, zum Beispiel nach einem Schlaganfall.",
+  "MRSA": "Methicillin-resistenter Staphylococcus aureus: Bakterium, gegen das viele Antibiotika nicht wirken.",
+  "SBAR": "Struktur für Übergaben: Situation, Background (Hintergrund), Assessment (Einschätzung), Recommendation (Empfehlung).",
+  "CIRS": "Critical Incident Reporting System: Meldesystem für kritische Ereignisse und Beinahe-Fehler, um daraus zu lernen.",
+  "Obstipation": "Verstopfung: seltener, harter oder erschwerter Stuhlgang.",
+  "Inkontinenz": "Urin oder Stuhl kann nicht willentlich zurückgehalten werden.",
+  "Hypertonie": "Bluthochdruck, ab 140/90 mmHg.",
+  "Hypotonie": "Tiefer Blutdruck, unter 100/60 mmHg.",
+  "NRS": "Numerische Rating-Skala: Die Person schätzt ihre Schmerzen von 0 (kein Schmerz) bis 10 (stärkster vorstellbarer Schmerz) ein.",
+  "Glasgow Coma Scale": "Skala zur Einschätzung des Bewusstseins anhand von Augenöffnen, verbaler und motorischer Reaktion (3 bis 15 Punkte).",
+  "AVPU": "Schnelle Einschätzung des Bewusstseins: Alert (wach), Voice (reagiert auf Ansprache), Pain (reagiert auf Schmerzreiz), Unresponsive (reagiert nicht).",
+  "Status epilepticus": "Epileptischer Anfall, der länger als 5 Minuten dauert, oder mehrere Anfälle ohne Erholung dazwischen. Ein Notfall.",
+  "Virchow": "Virchow-Trias: drei Faktoren, die eine Thrombose begünstigen: verlangsamter Blutfluss, Schaden an der Gefässwand und erhöhte Gerinnbarkeit des Blutes.",
+  "Kinästhetik": "Konzept für die Bewegungsunterstützung, das die eigenen Bewegungsmöglichkeiten der Person nutzt und fördert.",
+  "Spitzfuss": "Kontraktur im Sprunggelenk: Der Fuss ist in Streckstellung fixiert und kann nicht mehr angezogen werden.",
+  "Heparin": "Medikament, das die Blutgerinnung hemmt, zum Beispiel zur Thromboseprophylaxe.",
+  "subkutan": "In das Unterhautfettgewebe.",
+  "Exsikkose": "Austrocknung des Körpers durch Flüssigkeitsmangel.",
+  "Synkope": "Kurze Bewusstlosigkeit durch verminderte Durchblutung des Gehirns (Ohnmacht).",
+  "Pneumonie": "Lungenentzündung.",
+  "Sondenkost": "Flüssige Nahrung, die über eine Sonde verabreicht wird, zum Beispiel über eine PEG.",
+  "Fremdeinschätzung": "Einschätzung durch eine andere Person, wenn sich jemand nicht selbst äussern kann."
+};
+function applyGlossar(root) {
+  if (!root) return;
+  const seen = new Set(), keys = Object.keys(GLOSSAR).sort((a, b) => b.length - a.length);
+  const re = new RegExp("(^|[^\\p{L}])(" + keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")(\\p{L}*)", "u");
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: t => t.parentElement.closest("h1,h2,h3,h4,button,a,.gl,figure,svg,.tbl th,.opts,.q") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(t => {
+    const m = re.exec(t.nodeValue); if (!m || seen.has(m[2])) return;
+    seen.add(m[2]);
+    const start = m.index + m[1].length, word = m[2] + m[3];
+    const after = t.splitText(start); after.nodeValue = after.nodeValue.slice(word.length);
+    const s = document.createElement("span"); s.className = "gl"; s.tabIndex = 0; s.setAttribute("role", "button"); s.dataset.k = m[2]; s.textContent = word;
+    s.setAttribute("aria-label", word + ": Begriff erklären");
+    t.parentNode.insertBefore(s, after);
+  });
+}
+function bindGlossar() {
+  let tip = document.getElementById("gltip");
+  if (!tip) { tip = document.createElement("div"); tip.id = "gltip"; tip.setAttribute("role", "tooltip"); document.body.appendChild(tip); }
+  const show = el => { tip.innerHTML = `<b>${esc(el.dataset.k)}</b>${esc(GLOSSAR[el.dataset.k])}`; tip.classList.add("on"); const r = el.getBoundingClientRect(), w = Math.min(320, innerWidth - 24); tip.style.width = w + "px"; let x = r.left + r.width / 2 - w / 2; x = Math.max(12, Math.min(x, innerWidth - w - 12)); tip.style.left = x + "px"; const below = r.bottom + 10 + tip.offsetHeight < innerHeight; tip.style.top = (below ? r.bottom + 10 : r.top - tip.offsetHeight - 10) + "px"; el.setAttribute("aria-describedby", "gltip"); };
+  const hide = () => tip.classList.remove("on");
+  document.querySelectorAll(".gl").forEach(el => {
+    el.addEventListener("mouseenter", () => show(el)); el.addEventListener("mouseleave", hide);
+    el.addEventListener("focus", () => show(el)); el.addEventListener("blur", hide);
+    el.addEventListener("click", e => { e.stopPropagation(); tip.classList.contains("on") ? hide() : show(el); });
+    el.addEventListener("keydown", e => { if (e.key === "Escape") { hide(); el.blur(); } });
+  });
+  if (!bindGlossar.once) { bindGlossar.once = 1; document.addEventListener("click", hide); addEventListener("scroll", hide, { passive: true }); }
+}
+
+/* Vorlesen mit der Sprachausgabe des Geräts */
+const TTS = { on: false, q: [], i: 0 };
+const canSpeak = () => typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+function ttsText(n) {
+  const parts = [n.title, n.lead];
+  n.theory.forEach(s => { parts.push(s.h); (s.p || []).forEach(p => parts.push(p)); if (s.list) parts.push(s.list.join(". ")); if (s.after) parts.push(s.after); });
+  parts.push("Auf einen Blick.", ...n.points.map(p => p.replace(/^\d+\.\s*/, "")), "Merke: " + n.merke);
+  return parts.filter(Boolean);
+}
+function ttsVoice() { const v = speechSynthesis.getVoices(); return v.find(x => /de-CH/i.test(x.lang)) || v.find(x => /^de/i.test(x.lang)); }
+function ttsSet(label, playing) { const b = $("#tts"); if (!b) return; b.querySelector("span").textContent = label; b.setAttribute("aria-pressed", playing ? "true" : "false"); const s = $("#tts-stop"); if (s) s.hidden = !TTS.on; }
+function ttsNext() {
+  if (!TTS.on || TTS.i >= TTS.q.length) { ttsStop(); return; }
+  const u = new SpeechSynthesisUtterance(TTS.q[TTS.i++]); const v = ttsVoice(); if (v) u.voice = v; u.lang = v ? v.lang : "de-CH"; u.rate = 0.95;
+  u.onend = () => ttsNext(); u.onerror = () => ttsStop();
+  speechSynthesis.speak(u);
+}
+function ttsToggle(n) {
+  if (!TTS.on) { speechSynthesis.cancel(); TTS.on = true; TTS.q = ttsText(n); TTS.i = 0; ttsSet("Pause", true); ttsNext(); }
+  else if (speechSynthesis.paused) { speechSynthesis.resume(); ttsSet("Pause", true); }
+  else { speechSynthesis.pause(); ttsSet("Weiter vorlesen", false); }
+}
+function ttsStop() { TTS.on = false; if (canSpeak()) speechSynthesis.cancel(); ttsSet("Vorlesen", false); }
+
+/* Animationen: kurze Abläufe, die sich selbst erklären */
+const ANIM = {
+  haendehygiene: n => {
+    const pts = n.points.map(p => p.replace(/^Moment \d+:\s*/, "").replace(/\s*\(.*\)$/, ""));
+    const wrap = t => { const w = t.split(" "), out = [""]; w.forEach(x => { if ((out[out.length - 1] + " " + x).trim().length > 24) out.push(x); else out[out.length - 1] = (out[out.length - 1] + " " + x).trim(); }); return out; };
+    const pos = [[110, 60], [330, 60], [550, 60], [550, 236], [110, 236]];
+    return { cap: "Die 5 Momente nacheinander. Grün: Hände desinfizieren.", svg: `<svg viewBox="0 0 660 330" class="anim a-5m" role="img" aria-label="Animation der 5 Momente der Händehygiene">
+      <rect x="230" y="146" width="200" height="96" rx="16" fill="#e8eef4"/><rect x="250" y="186" width="160" height="38" rx="10" fill="#fff"/><circle cx="282" cy="178" r="17" fill="#e6bfa3"/><path d="M302 172h96v16H302z" fill="#8fa9c4"/><text x="330" y="266" text-anchor="middle" class="a-lbl">Patientenumgebung</text>
+      ${pos.map(([x, y], i) => `<g class="a-step" style="--i:${i}"><circle cx="${x}" cy="${y}" r="22" class="a-dot"/><text x="${x}" y="${y + 6}" text-anchor="middle" class="a-num">${i + 1}</text><text x="${x}" y="${y + 46}" text-anchor="middle" class="a-txt">${wrap(pts[i] || "").map((l, k) => `<tspan x="${x}" dy="${k ? 17 : 0}">${esc(l)}</tspan>`).join("")}</text></g>`).join("")}
+    </svg>` };
+  },
+  abcde: () => {
+    const L = [["A", "Atemweg", "frei?"], ["B", "Atmung", "Frequenz, SpO2"], ["C", "Kreislauf", "Puls, BD, Blutung"], ["D", "Neurologie", "AVPU, BZ, Pupillen"], ["E", "Ganzkörper", "Haut, Wunden, Temp."]];
+    return { cap: "Immer in dieser Reihenfolge: Was zuerst tötet, wird zuerst behandelt.", svg: `<svg viewBox="0 0 660 220" class="anim a-abc" role="img" aria-label="Animation des ABCDE-Schemas">
+      <path d="M70 90H590" stroke="#e7dfd2" stroke-width="6" stroke-linecap="round"/><path d="M70 90H590" class="a-line" stroke-width="6" stroke-linecap="round"/>
+      ${L.map(([a, b, c], i) => `<g class="a-step" style="--i:${i}"><circle cx="${70 + i * 130}" cy="90" r="34" class="a-dot"/><text x="${70 + i * 130}" y="101" text-anchor="middle" class="a-big">${a}</text><text x="${70 + i * 130}" y="156" text-anchor="middle" class="a-txt b">${b}</text><text x="${70 + i * 130}" y="180" text-anchor="middle" class="a-txt">${c}</text></g>`).join("")}
+    </svg>` };
+  },
+  "bls-aed": () => ({ cap: "Drücken: 5 bis 6 cm tief, 100 bis 120 pro Minute, Verhältnis 30:2.", svg: `<svg viewBox="0 0 660 260" class="anim a-cpr" role="img" aria-label="Animation der Herzdruckmassage im Rhythmus 30 zu 2">
+    <rect x="80" y="196" width="380" height="14" rx="7" fill="#e7dfd2"/><circle cx="130" cy="166" r="28" fill="#e6bfa3"/><path d="M162 150h250a24 24 0 0 1 24 24v22H162z" fill="#8fa9c4"/>
+    <g class="a-push"><rect x="262" y="40" width="22" height="96" rx="11" fill="#14304f"/><rect x="292" y="40" width="22" height="96" rx="11" fill="#14304f"/><ellipse cx="288" cy="140" rx="34" ry="12" fill="#b27b58"/></g>
+    <g class="a-chest"><path d="M232 150h112" stroke="#b23b2c" stroke-width="4" stroke-dasharray="6 6"/></g>
+    <rect x="500" y="56" width="120" height="120" rx="22" fill="#fff" stroke="#e7dfd2" stroke-width="2"/><text x="560" y="112" text-anchor="middle" class="a-count">30</text><text x="560" y="146" text-anchor="middle" class="a-txt">Kompressionen</text>
+  </svg>`, after: el => { if (matchMedia("(prefers-reduced-motion: reduce)").matches) return; const c = el.querySelector(".a-count"), l = el.querySelectorAll(".a-txt")[0]; let k = 0, br = 0; clearInterval(el._iv); el._iv = setInterval(() => { if (!document.body.contains(el)) return clearInterval(el._iv); if (br) { br--; if (!br) { el.classList.remove("breath"); k = 0; } return; } k++; c.textContent = k; if (k >= 30) { el.classList.add("breath"); c.textContent = "2"; l.textContent = "Beatmungen"; br = 4; setTimeout(() => { l.textContent = "Kompressionen"; }, 2200); } }, 545); } })
+};
+function animHtml(n) {
+  if (!ANIM[n.id]) return "";
+  const a = ANIM[n.id](n);
+  return `<figure class="fig animfig"><div class="anim-wrap">${a.svg}</div><figcaption><span>${esc(a.cap)}</span><button type="button" class="replay">${ui("go")}Nochmals abspielen</button></figcaption></figure>`;
+}
+function bindAnim(n) {
+  const f = document.querySelector(".animfig"); if (!f || !ANIM[n.id]) return;
+  const a = ANIM[n.id](n), wrap = f.querySelector(".anim-wrap");
+  const start = () => { wrap.innerHTML = a.svg; const el = wrap.firstElementChild; if (a.after) a.after(el); };
+  start();
+  f.querySelector(".replay").addEventListener("click", start);
+}
+
+/* Werkzeuge im Nugget-Kopf */
+function toolsHtml(n) {
+  return `<div class="ntools">${canSpeak() ? `<button type="button" class="tool" id="tts" aria-pressed="false">${ui("play")}<span>Vorlesen</span></button><button type="button" class="tool ghost" id="tts-stop" hidden>Stopp</button>` : ""}<button type="button" class="tool" id="merkblatt">${ui("print")}<span>Merkblatt drucken</span></button></div>`;
+}
+function enhanceNugget(n) {
+  applyGlossar($(".ncontent")); bindGlossar(); bindAnim(n);
+  const p = $("#merkblatt"); if (p) p.addEventListener("click", () => printSheet(n));
+  const t = $("#tts"); if (t) { t.addEventListener("click", () => ttsToggle(n)); $("#tts-stop").addEventListener("click", ttsStop); }
+}
+
 function renderNugget(n, sub) {
   const t = TOPIC[n.topic];
   const deep = deepShown(n, sub === "vertiefung");
@@ -4415,6 +4619,7 @@ function renderNugget(n, sub) {
       <div class="kick"><span class="tpk">${ico(n.topic)}${n.topic}</span>${lvsCard(n.levels)}</div>
       <h1>${esc(n.title)}</h1>
       <p class="lead">${esc(n.lead)}</p>
+      ${toolsHtml(n)}
       ${fits ? "" : `<p class="warnbox">Hinweis: Dieses Nugget ist für ${n.levels.map(l => LEVEL_LABEL[l]).join(" und ")}. Die beschriebenen Tätigkeiten gehören nicht zu den Kompetenzen von ${LEVEL_LABEL[state.level]}.</p>`}
     </div>
     <div class="art">${art(n)}</div>
@@ -4422,7 +4627,7 @@ function renderNugget(n, sub) {
   <nav class="subnav" aria-label="Abschnitte"><div class="wrap">${[["s-theorie","Theorie"],["s-blick","Auf einen Blick"],["s-wissen","Gut zu wissen"],["s-komp","Kompetenzen"],["s-quiz","Quiz"],["s-transfer","Praxistransfer"]].concat(deep ? [["s-vertiefung","Vertiefung " + LEVEL_LABEL[DEEP[n.id].level]]] : []).concat([["s-quellen","Quellen"]]).map(([id, t]) => `<button data-s="${id}">${t}</button>`).join("")}</div></nav>
   <div class="wrap ncontent" style="--tc:${t.c};--tc-bg:${t.bg}">
     <div>
-      <div class="panel theory" id="s-theorie"><h2><i>${ui("book")}</i>Theorie</h2>${theoryHtml(n)}</div>
+      <div class="panel theory" id="s-theorie"><h2><i>${ui("book")}</i>Theorie</h2>${animHtml(n)}${theoryHtml(n)}</div>
       <div class="panel" id="s-blick"><h2><i>${ui("list")}</i>Auf einen Blick</h2>
         <ol class="points">${n.points.map(p => `<li>${esc(p.replace(/^\d+\.\s*/, ""))}</li>`).join("")}</ol>
         <div class="merke">${ui("bulb")}<div><b>Merke</b>${esc(n.merke)}</div></div>
@@ -4453,6 +4658,7 @@ function renderNugget(n, sub) {
   </div>`;
   renderQuiz(n, ql);
   if (deep) bindDeep(n);
+  enhanceNugget(n);
   document.querySelectorAll(".subnav button").forEach(b => b.addEventListener("click", () => document.getElementById(b.dataset.s).scrollIntoView({ behavior: "smooth" })));
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) document.querySelectorAll(".subnav button").forEach(b => b.classList.toggle("on", b.dataset.s === e.target.id)); }), { rootMargin: "-40% 0px -55% 0px" });
@@ -4528,7 +4734,7 @@ function renderList() {
   fixLinks();
 }
 
-function refreshHome() { renderHeroBox(); renderList(); fixLinks(); reveal(); }
+function refreshHome() { renderHeroBox(); renderPaths(); renderList(); fixLinks(); reveal(); }
 
 function renderHome(scrollTo) {
   $("#app").innerHTML = `
@@ -4543,6 +4749,7 @@ function renderHome(scrollTo) {
     <div id="herobox"></div>
   </div></section>
   <div class="wrap">
+    <div id="paths"></div>
     <div class="toolbar"><div class="toolbar-head"><div><span class="eyebrow">Bibliothek</span><h2>Alle Themen</h2></div><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Insulin" value="${esc(state.q)}"></div><div class="jump" id="jump"></div></div>
     <div id="list"></div>
     <section class="about" id="ueber">
@@ -4552,7 +4759,7 @@ function renderHome(scrollTo) {
       <ul><li>Kostenlos und ohne Anmeldung</li><li>Kompetenzen klar nach Stufe getrennt</li><li>Keine Werbung, kein Tracking</li><li>Lernstand bleibt auf deinem Gerät</li></ul>
     </section>
   </div>`;
-  $("#search").addEventListener("input", e => { state.q = e.target.value; renderList(); reveal(); });
+  $("#search").addEventListener("input", e => { state.q = e.target.value; renderPaths(); renderList(); reveal(); });
   refreshHome();
   if (scrollTo) setTimeout(() => { const el = document.getElementById(scrollTo); if (el) el.scrollIntoView(); }, 30);
 }
@@ -4614,6 +4821,7 @@ function quellenPage() {
     ${groups.filter(([, l]) => l.length).map(([t, l]) => `<h3>${t}</h3><ul class="srclist all">${l.map(it => srcLi(it).replace("</li>", ` <span class="usedin">${all.get(it).map(n => `<a href="#${n.id}">${esc(n.title)}</a>`).join(", ")}</span></li>`)).join("")}</ul>`).join("")}`;
 }
 const PAGES = {
+  lernpfade: lernpfadePage,
   quellen: quellenPage,
   impressum: () => `<h1>Impressum</h1>
     <p>Pflegepedia ist ein privates, nicht-kommerzielles Bildungsprojekt. Es werden keine Produkte oder Dienstleistungen verkauft.</p>
@@ -4680,12 +4888,13 @@ function reveal() {
 }
 function route() {
   if (dpRun) dpStop();
+  if (TTS.on) ttsStop();
   const h = curRoute(), [hid, sub] = h.split("/");
   const n = NUGGETS.find(x => x.id === hid);
   if (n) renderNugget(n, sub);
   else if (PAGES[h]) renderPage(h);
   else renderHome(h === "ueber" ? "ueber" : null);
-  document.title = n ? n.title + " · Pflegepedia" : h === "impressum" ? "Impressum · Pflegepedia" : h === "datenschutzerklaerung" ? "Datenschutz · Pflegepedia" : h === "quellen" ? "Quellen und Qualität · Pflegepedia" : "Pflegepedia";
+  document.title = n ? n.title + " · Pflegepedia" : h === "impressum" ? "Impressum · Pflegepedia" : h === "datenschutzerklaerung" ? "Datenschutz · Pflegepedia" : h === "quellen" ? "Quellen und Qualität · Pflegepedia" : h === "lernpfade" ? "Lernpfade · Pflegepedia" : "Pflegepedia";
   if (h !== "ueber") window.scrollTo(0, 0);
   if (n && sub === "vertiefung" && $("#s-vertiefung")) setTimeout(() => $("#s-vertiefung").scrollIntoView(), 30);
   setMeta(n, n || PAGES[h] || h === "ueber" ? h : "");
@@ -4698,7 +4907,7 @@ document.querySelector(".levels").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
   setLevel(b.dataset.level);
   const h = curRoute();
-  if (NUGGETS.some(x => x.id === h.split("/")[0])) route(); else if ($("#herobox")) { refreshHome(); fixLinks(); }
+  if (NUGGETS.some(x => x.id === h.split("/")[0]) || h === "lernpfade") route(); else if ($("#herobox")) { refreshHome(); fixLinks(); }
 });
 document.querySelector("footer").addEventListener("click", e => {
   const a = e.target.closest("[data-lv]"); if (!a) return;
