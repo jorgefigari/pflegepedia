@@ -678,6 +678,25 @@ details.lp .lp-stat b { font-size: 20px; }
 details.lp[open] .lp-chev { transform: rotate(180deg); }
 details.lp .lp-steps { padding: 12px 16px 16px; }
 @media (max-width: 640px) { .lp-tabs { grid-template-columns: 1fr; } .lp-tabs button small { display: none; } .lp-sum { grid-template-columns: auto 1fr; } .lp-sum .pc-bar { grid-column: 1 / -1; } details.lp > summary { grid-template-columns: 34px minmax(0, 1fr) 18px; padding: 14px; gap: 10px; } details.lp .lp-stat { display: none; } .lp-h b { font-size: 19px; } }
+.fdt { margin-top: 56px; background: var(--paper); border: 1px solid var(--line); border-radius: 26px; padding: clamp(22px, 4vw, 36px); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.fdt::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--gold); }
+.fdt-head { display: flex; justify-content: space-between; gap: 18px; align-items: start; }
+.fdt h2 { font-size: clamp(22px, 2.6vw, 30px); font-weight: 500; color: var(--brand); margin-top: 10px; max-width: 46ch; letter-spacing: -.015em; }
+.fdt-meta { display: flex; flex-direction: column; align-items: end; gap: 8px; flex: none; }
+.fdt-streak { font-family: var(--display); font-weight: 700; font-size: 12.5px; color: var(--gold-ink); background: var(--gold-soft); border-radius: 99px; padding: 4px 10px; }
+.fdt-opts { display: grid; gap: 10px; margin-top: 22px; }
+.fdt-opts button { text-align: left; border: 1px solid var(--line-2); background: var(--bg); border-radius: 14px; padding: 13px 16px; font-size: 16px; min-height: 48px; transition: border-color .25s, background .25s, transform .4s var(--ease); }
+.fdt-opts button:hover:not(:disabled) { border-color: var(--brand); background: var(--brand-2); transform: translateX(2px); }
+.fdt-opts button:disabled { cursor: default; color: var(--muted); }
+.fdt-opts button.ok { border-color: var(--ok); background: var(--ok-bg); color: var(--ink); font-weight: 700; }
+.fdt-opts button.no { border-color: var(--bad); background: var(--bad-bg); color: var(--ink); text-decoration: line-through; text-decoration-color: var(--bad); }
+.fdt-res { margin-top: 16px; }
+.fdt-hint { margin: 0; color: var(--muted); font-size: 14.5px; }
+.fdt-out { border-radius: 14px; padding: 14px 16px; font-size: 15.5px; margin-bottom: 14px; }
+.fdt-out.ok { background: var(--ok-bg); } .fdt-out.no { background: var(--bad-bg); }
+.fdt-out b { font-family: var(--display); }
+.offline-note { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); background: var(--night); color: #fff; border-radius: 99px; padding: 10px 18px; font-family: var(--display); font-size: 14px; font-weight: 700; z-index: 80; box-shadow: var(--shadow-lift); }
+@media (max-width: 640px) { .fdt { margin-top: 40px; border-radius: 20px; } .fdt-head { flex-direction: column-reverse; } .fdt-meta { flex-direction: row; align-items: center; } }
 /* Vertiefung */
 .panel.deep { border-top: 5px solid var(--fage); }
 .panel.deep h2 .lv { margin-left: 4px; font-size: 13px; }
@@ -933,6 +952,6 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
   <div class="legal">© 2026 Pflegepedia. Die Inhalte ersetzen keine betrieblichen Richtlinien, keine ärztlichen Verordnungen und keine Anleitung durch Fachpersonen.</div>
 </div></footer>
 
-<script src="/app.2322b783cd.js"></script>
+<script src="/app.08d8a18e53.js"></script>
 </body>
 </html>
