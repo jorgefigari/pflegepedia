@@ -4994,7 +4994,7 @@ function renderList() {
   }
   $("#jump").style.display = "";
   const groups = TOPICS.map(t => [t, list.filter(n => n.topic === t)]).filter(([, ns]) => ns.length);
-  $("#jump").innerHTML = groups.map(([t, ns], i) => { const big = i === 0 ? " big" : i === groups.length - 1 && groups.length > 2 ? " big alt" : ""; return `<button class="rv${big}" style="--d:${(i % 4) * 0.05}s;--tint:${TOPIC[t].bg}" data-t="${t}"><i>${ico(t)}</i><b>${t}</b><small>${ns.length} Nuggets</small>${big ? `<span class="d">${TOPIC_DESC[t] || ""}</span>` : ""}</button>`; }).join("");
+  $("#jump").innerHTML = groups.map(([t, ns], i) => { const big = ""; return `<button class="rv${big}" style="--d:${(i % 4) * 0.05}s;--tint:${TOPIC[t].bg}" data-t="${t}"><i>${ico(t)}</i><b>${t}</b><small>${ns.length} Nuggets</small>${big ? `<span class="d">${TOPIC_DESC[t] || ""}</span>` : ""}</button>`; }).join("");
   $("#jump").querySelectorAll("button").forEach(b => b.addEventListener("click", () => document.getElementById("t-" + b.dataset.t).scrollIntoView({ behavior: "smooth" })));
   box.innerHTML = groups.map(([t, ns]) => `<section class="topic" id="t-${t}">
     <div class="topic-head rv"><i>${ico(t)}</i><div><h2>${t}</h2><p>${TOPIC_DESC[t] || ""}</p></div><span class="count">${ns.length} Nuggets</span></div>
@@ -5004,25 +5004,21 @@ function renderList() {
   fixLinks();
 }
 
-function refreshHome() { renderHeroBox(); renderFdt(); renderPaths(); renderList(); fixLinks(); reveal(); }
+function refreshHome() { renderHeroBox(); renderList(); fixLinks(); reveal(); }
 
 function renderHome(scrollTo) {
   $("#app").innerHTML = `
-  <section class="hero"><div class="wrap">
+  <section class="hero compact"><div class="wrap">
     <div>
       <span class="eyebrow">AGS · FaGe · Pflege HF</span>
       <h1>Pflegewissen in <em>kleinen Einheiten</em></h1>
-      <p class="intro">Kurze Lernnuggets für die Pflegeausbildung in der Schweiz.<span class="long"> Lies die Theorie, prüfe dein Wissen im Quiz für deine Stufe und übertrage es auf deine Station.</span></p>
-      <div class="stats"><div><b>${NUGGETS.length}</b>Nuggets</div><div><b>${TOPICS.length}</b>Themen</div><div><b>5</b>Quizfragen pro Stufe</div><div><b>0</b>Anmeldung nötig</div></div>
+      <p class="intro">Kurze Lernnuggets für die Pflegeausbildung in der Schweiz.</p>
     </div>
     <div class="hero-art">${HERO_ART}</div>
     <div id="herobox"></div>
   </div></section>
   <div class="wrap">
-    <div id="fdt"></div>
-    ${howHtml()}
-    <div id="paths"></div>
-    <div class="toolbar"><div class="toolbar-head"><div><span class="eyebrow">Bibliothek</span><h2>Alle Themen</h2></div><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Insulin" value="${esc(state.q)}"></div><div class="jump" id="jump"></div></div>
+    <div class="toolbar"><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Insulin" value="${esc(state.q)}"><div class="jump" id="jump"></div></div>
     <div id="list"></div>
     <section class="about rv" id="ueber">
       <div><h2>Über Pflegepedia</h2>
@@ -5031,7 +5027,7 @@ function renderHome(scrollTo) {
       <ul><li>Kostenlos und ohne Anmeldung</li><li>Kompetenzen klar nach Stufe getrennt</li><li>Keine Werbung, kein Tracking</li><li>Lernstand bleibt auf deinem Gerät</li></ul>
     </section>
   </div>`;
-  $("#search").addEventListener("input", e => { state.q = e.target.value; renderFdt(); renderPaths(); renderList(); reveal(); });
+  $("#search").addEventListener("input", e => { state.q = e.target.value; renderList(); reveal(); });
   refreshHome();
   if (scrollTo) setTimeout(() => { const el = document.getElementById(scrollTo); if (el) el.scrollIntoView(); }, 30);
 }
@@ -5093,6 +5089,8 @@ function quellenPage() {
     ${groups.filter(([, l]) => l.length).map(([t, l]) => `<h3>${t}</h3><ul class="srclist all">${l.map(it => srcLi(it).replace("</li>", ` <span class="usedin">${all.get(it).map(n => `<a href="#${n.id}">${esc(n.title)}</a>`).join(", ")}</span></li>`)).join("")}</ul>`).join("")}`;
 }
 const PAGES = {
+  heute: () => `<span class="eyebrow">Täglich neu</span><h1>Frage des Tages</h1><p class="lead">Jeden Tag eine neue Frage oder ein kurzer Fall aus den Nuggets, passend zu deiner Stufe.</p><div id="fdt"></div><div id="paths"></div>`,
+  funktionen: () => howHtml().replace('<section class="how rv">', '<section class="how in">').replace(/<div class="toolbar-head">[\s\S]*?<\/div><\/div>/, '<span class="eyebrow">So funktioniert es</span><h1>So lernst du mit Pflegepedia</h1>'),
   lernpfade: lernpfadePage,
   berufsbildner: berufsbildnerPage,
   quellen: quellenPage,
@@ -5116,6 +5114,7 @@ function renderPage(k) {
   $("#app").innerHTML = `<article class="page${k === "lernpfade" || k === "berufsbildner" ? " wide" : ""}"><a class="back" href="#">← Startseite</a>${PAGES[k]()}</article>`;
   document.querySelectorAll(".lp-tabs button").forEach(b => b.addEventListener("click", () => { LP_LEVEL = b.dataset.l; renderPage("lernpfade"); fixLinks(); }));
   if (k === "lernpfade" && LP_FOCUS) { const f = LP_FOCUS; LP_FOCUS = null; setTimeout(() => { const el = document.getElementById(f); if (el) { el.scrollIntoView({ block: "start" }); el.classList.add("flash"); } }, 60); }
+  if (k === "heute") { state.q = ""; renderFdt(); renderPaths(); const f = $("#fdt .fdt"); if (f) f.classList.add("in"); }
   const r = $("#reset");
   if (r) r.addEventListener("click", () => { done = {}; try { localStorage.removeItem("pp-done"); localStorage.removeItem("pp-level"); } catch (e) {} state.level = "Alle"; syncLevels(); $("#resetmsg").textContent = "Gelöscht."; });
 }
@@ -5169,7 +5168,7 @@ function route() {
   if (n) renderNugget(n, sub);
   else if (PAGES[h]) renderPage(h);
   else renderHome(h === "ueber" ? "ueber" : null);
-  document.title = n ? n.title + " · Pflegepedia" : h === "impressum" ? "Impressum · Pflegepedia" : h === "datenschutzerklaerung" ? "Datenschutz · Pflegepedia" : h === "quellen" ? "Quellen und Qualität · Pflegepedia" : h === "lernpfade" ? "Lernpfade · Pflegepedia" : h === "berufsbildner" ? "Für Berufsbildner · Pflegepedia" : "Pflegepedia";
+  document.title = n ? n.title + " · Pflegepedia" : h === "impressum" ? "Impressum · Pflegepedia" : h === "datenschutzerklaerung" ? "Datenschutz · Pflegepedia" : h === "quellen" ? "Quellen und Qualität · Pflegepedia" : h === "lernpfade" ? "Lernpfade · Pflegepedia" : h === "berufsbildner" ? "Für Berufsbildner · Pflegepedia" : h === "heute" ? "Frage des Tages · Pflegepedia" : h === "funktionen" ? "So lernst du mit Pflegepedia" : "Pflegepedia";
   if (h !== "ueber") window.scrollTo(0, 0);
   if (n && sub === "vertiefung" && $("#s-vertiefung")) setTimeout(() => $("#s-vertiefung").scrollIntoView(), 30);
   setMeta(n, n || PAGES[h] || h === "ueber" ? h : "");
@@ -5178,11 +5177,18 @@ function route() {
   firstRoute = false;
   reveal();
 }
+(function () {
+  const b = document.getElementById("menubtn"), nv = document.getElementById("mainnav"); if (!b || !nv) return;
+  const set = o => { nv.classList.toggle("open", o); b.setAttribute("aria-expanded", o); };
+  b.addEventListener("click", () => set(!nv.classList.contains("open")));
+  nv.addEventListener("click", e => { if (e.target.closest("a")) set(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
+})();
 document.querySelector(".levels").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
   setLevel(b.dataset.level);
   const h = curRoute();
-  if (NUGGETS.some(x => x.id === h.split("/")[0]) || h === "lernpfade" || h === "berufsbildner") route(); else if ($("#herobox")) { refreshHome(); fixLinks(); }
+  if (NUGGETS.some(x => x.id === h.split("/")[0]) || h === "lernpfade" || h === "berufsbildner" || h === "heute") route(); else if ($("#herobox")) { refreshHome(); fixLinks(); }
 });
 document.querySelector("footer").addEventListener("click", e => {
   const a = e.target.closest("[data-lv]"); if (!a) return;

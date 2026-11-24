@@ -1,7 +1,7 @@
 {
  "": {
-  "hash": "716576955b",
-  "lastmod": "2026-11-20"
+  "hash": "1bddf72215",
+  "lastmod": "2026-11-24"
  },
  "haendehygiene": {
   "hash": "790ef143c4",
@@ -203,6 +203,14 @@
   "hash": "51f1014996",
   "lastmod": "2026-11-18"
  },
+ "heute": {
+  "hash": "0781cb6231",
+  "lastmod": "2026-11-24"
+ },
+ "funktionen": {
+  "hash": "aa848e6d5f",
+  "lastmod": "2026-11-24"
+ },
  "lernpfade": {
   "hash": "d75c1dfd8a",
   "lastmod": "2026-11-18"
@@ -212,8 +220,8 @@
   "lastmod": "2026-11-18"
  },
  "ueber": {
-  "hash": "f04de6d36b",
-  "lastmod": "2026-11-20"
+  "hash": "7ed9a37b5d",
+  "lastmod": "2026-11-24"
  },
  "quellen": {
   "hash": "5be51b4a6f",
