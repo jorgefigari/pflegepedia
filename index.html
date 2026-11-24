@@ -829,13 +829,54 @@ body.dp-exam > *:not(#dp-exam) { display: none !important; }
 .dx-end { display: grid; gap: 10px; margin-top: 6px; }
 .dx-end p { margin: 0; color: var(--muted); text-align: center; }
 @media (max-width: 640px) { .dp-rules b { font-size: 22px; } .dp-start { padding: 14px; } .dx-time { font-size: 20px; } }
+
+/* Kompakte Startseite */
+.hero.compact .wrap { grid-template-columns: 1fr minmax(0, 330px); gap: 8px 40px; padding-top: 30px; padding-bottom: 22px; }
+.hero.compact h1 { font-size: clamp(34px, 4.4vw, 54px); margin-top: 10px; }
+.hero.compact p.intro { margin: 12px 0 0; font-size: 17px; }
+.hero.compact .hero-art { max-width: 330px; justify-self: end; }
+.toolbar { padding: 26px 0 0; gap: 16px; }
+.jump { display: flex; flex-wrap: wrap; gap: 8px; }
+.jump button, .jump button.big { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 99px; grid-template-columns: none; row-gap: 0; }
+.jump button i { grid-row: auto; width: 28px; height: 28px; border-radius: 99px; margin: 0; flex: none; }
+.jump button svg { width: 16px; height: 16px; }
+.jump button b { font-size: 15.5px; }
+.jump button small { font-size: 12.5px; }
+@media (max-width: 1500px) { .nav { gap: 16px; margin-left: 0; } .nav a { font-size: 14.5px; } .picker > span { display: none; } .top .wrap { gap: 18px; } }
+.menubtn { display: none; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--paper); border-radius: 99px; padding: 8px 14px; font-family: var(--display); font-weight: 700; font-size: 14.5px; color: var(--brand); min-height: 40px; }
+.menubtn svg { width: 20px; height: 20px; }
+.page .fdt { margin-top: 18px; }
+.page .how { padding: 0; }
+.topic { padding-top: 40px; }
+@media (max-width: 1180px) {
+  .menubtn { display: inline-flex; margin-left: auto; order: 2; }
+  .picker { order: 3; margin-left: 0; }
+  .nav { display: none; order: 4; flex-basis: 100%; flex-direction: column; gap: 0; margin: 0 0 8px; border-top: 1px solid var(--line); padding-top: 4px; }
+  .nav.open { display: flex; }
+  .nav a { padding: 13px 4px; font-size: 16.5px; border-bottom: 1px solid var(--line); }
+  .nav a::after { display: none; }
+  .nav a:first-child, .nav a[href$="ueber"], .nav a[href$="ueber/"] { display: block !important; }
+  .nav .nfull { display: inline !important; }
+}
+@media (max-width: 760px) {
+  .hero.compact .wrap { grid-template-columns: 1fr; padding-top: 16px !important; padding-bottom: 16px !important; gap: 12px !important; }
+  .hero.compact .hero-art { display: none; }
+  .hero.compact h1 { font-size: 30px; }
+  .hero.compact p.intro { font-size: 15.5px; margin-top: 6px; }
+  .toolbar { padding-top: 16px; gap: 12px; }
+  .jump { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 6px; scrollbar-width: none; }
+  .jump::-webkit-scrollbar { display: none; }
+  .jump button { flex: none; }
+  .topic { padding-top: 32px; }
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#app">Zum Inhalt springen</a>
 <header class="top"><div class="wrap">
   <a class="logo" href="#" aria-label="Pflegepedia Startseite"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -1 115 115"><path d="M22 36V102" stroke="#14304f" stroke-width="16" stroke-linecap="round" fill="none"/><path d="M22 36C22 20 35 12 51 12C70 12 83 27 83 46C83 65 70 80 51 80H49" stroke="#14304f" stroke-width="16" stroke-linecap="round" fill="none"/><rect x="39" y="33" width="23" height="23" rx="7" fill="#b48a4c"/></svg><span>Pflegepedia</span></a>
-  <nav class="nav" aria-label="Hauptnavigation"><a href="#">Nuggets</a><a href="#lernpfade">Lernpfade</a><a href="#berufsbildner"><span class="nfull">Für </span>Berufsbildner</a><a href="#ueber">Über</a></nav>
+  <button class="menubtn" id="menubtn" aria-expanded="false" aria-controls="mainnav" aria-label="Menü"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menü</span></button>
+  <nav class="nav" id="mainnav" aria-label="Hauptnavigation"><a href="#">Nuggets</a><a href="#heute">Frage des Tages</a><a href="#lernpfade">Lernpfade</a><a href="#funktionen">So lernst du</a><a href="#berufsbildner"><span class="nfull">Für </span>Berufsbildner</a><a href="#ueber">Über</a></nav>
   <div class="picker"><span>Ich bin</span>
   <div class="levels" role="group" aria-label="Ausbildungsstufe">
     <button data-level="AGS">AGS</button><button data-level="FaGe">FaGe</button><button data-level="HF">Pflege HF</button><button data-level="Alle">Alle</button>
@@ -6134,7 +6175,7 @@ function renderList() {
   }
   $("#jump").style.display = "";
   const groups = TOPICS.map(t => [t, list.filter(n => n.topic === t)]).filter(([, ns]) => ns.length);
-  $("#jump").innerHTML = groups.map(([t, ns], i) => { const big = i === 0 ? " big" : i === groups.length - 1 && groups.length > 2 ? " big alt" : ""; return `<button class="rv${big}" style="--d:${(i % 4) * 0.05}s;--tint:${TOPIC[t].bg}" data-t="${t}"><i>${ico(t)}</i><b>${t}</b><small>${ns.length} Nuggets</small>${big ? `<span class="d">${TOPIC_DESC[t] || ""}</span>` : ""}</button>`; }).join("");
+  $("#jump").innerHTML = groups.map(([t, ns], i) => { const big = ""; return `<button class="rv${big}" style="--d:${(i % 4) * 0.05}s;--tint:${TOPIC[t].bg}" data-t="${t}"><i>${ico(t)}</i><b>${t}</b><small>${ns.length} Nuggets</small>${big ? `<span class="d">${TOPIC_DESC[t] || ""}</span>` : ""}</button>`; }).join("");
   $("#jump").querySelectorAll("button").forEach(b => b.addEventListener("click", () => document.getElementById("t-" + b.dataset.t).scrollIntoView({ behavior: "smooth" })));
   box.innerHTML = groups.map(([t, ns]) => `<section class="topic" id="t-${t}">
     <div class="topic-head rv"><i>${ico(t)}</i><div><h2>${t}</h2><p>${TOPIC_DESC[t] || ""}</p></div><span class="count">${ns.length} Nuggets</span></div>
@@ -6144,25 +6185,21 @@ function renderList() {
   fixLinks();
 }
 
-function refreshHome() { renderHeroBox(); renderFdt(); renderPaths(); renderList(); fixLinks(); reveal(); }
+function refreshHome() { renderHeroBox(); renderList(); fixLinks(); reveal(); }
 
 function renderHome(scrollTo) {
   $("#app").innerHTML = `
-  <section class="hero"><div class="wrap">
+  <section class="hero compact"><div class="wrap">
     <div>
       <span class="eyebrow">AGS · FaGe · Pflege HF</span>
       <h1>Pflegewissen in <em>kleinen Einheiten</em></h1>
-      <p class="intro">Kurze Lernnuggets für die Pflegeausbildung in der Schweiz.<span class="long"> Lies die Theorie, prüfe dein Wissen im Quiz für deine Stufe und übertrage es auf deine Station.</span></p>
-      <div class="stats"><div><b>${NUGGETS.length}</b>Nuggets</div><div><b>${TOPICS.length}</b>Themen</div><div><b>5</b>Quizfragen pro Stufe</div><div><b>0</b>Anmeldung nötig</div></div>
+      <p class="intro">Kurze Lernnuggets für die Pflegeausbildung in der Schweiz.</p>
     </div>
     <div class="hero-art">${HERO_ART}</div>
     <div id="herobox"></div>
   </div></section>
   <div class="wrap">
-    <div id="fdt"></div>
-    ${howHtml()}
-    <div id="paths"></div>
-    <div class="toolbar"><div class="toolbar-head"><div><span class="eyebrow">Bibliothek</span><h2>Alle Themen</h2></div><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Insulin" value="${esc(state.q)}"></div><div class="jump" id="jump"></div></div>
+    <div class="toolbar"><label for="search" style="position:absolute;left:-9999px">Suchen</label><input id="search" type="search" placeholder="Nugget suchen, z. B. Braden, SBAR, Insulin" value="${esc(state.q)}"><div class="jump" id="jump"></div></div>
     <div id="list"></div>
     <section class="about rv" id="ueber">
       <div><h2>Über Pflegepedia</h2>
@@ -6171,7 +6208,7 @@ function renderHome(scrollTo) {
       <ul><li>Kostenlos und ohne Anmeldung</li><li>Kompetenzen klar nach Stufe getrennt</li><li>Keine Werbung, kein Tracking</li><li>Lernstand bleibt auf deinem Gerät</li></ul>
     </section>
   </div>`;
-  $("#search").addEventListener("input", e => { state.q = e.target.value; renderFdt(); renderPaths(); renderList(); reveal(); });
+  $("#search").addEventListener("input", e => { state.q = e.target.value; renderList(); reveal(); });
   refreshHome();
   if (scrollTo) setTimeout(() => { const el = document.getElementById(scrollTo); if (el) el.scrollIntoView(); }, 30);
 }
@@ -6233,6 +6270,8 @@ function quellenPage() {
     ${groups.filter(([, l]) => l.length).map(([t, l]) => `<h3>${t}</h3><ul class="srclist all">${l.map(it => srcLi(it).replace("</li>", ` <span class="usedin">${all.get(it).map(n => `<a href="#${n.id}">${esc(n.title)}</a>`).join(", ")}</span></li>`)).join("")}</ul>`).join("")}`;
 }
 const PAGES = {
+  heute: () => `<span class="eyebrow">Täglich neu</span><h1>Frage des Tages</h1><p class="lead">Jeden Tag eine neue Frage oder ein kurzer Fall aus den Nuggets, passend zu deiner Stufe.</p><div id="fdt"></div><div id="paths"></div>`,
+  funktionen: () => howHtml().replace('<section class="how rv">', '<section class="how in">').replace(/<div class="toolbar-head">[\s\S]*?<\/div><\/div>/, '<span class="eyebrow">So funktioniert es</span><h1>So lernst du mit Pflegepedia</h1>'),
   lernpfade: lernpfadePage,
   berufsbildner: berufsbildnerPage,
   quellen: quellenPage,
@@ -6256,6 +6295,7 @@ function renderPage(k) {
   $("#app").innerHTML = `<article class="page${k === "lernpfade" || k === "berufsbildner" ? " wide" : ""}"><a class="back" href="#">← Startseite</a>${PAGES[k]()}</article>`;
   document.querySelectorAll(".lp-tabs button").forEach(b => b.addEventListener("click", () => { LP_LEVEL = b.dataset.l; renderPage("lernpfade"); fixLinks(); }));
   if (k === "lernpfade" && LP_FOCUS) { const f = LP_FOCUS; LP_FOCUS = null; setTimeout(() => { const el = document.getElementById(f); if (el) { el.scrollIntoView({ block: "start" }); el.classList.add("flash"); } }, 60); }
+  if (k === "heute") { state.q = ""; renderFdt(); renderPaths(); const f = $("#fdt .fdt"); if (f) f.classList.add("in"); }
   const r = $("#reset");
   if (r) r.addEventListener("click", () => { done = {}; try { localStorage.removeItem("pp-done"); localStorage.removeItem("pp-level"); } catch (e) {} state.level = "Alle"; syncLevels(); $("#resetmsg").textContent = "Gelöscht."; });
 }
@@ -6309,7 +6349,7 @@ function route() {
   if (n) renderNugget(n, sub);
   else if (PAGES[h]) renderPage(h);
   else renderHome(h === "ueber" ? "ueber" : null);
-  document.title = n ? n.title + " · Pflegepedia" : h === "impressum" ? "Impressum · Pflegepedia" : h === "datenschutzerklaerung" ? "Datenschutz · Pflegepedia" : h === "quellen" ? "Quellen und Qualität · Pflegepedia" : h === "lernpfade" ? "Lernpfade · Pflegepedia" : h === "berufsbildner" ? "Für Berufsbildner · Pflegepedia" : "Pflegepedia";
+  document.title = n ? n.title + " · Pflegepedia" : h === "impressum" ? "Impressum · Pflegepedia" : h === "datenschutzerklaerung" ? "Datenschutz · Pflegepedia" : h === "quellen" ? "Quellen und Qualität · Pflegepedia" : h === "lernpfade" ? "Lernpfade · Pflegepedia" : h === "berufsbildner" ? "Für Berufsbildner · Pflegepedia" : h === "heute" ? "Frage des Tages · Pflegepedia" : h === "funktionen" ? "So lernst du mit Pflegepedia" : "Pflegepedia";
   if (h !== "ueber") window.scrollTo(0, 0);
   if (n && sub === "vertiefung" && $("#s-vertiefung")) setTimeout(() => $("#s-vertiefung").scrollIntoView(), 30);
   setMeta(n, n || PAGES[h] || h === "ueber" ? h : "");
@@ -6318,11 +6358,18 @@ function route() {
   firstRoute = false;
   reveal();
 }
+(function () {
+  const b = document.getElementById("menubtn"), nv = document.getElementById("mainnav"); if (!b || !nv) return;
+  const set = o => { nv.classList.toggle("open", o); b.setAttribute("aria-expanded", o); };
+  b.addEventListener("click", () => set(!nv.classList.contains("open")));
+  nv.addEventListener("click", e => { if (e.target.closest("a")) set(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
+})();
 document.querySelector(".levels").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
   setLevel(b.dataset.level);
   const h = curRoute();
-  if (NUGGETS.some(x => x.id === h.split("/")[0]) || h === "lernpfade" || h === "berufsbildner") route(); else if ($("#herobox")) { refreshHome(); fixLinks(); }
+  if (NUGGETS.some(x => x.id === h.split("/")[0]) || h === "lernpfade" || h === "berufsbildner" || h === "heute") route(); else if ($("#herobox")) { refreshHome(); fixLinks(); }
 });
 document.querySelector("footer").addEventListener("click", e => {
   const a = e.target.closest("[data-lv]"); if (!a) return;

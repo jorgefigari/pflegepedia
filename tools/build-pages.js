@@ -30,6 +30,8 @@ function metaDesc(n) {
 nuggets.forEach(n => n.desc = metaDesc(n));
 
 const pages = [
+  { id: "heute", title: "Frage des Tages", desc: "Jeden Tag eine neue Frage oder ein kurzer Fall aus den Lernnuggets für AGS, FaGe und Pflege HF. Kostenlos, ohne Anmeldung." },
+  { id: "funktionen", title: "So lernst du mit Pflegepedia", desc: "Lernpfade, Vorlesen, Glossar, Merkblatt, QR-Code und Quiz pro Stufe: so nutzt du Pflegepedia. Dein Lernstand bleibt auf deinem Gerät." },
   { id: "lernpfade", title: "Lernpfade", desc: "Lernpfade für AGS, FaGe und Pflege HF: Lernnuggets in einer sinnvollen Reihenfolge, mit Fortschritt auf deinem Gerät. Kostenlos und ohne Anmeldung." },
   { id: "berufsbildner", title: "Für Berufsbildnerinnen und Berufsbildner", desc: "Pflegepedia in der Lernbegleitung nutzen: Lernpfade, Quiz vor dem Lerngespräch, Arbeitsaufträge pro Nugget, Merkblätter und QR-Codes für die Station." },
   { id: "ueber", title: "Über Pflegepedia", desc: "Was Pflegepedia ist und für wen: kostenlose Lernnuggets für AGS, FaGe und Pflege HF in der Schweiz, mit Theorie, Quiz pro Stufe und Praxistransfer." },
